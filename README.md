@@ -1,4 +1,4 @@
-![Mux PHP Banner](https://banner.mux.dev/?image=php)
+![Mux PHP Banner](https://banner-generator-git-php-related-changes.mux1.now.sh/?image=php)
 
 # Mux PHP
 

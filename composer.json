@@ -13,7 +13,7 @@
     "authors": [
         {
             "name": "Mux SDK team",
-            "homepage": "https://mux.com"
+            "homepage": "https://mux.com",
             "email": "sdks@mux.com"
         }
     ],

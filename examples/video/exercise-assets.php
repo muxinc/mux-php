@@ -83,7 +83,7 @@
     print("update-asset-mp4-support OK ✅\n");
 
     // ========== delete-asset-playback-id ==========
-    $assetsApi->deleteAssetPlaybackId($createAssetResponse->getData()->getId(), $createAssetPlaybackIdRequest->getData().getId());
+    $assetsApi->deleteAssetPlaybackId($createAssetResponse->getData()->getId(), $playbackId->getData()->getId());
     $assetWithNoPlaybackIds = $assetsApi->getAsset($createAssetResponse->getData()->getId());
     assert($assetWithNoPlaybackIds->getData()->getPlaybackIds() == null);
     print("delete-asset-playback-id OK ✅\n");

@@ -272,6 +272,7 @@ class URLSigningKeysApi
     protected function createUrlSigningKeyRequest()
     {
 
+
         $resourcePath = '/video/v1/signing-keys';
         $formParams = [];
         $queryParams = [];
@@ -487,6 +488,7 @@ class URLSigningKeysApi
      */
     protected function deleteUrlSigningKeyRequest($signing_key_id)
     {
+
         // verify the required parameter 'signing_key_id' is set
         if ($signing_key_id === null || (is_array($signing_key_id) && count($signing_key_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -765,6 +767,7 @@ class URLSigningKeysApi
      */
     protected function getUrlSigningKeyRequest($signing_key_id)
     {
+
         // verify the required parameter 'signing_key_id' is set
         if ($signing_key_id === null || (is_array($signing_key_id) && count($signing_key_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -864,16 +867,17 @@ class URLSigningKeysApi
      *
      * List URL signing keys
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListSigningKeysResponse
      */
-    public function listUrlSigningKeys($limit = 25, $page = 1)
+    public function listUrlSigningKeys($optionalParams = [])
     {
-        list($response) = $this->listUrlSigningKeysWithHttpInfo($limit, $page);
+        list($response) = $this->listUrlSigningKeysWithHttpInfo($optionalParams);
         return $response;
     }
 
@@ -882,16 +886,17 @@ class URLSigningKeysApi
      *
      * List URL signing keys
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListSigningKeysResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listUrlSigningKeysWithHttpInfo($limit = 25, $page = 1)
+    public function listUrlSigningKeysWithHttpInfo($optionalParams = [])
     {
-        $request = $this->listUrlSigningKeysRequest($limit, $page);
+        $request = $this->listUrlSigningKeysRequest($optionalParams);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1040,14 +1045,19 @@ class URLSigningKeysApi
     /**
      * Create request for operation 'listUrlSigningKeys'
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listUrlSigningKeysRequest($limit = 25, $page = 1)
+    protected function listUrlSigningKeysRequest($optionalParams)
     {
+        // Pull the set optional params from the associative array $optionalParams, setting them to their defaults if they're not set.
+        $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
+        $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
+
 
         $resourcePath = '/video/v1/signing-keys';
         $formParams = [];

@@ -114,7 +114,7 @@ class AssetsApi
      *
      * Create an asset
      *
-     * @param  \MuxPhp\Models\CreateAssetRequest $create_asset_request (required)
+     * @param  \MuxPhp\Models\CreateAssetRequest $create_asset_request create_asset_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -269,13 +269,14 @@ class AssetsApi
     /**
      * Create request for operation 'createAsset'
      *
-     * @param  \MuxPhp\Models\CreateAssetRequest $create_asset_request (required)
+     * @param  \MuxPhp\Models\CreateAssetRequest $create_asset_request create_asset_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     protected function createAssetRequest($create_asset_request)
     {
+
         // verify the required parameter 'create_asset_request' is set
         if ($create_asset_request === null || (is_array($create_asset_request) && count($create_asset_request) === 0)) {
             throw new \InvalidArgumentException(
@@ -389,7 +390,7 @@ class AssetsApi
      * Create a playback ID
      *
      * @param  string $asset_id The asset ID. (required)
-     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request (required)
+     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request create_playback_id_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -547,13 +548,14 @@ class AssetsApi
      * Create request for operation 'createAssetPlaybackId'
      *
      * @param  string $asset_id The asset ID. (required)
-     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request (required)
+     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request create_playback_id_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     protected function createAssetPlaybackIdRequest($asset_id, $create_playback_id_request)
     {
+
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -793,6 +795,7 @@ class AssetsApi
      */
     protected function deleteAssetRequest($asset_id)
     {
+
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1028,6 +1031,7 @@ class AssetsApi
      */
     protected function deleteAssetPlaybackIdRequest($asset_id, $playback_id)
     {
+
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1320,6 +1324,7 @@ class AssetsApi
      */
     protected function getAssetRequest($asset_id)
     {
+
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1598,6 +1603,7 @@ class AssetsApi
      */
     protected function getAssetInputInfoRequest($asset_id)
     {
+
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1881,6 +1887,7 @@ class AssetsApi
      */
     protected function getAssetPlaybackIdRequest($asset_id, $playback_id)
     {
+
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1994,16 +2001,17 @@ class AssetsApi
      *
      * List assets
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListAssetsResponse
      */
-    public function listAssets($limit = 25, $page = 1)
+    public function listAssets($optionalParams = [])
     {
-        list($response) = $this->listAssetsWithHttpInfo($limit, $page);
+        list($response) = $this->listAssetsWithHttpInfo($optionalParams);
         return $response;
     }
 
@@ -2012,16 +2020,17 @@ class AssetsApi
      *
      * List assets
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListAssetsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listAssetsWithHttpInfo($limit = 25, $page = 1)
+    public function listAssetsWithHttpInfo($optionalParams = [])
     {
-        $request = $this->listAssetsRequest($limit, $page);
+        $request = $this->listAssetsRequest($optionalParams);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2170,14 +2179,19 @@ class AssetsApi
     /**
      * Create request for operation 'listAssets'
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listAssetsRequest($limit = 25, $page = 1)
+    protected function listAssetsRequest($optionalParams)
     {
+        // Pull the set optional params from the associative array $optionalParams, setting them to their defaults if they're not set.
+        $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
+        $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
+
 
         $resourcePath = '/video/v1/assets';
         $formParams = [];
@@ -2290,7 +2304,7 @@ class AssetsApi
      * Update MP4 support
      *
      * @param  string $asset_id The asset ID. (required)
-     * @param  \MuxPhp\Models\UpdateAssetMP4SupportRequest $update_asset_mp4_support_request (required)
+     * @param  \MuxPhp\Models\UpdateAssetMP4SupportRequest $update_asset_mp4_support_request update_asset_mp4_support_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2448,13 +2462,14 @@ class AssetsApi
      * Create request for operation 'updateAssetMp4Support'
      *
      * @param  string $asset_id The asset ID. (required)
-     * @param  \MuxPhp\Models\UpdateAssetMP4SupportRequest $update_asset_mp4_support_request (required)
+     * @param  \MuxPhp\Models\UpdateAssetMP4SupportRequest $update_asset_mp4_support_request update_asset_mp4_support_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     protected function updateAssetMp4SupportRequest($asset_id, $update_asset_mp4_support_request)
     {
+
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(

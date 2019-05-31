@@ -114,7 +114,7 @@ class LiveStreamsApi
      *
      * Create a live stream
      *
-     * @param  \MuxPhp\Models\CreateLiveStreamRequest $create_live_stream_request (required)
+     * @param  \MuxPhp\Models\CreateLiveStreamRequest $create_live_stream_request create_live_stream_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -269,13 +269,14 @@ class LiveStreamsApi
     /**
      * Create request for operation 'createLiveStream'
      *
-     * @param  \MuxPhp\Models\CreateLiveStreamRequest $create_live_stream_request (required)
+     * @param  \MuxPhp\Models\CreateLiveStreamRequest $create_live_stream_request create_live_stream_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     protected function createLiveStreamRequest($create_live_stream_request)
     {
+
         // verify the required parameter 'create_live_stream_request' is set
         if ($create_live_stream_request === null || (is_array($create_live_stream_request) && count($create_live_stream_request) === 0)) {
             throw new \InvalidArgumentException(
@@ -389,7 +390,7 @@ class LiveStreamsApi
      * Create a live stream playback ID
      *
      * @param  string $live_stream_id The live stream ID (required)
-     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request (required)
+     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request create_playback_id_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -547,13 +548,14 @@ class LiveStreamsApi
      * Create request for operation 'createLiveStreamPlaybackId'
      *
      * @param  string $live_stream_id The live stream ID (required)
-     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request (required)
+     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request create_playback_id_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     protected function createLiveStreamPlaybackIdRequest($live_stream_id, $create_playback_id_request)
     {
+
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -793,6 +795,7 @@ class LiveStreamsApi
      */
     protected function deleteLiveStreamRequest($live_stream_id)
     {
+
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1028,6 +1031,7 @@ class LiveStreamsApi
      */
     protected function deleteLiveStreamPlaybackIdRequest($live_stream_id, $playback_id)
     {
+
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1320,6 +1324,7 @@ class LiveStreamsApi
      */
     protected function getLiveStreamRequest($live_stream_id)
     {
+
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1419,16 +1424,17 @@ class LiveStreamsApi
      *
      * List live streams
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListLiveStreamsResponse
      */
-    public function listLiveStreams($limit = 25, $page = 1)
+    public function listLiveStreams($optionalParams = [])
     {
-        list($response) = $this->listLiveStreamsWithHttpInfo($limit, $page);
+        list($response) = $this->listLiveStreamsWithHttpInfo($optionalParams);
         return $response;
     }
 
@@ -1437,16 +1443,17 @@ class LiveStreamsApi
      *
      * List live streams
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListLiveStreamsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listLiveStreamsWithHttpInfo($limit = 25, $page = 1)
+    public function listLiveStreamsWithHttpInfo($optionalParams = [])
     {
-        $request = $this->listLiveStreamsRequest($limit, $page);
+        $request = $this->listLiveStreamsRequest($optionalParams);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1595,14 +1602,19 @@ class LiveStreamsApi
     /**
      * Create request for operation 'listLiveStreams'
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listLiveStreamsRequest($limit = 25, $page = 1)
+    protected function listLiveStreamsRequest($optionalParams)
     {
+        // Pull the set optional params from the associative array $optionalParams, setting them to their defaults if they're not set.
+        $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
+        $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
+
 
         $resourcePath = '/video/v1/live-streams';
         $formParams = [];
@@ -1875,6 +1887,7 @@ class LiveStreamsApi
      */
     protected function resetStreamKeyRequest($live_stream_id)
     {
+
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2153,6 +2166,7 @@ class LiveStreamsApi
      */
     protected function signalLiveStreamCompleteRequest($live_stream_id)
     {
+
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(

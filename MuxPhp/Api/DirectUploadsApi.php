@@ -276,6 +276,7 @@ class DirectUploadsApi
      */
     protected function cancelDirectUploadRequest($upload_id)
     {
+
         // verify the required parameter 'upload_id' is set
         if ($upload_id === null || (is_array($upload_id) && count($upload_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -392,7 +393,7 @@ class DirectUploadsApi
      *
      * Create a new direct upload URL
      *
-     * @param  \MuxPhp\Models\CreateUploadRequest $create_upload_request (required)
+     * @param  \MuxPhp\Models\CreateUploadRequest $create_upload_request create_upload_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -547,13 +548,14 @@ class DirectUploadsApi
     /**
      * Create request for operation 'createDirectUpload'
      *
-     * @param  \MuxPhp\Models\CreateUploadRequest $create_upload_request (required)
+     * @param  \MuxPhp\Models\CreateUploadRequest $create_upload_request create_upload_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     protected function createDirectUploadRequest($create_upload_request)
     {
+
         // verify the required parameter 'create_upload_request' is set
         if ($create_upload_request === null || (is_array($create_upload_request) && count($create_upload_request) === 0)) {
             throw new \InvalidArgumentException(
@@ -827,6 +829,7 @@ class DirectUploadsApi
      */
     protected function getDirectUploadRequest($upload_id)
     {
+
         // verify the required parameter 'upload_id' is set
         if ($upload_id === null || (is_array($upload_id) && count($upload_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -926,16 +929,17 @@ class DirectUploadsApi
      *
      * List direct uploads
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListUploadsResponse
      */
-    public function listDirectUploads($limit = 25, $page = 1)
+    public function listDirectUploads($optionalParams = [])
     {
-        list($response) = $this->listDirectUploadsWithHttpInfo($limit, $page);
+        list($response) = $this->listDirectUploadsWithHttpInfo($optionalParams);
         return $response;
     }
 
@@ -944,16 +948,17 @@ class DirectUploadsApi
      *
      * List direct uploads
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListUploadsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listDirectUploadsWithHttpInfo($limit = 25, $page = 1)
+    public function listDirectUploadsWithHttpInfo($optionalParams = [])
     {
-        $request = $this->listDirectUploadsRequest($limit, $page);
+        $request = $this->listDirectUploadsRequest($optionalParams);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1102,14 +1107,19 @@ class DirectUploadsApi
     /**
      * Create request for operation 'listDirectUploads'
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listDirectUploadsRequest($limit = 25, $page = 1)
+    protected function listDirectUploadsRequest($optionalParams)
     {
+        // Pull the set optional params from the associative array $optionalParams, setting them to their defaults if they're not set.
+        $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
+        $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
+
 
         $resourcePath = '/video/v1/uploads';
         $formParams = [];

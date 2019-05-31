@@ -3,7 +3,7 @@
     assert_options(ASSERT_BAIL, true);
     require_once 'vendor/autoload.php';
 
-    // Exercises all video vied operations:
+    // Exercises all video view operations:
     //   list-video-views
     //   get-video-view
 

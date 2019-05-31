@@ -291,6 +291,7 @@ class VideoViewsApi
         $multipart = false;
 
 
+
         // path params
         if ($video_view_id !== null) {
             $resourcePath = str_replace(
@@ -359,10 +360,11 @@ class VideoViewsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -590,40 +592,49 @@ class VideoViewsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: limit
         if ($limit !== null) {
-            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
+            array_push($queryParams, "limit=" . ObjectSerializer::toQueryValue($limit));
         }
-        // query params
+        // Query Param: page
         if ($page !== null) {
-            $queryParams['page'] = ObjectSerializer::toQueryValue($page);
+            array_push($queryParams, "page=" . ObjectSerializer::toQueryValue($page));
         }
-        // query params
+        // Query Param: viewer_id
         if ($viewer_id !== null) {
-            $queryParams['viewer_id'] = ObjectSerializer::toQueryValue($viewer_id);
+            array_push($queryParams, "viewer_id=" . ObjectSerializer::toQueryValue($viewer_id));
         }
-        // query params
+        // Query Param: error_id
         if ($error_id !== null) {
-            $queryParams['error_id'] = ObjectSerializer::toQueryValue($error_id);
+            array_push($queryParams, "error_id=" . ObjectSerializer::toQueryValue($error_id));
         }
-        // query params
+        // Query Param: order_direction
         if ($order_direction !== null) {
-            $queryParams['order_direction'] = ObjectSerializer::toQueryValue($order_direction);
+            array_push($queryParams, "order_direction=" . ObjectSerializer::toQueryValue($order_direction));
         }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'multi', true);
-        }
+        // Query Param: filters[]
         if ($filters !== null) {
-            $queryParams['filters[]'] = ObjectSerializer::toQueryValue($filters);
+            if (is_array($filters)) {
+                foreach ($filters as $p) {
+                    array_push($queryParams, "filters[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter filters[]');
+            }
         }
-        // query params
-        if (is_array($timeframe)) {
-            $timeframe = ObjectSerializer::serializeCollection($timeframe, 'multi', true);
-        }
+        // Query Param: timeframe[]
         if ($timeframe !== null) {
-            $queryParams['timeframe[]'] = ObjectSerializer::toQueryValue($timeframe);
+            if (is_array($timeframe)) {
+                foreach ($timeframe as $p) {
+                    array_push($queryParams, "timeframe[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter timeframe[]');
+            }
         }
+
 
 
         // body params
@@ -685,10 +696,11 @@ class VideoViewsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );

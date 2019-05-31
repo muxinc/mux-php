@@ -292,6 +292,7 @@ class AssetsApi
 
 
 
+
         // body params
         $_tempBody = null;
         if (isset($create_asset_request)) {
@@ -354,10 +355,11 @@ class AssetsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -573,6 +575,7 @@ class AssetsApi
         $multipart = false;
 
 
+
         // path params
         if ($asset_id !== null) {
             $resourcePath = str_replace(
@@ -644,10 +647,11 @@ class AssetsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -804,6 +808,7 @@ class AssetsApi
         $multipart = false;
 
 
+
         // path params
         if ($asset_id !== null) {
             $resourcePath = str_replace(
@@ -872,10 +877,11 @@ class AssetsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -1043,6 +1049,7 @@ class AssetsApi
         $multipart = false;
 
 
+
         // path params
         if ($asset_id !== null) {
             $resourcePath = str_replace(
@@ -1119,10 +1126,11 @@ class AssetsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -1327,6 +1335,7 @@ class AssetsApi
         $multipart = false;
 
 
+
         // path params
         if ($asset_id !== null) {
             $resourcePath = str_replace(
@@ -1395,10 +1404,11 @@ class AssetsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -1603,6 +1613,7 @@ class AssetsApi
         $multipart = false;
 
 
+
         // path params
         if ($asset_id !== null) {
             $resourcePath = str_replace(
@@ -1671,10 +1682,11 @@ class AssetsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -1890,6 +1902,7 @@ class AssetsApi
         $multipart = false;
 
 
+
         // path params
         if ($asset_id !== null) {
             $resourcePath = str_replace(
@@ -1966,10 +1979,11 @@ class AssetsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -2172,14 +2186,15 @@ class AssetsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: limit
         if ($limit !== null) {
-            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
+            array_push($queryParams, "limit=" . ObjectSerializer::toQueryValue($limit));
         }
-        // query params
+        // Query Param: page
         if ($page !== null) {
-            $queryParams['page'] = ObjectSerializer::toQueryValue($page);
+            array_push($queryParams, "page=" . ObjectSerializer::toQueryValue($page));
         }
+
 
 
         // body params
@@ -2241,10 +2256,11 @@ class AssetsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -2460,6 +2476,7 @@ class AssetsApi
         $multipart = false;
 
 
+
         // path params
         if ($asset_id !== null) {
             $resourcePath = str_replace(
@@ -2531,10 +2548,11 @@ class AssetsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'PUT',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );

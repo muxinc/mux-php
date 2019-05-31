@@ -315,32 +315,41 @@ class MetricsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        if (is_array($timeframe)) {
-            $timeframe = ObjectSerializer::serializeCollection($timeframe, 'multi', true);
-        }
+        // Query Param: timeframe[]
         if ($timeframe !== null) {
-            $queryParams['timeframe[]'] = ObjectSerializer::toQueryValue($timeframe);
+            if (is_array($timeframe)) {
+                foreach ($timeframe as $p) {
+                    array_push($queryParams, "timeframe[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter timeframe[]');
+            }
         }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'multi', true);
-        }
+        // Query Param: filters[]
         if ($filters !== null) {
-            $queryParams['filters[]'] = ObjectSerializer::toQueryValue($filters);
+            if (is_array($filters)) {
+                foreach ($filters as $p) {
+                    array_push($queryParams, "filters[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter filters[]');
+            }
         }
-        // query params
+        // Query Param: measurement
         if ($measurement !== null) {
-            $queryParams['measurement'] = ObjectSerializer::toQueryValue($measurement);
+            array_push($queryParams, "measurement=" . ObjectSerializer::toQueryValue($measurement));
         }
-        // query params
+        // Query Param: order_direction
         if ($order_direction !== null) {
-            $queryParams['order_direction'] = ObjectSerializer::toQueryValue($order_direction);
+            array_push($queryParams, "order_direction=" . ObjectSerializer::toQueryValue($order_direction));
         }
-        // query params
+        // Query Param: group_by
         if ($group_by !== null) {
-            $queryParams['group_by'] = ObjectSerializer::toQueryValue($group_by);
+            array_push($queryParams, "group_by=" . ObjectSerializer::toQueryValue($group_by));
         }
+
 
         // path params
         if ($metric_id !== null) {
@@ -410,10 +419,11 @@ class MetricsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -632,24 +642,33 @@ class MetricsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        if (is_array($timeframe)) {
-            $timeframe = ObjectSerializer::serializeCollection($timeframe, 'multi', true);
-        }
+        // Query Param: timeframe[]
         if ($timeframe !== null) {
-            $queryParams['timeframe[]'] = ObjectSerializer::toQueryValue($timeframe);
+            if (is_array($timeframe)) {
+                foreach ($timeframe as $p) {
+                    array_push($queryParams, "timeframe[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter timeframe[]');
+            }
         }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'multi', true);
-        }
+        // Query Param: filters[]
         if ($filters !== null) {
-            $queryParams['filters[]'] = ObjectSerializer::toQueryValue($filters);
+            if (is_array($filters)) {
+                foreach ($filters as $p) {
+                    array_push($queryParams, "filters[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter filters[]');
+            }
         }
-        // query params
+        // Query Param: measurement
         if ($measurement !== null) {
-            $queryParams['measurement'] = ObjectSerializer::toQueryValue($measurement);
+            array_push($queryParams, "measurement=" . ObjectSerializer::toQueryValue($measurement));
         }
+
 
         // path params
         if ($metric_id !== null) {
@@ -719,10 +738,11 @@ class MetricsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -935,28 +955,37 @@ class MetricsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        if (is_array($timeframe)) {
-            $timeframe = ObjectSerializer::serializeCollection($timeframe, 'multi', true);
-        }
+        // Query Param: timeframe[]
         if ($timeframe !== null) {
-            $queryParams['timeframe[]'] = ObjectSerializer::toQueryValue($timeframe);
+            if (is_array($timeframe)) {
+                foreach ($timeframe as $p) {
+                    array_push($queryParams, "timeframe[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter timeframe[]');
+            }
         }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'multi', true);
-        }
+        // Query Param: filters[]
         if ($filters !== null) {
-            $queryParams['filters[]'] = ObjectSerializer::toQueryValue($filters);
+            if (is_array($filters)) {
+                foreach ($filters as $p) {
+                    array_push($queryParams, "filters[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter filters[]');
+            }
         }
-        // query params
+        // Query Param: dimension
         if ($dimension !== null) {
-            $queryParams['dimension'] = ObjectSerializer::toQueryValue($dimension);
+            array_push($queryParams, "dimension=" . ObjectSerializer::toQueryValue($dimension));
         }
-        // query params
+        // Query Param: value
         if ($value !== null) {
-            $queryParams['value'] = ObjectSerializer::toQueryValue($value);
+            array_push($queryParams, "value=" . ObjectSerializer::toQueryValue($value));
         }
+
 
 
         // body params
@@ -1018,10 +1047,11 @@ class MetricsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -1265,44 +1295,53 @@ class MetricsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: group_by
         if ($group_by !== null) {
-            $queryParams['group_by'] = ObjectSerializer::toQueryValue($group_by);
+            array_push($queryParams, "group_by=" . ObjectSerializer::toQueryValue($group_by));
         }
-        // query params
+        // Query Param: measurement
         if ($measurement !== null) {
-            $queryParams['measurement'] = ObjectSerializer::toQueryValue($measurement);
+            array_push($queryParams, "measurement=" . ObjectSerializer::toQueryValue($measurement));
         }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'multi', true);
-        }
+        // Query Param: filters[]
         if ($filters !== null) {
-            $queryParams['filters[]'] = ObjectSerializer::toQueryValue($filters);
+            if (is_array($filters)) {
+                foreach ($filters as $p) {
+                    array_push($queryParams, "filters[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter filters[]');
+            }
         }
-        // query params
+        // Query Param: limit
         if ($limit !== null) {
-            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
+            array_push($queryParams, "limit=" . ObjectSerializer::toQueryValue($limit));
         }
-        // query params
+        // Query Param: page
         if ($page !== null) {
-            $queryParams['page'] = ObjectSerializer::toQueryValue($page);
+            array_push($queryParams, "page=" . ObjectSerializer::toQueryValue($page));
         }
-        // query params
+        // Query Param: order_by
         if ($order_by !== null) {
-            $queryParams['order_by'] = ObjectSerializer::toQueryValue($order_by);
+            array_push($queryParams, "order_by=" . ObjectSerializer::toQueryValue($order_by));
         }
-        // query params
+        // Query Param: order_direction
         if ($order_direction !== null) {
-            $queryParams['order_direction'] = ObjectSerializer::toQueryValue($order_direction);
+            array_push($queryParams, "order_direction=" . ObjectSerializer::toQueryValue($order_direction));
         }
-        // query params
-        if (is_array($timeframe)) {
-            $timeframe = ObjectSerializer::serializeCollection($timeframe, 'multi', true);
-        }
+        // Query Param: timeframe[]
         if ($timeframe !== null) {
-            $queryParams['timeframe[]'] = ObjectSerializer::toQueryValue($timeframe);
+            if (is_array($timeframe)) {
+                foreach ($timeframe as $p) {
+                    array_push($queryParams, "timeframe[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter timeframe[]');
+            }
         }
+
 
         // path params
         if ($metric_id !== null) {
@@ -1372,10 +1411,11 @@ class MetricsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -1594,21 +1634,26 @@ class MetricsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: measurement
         if ($measurement !== null) {
-            $queryParams['measurement'] = ObjectSerializer::toQueryValue($measurement);
+            array_push($queryParams, "measurement=" . ObjectSerializer::toQueryValue($measurement));
         }
-        // query params
+        // Query Param: order_direction
         if ($order_direction !== null) {
-            $queryParams['order_direction'] = ObjectSerializer::toQueryValue($order_direction);
+            array_push($queryParams, "order_direction=" . ObjectSerializer::toQueryValue($order_direction));
         }
-        // query params
-        if (is_array($timeframe)) {
-            $timeframe = ObjectSerializer::serializeCollection($timeframe, 'multi', true);
-        }
+        // Query Param: timeframe[]
         if ($timeframe !== null) {
-            $queryParams['timeframe[]'] = ObjectSerializer::toQueryValue($timeframe);
+            if (is_array($timeframe)) {
+                foreach ($timeframe as $p) {
+                    array_push($queryParams, "timeframe[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter timeframe[]');
+            }
         }
+
 
         // path params
         if ($metric_id !== null) {
@@ -1678,10 +1723,11 @@ class MetricsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );

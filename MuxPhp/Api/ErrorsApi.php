@@ -289,20 +289,29 @@ class ErrorsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'multi', true);
-        }
+        // Query Param: filters[]
         if ($filters !== null) {
-            $queryParams['filters[]'] = ObjectSerializer::toQueryValue($filters);
+            if (is_array($filters)) {
+                foreach ($filters as $p) {
+                    array_push($queryParams, "filters[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter filters[]');
+            }
         }
-        // query params
-        if (is_array($timeframe)) {
-            $timeframe = ObjectSerializer::serializeCollection($timeframe, 'multi', true);
-        }
+        // Query Param: timeframe[]
         if ($timeframe !== null) {
-            $queryParams['timeframe[]'] = ObjectSerializer::toQueryValue($timeframe);
+            if (is_array($timeframe)) {
+                foreach ($timeframe as $p) {
+                    array_push($queryParams, "timeframe[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter timeframe[]');
+            }
         }
+
 
 
         // body params
@@ -364,10 +373,11 @@ class ErrorsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );

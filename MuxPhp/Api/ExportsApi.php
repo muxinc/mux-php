@@ -281,6 +281,7 @@ class ExportsApi
 
 
 
+
         // body params
         $_tempBody = null;
 
@@ -340,10 +341,11 @@ class ExportsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );

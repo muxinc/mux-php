@@ -481,7 +481,7 @@ class DirectUploadsApi
      *
      * Create a new direct upload URL
      *
-     * @param  \MuxPhp\Models\CreateUploadRequest $create_upload_request (required)
+     * @param  \MuxPhp\Models\CreateUploadRequest $create_upload_request create_upload_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -501,7 +501,7 @@ class DirectUploadsApi
      *
      * Create a new direct upload URL
      *
-     * @param  \MuxPhp\Models\CreateUploadRequest $create_upload_request (required)
+     * @param  \MuxPhp\Models\CreateUploadRequest $create_upload_request create_upload_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1038,15 +1038,16 @@ class DirectUploadsApi
      *
      * List direct uploads
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDirectUploadsAsync($limit = 25, $page = 1)
+    public function listDirectUploadsAsync($optionalParams = [])
     {
-        return $this->listDirectUploadsAsyncWithHttpInfo($limit, $page)
+        return $this->listDirectUploadsAsyncWithHttpInfo($optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1059,16 +1060,17 @@ class DirectUploadsApi
      *
      * List direct uploads
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDirectUploadsAsyncWithHttpInfo($limit = 25, $page = 1)
+    public function listDirectUploadsAsyncWithHttpInfo($optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListUploadsResponse';
-        $request = $this->listDirectUploadsRequest($limit, $page);
+        $request = $this->listDirectUploadsRequest($optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())

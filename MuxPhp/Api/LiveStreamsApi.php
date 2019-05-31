@@ -202,7 +202,7 @@ class LiveStreamsApi
      *
      * Create a live stream
      *
-     * @param  \MuxPhp\Models\CreateLiveStreamRequest $create_live_stream_request (required)
+     * @param  \MuxPhp\Models\CreateLiveStreamRequest $create_live_stream_request create_live_stream_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -222,7 +222,7 @@ class LiveStreamsApi
      *
      * Create a live stream
      *
-     * @param  \MuxPhp\Models\CreateLiveStreamRequest $create_live_stream_request (required)
+     * @param  \MuxPhp\Models\CreateLiveStreamRequest $create_live_stream_request create_live_stream_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -479,7 +479,7 @@ class LiveStreamsApi
      * Create a live stream playback ID
      *
      * @param  string $live_stream_id The live stream ID (required)
-     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request (required)
+     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request create_playback_id_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -500,7 +500,7 @@ class LiveStreamsApi
      * Create a live stream playback ID
      *
      * @param  string $live_stream_id The live stream ID (required)
-     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request (required)
+     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request create_playback_id_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1533,15 +1533,16 @@ class LiveStreamsApi
      *
      * List live streams
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listLiveStreamsAsync($limit = 25, $page = 1)
+    public function listLiveStreamsAsync($optionalParams = [])
     {
-        return $this->listLiveStreamsAsyncWithHttpInfo($limit, $page)
+        return $this->listLiveStreamsAsyncWithHttpInfo($optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1554,16 +1555,17 @@ class LiveStreamsApi
      *
      * List live streams
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listLiveStreamsAsyncWithHttpInfo($limit = 25, $page = 1)
+    public function listLiveStreamsAsyncWithHttpInfo($optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListLiveStreamsResponse';
-        $request = $this->listLiveStreamsRequest($limit, $page);
+        $request = $this->listLiveStreamsRequest($optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())

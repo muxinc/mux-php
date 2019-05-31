@@ -202,7 +202,7 @@ class AssetsApi
      *
      * Create an asset
      *
-     * @param  \MuxPhp\Models\CreateAssetRequest $create_asset_request (required)
+     * @param  \MuxPhp\Models\CreateAssetRequest $create_asset_request create_asset_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -222,7 +222,7 @@ class AssetsApi
      *
      * Create an asset
      *
-     * @param  \MuxPhp\Models\CreateAssetRequest $create_asset_request (required)
+     * @param  \MuxPhp\Models\CreateAssetRequest $create_asset_request create_asset_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -479,7 +479,7 @@ class AssetsApi
      * Create a playback ID
      *
      * @param  string $asset_id The asset ID. (required)
-     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request (required)
+     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request create_playback_id_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -500,7 +500,7 @@ class AssetsApi
      * Create a playback ID
      *
      * @param  string $asset_id The asset ID. (required)
-     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request (required)
+     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request create_playback_id_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2110,15 +2110,16 @@ class AssetsApi
      *
      * List assets
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listAssetsAsync($limit = 25, $page = 1)
+    public function listAssetsAsync($optionalParams = [])
     {
-        return $this->listAssetsAsyncWithHttpInfo($limit, $page)
+        return $this->listAssetsAsyncWithHttpInfo($optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2131,16 +2132,17 @@ class AssetsApi
      *
      * List assets
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listAssetsAsyncWithHttpInfo($limit = 25, $page = 1)
+    public function listAssetsAsyncWithHttpInfo($optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListAssetsResponse';
-        $request = $this->listAssetsRequest($limit, $page);
+        $request = $this->listAssetsRequest($optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2393,7 +2395,7 @@ class AssetsApi
      * Update MP4 support
      *
      * @param  string $asset_id The asset ID. (required)
-     * @param  \MuxPhp\Models\UpdateAssetMP4SupportRequest $update_asset_mp4_support_request (required)
+     * @param  \MuxPhp\Models\UpdateAssetMP4SupportRequest $update_asset_mp4_support_request update_asset_mp4_support_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2414,7 +2416,7 @@ class AssetsApi
      * Update MP4 support
      *
      * @param  string $asset_id The asset ID. (required)
-     * @param  \MuxPhp\Models\UpdateAssetMP4SupportRequest $update_asset_mp4_support_request (required)
+     * @param  \MuxPhp\Models\UpdateAssetMP4SupportRequest $update_asset_mp4_support_request update_asset_mp4_support_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface

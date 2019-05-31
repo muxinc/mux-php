@@ -213,17 +213,18 @@ class FiltersApi
      * Lists values for a specific filter
      *
      * @param  string $filter_id ID of the Filter (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFilterValuesAsync($filter_id, $limit = 25, $page = 1, $filters = null, $timeframe = null)
+    public function listFilterValuesAsync($filter_id, $optionalParams = [])
     {
-        return $this->listFilterValuesAsyncWithHttpInfo($filter_id, $limit, $page, $filters, $timeframe)
+        return $this->listFilterValuesAsyncWithHttpInfo($filter_id, $optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -237,18 +238,19 @@ class FiltersApi
      * Lists values for a specific filter
      *
      * @param  string $filter_id ID of the Filter (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFilterValuesAsyncWithHttpInfo($filter_id, $limit = 25, $page = 1, $filters = null, $timeframe = null)
+    public function listFilterValuesAsyncWithHttpInfo($filter_id, $optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListFilterValuesResponse';
-        $request = $this->listFilterValuesRequest($filter_id, $limit, $page, $filters, $timeframe);
+        $request = $this->listFilterValuesRequest($filter_id, $optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())

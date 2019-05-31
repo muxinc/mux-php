@@ -215,18 +215,19 @@ class MetricsApi
      * Get metric timeseries data
      *
      * @param  string $metric_id ID of the Metric (required)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string $measurement Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
-     * @param  string $order_direction Sort order. (optional)
-     * @param  string $group_by Time granularity to group results by. If this value is omitted, a default granularity is chosen based on the supplied timeframe. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - measurement string - Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
+     *     - order_direction string - Sort order. (optional)
+     *     - group_by string - Time granularity to group results by. If this value is omitted, a default granularity is chosen based on the supplied timeframe. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMetricTimeseriesDataAsync($metric_id, $timeframe = null, $filters = null, $measurement = null, $order_direction = null, $group_by = null)
+    public function getMetricTimeseriesDataAsync($metric_id, $optionalParams = [])
     {
-        return $this->getMetricTimeseriesDataAsyncWithHttpInfo($metric_id, $timeframe, $filters, $measurement, $order_direction, $group_by)
+        return $this->getMetricTimeseriesDataAsyncWithHttpInfo($metric_id, $optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -240,19 +241,20 @@ class MetricsApi
      * Get metric timeseries data
      *
      * @param  string $metric_id ID of the Metric (required)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string $measurement Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
-     * @param  string $order_direction Sort order. (optional)
-     * @param  string $group_by Time granularity to group results by. If this value is omitted, a default granularity is chosen based on the supplied timeframe. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - measurement string - Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
+     *     - order_direction string - Sort order. (optional)
+     *     - group_by string - Time granularity to group results by. If this value is omitted, a default granularity is chosen based on the supplied timeframe. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMetricTimeseriesDataAsyncWithHttpInfo($metric_id, $timeframe = null, $filters = null, $measurement = null, $order_direction = null, $group_by = null)
+    public function getMetricTimeseriesDataAsyncWithHttpInfo($metric_id, $optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\GetMetricTimeseriesDataResponse';
-        $request = $this->getMetricTimeseriesDataRequest($metric_id, $timeframe, $filters, $measurement, $order_direction, $group_by);
+        $request = $this->getMetricTimeseriesDataRequest($metric_id, $optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -558,16 +560,17 @@ class MetricsApi
      * Get Overall values
      *
      * @param  string $metric_id ID of the Metric (required)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string $measurement Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - measurement string - Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getOverallValuesAsync($metric_id, $timeframe = null, $filters = null, $measurement = null)
+    public function getOverallValuesAsync($metric_id, $optionalParams = [])
     {
-        return $this->getOverallValuesAsyncWithHttpInfo($metric_id, $timeframe, $filters, $measurement)
+        return $this->getOverallValuesAsyncWithHttpInfo($metric_id, $optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -581,17 +584,18 @@ class MetricsApi
      * Get Overall values
      *
      * @param  string $metric_id ID of the Metric (required)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string $measurement Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - measurement string - Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getOverallValuesAsyncWithHttpInfo($metric_id, $timeframe = null, $filters = null, $measurement = null)
+    public function getOverallValuesAsyncWithHttpInfo($metric_id, $optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\GetOverallValuesResponse';
-        $request = $this->getOverallValuesRequest($metric_id, $timeframe, $filters, $measurement);
+        $request = $this->getOverallValuesRequest($metric_id, $optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -884,17 +888,18 @@ class MetricsApi
      *
      * List all metric values
      *
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string $dimension Dimension the specified value belongs to (optional)
-     * @param  string $value Value to show all available metrics for (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - dimension string - Dimension the specified value belongs to (optional)
+     *     - value string - Value to show all available metrics for (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listAllMetricValuesAsync($timeframe = null, $filters = null, $dimension = null, $value = null)
+    public function listAllMetricValuesAsync($optionalParams = [])
     {
-        return $this->listAllMetricValuesAsyncWithHttpInfo($timeframe, $filters, $dimension, $value)
+        return $this->listAllMetricValuesAsyncWithHttpInfo($optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -907,18 +912,19 @@ class MetricsApi
      *
      * List all metric values
      *
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string $dimension Dimension the specified value belongs to (optional)
-     * @param  string $value Value to show all available metrics for (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - dimension string - Dimension the specified value belongs to (optional)
+     *     - value string - Value to show all available metrics for (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listAllMetricValuesAsyncWithHttpInfo($timeframe = null, $filters = null, $dimension = null, $value = null)
+    public function listAllMetricValuesAsyncWithHttpInfo($optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListAllMetricValuesResponse';
-        $request = $this->listAllMetricValuesRequest($timeframe, $filters, $dimension, $value);
+        $request = $this->listAllMetricValuesRequest($optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1213,21 +1219,22 @@ class MetricsApi
      * List breakdown values
      *
      * @param  string $metric_id ID of the Metric (required)
-     * @param  string $group_by Breakdown value to group the results by (optional)
-     * @param  string $measurement Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string $order_by Value to order the results by (optional)
-     * @param  string $order_direction Sort order. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - group_by string - Breakdown value to group the results by (optional)
+     *     - measurement string - Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - order_by string - Value to order the results by (optional)
+     *     - order_direction string - Sort order. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBreakdownValuesAsync($metric_id, $group_by = null, $measurement = null, $filters = null, $limit = 25, $page = 1, $order_by = null, $order_direction = null, $timeframe = null)
+    public function listBreakdownValuesAsync($metric_id, $optionalParams = [])
     {
-        return $this->listBreakdownValuesAsyncWithHttpInfo($metric_id, $group_by, $measurement, $filters, $limit, $page, $order_by, $order_direction, $timeframe)
+        return $this->listBreakdownValuesAsyncWithHttpInfo($metric_id, $optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1241,22 +1248,23 @@ class MetricsApi
      * List breakdown values
      *
      * @param  string $metric_id ID of the Metric (required)
-     * @param  string $group_by Breakdown value to group the results by (optional)
-     * @param  string $measurement Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string $order_by Value to order the results by (optional)
-     * @param  string $order_direction Sort order. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - group_by string - Breakdown value to group the results by (optional)
+     *     - measurement string - Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - order_by string - Value to order the results by (optional)
+     *     - order_direction string - Sort order. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBreakdownValuesAsyncWithHttpInfo($metric_id, $group_by = null, $measurement = null, $filters = null, $limit = 25, $page = 1, $order_by = null, $order_direction = null, $timeframe = null)
+    public function listBreakdownValuesAsyncWithHttpInfo($metric_id, $optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListBreakdownValuesResponse';
-        $request = $this->listBreakdownValuesRequest($metric_id, $group_by, $measurement, $filters, $limit, $page, $order_by, $order_direction, $timeframe);
+        $request = $this->listBreakdownValuesRequest($metric_id, $optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1580,16 +1588,17 @@ class MetricsApi
      * List Insights
      *
      * @param  string $metric_id ID of the Metric (required)
-     * @param  string $measurement Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
-     * @param  string $order_direction Sort order. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - measurement string - Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
+     *     - order_direction string - Sort order. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listInsightsAsync($metric_id, $measurement = null, $order_direction = null, $timeframe = null)
+    public function listInsightsAsync($metric_id, $optionalParams = [])
     {
-        return $this->listInsightsAsyncWithHttpInfo($metric_id, $measurement, $order_direction, $timeframe)
+        return $this->listInsightsAsyncWithHttpInfo($metric_id, $optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1603,17 +1612,18 @@ class MetricsApi
      * List Insights
      *
      * @param  string $metric_id ID of the Metric (required)
-     * @param  string $measurement Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
-     * @param  string $order_direction Sort order. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - measurement string - Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
+     *     - order_direction string - Sort order. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listInsightsAsyncWithHttpInfo($metric_id, $measurement = null, $order_direction = null, $timeframe = null)
+    public function listInsightsAsyncWithHttpInfo($metric_id, $optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListInsightsResponse';
-        $request = $this->listInsightsRequest($metric_id, $measurement, $order_direction, $timeframe);
+        $request = $this->listInsightsRequest($metric_id, $optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())

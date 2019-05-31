@@ -976,15 +976,16 @@ class URLSigningKeysApi
      *
      * List URL signing keys
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listUrlSigningKeysAsync($limit = 25, $page = 1)
+    public function listUrlSigningKeysAsync($optionalParams = [])
     {
-        return $this->listUrlSigningKeysAsyncWithHttpInfo($limit, $page)
+        return $this->listUrlSigningKeysAsyncWithHttpInfo($optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -997,16 +998,17 @@ class URLSigningKeysApi
      *
      * List URL signing keys
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listUrlSigningKeysAsyncWithHttpInfo($limit = 25, $page = 1)
+    public function listUrlSigningKeysAsyncWithHttpInfo($optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListSigningKeysResponse';
-        $request = $this->listUrlSigningKeysRequest($limit, $page);
+        $request = $this->listUrlSigningKeysRequest($optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())

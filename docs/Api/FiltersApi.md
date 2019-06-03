@@ -23,7 +23,7 @@ Lists the values for a filter along with a total count of related views
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter_id** | **string**| ID of the Filter |
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: <br>
+**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
 **optional_params[limit]** | int | Number of items to include in the response (optional, default to 25)
 **optional_params[page]** | int | Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
 **optional_params[filters]** | string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)

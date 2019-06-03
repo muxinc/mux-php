@@ -26,7 +26,7 @@ Returns timeseries data for a specific metric
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **metric_id** | **string**| ID of the Metric |
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: <br>
+**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
 **optional_params[timeframe]** | string[] | Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
 **optional_params[filters]** | string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
 **optional_params[measurement]** | string | Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
@@ -65,7 +65,7 @@ Returns the overall value for a specific metric, as well as the total view count
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **metric_id** | **string**| ID of the Metric |
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: <br>
+**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
 **optional_params[timeframe]** | string[] | Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
 **optional_params[filters]** | string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
 **optional_params[measurement]** | string | Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
@@ -101,7 +101,7 @@ List all of the values across every breakdown for a specific metric
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: <br>
+**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
 **optional_params[timeframe]** | string[] | Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
 **optional_params[filters]** | string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
 **optional_params[dimension]** | string | Dimension the specified value belongs to (optional)
@@ -139,7 +139,7 @@ List the breakdown values for a specific metric
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **metric_id** | **string**| ID of the Metric |
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: <br>
+**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
 **optional_params[group_by]** | string | Breakdown value to group the results by (optional)
 **optional_params[measurement]** | string | Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
 **optional_params[filters]** | string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
@@ -181,7 +181,7 @@ Returns a list of insights for a metric. These are the worst performing values a
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **metric_id** | **string**| ID of the Metric |
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: <br>
+**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
 **optional_params[measurement]** | string | Measurement for the provided metric. If omitted, the deafult for the metric will be used. (optional)
 **optional_params[order_direction]** | string | Sort order. (optional)
 **optional_params[timeframe]** | string[] | Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)

@@ -117,7 +117,7 @@ List direct uploads
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: <br>
+**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
 **optional_params[limit]** | int | Number of items to include in the response (optional, default to 25)
 **optional_params[page]** | int | Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
 

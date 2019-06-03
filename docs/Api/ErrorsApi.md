@@ -21,7 +21,7 @@ Returns a list of errors
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: <br>
+**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
 **optional_params[filters]** | string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
 **optional_params[timeframe]** | string[] | Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
 

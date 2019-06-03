@@ -16,35 +16,6 @@ List property video view export links
 
 Lists the available video view exports along with URLs to retrieve them
 
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\ExportsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-
-try {
-    $result = $apiInstance->listExports();
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling ExportsApi->listExports: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
 ### Parameters
 
 This endpoint does not need any parameter.

@@ -341,7 +341,7 @@ class URLSigningKeysApi
             $headers
         );
 
-        $queryParamsDirect = join("&", $queryParams);
+        $queryParamsDirect = join('&', $queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'POST',
@@ -571,7 +571,7 @@ class URLSigningKeysApi
             $headers
         );
 
-        $queryParamsDirect = join("&", $queryParams);
+        $queryParamsDirect = join('&', $queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'DELETE',
@@ -849,7 +849,7 @@ class URLSigningKeysApi
             $headers
         );
 
-        $queryParamsDirect = join("&", $queryParams);
+        $queryParamsDirect = join('&', $queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
@@ -1134,7 +1134,7 @@ class URLSigningKeysApi
             $headers
         );
 
-        $queryParamsDirect = join("&", $queryParams);
+        $queryParamsDirect = join('&', $queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',

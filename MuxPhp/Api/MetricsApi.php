@@ -350,15 +350,15 @@ class MetricsApi
         }
         // Query Param: measurement
         if ($measurement !== null) {
-            array_push($queryParams, "measurement=" . ObjectSerializer::toQueryValue($measurement));
+            array_push($queryParams, 'measurement=' . ObjectSerializer::toQueryValue($measurement));
         }
         // Query Param: order_direction
         if ($order_direction !== null) {
-            array_push($queryParams, "order_direction=" . ObjectSerializer::toQueryValue($order_direction));
+            array_push($queryParams, 'order_direction=' . ObjectSerializer::toQueryValue($order_direction));
         }
         // Query Param: group_by
         if ($group_by !== null) {
-            array_push($queryParams, "group_by=" . ObjectSerializer::toQueryValue($group_by));
+            array_push($queryParams, 'group_by=' . ObjectSerializer::toQueryValue($group_by));
         }
 
 
@@ -686,7 +686,7 @@ class MetricsApi
         }
         // Query Param: measurement
         if ($measurement !== null) {
-            array_push($queryParams, "measurement=" . ObjectSerializer::toQueryValue($measurement));
+            array_push($queryParams, 'measurement=' . ObjectSerializer::toQueryValue($measurement));
         }
 
 
@@ -1009,11 +1009,11 @@ class MetricsApi
         }
         // Query Param: dimension
         if ($dimension !== null) {
-            array_push($queryParams, "dimension=" . ObjectSerializer::toQueryValue($dimension));
+            array_push($queryParams, 'dimension=' . ObjectSerializer::toQueryValue($dimension));
         }
         // Query Param: value
         if ($value !== null) {
-            array_push($queryParams, "value=" . ObjectSerializer::toQueryValue($value));
+            array_push($queryParams, 'value=' . ObjectSerializer::toQueryValue($value));
         }
 
 
@@ -1341,11 +1341,11 @@ class MetricsApi
 
         // Query Param: group_by
         if ($group_by !== null) {
-            array_push($queryParams, "group_by=" . ObjectSerializer::toQueryValue($group_by));
+            array_push($queryParams, 'group_by=' . ObjectSerializer::toQueryValue($group_by));
         }
         // Query Param: measurement
         if ($measurement !== null) {
-            array_push($queryParams, "measurement=" . ObjectSerializer::toQueryValue($measurement));
+            array_push($queryParams, 'measurement=' . ObjectSerializer::toQueryValue($measurement));
         }
         // Query Param: filters[]
         if ($filters !== null) {
@@ -1360,19 +1360,19 @@ class MetricsApi
         }
         // Query Param: limit
         if ($limit !== null) {
-            array_push($queryParams, "limit=" . ObjectSerializer::toQueryValue($limit));
+            array_push($queryParams, 'limit=' . ObjectSerializer::toQueryValue($limit));
         }
         // Query Param: page
         if ($page !== null) {
-            array_push($queryParams, "page=" . ObjectSerializer::toQueryValue($page));
+            array_push($queryParams, 'page=' . ObjectSerializer::toQueryValue($page));
         }
         // Query Param: order_by
         if ($order_by !== null) {
-            array_push($queryParams, "order_by=" . ObjectSerializer::toQueryValue($order_by));
+            array_push($queryParams, 'order_by=' . ObjectSerializer::toQueryValue($order_by));
         }
         // Query Param: order_direction
         if ($order_direction !== null) {
-            array_push($queryParams, "order_direction=" . ObjectSerializer::toQueryValue($order_direction));
+            array_push($queryParams, 'order_direction=' . ObjectSerializer::toQueryValue($order_direction));
         }
         // Query Param: timeframe[]
         if ($timeframe !== null) {
@@ -1689,11 +1689,11 @@ class MetricsApi
 
         // Query Param: measurement
         if ($measurement !== null) {
-            array_push($queryParams, "measurement=" . ObjectSerializer::toQueryValue($measurement));
+            array_push($queryParams, 'measurement=' . ObjectSerializer::toQueryValue($measurement));
         }
         // Query Param: order_direction
         if ($order_direction !== null) {
-            array_push($queryParams, "order_direction=" . ObjectSerializer::toQueryValue($order_direction));
+            array_push($queryParams, 'order_direction=' . ObjectSerializer::toQueryValue($order_direction));
         }
         // Query Param: timeframe[]
         if ($timeframe !== null) {

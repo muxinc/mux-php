@@ -607,23 +607,23 @@ class VideoViewsApi
 
         // Query Param: limit
         if ($limit !== null) {
-            array_push($queryParams, "limit=" . ObjectSerializer::toQueryValue($limit));
+            array_push($queryParams, 'limit=' . ObjectSerializer::toQueryValue($limit));
         }
         // Query Param: page
         if ($page !== null) {
-            array_push($queryParams, "page=" . ObjectSerializer::toQueryValue($page));
+            array_push($queryParams, 'page=' . ObjectSerializer::toQueryValue($page));
         }
         // Query Param: viewer_id
         if ($viewer_id !== null) {
-            array_push($queryParams, "viewer_id=" . ObjectSerializer::toQueryValue($viewer_id));
+            array_push($queryParams, 'viewer_id=' . ObjectSerializer::toQueryValue($viewer_id));
         }
         // Query Param: error_id
         if ($error_id !== null) {
-            array_push($queryParams, "error_id=" . ObjectSerializer::toQueryValue($error_id));
+            array_push($queryParams, 'error_id=' . ObjectSerializer::toQueryValue($error_id));
         }
         // Query Param: order_direction
         if ($order_direction !== null) {
-            array_push($queryParams, "order_direction=" . ObjectSerializer::toQueryValue($order_direction));
+            array_push($queryParams, 'order_direction=' . ObjectSerializer::toQueryValue($order_direction));
         }
         // Query Param: filters[]
         if ($filters !== null) {

@@ -2196,11 +2196,11 @@ class AssetsApi
 
         // Query Param: limit
         if ($limit !== null) {
-            array_push($queryParams, "limit=" . ObjectSerializer::toQueryValue($limit));
+            array_push($queryParams, 'limit=' . ObjectSerializer::toQueryValue($limit));
         }
         // Query Param: page
         if ($page !== null) {
-            array_push($queryParams, "page=" . ObjectSerializer::toQueryValue($page));
+            array_push($queryParams, 'page=' . ObjectSerializer::toQueryValue($page));
         }
 
 

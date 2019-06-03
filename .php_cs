@@ -14,6 +14,7 @@ return PhpCsFixer\Config::create()
         'braces' => false,
         'single_blank_line_at_eof' => false,
         'blank_line_after_namespace' => false,
+        'single_quote' => true,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()

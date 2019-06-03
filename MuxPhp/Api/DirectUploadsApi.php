@@ -393,7 +393,7 @@ class DirectUploadsApi
      *
      * Create a new direct upload URL
      *
-     * @param  \MuxPhp\Models\CreateUploadRequest $create_upload_request create_upload_request (required)
+     * @param  \MuxPhp\Models\CreateUploadRequest $create_upload_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException

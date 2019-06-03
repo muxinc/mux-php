@@ -97,7 +97,7 @@ class LiveStreamsApi
      *
      * Create a live stream
      *
-     * @param  \MuxPhp\Models\CreateLiveStreamRequest $create_live_stream_request create_live_stream_request (required)
+     * @param  \MuxPhp\Models\CreateLiveStreamRequest $create_live_stream_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -372,7 +372,7 @@ class LiveStreamsApi
      * Create a live stream playback ID
      *
      * @param  string $live_stream_id The live stream ID (required)
-     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request create_playback_id_request (required)
+     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException

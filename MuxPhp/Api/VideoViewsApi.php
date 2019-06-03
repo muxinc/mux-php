@@ -67,7 +67,7 @@ class VideoViewsApi
     /**
      * Set the host index
      *
-     * @param  int Host index (required)
+     * @param  int $host_index Host index (required)
      */
     public function setHostIndex($host_index)
     {

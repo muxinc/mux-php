@@ -12,7 +12,25 @@ Not familiar with Mux? Check out https://mux.com/ for more information.
 
 ## Installation
 
+We publish Mux PHP to [Packagist](https://packagist.org/). You should depend on Mux PHP by adding us to your composer.json:
+
+```json
+    {
+        "require": {
+            "muxinc/mux-php": ">=0.0.1"
+        }
+    }
 ```
+Then install your dependencies:
+
+```sh
+    composer install
+```
+
+And then autoload in your code:
+
+```php
+    require_once 'vendor/autoload.php';
 ```
 
 ## Getting Started
@@ -38,7 +56,26 @@ Below is a quick example of using mux-php to list the Video assets stored in you
 Be sure to also checkout the [exmples directory](examples/).
 
 ```php
+    // Authentication Setup
+    $config = MuxPhp\Configuration::getDefaultConfiguration()
+        ->setUsername(getenv('MUX_TOKEN_ID'))
+        ->setPassword(getenv('MUX_TOKEN_SECRET'));
 
+    // API Client Initialization
+    $assetsApi = new MuxPhp\Api\AssetsApi(
+        new GuzzleHttp\Client(),
+        $config
+    );
+
+    // Create Asset Request
+    $input = new MuxPhp\Models\InputSettings(["url" => "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4"]);
+    $createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["input" => $input, "playback_policy" => [MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY] ]);
+
+    // Ingest
+    $result = $assetsApi->createAsset($createAssetRequest);
+
+    // Print URL
+    print "Playback URL: https://stream.mux.com/" . $result->getData()->getPlaybackIds()[0]->getId() . ".m3u8\n"
 ```
 
 ## Documentation

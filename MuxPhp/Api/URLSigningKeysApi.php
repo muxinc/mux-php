@@ -272,7 +272,6 @@ class URLSigningKeysApi
     protected function createUrlSigningKeyRequest()
     {
 
-
         $resourcePath = '/video/v1/signing-keys';
         $formParams = [];
         $queryParams = [];
@@ -488,7 +487,6 @@ class URLSigningKeysApi
      */
     protected function deleteUrlSigningKeyRequest($signing_key_id)
     {
-
         // verify the required parameter 'signing_key_id' is set
         if ($signing_key_id === null || (is_array($signing_key_id) && count($signing_key_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -767,7 +765,6 @@ class URLSigningKeysApi
      */
     protected function getUrlSigningKeyRequest($signing_key_id)
     {
-
         // verify the required parameter 'signing_key_id' is set
         if ($signing_key_id === null || (is_array($signing_key_id) && count($signing_key_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1059,7 +1056,6 @@ class URLSigningKeysApi
         // Pull the set optional params from the associative array $optionalParams, setting them to their defaults if they're not set.
         $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
         $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
-
 
         $resourcePath = '/video/v1/signing-keys';
         $formParams = [];

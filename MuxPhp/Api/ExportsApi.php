@@ -272,7 +272,6 @@ class ExportsApi
     protected function listExportsRequest()
     {
 
-
         $resourcePath = '/data/v1/exports';
         $formParams = [];
         $queryParams = [];

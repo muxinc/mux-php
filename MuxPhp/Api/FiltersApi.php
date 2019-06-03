@@ -306,7 +306,6 @@ class FiltersApi
         $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
         $filters = array_key_exists('filters', $optionalParams) ? $optionalParams['filters'] : null;
         $timeframe = array_key_exists('timeframe', $optionalParams) ? $optionalParams['timeframe'] : null;
-
         // verify the required parameter 'filter_id' is set
         if ($filter_id === null || (is_array($filter_id) && count($filter_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -610,7 +609,6 @@ class FiltersApi
      */
     protected function listFiltersRequest()
     {
-
 
         $resourcePath = '/data/v1/filters';
         $formParams = [];

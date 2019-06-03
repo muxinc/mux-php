@@ -276,7 +276,6 @@ class AssetsApi
      */
     protected function createAssetRequest($create_asset_request)
     {
-
         // verify the required parameter 'create_asset_request' is set
         if ($create_asset_request === null || (is_array($create_asset_request) && count($create_asset_request) === 0)) {
             throw new \InvalidArgumentException(
@@ -555,7 +554,6 @@ class AssetsApi
      */
     protected function createAssetPlaybackIdRequest($asset_id, $create_playback_id_request)
     {
-
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -795,7 +793,6 @@ class AssetsApi
      */
     protected function deleteAssetRequest($asset_id)
     {
-
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1031,7 +1028,6 @@ class AssetsApi
      */
     protected function deleteAssetPlaybackIdRequest($asset_id, $playback_id)
     {
-
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1324,7 +1320,6 @@ class AssetsApi
      */
     protected function getAssetRequest($asset_id)
     {
-
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1603,7 +1598,6 @@ class AssetsApi
      */
     protected function getAssetInputInfoRequest($asset_id)
     {
-
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1887,7 +1881,6 @@ class AssetsApi
      */
     protected function getAssetPlaybackIdRequest($asset_id, $playback_id)
     {
-
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2194,7 +2187,6 @@ class AssetsApi
         $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
         $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
 
-
         $resourcePath = '/video/v1/assets';
         $formParams = [];
         $queryParams = [];
@@ -2471,7 +2463,6 @@ class AssetsApi
      */
     protected function updateAssetMp4SupportRequest($asset_id, $update_asset_mp4_support_request)
     {
-
         // verify the required parameter 'asset_id' is set
         if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
             throw new \InvalidArgumentException(

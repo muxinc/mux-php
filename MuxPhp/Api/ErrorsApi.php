@@ -290,7 +290,6 @@ class ErrorsApi
         $filters = array_key_exists('filters', $optionalParams) ? $optionalParams['filters'] : null;
         $timeframe = array_key_exists('timeframe', $optionalParams) ? $optionalParams['timeframe'] : null;
 
-
         $resourcePath = '/data/v1/errors';
         $formParams = [];
         $queryParams = [];

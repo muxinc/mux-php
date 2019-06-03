@@ -276,7 +276,6 @@ class VideoViewsApi
      */
     protected function getVideoViewRequest($video_view_id)
     {
-
         // verify the required parameter 'video_view_id' is set
         if ($video_view_id === null || (is_array($video_view_id) && count($video_view_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -598,7 +597,6 @@ class VideoViewsApi
         $order_direction = array_key_exists('order_direction', $optionalParams) ? $optionalParams['order_direction'] : null;
         $filters = array_key_exists('filters', $optionalParams) ? $optionalParams['filters'] : null;
         $timeframe = array_key_exists('timeframe', $optionalParams) ? $optionalParams['timeframe'] : null;
-
 
         $resourcePath = '/data/v1/video-views';
         $formParams = [];

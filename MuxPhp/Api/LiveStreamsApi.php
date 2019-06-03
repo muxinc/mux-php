@@ -276,7 +276,6 @@ class LiveStreamsApi
      */
     protected function createLiveStreamRequest($create_live_stream_request)
     {
-
         // verify the required parameter 'create_live_stream_request' is set
         if ($create_live_stream_request === null || (is_array($create_live_stream_request) && count($create_live_stream_request) === 0)) {
             throw new \InvalidArgumentException(
@@ -555,7 +554,6 @@ class LiveStreamsApi
      */
     protected function createLiveStreamPlaybackIdRequest($live_stream_id, $create_playback_id_request)
     {
-
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -795,7 +793,6 @@ class LiveStreamsApi
      */
     protected function deleteLiveStreamRequest($live_stream_id)
     {
-
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1031,7 +1028,6 @@ class LiveStreamsApi
      */
     protected function deleteLiveStreamPlaybackIdRequest($live_stream_id, $playback_id)
     {
-
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1324,7 +1320,6 @@ class LiveStreamsApi
      */
     protected function getLiveStreamRequest($live_stream_id)
     {
-
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1617,7 +1612,6 @@ class LiveStreamsApi
         $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
         $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
 
-
         $resourcePath = '/video/v1/live-streams';
         $formParams = [];
         $queryParams = [];
@@ -1889,7 +1883,6 @@ class LiveStreamsApi
      */
     protected function resetStreamKeyRequest($live_stream_id)
     {
-
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2168,7 +2161,6 @@ class LiveStreamsApi
      */
     protected function signalLiveStreamCompleteRequest($live_stream_id)
     {
-
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(

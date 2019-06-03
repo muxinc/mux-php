@@ -276,7 +276,6 @@ class DirectUploadsApi
      */
     protected function cancelDirectUploadRequest($upload_id)
     {
-
         // verify the required parameter 'upload_id' is set
         if ($upload_id === null || (is_array($upload_id) && count($upload_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -555,7 +554,6 @@ class DirectUploadsApi
      */
     protected function createDirectUploadRequest($create_upload_request)
     {
-
         // verify the required parameter 'create_upload_request' is set
         if ($create_upload_request === null || (is_array($create_upload_request) && count($create_upload_request) === 0)) {
             throw new \InvalidArgumentException(
@@ -829,7 +827,6 @@ class DirectUploadsApi
      */
     protected function getDirectUploadRequest($upload_id)
     {
-
         // verify the required parameter 'upload_id' is set
         if ($upload_id === null || (is_array($upload_id) && count($upload_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1121,7 +1118,6 @@ class DirectUploadsApi
         // Pull the set optional params from the associative array $optionalParams, setting them to their defaults if they're not set.
         $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
         $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
-
 
         $resourcePath = '/video/v1/uploads';
         $formParams = [];

@@ -312,7 +312,6 @@ class MetricsApi
         $measurement = array_key_exists('measurement', $optionalParams) ? $optionalParams['measurement'] : null;
         $order_direction = array_key_exists('order_direction', $optionalParams) ? $optionalParams['order_direction'] : null;
         $group_by = array_key_exists('group_by', $optionalParams) ? $optionalParams['group_by'] : null;
-
         // verify the required parameter 'metric_id' is set
         if ($metric_id === null || (is_array($metric_id) && count($metric_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -649,7 +648,6 @@ class MetricsApi
         $timeframe = array_key_exists('timeframe', $optionalParams) ? $optionalParams['timeframe'] : null;
         $filters = array_key_exists('filters', $optionalParams) ? $optionalParams['filters'] : null;
         $measurement = array_key_exists('measurement', $optionalParams) ? $optionalParams['measurement'] : null;
-
         // verify the required parameter 'metric_id' is set
         if ($metric_id === null || (is_array($metric_id) && count($metric_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -979,7 +977,6 @@ class MetricsApi
         $filters = array_key_exists('filters', $optionalParams) ? $optionalParams['filters'] : null;
         $dimension = array_key_exists('dimension', $optionalParams) ? $optionalParams['dimension'] : null;
         $value = array_key_exists('value', $optionalParams) ? $optionalParams['value'] : null;
-
 
         $resourcePath = '/data/v1/metrics/comparison';
         $formParams = [];
@@ -1328,7 +1325,6 @@ class MetricsApi
         $order_by = array_key_exists('order_by', $optionalParams) ? $optionalParams['order_by'] : null;
         $order_direction = array_key_exists('order_direction', $optionalParams) ? $optionalParams['order_direction'] : null;
         $timeframe = array_key_exists('timeframe', $optionalParams) ? $optionalParams['timeframe'] : null;
-
         // verify the required parameter 'metric_id' is set
         if ($metric_id === null || (is_array($metric_id) && count($metric_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1677,7 +1673,6 @@ class MetricsApi
         $measurement = array_key_exists('measurement', $optionalParams) ? $optionalParams['measurement'] : null;
         $order_direction = array_key_exists('order_direction', $optionalParams) ? $optionalParams['order_direction'] : null;
         $timeframe = array_key_exists('timeframe', $optionalParams) ? $optionalParams['timeframe'] : null;
-
         // verify the required parameter 'metric_id' is set
         if ($metric_id === null || (is_array($metric_id) && count($metric_id) === 0)) {
             throw new \InvalidArgumentException(

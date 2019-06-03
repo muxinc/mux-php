@@ -423,8 +423,8 @@ class Configuration
     /**
      * Returns URL based on the index and variables
      *
-     * @param index array index of the host settings
-     * @param variables hash of variable and the corresponding value (optional)
+     * @param $index array index of the host settings
+     * @param $variables hash of variable and the corresponding value (optional)
      * @return URL based on host settings
      */
     public function getHostFromSettings($index, $variables = null)

@@ -360,7 +360,7 @@ class DirectUploadsApi
             $headers
         );
 
-        $queryParamsDirect = join("&",$queryParams);
+        $queryParamsDirect = join("&", $queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'PUT',
@@ -633,7 +633,7 @@ class DirectUploadsApi
             $headers
         );
 
-        $queryParamsDirect = join("&",$queryParams);
+        $queryParamsDirect = join("&", $queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'POST',
@@ -911,7 +911,7 @@ class DirectUploadsApi
             $headers
         );
 
-        $queryParamsDirect = join("&",$queryParams);
+        $queryParamsDirect = join("&", $queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
@@ -1196,7 +1196,7 @@ class DirectUploadsApi
             $headers
         );
 
-        $queryParamsDirect = join("&",$queryParams);
+        $queryParamsDirect = join("&", $queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',

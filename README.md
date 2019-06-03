@@ -53,22 +53,6 @@ Its up to you to manage your token and secret. In our examples, we read them fro
 
 Below is a quick example of using mux-php to ingest a new Video in your Mux account.
 
-Be sure to also checkout the [exmples directory](examples/):
-* [Create an Asset, wait for it to become availiable, and print its playback URL](examples/video/ingest.php)
-
-There's also example usage of every API call (also used for testing):
-* [Video](examples/video/)
-  * [Assets](examples/video/exercise-assets.php)
-  * [Live Streams](examples/video/exercise-live-streams.php)
-  * [Signing Keys](examples/video/exercise-signing-keys.php)
-  * [Uploads](examples/video/exercise-uploads.php)
-* [Data](examples/data/)
-  * [Errors](examples/data/exercise-errors.php)
-  * [Exports](examples/data/exercise-exports.php)
-  * [Filters](examples/data/exercise-filters.php)
-  * [Metrics](examples/data/exercise-metrics.php)
-  * [Video Views](examples/data/exercise-video-views.php)
-
 ```php
     // Authentication Setup
     $config = MuxPhp\Configuration::getDefaultConfiguration()
@@ -91,6 +75,22 @@ There's also example usage of every API call (also used for testing):
     // Print URL
     print "Playback URL: https://stream.mux.com/" . $result->getData()->getPlaybackIds()[0]->getId() . ".m3u8\n"
 ```
+
+Be sure to also checkout the [exmples directory](examples/):
+* [Create an Asset, wait for it to become availiable, and print its playback URL](examples/video/ingest.php)
+
+There's also example usage of every API call (also used for testing):
+* [Video](examples/video/)
+  * [Assets](examples/video/exercise-assets.php)
+  * [Live Streams](examples/video/exercise-live-streams.php)
+  * [Signing Keys](examples/video/exercise-signing-keys.php)
+  * [Uploads](examples/video/exercise-uploads.php)
+* [Data](examples/data/)
+  * [Errors](examples/data/exercise-errors.php)
+  * [Exports](examples/data/exercise-exports.php)
+  * [Filters](examples/data/exercise-filters.php)
+  * [Metrics](examples/data/exercise-metrics.php)
+  * [Video Views](examples/data/exercise-video-views.php)
 
 ## Documentation
 

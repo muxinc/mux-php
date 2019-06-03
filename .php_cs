@@ -16,6 +16,8 @@ return PhpCsFixer\Config::create()
         'blank_line_after_namespace' => false,
         'single_quote' => true,
         'phpdoc_add_missing_param_annotation' => true,
+        'no_empty_phpdoc' => true,
+        'phpdoc_indent' => true,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()

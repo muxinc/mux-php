@@ -21,17 +21,17 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
     const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'InputSettings_overlay_settings';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         'vertical_align' => 'string',
         'vertical_margin' => 'string',
@@ -43,10 +43,10 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @var string[]
+     */
     protected static $openAPIFormats = [
         'vertical_align' => null,
         'vertical_margin' => null,

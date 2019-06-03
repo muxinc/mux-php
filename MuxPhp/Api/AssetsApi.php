@@ -202,7 +202,7 @@ class AssetsApi
      *
      * Create an asset
      *
-     * @param  \MuxPhp\Models\CreateAssetRequest $create_asset_request create_asset_request (required)
+     * @param  \MuxPhp\Models\CreateAssetRequest $create_asset_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -222,7 +222,7 @@ class AssetsApi
      *
      * Create an asset
      *
-     * @param  \MuxPhp\Models\CreateAssetRequest $create_asset_request create_asset_request (required)
+     * @param  \MuxPhp\Models\CreateAssetRequest $create_asset_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -479,7 +479,7 @@ class AssetsApi
      * Create a playback ID
      *
      * @param  string $asset_id The asset ID. (required)
-     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request create_playback_id_request (required)
+     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -500,7 +500,7 @@ class AssetsApi
      * Create a playback ID
      *
      * @param  string $asset_id The asset ID. (required)
-     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request create_playback_id_request (required)
+     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2395,7 +2395,7 @@ class AssetsApi
      * Update MP4 support
      *
      * @param  string $asset_id The asset ID. (required)
-     * @param  \MuxPhp\Models\UpdateAssetMP4SupportRequest $update_asset_mp4_support_request update_asset_mp4_support_request (required)
+     * @param  \MuxPhp\Models\UpdateAssetMP4SupportRequest $update_asset_mp4_support_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2416,7 +2416,7 @@ class AssetsApi
      * Update MP4 support
      *
      * @param  string $asset_id The asset ID. (required)
-     * @param  \MuxPhp\Models\UpdateAssetMP4SupportRequest $update_asset_mp4_support_request update_asset_mp4_support_request (required)
+     * @param  \MuxPhp\Models\UpdateAssetMP4SupportRequest $update_asset_mp4_support_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface

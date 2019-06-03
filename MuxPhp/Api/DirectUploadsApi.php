@@ -548,7 +548,7 @@ class DirectUploadsApi
     /**
      * Create request for operation 'createDirectUpload'
      *
-     * @param  \MuxPhp\Models\CreateUploadRequest $create_upload_request create_upload_request (required)
+     * @param  \MuxPhp\Models\CreateUploadRequest $create_upload_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

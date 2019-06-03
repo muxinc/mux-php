@@ -19,8 +19,8 @@ class PlaybackPolicy
     /**
      * Possible values of this enum
      */
-    const _PUBLIC = 'public';
-    const SIGNED = 'signed';
+    const PUBLIC_PLAYBACK_POLICY = 'public';
+    const SIGNED_PLAYBACK_POLICY = 'signed';
     
     /**
      * Gets allowable values of the enum
@@ -29,8 +29,8 @@ class PlaybackPolicy
     public static function getAllowableEnumValues()
     {
         return [
-            self::_PUBLIC,
-            self::SIGNED,
+            self::PUBLIC_PLAYBACK_POLICY,
+            self::SIGNED_PLAYBACK_POLICY,
         ];
     }
 }

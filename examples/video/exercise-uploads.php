@@ -21,7 +21,7 @@
     );
 
     // ========== create-direct-upload ==========
-    $createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::_PUBLIC]]);
+    $createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY]]);
     $createUploadRequest = new MuxPhp\Models\CreateUploadRequest(["timeout" => 3600, "new_asset_settings" => $createAssetRequest, "cors_origin" => "philcluff.co.uk"]);
     $upload = $uploadsApi->createDirectUpload($createUploadRequest);
     assert($upload->getData()->getId() != null);

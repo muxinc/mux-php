@@ -62,7 +62,7 @@
     print("get-asset-input-info OK ✅\n");
 
     // ========== create-asset-playback-id ==========
-    $createAssetPlaybackIdRequest = new MuxPhp\Models\CreatePlaybackIDRequest(["policy" => MuxPhp\Models\PlaybackPolicy::_PUBLIC]);
+    $createAssetPlaybackIdRequest = new MuxPhp\Models\CreatePlaybackIDRequest(["policy" => MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY]);
     $playbackId = $assetsApi->createAssetPlaybackId($createAssetResponse->getData()->getId(), $createAssetPlaybackIdRequest);
     assert($playbackId->getData() != null);
     assert($playbackId->getData()->getPolicy() == 'public');

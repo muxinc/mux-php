@@ -24,36 +24,6 @@ Create an asset
 
 Create a new Mux Video asset.
 
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\AssetsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$create_asset_request = new \MuxPhp\Models\CreateAssetRequest(); // \MuxPhp\Models\CreateAssetRequest | 
-
-try {
-    $result = $apiInstance->createAsset($create_asset_request);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AssetsApi->createAsset: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
 ### Parameters
 
 
@@ -84,37 +54,6 @@ Name | Type | Description  | Notes
 > \MuxPhp\Models\CreatePlaybackIDResponse createAssetPlaybackId($asset_id, $create_playback_id_request)
 
 Create a playback ID
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\AssetsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$asset_id = 'asset_id_example'; // string | The asset ID.
-$create_playback_id_request = new \MuxPhp\Models\CreatePlaybackIDRequest(); // \MuxPhp\Models\CreatePlaybackIDRequest | 
-
-try {
-    $result = $apiInstance->createAssetPlaybackId($asset_id, $create_playback_id_request);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AssetsApi->createAssetPlaybackId: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
 
 ### Parameters
 
@@ -148,35 +87,6 @@ Name | Type | Description  | Notes
 
 Delete an asset
 
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\AssetsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$asset_id = 'asset_id_example'; // string | The asset ID.
-
-try {
-    $apiInstance->deleteAsset($asset_id);
-} catch (Exception $e) {
-    echo 'Exception when calling AssetsApi->deleteAsset: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
 ### Parameters
 
 
@@ -207,36 +117,6 @@ void (empty response body)
 > deleteAssetPlaybackId($asset_id, $playback_id)
 
 Delete a playback ID
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\AssetsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$asset_id = 'asset_id_example'; // string | The asset ID.
-$playback_id = 'playback_id_example'; // string | The live stream's playback ID.
-
-try {
-    $apiInstance->deleteAssetPlaybackId($asset_id, $playback_id);
-} catch (Exception $e) {
-    echo 'Exception when calling AssetsApi->deleteAssetPlaybackId: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
 
 ### Parameters
 
@@ -272,36 +152,6 @@ Retrieve an asset
 
 Retrieves the details of an asset that has previously been created. Supply the unique asset ID that was returned from your previous request, and Mux will return the corresponding asset information. The same information is returned when creating an asset.
 
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\AssetsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$asset_id = 'asset_id_example'; // string | The asset ID.
-
-try {
-    $result = $apiInstance->getAsset($asset_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AssetsApi->getAsset: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
 ### Parameters
 
 
@@ -335,36 +185,6 @@ Retrieve asset input info
 
 Returns a list of the input objects that were used to create the asset along with any settings that were applied to each input.
 
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\AssetsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$asset_id = 'asset_id_example'; // string | The asset ID.
-
-try {
-    $result = $apiInstance->getAssetInputInfo($asset_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AssetsApi->getAssetInputInfo: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
 ### Parameters
 
 
@@ -395,37 +215,6 @@ Name | Type | Description  | Notes
 > \MuxPhp\Models\GetAssetPlaybackIDResponse getAssetPlaybackId($asset_id, $playback_id)
 
 Retrieve a playback ID
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\AssetsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$asset_id = 'asset_id_example'; // string | The asset ID.
-$playback_id = 'playback_id_example'; // string | The live stream's playback ID.
-
-try {
-    $result = $apiInstance->getAssetPlaybackId($asset_id, $playback_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AssetsApi->getAssetPlaybackId: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
 
 ### Parameters
 
@@ -459,44 +248,14 @@ Name | Type | Description  | Notes
 
 List assets
 
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\AssetsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$limit = 25; // int | Number of items to include in the response
-$page = 1; // int | Offset by this many pages, of the size of `limit`
-
-try {
-    $result = $apiInstance->listAssets($limit, $page);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AssetsApi->listAssets: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
 ### Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
- **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
+**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
+**optional_params[limit]** | int | Number of items to include in the response (optional, default to 25)
+**optional_params[page]** | int | Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
 
 ### Return type
 
@@ -523,37 +282,6 @@ Name | Type | Description  | Notes
 Update MP4 support
 
 Allows you add or remove mp4 support for assets that were created without it. Currently there are two values supported in this request, `standard` and `none`. `none` means that an asset *does not* have mp4 support, so submitting a request with `mp4_support` set to `none` will delete the mp4 assets from the asset in question.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\AssetsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$asset_id = 'asset_id_example'; // string | The asset ID.
-$update_asset_mp4_support_request = new \MuxPhp\Models\UpdateAssetMP4SupportRequest(); // \MuxPhp\Models\UpdateAssetMP4SupportRequest | 
-
-try {
-    $result = $apiInstance->updateAssetMp4Support($asset_id, $update_asset_mp4_support_request);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AssetsApi->updateAssetMp4Support: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
 
 ### Parameters
 

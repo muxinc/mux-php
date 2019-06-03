@@ -97,7 +97,7 @@ class LiveStreamsApi
      *
      * Create a live stream
      *
-     * @param  \MuxPhp\Models\CreateLiveStreamRequest $create_live_stream_request create_live_stream_request (required)
+     * @param  \MuxPhp\Models\CreateLiveStreamRequest $create_live_stream_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -292,6 +292,7 @@ class LiveStreamsApi
 
 
 
+
         // body params
         $_tempBody = null;
         if (isset($create_live_stream_request)) {
@@ -354,10 +355,11 @@ class LiveStreamsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -369,7 +371,7 @@ class LiveStreamsApi
      * Create a live stream playback ID
      *
      * @param  string $live_stream_id The live stream ID (required)
-     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request create_playback_id_request (required)
+     * @param  \MuxPhp\Models\CreatePlaybackIDRequest $create_playback_id_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -573,6 +575,7 @@ class LiveStreamsApi
         $multipart = false;
 
 
+
         // path params
         if ($live_stream_id !== null) {
             $resourcePath = str_replace(
@@ -644,10 +647,11 @@ class LiveStreamsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -804,6 +808,7 @@ class LiveStreamsApi
         $multipart = false;
 
 
+
         // path params
         if ($live_stream_id !== null) {
             $resourcePath = str_replace(
@@ -872,10 +877,11 @@ class LiveStreamsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -1043,6 +1049,7 @@ class LiveStreamsApi
         $multipart = false;
 
 
+
         // path params
         if ($live_stream_id !== null) {
             $resourcePath = str_replace(
@@ -1119,10 +1126,11 @@ class LiveStreamsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -1327,6 +1335,7 @@ class LiveStreamsApi
         $multipart = false;
 
 
+
         // path params
         if ($live_stream_id !== null) {
             $resourcePath = str_replace(
@@ -1395,10 +1404,11 @@ class LiveStreamsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -1409,16 +1419,17 @@ class LiveStreamsApi
      *
      * List live streams
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListLiveStreamsResponse
      */
-    public function listLiveStreams($limit = 25, $page = 1)
+    public function listLiveStreams($optionalParams = [])
     {
-        list($response) = $this->listLiveStreamsWithHttpInfo($limit, $page);
+        list($response) = $this->listLiveStreamsWithHttpInfo($optionalParams);
         return $response;
     }
 
@@ -1427,16 +1438,17 @@ class LiveStreamsApi
      *
      * List live streams
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListLiveStreamsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listLiveStreamsWithHttpInfo($limit = 25, $page = 1)
+    public function listLiveStreamsWithHttpInfo($optionalParams = [])
     {
-        $request = $this->listLiveStreamsRequest($limit, $page);
+        $request = $this->listLiveStreamsRequest($optionalParams);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1516,15 +1528,16 @@ class LiveStreamsApi
      *
      * List live streams
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listLiveStreamsAsync($limit = 25, $page = 1)
+    public function listLiveStreamsAsync($optionalParams = [])
     {
-        return $this->listLiveStreamsAsyncWithHttpInfo($limit, $page)
+        return $this->listLiveStreamsAsyncWithHttpInfo($optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1537,16 +1550,17 @@ class LiveStreamsApi
      *
      * List live streams
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listLiveStreamsAsyncWithHttpInfo($limit = 25, $page = 1)
+    public function listLiveStreamsAsyncWithHttpInfo($optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListLiveStreamsResponse';
-        $request = $this->listLiveStreamsRequest($limit, $page);
+        $request = $this->listLiveStreamsRequest($optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1585,14 +1599,18 @@ class LiveStreamsApi
     /**
      * Create request for operation 'listLiveStreams'
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listLiveStreamsRequest($limit = 25, $page = 1)
+    protected function listLiveStreamsRequest($optionalParams)
     {
+        // Pull the set optional params from the associative array $optionalParams, setting them to their defaults if they're not set.
+        $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
+        $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
 
         $resourcePath = '/video/v1/live-streams';
         $formParams = [];
@@ -1601,14 +1619,15 @@ class LiveStreamsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: limit
         if ($limit !== null) {
-            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
+            array_push($queryParams, "limit=" . ObjectSerializer::toQueryValue($limit));
         }
-        // query params
+        // Query Param: page
         if ($page !== null) {
-            $queryParams['page'] = ObjectSerializer::toQueryValue($page);
+            array_push($queryParams, "page=" . ObjectSerializer::toQueryValue($page));
         }
+
 
 
         // body params
@@ -1670,10 +1689,11 @@ class LiveStreamsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -1878,6 +1898,7 @@ class LiveStreamsApi
         $multipart = false;
 
 
+
         // path params
         if ($live_stream_id !== null) {
             $resourcePath = str_replace(
@@ -1946,10 +1967,11 @@ class LiveStreamsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -2154,6 +2176,7 @@ class LiveStreamsApi
         $multipart = false;
 
 
+
         // path params
         if ($live_stream_id !== null) {
             $resourcePath = str_replace(
@@ -2222,10 +2245,11 @@ class LiveStreamsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'PUT',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );

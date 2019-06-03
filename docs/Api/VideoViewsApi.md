@@ -17,36 +17,6 @@ Get a Video View
 
 Returns the details of a video view
 
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\VideoViewsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$video_view_id = abcd1234; // string | ID of the Video View
-
-try {
-    $result = $apiInstance->getVideoView($video_view_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling VideoViewsApi->getVideoView: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
 ### Parameters
 
 
@@ -80,54 +50,19 @@ List Video Views
 
 Returns a list of video views
 
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\VideoViewsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$limit = 25; // int | Number of items to include in the response
-$page = 1; // int | Offset by this many pages, of the size of `limit`
-$viewer_id = 'viewer_id_example'; // string | Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux.
-$error_id = 56; // int | Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error.
-$order_direction = 'order_direction_example'; // string | Sort order.
-$filters = array('filters_example'); // string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]=operating_system:windows&filters[]=country:US).  Possible filter names are the same as returned by the List Filters endpoint.
-$timeframe = array('timeframe_example'); // string[] | Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]=). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]=1498867200&timeframe[]=1498953600    * duration string e.g. timeframe[]=24:hours or timeframe[]=7:days.
-
-try {
-    $result = $apiInstance->listVideoViews($limit, $page, $viewer_id, $error_id, $order_direction, $filters, $timeframe);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling VideoViewsApi->listVideoViews: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
 ### Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
- **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
- **viewer_id** | **string**| Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux. | [optional]
- **error_id** | **int**| Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error. | [optional]
- **order_direction** | **string**| Sort order. | [optional]
- **filters** | [**string[]**](../Model/string.md)| Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. | [optional]
- **timeframe** | [**string[]**](../Model/string.md)| Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. | [optional]
+**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
+**optional_params[limit]** | int | Number of items to include in the response (optional, default to 25)
+**optional_params[page]** | int | Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+**optional_params[viewer_id]** | string | Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux. (optional)
+**optional_params[error_id]** | int | Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error. (optional)
+**optional_params[order_direction]** | string | Sort order. (optional)
+**optional_params[filters]** | string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+**optional_params[timeframe]** | string[] | Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
 
 ### Return type
 

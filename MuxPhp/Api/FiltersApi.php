@@ -98,18 +98,19 @@ class FiltersApi
      * Lists values for a specific filter
      *
      * @param  string $filter_id ID of the Filter (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListFilterValuesResponse
      */
-    public function listFilterValues($filter_id, $limit = 25, $page = 1, $filters = null, $timeframe = null)
+    public function listFilterValues($filter_id, $optionalParams = [])
     {
-        list($response) = $this->listFilterValuesWithHttpInfo($filter_id, $limit, $page, $filters, $timeframe);
+        list($response) = $this->listFilterValuesWithHttpInfo($filter_id, $optionalParams);
         return $response;
     }
 
@@ -119,18 +120,19 @@ class FiltersApi
      * Lists values for a specific filter
      *
      * @param  string $filter_id ID of the Filter (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListFilterValuesResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listFilterValuesWithHttpInfo($filter_id, $limit = 25, $page = 1, $filters = null, $timeframe = null)
+    public function listFilterValuesWithHttpInfo($filter_id, $optionalParams = [])
     {
-        $request = $this->listFilterValuesRequest($filter_id, $limit, $page, $filters, $timeframe);
+        $request = $this->listFilterValuesRequest($filter_id, $optionalParams);
 
         try {
             $options = $this->createHttpClientOption();
@@ -211,17 +213,18 @@ class FiltersApi
      * Lists values for a specific filter
      *
      * @param  string $filter_id ID of the Filter (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFilterValuesAsync($filter_id, $limit = 25, $page = 1, $filters = null, $timeframe = null)
+    public function listFilterValuesAsync($filter_id, $optionalParams = [])
     {
-        return $this->listFilterValuesAsyncWithHttpInfo($filter_id, $limit, $page, $filters, $timeframe)
+        return $this->listFilterValuesAsyncWithHttpInfo($filter_id, $optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -235,18 +238,19 @@ class FiltersApi
      * Lists values for a specific filter
      *
      * @param  string $filter_id ID of the Filter (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFilterValuesAsyncWithHttpInfo($filter_id, $limit = 25, $page = 1, $filters = null, $timeframe = null)
+    public function listFilterValuesAsyncWithHttpInfo($filter_id, $optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListFilterValuesResponse';
-        $request = $this->listFilterValuesRequest($filter_id, $limit, $page, $filters, $timeframe);
+        $request = $this->listFilterValuesRequest($filter_id, $optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -286,16 +290,22 @@ class FiltersApi
      * Create request for operation 'listFilterValues'
      *
      * @param  string $filter_id ID of the Filter (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listFilterValuesRequest($filter_id, $limit = 25, $page = 1, $filters = null, $timeframe = null)
+    protected function listFilterValuesRequest($filter_id, $optionalParams)
     {
+        // Pull the set optional params from the associative array $optionalParams, setting them to their defaults if they're not set.
+        $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
+        $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
+        $filters = array_key_exists('filters', $optionalParams) ? $optionalParams['filters'] : null;
+        $timeframe = array_key_exists('timeframe', $optionalParams) ? $optionalParams['timeframe'] : null;
         // verify the required parameter 'filter_id' is set
         if ($filter_id === null || (is_array($filter_id) && count($filter_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -310,28 +320,37 @@ class FiltersApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: limit
         if ($limit !== null) {
-            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
+            array_push($queryParams, "limit=" . ObjectSerializer::toQueryValue($limit));
         }
-        // query params
+        // Query Param: page
         if ($page !== null) {
-            $queryParams['page'] = ObjectSerializer::toQueryValue($page);
+            array_push($queryParams, "page=" . ObjectSerializer::toQueryValue($page));
         }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'multi', true);
-        }
+        // Query Param: filters[]
         if ($filters !== null) {
-            $queryParams['filters[]'] = ObjectSerializer::toQueryValue($filters);
+            if (is_array($filters)) {
+                foreach ($filters as $p) {
+                    array_push($queryParams, "filters[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter filters[]');
+            }
         }
-        // query params
-        if (is_array($timeframe)) {
-            $timeframe = ObjectSerializer::serializeCollection($timeframe, 'multi', true);
-        }
+        // Query Param: timeframe[]
         if ($timeframe !== null) {
-            $queryParams['timeframe[]'] = ObjectSerializer::toQueryValue($timeframe);
+            if (is_array($timeframe)) {
+                foreach ($timeframe as $p) {
+                    array_push($queryParams, "timeframe[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter timeframe[]');
+            }
         }
+
 
         // path params
         if ($filter_id !== null) {
@@ -401,10 +420,11 @@ class FiltersApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -599,6 +619,7 @@ class FiltersApi
 
 
 
+
         // body params
         $_tempBody = null;
 
@@ -658,10 +679,11 @@ class FiltersApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );

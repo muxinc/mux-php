@@ -19,35 +19,6 @@ Create a URL signing key
 
 Creates a new signing key pair. When creating a new signing key, the API will generate a 2048-bit RSA key-pair and return the private key and a generated key-id; the public key will be stored at Mux to validate signed tokens.
 
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\URLSigningKeysApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-
-try {
-    $result = $apiInstance->createUrlSigningKey();
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling URLSigningKeysApi->createUrlSigningKey: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
 ### Parameters
 
 This endpoint does not need any parameter.
@@ -77,35 +48,6 @@ This endpoint does not need any parameter.
 Delete a URL signing key
 
 Deletes an existing signing key. Use with caution, as this will invalidate any existing signatures and no URLs can be signed using the key again.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\URLSigningKeysApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$signing_key_id = 'signing_key_id_example'; // string | The ID of the signing key.
-
-try {
-    $apiInstance->deleteUrlSigningKey($signing_key_id);
-} catch (Exception $e) {
-    echo 'Exception when calling URLSigningKeysApi->deleteUrlSigningKey: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
 
 ### Parameters
 
@@ -140,36 +82,6 @@ Retrieve a URL signing key
 
 Retrieves the details of a URL signing key that has previously been created. Supply the unique signing key ID that was returned from your previous request, and Mux will return the corresponding signing key information. **The private key is not returned in this response.**
 
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\URLSigningKeysApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$signing_key_id = 'signing_key_id_example'; // string | The ID of the signing key.
-
-try {
-    $result = $apiInstance->getUrlSigningKey($signing_key_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling URLSigningKeysApi->getUrlSigningKey: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
 ### Parameters
 
 
@@ -203,44 +115,14 @@ List URL signing keys
 
 Returns a list of URL signing keys.
 
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure HTTP basic authorization: accessToken
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-
-$apiInstance = new MuxPhp\Api\URLSigningKeysApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$limit = 25; // int | Number of items to include in the response
-$page = 1; // int | Offset by this many pages, of the size of `limit`
-
-try {
-    $result = $apiInstance->listUrlSigningKeys($limit, $page);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling URLSigningKeysApi->listUrlSigningKeys: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
 ### Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
- **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
+**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
+**optional_params[limit]** | int | Number of items to include in the response (optional, default to 25)
+**optional_params[page]** | int | Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
 
 ### Return type
 

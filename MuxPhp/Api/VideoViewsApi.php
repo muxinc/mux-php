@@ -291,6 +291,7 @@ class VideoViewsApi
         $multipart = false;
 
 
+
         // path params
         if ($video_view_id !== null) {
             $resourcePath = str_replace(
@@ -359,10 +360,11 @@ class VideoViewsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -373,21 +375,22 @@ class VideoViewsApi
      *
      * List Video Views
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string $viewer_id Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux. (optional)
-     * @param  int $error_id Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error. (optional)
-     * @param  string $order_direction Sort order. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - viewer_id string - Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux. (optional)
+     *     - error_id int - Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error. (optional)
+     *     - order_direction string - Sort order. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListVideoViewsResponse
      */
-    public function listVideoViews($limit = 25, $page = 1, $viewer_id = null, $error_id = null, $order_direction = null, $filters = null, $timeframe = null)
+    public function listVideoViews($optionalParams = [])
     {
-        list($response) = $this->listVideoViewsWithHttpInfo($limit, $page, $viewer_id, $error_id, $order_direction, $filters, $timeframe);
+        list($response) = $this->listVideoViewsWithHttpInfo($optionalParams);
         return $response;
     }
 
@@ -396,21 +399,22 @@ class VideoViewsApi
      *
      * List Video Views
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string $viewer_id Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux. (optional)
-     * @param  int $error_id Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error. (optional)
-     * @param  string $order_direction Sort order. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - viewer_id string - Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux. (optional)
+     *     - error_id int - Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error. (optional)
+     *     - order_direction string - Sort order. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListVideoViewsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listVideoViewsWithHttpInfo($limit = 25, $page = 1, $viewer_id = null, $error_id = null, $order_direction = null, $filters = null, $timeframe = null)
+    public function listVideoViewsWithHttpInfo($optionalParams = [])
     {
-        $request = $this->listVideoViewsRequest($limit, $page, $viewer_id, $error_id, $order_direction, $filters, $timeframe);
+        $request = $this->listVideoViewsRequest($optionalParams);
 
         try {
             $options = $this->createHttpClientOption();
@@ -490,20 +494,21 @@ class VideoViewsApi
      *
      * List Video Views
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string $viewer_id Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux. (optional)
-     * @param  int $error_id Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error. (optional)
-     * @param  string $order_direction Sort order. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - viewer_id string - Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux. (optional)
+     *     - error_id int - Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error. (optional)
+     *     - order_direction string - Sort order. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listVideoViewsAsync($limit = 25, $page = 1, $viewer_id = null, $error_id = null, $order_direction = null, $filters = null, $timeframe = null)
+    public function listVideoViewsAsync($optionalParams = [])
     {
-        return $this->listVideoViewsAsyncWithHttpInfo($limit, $page, $viewer_id, $error_id, $order_direction, $filters, $timeframe)
+        return $this->listVideoViewsAsyncWithHttpInfo($optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -516,21 +521,22 @@ class VideoViewsApi
      *
      * List Video Views
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string $viewer_id Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux. (optional)
-     * @param  int $error_id Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error. (optional)
-     * @param  string $order_direction Sort order. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - viewer_id string - Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux. (optional)
+     *     - error_id int - Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error. (optional)
+     *     - order_direction string - Sort order. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listVideoViewsAsyncWithHttpInfo($limit = 25, $page = 1, $viewer_id = null, $error_id = null, $order_direction = null, $filters = null, $timeframe = null)
+    public function listVideoViewsAsyncWithHttpInfo($optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListVideoViewsResponse';
-        $request = $this->listVideoViewsRequest($limit, $page, $viewer_id, $error_id, $order_direction, $filters, $timeframe);
+        $request = $this->listVideoViewsRequest($optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -569,19 +575,28 @@ class VideoViewsApi
     /**
      * Create request for operation 'listVideoViews'
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string $viewer_id Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux. (optional)
-     * @param  int $error_id Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error. (optional)
-     * @param  string $order_direction Sort order. (optional)
-     * @param  string[] $filters Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - viewer_id string - Viewer ID to filter results by. This value may be provided by the integration, or may be created by Mux. (optional)
+     *     - error_id int - Filter video views by the provided error ID (as returned in the error_type_id field in the list video views endpoint). If you provide any as the error ID, this will filter the results to those with any error. (optional)
+     *     - order_direction string - Sort order. (optional)
+     *     - filters string[] - Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+     *     - timeframe string[] - Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600    * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listVideoViewsRequest($limit = 25, $page = 1, $viewer_id = null, $error_id = null, $order_direction = null, $filters = null, $timeframe = null)
+    protected function listVideoViewsRequest($optionalParams)
     {
+        // Pull the set optional params from the associative array $optionalParams, setting them to their defaults if they're not set.
+        $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
+        $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
+        $viewer_id = array_key_exists('viewer_id', $optionalParams) ? $optionalParams['viewer_id'] : null;
+        $error_id = array_key_exists('error_id', $optionalParams) ? $optionalParams['error_id'] : null;
+        $order_direction = array_key_exists('order_direction', $optionalParams) ? $optionalParams['order_direction'] : null;
+        $filters = array_key_exists('filters', $optionalParams) ? $optionalParams['filters'] : null;
+        $timeframe = array_key_exists('timeframe', $optionalParams) ? $optionalParams['timeframe'] : null;
 
         $resourcePath = '/data/v1/video-views';
         $formParams = [];
@@ -590,40 +605,49 @@ class VideoViewsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: limit
         if ($limit !== null) {
-            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
+            array_push($queryParams, "limit=" . ObjectSerializer::toQueryValue($limit));
         }
-        // query params
+        // Query Param: page
         if ($page !== null) {
-            $queryParams['page'] = ObjectSerializer::toQueryValue($page);
+            array_push($queryParams, "page=" . ObjectSerializer::toQueryValue($page));
         }
-        // query params
+        // Query Param: viewer_id
         if ($viewer_id !== null) {
-            $queryParams['viewer_id'] = ObjectSerializer::toQueryValue($viewer_id);
+            array_push($queryParams, "viewer_id=" . ObjectSerializer::toQueryValue($viewer_id));
         }
-        // query params
+        // Query Param: error_id
         if ($error_id !== null) {
-            $queryParams['error_id'] = ObjectSerializer::toQueryValue($error_id);
+            array_push($queryParams, "error_id=" . ObjectSerializer::toQueryValue($error_id));
         }
-        // query params
+        // Query Param: order_direction
         if ($order_direction !== null) {
-            $queryParams['order_direction'] = ObjectSerializer::toQueryValue($order_direction);
+            array_push($queryParams, "order_direction=" . ObjectSerializer::toQueryValue($order_direction));
         }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'multi', true);
-        }
+        // Query Param: filters[]
         if ($filters !== null) {
-            $queryParams['filters[]'] = ObjectSerializer::toQueryValue($filters);
+            if (is_array($filters)) {
+                foreach ($filters as $p) {
+                    array_push($queryParams, "filters[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter filters[]');
+            }
         }
-        // query params
-        if (is_array($timeframe)) {
-            $timeframe = ObjectSerializer::serializeCollection($timeframe, 'multi', true);
-        }
+        // Query Param: timeframe[]
         if ($timeframe !== null) {
-            $queryParams['timeframe[]'] = ObjectSerializer::toQueryValue($timeframe);
+            if (is_array($timeframe)) {
+                foreach ($timeframe as $p) {
+                    array_push($queryParams, "timeframe[]=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter timeframe[]');
+            }
         }
+
 
 
         // body params
@@ -685,10 +709,11 @@ class VideoViewsApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );

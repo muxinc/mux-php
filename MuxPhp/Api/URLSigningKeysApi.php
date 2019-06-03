@@ -281,6 +281,7 @@ class URLSigningKeysApi
 
 
 
+
         // body params
         $_tempBody = null;
 
@@ -340,10 +341,11 @@ class URLSigningKeysApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -500,6 +502,7 @@ class URLSigningKeysApi
         $multipart = false;
 
 
+
         // path params
         if ($signing_key_id !== null) {
             $resourcePath = str_replace(
@@ -568,10 +571,11 @@ class URLSigningKeysApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -776,6 +780,7 @@ class URLSigningKeysApi
         $multipart = false;
 
 
+
         // path params
         if ($signing_key_id !== null) {
             $resourcePath = str_replace(
@@ -844,10 +849,11 @@ class URLSigningKeysApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );
@@ -858,16 +864,17 @@ class URLSigningKeysApi
      *
      * List URL signing keys
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListSigningKeysResponse
      */
-    public function listUrlSigningKeys($limit = 25, $page = 1)
+    public function listUrlSigningKeys($optionalParams = [])
     {
-        list($response) = $this->listUrlSigningKeysWithHttpInfo($limit, $page);
+        list($response) = $this->listUrlSigningKeysWithHttpInfo($optionalParams);
         return $response;
     }
 
@@ -876,16 +883,17 @@ class URLSigningKeysApi
      *
      * List URL signing keys
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListSigningKeysResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listUrlSigningKeysWithHttpInfo($limit = 25, $page = 1)
+    public function listUrlSigningKeysWithHttpInfo($optionalParams = [])
     {
-        $request = $this->listUrlSigningKeysRequest($limit, $page);
+        $request = $this->listUrlSigningKeysRequest($optionalParams);
 
         try {
             $options = $this->createHttpClientOption();
@@ -965,15 +973,16 @@ class URLSigningKeysApi
      *
      * List URL signing keys
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listUrlSigningKeysAsync($limit = 25, $page = 1)
+    public function listUrlSigningKeysAsync($optionalParams = [])
     {
-        return $this->listUrlSigningKeysAsyncWithHttpInfo($limit, $page)
+        return $this->listUrlSigningKeysAsyncWithHttpInfo($optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -986,16 +995,17 @@ class URLSigningKeysApi
      *
      * List URL signing keys
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listUrlSigningKeysAsyncWithHttpInfo($limit = 25, $page = 1)
+    public function listUrlSigningKeysAsyncWithHttpInfo($optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListSigningKeysResponse';
-        $request = $this->listUrlSigningKeysRequest($limit, $page);
+        $request = $this->listUrlSigningKeysRequest($optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1034,14 +1044,18 @@ class URLSigningKeysApi
     /**
      * Create request for operation 'listUrlSigningKeys'
      *
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listUrlSigningKeysRequest($limit = 25, $page = 1)
+    protected function listUrlSigningKeysRequest($optionalParams)
     {
+        // Pull the set optional params from the associative array $optionalParams, setting them to their defaults if they're not set.
+        $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
+        $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
 
         $resourcePath = '/video/v1/signing-keys';
         $formParams = [];
@@ -1050,14 +1064,15 @@ class URLSigningKeysApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: limit
         if ($limit !== null) {
-            $queryParams['limit'] = ObjectSerializer::toQueryValue($limit);
+            array_push($queryParams, "limit=" . ObjectSerializer::toQueryValue($limit));
         }
-        // query params
+        // Query Param: page
         if ($page !== null) {
-            $queryParams['page'] = ObjectSerializer::toQueryValue($page);
+            array_push($queryParams, "page=" . ObjectSerializer::toQueryValue($page));
         }
+
 
 
         // body params
@@ -1119,10 +1134,11 @@ class URLSigningKeysApi
             $headers
         );
 
+        $queryParamsDirect = join("&",$queryParams);
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
             $headers,
             $httpBody
         );

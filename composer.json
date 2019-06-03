@@ -1,6 +1,6 @@
 {
     "name": "muxinc/mux-php",
-    "description": "Official PHP SDK for https://mux.com/video and https://mux.com/data",
+    "description": "Official Mux API wrapper for PHP projects, supporting both Mux Data and Mux Video. Not familiar with Mux? Check out https://mux.com/ for more information.",
     "keywords": [
         "php",
         "sdk",

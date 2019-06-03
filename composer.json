@@ -1,6 +1,5 @@
 {
     "name": "muxinc/mux-php",
-    "version": "0.0.1",
     "description": "Official PHP SDK for https://mux.com/video and https://mux.com/data",
     "keywords": [
         "php",

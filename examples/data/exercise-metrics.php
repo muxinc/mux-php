@@ -39,7 +39,6 @@
 
     // ========== get-metric-timeseries-data ==========
     $timeseries = $metricsApi->getMetricTimeseriesData("video_startup_time", ["timeframe" => ["7:days"]]);
-    print($timeseries);
     assert($timeseries->getData() != null);
     print("get-metric-timeseries-data OK ✅\n");
 

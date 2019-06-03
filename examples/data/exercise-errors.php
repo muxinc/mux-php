@@ -18,7 +18,7 @@
     );
 
     // ========== list-errors ==========
-    $errors = $errorsApi->listErrors(["browser:Chrome"], ["7:days"]);
+    $errors = $errorsApi->listErrors(["filters" => ["browser:Chrome"], "timeframe" => ["7:days"]]);
     assert($errors->getData() != null);
     assert($errors->getData()[0] != null);
     assert($errors->getData()[0]->getId() != null);

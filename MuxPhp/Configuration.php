@@ -412,12 +412,12 @@ class Configuration
      */
     public function getHostSettings()
     {
-        return array(
-          array(
+        return [
+          [
             "url" => "https://api.mux.com/",
             "description" => "Mux Production Environment",
-          )
-        );
+          ]
+        ];
     }
 
     /**

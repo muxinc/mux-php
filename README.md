@@ -12,7 +12,7 @@ Not familiar with Mux? Check out https://mux.com/ for more information.
 
 ## Installation
 
-We publish Mux PHP to [Packagist](https://packagist.org/). You should depend on Mux PHP by adding us to your composer.json:
+We publish Mux PHP to [Packagist](https://packagist.org/packages/muxinc/mux-php). You should depend on Mux PHP by adding us to your composer.json:
 
 ```json
     {

@@ -10,6 +10,11 @@ Official Mux API wrapper for PHP projects, supporting both Mux Data and Mux Vide
 
 Not familiar with Mux? Check out https://mux.com/ for more information.
 
+## Requirements
+
+PHP 7.1 or higher.
+Dependencies are managed using composer.
+
 ## Installation
 
 We publish Mux PHP to [Packagist](https://packagist.org/packages/muxinc/mux-php). You should depend on Mux PHP by adding us to your composer.json:

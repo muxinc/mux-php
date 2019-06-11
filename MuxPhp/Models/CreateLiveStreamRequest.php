@@ -34,7 +34,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
      */
     protected static $openAPITypes = [
         'playback_policy' => '\MuxPhp\Models\PlaybackPolicy[]',
-        'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest'
+        'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest',
+        'reconnect_window' => 'float'
     ];
 
     /**
@@ -44,7 +45,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
      */
     protected static $openAPIFormats = [
         'playback_policy' => null,
-        'new_asset_settings' => null
+        'new_asset_settings' => null,
+        'reconnect_window' => 'float'
     ];
 
     /**
@@ -75,7 +77,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'playback_policy' => 'playback_policy',
-        'new_asset_settings' => 'new_asset_settings'
+        'new_asset_settings' => 'new_asset_settings',
+        'reconnect_window' => 'reconnect_window'
     ];
 
     /**
@@ -85,7 +88,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'playback_policy' => 'setPlaybackPolicy',
-        'new_asset_settings' => 'setNewAssetSettings'
+        'new_asset_settings' => 'setNewAssetSettings',
+        'reconnect_window' => 'setReconnectWindow'
     ];
 
     /**
@@ -95,7 +99,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'playback_policy' => 'getPlaybackPolicy',
-        'new_asset_settings' => 'getNewAssetSettings'
+        'new_asset_settings' => 'getNewAssetSettings',
+        'reconnect_window' => 'getReconnectWindow'
     ];
 
     /**
@@ -160,6 +165,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     {
         $this->container['playback_policy'] = isset($data['playback_policy']) ? $data['playback_policy'] : null;
         $this->container['new_asset_settings'] = isset($data['new_asset_settings']) ? $data['new_asset_settings'] : null;
+        $this->container['reconnect_window'] = isset($data['reconnect_window']) ? $data['reconnect_window'] : 60;
     }
 
     /**
@@ -170,6 +176,14 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] > 300)) {
+            $invalidProperties[] = "invalid value for 'reconnect_window', must be smaller than or equal to 300.";
+        }
+
+        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] < 0.1)) {
+            $invalidProperties[] = "invalid value for 'reconnect_window', must be bigger than or equal to 0.1.";
+        }
 
         return $invalidProperties;
     }
@@ -230,6 +244,38 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     public function setNewAssetSettings($new_asset_settings)
     {
         $this->container['new_asset_settings'] = $new_asset_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets reconnect_window
+     *
+     * @return float|null
+     */
+    public function getReconnectWindow()
+    {
+        return $this->container['reconnect_window'];
+    }
+
+    /**
+     * Sets reconnect_window
+     *
+     * @param float|null $reconnect_window When live streaming software disconnects from Mux, either intentionally or due to a drop in the network, the Reconnect Window is the time in seconds that Mux should wait for the streaming software to reconnect before considering the live stream finished and completing the recorded asset. Default: 60 seconds
+     *
+     * @return $this
+     */
+    public function setReconnectWindow($reconnect_window)
+    {
+
+        if (!is_null($reconnect_window) && ($reconnect_window > 300)) {
+            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling CreateLiveStreamRequest., must be smaller than or equal to 300.');
+        }
+        if (!is_null($reconnect_window) && ($reconnect_window < 0.1)) {
+            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling CreateLiveStreamRequest., must be bigger than or equal to 0.1.');
+        }
+
+        $this->container['reconnect_window'] = $reconnect_window;
 
         return $this;
     }

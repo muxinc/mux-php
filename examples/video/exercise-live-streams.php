@@ -26,9 +26,10 @@
 
     // ========== create-live-stream ==========
     $createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY]]);
-    $createLiveStreamRequest = new MuxPhp\Models\CreateLiveStreamRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY], "new_asset_settings" => $createAssetRequest]);
+    $createLiveStreamRequest = new MuxPhp\Models\CreateLiveStreamRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY], "new_asset_settings" => $createAssetRequest, "reconnect_window" => 100]);
     $stream = $liveApi->createLiveStream($createLiveStreamRequest);
     assert($stream->getData()->getId() != null);
+    assert($stream->getData()->getReconnectWindow() == 100);
     print("create-live-stream OK ✅\n");
 
     // ========== print("create-direct-upload OK ✅\n"); ==========

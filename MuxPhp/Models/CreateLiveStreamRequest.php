@@ -35,7 +35,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'playback_policy' => '\MuxPhp\Models\PlaybackPolicy[]',
         'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest',
-        'reconnect_window' => 'float'
+        'reconnect_window' => 'float',
+        'passthrough' => 'string'
     ];
 
     /**
@@ -46,7 +47,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'playback_policy' => null,
         'new_asset_settings' => null,
-        'reconnect_window' => 'float'
+        'reconnect_window' => 'float',
+        'passthrough' => null
     ];
 
     /**
@@ -78,7 +80,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'playback_policy' => 'playback_policy',
         'new_asset_settings' => 'new_asset_settings',
-        'reconnect_window' => 'reconnect_window'
+        'reconnect_window' => 'reconnect_window',
+        'passthrough' => 'passthrough'
     ];
 
     /**
@@ -89,7 +92,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     protected static $setters = [
         'playback_policy' => 'setPlaybackPolicy',
         'new_asset_settings' => 'setNewAssetSettings',
-        'reconnect_window' => 'setReconnectWindow'
+        'reconnect_window' => 'setReconnectWindow',
+        'passthrough' => 'setPassthrough'
     ];
 
     /**
@@ -100,7 +104,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     protected static $getters = [
         'playback_policy' => 'getPlaybackPolicy',
         'new_asset_settings' => 'getNewAssetSettings',
-        'reconnect_window' => 'getReconnectWindow'
+        'reconnect_window' => 'getReconnectWindow',
+        'passthrough' => 'getPassthrough'
     ];
 
     /**
@@ -166,6 +171,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         $this->container['playback_policy'] = isset($data['playback_policy']) ? $data['playback_policy'] : null;
         $this->container['new_asset_settings'] = isset($data['new_asset_settings']) ? $data['new_asset_settings'] : null;
         $this->container['reconnect_window'] = isset($data['reconnect_window']) ? $data['reconnect_window'] : 60;
+        $this->container['passthrough'] = isset($data['passthrough']) ? $data['passthrough'] : null;
     }
 
     /**
@@ -276,6 +282,30 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         }
 
         $this->container['reconnect_window'] = $reconnect_window;
+
+        return $this;
+    }
+
+    /**
+     * Gets passthrough
+     *
+     * @return string|null
+     */
+    public function getPassthrough()
+    {
+        return $this->container['passthrough'];
+    }
+
+    /**
+     * Sets passthrough
+     *
+     * @param string|null $passthrough passthrough
+     *
+     * @return $this
+     */
+    public function setPassthrough($passthrough)
+    {
+        $this->container['passthrough'] = $passthrough;
 
         return $this;
     }

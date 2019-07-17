@@ -42,7 +42,8 @@ class LiveStream implements ModelInterface, ArrayAccess
         'playback_ids' => '\MuxPhp\Models\PlaybackID[]',
         'new_asset_settings' => '\MuxPhp\Models\Asset',
         'passthrough' => 'string',
-        'reconnect_window' => 'double'
+        'reconnect_window' => 'double',
+        'reduced_latency' => 'bool'
     ];
 
     /**
@@ -60,7 +61,8 @@ class LiveStream implements ModelInterface, ArrayAccess
         'playback_ids' => null,
         'new_asset_settings' => null,
         'passthrough' => null,
-        'reconnect_window' => 'double'
+        'reconnect_window' => 'double',
+        'reduced_latency' => 'boolean'
     ];
 
     /**
@@ -99,7 +101,8 @@ class LiveStream implements ModelInterface, ArrayAccess
         'playback_ids' => 'playback_ids',
         'new_asset_settings' => 'new_asset_settings',
         'passthrough' => 'passthrough',
-        'reconnect_window' => 'reconnect_window'
+        'reconnect_window' => 'reconnect_window',
+        'reduced_latency' => 'reduced_latency'
     ];
 
     /**
@@ -117,7 +120,8 @@ class LiveStream implements ModelInterface, ArrayAccess
         'playback_ids' => 'setPlaybackIds',
         'new_asset_settings' => 'setNewAssetSettings',
         'passthrough' => 'setPassthrough',
-        'reconnect_window' => 'setReconnectWindow'
+        'reconnect_window' => 'setReconnectWindow',
+        'reduced_latency' => 'setReducedLatency'
     ];
 
     /**
@@ -135,7 +139,8 @@ class LiveStream implements ModelInterface, ArrayAccess
         'playback_ids' => 'getPlaybackIds',
         'new_asset_settings' => 'getNewAssetSettings',
         'passthrough' => 'getPassthrough',
-        'reconnect_window' => 'getReconnectWindow'
+        'reconnect_window' => 'getReconnectWindow',
+        'reduced_latency' => 'getReducedLatency'
     ];
 
     /**
@@ -208,6 +213,7 @@ class LiveStream implements ModelInterface, ArrayAccess
         $this->container['new_asset_settings'] = isset($data['new_asset_settings']) ? $data['new_asset_settings'] : null;
         $this->container['passthrough'] = isset($data['passthrough']) ? $data['passthrough'] : null;
         $this->container['reconnect_window'] = isset($data['reconnect_window']) ? $data['reconnect_window'] : null;
+        $this->container['reduced_latency'] = isset($data['reduced_latency']) ? $data['reduced_latency'] : null;
     }
 
     /**
@@ -470,6 +476,30 @@ class LiveStream implements ModelInterface, ArrayAccess
     public function setReconnectWindow($reconnect_window)
     {
         $this->container['reconnect_window'] = $reconnect_window;
+
+        return $this;
+    }
+
+    /**
+     * Gets reduced_latency
+     *
+     * @return bool|null
+     */
+    public function getReducedLatency()
+    {
+        return $this->container['reduced_latency'];
+    }
+
+    /**
+     * Sets reduced_latency
+     *
+     * @param bool|null $reduced_latency reduced_latency
+     *
+     * @return $this
+     */
+    public function setReducedLatency($reduced_latency)
+    {
+        $this->container['reduced_latency'] = $reduced_latency;
 
         return $this;
     }

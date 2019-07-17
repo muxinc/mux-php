@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **new_asset_settings** | [**\MuxPhp\Models\Asset**](Asset.md) |  | [optional] 
 **passthrough** | **string** |  | [optional] 
 **reconnect_window** | **double** |  | [optional] 
+**reduced_latency** | **bool** |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

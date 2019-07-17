@@ -36,7 +36,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         'playback_policy' => '\MuxPhp\Models\PlaybackPolicy[]',
         'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest',
         'reconnect_window' => 'float',
-        'passthrough' => 'string'
+        'passthrough' => 'string',
+        'reduced_latency' => 'bool'
     ];
 
     /**
@@ -48,7 +49,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         'playback_policy' => null,
         'new_asset_settings' => null,
         'reconnect_window' => 'float',
-        'passthrough' => null
+        'passthrough' => null,
+        'reduced_latency' => 'boolean'
     ];
 
     /**
@@ -81,7 +83,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         'playback_policy' => 'playback_policy',
         'new_asset_settings' => 'new_asset_settings',
         'reconnect_window' => 'reconnect_window',
-        'passthrough' => 'passthrough'
+        'passthrough' => 'passthrough',
+        'reduced_latency' => 'reduced_latency'
     ];
 
     /**
@@ -93,7 +96,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         'playback_policy' => 'setPlaybackPolicy',
         'new_asset_settings' => 'setNewAssetSettings',
         'reconnect_window' => 'setReconnectWindow',
-        'passthrough' => 'setPassthrough'
+        'passthrough' => 'setPassthrough',
+        'reduced_latency' => 'setReducedLatency'
     ];
 
     /**
@@ -105,7 +109,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         'playback_policy' => 'getPlaybackPolicy',
         'new_asset_settings' => 'getNewAssetSettings',
         'reconnect_window' => 'getReconnectWindow',
-        'passthrough' => 'getPassthrough'
+        'passthrough' => 'getPassthrough',
+        'reduced_latency' => 'getReducedLatency'
     ];
 
     /**
@@ -172,6 +177,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         $this->container['new_asset_settings'] = isset($data['new_asset_settings']) ? $data['new_asset_settings'] : null;
         $this->container['reconnect_window'] = isset($data['reconnect_window']) ? $data['reconnect_window'] : 60;
         $this->container['passthrough'] = isset($data['passthrough']) ? $data['passthrough'] : null;
+        $this->container['reduced_latency'] = isset($data['reduced_latency']) ? $data['reduced_latency'] : null;
     }
 
     /**
@@ -306,6 +312,30 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     public function setPassthrough($passthrough)
     {
         $this->container['passthrough'] = $passthrough;
+
+        return $this;
+    }
+
+    /**
+     * Gets reduced_latency
+     *
+     * @return bool|null
+     */
+    public function getReducedLatency()
+    {
+        return $this->container['reduced_latency'];
+    }
+
+    /**
+     * Sets reduced_latency
+     *
+     * @param bool|null $reduced_latency Latency is the time from when the streamer does something in real life to when you see it happen in the player. Set this if you want lower latency for your live stream. Note: Reconnect windows are incompatible with Reduced Latency and will always be set to zero (0) seconds. Read more here: https://mux.com/blog/reduced-latency-for-mux-live-streaming-now-available/
+     *
+     * @return $this
+     */
+    public function setReducedLatency($reduced_latency)
+    {
+        $this->container['reduced_latency'] = $reduced_latency;
 
         return $this;
     }

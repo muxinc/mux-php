@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## listRelatedIncidents
 
-> \MuxPhp\Models\ListRelatedIncidentsResponse listRelatedIncidents($incident_id)
+> \MuxPhp\Models\ListRelatedIncidentsResponse listRelatedIncidents($incident_id, $limit, $page, $order_by, $order_direction)
 
 List Related Incidents
 
@@ -96,6 +96,11 @@ Returns all the incidents that seem related to a specific incident
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **incident_id** | **string**| ID of the Incident |
+**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
+**optional_params[limit]** | int | Number of items to include in the response (optional, default to 25)
+**optional_params[page]** | int | Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+**optional_params[order_by]** | string | Value to order the results by (optional)
+**optional_params[order_direction]** | string | Sort order. (optional)
 
 ### Return type
 

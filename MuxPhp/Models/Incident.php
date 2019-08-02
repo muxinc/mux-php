@@ -62,7 +62,7 @@ class Incident implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $openAPIFormats = [
-        'threshold' => 'int64',
+        'threshold' => 'double',
         'status' => null,
         'started_at' => null,
         'severity' => null,
@@ -72,7 +72,7 @@ class Incident implements ModelInterface, ArrayAccess
         'notifications' => null,
         'notification_rules' => null,
         'measurement' => null,
-        'measured_value_on_close' => 'int64',
+        'measured_value_on_close' => 'double',
         'measured_value' => 'double',
         'incident_key' => null,
         'impact' => null,

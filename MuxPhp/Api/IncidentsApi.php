@@ -701,14 +701,19 @@ class IncidentsApi
      * List Related Incidents
      *
      * @param  string $incident_id ID of the Incident (required)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - order_by string - Value to order the results by (optional)
+     *     - order_direction string - Sort order. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListRelatedIncidentsResponse
      */
-    public function listRelatedIncidents($incident_id)
+    public function listRelatedIncidents($incident_id, $optionalParams = [])
     {
-        list($response) = $this->listRelatedIncidentsWithHttpInfo($incident_id);
+        list($response) = $this->listRelatedIncidentsWithHttpInfo($incident_id, $optionalParams);
         return $response;
     }
 
@@ -718,14 +723,19 @@ class IncidentsApi
      * List Related Incidents
      *
      * @param  string $incident_id ID of the Incident (required)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - order_by string - Value to order the results by (optional)
+     *     - order_direction string - Sort order. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListRelatedIncidentsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listRelatedIncidentsWithHttpInfo($incident_id)
+    public function listRelatedIncidentsWithHttpInfo($incident_id, $optionalParams = [])
     {
-        $request = $this->listRelatedIncidentsRequest($incident_id);
+        $request = $this->listRelatedIncidentsRequest($incident_id, $optionalParams);
 
         try {
             $options = $this->createHttpClientOption();
@@ -806,13 +816,18 @@ class IncidentsApi
      * List Related Incidents
      *
      * @param  string $incident_id ID of the Incident (required)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - order_by string - Value to order the results by (optional)
+     *     - order_direction string - Sort order. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listRelatedIncidentsAsync($incident_id)
+    public function listRelatedIncidentsAsync($incident_id, $optionalParams = [])
     {
-        return $this->listRelatedIncidentsAsyncWithHttpInfo($incident_id)
+        return $this->listRelatedIncidentsAsyncWithHttpInfo($incident_id, $optionalParams)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -826,14 +841,19 @@ class IncidentsApi
      * List Related Incidents
      *
      * @param  string $incident_id ID of the Incident (required)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - order_by string - Value to order the results by (optional)
+     *     - order_direction string - Sort order. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listRelatedIncidentsAsyncWithHttpInfo($incident_id)
+    public function listRelatedIncidentsAsyncWithHttpInfo($incident_id, $optionalParams = [])
     {
         $returnType = '\MuxPhp\Models\ListRelatedIncidentsResponse';
-        $request = $this->listRelatedIncidentsRequest($incident_id);
+        $request = $this->listRelatedIncidentsRequest($incident_id, $optionalParams);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -873,12 +893,22 @@ class IncidentsApi
      * Create request for operation 'listRelatedIncidents'
      *
      * @param  string $incident_id ID of the Incident (required)
+     * @param  mixed[] $optionalParams An associative array of optional parameters which can be passed to this function:
+     *     - limit int - Number of items to include in the response (optional, default to 25)
+     *     - page int - Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     *     - order_by string - Value to order the results by (optional)
+     *     - order_direction string - Sort order. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listRelatedIncidentsRequest($incident_id)
+    protected function listRelatedIncidentsRequest($incident_id, $optionalParams)
     {
+        // Pull the set optional params from the associative array $optionalParams, setting them to their defaults if they're not set.
+        $limit = array_key_exists('limit', $optionalParams) ? $optionalParams['limit'] : 25;
+        $page = array_key_exists('page', $optionalParams) ? $optionalParams['page'] : 1;
+        $order_by = array_key_exists('order_by', $optionalParams) ? $optionalParams['order_by'] : null;
+        $order_direction = array_key_exists('order_direction', $optionalParams) ? $optionalParams['order_direction'] : null;
         // verify the required parameter 'incident_id' is set
         if ($incident_id === null || (is_array($incident_id) && count($incident_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -893,6 +923,22 @@ class IncidentsApi
         $httpBody = '';
         $multipart = false;
 
+        // Query Param: limit
+        if ($limit !== null) {
+            array_push($queryParams, 'limit=' . ObjectSerializer::toQueryValue($limit));
+        }
+        // Query Param: page
+        if ($page !== null) {
+            array_push($queryParams, 'page=' . ObjectSerializer::toQueryValue($page));
+        }
+        // Query Param: order_by
+        if ($order_by !== null) {
+            array_push($queryParams, 'order_by=' . ObjectSerializer::toQueryValue($order_by));
+        }
+        // Query Param: order_direction
+        if ($order_direction !== null) {
+            array_push($queryParams, 'order_direction=' . ObjectSerializer::toQueryValue($order_direction));
+        }
 
 
         // path params

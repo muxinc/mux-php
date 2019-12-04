@@ -12,6 +12,9 @@
     //   delete-live-stream-playback-id
     //   reset-stream-key
     //   signal-live-stream-complete
+    //   create-live-stream-simulcast-target
+    //   get-live-stream-simulcast-target
+    //   delete-live-stream-simulcast-target
 
     // Authentication Setup
     $config = MuxPhp\Configuration::getDefaultConfiguration()
@@ -32,7 +35,7 @@
     assert($stream->getData()->getReconnectWindow() == 100);
     print("create-live-stream OK ✅\n");
 
-    // ========== print("create-direct-upload OK ✅\n"); ==========
+    // ========== list-live-streams ==========
     $streams = $liveApi->listLiveStreams();
     assert($streams->getData()[0]->getId() != null);
     assert($streams->getData()[0]->getId() == $stream->getData()->getId());
@@ -43,6 +46,28 @@
     assert($getStream->getData()->getId() != null);
     assert($getStream->getData()->getId() == $stream->getData()->getId());
     print("get-live-stream OK ✅\n");
+
+    // ========== create-live-stream-simulcast-target ==========
+    $createTarget = new MuxPhp\Models\CreateSimulcastTargetRequest(["passthrough" => "That's not on fire", "url" => "rtmp://glitch.tv", "stream_key" => "somethingverylongnoonewilleverremember"]);
+    $target = $liveApi->createLiveStreamSimulcastTarget($stream->getData()->getId(), $createTarget);
+    assert($target != null);
+    assert($target->getData() != null);
+    assert($target->getData()->getId() != null);
+    print("create-live-stream-simulcast-target OK ✅\n");
+
+    // ========== get-live-stream-simulcast-target ==========
+    $getTarget = $liveApi->getLiveStreamSimulcastTarget($stream->getData()->getId(), $target->getData()->getId());
+    assert($getTarget != null);
+    assert($getTarget->getData() != null);
+    assert($getTarget->getData()->getId() != null);
+    assert($getTarget->getData()->getId() == $target->getData()->getId());
+    print("get-live-stream-simulcast-target OK ✅\n");
+
+    // ========== delete-live-stream-simulcast-target ==========
+    $liveApi->deleteLiveStreamSimulcastTarget($stream->getData()->getId(), $target->getData()->getId());
+    $getStreamNoTarget = $liveApi->getLiveStream($stream->getData()->getId());
+    assert($getStreamNoTarget->getData()->getSimulcastTargets() == null);
+    print("delete-live-stream-simulcast-target OK ✅\n");
 
     // ========== create-live-stream-playback-id ==========
     $createPlaybackIdRequest = new MuxPhp\Models\CreatePlaybackIDRequest(["policy" => MuxPhp\Models\PlaybackPolicy::SIGNED_PLAYBACK_POLICY]);
@@ -55,7 +80,7 @@
     $liveApi->deleteLiveStreamPlaybackId($stream->getData()->getId(), $publicAndPrivateStream->getData()->getId());
     $publicStream = $liveApi->getLiveStream($stream->getData()->getId());
     assert($publicStream->getData()->getId() != null);
-    assert(sizeof($publicStream->getData()) == 1);
+    assert(sizeof($publicStream->getData()->getPlaybackIds()) == 1);
     assert($publicStream->getData()->getPlaybackIds()[0]->getPolicy() == "public");
     print("delete-live-stream-playback-id OK ✅\n");
 

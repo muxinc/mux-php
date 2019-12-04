@@ -658,6 +658,298 @@ class LiveStreamsApi
     }
 
     /**
+     * Operation createLiveStreamSimulcastTarget
+     *
+     * Create a live stream simulcast target
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  \MuxPhp\Models\CreateSimulcastTargetRequest $create_simulcast_target_request (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MuxPhp\Models\SimulcastTargetResponse
+     */
+    public function createLiveStreamSimulcastTarget($live_stream_id, $create_simulcast_target_request)
+    {
+        list($response) = $this->createLiveStreamSimulcastTargetWithHttpInfo($live_stream_id, $create_simulcast_target_request);
+        return $response;
+    }
+
+    /**
+     * Operation createLiveStreamSimulcastTargetWithHttpInfo
+     *
+     * Create a live stream simulcast target
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  \MuxPhp\Models\CreateSimulcastTargetRequest $create_simulcast_target_request (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MuxPhp\Models\SimulcastTargetResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createLiveStreamSimulcastTargetWithHttpInfo($live_stream_id, $create_simulcast_target_request)
+    {
+        $request = $this->createLiveStreamSimulcastTargetRequest($live_stream_id, $create_simulcast_target_request);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 201:
+                    if ('\MuxPhp\Models\SimulcastTargetResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\SimulcastTargetResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MuxPhp\Models\SimulcastTargetResponse';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MuxPhp\Models\SimulcastTargetResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createLiveStreamSimulcastTargetAsync
+     *
+     * Create a live stream simulcast target
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  \MuxPhp\Models\CreateSimulcastTargetRequest $create_simulcast_target_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createLiveStreamSimulcastTargetAsync($live_stream_id, $create_simulcast_target_request)
+    {
+        return $this->createLiveStreamSimulcastTargetAsyncWithHttpInfo($live_stream_id, $create_simulcast_target_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createLiveStreamSimulcastTargetAsyncWithHttpInfo
+     *
+     * Create a live stream simulcast target
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  \MuxPhp\Models\CreateSimulcastTargetRequest $create_simulcast_target_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createLiveStreamSimulcastTargetAsyncWithHttpInfo($live_stream_id, $create_simulcast_target_request)
+    {
+        $returnType = '\MuxPhp\Models\SimulcastTargetResponse';
+        $request = $this->createLiveStreamSimulcastTargetRequest($live_stream_id, $create_simulcast_target_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createLiveStreamSimulcastTarget'
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  \MuxPhp\Models\CreateSimulcastTargetRequest $create_simulcast_target_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function createLiveStreamSimulcastTargetRequest($live_stream_id, $create_simulcast_target_request)
+    {
+        // verify the required parameter 'live_stream_id' is set
+        if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $live_stream_id when calling createLiveStreamSimulcastTarget'
+            );
+        }
+        // verify the required parameter 'create_simulcast_target_request' is set
+        if ($create_simulcast_target_request === null || (is_array($create_simulcast_target_request) && count($create_simulcast_target_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_simulcast_target_request when calling createLiveStreamSimulcastTarget'
+            );
+        }
+
+        $resourcePath = '/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($live_stream_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'LIVE_STREAM_ID' . '}',
+                ObjectSerializer::toPathValue($live_stream_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+        if (isset($create_simulcast_target_request)) {
+            $_tempBody = $create_simulcast_target_request;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $queryParamsDirect = join('&', $queryParams);
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation deleteLiveStream
      *
      * Delete a live stream
@@ -1137,6 +1429,255 @@ class LiveStreamsApi
     }
 
     /**
+     * Operation deleteLiveStreamSimulcastTarget
+     *
+     * Delete a Live Stream Simulcast Target
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $simulcast_target_id The ID of the simulcast target. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteLiveStreamSimulcastTarget($live_stream_id, $simulcast_target_id)
+    {
+        $this->deleteLiveStreamSimulcastTargetWithHttpInfo($live_stream_id, $simulcast_target_id);
+    }
+
+    /**
+     * Operation deleteLiveStreamSimulcastTargetWithHttpInfo
+     *
+     * Delete a Live Stream Simulcast Target
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $simulcast_target_id The ID of the simulcast target. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteLiveStreamSimulcastTargetWithHttpInfo($live_stream_id, $simulcast_target_id)
+    {
+        $request = $this->deleteLiveStreamSimulcastTargetRequest($live_stream_id, $simulcast_target_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteLiveStreamSimulcastTargetAsync
+     *
+     * Delete a Live Stream Simulcast Target
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $simulcast_target_id The ID of the simulcast target. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteLiveStreamSimulcastTargetAsync($live_stream_id, $simulcast_target_id)
+    {
+        return $this->deleteLiveStreamSimulcastTargetAsyncWithHttpInfo($live_stream_id, $simulcast_target_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteLiveStreamSimulcastTargetAsyncWithHttpInfo
+     *
+     * Delete a Live Stream Simulcast Target
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $simulcast_target_id The ID of the simulcast target. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteLiveStreamSimulcastTargetAsyncWithHttpInfo($live_stream_id, $simulcast_target_id)
+    {
+        $returnType = '';
+        $request = $this->deleteLiveStreamSimulcastTargetRequest($live_stream_id, $simulcast_target_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteLiveStreamSimulcastTarget'
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $simulcast_target_id The ID of the simulcast target. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function deleteLiveStreamSimulcastTargetRequest($live_stream_id, $simulcast_target_id)
+    {
+        // verify the required parameter 'live_stream_id' is set
+        if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $live_stream_id when calling deleteLiveStreamSimulcastTarget'
+            );
+        }
+        // verify the required parameter 'simulcast_target_id' is set
+        if ($simulcast_target_id === null || (is_array($simulcast_target_id) && count($simulcast_target_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $simulcast_target_id when calling deleteLiveStreamSimulcastTarget'
+            );
+        }
+
+        $resourcePath = '/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($live_stream_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'LIVE_STREAM_ID' . '}',
+                ObjectSerializer::toPathValue($live_stream_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($simulcast_target_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'SIMULCAST_TARGET_ID' . '}',
+                ObjectSerializer::toPathValue($simulcast_target_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $queryParamsDirect = join('&', $queryParams);
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getLiveStream
      *
      * Retrieve a live stream
@@ -1341,6 +1882,303 @@ class LiveStreamsApi
             $resourcePath = str_replace(
                 '{' . 'LIVE_STREAM_ID' . '}',
                 ObjectSerializer::toPathValue($live_stream_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $queryParamsDirect = join('&', $queryParams);
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getLiveStreamSimulcastTarget
+     *
+     * Retrieve a Live Stream Simulcast Target
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $simulcast_target_id The ID of the simulcast target. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MuxPhp\Models\SimulcastTargetResponse
+     */
+    public function getLiveStreamSimulcastTarget($live_stream_id, $simulcast_target_id)
+    {
+        list($response) = $this->getLiveStreamSimulcastTargetWithHttpInfo($live_stream_id, $simulcast_target_id);
+        return $response;
+    }
+
+    /**
+     * Operation getLiveStreamSimulcastTargetWithHttpInfo
+     *
+     * Retrieve a Live Stream Simulcast Target
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $simulcast_target_id The ID of the simulcast target. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MuxPhp\Models\SimulcastTargetResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getLiveStreamSimulcastTargetWithHttpInfo($live_stream_id, $simulcast_target_id)
+    {
+        $request = $this->getLiveStreamSimulcastTargetRequest($live_stream_id, $simulcast_target_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\MuxPhp\Models\SimulcastTargetResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\SimulcastTargetResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MuxPhp\Models\SimulcastTargetResponse';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MuxPhp\Models\SimulcastTargetResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getLiveStreamSimulcastTargetAsync
+     *
+     * Retrieve a Live Stream Simulcast Target
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $simulcast_target_id The ID of the simulcast target. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getLiveStreamSimulcastTargetAsync($live_stream_id, $simulcast_target_id)
+    {
+        return $this->getLiveStreamSimulcastTargetAsyncWithHttpInfo($live_stream_id, $simulcast_target_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getLiveStreamSimulcastTargetAsyncWithHttpInfo
+     *
+     * Retrieve a Live Stream Simulcast Target
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $simulcast_target_id The ID of the simulcast target. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getLiveStreamSimulcastTargetAsyncWithHttpInfo($live_stream_id, $simulcast_target_id)
+    {
+        $returnType = '\MuxPhp\Models\SimulcastTargetResponse';
+        $request = $this->getLiveStreamSimulcastTargetRequest($live_stream_id, $simulcast_target_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getLiveStreamSimulcastTarget'
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $simulcast_target_id The ID of the simulcast target. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getLiveStreamSimulcastTargetRequest($live_stream_id, $simulcast_target_id)
+    {
+        // verify the required parameter 'live_stream_id' is set
+        if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $live_stream_id when calling getLiveStreamSimulcastTarget'
+            );
+        }
+        // verify the required parameter 'simulcast_target_id' is set
+        if ($simulcast_target_id === null || (is_array($simulcast_target_id) && count($simulcast_target_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $simulcast_target_id when calling getLiveStreamSimulcastTarget'
+            );
+        }
+
+        $resourcePath = '/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($live_stream_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'LIVE_STREAM_ID' . '}',
+                ObjectSerializer::toPathValue($live_stream_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($simulcast_target_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'SIMULCAST_TARGET_ID' . '}',
+                ObjectSerializer::toPathValue($simulcast_target_id),
                 $resourcePath
             );
         }

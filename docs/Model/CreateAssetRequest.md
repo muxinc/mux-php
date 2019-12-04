@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **per_title_encode** | **bool** |  | [optional] 
 **passthrough** | **string** |  | [optional] 
 **mp4_support** | **string** |  | [optional] 
+**normalize_audio** | **bool** | Normalize the audio track loudness level. This parameter is only applicable to on-demand (not live) assets. | [optional] [default to false]
+**master_access** | **string** |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

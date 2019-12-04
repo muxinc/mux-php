@@ -52,6 +52,7 @@ class Asset implements ModelInterface, ArrayAccess
         'master' => '\MuxPhp\Models\AssetMaster',
         'master_access' => 'string',
         'mp4_support' => 'string',
+        'normalize_audio' => 'bool',
         'static_renditions' => '\MuxPhp\Models\AssetStaticRenditions'
     ];
 
@@ -80,6 +81,7 @@ class Asset implements ModelInterface, ArrayAccess
         'master' => null,
         'master_access' => null,
         'mp4_support' => null,
+        'normalize_audio' => null,
         'static_renditions' => null
     ];
 
@@ -129,6 +131,7 @@ class Asset implements ModelInterface, ArrayAccess
         'master' => 'master',
         'master_access' => 'master_access',
         'mp4_support' => 'mp4_support',
+        'normalize_audio' => 'normalize_audio',
         'static_renditions' => 'static_renditions'
     ];
 
@@ -157,6 +160,7 @@ class Asset implements ModelInterface, ArrayAccess
         'master' => 'setMaster',
         'master_access' => 'setMasterAccess',
         'mp4_support' => 'setMp4Support',
+        'normalize_audio' => 'setNormalizeAudio',
         'static_renditions' => 'setStaticRenditions'
     ];
 
@@ -185,6 +189,7 @@ class Asset implements ModelInterface, ArrayAccess
         'master' => 'getMaster',
         'master_access' => 'getMasterAccess',
         'mp4_support' => 'getMp4Support',
+        'normalize_audio' => 'getNormalizeAudio',
         'static_renditions' => 'getStaticRenditions'
     ];
 
@@ -297,6 +302,7 @@ class Asset implements ModelInterface, ArrayAccess
         $this->container['master'] = isset($data['master']) ? $data['master'] : null;
         $this->container['master_access'] = isset($data['master_access']) ? $data['master_access'] : 'none';
         $this->container['mp4_support'] = isset($data['mp4_support']) ? $data['mp4_support'] : 'none';
+        $this->container['normalize_audio'] = isset($data['normalize_audio']) ? $data['normalize_audio'] : false;
         $this->container['static_renditions'] = isset($data['static_renditions']) ? $data['static_renditions'] : null;
     }
 
@@ -810,6 +816,30 @@ class Asset implements ModelInterface, ArrayAccess
             );
         }
         $this->container['mp4_support'] = $mp4_support;
+
+        return $this;
+    }
+
+    /**
+     * Gets normalize_audio
+     *
+     * @return bool|null
+     */
+    public function getNormalizeAudio()
+    {
+        return $this->container['normalize_audio'];
+    }
+
+    /**
+     * Sets normalize_audio
+     *
+     * @param bool|null $normalize_audio normalize_audio
+     *
+     * @return $this
+     */
+    public function setNormalizeAudio($normalize_audio)
+    {
+        $this->container['normalize_audio'] = $normalize_audio;
 
         return $this;
     }

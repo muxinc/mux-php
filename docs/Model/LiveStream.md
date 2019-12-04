@@ -13,8 +13,9 @@ Name | Type | Description | Notes
 **playback_ids** | [**\MuxPhp\Models\PlaybackID[]**](PlaybackID.md) |  | [optional] 
 **new_asset_settings** | [**\MuxPhp\Models\Asset**](Asset.md) |  | [optional] 
 **passthrough** | **string** |  | [optional] 
-**reconnect_window** | **double** |  | [optional] 
+**reconnect_window** | **float** |  | [optional] 
 **reduced_latency** | **bool** |  | [optional] 
+**simulcast_targets** | [**\MuxPhp\Models\SimulcastTarget[]**](SimulcastTarget.md) |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

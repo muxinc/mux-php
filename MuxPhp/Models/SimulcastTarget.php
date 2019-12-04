@@ -11,12 +11,12 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * CreateLiveStreamRequest Class Doc Comment
+ * SimulcastTarget Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
  */
-class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
+class SimulcastTarget implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -25,7 +25,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
      *
      * @var string
      */
-    protected static $openAPIModelName = 'CreateLiveStreamRequest';
+    protected static $openAPIModelName = 'SimulcastTarget';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -33,11 +33,11 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $openAPITypes = [
-        'playback_policy' => '\MuxPhp\Models\PlaybackPolicy[]',
-        'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest',
-        'reconnect_window' => 'float',
+        'id' => 'string',
         'passthrough' => 'string',
-        'reduced_latency' => 'bool'
+        'status' => 'string',
+        'stream_key' => 'string',
+        'url' => 'string'
     ];
 
     /**
@@ -46,11 +46,11 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $openAPIFormats = [
-        'playback_policy' => null,
-        'new_asset_settings' => null,
-        'reconnect_window' => 'float',
+        'id' => null,
         'passthrough' => null,
-        'reduced_latency' => 'boolean'
+        'status' => null,
+        'stream_key' => null,
+        'url' => null
     ];
 
     /**
@@ -80,11 +80,11 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'playback_policy' => 'playback_policy',
-        'new_asset_settings' => 'new_asset_settings',
-        'reconnect_window' => 'reconnect_window',
+        'id' => 'id',
         'passthrough' => 'passthrough',
-        'reduced_latency' => 'reduced_latency'
+        'status' => 'status',
+        'stream_key' => 'stream_key',
+        'url' => 'url'
     ];
 
     /**
@@ -93,11 +93,11 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'playback_policy' => 'setPlaybackPolicy',
-        'new_asset_settings' => 'setNewAssetSettings',
-        'reconnect_window' => 'setReconnectWindow',
+        'id' => 'setId',
         'passthrough' => 'setPassthrough',
-        'reduced_latency' => 'setReducedLatency'
+        'status' => 'setStatus',
+        'stream_key' => 'setStreamKey',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -106,11 +106,11 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'playback_policy' => 'getPlaybackPolicy',
-        'new_asset_settings' => 'getNewAssetSettings',
-        'reconnect_window' => 'getReconnectWindow',
+        'id' => 'getId',
         'passthrough' => 'getPassthrough',
-        'reduced_latency' => 'getReducedLatency'
+        'status' => 'getStatus',
+        'stream_key' => 'getStreamKey',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -154,8 +154,27 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    const STATUS_IDLE = 'idle';
+    const STATUS_STARTING = 'starting';
+    const STATUS_BROADCASTING = 'broadcasting';
+    const STATUS_ERRORED = 'errored';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_IDLE,
+            self::STATUS_STARTING,
+            self::STATUS_BROADCASTING,
+            self::STATUS_ERRORED,
+        ];
+    }
     
 
     /**
@@ -173,11 +192,11 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['playback_policy'] = isset($data['playback_policy']) ? $data['playback_policy'] : null;
-        $this->container['new_asset_settings'] = isset($data['new_asset_settings']) ? $data['new_asset_settings'] : null;
-        $this->container['reconnect_window'] = isset($data['reconnect_window']) ? $data['reconnect_window'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['passthrough'] = isset($data['passthrough']) ? $data['passthrough'] : null;
-        $this->container['reduced_latency'] = isset($data['reduced_latency']) ? $data['reduced_latency'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['stream_key'] = isset($data['stream_key']) ? $data['stream_key'] : null;
+        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
     }
 
     /**
@@ -189,12 +208,12 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] > 300)) {
-            $invalidProperties[] = "invalid value for 'reconnect_window', must be smaller than or equal to 300.";
-        }
-
-        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] < 0.1)) {
-            $invalidProperties[] = "invalid value for 'reconnect_window', must be bigger than or equal to 0.1.";
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'status', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -213,81 +232,25 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets playback_policy
+     * Gets id
      *
-     * @return \MuxPhp\Models\PlaybackPolicy[]|null
+     * @return string|null
      */
-    public function getPlaybackPolicy()
+    public function getId()
     {
-        return $this->container['playback_policy'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets playback_policy
+     * Sets id
      *
-     * @param \MuxPhp\Models\PlaybackPolicy[]|null $playback_policy playback_policy
+     * @param string|null $id ID of the Simulcast Target
      *
      * @return $this
      */
-    public function setPlaybackPolicy($playback_policy)
+    public function setId($id)
     {
-        $this->container['playback_policy'] = $playback_policy;
-
-        return $this;
-    }
-
-    /**
-     * Gets new_asset_settings
-     *
-     * @return \MuxPhp\Models\CreateAssetRequest|null
-     */
-    public function getNewAssetSettings()
-    {
-        return $this->container['new_asset_settings'];
-    }
-
-    /**
-     * Sets new_asset_settings
-     *
-     * @param \MuxPhp\Models\CreateAssetRequest|null $new_asset_settings new_asset_settings
-     *
-     * @return $this
-     */
-    public function setNewAssetSettings($new_asset_settings)
-    {
-        $this->container['new_asset_settings'] = $new_asset_settings;
-
-        return $this;
-    }
-
-    /**
-     * Gets reconnect_window
-     *
-     * @return float|null
-     */
-    public function getReconnectWindow()
-    {
-        return $this->container['reconnect_window'];
-    }
-
-    /**
-     * Sets reconnect_window
-     *
-     * @param float|null $reconnect_window When live streaming software disconnects from Mux, either intentionally or due to a drop in the network, the Reconnect Window is the time in seconds that Mux should wait for the streaming software to reconnect before considering the live stream finished and completing the recorded asset. Defaults to 60 seconds on the API if not specified.
-     *
-     * @return $this
-     */
-    public function setReconnectWindow($reconnect_window)
-    {
-
-        if (!is_null($reconnect_window) && ($reconnect_window > 300)) {
-            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling CreateLiveStreamRequest., must be smaller than or equal to 300.');
-        }
-        if (!is_null($reconnect_window) && ($reconnect_window < 0.1)) {
-            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling CreateLiveStreamRequest., must be bigger than or equal to 0.1.');
-        }
-
-        $this->container['reconnect_window'] = $reconnect_window;
+        $this->container['id'] = $id;
 
         return $this;
     }
@@ -305,7 +268,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough passthrough
+     * @param string|null $passthrough Arbitrary Metadata set when creating a simulcast target.
      *
      * @return $this
      */
@@ -317,25 +280,82 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets reduced_latency
+     * Gets status
      *
-     * @return bool|null
+     * @return string|null
      */
-    public function getReducedLatency()
+    public function getStatus()
     {
-        return $this->container['reduced_latency'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets reduced_latency
+     * Sets status
      *
-     * @param bool|null $reduced_latency Latency is the time from when the streamer does something in real life to when you see it happen in the player. Set this if you want lower latency for your live stream. Note: Reconnect windows are incompatible with Reduced Latency and will always be set to zero (0) seconds. Read more here: https://mux.com/blog/reduced-latency-for-mux-live-streaming-now-available/
+     * @param string|null $status The current status of the simulcast target. See Statuses below for detailed description.   * `idle`: Default status. When the parent live stream is in disconnected status, simulcast targets will be idle state.   * `starting`: The simulcast target transitions into this state when the parent live stream transition into connected state.   * `broadcasting`: The simulcast target has successfully connected to the third party live streaming service and is pushing video to that service.   * `errored`: The simulcast target encountered an error either while attempting to connect to the third party live streaming service, or mid-broadcasting. Compared to other errored statuses in the Mux Video API, a simulcast may transition back into the broadcasting state if a connection with the service can be re-established.
      *
      * @return $this
      */
-    public function setReducedLatency($reduced_latency)
+    public function setStatus($status)
     {
-        $this->container['reduced_latency'] = $reduced_latency;
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'status', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets stream_key
+     *
+     * @return string|null
+     */
+    public function getStreamKey()
+    {
+        return $this->container['stream_key'];
+    }
+
+    /**
+     * Sets stream_key
+     *
+     * @param string|null $stream_key Stream Key represents an stream identifier for the third party live streaming service to simulcast the parent live stream too.
+     *
+     * @return $this
+     */
+    public function setStreamKey($stream_key)
+    {
+        $this->container['stream_key'] = $stream_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string|null $url RTMP hostname including the application name for the third party live streaming service.
+     *
+     * @return $this
+     */
+    public function setUrl($url)
+    {
+        $this->container['url'] = $url;
 
         return $this;
     }

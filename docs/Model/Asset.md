@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **master** | [**\MuxPhp\Models\AssetMaster**](AssetMaster.md) |  | [optional] 
 **master_access** | **string** |  | [optional] [default to 'none']
 **mp4_support** | **string** |  | [optional] [default to 'none']
+**normalize_audio** | **bool** |  | [optional] [default to false]
 **static_renditions** | [**\MuxPhp\Models\AssetStaticRenditions**](AssetStaticRenditions.md) |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

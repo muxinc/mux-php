@@ -38,7 +38,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
         'demo' => 'bool',
         'per_title_encode' => 'bool',
         'passthrough' => 'string',
-        'mp4_support' => 'string'
+        'mp4_support' => 'string',
+        'normalize_audio' => 'bool',
+        'master_access' => 'string'
     ];
 
     /**
@@ -52,7 +54,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
         'demo' => 'boolean',
         'per_title_encode' => 'boolean',
         'passthrough' => null,
-        'mp4_support' => null
+        'mp4_support' => null,
+        'normalize_audio' => 'boolean',
+        'master_access' => null
     ];
 
     /**
@@ -87,7 +91,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
         'demo' => 'demo',
         'per_title_encode' => 'per_title_encode',
         'passthrough' => 'passthrough',
-        'mp4_support' => 'mp4_support'
+        'mp4_support' => 'mp4_support',
+        'normalize_audio' => 'normalize_audio',
+        'master_access' => 'master_access'
     ];
 
     /**
@@ -101,7 +107,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
         'demo' => 'setDemo',
         'per_title_encode' => 'setPerTitleEncode',
         'passthrough' => 'setPassthrough',
-        'mp4_support' => 'setMp4Support'
+        'mp4_support' => 'setMp4Support',
+        'normalize_audio' => 'setNormalizeAudio',
+        'master_access' => 'setMasterAccess'
     ];
 
     /**
@@ -115,7 +123,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
         'demo' => 'getDemo',
         'per_title_encode' => 'getPerTitleEncode',
         'passthrough' => 'getPassthrough',
-        'mp4_support' => 'getMp4Support'
+        'mp4_support' => 'getMp4Support',
+        'normalize_audio' => 'getNormalizeAudio',
+        'master_access' => 'getMasterAccess'
     ];
 
     /**
@@ -161,6 +171,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
 
     const MP4_SUPPORT_NONE = 'none';
     const MP4_SUPPORT_STANDARD = 'standard';
+    const MASTER_ACCESS_NONE = 'none';
+    const MASTER_ACCESS_TEMPORARY = 'temporary';
     
 
     
@@ -174,6 +186,19 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
         return [
             self::MP4_SUPPORT_NONE,
             self::MP4_SUPPORT_STANDARD,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getMasterAccessAllowableValues()
+    {
+        return [
+            self::MASTER_ACCESS_NONE,
+            self::MASTER_ACCESS_TEMPORARY,
         ];
     }
     
@@ -199,6 +224,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
         $this->container['per_title_encode'] = isset($data['per_title_encode']) ? $data['per_title_encode'] : null;
         $this->container['passthrough'] = isset($data['passthrough']) ? $data['passthrough'] : null;
         $this->container['mp4_support'] = isset($data['mp4_support']) ? $data['mp4_support'] : null;
+        $this->container['normalize_audio'] = isset($data['normalize_audio']) ? $data['normalize_audio'] : false;
+        $this->container['master_access'] = isset($data['master_access']) ? $data['master_access'] : null;
     }
 
     /**
@@ -214,6 +241,14 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
         if (!is_null($this->container['mp4_support']) && !in_array($this->container['mp4_support'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
                 "invalid value for 'mp4_support', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getMasterAccessAllowableValues();
+        if (!is_null($this->container['master_access']) && !in_array($this->container['master_access'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'master_access', must be one of '%s'",
                 implode("', '", $allowedValues)
             );
         }
@@ -382,6 +417,63 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
             );
         }
         $this->container['mp4_support'] = $mp4_support;
+
+        return $this;
+    }
+
+    /**
+     * Gets normalize_audio
+     *
+     * @return bool|null
+     */
+    public function getNormalizeAudio()
+    {
+        return $this->container['normalize_audio'];
+    }
+
+    /**
+     * Sets normalize_audio
+     *
+     * @param bool|null $normalize_audio Normalize the audio track loudness level. This parameter is only applicable to on-demand (not live) assets.
+     *
+     * @return $this
+     */
+    public function setNormalizeAudio($normalize_audio)
+    {
+        $this->container['normalize_audio'] = $normalize_audio;
+
+        return $this;
+    }
+
+    /**
+     * Gets master_access
+     *
+     * @return string|null
+     */
+    public function getMasterAccess()
+    {
+        return $this->container['master_access'];
+    }
+
+    /**
+     * Sets master_access
+     *
+     * @param string|null $master_access master_access
+     *
+     * @return $this
+     */
+    public function setMasterAccess($master_access)
+    {
+        $allowedValues = $this->getMasterAccessAllowableValues();
+        if (!is_null($master_access) && !in_array($master_access, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'master_access', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['master_access'] = $master_access;
 
         return $this;
     }

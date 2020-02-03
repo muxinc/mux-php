@@ -41,9 +41,7 @@ class InputTrack implements ModelInterface, ArrayAccess
         'frame_rate' => 'double',
         'sample_rate' => 'int',
         'sample_size' => 'int',
-        'channels' => 'int',
-        'text_track_type' => 'string',
-        'language' => 'string'
+        'channels' => 'int'
     ];
 
     /**
@@ -60,9 +58,7 @@ class InputTrack implements ModelInterface, ArrayAccess
         'frame_rate' => 'double',
         'sample_rate' => 'int64',
         'sample_size' => 'int64',
-        'channels' => 'int64',
-        'text_track_type' => null,
-        'language' => null
+        'channels' => 'int64'
     ];
 
     /**
@@ -100,9 +96,7 @@ class InputTrack implements ModelInterface, ArrayAccess
         'frame_rate' => 'frame_rate',
         'sample_rate' => 'sample_rate',
         'sample_size' => 'sample_size',
-        'channels' => 'channels',
-        'text_track_type' => 'text_track_type',
-        'language' => 'language'
+        'channels' => 'channels'
     ];
 
     /**
@@ -119,9 +113,7 @@ class InputTrack implements ModelInterface, ArrayAccess
         'frame_rate' => 'setFrameRate',
         'sample_rate' => 'setSampleRate',
         'sample_size' => 'setSampleSize',
-        'channels' => 'setChannels',
-        'text_track_type' => 'setTextTrackType',
-        'language' => 'setLanguage'
+        'channels' => 'setChannels'
     ];
 
     /**
@@ -138,9 +130,7 @@ class InputTrack implements ModelInterface, ArrayAccess
         'frame_rate' => 'getFrameRate',
         'sample_rate' => 'getSampleRate',
         'sample_size' => 'getSampleSize',
-        'channels' => 'getChannels',
-        'text_track_type' => 'getTextTrackType',
-        'language' => 'getLanguage'
+        'channels' => 'getChannels'
     ];
 
     /**
@@ -212,8 +202,6 @@ class InputTrack implements ModelInterface, ArrayAccess
         $this->container['sample_rate'] = isset($data['sample_rate']) ? $data['sample_rate'] : null;
         $this->container['sample_size'] = isset($data['sample_size']) ? $data['sample_size'] : null;
         $this->container['channels'] = isset($data['channels']) ? $data['channels'] : null;
-        $this->container['text_track_type'] = isset($data['text_track_type']) ? $data['text_track_type'] : null;
-        $this->container['language'] = isset($data['language']) ? $data['language'] : null;
     }
 
     /**
@@ -452,54 +440,6 @@ class InputTrack implements ModelInterface, ArrayAccess
     public function setChannels($channels)
     {
         $this->container['channels'] = $channels;
-
-        return $this;
-    }
-
-    /**
-     * Gets text_track_type
-     *
-     * @return string|null
-     */
-    public function getTextTrackType()
-    {
-        return $this->container['text_track_type'];
-    }
-
-    /**
-     * Sets text_track_type
-     *
-     * @param string|null $text_track_type text_track_type
-     *
-     * @return $this
-     */
-    public function setTextTrackType($text_track_type)
-    {
-        $this->container['text_track_type'] = $text_track_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets language
-     *
-     * @return string|null
-     */
-    public function getLanguage()
-    {
-        return $this->container['language'];
-    }
-
-    /**
-     * Sets language
-     *
-     * @param string|null $language language
-     *
-     * @return $this
-     */
-    public function setLanguage($language)
-    {
-        $this->container['language'] = $language;
 
         return $this;
     }

@@ -35,8 +35,13 @@ class InputSettings implements ModelInterface, ArrayAccess
      */
     protected static $openAPITypes = [
         'url' => 'string',
-        'language' => 'string',
-        'overlay_settings' => '\MuxPhp\Models\InputSettingsOverlaySettings'
+        'overlay_settings' => '\MuxPhp\Models\InputSettingsOverlaySettings',
+        'type' => 'string',
+        'text_type' => 'string',
+        'language_code' => 'string',
+        'name' => 'string',
+        'closed_captions' => 'bool',
+        'passthrough' => 'string'
     ];
 
     /**
@@ -46,8 +51,13 @@ class InputSettings implements ModelInterface, ArrayAccess
      */
     protected static $openAPIFormats = [
         'url' => null,
-        'language' => null,
-        'overlay_settings' => null
+        'overlay_settings' => null,
+        'type' => null,
+        'text_type' => null,
+        'language_code' => null,
+        'name' => null,
+        'closed_captions' => null,
+        'passthrough' => null
     ];
 
     /**
@@ -78,8 +88,13 @@ class InputSettings implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'url' => 'url',
-        'language' => 'language',
-        'overlay_settings' => 'overlay_settings'
+        'overlay_settings' => 'overlay_settings',
+        'type' => 'type',
+        'text_type' => 'text_type',
+        'language_code' => 'language_code',
+        'name' => 'name',
+        'closed_captions' => 'closed_captions',
+        'passthrough' => 'passthrough'
     ];
 
     /**
@@ -89,8 +104,13 @@ class InputSettings implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'url' => 'setUrl',
-        'language' => 'setLanguage',
-        'overlay_settings' => 'setOverlaySettings'
+        'overlay_settings' => 'setOverlaySettings',
+        'type' => 'setType',
+        'text_type' => 'setTextType',
+        'language_code' => 'setLanguageCode',
+        'name' => 'setName',
+        'closed_captions' => 'setClosedCaptions',
+        'passthrough' => 'setPassthrough'
     ];
 
     /**
@@ -100,8 +120,13 @@ class InputSettings implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'url' => 'getUrl',
-        'language' => 'getLanguage',
-        'overlay_settings' => 'getOverlaySettings'
+        'overlay_settings' => 'getOverlaySettings',
+        'type' => 'getType',
+        'text_type' => 'getTextType',
+        'language_code' => 'getLanguageCode',
+        'name' => 'getName',
+        'closed_captions' => 'getClosedCaptions',
+        'passthrough' => 'getPassthrough'
     ];
 
     /**
@@ -145,8 +170,46 @@ class InputSettings implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    const TYPE_VIDEO = 'video';
+    const TYPE_AUDIO = 'audio';
+    const TYPE_TEXT = 'text';
+    const TEXT_TYPE_CAPTION = 'caption';
+    const TEXT_TYPE_CHAPTERS = 'chapters';
+    const TEXT_TYPE_DESCRIPTIONS = 'descriptions';
+    const TEXT_TYPE_METADATA = 'metadata';
+    const TEXT_TYPE_SUBTITLES = 'subtitles';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_VIDEO,
+            self::TYPE_AUDIO,
+            self::TYPE_TEXT,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTextTypeAllowableValues()
+    {
+        return [
+            self::TEXT_TYPE_CAPTION,
+            self::TEXT_TYPE_CHAPTERS,
+            self::TEXT_TYPE_DESCRIPTIONS,
+            self::TEXT_TYPE_METADATA,
+            self::TEXT_TYPE_SUBTITLES,
+        ];
+    }
     
 
     /**
@@ -165,8 +228,13 @@ class InputSettings implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
-        $this->container['language'] = isset($data['language']) ? $data['language'] : null;
         $this->container['overlay_settings'] = isset($data['overlay_settings']) ? $data['overlay_settings'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['text_type'] = isset($data['text_type']) ? $data['text_type'] : null;
+        $this->container['language_code'] = isset($data['language_code']) ? $data['language_code'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['closed_captions'] = isset($data['closed_captions']) ? $data['closed_captions'] : null;
+        $this->container['passthrough'] = isset($data['passthrough']) ? $data['passthrough'] : null;
     }
 
     /**
@@ -177,6 +245,22 @@ class InputSettings implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'type', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getTextTypeAllowableValues();
+        if (!is_null($this->container['text_type']) && !in_array($this->container['text_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'text_type', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -218,30 +302,6 @@ class InputSettings implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets language
-     *
-     * @return string|null
-     */
-    public function getLanguage()
-    {
-        return $this->container['language'];
-    }
-
-    /**
-     * Sets language
-     *
-     * @param string|null $language language
-     *
-     * @return $this
-     */
-    public function setLanguage($language)
-    {
-        $this->container['language'] = $language;
-
-        return $this;
-    }
-
-    /**
      * Gets overlay_settings
      *
      * @return \MuxPhp\Models\InputSettingsOverlaySettings|null
@@ -261,6 +321,168 @@ class InputSettings implements ModelInterface, ArrayAccess
     public function setOverlaySettings($overlay_settings)
     {
         $this->container['overlay_settings'] = $overlay_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type type
+     *
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'type', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets text_type
+     *
+     * @return string|null
+     */
+    public function getTextType()
+    {
+        return $this->container['text_type'];
+    }
+
+    /**
+     * Sets text_type
+     *
+     * @param string|null $text_type text_type
+     *
+     * @return $this
+     */
+    public function setTextType($text_type)
+    {
+        $allowedValues = $this->getTextTypeAllowableValues();
+        if (!is_null($text_type) && !in_array($text_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'text_type', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['text_type'] = $text_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets language_code
+     *
+     * @return string|null
+     */
+    public function getLanguageCode()
+    {
+        return $this->container['language_code'];
+    }
+
+    /**
+     * Sets language_code
+     *
+     * @param string|null $language_code language_code
+     *
+     * @return $this
+     */
+    public function setLanguageCode($language_code)
+    {
+        $this->container['language_code'] = $language_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name name
+     *
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets closed_captions
+     *
+     * @return bool|null
+     */
+    public function getClosedCaptions()
+    {
+        return $this->container['closed_captions'];
+    }
+
+    /**
+     * Sets closed_captions
+     *
+     * @param bool|null $closed_captions closed_captions
+     *
+     * @return $this
+     */
+    public function setClosedCaptions($closed_captions)
+    {
+        $this->container['closed_captions'] = $closed_captions;
+
+        return $this;
+    }
+
+    /**
+     * Gets passthrough
+     *
+     * @return string|null
+     */
+    public function getPassthrough()
+    {
+        return $this->container['passthrough'];
+    }
+
+    /**
+     * Sets passthrough
+     *
+     * @param string|null $passthrough passthrough
+     *
+     * @return $this
+     */
+    public function setPassthrough($passthrough)
+    {
+        $this->container['passthrough'] = $passthrough;
 
         return $this;
     }

@@ -165,10 +165,6 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess
     }
 
     const TYPE_TEXT = 'text';
-    const TEXT_TYPE_CAPTION = 'caption';
-    const TEXT_TYPE_CHAPTERS = 'chapters';
-    const TEXT_TYPE_DESCRIPTIONS = 'descriptions';
-    const TEXT_TYPE_METADATA = 'metadata';
     const TEXT_TYPE_SUBTITLES = 'subtitles';
     
 
@@ -193,10 +189,6 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess
     public function getTextTypeAllowableValues()
     {
         return [
-            self::TEXT_TYPE_CAPTION,
-            self::TEXT_TYPE_CHAPTERS,
-            self::TEXT_TYPE_DESCRIPTIONS,
-            self::TEXT_TYPE_METADATA,
             self::TEXT_TYPE_SUBTITLES,
         ];
     }

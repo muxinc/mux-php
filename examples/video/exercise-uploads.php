@@ -3,11 +3,7 @@
     assert_options(ASSERT_BAIL, true);
     require_once 'vendor/autoload.php';
 
-    // Exercises all direct upload operations:
-    //   create-direct-upload
-    //   list-direct-uploads
-    //   get-direct-upload
-    //   cancel-direct-upload
+    // Exercises all direct upload operations.
 
     // Authentication Setup
     $config = MuxPhp\Configuration::getDefaultConfiguration()

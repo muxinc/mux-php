@@ -3,18 +3,7 @@
     assert_options(ASSERT_BAIL, true);
     require_once 'vendor/autoload.php';
 
-    // Exercises all live stream operations:
-    //   create-live-stream
-    //   list-live-streams
-    //   get-live-stream
-    //   delete-live-stream
-    //   create-live-stream-playback-id
-    //   delete-live-stream-playback-id
-    //   reset-stream-key
-    //   signal-live-stream-complete
-    //   create-live-stream-simulcast-target
-    //   get-live-stream-simulcast-target
-    //   delete-live-stream-simulcast-target
+    // Exercises all live stream operations.
 
     // Authentication Setup
     $config = MuxPhp\Configuration::getDefaultConfiguration()

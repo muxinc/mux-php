@@ -3,8 +3,7 @@
     assert_options(ASSERT_BAIL, true);
     require_once 'vendor/autoload.php';
 
-    // Exercises all export operations:
-    //   list-exports
+    // Exercises all export operations.
 
     // Authentication Setup
     $config = MuxPhp\Configuration::getDefaultConfiguration()

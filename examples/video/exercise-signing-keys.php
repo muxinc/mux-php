@@ -3,12 +3,8 @@
     assert_options(ASSERT_BAIL, true);
     require_once 'vendor/autoload.php';
 
-    // Exercises all signing key operations:
-    //   create-url-signing-key
-    //   list-url-signing-keys
-    //   get-url-signing-key
-    //   delete-url-signing-key
-
+    // Exercises all signing key operations.
+    
     // Authentication Setup
     $config = MuxPhp\Configuration::getDefaultConfiguration()
         ->setUsername(getenv('MUX_TOKEN_ID'))

@@ -3,9 +3,7 @@
     assert_options(ASSERT_BAIL, true);
     require_once 'vendor/autoload.php';
 
-    // Exercises all video view operations:
-    //   list-video-views
-    //   get-video-view
+    // Exercises all video view operations.
 
     // Authentication Setup
     $config = MuxPhp\Configuration::getDefaultConfiguration()

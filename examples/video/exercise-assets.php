@@ -3,16 +3,7 @@
     assert_options(ASSERT_BAIL, true);
     require_once 'vendor/autoload.php';
 
-    // Exercises all asset operations:
-    //   get-asset
-    //   delete-asset
-    //   create-asset
-    //   list-assets
-    //   get-asset-input-info
-    //   create-asset-playback-id
-    //   get-asset-playback-id
-    //   delete-asset-playback-id
-    //   update-asset-mp4-support
+    // Exercises all asset operations.
 
     // Authentication Setup
     $config = MuxPhp\Configuration::getDefaultConfiguration()

@@ -6,8 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createAsset**](AssetsApi.md#createAsset) | **POST** /video/v1/assets | Create an asset
 [**createAssetPlaybackId**](AssetsApi.md#createAssetPlaybackId) | **POST** /video/v1/assets/{ASSET_ID}/playback-ids | Create a playback ID
+[**createAssetTrack**](AssetsApi.md#createAssetTrack) | **POST** /video/v1/assets/{ASSET_ID}/tracks | Create an asset track
 [**deleteAsset**](AssetsApi.md#deleteAsset) | **DELETE** /video/v1/assets/{ASSET_ID} | Delete an asset
 [**deleteAssetPlaybackId**](AssetsApi.md#deleteAssetPlaybackId) | **DELETE** /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID} | Delete a playback ID
+[**deleteAssetTrack**](AssetsApi.md#deleteAssetTrack) | **DELETE** /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID} | Delete an asset track
 [**getAsset**](AssetsApi.md#getAsset) | **GET** /video/v1/assets/{ASSET_ID} | Retrieve an asset
 [**getAssetInputInfo**](AssetsApi.md#getAssetInputInfo) | **GET** /video/v1/assets/{ASSET_ID}/input-info | Retrieve asset input info
 [**getAssetPlaybackId**](AssetsApi.md#getAssetPlaybackId) | **GET** /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID} | Retrieve a playback ID
@@ -81,6 +83,38 @@ Name | Type | Description  | Notes
 [[Back to README]](../../README.md)
 
 
+## createAssetTrack
+
+> \MuxPhp\Models\CreateTrackResponse createAssetTrack($asset_id, $create_track_request)
+
+Create an asset track
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset_id** | **string**| The asset ID. |
+ **create_track_request** | [**\MuxPhp\Models\CreateTrackRequest**](../Model/CreateTrackRequest.md)|  |
+
+### Return type
+
+[**\MuxPhp\Models\CreateTrackResponse**](../Model/CreateTrackResponse.md)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
 ## deleteAsset
 
 > deleteAsset($asset_id)
@@ -125,6 +159,38 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset_id** | **string**| The asset ID. |
  **playback_id** | **string**| The live stream&#39;s playback ID. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## deleteAssetTrack
+
+> deleteAssetTrack($asset_id, $track_id)
+
+Delete an asset track
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset_id** | **string**| The asset ID. |
+ **track_id** | **string**| The track ID. |
 
 ### Return type
 

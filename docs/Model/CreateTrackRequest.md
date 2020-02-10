@@ -1,14 +1,13 @@
-# # InputSettings
+# # CreateTrackRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**url** | **string** |  | [optional] 
-**overlay_settings** | [**\MuxPhp\Models\InputSettingsOverlaySettings**](InputSettingsOverlaySettings.md) |  | [optional] 
-**type** | **string** |  | [optional] 
-**text_type** | **string** |  | [optional] 
-**language_code** | **string** |  | [optional] 
+**url** | **string** |  | 
+**type** | **string** |  | 
+**text_type** | **string** |  | 
+**language_code** | **string** |  | 
 **name** | **string** |  | [optional] 
 **closed_captions** | **bool** |  | [optional] 
 **passthrough** | **string** |  | [optional] 

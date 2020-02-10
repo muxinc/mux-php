@@ -3,9 +3,7 @@
     assert_options(ASSERT_BAIL, true);
     require_once 'vendor/autoload.php';
 
-    // Exercises all filter operations:
-    //   list-filters
-    //   list-filter-values
+    // Exercises all filter operations.
 
     // Authentication Setup
     $config = MuxPhp\Configuration::getDefaultConfiguration()

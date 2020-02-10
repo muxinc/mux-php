@@ -658,6 +658,298 @@ class AssetsApi
     }
 
     /**
+     * Operation createAssetTrack
+     *
+     * Create an asset track
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  \MuxPhp\Models\CreateTrackRequest $create_track_request (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MuxPhp\Models\CreateTrackResponse
+     */
+    public function createAssetTrack($asset_id, $create_track_request)
+    {
+        list($response) = $this->createAssetTrackWithHttpInfo($asset_id, $create_track_request);
+        return $response;
+    }
+
+    /**
+     * Operation createAssetTrackWithHttpInfo
+     *
+     * Create an asset track
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  \MuxPhp\Models\CreateTrackRequest $create_track_request (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MuxPhp\Models\CreateTrackResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createAssetTrackWithHttpInfo($asset_id, $create_track_request)
+    {
+        $request = $this->createAssetTrackRequest($asset_id, $create_track_request);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 201:
+                    if ('\MuxPhp\Models\CreateTrackResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\CreateTrackResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MuxPhp\Models\CreateTrackResponse';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MuxPhp\Models\CreateTrackResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createAssetTrackAsync
+     *
+     * Create an asset track
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  \MuxPhp\Models\CreateTrackRequest $create_track_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAssetTrackAsync($asset_id, $create_track_request)
+    {
+        return $this->createAssetTrackAsyncWithHttpInfo($asset_id, $create_track_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createAssetTrackAsyncWithHttpInfo
+     *
+     * Create an asset track
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  \MuxPhp\Models\CreateTrackRequest $create_track_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAssetTrackAsyncWithHttpInfo($asset_id, $create_track_request)
+    {
+        $returnType = '\MuxPhp\Models\CreateTrackResponse';
+        $request = $this->createAssetTrackRequest($asset_id, $create_track_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createAssetTrack'
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  \MuxPhp\Models\CreateTrackRequest $create_track_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function createAssetTrackRequest($asset_id, $create_track_request)
+    {
+        // verify the required parameter 'asset_id' is set
+        if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $asset_id when calling createAssetTrack'
+            );
+        }
+        // verify the required parameter 'create_track_request' is set
+        if ($create_track_request === null || (is_array($create_track_request) && count($create_track_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_track_request when calling createAssetTrack'
+            );
+        }
+
+        $resourcePath = '/video/v1/assets/{ASSET_ID}/tracks';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($asset_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'ASSET_ID' . '}',
+                ObjectSerializer::toPathValue($asset_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+        if (isset($create_track_request)) {
+            $_tempBody = $create_track_request;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $queryParamsDirect = join('&', $queryParams);
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation deleteAsset
      *
      * Delete an asset
@@ -1063,6 +1355,255 @@ class AssetsApi
             $resourcePath = str_replace(
                 '{' . 'PLAYBACK_ID' . '}',
                 ObjectSerializer::toPathValue($playback_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $queryParamsDirect = join('&', $queryParams);
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($queryParamsDirect ? "?{$queryParamsDirect}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteAssetTrack
+     *
+     * Delete an asset track
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $track_id The track ID. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteAssetTrack($asset_id, $track_id)
+    {
+        $this->deleteAssetTrackWithHttpInfo($asset_id, $track_id);
+    }
+
+    /**
+     * Operation deleteAssetTrackWithHttpInfo
+     *
+     * Delete an asset track
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $track_id The track ID. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteAssetTrackWithHttpInfo($asset_id, $track_id)
+    {
+        $request = $this->deleteAssetTrackRequest($asset_id, $track_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteAssetTrackAsync
+     *
+     * Delete an asset track
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $track_id The track ID. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAssetTrackAsync($asset_id, $track_id)
+    {
+        return $this->deleteAssetTrackAsyncWithHttpInfo($asset_id, $track_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteAssetTrackAsyncWithHttpInfo
+     *
+     * Delete an asset track
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $track_id The track ID. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAssetTrackAsyncWithHttpInfo($asset_id, $track_id)
+    {
+        $returnType = '';
+        $request = $this->deleteAssetTrackRequest($asset_id, $track_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteAssetTrack'
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $track_id The track ID. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function deleteAssetTrackRequest($asset_id, $track_id)
+    {
+        // verify the required parameter 'asset_id' is set
+        if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $asset_id when calling deleteAssetTrack'
+            );
+        }
+        // verify the required parameter 'track_id' is set
+        if ($track_id === null || (is_array($track_id) && count($track_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $track_id when calling deleteAssetTrack'
+            );
+        }
+
+        $resourcePath = '/video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($asset_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'ASSET_ID' . '}',
+                ObjectSerializer::toPathValue($asset_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($track_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'TRACK_ID' . '}',
+                ObjectSerializer::toPathValue($track_id),
                 $resourcePath
             );
         }

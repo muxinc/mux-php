@@ -41,8 +41,11 @@ class Track implements ModelInterface, ArrayAccess
         'max_frame_rate' => 'double',
         'max_channels' => 'int',
         'max_channel_layout' => 'string',
-        'text_track_type' => 'string',
-        'language' => 'string'
+        'text_type' => 'string',
+        'language_code' => 'string',
+        'name' => 'string',
+        'closed_captions' => 'bool',
+        'passthrough' => 'string'
     ];
 
     /**
@@ -59,8 +62,11 @@ class Track implements ModelInterface, ArrayAccess
         'max_frame_rate' => 'double',
         'max_channels' => 'int64',
         'max_channel_layout' => null,
-        'text_track_type' => null,
-        'language' => null
+        'text_type' => null,
+        'language_code' => null,
+        'name' => null,
+        'closed_captions' => null,
+        'passthrough' => null
     ];
 
     /**
@@ -98,8 +104,11 @@ class Track implements ModelInterface, ArrayAccess
         'max_frame_rate' => 'max_frame_rate',
         'max_channels' => 'max_channels',
         'max_channel_layout' => 'max_channel_layout',
-        'text_track_type' => 'text_track_type',
-        'language' => 'language'
+        'text_type' => 'text_type',
+        'language_code' => 'language_code',
+        'name' => 'name',
+        'closed_captions' => 'closed_captions',
+        'passthrough' => 'passthrough'
     ];
 
     /**
@@ -116,8 +125,11 @@ class Track implements ModelInterface, ArrayAccess
         'max_frame_rate' => 'setMaxFrameRate',
         'max_channels' => 'setMaxChannels',
         'max_channel_layout' => 'setMaxChannelLayout',
-        'text_track_type' => 'setTextTrackType',
-        'language' => 'setLanguage'
+        'text_type' => 'setTextType',
+        'language_code' => 'setLanguageCode',
+        'name' => 'setName',
+        'closed_captions' => 'setClosedCaptions',
+        'passthrough' => 'setPassthrough'
     ];
 
     /**
@@ -134,8 +146,11 @@ class Track implements ModelInterface, ArrayAccess
         'max_frame_rate' => 'getMaxFrameRate',
         'max_channels' => 'getMaxChannels',
         'max_channel_layout' => 'getMaxChannelLayout',
-        'text_track_type' => 'getTextTrackType',
-        'language' => 'getLanguage'
+        'text_type' => 'getTextType',
+        'language_code' => 'getLanguageCode',
+        'name' => 'getName',
+        'closed_captions' => 'getClosedCaptions',
+        'passthrough' => 'getPassthrough'
     ];
 
     /**
@@ -179,8 +194,38 @@ class Track implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    const TYPE_VIDEO = 'video';
+    const TYPE_AUDIO = 'audio';
+    const TYPE_TEXT = 'text';
+    const TEXT_TYPE_SUBTITLES = 'subtitles';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_VIDEO,
+            self::TYPE_AUDIO,
+            self::TYPE_TEXT,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTextTypeAllowableValues()
+    {
+        return [
+            self::TEXT_TYPE_SUBTITLES,
+        ];
+    }
     
 
     /**
@@ -206,8 +251,11 @@ class Track implements ModelInterface, ArrayAccess
         $this->container['max_frame_rate'] = isset($data['max_frame_rate']) ? $data['max_frame_rate'] : null;
         $this->container['max_channels'] = isset($data['max_channels']) ? $data['max_channels'] : null;
         $this->container['max_channel_layout'] = isset($data['max_channel_layout']) ? $data['max_channel_layout'] : null;
-        $this->container['text_track_type'] = isset($data['text_track_type']) ? $data['text_track_type'] : null;
-        $this->container['language'] = isset($data['language']) ? $data['language'] : null;
+        $this->container['text_type'] = isset($data['text_type']) ? $data['text_type'] : null;
+        $this->container['language_code'] = isset($data['language_code']) ? $data['language_code'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['closed_captions'] = isset($data['closed_captions']) ? $data['closed_captions'] : null;
+        $this->container['passthrough'] = isset($data['passthrough']) ? $data['passthrough'] : null;
     }
 
     /**
@@ -218,6 +266,22 @@ class Track implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'type', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getTextTypeAllowableValues();
+        if (!is_null($this->container['text_type']) && !in_array($this->container['text_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'text_type', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -277,6 +341,15 @@ class Track implements ModelInterface, ArrayAccess
      */
     public function setType($type)
     {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'type', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -427,49 +500,130 @@ class Track implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets text_track_type
+     * Gets text_type
      *
      * @return string|null
      */
-    public function getTextTrackType()
+    public function getTextType()
     {
-        return $this->container['text_track_type'];
+        return $this->container['text_type'];
     }
 
     /**
-     * Sets text_track_type
+     * Sets text_type
      *
-     * @param string|null $text_track_type text_track_type
+     * @param string|null $text_type text_type
      *
      * @return $this
      */
-    public function setTextTrackType($text_track_type)
+    public function setTextType($text_type)
     {
-        $this->container['text_track_type'] = $text_track_type;
+        $allowedValues = $this->getTextTypeAllowableValues();
+        if (!is_null($text_type) && !in_array($text_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'text_type', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['text_type'] = $text_type;
 
         return $this;
     }
 
     /**
-     * Gets language
+     * Gets language_code
      *
      * @return string|null
      */
-    public function getLanguage()
+    public function getLanguageCode()
     {
-        return $this->container['language'];
+        return $this->container['language_code'];
     }
 
     /**
-     * Sets language
+     * Sets language_code
      *
-     * @param string|null $language language
+     * @param string|null $language_code language_code
      *
      * @return $this
      */
-    public function setLanguage($language)
+    public function setLanguageCode($language_code)
     {
-        $this->container['language'] = $language;
+        $this->container['language_code'] = $language_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name name
+     *
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets closed_captions
+     *
+     * @return bool|null
+     */
+    public function getClosedCaptions()
+    {
+        return $this->container['closed_captions'];
+    }
+
+    /**
+     * Sets closed_captions
+     *
+     * @param bool|null $closed_captions closed_captions
+     *
+     * @return $this
+     */
+    public function setClosedCaptions($closed_captions)
+    {
+        $this->container['closed_captions'] = $closed_captions;
+
+        return $this;
+    }
+
+    /**
+     * Gets passthrough
+     *
+     * @return string|null
+     */
+    public function getPassthrough()
+    {
+        return $this->container['passthrough'];
+    }
+
+    /**
+     * Sets passthrough
+     *
+     * @param string|null $passthrough passthrough
+     *
+     * @return $this
+     */
+    public function setPassthrough($passthrough)
+    {
+        $this->container['passthrough'] = $passthrough;
 
         return $this;
     }

@@ -11,13 +11,12 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * InputSettings Class Doc Comment
+ * CreateTrackRequest Class Doc Comment
  *
  * @category Class
- * @description Input object with additional configuration
  * @package  MuxPhp
  */
-class InputSettings implements ModelInterface, ArrayAccess
+class CreateTrackRequest implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -26,7 +25,7 @@ class InputSettings implements ModelInterface, ArrayAccess
      *
      * @var string
      */
-    protected static $openAPIModelName = 'InputSettings';
+    protected static $openAPIModelName = 'CreateTrackRequest';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -35,7 +34,6 @@ class InputSettings implements ModelInterface, ArrayAccess
      */
     protected static $openAPITypes = [
         'url' => 'string',
-        'overlay_settings' => '\MuxPhp\Models\InputSettingsOverlaySettings',
         'type' => 'string',
         'text_type' => 'string',
         'language_code' => 'string',
@@ -51,7 +49,6 @@ class InputSettings implements ModelInterface, ArrayAccess
      */
     protected static $openAPIFormats = [
         'url' => null,
-        'overlay_settings' => null,
         'type' => null,
         'text_type' => null,
         'language_code' => null,
@@ -88,7 +85,6 @@ class InputSettings implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'url' => 'url',
-        'overlay_settings' => 'overlay_settings',
         'type' => 'type',
         'text_type' => 'text_type',
         'language_code' => 'language_code',
@@ -104,7 +100,6 @@ class InputSettings implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'url' => 'setUrl',
-        'overlay_settings' => 'setOverlaySettings',
         'type' => 'setType',
         'text_type' => 'setTextType',
         'language_code' => 'setLanguageCode',
@@ -120,7 +115,6 @@ class InputSettings implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'url' => 'getUrl',
-        'overlay_settings' => 'getOverlaySettings',
         'type' => 'getType',
         'text_type' => 'getTextType',
         'language_code' => 'getLanguageCode',
@@ -170,8 +164,6 @@ class InputSettings implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
-    const TYPE_VIDEO = 'video';
-    const TYPE_AUDIO = 'audio';
     const TYPE_TEXT = 'text';
     const TEXT_TYPE_SUBTITLES = 'subtitles';
     
@@ -185,8 +177,6 @@ class InputSettings implements ModelInterface, ArrayAccess
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_VIDEO,
-            self::TYPE_AUDIO,
             self::TYPE_TEXT,
         ];
     }
@@ -220,7 +210,6 @@ class InputSettings implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
-        $this->container['overlay_settings'] = isset($data['overlay_settings']) ? $data['overlay_settings'] : null;
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
         $this->container['text_type'] = isset($data['text_type']) ? $data['text_type'] : null;
         $this->container['language_code'] = isset($data['language_code']) ? $data['language_code'] : null;
@@ -238,6 +227,12 @@ class InputSettings implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['url'] === null) {
+            $invalidProperties[] = "'url' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -246,6 +241,9 @@ class InputSettings implements ModelInterface, ArrayAccess
             );
         }
 
+        if ($this->container['text_type'] === null) {
+            $invalidProperties[] = "'text_type' can't be null";
+        }
         $allowedValues = $this->getTextTypeAllowableValues();
         if (!is_null($this->container['text_type']) && !in_array($this->container['text_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -254,6 +252,9 @@ class InputSettings implements ModelInterface, ArrayAccess
             );
         }
 
+        if ($this->container['language_code'] === null) {
+            $invalidProperties[] = "'language_code' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -272,7 +273,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Gets url
      *
-     * @return string|null
+     * @return string
      */
     public function getUrl()
     {
@@ -282,7 +283,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets url
      *
-     * @param string|null $url url
+     * @param string $url url
      *
      * @return $this
      */
@@ -294,33 +295,9 @@ class InputSettings implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets overlay_settings
-     *
-     * @return \MuxPhp\Models\InputSettingsOverlaySettings|null
-     */
-    public function getOverlaySettings()
-    {
-        return $this->container['overlay_settings'];
-    }
-
-    /**
-     * Sets overlay_settings
-     *
-     * @param \MuxPhp\Models\InputSettingsOverlaySettings|null $overlay_settings overlay_settings
-     *
-     * @return $this
-     */
-    public function setOverlaySettings($overlay_settings)
-    {
-        $this->container['overlay_settings'] = $overlay_settings;
-
-        return $this;
-    }
-
-    /**
      * Gets type
      *
-     * @return string|null
+     * @return string
      */
     public function getType()
     {
@@ -330,14 +307,14 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string|null $type type
+     * @param string $type type
      *
      * @return $this
      */
     public function setType($type)
     {
         $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
+        if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value for 'type', must be one of '%s'",
@@ -353,7 +330,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Gets text_type
      *
-     * @return string|null
+     * @return string
      */
     public function getTextType()
     {
@@ -363,14 +340,14 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets text_type
      *
-     * @param string|null $text_type text_type
+     * @param string $text_type text_type
      *
      * @return $this
      */
     public function setTextType($text_type)
     {
         $allowedValues = $this->getTextTypeAllowableValues();
-        if (!is_null($text_type) && !in_array($text_type, $allowedValues, true)) {
+        if (!in_array($text_type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value for 'text_type', must be one of '%s'",
@@ -386,7 +363,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Gets language_code
      *
-     * @return string|null
+     * @return string
      */
     public function getLanguageCode()
     {
@@ -396,7 +373,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets language_code
      *
-     * @param string|null $language_code language_code
+     * @param string $language_code language_code
      *
      * @return $this
      */

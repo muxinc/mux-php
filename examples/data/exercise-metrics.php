@@ -3,13 +3,7 @@
     assert_options(ASSERT_BAIL, true);
     require_once 'vendor/autoload.php';
 
-    // Exercises all metrics operations:
-    //   list-breakdown-values
-    //   get-overall-values
-    //   list-insights
-    //   get-metric-timeseries-data
-    //   list-all-metric-values
-
+    // Exercises all metrics operations.
 
     // Authentication Setup
     $config = MuxPhp\Configuration::getDefaultConfiguration()

@@ -74,6 +74,14 @@
     assert($assetWithMp4Support->getData()->getMp4Support() == "standard");
     print("update-asset-mp4-support OK ✅\n");
 
+    // ========== update-asset-master-access ==========
+    $updateAssetMasterAccessRequest = new MuxPhp\Models\UpdateAssetMasterAccessRequest(["master_access" => "temporary"]);
+    $assetWithMasterAccess = $assetsApi->updateAssetMasterAccess($createAssetResponse->getData()->getId(), $updateAssetMasterAccessRequest);
+    assert($assetWithMasterAccess->getData()->getId() != null);
+    assert($assetWithMasterAccess->getData()->getId() == $createAssetResponse->getData()->getId());
+    assert($assetWithMasterAccess->getData()->getMasterAccess() == "temporary");
+    print("update-asset-master-access OK ✅\n");
+
     // ========== create-asset-track ==========
     $cat = new MuxPhp\Models\CreateTrackRequest(["url" => "https://tears-of-steel-subtitles.s3.amazonaws.com/tears-en.vtt", "type" => "text", "text_type" => "subtitles", "name" => "English", "language_code" => "en", "closed_captions" => false]);
     $subtitles = $assetsApi->createAssetTrack($createAssetResponse->getData()->getId(), $cat);

@@ -11,12 +11,12 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * UpdateAssetMP4SupportRequest Class Doc Comment
+ * UpdateAssetMasterAccessRequest Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
  */
-class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
+class UpdateAssetMasterAccessRequest implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -25,7 +25,7 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
      *
      * @var string
      */
-    protected static $openAPIModelName = 'UpdateAssetMP4SupportRequest';
+    protected static $openAPIModelName = 'UpdateAssetMasterAccessRequest';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -33,7 +33,7 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $openAPITypes = [
-        'mp4_support' => 'string'
+        'master_access' => 'string'
     ];
 
     /**
@@ -42,7 +42,7 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $openAPIFormats = [
-        'mp4_support' => null
+        'master_access' => null
     ];
 
     /**
@@ -72,7 +72,7 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'mp4_support' => 'mp4_support'
+        'master_access' => 'master_access'
     ];
 
     /**
@@ -81,7 +81,7 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'mp4_support' => 'setMp4Support'
+        'master_access' => 'setMasterAccess'
     ];
 
     /**
@@ -90,7 +90,7 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'mp4_support' => 'getMp4Support'
+        'master_access' => 'getMasterAccess'
     ];
 
     /**
@@ -134,8 +134,8 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
-    const MP4_SUPPORT_TEMPORARY = 'temporary';
-    const MP4_SUPPORT_NONE = 'none';
+    const MASTER_ACCESS_TEMPORARY = 'temporary';
+    const MASTER_ACCESS_NONE = 'none';
     
 
     
@@ -144,11 +144,11 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
      *
      * @return string[]
      */
-    public function getMp4SupportAllowableValues()
+    public function getMasterAccessAllowableValues()
     {
         return [
-            self::MP4_SUPPORT_TEMPORARY,
-            self::MP4_SUPPORT_NONE,
+            self::MASTER_ACCESS_TEMPORARY,
+            self::MASTER_ACCESS_NONE,
         ];
     }
     
@@ -168,7 +168,7 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['mp4_support'] = isset($data['mp4_support']) ? $data['mp4_support'] : null;
+        $this->container['master_access'] = isset($data['master_access']) ? $data['master_access'] : null;
     }
 
     /**
@@ -180,10 +180,10 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getMp4SupportAllowableValues();
-        if (!is_null($this->container['mp4_support']) && !in_array($this->container['mp4_support'], $allowedValues, true)) {
+        $allowedValues = $this->getMasterAccessAllowableValues();
+        if (!is_null($this->container['master_access']) && !in_array($this->container['master_access'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'mp4_support', must be one of '%s'",
+                "invalid value for 'master_access', must be one of '%s'",
                 implode("', '", $allowedValues)
             );
         }
@@ -204,34 +204,34 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets mp4_support
+     * Gets master_access
      *
      * @return string|null
      */
-    public function getMp4Support()
+    public function getMasterAccess()
     {
-        return $this->container['mp4_support'];
+        return $this->container['master_access'];
     }
 
     /**
-     * Sets mp4_support
+     * Sets master_access
      *
-     * @param string|null $mp4_support String value for the level of mp4 support
+     * @param string|null $master_access Add or remove access to the master version of the video.
      *
      * @return $this
      */
-    public function setMp4Support($mp4_support)
+    public function setMasterAccess($master_access)
     {
-        $allowedValues = $this->getMp4SupportAllowableValues();
-        if (!is_null($mp4_support) && !in_array($mp4_support, $allowedValues, true)) {
+        $allowedValues = $this->getMasterAccessAllowableValues();
+        if (!is_null($master_access) && !in_array($master_access, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'mp4_support', must be one of '%s'",
+                    "Invalid value for 'master_access', must be one of '%s'",
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['mp4_support'] = $mp4_support;
+        $this->container['master_access'] = $master_access;
 
         return $this;
     }

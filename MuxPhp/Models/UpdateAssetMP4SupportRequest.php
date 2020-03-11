@@ -134,7 +134,7 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
-    const MP4_SUPPORT_TEMPORARY = 'temporary';
+    const MP4_SUPPORT_STANDARD = 'standard';
     const MP4_SUPPORT_NONE = 'none';
     
 
@@ -147,7 +147,7 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess
     public function getMp4SupportAllowableValues()
     {
         return [
-            self::MP4_SUPPORT_TEMPORARY,
+            self::MP4_SUPPORT_STANDARD,
             self::MP4_SUPPORT_NONE,
         ];
     }

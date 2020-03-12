@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**getAssetInputInfo**](AssetsApi.md#getAssetInputInfo) | **GET** /video/v1/assets/{ASSET_ID}/input-info | Retrieve asset input info
 [**getAssetPlaybackId**](AssetsApi.md#getAssetPlaybackId) | **GET** /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID} | Retrieve a playback ID
 [**listAssets**](AssetsApi.md#listAssets) | **GET** /video/v1/assets | List assets
+[**updateAssetMasterAccess**](AssetsApi.md#updateAssetMasterAccess) | **PUT** /video/v1/assets/{ASSET_ID}/master-access | Update master access
 [**updateAssetMp4Support**](AssetsApi.md#updateAssetMp4Support) | **PUT** /video/v1/assets/{ASSET_ID}/mp4-support | Update MP4 support
 
 
@@ -334,6 +335,40 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## updateAssetMasterAccess
+
+> \MuxPhp\Models\AssetResponse updateAssetMasterAccess($asset_id, $update_asset_master_access_request)
+
+Update master access
+
+Allows you add temporary access to the master (highest-quality) version of the asset in MP4 format. A URL will be created that can be used to download the master version for 24 hours. After 24 hours Master Access will revert to \"none\". This master version is not optimized for web and not meant to be streamed, only downloaded for purposes like archiving or editing the video offline.
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset_id** | **string**| The asset ID. |
+ **update_asset_master_access_request** | [**\MuxPhp\Models\UpdateAssetMasterAccessRequest**](../Model/UpdateAssetMasterAccessRequest.md)|  |
+
+### Return type
+
+[**\MuxPhp\Models\AssetResponse**](../Model/AssetResponse.md)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)

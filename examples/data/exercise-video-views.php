@@ -17,7 +17,7 @@
     );
 
     # ========== list-video-views ==========
-    $views = $viewsApi->listVideoViews(["filters" => ['country:GB', 'browser:Chrome'], "timeframe" => ['7:days']]);
+    $views = $viewsApi->listVideoViews(["filters" => ['country:US', 'browser:Safari'], "timeframe" => ['7:days']]);
     assert($views->getData() != null);
     assert(sizeof($views->getData()) > 0);
     assert($views->getData()[0]->getId() != null);

@@ -1,5 +1,7 @@
 ![Mux PHP Banner](https://banner.mux.dev/?image=php)
 
+![](https://github.com/muxinc/mux-php/workflows/Integration%20Test/badge.svg)
+
 # Mux PHP
 
 Official Mux API wrapper for PHP projects, supporting both Mux Data and Mux Video.

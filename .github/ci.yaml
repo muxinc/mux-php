@@ -1,0 +1,26 @@
+name: Integration Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    name: Integration Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Install PHP 
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.3'
+      - name: Install PHP Dependencies
+        run: composer install
+      - name: Run Integration Tests
+        env:
+          MUX_TOKEN_ID: ${{ secrets.MUX_TOKEN_ID }}
+          MUX_TOKEN_SECRET: ${{ secrets.MUX_TOKEN_SECRET }}
+        run: bash test.sh

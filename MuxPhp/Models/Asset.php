@@ -43,7 +43,6 @@ class Asset implements ModelInterface, ArrayAccess
         'aspect_ratio' => 'string',
         'playback_ids' => '\MuxPhp\Models\PlaybackID[]',
         'tracks' => '\MuxPhp\Models\Track[]',
-        'demo' => 'bool',
         'errors' => '\MuxPhp\Models\AssetErrors',
         'per_title_encode' => 'bool',
         'is_live' => 'bool',
@@ -53,7 +52,8 @@ class Asset implements ModelInterface, ArrayAccess
         'master_access' => 'string',
         'mp4_support' => 'string',
         'normalize_audio' => 'bool',
-        'static_renditions' => '\MuxPhp\Models\AssetStaticRenditions'
+        'static_renditions' => '\MuxPhp\Models\AssetStaticRenditions',
+        'test' => 'bool'
     ];
 
     /**
@@ -72,7 +72,6 @@ class Asset implements ModelInterface, ArrayAccess
         'aspect_ratio' => null,
         'playback_ids' => null,
         'tracks' => null,
-        'demo' => 'boolean',
         'errors' => null,
         'per_title_encode' => 'boolean',
         'is_live' => 'boolean',
@@ -82,7 +81,8 @@ class Asset implements ModelInterface, ArrayAccess
         'master_access' => null,
         'mp4_support' => null,
         'normalize_audio' => null,
-        'static_renditions' => null
+        'static_renditions' => null,
+        'test' => 'boolean'
     ];
 
     /**
@@ -122,7 +122,6 @@ class Asset implements ModelInterface, ArrayAccess
         'aspect_ratio' => 'aspect_ratio',
         'playback_ids' => 'playback_ids',
         'tracks' => 'tracks',
-        'demo' => 'demo',
         'errors' => 'errors',
         'per_title_encode' => 'per_title_encode',
         'is_live' => 'is_live',
@@ -132,7 +131,8 @@ class Asset implements ModelInterface, ArrayAccess
         'master_access' => 'master_access',
         'mp4_support' => 'mp4_support',
         'normalize_audio' => 'normalize_audio',
-        'static_renditions' => 'static_renditions'
+        'static_renditions' => 'static_renditions',
+        'test' => 'test'
     ];
 
     /**
@@ -151,7 +151,6 @@ class Asset implements ModelInterface, ArrayAccess
         'aspect_ratio' => 'setAspectRatio',
         'playback_ids' => 'setPlaybackIds',
         'tracks' => 'setTracks',
-        'demo' => 'setDemo',
         'errors' => 'setErrors',
         'per_title_encode' => 'setPerTitleEncode',
         'is_live' => 'setIsLive',
@@ -161,7 +160,8 @@ class Asset implements ModelInterface, ArrayAccess
         'master_access' => 'setMasterAccess',
         'mp4_support' => 'setMp4Support',
         'normalize_audio' => 'setNormalizeAudio',
-        'static_renditions' => 'setStaticRenditions'
+        'static_renditions' => 'setStaticRenditions',
+        'test' => 'setTest'
     ];
 
     /**
@@ -180,7 +180,6 @@ class Asset implements ModelInterface, ArrayAccess
         'aspect_ratio' => 'getAspectRatio',
         'playback_ids' => 'getPlaybackIds',
         'tracks' => 'getTracks',
-        'demo' => 'getDemo',
         'errors' => 'getErrors',
         'per_title_encode' => 'getPerTitleEncode',
         'is_live' => 'getIsLive',
@@ -190,7 +189,8 @@ class Asset implements ModelInterface, ArrayAccess
         'master_access' => 'getMasterAccess',
         'mp4_support' => 'getMp4Support',
         'normalize_audio' => 'getNormalizeAudio',
-        'static_renditions' => 'getStaticRenditions'
+        'static_renditions' => 'getStaticRenditions',
+        'test' => 'getTest'
     ];
 
     /**
@@ -293,7 +293,6 @@ class Asset implements ModelInterface, ArrayAccess
         $this->container['aspect_ratio'] = isset($data['aspect_ratio']) ? $data['aspect_ratio'] : null;
         $this->container['playback_ids'] = isset($data['playback_ids']) ? $data['playback_ids'] : null;
         $this->container['tracks'] = isset($data['tracks']) ? $data['tracks'] : null;
-        $this->container['demo'] = isset($data['demo']) ? $data['demo'] : null;
         $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
         $this->container['per_title_encode'] = isset($data['per_title_encode']) ? $data['per_title_encode'] : null;
         $this->container['is_live'] = isset($data['is_live']) ? $data['is_live'] : null;
@@ -304,6 +303,7 @@ class Asset implements ModelInterface, ArrayAccess
         $this->container['mp4_support'] = isset($data['mp4_support']) ? $data['mp4_support'] : 'none';
         $this->container['normalize_audio'] = isset($data['normalize_audio']) ? $data['normalize_audio'] : false;
         $this->container['static_renditions'] = isset($data['static_renditions']) ? $data['static_renditions'] : null;
+        $this->container['test'] = isset($data['test']) ? $data['test'] : null;
     }
 
     /**
@@ -587,30 +587,6 @@ class Asset implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets demo
-     *
-     * @return bool|null
-     */
-    public function getDemo()
-    {
-        return $this->container['demo'];
-    }
-
-    /**
-     * Sets demo
-     *
-     * @param bool|null $demo demo
-     *
-     * @return $this
-     */
-    public function setDemo($demo)
-    {
-        $this->container['demo'] = $demo;
-
-        return $this;
-    }
-
-    /**
      * Gets errors
      *
      * @return \MuxPhp\Models\AssetErrors|null
@@ -864,6 +840,30 @@ class Asset implements ModelInterface, ArrayAccess
     public function setStaticRenditions($static_renditions)
     {
         $this->container['static_renditions'] = $static_renditions;
+
+        return $this;
+    }
+
+    /**
+     * Gets test
+     *
+     * @return bool|null
+     */
+    public function getTest()
+    {
+        return $this->container['test'];
+    }
+
+    /**
+     * Sets test
+     *
+     * @param bool|null $test test
+     *
+     * @return $this
+     */
+    public function setTest($test)
+    {
+        $this->container['test'] = $test;
 
         return $this;
     }

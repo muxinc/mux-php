@@ -37,7 +37,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest',
         'reconnect_window' => 'float',
         'passthrough' => 'string',
-        'reduced_latency' => 'bool'
+        'reduced_latency' => 'bool',
+        'test' => 'bool'
     ];
 
     /**
@@ -50,7 +51,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         'new_asset_settings' => null,
         'reconnect_window' => 'float',
         'passthrough' => null,
-        'reduced_latency' => 'boolean'
+        'reduced_latency' => 'boolean',
+        'test' => 'boolean'
     ];
 
     /**
@@ -84,7 +86,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         'new_asset_settings' => 'new_asset_settings',
         'reconnect_window' => 'reconnect_window',
         'passthrough' => 'passthrough',
-        'reduced_latency' => 'reduced_latency'
+        'reduced_latency' => 'reduced_latency',
+        'test' => 'test'
     ];
 
     /**
@@ -97,7 +100,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         'new_asset_settings' => 'setNewAssetSettings',
         'reconnect_window' => 'setReconnectWindow',
         'passthrough' => 'setPassthrough',
-        'reduced_latency' => 'setReducedLatency'
+        'reduced_latency' => 'setReducedLatency',
+        'test' => 'setTest'
     ];
 
     /**
@@ -110,7 +114,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         'new_asset_settings' => 'getNewAssetSettings',
         'reconnect_window' => 'getReconnectWindow',
         'passthrough' => 'getPassthrough',
-        'reduced_latency' => 'getReducedLatency'
+        'reduced_latency' => 'getReducedLatency',
+        'test' => 'getTest'
     ];
 
     /**
@@ -178,6 +183,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
         $this->container['reconnect_window'] = isset($data['reconnect_window']) ? $data['reconnect_window'] : null;
         $this->container['passthrough'] = isset($data['passthrough']) ? $data['passthrough'] : null;
         $this->container['reduced_latency'] = isset($data['reduced_latency']) ? $data['reduced_latency'] : null;
+        $this->container['test'] = isset($data['test']) ? $data['test'] : null;
     }
 
     /**
@@ -336,6 +342,30 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess
     public function setReducedLatency($reduced_latency)
     {
         $this->container['reduced_latency'] = $reduced_latency;
+
+        return $this;
+    }
+
+    /**
+     * Gets test
+     *
+     * @return bool|null
+     */
+    public function getTest()
+    {
+        return $this->container['test'];
+    }
+
+    /**
+     * Sets test
+     *
+     * @param bool|null $test test
+     *
+     * @return $this
+     */
+    public function setTest($test)
+    {
+        $this->container['test'] = $test;
 
         return $this;
     }

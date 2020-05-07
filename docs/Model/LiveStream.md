@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **reconnect_window** | **float** |  | [optional] 
 **reduced_latency** | **bool** |  | [optional] 
 **simulcast_targets** | [**\MuxPhp\Models\SimulcastTarget[]**](SimulcastTarget.md) |  | [optional] 
+**test** | **bool** |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

@@ -35,12 +35,12 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'input' => '\MuxPhp\Models\InputSettings[]',
         'playback_policy' => '\MuxPhp\Models\PlaybackPolicy[]',
-        'demo' => 'bool',
         'per_title_encode' => 'bool',
         'passthrough' => 'string',
         'mp4_support' => 'string',
         'normalize_audio' => 'bool',
-        'master_access' => 'string'
+        'master_access' => 'string',
+        'test' => 'bool'
     ];
 
     /**
@@ -51,12 +51,12 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'input' => null,
         'playback_policy' => null,
-        'demo' => 'boolean',
         'per_title_encode' => 'boolean',
         'passthrough' => null,
         'mp4_support' => null,
         'normalize_audio' => 'boolean',
-        'master_access' => null
+        'master_access' => null,
+        'test' => 'boolean'
     ];
 
     /**
@@ -88,12 +88,12 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'input' => 'input',
         'playback_policy' => 'playback_policy',
-        'demo' => 'demo',
         'per_title_encode' => 'per_title_encode',
         'passthrough' => 'passthrough',
         'mp4_support' => 'mp4_support',
         'normalize_audio' => 'normalize_audio',
-        'master_access' => 'master_access'
+        'master_access' => 'master_access',
+        'test' => 'test'
     ];
 
     /**
@@ -104,12 +104,12 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
     protected static $setters = [
         'input' => 'setInput',
         'playback_policy' => 'setPlaybackPolicy',
-        'demo' => 'setDemo',
         'per_title_encode' => 'setPerTitleEncode',
         'passthrough' => 'setPassthrough',
         'mp4_support' => 'setMp4Support',
         'normalize_audio' => 'setNormalizeAudio',
-        'master_access' => 'setMasterAccess'
+        'master_access' => 'setMasterAccess',
+        'test' => 'setTest'
     ];
 
     /**
@@ -120,12 +120,12 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
     protected static $getters = [
         'input' => 'getInput',
         'playback_policy' => 'getPlaybackPolicy',
-        'demo' => 'getDemo',
         'per_title_encode' => 'getPerTitleEncode',
         'passthrough' => 'getPassthrough',
         'mp4_support' => 'getMp4Support',
         'normalize_audio' => 'getNormalizeAudio',
-        'master_access' => 'getMasterAccess'
+        'master_access' => 'getMasterAccess',
+        'test' => 'getTest'
     ];
 
     /**
@@ -220,12 +220,12 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
     {
         $this->container['input'] = isset($data['input']) ? $data['input'] : null;
         $this->container['playback_policy'] = isset($data['playback_policy']) ? $data['playback_policy'] : null;
-        $this->container['demo'] = isset($data['demo']) ? $data['demo'] : null;
         $this->container['per_title_encode'] = isset($data['per_title_encode']) ? $data['per_title_encode'] : null;
         $this->container['passthrough'] = isset($data['passthrough']) ? $data['passthrough'] : null;
         $this->container['mp4_support'] = isset($data['mp4_support']) ? $data['mp4_support'] : null;
         $this->container['normalize_audio'] = isset($data['normalize_audio']) ? $data['normalize_audio'] : false;
         $this->container['master_access'] = isset($data['master_access']) ? $data['master_access'] : null;
+        $this->container['test'] = isset($data['test']) ? $data['test'] : null;
     }
 
     /**
@@ -312,30 +312,6 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
     public function setPlaybackPolicy($playback_policy)
     {
         $this->container['playback_policy'] = $playback_policy;
-
-        return $this;
-    }
-
-    /**
-     * Gets demo
-     *
-     * @return bool|null
-     */
-    public function getDemo()
-    {
-        return $this->container['demo'];
-    }
-
-    /**
-     * Sets demo
-     *
-     * @param bool|null $demo demo
-     *
-     * @return $this
-     */
-    public function setDemo($demo)
-    {
-        $this->container['demo'] = $demo;
 
         return $this;
     }
@@ -474,6 +450,30 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess
             );
         }
         $this->container['master_access'] = $master_access;
+
+        return $this;
+    }
+
+    /**
+     * Gets test
+     *
+     * @return bool|null
+     */
+    public function getTest()
+    {
+        return $this->container['test'];
+    }
+
+    /**
+     * Sets test
+     *
+     * @param bool|null $test test
+     *
+     * @return $this
+     */
+    public function setTest($test)
+    {
+        $this->container['test'] = $test;
 
         return $this;
     }

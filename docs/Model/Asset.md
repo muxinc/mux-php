@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **aspect_ratio** | **string** |  | [optional] 
 **playback_ids** | [**\MuxPhp\Models\PlaybackID[]**](PlaybackID.md) |  | [optional] 
 **tracks** | [**\MuxPhp\Models\Track[]**](Track.md) |  | [optional] 
-**demo** | **bool** |  | [optional] 
 **errors** | [**\MuxPhp\Models\AssetErrors**](AssetErrors.md) |  | [optional] 
 **per_title_encode** | **bool** |  | [optional] 
 **is_live** | **bool** |  | [optional] 
@@ -25,6 +24,7 @@ Name | Type | Description | Notes
 **mp4_support** | **string** |  | [optional] [default to 'none']
 **normalize_audio** | **bool** |  | [optional] [default to false]
 **static_renditions** | [**\MuxPhp\Models\AssetStaticRenditions**](AssetStaticRenditions.md) |  | [optional] 
+**test** | **bool** |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

@@ -164,8 +164,42 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    const VERTICAL_ALIGN_TOP = 'top';
+    const VERTICAL_ALIGN_MIDDLE = 'middle';
+    const VERTICAL_ALIGN_BOTTOM = 'bottom';
+    const HORIZONTAL_ALIGN_LEFT = 'left';
+    const HORIZONTAL_ALIGN_CENTER = 'center';
+    const HORIZONTAL_ALIGN_RIGHT = 'right';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getVerticalAlignAllowableValues()
+    {
+        return [
+            self::VERTICAL_ALIGN_TOP,
+            self::VERTICAL_ALIGN_MIDDLE,
+            self::VERTICAL_ALIGN_BOTTOM,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getHorizontalAlignAllowableValues()
+    {
+        return [
+            self::HORIZONTAL_ALIGN_LEFT,
+            self::HORIZONTAL_ALIGN_CENTER,
+            self::HORIZONTAL_ALIGN_RIGHT,
+        ];
+    }
     
 
     /**
@@ -201,6 +235,22 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getVerticalAlignAllowableValues();
+        if (!is_null($this->container['vertical_align']) && !in_array($this->container['vertical_align'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'vertical_align', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getHorizontalAlignAllowableValues();
+        if (!is_null($this->container['horizontal_align']) && !in_array($this->container['horizontal_align'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'horizontal_align', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -235,6 +285,15 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
      */
     public function setVerticalAlign($vertical_align)
     {
+        $allowedValues = $this->getVerticalAlignAllowableValues();
+        if (!is_null($vertical_align) && !in_array($vertical_align, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'vertical_align', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['vertical_align'] = $vertical_align;
 
         return $this;
@@ -283,6 +342,15 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
      */
     public function setHorizontalAlign($horizontal_align)
     {
+        $allowedValues = $this->getHorizontalAlignAllowableValues();
+        if (!is_null($horizontal_align) && !in_array($horizontal_align, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'horizontal_align', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['horizontal_align'] = $horizontal_align;
 
         return $this;

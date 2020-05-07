@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **error** | [**\MuxPhp\Models\UploadError**](UploadError.md) |  | [optional] 
 **cors_origin** | **string** | If the upload URL will be used in a browser, you must specify the origin in order for the signed URL to have the correct CORS headers. | [optional] 
 **url** | **string** | The URL to upload the associated source media to. | [optional] 
+**test** | **bool** |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

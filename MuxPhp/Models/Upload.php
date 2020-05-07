@@ -40,7 +40,8 @@ class Upload implements ModelInterface, ArrayAccess
         'asset_id' => 'string',
         'error' => '\MuxPhp\Models\UploadError',
         'cors_origin' => 'string',
-        'url' => 'string'
+        'url' => 'string',
+        'test' => 'bool'
     ];
 
     /**
@@ -56,7 +57,8 @@ class Upload implements ModelInterface, ArrayAccess
         'asset_id' => null,
         'error' => null,
         'cors_origin' => null,
-        'url' => null
+        'url' => null,
+        'test' => 'boolean'
     ];
 
     /**
@@ -93,7 +95,8 @@ class Upload implements ModelInterface, ArrayAccess
         'asset_id' => 'asset_id',
         'error' => 'error',
         'cors_origin' => 'cors_origin',
-        'url' => 'url'
+        'url' => 'url',
+        'test' => 'test'
     ];
 
     /**
@@ -109,7 +112,8 @@ class Upload implements ModelInterface, ArrayAccess
         'asset_id' => 'setAssetId',
         'error' => 'setError',
         'cors_origin' => 'setCorsOrigin',
-        'url' => 'setUrl'
+        'url' => 'setUrl',
+        'test' => 'setTest'
     ];
 
     /**
@@ -125,7 +129,8 @@ class Upload implements ModelInterface, ArrayAccess
         'asset_id' => 'getAssetId',
         'error' => 'getError',
         'cors_origin' => 'getCorsOrigin',
-        'url' => 'getUrl'
+        'url' => 'getUrl',
+        'test' => 'getTest'
     ];
 
     /**
@@ -217,6 +222,7 @@ class Upload implements ModelInterface, ArrayAccess
         $this->container['error'] = isset($data['error']) ? $data['error'] : null;
         $this->container['cors_origin'] = isset($data['cors_origin']) ? $data['cors_origin'] : null;
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
+        $this->container['test'] = isset($data['test']) ? $data['test'] : null;
     }
 
     /**
@@ -464,6 +470,30 @@ class Upload implements ModelInterface, ArrayAccess
     public function setUrl($url)
     {
         $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets test
+     *
+     * @return bool|null
+     */
+    public function getTest()
+    {
+        return $this->container['test'];
+    }
+
+    /**
+     * Sets test
+     *
+     * @param bool|null $test test
+     *
+     * @return $this
+     */
+    public function setTest($test)
+    {
+        $this->container['test'] = $test;
 
         return $this;
     }

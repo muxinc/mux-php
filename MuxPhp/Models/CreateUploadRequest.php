@@ -35,7 +35,8 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'timeout' => 'int',
         'cors_origin' => 'string',
-        'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest'
+        'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest',
+        'test' => 'bool'
     ];
 
     /**
@@ -46,7 +47,8 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'timeout' => 'int32',
         'cors_origin' => null,
-        'new_asset_settings' => null
+        'new_asset_settings' => null,
+        'test' => 'boolean'
     ];
 
     /**
@@ -78,7 +80,8 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'timeout' => 'timeout',
         'cors_origin' => 'cors_origin',
-        'new_asset_settings' => 'new_asset_settings'
+        'new_asset_settings' => 'new_asset_settings',
+        'test' => 'test'
     ];
 
     /**
@@ -89,7 +92,8 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess
     protected static $setters = [
         'timeout' => 'setTimeout',
         'cors_origin' => 'setCorsOrigin',
-        'new_asset_settings' => 'setNewAssetSettings'
+        'new_asset_settings' => 'setNewAssetSettings',
+        'test' => 'setTest'
     ];
 
     /**
@@ -100,7 +104,8 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess
     protected static $getters = [
         'timeout' => 'getTimeout',
         'cors_origin' => 'getCorsOrigin',
-        'new_asset_settings' => 'getNewAssetSettings'
+        'new_asset_settings' => 'getNewAssetSettings',
+        'test' => 'getTest'
     ];
 
     /**
@@ -166,6 +171,7 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess
         $this->container['timeout'] = isset($data['timeout']) ? $data['timeout'] : 3600;
         $this->container['cors_origin'] = isset($data['cors_origin']) ? $data['cors_origin'] : null;
         $this->container['new_asset_settings'] = isset($data['new_asset_settings']) ? $data['new_asset_settings'] : null;
+        $this->container['test'] = isset($data['test']) ? $data['test'] : null;
     }
 
     /**
@@ -279,6 +285,30 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess
     public function setNewAssetSettings($new_asset_settings)
     {
         $this->container['new_asset_settings'] = $new_asset_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets test
+     *
+     * @return bool|null
+     */
+    public function getTest()
+    {
+        return $this->container['test'];
+    }
+
+    /**
+     * Sets test
+     *
+     * @param bool|null $test test
+     *
+     * @return $this
+     */
+    public function setTest($test)
+    {
+        $this->container['test'] = $test;
 
         return $this;
     }

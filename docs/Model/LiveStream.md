@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **recent_asset_ids** | **string[]** |  | [optional] 
 **status** | **string** |  | [optional] 
 **playback_ids** | [**\MuxPhp\Models\PlaybackID[]**](PlaybackID.md) |  | [optional] 
-**new_asset_settings** | [**\MuxPhp\Models\Asset**](Asset.md) |  | [optional] 
+**new_asset_settings** | [**\MuxPhp\Models\CreateAssetRequest**](CreateAssetRequest.md) |  | [optional] 
 **passthrough** | **string** |  | [optional] 
 **reconnect_window** | **float** |  | [optional] 
 **reduced_latency** | **bool** |  | [optional] 

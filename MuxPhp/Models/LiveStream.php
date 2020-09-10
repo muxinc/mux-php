@@ -40,7 +40,7 @@ class LiveStream implements ModelInterface, ArrayAccess
         'recent_asset_ids' => 'string[]',
         'status' => 'string',
         'playback_ids' => '\MuxPhp\Models\PlaybackID[]',
-        'new_asset_settings' => '\MuxPhp\Models\Asset',
+        'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest',
         'passthrough' => 'string',
         'reconnect_window' => 'float',
         'reduced_latency' => 'bool',
@@ -423,7 +423,7 @@ class LiveStream implements ModelInterface, ArrayAccess
     /**
      * Gets new_asset_settings
      *
-     * @return \MuxPhp\Models\Asset|null
+     * @return \MuxPhp\Models\CreateAssetRequest|null
      */
     public function getNewAssetSettings()
     {
@@ -433,7 +433,7 @@ class LiveStream implements ModelInterface, ArrayAccess
     /**
      * Sets new_asset_settings
      *
-     * @param \MuxPhp\Models\Asset|null $new_asset_settings new_asset_settings
+     * @param \MuxPhp\Models\CreateAssetRequest|null $new_asset_settings new_asset_settings
      *
      * @return $this
      */

@@ -89,6 +89,30 @@
     }
     print("signal-live-stream-complete OK ✅\n");
 
+    // ========== disable-live-stream ==========
+    try {
+        $liveApi->disableLiveStream($stream->getData()->getId());
+    }
+    catch (Exception $e) {
+        print("Should not have errored when disabling live stream ❌ ");
+        exit(1);
+    }
+    $disabledStream = $liveApi->getLiveStream($stream->getData()->getId());
+    assert($disabledStream.getData().getStatus() == 'disabled');
+    print("disable-live-stream OK ✅\n");
+
+    // ========== enable-live-stream ==========
+    try {
+        $liveApi->enableLiveStream($stream->getData()->getId());
+    }
+    catch (Exception $e) {
+        print("Should not have errored when enabling live stream ❌ ");
+        exit(1);
+    }
+    $enabledStream = $liveApi->getLiveStream($stream->getData()->getId());
+    assert($enabledStream.getData().getStatus() == 'idle');
+    print("enable-live-stream OK ✅\n");
+
     // ========== delete-live-stream ==========
     $liveApi->deleteLiveStream($stream->getData()->getId());
     try {

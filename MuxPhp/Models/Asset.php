@@ -53,6 +53,8 @@ class Asset implements ModelInterface, ArrayAccess
         'mp4_support' => 'string',
         'normalize_audio' => 'bool',
         'static_renditions' => '\MuxPhp\Models\AssetStaticRenditions',
+        'recording_times' => '\MuxPhp\Models\AssetRecordingTimes[]',
+        'non_standard_input_reasons' => '\MuxPhp\Models\AssetNonStandardInputReasons',
         'test' => 'bool'
     ];
 
@@ -82,6 +84,8 @@ class Asset implements ModelInterface, ArrayAccess
         'mp4_support' => null,
         'normalize_audio' => null,
         'static_renditions' => null,
+        'recording_times' => null,
+        'non_standard_input_reasons' => null,
         'test' => 'boolean'
     ];
 
@@ -132,6 +136,8 @@ class Asset implements ModelInterface, ArrayAccess
         'mp4_support' => 'mp4_support',
         'normalize_audio' => 'normalize_audio',
         'static_renditions' => 'static_renditions',
+        'recording_times' => 'recording_times',
+        'non_standard_input_reasons' => 'non_standard_input_reasons',
         'test' => 'test'
     ];
 
@@ -161,6 +167,8 @@ class Asset implements ModelInterface, ArrayAccess
         'mp4_support' => 'setMp4Support',
         'normalize_audio' => 'setNormalizeAudio',
         'static_renditions' => 'setStaticRenditions',
+        'recording_times' => 'setRecordingTimes',
+        'non_standard_input_reasons' => 'setNonStandardInputReasons',
         'test' => 'setTest'
     ];
 
@@ -190,6 +198,8 @@ class Asset implements ModelInterface, ArrayAccess
         'mp4_support' => 'getMp4Support',
         'normalize_audio' => 'getNormalizeAudio',
         'static_renditions' => 'getStaticRenditions',
+        'recording_times' => 'getRecordingTimes',
+        'non_standard_input_reasons' => 'getNonStandardInputReasons',
         'test' => 'getTest'
     ];
 
@@ -303,6 +313,8 @@ class Asset implements ModelInterface, ArrayAccess
         $this->container['mp4_support'] = isset($data['mp4_support']) ? $data['mp4_support'] : 'none';
         $this->container['normalize_audio'] = isset($data['normalize_audio']) ? $data['normalize_audio'] : false;
         $this->container['static_renditions'] = isset($data['static_renditions']) ? $data['static_renditions'] : null;
+        $this->container['recording_times'] = isset($data['recording_times']) ? $data['recording_times'] : null;
+        $this->container['non_standard_input_reasons'] = isset($data['non_standard_input_reasons']) ? $data['non_standard_input_reasons'] : null;
         $this->container['test'] = isset($data['test']) ? $data['test'] : null;
     }
 
@@ -840,6 +852,54 @@ class Asset implements ModelInterface, ArrayAccess
     public function setStaticRenditions($static_renditions)
     {
         $this->container['static_renditions'] = $static_renditions;
+
+        return $this;
+    }
+
+    /**
+     * Gets recording_times
+     *
+     * @return \MuxPhp\Models\AssetRecordingTimes[]|null
+     */
+    public function getRecordingTimes()
+    {
+        return $this->container['recording_times'];
+    }
+
+    /**
+     * Sets recording_times
+     *
+     * @param \MuxPhp\Models\AssetRecordingTimes[]|null $recording_times An array of individual live stream recording sessions. A recording session is created on each encoder connection during the live stream
+     *
+     * @return $this
+     */
+    public function setRecordingTimes($recording_times)
+    {
+        $this->container['recording_times'] = $recording_times;
+
+        return $this;
+    }
+
+    /**
+     * Gets non_standard_input_reasons
+     *
+     * @return \MuxPhp\Models\AssetNonStandardInputReasons|null
+     */
+    public function getNonStandardInputReasons()
+    {
+        return $this->container['non_standard_input_reasons'];
+    }
+
+    /**
+     * Sets non_standard_input_reasons
+     *
+     * @param \MuxPhp\Models\AssetNonStandardInputReasons|null $non_standard_input_reasons non_standard_input_reasons
+     *
+     * @return $this
+     */
+    public function setNonStandardInputReasons($non_standard_input_reasons)
+    {
+        $this->container['non_standard_input_reasons'] = $non_standard_input_reasons;
 
         return $this;
     }

@@ -24,6 +24,8 @@ Name | Type | Description | Notes
 **mp4_support** | **string** |  | [optional] [default to 'none']
 **normalize_audio** | **bool** |  | [optional] [default to false]
 **static_renditions** | [**\MuxPhp\Models\AssetStaticRenditions**](AssetStaticRenditions.md) |  | [optional] 
+**recording_times** | [**\MuxPhp\Models\AssetRecordingTimes[]**](AssetRecordingTimes.md) | An array of individual live stream recording sessions. A recording session is created on each encoder connection during the live stream | [optional] 
+**non_standard_input_reasons** | [**\MuxPhp\Models\AssetNonStandardInputReasons**](AssetNonStandardInputReasons.md) |  | [optional] 
 **test** | **bool** |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

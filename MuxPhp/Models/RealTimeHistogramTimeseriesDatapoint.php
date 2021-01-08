@@ -35,8 +35,8 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
     protected static $openAPITypes = [
         'timestamp' => 'string',
         'sum' => 'int',
-        'p95' => 'int',
-        'median' => 'int',
+        'p95' => 'double',
+        'median' => 'double',
         'max_percentage' => 'double',
         'bucket_values' => '\MuxPhp\Models\RealTimeHistogramTimeseriesBucketValues[]',
         'average' => 'double'
@@ -50,8 +50,8 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
     protected static $openAPIFormats = [
         'timestamp' => null,
         'sum' => 'int64',
-        'p95' => 'int64',
-        'median' => 'int64',
+        'p95' => 'double',
+        'median' => 'double',
         'max_percentage' => 'double',
         'bucket_values' => null,
         'average' => 'double'
@@ -267,7 +267,7 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
     /**
      * Gets p95
      *
-     * @return int|null
+     * @return double|null
      */
     public function getP95()
     {
@@ -277,7 +277,7 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
     /**
      * Sets p95
      *
-     * @param int|null $p95 p95
+     * @param double|null $p95 p95
      *
      * @return $this
      */
@@ -291,7 +291,7 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
     /**
      * Gets median
      *
-     * @return int|null
+     * @return double|null
      */
     public function getMedian()
     {
@@ -301,7 +301,7 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
     /**
      * Sets median
      *
-     * @param int|null $median median
+     * @param double|null $median median
      *
      * @return $this
      */

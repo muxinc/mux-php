@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **timestamp** | **string** |  | [optional] 
 **sum** | **int** |  | [optional] 
-**p95** | **int** |  | [optional] 
-**median** | **int** |  | [optional] 
+**p95** | **double** |  | [optional] 
+**median** | **double** |  | [optional] 
 **max_percentage** | **double** |  | [optional] 
 **bucket_values** | [**\MuxPhp\Models\RealTimeHistogramTimeseriesBucketValues[]**](RealTimeHistogramTimeseriesBucketValues.md) |  | [optional] 
 **average** | **double** |  | [optional] 

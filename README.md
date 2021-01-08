@@ -83,7 +83,7 @@ Below is a quick example of using mux-php to ingest a new Video in your Mux acco
     print "Playback URL: https://stream.mux.com/" . $result->getData()->getPlaybackIds()[0]->getId() . ".m3u8\n"
 ```
 
-Be sure to also checkout the [exmples directory](examples/):
+Be sure to also checkout the [examples directory](examples/):
 * [Create an Asset, wait for it to become availiable, and print its playback URL](examples/video/ingest.php)
 
 There's also example usage of every API call (also used for testing):

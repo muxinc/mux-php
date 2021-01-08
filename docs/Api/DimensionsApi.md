@@ -1,28 +1,28 @@
-# MuxPhp\FiltersApi
+# MuxPhp\DimensionsApi
 
 All URIs are relative to *https://api.mux.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**listFilterValues**](FiltersApi.md#listFilterValues) | **GET** /data/v1/filters/{FILTER_ID} | Lists values for a specific filter
-[**listFilters**](FiltersApi.md#listFilters) | **GET** /data/v1/filters | List Filters
+[**listDimensionValues**](DimensionsApi.md#listDimensionValues) | **GET** /data/v1/dimensions/{DIMENSION_ID} | Lists the values for a specific dimension
+[**listDimensions**](DimensionsApi.md#listDimensions) | **GET** /data/v1/dimensions | List Dimensions
 
 
 
-## listFilterValues
+## listDimensionValues
 
-> \MuxPhp\Models\ListFilterValuesResponse listFilterValues($filter_id, $limit, $page, $filters, $timeframe)
+> \MuxPhp\Models\ListDimensionValuesResponse listDimensionValues($dimension_id, $limit, $page, $filters, $timeframe)
 
-Lists values for a specific filter
+Lists the values for a specific dimension
 
-Deprecated: The API has been replaced by the list-dimension-values API call.  Lists the values for a filter along with a total count of related views.
+Lists the values for a dimension along with a total count of related views.   Note: This API replaces the list-filter-values API call.
 
 ### Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter_id** | **string**| ID of the Filter |
+ **dimension_id** | **string**| ID of the Dimension |
 **optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
 **optional_params[limit]** | int | Number of items to include in the response (optional, default to 25)
 **optional_params[page]** | int | Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
@@ -31,7 +31,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MuxPhp\Models\ListFilterValuesResponse**](../Model/ListFilterValuesResponse.md)
+[**\MuxPhp\Models\ListDimensionValuesResponse**](../Model/ListDimensionValuesResponse.md)
 
 ### Authorization
 
@@ -47,13 +47,13 @@ Name | Type | Description  | Notes
 [[Back to README]](../../README.md)
 
 
-## listFilters
+## listDimensions
 
-> \MuxPhp\Models\ListFiltersResponse listFilters()
+> \MuxPhp\Models\ListDimensionsResponse listDimensions()
 
-List Filters
+List Dimensions
 
-Deprecated: The API has been replaced by the list-dimensions API call.  Lists all the filters broken out into basic and advanced.
+List all available dimensions.  Note: This API replaces the list-filters API call.
 
 ### Parameters
 
@@ -61,7 +61,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MuxPhp\Models\ListFiltersResponse**](../Model/ListFiltersResponse.md)
+[**\MuxPhp\Models\ListDimensionsResponse**](../Model/ListDimensionsResponse.md)
 
 ### Authorization
 

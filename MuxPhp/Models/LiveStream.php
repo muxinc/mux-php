@@ -63,7 +63,7 @@ class LiveStream implements ModelInterface, ArrayAccess
         'playback_ids' => null,
         'new_asset_settings' => null,
         'passthrough' => null,
-        'reconnect_window' => null,
+        'reconnect_window' => 'float',
         'reduced_latency' => 'boolean',
         'simulcast_targets' => null,
         'test' => 'boolean'

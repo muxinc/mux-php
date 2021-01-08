@@ -244,12 +244,33 @@ class Asset implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    const MAX_STORED_RESOLUTION_AUDIO_ONLY = 'Audio only';
+    const MAX_STORED_RESOLUTION_SD = 'SD';
+    const MAX_STORED_RESOLUTION_HD = 'HD';
+    const MAX_STORED_RESOLUTION_FHD = 'FHD';
+    const MAX_STORED_RESOLUTION_UHD = 'UHD';
     const MASTER_ACCESS_TEMPORARY = 'temporary';
     const MASTER_ACCESS_NONE = 'none';
     const MP4_SUPPORT_STANDARD = 'standard';
     const MP4_SUPPORT_NONE = 'none';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getMaxStoredResolutionAllowableValues()
+    {
+        return [
+            self::MAX_STORED_RESOLUTION_AUDIO_ONLY,
+            self::MAX_STORED_RESOLUTION_SD,
+            self::MAX_STORED_RESOLUTION_HD,
+            self::MAX_STORED_RESOLUTION_FHD,
+            self::MAX_STORED_RESOLUTION_UHD,
+        ];
+    }
     
     /**
      * Gets allowable values of the enum
@@ -326,6 +347,14 @@ class Asset implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getMaxStoredResolutionAllowableValues();
+        if (!is_null($this->container['max_stored_resolution']) && !in_array($this->container['max_stored_resolution'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'max_stored_resolution', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
 
         $allowedValues = $this->getMasterAccessAllowableValues();
         if (!is_null($this->container['master_access']) && !in_array($this->container['master_access'], $allowedValues, true)) {
@@ -497,6 +526,15 @@ class Asset implements ModelInterface, ArrayAccess
      */
     public function setMaxStoredResolution($max_stored_resolution)
     {
+        $allowedValues = $this->getMaxStoredResolutionAllowableValues();
+        if (!is_null($max_stored_resolution) && !in_array($max_stored_resolution, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'max_stored_resolution', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['max_stored_resolution'] = $max_stored_resolution;
 
         return $this;

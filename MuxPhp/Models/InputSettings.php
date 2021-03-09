@@ -14,7 +14,7 @@ use \MuxPhp\ObjectSerializer;
  * InputSettings Class Doc Comment
  *
  * @category Class
- * @description Input object with additional configuration
+ * @description An array of objects that each describe an input file to be used to create the asset. As a shortcut, &#x60;input&#x60; can also be a string URL for a file when only one input file is used. See &#x60;input[].url&#x60; for requirements.
  * @package  MuxPhp
  */
 class InputSettings implements ModelInterface, ArrayAccess
@@ -282,7 +282,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets url
      *
-     * @param string|null $url url
+     * @param string|null $url The web address of the subtitle text track file that Mux should download and use to create the track. Mux supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) format for ingesting Subtitles and Closed Captions.
      *
      * @return $this
      */
@@ -330,7 +330,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string|null $type type
+     * @param string|null $type This parameter is required for the `text` track type.
      *
      * @return $this
      */
@@ -363,7 +363,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets text_type
      *
-     * @param string|null $text_type text_type
+     * @param string|null $text_type Type of text track. This parameter only supports subtitles value. For more information on Subtitles / Closed Captions, [see this blog post](https://mux.com/blog/subtitles-captions-webvtt-hls-and-those-magic-flags/). This parameter is required for `text` track type.
      *
      * @return $this
      */
@@ -396,7 +396,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets language_code
      *
-     * @param string|null $language_code language_code
+     * @param string|null $language_code The language code value must be a valid [BCP 47](https://tools.ietf.org/html/bcp47) specification compliant value. For example, en for English or en-US for the US version of English. This parameter is required for text type and subtitles text type track.
      *
      * @return $this
      */
@@ -420,7 +420,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string|null $name The name of the track containing a human-readable description. This value must be unique across all text type and subtitles `text` type tracks. The hls manifest will associate a subtitle text track with this value. For example, the value should be \"English\" for subtitles text track with language_code as en. This optional parameter should be used only for `text` type and subtitles `text` type track. If this parameter is not included, Mux will auto-populate based on the `input[].language_code` value.
      *
      * @return $this
      */
@@ -444,7 +444,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets closed_captions
      *
-     * @param bool|null $closed_captions closed_captions
+     * @param bool|null $closed_captions Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH). This optional parameter should be used for `text` type and subtitles `text` type tracks.
      *
      * @return $this
      */
@@ -468,7 +468,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough passthrough
+     * @param string|null $passthrough This optional parameter should be used for `text` type and subtitles `text` type tracks.
      *
      * @return $this
      */

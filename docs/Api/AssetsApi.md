@@ -122,6 +122,8 @@ Name | Type | Description  | Notes
 
 Delete an asset
 
+Deletes a video asset and all its data
+
 ### Parameters
 
 
@@ -314,6 +316,8 @@ Name | Type | Description  | Notes
 > \MuxPhp\Models\ListAssetsResponse listAssets($limit, $page)
 
 List assets
+
+List all Mux assets.
 
 ### Parameters
 

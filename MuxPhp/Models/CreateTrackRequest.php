@@ -373,7 +373,7 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess
     /**
      * Sets language_code
      *
-     * @param string $language_code language_code
+     * @param string $language_code The language code value must be a valid BCP 47 specification compliant value. For example, en for English or en-US for the US version of English.
      *
      * @return $this
      */
@@ -397,7 +397,7 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string|null $name The name of the track containing a human-readable description. This value must be unqiue across all the text type and subtitles text type tracks. HLS manifest will associate subtitle text track with this value. For example, set the value to \"English\" for subtitles text track with language_code as en-US. If this parameter is not included, Mux will auto-populate based on the language_code value.
      *
      * @return $this
      */
@@ -421,7 +421,7 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess
     /**
      * Sets closed_captions
      *
-     * @param bool|null $closed_captions closed_captions
+     * @param bool|null $closed_captions Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
      *
      * @return $this
      */
@@ -445,7 +445,7 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough passthrough
+     * @param string|null $passthrough Arbitrary metadata set for the track either when creating the asset or track.
      *
      * @return $this
      */

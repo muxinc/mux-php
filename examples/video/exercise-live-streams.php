@@ -1,6 +1,5 @@
 <?php
-
-    assert_options(ASSERT_BAIL, true);
+    require_once(__DIR__ . '/../assert.php');
     require_once 'vendor/autoload.php';
 
     // Exercises all live stream operations.
@@ -98,7 +97,7 @@
         exit(1);
     }
     $disabledStream = $liveApi->getLiveStream($stream->getData()->getId());
-    assert($disabledStream.getData().getStatus() == 'disabled');
+    assert($disabledStream->getData()->getStatus() == 'disabled');
     print("disable-live-stream OK ✅\n");
 
     // ========== enable-live-stream ==========
@@ -110,7 +109,7 @@
         exit(1);
     }
     $enabledStream = $liveApi->getLiveStream($stream->getData()->getId());
-    assert($enabledStream.getData().getStatus() == 'idle');
+    assert($enabledStream->getData()->getStatus() == 'idle');
     print("enable-live-stream OK ✅\n");
 
     // ========== delete-live-stream ==========

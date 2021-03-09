@@ -1,5 +1,5 @@
 <?php
-
+    require_once(__DIR__ . '/../assert.php');
     require_once 'vendor/autoload.php';
 
     // Authentication Setup
@@ -18,9 +18,9 @@
         $result = $assetsApi->listAssets();
         echo "Listing Assets in account: \n\n";
         foreach ($result->getData() as $asset) {
-          print("Asset ID: " . $asset->getId() . "\n");
-          print("Status: " . $asset->getStatus() . "\n");
-          print("Duration: " . $asset->getDuration() . "\n\n");
+            print("Asset ID: " . $asset->getId() . "\n");
+            print("Status: " . $asset->getStatus() . "\n");
+            print("Duration: " . $asset->getDuration() . "\n\n");
         }
     } catch (Exception $e) {
         echo 'Exception when calling AssetsApi->listAssets: ', $e->getMessage(), PHP_EOL;

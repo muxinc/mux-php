@@ -14,6 +14,10 @@
         new GuzzleHttp\Client(),
         $config
     );
+    $playbackIdApi = new MuxPhp\Api\PlaybackIDApi(
+        new GuzzleHttp\Client(),
+        $config
+    );
 
     // ========== create-asset ==========
     $input = new MuxPhp\Models\InputSettings(["url" => "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4"]);
@@ -64,6 +68,13 @@
     assert($playbackIdGet->getData()->getId() != null);
     assert($playbackIdGet->getData()->getId() == $playbackId->getData()->getId());
     print("get-asset-playback-id OK ✅\n");
+
+    // ========== get-asset-or-livestream-id ==========
+    $pbId = $playbackIdGet->getData()->getId();
+    $pbPlaybackAssetGet = $playbackIdApi->getAssetOrLivestreamId($pbId);
+    assert($pbPlaybackAssetGet->getData()->getObject()->getId() == $createAssetResponse->getData()->getId());
+    assert($pbPlaybackAssetGet->getData()->getObject()->getType() == "asset");
+    print("get-asset-or-livestream-id OK ✅\n");
 
     // ========== update-asset-mp4-support ==========
     $updateAssetMp4SupportRequest = new MuxPhp\Models\UpdateAssetMP4SupportRequest(["mp4_support" => "standard"]);

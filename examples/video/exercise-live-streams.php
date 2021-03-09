@@ -14,6 +14,10 @@
         new GuzzleHttp\Client(),
         $config
     );
+    $playbackIdApi = new MuxPhp\Api\PlaybackIDApi(
+        new GuzzleHttp\Client(),
+        $config
+    );
 
     // ========== create-live-stream ==========
     $createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY]]);
@@ -33,6 +37,14 @@
     assert($getStream->getData()->getId() != null);
     assert($getStream->getData()->getId() == $stream->getData()->getId());
     print("get-live-stream OK ✅\n");
+
+    // ========== get-asset-or-livestream-id ==========
+    $pbId = $stream->getData()->getPlaybackIds()[0]->getId();
+    $pbPlaybackAssetGet = $playbackIdApi->getAssetOrLivestreamId($pbId);
+    assert($pbPlaybackAssetGet->getData()->getObject()->getId() == $stream->getData()->getId());
+    assert($pbPlaybackAssetGet->getData()->getObject()->getType() == "live_stream");
+    print("get-asset-or-livestream-id OK ✅\n");
+    
 
     // ========== create-live-stream-simulcast-target ==========
     $createTarget = new MuxPhp\Models\CreateSimulcastTargetRequest(["passthrough" => "That's not on fire", "url" => "rtmp://glitch.tv", "stream_key" => "somethingverylongnoonewilleverremember"]);

@@ -56,6 +56,13 @@
     print("get-asset OK ✅\n");
     print("get-asset-input-info OK ✅\n");
 
+    // ========== clipping ==========
+    $clipInput = new MuxPhp\Models\InputSettings(["url" => "mux://assets/" . $createAssetResponse->getData()->getId(), "start_time" => 0, "end_time => 5"]);
+    $clipRequest = new MuxPhp\Models\CreateAssetRequest(["input" => [$input]]);
+    $clipResponse = $assetsApi->createAsset($clipRequest);
+    assert($clipResponse->getData()->getId() != null);
+    print("clipping OK ✅\n");
+
     // ========== create-asset-playback-id ==========
     $createAssetPlaybackIdRequest = new MuxPhp\Models\CreatePlaybackIDRequest(["policy" => MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY]);
     $playbackId = $assetsApi->createAssetPlaybackId($createAssetResponse->getData()->getId(), $createAssetPlaybackIdRequest);

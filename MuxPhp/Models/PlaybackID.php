@@ -199,7 +199,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param string|null $id id
+     * @param string|null $id Unique identifier for the PlaybackID
      *
      * @return $this
      */

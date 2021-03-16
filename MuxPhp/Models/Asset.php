@@ -51,6 +51,7 @@ class Asset implements ModelInterface, ArrayAccess
         'master' => '\MuxPhp\Models\AssetMaster',
         'master_access' => 'string',
         'mp4_support' => 'string',
+        'source_asset_id' => 'string',
         'normalize_audio' => 'bool',
         'static_renditions' => '\MuxPhp\Models\AssetStaticRenditions',
         'recording_times' => '\MuxPhp\Models\AssetRecordingTimes[]',
@@ -82,6 +83,7 @@ class Asset implements ModelInterface, ArrayAccess
         'master' => null,
         'master_access' => null,
         'mp4_support' => null,
+        'source_asset_id' => null,
         'normalize_audio' => null,
         'static_renditions' => null,
         'recording_times' => null,
@@ -134,6 +136,7 @@ class Asset implements ModelInterface, ArrayAccess
         'master' => 'master',
         'master_access' => 'master_access',
         'mp4_support' => 'mp4_support',
+        'source_asset_id' => 'source_asset_id',
         'normalize_audio' => 'normalize_audio',
         'static_renditions' => 'static_renditions',
         'recording_times' => 'recording_times',
@@ -165,6 +168,7 @@ class Asset implements ModelInterface, ArrayAccess
         'master' => 'setMaster',
         'master_access' => 'setMasterAccess',
         'mp4_support' => 'setMp4Support',
+        'source_asset_id' => 'setSourceAssetId',
         'normalize_audio' => 'setNormalizeAudio',
         'static_renditions' => 'setStaticRenditions',
         'recording_times' => 'setRecordingTimes',
@@ -196,6 +200,7 @@ class Asset implements ModelInterface, ArrayAccess
         'master' => 'getMaster',
         'master_access' => 'getMasterAccess',
         'mp4_support' => 'getMp4Support',
+        'source_asset_id' => 'getSourceAssetId',
         'normalize_audio' => 'getNormalizeAudio',
         'static_renditions' => 'getStaticRenditions',
         'recording_times' => 'getRecordingTimes',
@@ -244,6 +249,9 @@ class Asset implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    const STATUS_PREPARING = 'preparing';
+    const STATUS_READY = 'ready';
+    const STATUS_ERRORED = 'errored';
     const MAX_STORED_RESOLUTION_AUDIO_ONLY = 'Audio only';
     const MAX_STORED_RESOLUTION_SD = 'SD';
     const MAX_STORED_RESOLUTION_HD = 'HD';
@@ -255,6 +263,20 @@ class Asset implements ModelInterface, ArrayAccess
     const MP4_SUPPORT_NONE = 'none';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_PREPARING,
+            self::STATUS_READY,
+            self::STATUS_ERRORED,
+        ];
+    }
     
     /**
      * Gets allowable values of the enum
@@ -332,6 +354,7 @@ class Asset implements ModelInterface, ArrayAccess
         $this->container['master'] = isset($data['master']) ? $data['master'] : null;
         $this->container['master_access'] = isset($data['master_access']) ? $data['master_access'] : 'none';
         $this->container['mp4_support'] = isset($data['mp4_support']) ? $data['mp4_support'] : 'none';
+        $this->container['source_asset_id'] = isset($data['source_asset_id']) ? $data['source_asset_id'] : null;
         $this->container['normalize_audio'] = isset($data['normalize_audio']) ? $data['normalize_audio'] : false;
         $this->container['static_renditions'] = isset($data['static_renditions']) ? $data['static_renditions'] : null;
         $this->container['recording_times'] = isset($data['recording_times']) ? $data['recording_times'] : null;
@@ -347,6 +370,14 @@ class Asset implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'status', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
 
         $allowedValues = $this->getMaxStoredResolutionAllowableValues();
         if (!is_null($this->container['max_stored_resolution']) && !in_array($this->container['max_stored_resolution'], $allowedValues, true)) {
@@ -400,7 +431,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param string|null $id id
+     * @param string|null $id Unique identifier for the Asset.
      *
      * @return $this
      */
@@ -424,7 +455,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets created_at
      *
-     * @param string|null $created_at created_at
+     * @param string|null $created_at Time at which the object was created. Measured in seconds since the Unix epoch.
      *
      * @return $this
      */
@@ -472,12 +503,21 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets status
      *
-     * @param string|null $status status
+     * @param string|null $status The status of the asset.
      *
      * @return $this
      */
     public function setStatus($status)
     {
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'status', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['status'] = $status;
 
         return $this;
@@ -496,7 +536,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets duration
      *
-     * @param double|null $duration duration
+     * @param double|null $duration The duration of the asset in seconds (max duration for a single asset is 24 hours).
      *
      * @return $this
      */
@@ -520,7 +560,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets max_stored_resolution
      *
-     * @param string|null $max_stored_resolution max_stored_resolution
+     * @param string|null $max_stored_resolution The maximum resolution that has been stored for the asset. The asset may be delivered at lower resolutions depending on the device and bandwidth, however it cannot be delivered at a higher value than is stored.
      *
      * @return $this
      */
@@ -553,7 +593,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets max_stored_frame_rate
      *
-     * @param double|null $max_stored_frame_rate max_stored_frame_rate
+     * @param double|null $max_stored_frame_rate The maximum frame rate that has been stored for the asset. The asset may be delivered at lower frame rates depending on the device and bandwidth, however it cannot be delivered at a higher value than is stored. This field may return -1 if the frame rate of the input cannot be reliably determined.
      *
      * @return $this
      */
@@ -577,7 +617,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets aspect_ratio
      *
-     * @param string|null $aspect_ratio aspect_ratio
+     * @param string|null $aspect_ratio The aspect ratio of the asset in the form of `width:height`, for example `16:9`.
      *
      * @return $this
      */
@@ -697,7 +737,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets is_live
      *
-     * @param bool|null $is_live is_live
+     * @param bool|null $is_live Whether the asset is created from a live stream and the live stream is currently `active` and not in `idle` state.
      *
      * @return $this
      */
@@ -721,7 +761,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough passthrough
+     * @param string|null $passthrough Arbitrary metadata set for the asset. Max 255 characters.
      *
      * @return $this
      */
@@ -745,7 +785,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets live_stream_id
      *
-     * @param string|null $live_stream_id live_stream_id
+     * @param string|null $live_stream_id Unique identifier for the live stream. This is an optional parameter added when the asset is created from a live stream.
      *
      * @return $this
      */
@@ -847,6 +887,30 @@ class Asset implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets source_asset_id
+     *
+     * @return string|null
+     */
+    public function getSourceAssetId()
+    {
+        return $this->container['source_asset_id'];
+    }
+
+    /**
+     * Sets source_asset_id
+     *
+     * @param string|null $source_asset_id Asset Identifier of the video used as the source for creating the clip.
+     *
+     * @return $this
+     */
+    public function setSourceAssetId($source_asset_id)
+    {
+        $this->container['source_asset_id'] = $source_asset_id;
+
+        return $this;
+    }
+
+    /**
      * Gets normalize_audio
      *
      * @return bool|null
@@ -859,7 +923,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets normalize_audio
      *
-     * @param bool|null $normalize_audio normalize_audio
+     * @param bool|null $normalize_audio Normalize the audio track loudness level. This parameter is only applicable to on-demand (not live) assets.
      *
      * @return $this
      */
@@ -955,7 +1019,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets test
      *
-     * @param bool|null $test test
+     * @param bool|null $test Indicates this asset is a test asset if the value is `true`. A Test asset can help evaluate the Mux Video APIs without incurring any cost. There is no limit on number of test assets created. Test assets are watermarked with the Mux logo, limited to 10 seconds, and deleted after 24 hrs.
      *
      * @return $this
      */

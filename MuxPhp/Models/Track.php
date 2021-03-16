@@ -197,6 +197,10 @@ class Track implements ModelInterface, ArrayAccess
     const TYPE_VIDEO = 'video';
     const TYPE_AUDIO = 'audio';
     const TYPE_TEXT = 'text';
+    const MAX_CHANNEL_LAYOUT_MONO = 'mono';
+    const MAX_CHANNEL_LAYOUT_STEREO = 'stereo';
+    const MAX_CHANNEL_LAYOUT__52 = '5.2';
+    const MAX_CHANNEL_LAYOUT__71 = '7.1';
     const TEXT_TYPE_SUBTITLES = 'subtitles';
     
 
@@ -212,6 +216,21 @@ class Track implements ModelInterface, ArrayAccess
             self::TYPE_VIDEO,
             self::TYPE_AUDIO,
             self::TYPE_TEXT,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getMaxChannelLayoutAllowableValues()
+    {
+        return [
+            self::MAX_CHANNEL_LAYOUT_MONO,
+            self::MAX_CHANNEL_LAYOUT_STEREO,
+            self::MAX_CHANNEL_LAYOUT__52,
+            self::MAX_CHANNEL_LAYOUT__71,
         ];
     }
     
@@ -275,6 +294,14 @@ class Track implements ModelInterface, ArrayAccess
             );
         }
 
+        $allowedValues = $this->getMaxChannelLayoutAllowableValues();
+        if (!is_null($this->container['max_channel_layout']) && !in_array($this->container['max_channel_layout'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'max_channel_layout', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
         $allowedValues = $this->getTextTypeAllowableValues();
         if (!is_null($this->container['text_type']) && !in_array($this->container['text_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -311,7 +338,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param string|null $id id
+     * @param string|null $id Unique identifier for the Track
      *
      * @return $this
      */
@@ -335,7 +362,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string|null $type type
+     * @param string|null $type The type of track
      *
      * @return $this
      */
@@ -368,7 +395,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets duration
      *
-     * @param double|null $duration duration
+     * @param double|null $duration The duration in seconds of the track media. This parameter is not set for the `text` type track. This field is optional and may not be set. The top level `duration` field of an asset will always be set.
      *
      * @return $this
      */
@@ -392,7 +419,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets max_width
      *
-     * @param int|null $max_width max_width
+     * @param int|null $max_width The maximum width in pixels available for the track. Only set for the `video` type track.
      *
      * @return $this
      */
@@ -416,7 +443,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets max_height
      *
-     * @param int|null $max_height max_height
+     * @param int|null $max_height The maximum height in pixels available for the track. Only set for the `video` type track.
      *
      * @return $this
      */
@@ -440,7 +467,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets max_frame_rate
      *
-     * @param double|null $max_frame_rate max_frame_rate
+     * @param double|null $max_frame_rate The maximum frame rate available for the track. Only set for the `video` type track. This field may return `-1` if the frame rate of the input cannot be reliably determined.
      *
      * @return $this
      */
@@ -464,7 +491,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets max_channels
      *
-     * @param int|null $max_channels max_channels
+     * @param int|null $max_channels The maximum number of audio channels the track supports. Only set for the `audio` type track.
      *
      * @return $this
      */
@@ -488,12 +515,21 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets max_channel_layout
      *
-     * @param string|null $max_channel_layout max_channel_layout
+     * @param string|null $max_channel_layout Only set for the `audio` type track.
      *
      * @return $this
      */
     public function setMaxChannelLayout($max_channel_layout)
     {
+        $allowedValues = $this->getMaxChannelLayoutAllowableValues();
+        if (!is_null($max_channel_layout) && !in_array($max_channel_layout, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'max_channel_layout', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['max_channel_layout'] = $max_channel_layout;
 
         return $this;
@@ -512,7 +548,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets text_type
      *
-     * @param string|null $text_type text_type
+     * @param string|null $text_type This parameter is set only for the `text` type track.
      *
      * @return $this
      */
@@ -545,7 +581,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets language_code
      *
-     * @param string|null $language_code language_code
+     * @param string|null $language_code The language code value represents [BCP 47](https://tools.ietf.org/html/bcp47) specification compliant value. For example, `en` for English or `en-US` for the US version of English. This parameter is set for `text` type and `subtitles` text type track.
      *
      * @return $this
      */
@@ -569,7 +605,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string|null $name The name of the track containing a human-readable description. The hls manifest will associate a subtitle text track with this value. For example, the value is \"English\" for subtitles text track for the `language_code` value of `en-US`. This parameter is set for the `text` type and `subtitles` text type track.
      *
      * @return $this
      */
@@ -593,7 +629,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets closed_captions
      *
-     * @param bool|null $closed_captions closed_captions
+     * @param bool|null $closed_captions Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH). This parameter is set for the `text` type and `subtitles` text type track.
      *
      * @return $this
      */
@@ -617,7 +653,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough passthrough
+     * @param string|null $passthrough Arbitrary metadata set for the track either when creating the asset or track. This parameter is set for `text` type and `subtitles` text type track. Max 255 characters.
      *
      * @return $this
      */

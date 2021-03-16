@@ -14,6 +14,7 @@ use \MuxPhp\ObjectSerializer;
  * AssetMaster Class Doc Comment
  *
  * @category Class
+ * @description An object containing the current status of Master Access and the link to the Master MP4 file when ready. This object does not exist if &#x60;master_acess&#x60; is set to &#x60;none&#x60; and when the temporary URL expires.
  * @package  MuxPhp
  */
 class AssetMaster implements ModelInterface, ArrayAccess
@@ -139,8 +140,25 @@ class AssetMaster implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    const STATUS_READY = 'ready';
+    const STATUS_PREPARING = 'preparing';
+    const STATUS_ERRORED = 'errored';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_READY,
+            self::STATUS_PREPARING,
+            self::STATUS_ERRORED,
+        ];
+    }
     
 
     /**
@@ -170,6 +188,14 @@ class AssetMaster implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'status', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -205,6 +231,15 @@ class AssetMaster implements ModelInterface, ArrayAccess
      */
     public function setStatus($status)
     {
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'status', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['status'] = $status;
 
         return $this;

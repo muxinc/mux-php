@@ -1,11 +1,10 @@
-# # AssetErrors
+# # GetAssetOrLiveStreamIdResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **string** | The type of error that occurred for this asset. | [optional] 
-**messages** | **string[]** | Error messages with more details. | [optional] 
+**data** | [**\MuxPhp\Models\GetAssetOrLiveStreamIdResponseData**](GetAssetOrLiveStreamIdResponseData.md) |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

@@ -14,6 +14,7 @@ use \MuxPhp\ObjectSerializer;
  * InputSettingsOverlaySettings Class Doc Comment
  *
  * @category Class
+ * @description An object that describes how the image file referenced in url should be placed over the video (i.e. watermarking).
  * @package  MuxPhp
  */
 class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
@@ -279,7 +280,7 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
     /**
      * Sets vertical_align
      *
-     * @param string|null $vertical_align vertical_align
+     * @param string|null $vertical_align Where the vertical positioning of the overlay/watermark should begin from. Defaults to `\"top\"`
      *
      * @return $this
      */
@@ -312,7 +313,7 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
     /**
      * Sets vertical_margin
      *
-     * @param string|null $vertical_margin vertical_margin
+     * @param string|null $vertical_margin The distance from the vertical_align starting point and the image's closest edge. Can be expressed as a percent (\"10%\") or as a pixel value (\"100px\"). Negative values will move the overlay offscreen. In the case of 'middle', a positive value will shift the overlay towards the bottom and and a negative value will shift it towards the top.
      *
      * @return $this
      */
@@ -336,7 +337,7 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
     /**
      * Sets horizontal_align
      *
-     * @param string|null $horizontal_align horizontal_align
+     * @param string|null $horizontal_align Where the horizontal positioning of the overlay/watermark should begin from.
      *
      * @return $this
      */
@@ -369,7 +370,7 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
     /**
      * Sets horizontal_margin
      *
-     * @param string|null $horizontal_margin horizontal_margin
+     * @param string|null $horizontal_margin The distance from the horizontal_align starting point and the image's closest edge. Can be expressed as a percent (\"10%\") or as a pixel value (\"100px\"). Negative values will move the overlay offscreen. In the case of 'center', a positive value will shift the image towards the right and and a negative value will shift it towards the left.
      *
      * @return $this
      */
@@ -393,7 +394,7 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
     /**
      * Sets width
      *
-     * @param string|null $width width
+     * @param string|null $width How wide the overlay should appear. Can be expressed as a percent (\"10%\") or as a pixel value (\"100px\"). If both width and height are left blank the width will be the true pixels of the image, applied as if the video has been scaled to fit a 1920x1080 frame. If height is supplied with no width, the width will scale proportionally to the height.
      *
      * @return $this
      */
@@ -417,7 +418,7 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
     /**
      * Sets height
      *
-     * @param string|null $height height
+     * @param string|null $height How tall the overlay should appear. Can be expressed as a percent (\"10%\") or as a pixel value (\"100px\"). If both width and height are left blank the height will be the true pixels of the image, applied as if the video has been scaled to fit a 1920x1080 frame. If width is supplied with no height, the height will scale proportionally to the width.
      *
      * @return $this
      */
@@ -441,7 +442,7 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess
     /**
      * Sets opacity
      *
-     * @param string|null $opacity opacity
+     * @param string|null $opacity How opaque the overlay should appear, expressed as a percent. (Default 100%)
      *
      * @return $this
      */

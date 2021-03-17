@@ -325,7 +325,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess
     /**
      * Sets video_codec
      *
-     * @param string|null $video_codec The video codec used on the input file
+     * @param string|null $video_codec The video codec used on the input file.
      *
      * @return $this
      */
@@ -349,7 +349,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess
     /**
      * Sets audio_codec
      *
-     * @param string|null $audio_codec The audio codec used on the input file
+     * @param string|null $audio_codec The audio codec used on the input file.
      *
      * @return $this
      */
@@ -373,7 +373,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess
     /**
      * Sets video_gop_size
      *
-     * @param string|null $video_gop_size The video key frame Interval (also called as Group of Picture or GOP) of the input file
+     * @param string|null $video_gop_size The video key frame Interval (also called as Group of Picture or GOP) of the input file.
      *
      * @return $this
      */
@@ -406,7 +406,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess
     /**
      * Sets video_frame_rate
      *
-     * @param string|null $video_frame_rate The video frame rate of the input file
+     * @param string|null $video_frame_rate The video frame rate of the input file.
      *
      * @return $this
      */
@@ -430,7 +430,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess
     /**
      * Sets video_resolution
      *
-     * @param string|null $video_resolution The video resolution of the input file
+     * @param string|null $video_resolution The video resolution of the input file.
      *
      * @return $this
      */
@@ -454,7 +454,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess
     /**
      * Sets pixel_aspect_ratio
      *
-     * @param string|null $pixel_aspect_ratio The video pixel aspect ratio of the input file
+     * @param string|null $pixel_aspect_ratio The video pixel aspect ratio of the input file.
      *
      * @return $this
      */
@@ -478,7 +478,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess
     /**
      * Sets video_edit_list
      *
-     * @param string|null $video_edit_list Video Edit List reason indicates that the input file's video track contains a complex Edit Decision List
+     * @param string|null $video_edit_list Video Edit List reason indicates that the input file's video track contains a complex Edit Decision List.
      *
      * @return $this
      */
@@ -511,7 +511,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess
     /**
      * Sets audio_edit_list
      *
-     * @param string|null $audio_edit_list Audio Edit List reason indicates that the input file's audio track contains a complex Edit Decision List
+     * @param string|null $audio_edit_list Audio Edit List reason indicates that the input file's audio track contains a complex Edit Decision List.
      *
      * @return $this
      */
@@ -544,7 +544,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess
     /**
      * Sets unexpected_media_file_parameters
      *
-     * @param string|null $unexpected_media_file_parameters A catch-all reason when the input file in created with non-standard encoding parameters
+     * @param string|null $unexpected_media_file_parameters A catch-all reason when the input file in created with non-standard encoding parameters.
      *
      * @return $this
      */

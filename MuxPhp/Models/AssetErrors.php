@@ -199,7 +199,7 @@ class AssetErrors implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string|null $type type
+     * @param string|null $type The type of error that occurred for this asset.
      *
      * @return $this
      */
@@ -223,7 +223,7 @@ class AssetErrors implements ModelInterface, ArrayAccess
     /**
      * Sets messages
      *
-     * @param string[]|null $messages messages
+     * @param string[]|null $messages Error messages with more details.
      *
      * @return $this
      */

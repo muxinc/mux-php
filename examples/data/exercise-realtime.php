@@ -1,6 +1,5 @@
 <?php
-
-    assert_options(ASSERT_BAIL, true);
+    require_once(__DIR__ . '/../assert.php');
     require_once 'vendor/autoload.php';
 
     // Authentication Setup
@@ -20,7 +19,7 @@
     // ========== list-realtime-dimensions ==========
     $dimensions = $realtimeApi->listRealtimeDimensions();
     assert($dimensions != null);
-    assert($dimensions->getData() != null);
+    assert(is_array($dimensions->getData()));
     assert(count($dimensions->getData()) > 0);
     assert($dimensions->getData()[0]->getName() != '');
     assert($dimensions->getData()[0]->getDisplayName() != '');
@@ -29,7 +28,7 @@
     // ========== list-realtime-metrics ==========
     $metrics = $realtimeApi->listRealtimeMetrics();
     assert($metrics != null);
-    assert($metrics->getData() != null);
+    assert(is_array($metrics->getData()));
     assert(count($metrics->getData()) > 0);
     assert($metrics->getData()[0]->getName() != '');
     assert($metrics->getData()[0]->getDisplayName() != '');
@@ -38,7 +37,7 @@
     // ========== get-realtime-breakdown ==========
     $breakdown = $realtimeApi->GetRealtimeBreakdown('current-rebuffering-percentage', ['dimension' => 'asn']);
     assert($breakdown != null);
-    assert($breakdown->getData() != null);
+    assert(is_array($breakdown->getData()));
     print("get-realtime-breakdown OK ✅\n");
 
     // ========== get-realtime-histogram-timeseries ==========
@@ -54,7 +53,7 @@
     // ========== get-realtime-timeseries ==========
     $timeseries = $realtimeApi->GetRealtimeTimeseries('current-rebuffering-percentage');
     assert($timeseries != null);
-    assert($timeseries->getData() != null);
+    assert(is_array($timeseries->getData()));
     assert(count($timeseries->getData()) > 0);
     assert($timeseries->getData()[0]->getDate() != '');
     print("get-realtime-timeseries OK ✅\n");

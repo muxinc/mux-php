@@ -11,12 +11,13 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * PlaybackID Class Doc Comment
+ * GetAssetOrLiveStreamIdResponseDataObject Class Doc Comment
  *
  * @category Class
+ * @description Describes the Asset or LiveStream object associated with the playback ID.
  * @package  MuxPhp
  */
-class PlaybackID implements ModelInterface, ArrayAccess
+class GetAssetOrLiveStreamIdResponseDataObject implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -25,7 +26,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      *
      * @var string
      */
-    protected static $openAPIModelName = 'PlaybackID';
+    protected static $openAPIModelName = 'GetAssetOrLiveStreamIdResponse_data_object';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -34,7 +35,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      */
     protected static $openAPITypes = [
         'id' => 'string',
-        'policy' => '\MuxPhp\Models\PlaybackPolicy'
+        'type' => 'string'
     ];
 
     /**
@@ -44,7 +45,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      */
     protected static $openAPIFormats = [
         'id' => null,
-        'policy' => null
+        'type' => null
     ];
 
     /**
@@ -75,7 +76,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'policy' => 'policy'
+        'type' => 'type'
     ];
 
     /**
@@ -85,7 +86,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'id' => 'setId',
-        'policy' => 'setPolicy'
+        'type' => 'setType'
     ];
 
     /**
@@ -95,7 +96,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'id' => 'getId',
-        'policy' => 'getPolicy'
+        'type' => 'getType'
     ];
 
     /**
@@ -139,8 +140,23 @@ class PlaybackID implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    const TYPE_ASSET = 'asset';
+    const TYPE_LIVE_STREAM = 'live_stream';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_ASSET,
+            self::TYPE_LIVE_STREAM,
+        ];
+    }
     
 
     /**
@@ -159,7 +175,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['policy'] = isset($data['policy']) ? $data['policy'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
     }
 
     /**
@@ -170,6 +186,14 @@ class PlaybackID implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'type', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -199,7 +223,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param string|null $id Unique identifier for the PlaybackID
+     * @param string|null $id The identifier of the object.
      *
      * @return $this
      */
@@ -211,25 +235,34 @@ class PlaybackID implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets policy
+     * Gets type
      *
-     * @return \MuxPhp\Models\PlaybackPolicy|null
+     * @return string|null
      */
-    public function getPolicy()
+    public function getType()
     {
-        return $this->container['policy'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets policy
+     * Sets type
      *
-     * @param \MuxPhp\Models\PlaybackPolicy|null $policy policy
+     * @param string|null $type Identifies the object type associated with the playback ID.
      *
      * @return $this
      */
-    public function setPolicy($policy)
+    public function setType($type)
     {
-        $this->container['policy'] = $policy;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'type', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

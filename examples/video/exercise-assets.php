@@ -1,6 +1,5 @@
 <?php
-
-    assert_options(ASSERT_BAIL, true);
+    require_once(__DIR__ . '/../assert.php');
     require_once 'vendor/autoload.php';
 
     // Exercises all asset operations.
@@ -12,6 +11,10 @@
 
     // API Client Initialization
     $assetsApi = new MuxPhp\Api\AssetsApi(
+        new GuzzleHttp\Client(),
+        $config
+    );
+    $playbackIdApi = new MuxPhp\Api\PlaybackIDApi(
         new GuzzleHttp\Client(),
         $config
     );
@@ -53,6 +56,13 @@
     print("get-asset OK ✅\n");
     print("get-asset-input-info OK ✅\n");
 
+    // ========== clipping ==========
+    $clipInput = new MuxPhp\Models\InputSettings(["url" => "mux://assets/" . $createAssetResponse->getData()->getId(), "start_time" => 0, "end_time => 5"]);
+    $clipRequest = new MuxPhp\Models\CreateAssetRequest(["input" => [$input]]);
+    $clipResponse = $assetsApi->createAsset($clipRequest);
+    assert($clipResponse->getData()->getId() != null);
+    print("clipping OK ✅\n");
+
     // ========== create-asset-playback-id ==========
     $createAssetPlaybackIdRequest = new MuxPhp\Models\CreatePlaybackIDRequest(["policy" => MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY]);
     $playbackId = $assetsApi->createAssetPlaybackId($createAssetResponse->getData()->getId(), $createAssetPlaybackIdRequest);
@@ -65,6 +75,13 @@
     assert($playbackIdGet->getData()->getId() != null);
     assert($playbackIdGet->getData()->getId() == $playbackId->getData()->getId());
     print("get-asset-playback-id OK ✅\n");
+
+    // ========== get-asset-or-livestream-id ==========
+    $pbId = $playbackIdGet->getData()->getId();
+    $pbPlaybackAssetGet = $playbackIdApi->getAssetOrLivestreamId($pbId);
+    assert($pbPlaybackAssetGet->getData()->getObject()->getId() == $createAssetResponse->getData()->getId());
+    assert($pbPlaybackAssetGet->getData()->getObject()->getType() == "asset");
+    print("get-asset-or-livestream-id OK ✅\n");
 
     // ========== update-asset-mp4-support ==========
     $updateAssetMp4SupportRequest = new MuxPhp\Models\UpdateAssetMP4SupportRequest(["mp4_support" => "standard"]);

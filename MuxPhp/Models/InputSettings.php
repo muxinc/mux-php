@@ -14,7 +14,7 @@ use \MuxPhp\ObjectSerializer;
  * InputSettings Class Doc Comment
  *
  * @category Class
- * @description Input object with additional configuration
+ * @description An array of objects that each describe an input file to be used to create the asset. As a shortcut, &#x60;input&#x60; can also be a string URL for a file when only one input file is used. See &#x60;input[].url&#x60; for requirements.
  * @package  MuxPhp
  */
 class InputSettings implements ModelInterface, ArrayAccess
@@ -36,6 +36,8 @@ class InputSettings implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'url' => 'string',
         'overlay_settings' => '\MuxPhp\Models\InputSettingsOverlaySettings',
+        'start_time' => 'double',
+        'end_time' => 'double',
         'type' => 'string',
         'text_type' => 'string',
         'language_code' => 'string',
@@ -52,6 +54,8 @@ class InputSettings implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'url' => null,
         'overlay_settings' => null,
+        'start_time' => 'double',
+        'end_time' => 'double',
         'type' => null,
         'text_type' => null,
         'language_code' => null,
@@ -89,6 +93,8 @@ class InputSettings implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'url' => 'url',
         'overlay_settings' => 'overlay_settings',
+        'start_time' => 'start_time',
+        'end_time' => 'end_time',
         'type' => 'type',
         'text_type' => 'text_type',
         'language_code' => 'language_code',
@@ -105,6 +111,8 @@ class InputSettings implements ModelInterface, ArrayAccess
     protected static $setters = [
         'url' => 'setUrl',
         'overlay_settings' => 'setOverlaySettings',
+        'start_time' => 'setStartTime',
+        'end_time' => 'setEndTime',
         'type' => 'setType',
         'text_type' => 'setTextType',
         'language_code' => 'setLanguageCode',
@@ -121,6 +129,8 @@ class InputSettings implements ModelInterface, ArrayAccess
     protected static $getters = [
         'url' => 'getUrl',
         'overlay_settings' => 'getOverlaySettings',
+        'start_time' => 'getStartTime',
+        'end_time' => 'getEndTime',
         'type' => 'getType',
         'text_type' => 'getTextType',
         'language_code' => 'getLanguageCode',
@@ -221,6 +231,8 @@ class InputSettings implements ModelInterface, ArrayAccess
     {
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
         $this->container['overlay_settings'] = isset($data['overlay_settings']) ? $data['overlay_settings'] : null;
+        $this->container['start_time'] = isset($data['start_time']) ? $data['start_time'] : null;
+        $this->container['end_time'] = isset($data['end_time']) ? $data['end_time'] : null;
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
         $this->container['text_type'] = isset($data['text_type']) ? $data['text_type'] : null;
         $this->container['language_code'] = isset($data['language_code']) ? $data['language_code'] : null;
@@ -282,7 +294,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets url
      *
-     * @param string|null $url url
+     * @param string|null $url The web address of the file that Mux should download and use. * For subtitles text tracks, the url is the location of subtitle/captions file. Mux supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) format for ingesting Subtitles and Closed Captions. * For Watermarking or Overlay, the url is the location of the watermark image. * When creating clips from existing Mux assets, the url is defined with `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier for creating the clip from.
      *
      * @return $this
      */
@@ -318,6 +330,54 @@ class InputSettings implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets start_time
+     *
+     * @return double|null
+     */
+    public function getStartTime()
+    {
+        return $this->container['start_time'];
+    }
+
+    /**
+     * Sets start_time
+     *
+     * @param double|null $start_time The time offset in seconds from the beginning of the video indicating the clip's starting marker. The default value is 0 when not included.
+     *
+     * @return $this
+     */
+    public function setStartTime($start_time)
+    {
+        $this->container['start_time'] = $start_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets end_time
+     *
+     * @return double|null
+     */
+    public function getEndTime()
+    {
+        return $this->container['end_time'];
+    }
+
+    /**
+     * Sets end_time
+     *
+     * @param double|null $end_time The time offset in seconds from the beginning of the video, indicating the clip's ending marker. The default value is the duration of the video when not included.
+     *
+     * @return $this
+     */
+    public function setEndTime($end_time)
+    {
+        $this->container['end_time'] = $end_time;
+
+        return $this;
+    }
+
+    /**
      * Gets type
      *
      * @return string|null
@@ -330,7 +390,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string|null $type type
+     * @param string|null $type This parameter is required for the `text` track type.
      *
      * @return $this
      */
@@ -363,7 +423,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets text_type
      *
-     * @param string|null $text_type text_type
+     * @param string|null $text_type Type of text track. This parameter only supports subtitles value. For more information on Subtitles / Closed Captions, [see this blog post](https://mux.com/blog/subtitles-captions-webvtt-hls-and-those-magic-flags/). This parameter is required for `text` track type.
      *
      * @return $this
      */
@@ -396,7 +456,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets language_code
      *
-     * @param string|null $language_code language_code
+     * @param string|null $language_code The language code value must be a valid [BCP 47](https://tools.ietf.org/html/bcp47) specification compliant value. For example, en for English or en-US for the US version of English. This parameter is required for text type and subtitles text type track.
      *
      * @return $this
      */
@@ -420,7 +480,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string|null $name The name of the track containing a human-readable description. This value must be unique across all text type and subtitles `text` type tracks. The hls manifest will associate a subtitle text track with this value. For example, the value should be \"English\" for subtitles text track with language_code as en. This optional parameter should be used only for `text` type and subtitles `text` type track. If this parameter is not included, Mux will auto-populate based on the `input[].language_code` value.
      *
      * @return $this
      */
@@ -444,7 +504,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets closed_captions
      *
-     * @param bool|null $closed_captions closed_captions
+     * @param bool|null $closed_captions Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH). This optional parameter should be used for `text` type and subtitles `text` type tracks.
      *
      * @return $this
      */
@@ -468,7 +528,7 @@ class InputSettings implements ModelInterface, ArrayAccess
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough passthrough
+     * @param string|null $passthrough This optional parameter should be used for `text` type and subtitles `text` type tracks.
      *
      * @return $this
      */

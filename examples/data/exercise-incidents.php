@@ -1,6 +1,5 @@
 <?php
-
-    assert_options(ASSERT_BAIL, true);
+    require_once(__DIR__ . '/../assert.php');
     require_once 'vendor/autoload.php';
 
     // Authentication Setup
@@ -19,7 +18,7 @@
     // ========== list-incidents ==========
     $incidents = $incidentsApi->listIncidents();
     assert($incidents != null);
-    assert($incidents->getData() != null);
+    assert(is_array($incidents->getData()));
     print("list-incidents OK ✅\n");
 
     // ========== get-incident ==========

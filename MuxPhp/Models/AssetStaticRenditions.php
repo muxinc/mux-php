@@ -226,7 +226,7 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess
     /**
      * Sets status
      *
-     * @param string|null $status * `ready`: All MP4s are downloadable * `preparing`: We are preparing the MP4s * `disabled`: MP4 support was not requested or has been removed * `errored`: There was a Mux internal error that prevented the MP4s from being created
+     * @param string|null $status Indicates the status of downloadable MP4 versions of this asset.
      *
      * @return $this
      */

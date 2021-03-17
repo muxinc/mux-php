@@ -1,6 +1,5 @@
 <?php
-
-    assert_options(ASSERT_BAIL, true);
+    require_once(__DIR__ . '/../assert.php');
     require_once 'vendor/autoload.php';
 
     // Exercises all live stream operations.
@@ -12,6 +11,10 @@
 
     // API Client Initialization
     $liveApi = new MuxPhp\Api\LiveStreamsApi(
+        new GuzzleHttp\Client(),
+        $config
+    );
+    $playbackIdApi = new MuxPhp\Api\PlaybackIDApi(
         new GuzzleHttp\Client(),
         $config
     );
@@ -34,6 +37,14 @@
     assert($getStream->getData()->getId() != null);
     assert($getStream->getData()->getId() == $stream->getData()->getId());
     print("get-live-stream OK ✅\n");
+
+    // ========== get-asset-or-livestream-id ==========
+    $pbId = $stream->getData()->getPlaybackIds()[0]->getId();
+    $pbPlaybackAssetGet = $playbackIdApi->getAssetOrLivestreamId($pbId);
+    assert($pbPlaybackAssetGet->getData()->getObject()->getId() == $stream->getData()->getId());
+    assert($pbPlaybackAssetGet->getData()->getObject()->getType() == "live_stream");
+    print("get-asset-or-livestream-id OK ✅\n");
+    
 
     // ========== create-live-stream-simulcast-target ==========
     $createTarget = new MuxPhp\Models\CreateSimulcastTargetRequest(["passthrough" => "That's not on fire", "url" => "rtmp://glitch.tv", "stream_key" => "somethingverylongnoonewilleverremember"]);
@@ -98,7 +109,7 @@
         exit(1);
     }
     $disabledStream = $liveApi->getLiveStream($stream->getData()->getId());
-    assert($disabledStream.getData().getStatus() == 'disabled');
+    assert($disabledStream->getData()->getStatus() == 'disabled');
     print("disable-live-stream OK ✅\n");
 
     // ========== enable-live-stream ==========
@@ -110,7 +121,7 @@
         exit(1);
     }
     $enabledStream = $liveApi->getLiveStream($stream->getData()->getId());
-    assert($enabledStream.getData().getStatus() == 'idle');
+    assert($enabledStream->getData()->getStatus() == 'idle');
     print("enable-live-stream OK ✅\n");
 
     // ========== delete-live-stream ==========

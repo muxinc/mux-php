@@ -199,7 +199,7 @@ class AssetRecordingTimes implements ModelInterface, ArrayAccess
     /**
      * Sets started_at
      *
-     * @param \DateTime|null $started_at The time at which the recording for the live stream started. The time value is Unix epoch time represented in ISO 8601 format
+     * @param \DateTime|null $started_at The time at which the recording for the live stream started. The time value is Unix epoch time represented in ISO 8601 format.
      *
      * @return $this
      */
@@ -223,7 +223,7 @@ class AssetRecordingTimes implements ModelInterface, ArrayAccess
     /**
      * Sets duration
      *
-     * @param double|null $duration The duration of the live stream recorded. The time value is in seconds
+     * @param double|null $duration The duration of the live stream recorded. The time value is in seconds.
      *
      * @return $this
      */

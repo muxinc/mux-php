@@ -11,12 +11,12 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * PlaybackID Class Doc Comment
+ * GetAssetOrLiveStreamIdResponse Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
  */
-class PlaybackID implements ModelInterface, ArrayAccess
+class GetAssetOrLiveStreamIdResponse implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -25,7 +25,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      *
      * @var string
      */
-    protected static $openAPIModelName = 'PlaybackID';
+    protected static $openAPIModelName = 'GetAssetOrLiveStreamIdResponse';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -33,8 +33,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'policy' => '\MuxPhp\Models\PlaybackPolicy'
+        'data' => '\MuxPhp\Models\GetAssetOrLiveStreamIdResponseData'
     ];
 
     /**
@@ -43,8 +42,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $openAPIFormats = [
-        'id' => null,
-        'policy' => null
+        'data' => null
     ];
 
     /**
@@ -74,8 +72,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'policy' => 'policy'
+        'data' => 'data'
     ];
 
     /**
@@ -84,8 +81,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'policy' => 'setPolicy'
+        'data' => 'setData'
     ];
 
     /**
@@ -94,8 +90,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'policy' => 'getPolicy'
+        'data' => 'getData'
     ];
 
     /**
@@ -158,8 +153,7 @@ class PlaybackID implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['policy'] = isset($data['policy']) ? $data['policy'] : null;
+        $this->container['data'] = isset($data['data']) ? $data['data'] : null;
     }
 
     /**
@@ -187,49 +181,25 @@ class PlaybackID implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets id
+     * Gets data
      *
-     * @return string|null
+     * @return \MuxPhp\Models\GetAssetOrLiveStreamIdResponseData|null
      */
-    public function getId()
+    public function getData()
     {
-        return $this->container['id'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets id
+     * Sets data
      *
-     * @param string|null $id Unique identifier for the PlaybackID
+     * @param \MuxPhp\Models\GetAssetOrLiveStreamIdResponseData|null $data data
      *
      * @return $this
      */
-    public function setId($id)
+    public function setData($data)
     {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets policy
-     *
-     * @return \MuxPhp\Models\PlaybackPolicy|null
-     */
-    public function getPolicy()
-    {
-        return $this->container['policy'];
-    }
-
-    /**
-     * Sets policy
-     *
-     * @param \MuxPhp\Models\PlaybackPolicy|null $policy policy
-     *
-     * @return $this
-     */
-    public function setPolicy($policy)
-    {
-        $this->container['policy'] = $policy;
+        $this->container['data'] = $data;
 
         return $this;
     }

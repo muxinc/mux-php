@@ -472,7 +472,20 @@ use {{invokerPackage}}\ObjectSerializer;
         $multipart = false;
 
         {{#queryParams}}
-        // query params
+        // Query Param: {{baseName}}
+        {{#collectionFormat}}
+        if (${{paramName}} !== null) {
+            if (is_array(${{paramName}})) {
+                foreach (${{paramName}} as $p) {
+                    array_push($queryParams, "{{baseName}}=$p");
+                }
+            }
+            else {
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter {{baseName}}');
+            }
+        }
+        {{/collectionFormat}}
+        {{^collectionFormat}}
         {{#isExplode}}
         if (${{paramName}} !== null) {
         {{#style}}
@@ -498,6 +511,7 @@ use {{invokerPackage}}\ObjectSerializer;
             $queryParams['{{baseName}}'] = ${{paramName}};
         }
         {{/isExplode}}
+        {{/collectionFormat}}
         {{/queryParams}}
 
         {{#headerParams}}

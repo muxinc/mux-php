@@ -203,10 +203,10 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-    const VIDEO_GOP_SIZE_HIGH = 'high';
-    const VIDEO_EDIT_LIST_NON_STANDARD = 'non-standard';
-    const AUDIO_EDIT_LIST_NON_STANDARD = 'non-standard';
-    const UNEXPECTED_MEDIA_FILE_PARAMETERS_NON_STANDARD = 'non-standard';
+    public const VIDEO_GOP_SIZE_HIGH = 'high';
+    public const VIDEO_EDIT_LIST_NON_STANDARD = 'non-standard';
+    public const AUDIO_EDIT_LIST_NON_STANDARD = 'non-standard';
+    public const UNEXPECTED_MEDIA_FILE_PARAMETERS_NON_STANDARD = 'non-standard';
     
 
     
@@ -274,6 +274,9 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['video_codec'] = $data['video_codec'] ?? null;
         $this->container['audio_codec'] = $data['audio_codec'] ?? null;
         $this->container['video_gop_size'] = $data['video_gop_size'] ?? null;

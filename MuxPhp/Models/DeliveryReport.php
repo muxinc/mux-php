@@ -212,6 +212,9 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['live_stream_id'] = $data['live_stream_id'] ?? null;
         $this->container['asset_id'] = $data['asset_id'] ?? null;
         $this->container['passthrough'] = $data['passthrough'] ?? null;

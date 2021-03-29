@@ -187,6 +187,9 @@ class FilterValue implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['value'] = $data['value'] ?? null;
         $this->container['total_count'] = $data['total_count'] ?? null;
     }

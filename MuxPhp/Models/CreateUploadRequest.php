@@ -197,6 +197,9 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['timeout'] = $data['timeout'] ?? 3600;
         $this->container['cors_origin'] = $data['cors_origin'] ?? null;
         $this->container['new_asset_settings'] = $data['new_asset_settings'] ?? null;

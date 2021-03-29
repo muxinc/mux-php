@@ -169,9 +169,9 @@ class AssetMaster implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const STATUS_READY = 'ready';
-    const STATUS_PREPARING = 'preparing';
-    const STATUS_ERRORED = 'errored';
+    public const STATUS_READY = 'ready';
+    public const STATUS_PREPARING = 'preparing';
+    public const STATUS_ERRORED = 'errored';
     
 
     
@@ -205,6 +205,9 @@ class AssetMaster implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['status'] = $data['status'] ?? null;
         $this->container['url'] = $data['url'] ?? null;
     }

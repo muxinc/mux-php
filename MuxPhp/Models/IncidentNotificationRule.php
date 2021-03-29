@@ -202,6 +202,9 @@ class IncidentNotificationRule implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['status'] = $data['status'] ?? null;
         $this->container['rules'] = $data['rules'] ?? null;
         $this->container['property_id'] = $data['property_id'] ?? null;

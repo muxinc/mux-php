@@ -737,6 +737,9 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['view_total_upscaling'] = $data['view_total_upscaling'] ?? null;
         $this->container['preroll_ad_asset_hostname'] = $data['preroll_ad_asset_hostname'] ?? null;
         $this->container['player_source_domain'] = $data['player_source_domain'] ?? null;

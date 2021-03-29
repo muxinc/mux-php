@@ -202,6 +202,9 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['value'] = $data['value'] ?? null;
         $this->container['negative_impact'] = $data['negative_impact'] ?? null;
         $this->container['metric_value'] = $data['metric_value'] ?? null;

@@ -198,10 +198,10 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    const MP4_SUPPORT_NONE = 'none';
-    const MP4_SUPPORT_STANDARD = 'standard';
-    const MASTER_ACCESS_NONE = 'none';
-    const MASTER_ACCESS_TEMPORARY = 'temporary';
+    public const MP4_SUPPORT_NONE = 'none';
+    public const MP4_SUPPORT_STANDARD = 'standard';
+    public const MASTER_ACCESS_NONE = 'none';
+    public const MASTER_ACCESS_TEMPORARY = 'temporary';
     
 
     
@@ -247,6 +247,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['input'] = $data['input'] ?? null;
         $this->container['playback_policy'] = $data['playback_policy'] ?? null;
         $this->container['per_title_encode'] = $data['per_title_encode'] ?? null;

@@ -194,12 +194,12 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-    const VERTICAL_ALIGN_TOP = 'top';
-    const VERTICAL_ALIGN_MIDDLE = 'middle';
-    const VERTICAL_ALIGN_BOTTOM = 'bottom';
-    const HORIZONTAL_ALIGN_LEFT = 'left';
-    const HORIZONTAL_ALIGN_CENTER = 'center';
-    const HORIZONTAL_ALIGN_RIGHT = 'right';
+    public const VERTICAL_ALIGN_TOP = 'top';
+    public const VERTICAL_ALIGN_MIDDLE = 'middle';
+    public const VERTICAL_ALIGN_BOTTOM = 'bottom';
+    public const HORIZONTAL_ALIGN_LEFT = 'left';
+    public const HORIZONTAL_ALIGN_CENTER = 'center';
+    public const HORIZONTAL_ALIGN_RIGHT = 'right';
     
 
     
@@ -247,6 +247,9 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['vertical_align'] = $data['vertical_align'] ?? null;
         $this->container['vertical_margin'] = $data['vertical_margin'] ?? null;
         $this->container['horizontal_align'] = $data['horizontal_align'] ?? null;

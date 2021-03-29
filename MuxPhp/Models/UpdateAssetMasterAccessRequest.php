@@ -163,8 +163,8 @@ class UpdateAssetMasterAccessRequest implements ModelInterface, ArrayAccess, \Js
         return self::$openAPIModelName;
     }
 
-    const MASTER_ACCESS_TEMPORARY = 'temporary';
-    const MASTER_ACCESS_NONE = 'none';
+    public const MASTER_ACCESS_TEMPORARY = 'temporary';
+    public const MASTER_ACCESS_NONE = 'none';
     
 
     
@@ -197,6 +197,9 @@ class UpdateAssetMasterAccessRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['master_access'] = $data['master_access'] ?? null;
     }
 

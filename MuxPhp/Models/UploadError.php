@@ -188,6 +188,9 @@ class UploadError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['type'] = $data['type'] ?? null;
         $this->container['message'] = $data['message'] ?? null;
     }

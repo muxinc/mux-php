@@ -209,10 +209,10 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const TYPE_VIDEO = 'video';
-    const TYPE_AUDIO = 'audio';
-    const TYPE_TEXT = 'text';
-    const TEXT_TYPE_SUBTITLES = 'subtitles';
+    public const TYPE_VIDEO = 'video';
+    public const TYPE_AUDIO = 'audio';
+    public const TYPE_TEXT = 'text';
+    public const TEXT_TYPE_SUBTITLES = 'subtitles';
     
 
     
@@ -258,6 +258,9 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['url'] = $data['url'] ?? null;
         $this->container['overlay_settings'] = $data['overlay_settings'] ?? null;
         $this->container['start_time'] = $data['start_time'] ?? null;

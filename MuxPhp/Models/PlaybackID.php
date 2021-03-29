@@ -187,6 +187,9 @@ class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['id'] = $data['id'] ?? null;
         $this->container['policy'] = $data['policy'] ?? null;
     }

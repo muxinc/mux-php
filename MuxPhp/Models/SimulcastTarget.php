@@ -183,10 +183,10 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const STATUS_IDLE = 'idle';
-    const STATUS_STARTING = 'starting';
-    const STATUS_BROADCASTING = 'broadcasting';
-    const STATUS_ERRORED = 'errored';
+    public const STATUS_IDLE = 'idle';
+    public const STATUS_STARTING = 'starting';
+    public const STATUS_BROADCASTING = 'broadcasting';
+    public const STATUS_ERRORED = 'errored';
     
 
     
@@ -221,6 +221,9 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['id'] = $data['id'] ?? null;
         $this->container['passthrough'] = $data['passthrough'] ?? null;
         $this->container['status'] = $data['status'] ?? null;

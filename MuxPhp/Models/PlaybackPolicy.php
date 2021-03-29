@@ -43,8 +43,8 @@ class PlaybackPolicy
     /**
      * Possible values of this enum
      */
-    const _PUBLIC = 'public';
-    const SIGNED = 'signed';
+    public const _PUBLIC = 'public';
+    public const SIGNED = 'signed';
     
     /**
      * Gets allowable values of the enum

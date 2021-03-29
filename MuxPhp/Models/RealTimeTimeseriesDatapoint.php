@@ -192,6 +192,9 @@ class RealTimeTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['value'] = $data['value'] ?? null;
         $this->container['date'] = $data['date'] ?? null;
         $this->container['concurent_viewers'] = $data['concurent_viewers'] ?? null;

@@ -163,8 +163,8 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-    const MP4_SUPPORT_STANDARD = 'standard';
-    const MP4_SUPPORT_NONE = 'none';
+    public const MP4_SUPPORT_STANDARD = 'standard';
+    public const MP4_SUPPORT_NONE = 'none';
     
 
     
@@ -197,6 +197,9 @@ class UpdateAssetMP4SupportRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['mp4_support'] = $data['mp4_support'] ?? null;
     }
 

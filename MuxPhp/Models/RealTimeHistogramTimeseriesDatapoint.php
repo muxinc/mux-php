@@ -212,6 +212,9 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['timestamp'] = $data['timestamp'] ?? null;
         $this->container['sum'] = $data['sum'] ?? null;
         $this->container['p95'] = $data['p95'] ?? null;

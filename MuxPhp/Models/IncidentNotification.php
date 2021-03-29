@@ -192,6 +192,9 @@ class IncidentNotification implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['queued_at'] = $data['queued_at'] ?? null;
         $this->container['id'] = $data['id'] ?? null;
         $this->container['attempted_at'] = $data['attempted_at'] ?? null;

@@ -192,6 +192,9 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['passthrough'] = $data['passthrough'] ?? null;
         $this->container['stream_key'] = $data['stream_key'] ?? null;
         $this->container['url'] = $data['url'] ?? null;

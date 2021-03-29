@@ -223,14 +223,14 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const TYPE_VIDEO = 'video';
-    const TYPE_AUDIO = 'audio';
-    const TYPE_TEXT = 'text';
-    const MAX_CHANNEL_LAYOUT_MONO = 'mono';
-    const MAX_CHANNEL_LAYOUT_STEREO = 'stereo';
-    const MAX_CHANNEL_LAYOUT__5_2 = '5.2';
-    const MAX_CHANNEL_LAYOUT__7_1 = '7.1';
-    const TEXT_TYPE_SUBTITLES = 'subtitles';
+    public const TYPE_VIDEO = 'video';
+    public const TYPE_AUDIO = 'audio';
+    public const TYPE_TEXT = 'text';
+    public const MAX_CHANNEL_LAYOUT_MONO = 'mono';
+    public const MAX_CHANNEL_LAYOUT_STEREO = 'stereo';
+    public const MAX_CHANNEL_LAYOUT__5_2 = '5.2';
+    public const MAX_CHANNEL_LAYOUT__7_1 = '7.1';
+    public const TEXT_TYPE_SUBTITLES = 'subtitles';
     
 
     
@@ -291,6 +291,9 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['id'] = $data['id'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
         $this->container['duration'] = $data['duration'] ?? null;

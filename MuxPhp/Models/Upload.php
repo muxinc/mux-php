@@ -203,11 +203,11 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const STATUS_WAITING = 'waiting';
-    const STATUS_ASSET_CREATED = 'asset_created';
-    const STATUS_ERRORED = 'errored';
-    const STATUS_CANCELLED = 'cancelled';
-    const STATUS_TIMED_OUT = 'timed_out';
+    public const STATUS_WAITING = 'waiting';
+    public const STATUS_ASSET_CREATED = 'asset_created';
+    public const STATUS_ERRORED = 'errored';
+    public const STATUS_CANCELLED = 'cancelled';
+    public const STATUS_TIMED_OUT = 'timed_out';
     
 
     
@@ -243,6 +243,9 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['id'] = $data['id'] ?? null;
         $this->container['timeout'] = $data['timeout'] ?? 3600;
         $this->container['status'] = $data['status'] ?? null;

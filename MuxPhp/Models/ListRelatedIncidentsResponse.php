@@ -192,6 +192,9 @@ class ListRelatedIncidentsResponse implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['data'] = $data['data'] ?? null;
         $this->container['total_row_count'] = $data['total_row_count'] ?? null;
         $this->container['timeframe'] = $data['timeframe'] ?? null;

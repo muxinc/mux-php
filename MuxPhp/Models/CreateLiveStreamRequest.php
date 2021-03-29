@@ -212,6 +212,9 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['playback_policy'] = $data['playback_policy'] ?? null;
         $this->container['new_asset_settings'] = $data['new_asset_settings'] ?? null;
         $this->container['reconnect_window'] = $data['reconnect_window'] ?? null;

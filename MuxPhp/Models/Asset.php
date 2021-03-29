@@ -278,18 +278,18 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const STATUS_PREPARING = 'preparing';
-    const STATUS_READY = 'ready';
-    const STATUS_ERRORED = 'errored';
-    const MAX_STORED_RESOLUTION_AUDIO_ONLY = 'Audio only';
-    const MAX_STORED_RESOLUTION_SD = 'SD';
-    const MAX_STORED_RESOLUTION_HD = 'HD';
-    const MAX_STORED_RESOLUTION_FHD = 'FHD';
-    const MAX_STORED_RESOLUTION_UHD = 'UHD';
-    const MASTER_ACCESS_TEMPORARY = 'temporary';
-    const MASTER_ACCESS_NONE = 'none';
-    const MP4_SUPPORT_STANDARD = 'standard';
-    const MP4_SUPPORT_NONE = 'none';
+    public const STATUS_PREPARING = 'preparing';
+    public const STATUS_READY = 'ready';
+    public const STATUS_ERRORED = 'errored';
+    public const MAX_STORED_RESOLUTION_AUDIO_ONLY = 'Audio only';
+    public const MAX_STORED_RESOLUTION_SD = 'SD';
+    public const MAX_STORED_RESOLUTION_HD = 'HD';
+    public const MAX_STORED_RESOLUTION_FHD = 'FHD';
+    public const MAX_STORED_RESOLUTION_UHD = 'UHD';
+    public const MASTER_ACCESS_TEMPORARY = 'temporary';
+    public const MASTER_ACCESS_NONE = 'none';
+    public const MP4_SUPPORT_STANDARD = 'standard';
+    public const MP4_SUPPORT_NONE = 'none';
     
 
     
@@ -365,6 +365,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['id'] = $data['id'] ?? null;
         $this->container['created_at'] = $data['created_at'] ?? null;
         $this->container['deleted_at'] = $data['deleted_at'] ?? null;
@@ -381,8 +384,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['passthrough'] = $data['passthrough'] ?? null;
         $this->container['live_stream_id'] = $data['live_stream_id'] ?? null;
         $this->container['master'] = $data['master'] ?? null;
-        $this->container['master_access'] = $data['master_access'] ?? MASTER_ACCESS_NONE;
-        $this->container['mp4_support'] = $data['mp4_support'] ?? MP4_SUPPORT_NONE;
+        $this->container['master_access'] = $data['master_access'] ?? self::MASTER_ACCESS_NONE;
+        $this->container['mp4_support'] = $data['mp4_support'] ?? self::MP4_SUPPORT_NONE;
         $this->container['source_asset_id'] = $data['source_asset_id'] ?? null;
         $this->container['normalize_audio'] = $data['normalize_audio'] ?? false;
         $this->container['static_renditions'] = $data['static_renditions'] ?? null;

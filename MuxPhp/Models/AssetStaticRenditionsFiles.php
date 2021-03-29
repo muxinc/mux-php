@@ -188,12 +188,12 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
-    const NAME_LOW_MP4 = 'low.mp4';
-    const NAME_MEDIUM_MP4 = 'medium.mp4';
-    const NAME_HIGH_MP4 = 'high.mp4';
-    const NAME_AUDIO_M4A = 'audio.m4a';
-    const EXT_MP4 = 'mp4';
-    const EXT_M4A = 'm4a';
+    public const NAME_LOW_MP4 = 'low.mp4';
+    public const NAME_MEDIUM_MP4 = 'medium.mp4';
+    public const NAME_HIGH_MP4 = 'high.mp4';
+    public const NAME_AUDIO_M4A = 'audio.m4a';
+    public const EXT_MP4 = 'mp4';
+    public const EXT_M4A = 'm4a';
     
 
     
@@ -241,6 +241,9 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['name'] = $data['name'] ?? null;
         $this->container['ext'] = $data['ext'] ?? null;
         $this->container['height'] = $data['height'] ?? null;

@@ -193,8 +193,8 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    const TYPE_TEXT = 'text';
-    const TEXT_TYPE_SUBTITLES = 'subtitles';
+    public const TYPE_TEXT = 'text';
+    public const TEXT_TYPE_SUBTITLES = 'subtitles';
     
 
     
@@ -238,6 +238,9 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
+        // MUX: enum hack (self::) due to OAS emitting problems.
+        //      please re-integrate with mainline when possible.
+        //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['url'] = $data['url'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
         $this->container['text_type'] = $data['text_type'] ?? null;

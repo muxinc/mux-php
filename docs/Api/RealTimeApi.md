@@ -1,37 +1,70 @@
 # MuxPhp\RealTimeApi
 
-All URIs are relative to *https://api.mux.com*
+All URIs are relative to https://api.mux.com.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getRealtimeBreakdown**](RealTimeApi.md#getRealtimeBreakdown) | **GET** /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/breakdown | Get Real-Time Breakdown
-[**getRealtimeHistogramTimeseries**](RealTimeApi.md#getRealtimeHistogramTimeseries) | **GET** /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/histogram-timeseries | Get Real-Time Histogram Timeseries
-[**getRealtimeTimeseries**](RealTimeApi.md#getRealtimeTimeseries) | **GET** /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/timeseries | Get Real-Time Timeseries
-[**listRealtimeDimensions**](RealTimeApi.md#listRealtimeDimensions) | **GET** /data/v1/realtime/dimensions | List Real-Time Dimensions
-[**listRealtimeMetrics**](RealTimeApi.md#listRealtimeMetrics) | **GET** /data/v1/realtime/metrics | List Real-Time Metrics
+[**getRealtimeBreakdown()**](RealTimeApi.md#getRealtimeBreakdown) | **GET** /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/breakdown | Get Real-Time Breakdown
+[**getRealtimeHistogramTimeseries()**](RealTimeApi.md#getRealtimeHistogramTimeseries) | **GET** /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/histogram-timeseries | Get Real-Time Histogram Timeseries
+[**getRealtimeTimeseries()**](RealTimeApi.md#getRealtimeTimeseries) | **GET** /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/timeseries | Get Real-Time Timeseries
+[**listRealtimeDimensions()**](RealTimeApi.md#listRealtimeDimensions) | **GET** /data/v1/realtime/dimensions | List Real-Time Dimensions
+[**listRealtimeMetrics()**](RealTimeApi.md#listRealtimeMetrics) | **GET** /data/v1/realtime/metrics | List Real-Time Metrics
 
 
+## `getRealtimeBreakdown()`
 
-## getRealtimeBreakdown
-
-> \MuxPhp\Models\GetRealTimeBreakdownResponse getRealtimeBreakdown($realtime_metric_id, $dimension, $timestamp, $filters, $order_by, $order_direction)
+```php
+getRealtimeBreakdown($realtime_metric_id, $dimension, $timestamp, $filters, $order_by, $order_direction): \MuxPhp\Models\GetRealTimeBreakdownResponse
+```
 
 Get Real-Time Breakdown
 
 Gets breakdown information for a specific dimension and metric along with the number of concurrent viewers and negative impact score.
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\RealTimeApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$realtime_metric_id = video-startup-time; // string | ID of the Realtime Metric
+$dimension = 'dimension_example'; // string | Dimension the specified value belongs to
+$timestamp = 3.4; // float | Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp.
+$filters = array('filters_example'); // string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]=operating_system:windows&filters[]=country:US).  Possible filter names are the same as returned by the List Filters endpoint.
+$order_by = 'order_by_example'; // string | Value to order the results by
+$order_direction = 'order_direction_example'; // string | Sort order.
+
+try {
+    $result = $apiInstance->getRealtimeBreakdown($realtime_metric_id, $dimension, $timestamp, $filters, $order_by, $order_direction);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RealTimeApi->getRealtimeBreakdown: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **realtime_metric_id** | **string**| ID of the Realtime Metric |
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
-**optional_params[dimension]** | string | Dimension the specified value belongs to (optional)
-**optional_params[timestamp]** | double | Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. (optional)
-**optional_params[filters]** | string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
-**optional_params[order_by]** | string | Value to order the results by (optional)
-**optional_params[order_direction]** | string | Sort order. (optional)
+ **dimension** | **string**| Dimension the specified value belongs to | [optional]
+ **timestamp** | **float**| Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. | [optional]
+ **filters** | [**string[]**](../Model/string.md)| Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. | [optional]
+ **order_by** | **string**| Value to order the results by | [optional]
+ **order_direction** | **string**| Sort order. | [optional]
 
 ### Return type
 
@@ -44,29 +77,58 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getRealtimeHistogramTimeseries()`
 
-## getRealtimeHistogramTimeseries
-
-> \MuxPhp\Models\GetRealTimeHistogramTimeseriesResponse getRealtimeHistogramTimeseries($realtime_metric_id, $filters)
+```php
+getRealtimeHistogramTimeseries($realtime_metric_id, $filters): \MuxPhp\Models\GetRealTimeHistogramTimeseriesResponse
+```
 
 Get Real-Time Histogram Timeseries
 
 Gets histogram timeseries information for a specific metric.
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\RealTimeApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$realtime_metric_id = video-startup-time; // string | ID of the Realtime Metric
+$filters = array('filters_example'); // string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]=operating_system:windows&filters[]=country:US).  Possible filter names are the same as returned by the List Filters endpoint.
+
+try {
+    $result = $apiInstance->getRealtimeHistogramTimeseries($realtime_metric_id, $filters);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RealTimeApi->getRealtimeHistogramTimeseries: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **realtime_metric_id** | **string**| ID of the Realtime Metric |
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
-**optional_params[filters]** | string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+ **filters** | [**string[]**](../Model/string.md)| Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. | [optional]
 
 ### Return type
 
@@ -79,29 +141,58 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getRealtimeTimeseries()`
 
-## getRealtimeTimeseries
-
-> \MuxPhp\Models\GetRealTimeTimeseriesResponse getRealtimeTimeseries($realtime_metric_id, $filters)
+```php
+getRealtimeTimeseries($realtime_metric_id, $filters): \MuxPhp\Models\GetRealTimeTimeseriesResponse
+```
 
 Get Real-Time Timeseries
 
 Gets Time series information for a specific metric along with the number of concurrent viewers.
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\RealTimeApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$realtime_metric_id = video-startup-time; // string | ID of the Realtime Metric
+$filters = array('filters_example'); // string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]=operating_system:windows&filters[]=country:US).  Possible filter names are the same as returned by the List Filters endpoint.
+
+try {
+    $result = $apiInstance->getRealtimeTimeseries($realtime_metric_id, $filters);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RealTimeApi->getRealtimeTimeseries: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **realtime_metric_id** | **string**| ID of the Realtime Metric |
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
-**optional_params[filters]** | string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. (optional)
+ **filters** | [**string[]**](../Model/string.md)| Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US).  Possible filter names are the same as returned by the List Filters endpoint. | [optional]
 
 ### Return type
 
@@ -114,20 +205,49 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listRealtimeDimensions()`
 
-## listRealtimeDimensions
-
-> \MuxPhp\Models\ListRealTimeDimensionsResponse listRealtimeDimensions()
+```php
+listRealtimeDimensions(): \MuxPhp\Models\ListRealTimeDimensionsResponse
+```
 
 List Real-Time Dimensions
 
 Lists availiable real-time dimensions
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\RealTimeApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->listRealtimeDimensions();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RealTimeApi->listRealtimeDimensions: ', $e->getMessage(), PHP_EOL;
+}
+```
 
 ### Parameters
 
@@ -144,20 +264,49 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listRealtimeMetrics()`
 
-## listRealtimeMetrics
-
-> \MuxPhp\Models\ListRealTimeMetricsResponse listRealtimeMetrics()
+```php
+listRealtimeMetrics(): \MuxPhp\Models\ListRealTimeMetricsResponse
+```
 
 List Real-Time Metrics
 
 Lists availiable real-time metrics.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\RealTimeApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->listRealtimeMetrics();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RealTimeApi->listRealtimeMetrics: ', $e->getMessage(), PHP_EOL;
+}
+```
 
 ### Parameters
 
@@ -174,9 +323,8 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

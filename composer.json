@@ -1,38 +1,39 @@
 {
-    "name": "muxinc/mux-php",
-    "description": "Official Mux API wrapper for PHP projects, supporting both Mux Data and Mux Video. Not familiar with Mux? Check out https://mux.com/ for more information.",
+    "name": "GIT_USER_ID/GIT_REPO_ID",
+    "version": "0.9.0",
+    "description": "Mux is how developers build online video. This API encompasses both Mux Video and Mux Data functionality to help you build your video-related projects better and faster than ever before.",
     "keywords": [
+        "openapitools",
+        "openapi-generator",
+        "openapi",
         "php",
         "sdk",
         "rest",
-        "api",
-        "video",
-        "streaming"
+        "api"
     ],
-    "homepage": "https://mux.com",
-    "license": "MIT",
+    "homepage": "https://openapi-generator.tech",
+    "license": "unlicense",
     "authors": [
         {
-            "name": "Mux SDK team",
-            "homepage": "https://mux.com",
-            "email": "sdks@mux.com"
+            "name": "OpenAPI-Generator contributors",
+            "homepage": "https://openapi-generator.tech"
         }
     ],
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=7.2",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "^7"
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "~2.6",
-        "friendsofphp/php-cs-fixer": "~2.12"
+        "phpunit/phpunit": "^8.0 || ^9.0",
+        "friendsofphp/php-cs-fixer": "^2.12"
     },
     "autoload": {
         "psr-4": { "MuxPhp\\" : "MuxPhp/" }
     },
     "autoload-dev": {
-        "psr-4": { "MuxPhp\\" : "test/" }
+        "psr-4": { "MuxPhp\\Test\\" : "test/" }
     }
 }

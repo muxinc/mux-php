@@ -123,7 +123,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
         return self::$openAPIModelName;
     }
 
-    {{#vars}}{{#isEnum}}{{#allowableValues}}{{#enumVars}}const {{enumName}}_{{{name}}} = {{{value}}};
+    {{#vars}}{{#isEnum}}{{#allowableValues}}{{#enumVars}}public const {{enumName}}_{{{name}}} = {{{value}}};
     {{/enumVars}}{{/allowableValues}}{{/isEnum}}{{/vars}}
 
     {{#vars}}{{#isEnum}}

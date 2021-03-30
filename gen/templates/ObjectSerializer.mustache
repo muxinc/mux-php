@@ -378,4 +378,24 @@ class ObjectSerializer
             return $instance;
         }
     }
+
+    public static function buildBetterQuery($queryParams) {
+        if (!is_array($queryParams)) {
+            throw new \InvalidArgumentException('$queryParams must be an array.');
+        }
+
+        $parts = [];
+
+        foreach ($queryParams as $key => $value) {
+            if (is_array($value)) {
+                foreach ($value as $subValue) {
+                    array_push($parts, $key . "[]" . "=" . urlencode($subValue));
+                }
+            } else {
+                array_push($parts, $key . "=" . urlencode($value));
+            }
+        }
+
+        return join("&", $parts);
+    }
 }

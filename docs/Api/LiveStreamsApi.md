@@ -1,33 +1,62 @@
 # MuxPhp\LiveStreamsApi
 
-All URIs are relative to *https://api.mux.com*
+All URIs are relative to https://api.mux.com.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createLiveStream**](LiveStreamsApi.md#createLiveStream) | **POST** /video/v1/live-streams | Create a live stream
-[**createLiveStreamPlaybackId**](LiveStreamsApi.md#createLiveStreamPlaybackId) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids | Create a live stream playback ID
-[**createLiveStreamSimulcastTarget**](LiveStreamsApi.md#createLiveStreamSimulcastTarget) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets | Create a live stream simulcast target
-[**deleteLiveStream**](LiveStreamsApi.md#deleteLiveStream) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID} | Delete a live stream
-[**deleteLiveStreamPlaybackId**](LiveStreamsApi.md#deleteLiveStreamPlaybackId) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Delete a live stream playback ID
-[**deleteLiveStreamSimulcastTarget**](LiveStreamsApi.md#deleteLiveStreamSimulcastTarget) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Delete a Live Stream Simulcast Target
-[**disableLiveStream**](LiveStreamsApi.md#disableLiveStream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/disable | Disable a live stream
-[**enableLiveStream**](LiveStreamsApi.md#enableLiveStream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/enable | Enable a live stream
-[**getLiveStream**](LiveStreamsApi.md#getLiveStream) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID} | Retrieve a live stream
-[**getLiveStreamSimulcastTarget**](LiveStreamsApi.md#getLiveStreamSimulcastTarget) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Retrieve a Live Stream Simulcast Target
-[**listLiveStreams**](LiveStreamsApi.md#listLiveStreams) | **GET** /video/v1/live-streams | List live streams
-[**resetStreamKey**](LiveStreamsApi.md#resetStreamKey) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key | Reset a live stream’s stream key
-[**signalLiveStreamComplete**](LiveStreamsApi.md#signalLiveStreamComplete) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/complete | Signal a live stream is finished
+[**createLiveStream()**](LiveStreamsApi.md#createLiveStream) | **POST** /video/v1/live-streams | Create a live stream
+[**createLiveStreamPlaybackId()**](LiveStreamsApi.md#createLiveStreamPlaybackId) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids | Create a live stream playback ID
+[**createLiveStreamSimulcastTarget()**](LiveStreamsApi.md#createLiveStreamSimulcastTarget) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets | Create a live stream simulcast target
+[**deleteLiveStream()**](LiveStreamsApi.md#deleteLiveStream) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID} | Delete a live stream
+[**deleteLiveStreamPlaybackId()**](LiveStreamsApi.md#deleteLiveStreamPlaybackId) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Delete a live stream playback ID
+[**deleteLiveStreamSimulcastTarget()**](LiveStreamsApi.md#deleteLiveStreamSimulcastTarget) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Delete a Live Stream Simulcast Target
+[**disableLiveStream()**](LiveStreamsApi.md#disableLiveStream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/disable | Disable a live stream
+[**enableLiveStream()**](LiveStreamsApi.md#enableLiveStream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/enable | Enable a live stream
+[**getLiveStream()**](LiveStreamsApi.md#getLiveStream) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID} | Retrieve a live stream
+[**getLiveStreamSimulcastTarget()**](LiveStreamsApi.md#getLiveStreamSimulcastTarget) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Retrieve a Live Stream Simulcast Target
+[**listLiveStreams()**](LiveStreamsApi.md#listLiveStreams) | **GET** /video/v1/live-streams | List live streams
+[**resetStreamKey()**](LiveStreamsApi.md#resetStreamKey) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key | Reset a live stream’s stream key
+[**signalLiveStreamComplete()**](LiveStreamsApi.md#signalLiveStreamComplete) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/complete | Signal a live stream is finished
 
 
+## `createLiveStream()`
 
-## createLiveStream
-
-> \MuxPhp\Models\LiveStreamResponse createLiveStream($create_live_stream_request)
+```php
+createLiveStream($create_live_stream_request): \MuxPhp\Models\LiveStreamResponse
+```
 
 Create a live stream
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$create_live_stream_request = {"playback_policy":"public","new_asset_settings":{"playback_policy":"public"}}; // \MuxPhp\Models\CreateLiveStreamRequest
+
+try {
+    $result = $apiInstance->createLiveStream($create_live_stream_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->createLiveStream: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -43,22 +72,52 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `createLiveStreamPlaybackId()`
 
-## createLiveStreamPlaybackId
-
-> \MuxPhp\Models\CreatePlaybackIDResponse createLiveStreamPlaybackId($live_stream_id, $create_playback_id_request)
+```php
+createLiveStreamPlaybackId($live_stream_id, $create_playback_id_request): \MuxPhp\Models\CreatePlaybackIDResponse
+```
 
 Create a live stream playback ID
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+$create_playback_id_request = {"policy":"signed"}; // \MuxPhp\Models\CreatePlaybackIDRequest
+
+try {
+    $result = $apiInstance->createLiveStreamPlaybackId($live_stream_id, $create_playback_id_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->createLiveStreamPlaybackId: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -75,24 +134,54 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `createLiveStreamSimulcastTarget()`
 
-## createLiveStreamSimulcastTarget
-
-> \MuxPhp\Models\SimulcastTargetResponse createLiveStreamSimulcastTarget($live_stream_id, $create_simulcast_target_request)
+```php
+createLiveStreamSimulcastTarget($live_stream_id, $create_simulcast_target_request): \MuxPhp\Models\SimulcastTargetResponse
+```
 
 Create a live stream simulcast target
 
 Create a simulcast target for the parent live stream. Simulcast target can only be created when the parent live stream is in idle state. Only one simulcast target can be created at a time with this API.
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+$create_simulcast_target_request = {"url":"rtmp://live.example.com/app","stream_key":"abcdefgh","passthrough":"Example"}; // \MuxPhp\Models\CreateSimulcastTargetRequest
+
+try {
+    $result = $apiInstance->createLiveStreamSimulcastTarget($live_stream_id, $create_simulcast_target_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->createLiveStreamSimulcastTarget: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -109,22 +198,50 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteLiveStream()`
 
-## deleteLiveStream
-
-> deleteLiveStream($live_stream_id)
+```php
+deleteLiveStream($live_stream_id)
+```
 
 Delete a live stream
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+
+try {
+    $apiInstance->deleteLiveStream($live_stream_id);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->deleteLiveStream: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -143,19 +260,48 @@ void (empty response body)
 - **Content-Type**: Not defined
 - **Accept**: Not defined
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteLiveStreamPlaybackId()`
 
-## deleteLiveStreamPlaybackId
-
-> deleteLiveStreamPlaybackId($live_stream_id, $playback_id)
+```php
+deleteLiveStreamPlaybackId($live_stream_id, $playback_id)
+```
 
 Delete a live stream playback ID
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+$playback_id = 'playback_id_example'; // string | The live stream's playback ID.
+
+try {
+    $apiInstance->deleteLiveStreamPlaybackId($live_stream_id, $playback_id);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->deleteLiveStreamPlaybackId: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -175,21 +321,50 @@ void (empty response body)
 - **Content-Type**: Not defined
 - **Accept**: Not defined
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteLiveStreamSimulcastTarget()`
 
-## deleteLiveStreamSimulcastTarget
-
-> deleteLiveStreamSimulcastTarget($live_stream_id, $simulcast_target_id)
+```php
+deleteLiveStreamSimulcastTarget($live_stream_id, $simulcast_target_id)
+```
 
 Delete a Live Stream Simulcast Target
 
 Delete the simulcast target using the simulcast target ID returned when creating the simulcast target. Simulcast Target can only be deleted when the parent live stream is in idle state.
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+$simulcast_target_id = 'simulcast_target_id_example'; // string | The ID of the simulcast target.
+
+try {
+    $apiInstance->deleteLiveStreamSimulcastTarget($live_stream_id, $simulcast_target_id);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->deleteLiveStreamSimulcastTarget: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -209,21 +384,50 @@ void (empty response body)
 - **Content-Type**: Not defined
 - **Accept**: Not defined
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `disableLiveStream()`
 
-## disableLiveStream
-
-> \MuxPhp\Models\DisableLiveStreamResponse disableLiveStream($live_stream_id)
+```php
+disableLiveStream($live_stream_id): \MuxPhp\Models\DisableLiveStreamResponse
+```
 
 Disable a live stream
 
 Disables a live stream, making it reject incoming RTMP streams until re-enabled.
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+
+try {
+    $result = $apiInstance->disableLiveStream($live_stream_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->disableLiveStream: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -240,23 +444,52 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `enableLiveStream()`
 
-## enableLiveStream
-
-> \MuxPhp\Models\EnableLiveStreamResponse enableLiveStream($live_stream_id)
+```php
+enableLiveStream($live_stream_id): \MuxPhp\Models\EnableLiveStreamResponse
+```
 
 Enable a live stream
 
 Enables a live stream, allowing it to accept an incoming RTMP stream.
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+
+try {
+    $result = $apiInstance->enableLiveStream($live_stream_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->enableLiveStream: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -273,23 +506,52 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getLiveStream()`
 
-## getLiveStream
-
-> \MuxPhp\Models\LiveStreamResponse getLiveStream($live_stream_id)
+```php
+getLiveStream($live_stream_id): \MuxPhp\Models\LiveStreamResponse
+```
 
 Retrieve a live stream
 
 Retrieves the details of a live stream that has previously been created. Supply the unique live stream ID that was returned from your previous request, and Mux will return the corresponding live stream information. The same information is returned when creating a live stream.
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+
+try {
+    $result = $apiInstance->getLiveStream($live_stream_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->getLiveStream: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -306,23 +568,53 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getLiveStreamSimulcastTarget()`
 
-## getLiveStreamSimulcastTarget
-
-> \MuxPhp\Models\SimulcastTargetResponse getLiveStreamSimulcastTarget($live_stream_id, $simulcast_target_id)
+```php
+getLiveStreamSimulcastTarget($live_stream_id, $simulcast_target_id): \MuxPhp\Models\SimulcastTargetResponse
+```
 
 Retrieve a Live Stream Simulcast Target
 
 Retrieves the details of the simulcast target created for the parent live stream. Supply the unique live stream ID and simulcast target ID that was returned in the response of create simulcast target request, and Mux will return the corresponding information.
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+$simulcast_target_id = 'simulcast_target_id_example'; // string | The ID of the simulcast target.
+
+try {
+    $result = $apiInstance->getLiveStreamSimulcastTarget($live_stream_id, $simulcast_target_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->getLiveStreamSimulcastTarget: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -340,27 +632,56 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listLiveStreams()`
 
-## listLiveStreams
-
-> \MuxPhp\Models\ListLiveStreamsResponse listLiveStreams($limit, $page)
+```php
+listLiveStreams($limit, $page): \MuxPhp\Models\ListLiveStreamsResponse
+```
 
 List live streams
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$limit = 25; // int | Number of items to include in the response
+$page = 1; // int | Offset by this many pages, of the size of `limit`
+
+try {
+    $result = $apiInstance->listLiveStreams($limit, $page);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->listLiveStreams: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
-**optional_params[limit]** | int | Number of items to include in the response (optional, default to 25)
-**optional_params[page]** | int | Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+ **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
+ **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
 
 ### Return type
 
@@ -373,23 +694,52 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `resetStreamKey()`
 
-## resetStreamKey
-
-> \MuxPhp\Models\LiveStreamResponse resetStreamKey($live_stream_id)
+```php
+resetStreamKey($live_stream_id): \MuxPhp\Models\LiveStreamResponse
+```
 
 Reset a live stream’s stream key
 
 Reset a live stream key if you want to immediately stop the current stream key from working and create a new stream key that can be used for future broadcasts.
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+
+try {
+    $result = $apiInstance->resetStreamKey($live_stream_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->resetStreamKey: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -406,23 +756,52 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `signalLiveStreamComplete()`
 
-## signalLiveStreamComplete
-
-> \MuxPhp\Models\SignalLiveStreamCompleteResponse signalLiveStreamComplete($live_stream_id)
+```php
+signalLiveStreamComplete($live_stream_id): \MuxPhp\Models\SignalLiveStreamCompleteResponse
+```
 
 Signal a live stream is finished
 
 (Optional) Make the recorded asset available immediately instead of waiting for the reconnect_window.
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+
+try {
+    $result = $apiInstance->signalLiveStreamComplete($live_stream_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->signalLiveStreamComplete: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -439,9 +818,8 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

@@ -333,7 +333,7 @@ class FiltersApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: limit
         if ($limit !== null) {
             if('form' === 'form' && is_array($limit)) {
                 foreach($limit as $key => $value) {
@@ -344,7 +344,7 @@ class FiltersApi
                 $queryParams['limit'] = $limit;
             }
         }
-        // query params
+        // Query Param: page
         if ($page !== null) {
             if('form' === 'form' && is_array($page)) {
                 foreach($page as $key => $value) {
@@ -355,26 +355,26 @@ class FiltersApi
                 $queryParams['page'] = $page;
             }
         }
-        // query params
+        // Query Param: filters
         if ($filters !== null) {
-            if('form' === 'form' && is_array($filters)) {
-                foreach($filters as $key => $value) {
-                    $queryParams[$key] = $value;
+            if (is_array($filters)) {
+                foreach ($filters as $p) {
+                    array_push($queryParams, "filters=$p");
                 }
             }
             else {
-                $queryParams['filters'] = $filters;
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter filters');
             }
         }
-        // query params
+        // Query Param: timeframe
         if ($timeframe !== null) {
-            if('form' === 'form' && is_array($timeframe)) {
-                foreach($timeframe as $key => $value) {
-                    $queryParams[$key] = $value;
+            if (is_array($timeframe)) {
+                foreach ($timeframe as $p) {
+                    array_push($queryParams, "timeframe=$p");
                 }
             }
             else {
-                $queryParams['timeframe'] = $timeframe;
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter timeframe');
             }
         }
 
@@ -441,7 +441,10 @@ class FiltersApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -693,7 +696,10 @@ class FiltersApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),

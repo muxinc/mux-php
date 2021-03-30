@@ -338,7 +338,7 @@ class RealTimeApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: dimension
         if ($dimension !== null) {
             if('form' === 'form' && is_array($dimension)) {
                 foreach($dimension as $key => $value) {
@@ -349,7 +349,7 @@ class RealTimeApi
                 $queryParams['dimension'] = $dimension;
             }
         }
-        // query params
+        // Query Param: timestamp
         if ($timestamp !== null) {
             if('form' === 'form' && is_array($timestamp)) {
                 foreach($timestamp as $key => $value) {
@@ -360,18 +360,18 @@ class RealTimeApi
                 $queryParams['timestamp'] = $timestamp;
             }
         }
-        // query params
+        // Query Param: filters
         if ($filters !== null) {
-            if('form' === 'form' && is_array($filters)) {
-                foreach($filters as $key => $value) {
-                    $queryParams[$key] = $value;
+            if (is_array($filters)) {
+                foreach ($filters as $p) {
+                    array_push($queryParams, "filters=$p");
                 }
             }
             else {
-                $queryParams['filters'] = $filters;
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter filters');
             }
         }
-        // query params
+        // Query Param: order_by
         if ($order_by !== null) {
             if('form' === 'form' && is_array($order_by)) {
                 foreach($order_by as $key => $value) {
@@ -382,7 +382,7 @@ class RealTimeApi
                 $queryParams['order_by'] = $order_by;
             }
         }
-        // query params
+        // Query Param: order_direction
         if ($order_direction !== null) {
             if('form' === 'form' && is_array($order_direction)) {
                 foreach($order_direction as $key => $value) {
@@ -457,7 +457,10 @@ class RealTimeApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -669,15 +672,15 @@ class RealTimeApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: filters
         if ($filters !== null) {
-            if('form' === 'form' && is_array($filters)) {
-                foreach($filters as $key => $value) {
-                    $queryParams[$key] = $value;
+            if (is_array($filters)) {
+                foreach ($filters as $p) {
+                    array_push($queryParams, "filters=$p");
                 }
             }
             else {
-                $queryParams['filters'] = $filters;
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter filters');
             }
         }
 
@@ -744,7 +747,10 @@ class RealTimeApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -956,15 +962,15 @@ class RealTimeApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: filters
         if ($filters !== null) {
-            if('form' === 'form' && is_array($filters)) {
-                foreach($filters as $key => $value) {
-                    $queryParams[$key] = $value;
+            if (is_array($filters)) {
+                foreach ($filters as $p) {
+                    array_push($queryParams, "filters=$p");
                 }
             }
             else {
-                $queryParams['filters'] = $filters;
+                throw new \InvalidArgumentException('Did not receive an array when expecting one for query parameter filters');
             }
         }
 
@@ -1031,7 +1037,10 @@ class RealTimeApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1283,7 +1292,10 @@ class RealTimeApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1535,7 +1547,10 @@ class RealTimeApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),

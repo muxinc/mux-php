@@ -375,7 +375,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -663,7 +666,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -951,7 +957,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1174,7 +1183,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'DELETE',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1416,7 +1428,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'DELETE',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1658,7 +1673,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'DELETE',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1929,7 +1947,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'PUT',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2200,7 +2221,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'PUT',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2471,7 +2495,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2761,7 +2788,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2967,7 +2997,7 @@ class LiveStreamsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+        // Query Param: limit
         if ($limit !== null) {
             if('form' === 'form' && is_array($limit)) {
                 foreach($limit as $key => $value) {
@@ -2978,7 +3008,7 @@ class LiveStreamsApi
                 $queryParams['limit'] = $limit;
             }
         }
-        // query params
+        // Query Param: page
         if ($page !== null) {
             if('form' === 'form' && is_array($page)) {
                 foreach($page as $key => $value) {
@@ -3045,7 +3075,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -3316,7 +3349,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -3587,7 +3623,10 @@ class LiveStreamsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'PUT',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),

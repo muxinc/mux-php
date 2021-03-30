@@ -377,7 +377,10 @@ class PlaybackIDApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),

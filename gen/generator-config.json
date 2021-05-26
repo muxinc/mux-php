@@ -1,0 +1,11 @@
+{
+  "!!source": "https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/php.md",
+  "packageName": "MuxPhp",
+  "modelPackage": "Models",
+  "apiPackage": "Api",
+  "srcBasePath": "MuxPhp",
+  "invokerPackage": "MuxPhp",
+  "artifactVersion": "0.9.0",
+  "gitUserId": "muxinc",
+  "gitRepoId": "mux-php"
+}

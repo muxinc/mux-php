@@ -20,8 +20,8 @@
     );
 
     // ========== create-live-stream ==========
-    $createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY]]);
-    $createLiveStreamRequest = new MuxPhp\Models\CreateLiveStreamRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY], "new_asset_settings" => $createAssetRequest, "reduced_latency" => true]);
+    $createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::_PUBLIC]]);
+    $createLiveStreamRequest = new MuxPhp\Models\CreateLiveStreamRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::_PUBLIC], "new_asset_settings" => $createAssetRequest, "reduced_latency" => true]);
     $stream = $liveApi->createLiveStream($createLiveStreamRequest);
     assert($stream->getData()->getId() != null);
     print("create-live-stream OK ✅\n");
@@ -69,7 +69,7 @@
     print("delete-live-stream-simulcast-target OK ✅\n");
 
     // ========== create-live-stream-playback-id ==========
-    $createPlaybackIdRequest = new MuxPhp\Models\CreatePlaybackIDRequest(["policy" => MuxPhp\Models\PlaybackPolicy::SIGNED_PLAYBACK_POLICY]);
+    $createPlaybackIdRequest = new MuxPhp\Models\CreatePlaybackIDRequest(["policy" => MuxPhp\Models\PlaybackPolicy::SIGNED]);
     $publicAndPrivateStream = $liveApi->createLiveStreamPlaybackId($stream->getData()->getId(), $createPlaybackIdRequest);
     assert($publicAndPrivateStream->getData()->getId() != null);
     assert($publicAndPrivateStream->getData()->getPolicy() == "signed");

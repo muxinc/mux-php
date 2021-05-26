@@ -1,25 +1,54 @@
 # MuxPhp\IncidentsApi
 
-All URIs are relative to *https://api.mux.com*
+All URIs are relative to https://api.mux.com.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getIncident**](IncidentsApi.md#getIncident) | **GET** /data/v1/incidents/{INCIDENT_ID} | Get an Incident
-[**listIncidents**](IncidentsApi.md#listIncidents) | **GET** /data/v1/incidents | List Incidents
-[**listRelatedIncidents**](IncidentsApi.md#listRelatedIncidents) | **GET** /data/v1/incidents/{INCIDENT_ID}/related | List Related Incidents
+[**getIncident()**](IncidentsApi.md#getIncident) | **GET** /data/v1/incidents/{INCIDENT_ID} | Get an Incident
+[**listIncidents()**](IncidentsApi.md#listIncidents) | **GET** /data/v1/incidents | List Incidents
+[**listRelatedIncidents()**](IncidentsApi.md#listRelatedIncidents) | **GET** /data/v1/incidents/{INCIDENT_ID}/related | List Related Incidents
 
 
+## `getIncident()`
 
-## getIncident
-
-> \MuxPhp\Models\IncidentResponse getIncident($incident_id)
+```php
+getIncident($incident_id): \MuxPhp\Models\IncidentResponse
+```
 
 Get an Incident
 
 Returns the details of an incident
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\IncidentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$incident_id = abcd1234; // string | ID of the Incident
+
+try {
+    $result = $apiInstance->getIncident($incident_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IncidentsApi->getIncident: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -36,33 +65,66 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listIncidents()`
 
-## listIncidents
-
-> \MuxPhp\Models\ListIncidentsResponse listIncidents($limit, $page, $order_by, $order_direction, $status, $severity)
+```php
+listIncidents($limit, $page, $order_by, $order_direction, $status, $severity): \MuxPhp\Models\ListIncidentsResponse
+```
 
 List Incidents
 
 Returns a list of incidents
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\IncidentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$limit = 25; // int | Number of items to include in the response
+$page = 1; // int | Offset by this many pages, of the size of `limit`
+$order_by = 'order_by_example'; // string | Value to order the results by
+$order_direction = 'order_direction_example'; // string | Sort order.
+$status = 'status_example'; // string | Status to filter incidents by
+$severity = 'severity_example'; // string | Severity to filter incidents by
+
+try {
+    $result = $apiInstance->listIncidents($limit, $page, $order_by, $order_direction, $status, $severity);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IncidentsApi->listIncidents: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
-**optional_params[limit]** | int | Number of items to include in the response (optional, default to 25)
-**optional_params[page]** | int | Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-**optional_params[order_by]** | string | Value to order the results by (optional)
-**optional_params[order_direction]** | string | Sort order. (optional)
-**optional_params[status]** | string | Status to filter incidents by (optional)
-**optional_params[severity]** | string | Severity to filter incidents by (optional)
+ **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
+ **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
+ **order_by** | **string**| Value to order the results by | [optional]
+ **order_direction** | **string**| Sort order. | [optional]
+ **status** | **string**| Status to filter incidents by | [optional]
+ **severity** | **string**| Severity to filter incidents by | [optional]
 
 ### Return type
 
@@ -75,32 +137,64 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listRelatedIncidents()`
 
-## listRelatedIncidents
-
-> \MuxPhp\Models\ListRelatedIncidentsResponse listRelatedIncidents($incident_id, $limit, $page, $order_by, $order_direction)
+```php
+listRelatedIncidents($incident_id, $limit, $page, $order_by, $order_direction): \MuxPhp\Models\ListRelatedIncidentsResponse
+```
 
 List Related Incidents
 
 Returns all the incidents that seem related to a specific incident
 
-### Parameters
+### Example
 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\IncidentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$incident_id = abcd1234; // string | ID of the Incident
+$limit = 25; // int | Number of items to include in the response
+$page = 1; // int | Offset by this many pages, of the size of `limit`
+$order_by = 'order_by_example'; // string | Value to order the results by
+$order_direction = 'order_direction_example'; // string | Sort order.
+
+try {
+    $result = $apiInstance->listRelatedIncidents($incident_id, $limit, $page, $order_by, $order_direction);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling IncidentsApi->listRelatedIncidents: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **incident_id** | **string**| ID of the Incident |
-**optional_params** | **[]** | Assocaiative Array of optional parameters, specifically: | (optional) |
-**optional_params[limit]** | int | Number of items to include in the response (optional, default to 25)
-**optional_params[page]** | int | Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-**optional_params[order_by]** | string | Value to order the results by (optional)
-**optional_params[order_direction]** | string | Sort order. (optional)
+ **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
+ **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
+ **order_by** | **string**| Value to order the results by | [optional]
+ **order_direction** | **string**| Sort order. | [optional]
 
 ### Return type
 
@@ -113,9 +207,8 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

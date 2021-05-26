@@ -25,3 +25,5 @@
 
 git_push.sh
 .travis.yml
+
+test/**/*

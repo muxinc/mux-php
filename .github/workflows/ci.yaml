@@ -1,10 +1,20 @@
 name: Integration Test
 
+# Much like mux-go, mux-php is in a spot where "releases" are kind of
+# ignored by Packagist and there's that webhook to hit to say "crawl
+# me and get a new release". As such we're in the "make sure the barn
+# door closes properly" spot unless we want to go manually hit webhooks
+# and I think it's probably better to leave well enough alone. However,
+# we can at least have it report failures and give us an option for
+# manually handling release failures.
+
 on:
   push:
     branches:
       - master
-  pull_request:
+  pull_request: {}
+  release:
+    types: [created]
 
 jobs:
   build:

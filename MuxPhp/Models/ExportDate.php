@@ -1,6 +1,6 @@
 <?php
 /**
- * GetMetricTimeseriesDataResponse
+ * ExportDate
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * GetMetricTimeseriesDataResponse Class Doc Comment
+ * ExportDate Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ExportDate implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GetMetricTimeseriesDataResponse';
+    protected static $openAPIModelName = 'ExportDate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,8 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => 'string[][]',
-        'total_row_count' => 'int',
-        'timeframe' => 'int[]'
+        'export_date' => '\DateTime',
+        'files' => '\MuxPhp\Models\ExportFile[]'
     ];
 
     /**
@@ -73,9 +72,8 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'data' => null,
-        'total_row_count' => 'int64',
-        'timeframe' => 'int64'
+        'export_date' => 'date',
+        'files' => null
     ];
 
     /**
@@ -105,9 +103,8 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $attributeMap = [
-        'data' => 'data',
-        'total_row_count' => 'total_row_count',
-        'timeframe' => 'timeframe'
+        'export_date' => 'export_date',
+        'files' => 'files'
     ];
 
     /**
@@ -116,9 +113,8 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $setters = [
-        'data' => 'setData',
-        'total_row_count' => 'setTotalRowCount',
-        'timeframe' => 'setTimeframe'
+        'export_date' => 'setExportDate',
+        'files' => 'setFiles'
     ];
 
     /**
@@ -127,9 +123,8 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $getters = [
-        'data' => 'getData',
-        'total_row_count' => 'getTotalRowCount',
-        'timeframe' => 'getTimeframe'
+        'export_date' => 'getExportDate',
+        'files' => 'getFiles'
     ];
 
     /**
@@ -195,9 +190,8 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['data'] = $data['data'] ?? null;
-        $this->container['total_row_count'] = $data['total_row_count'] ?? null;
-        $this->container['timeframe'] = $data['timeframe'] ?? null;
+        $this->container['export_date'] = $data['export_date'] ?? null;
+        $this->container['files'] = $data['files'] ?? null;
     }
 
     /**
@@ -225,73 +219,49 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
 
 
     /**
-     * Gets data
+     * Gets export_date
      *
-     * @return string[][]|null
+     * @return \DateTime|null
      */
-    public function getData()
+    public function getExportDate()
     {
-        return $this->container['data'];
+        return $this->container['export_date'];
     }
 
     /**
-     * Sets data
+     * Sets export_date
      *
-     * @param string[][]|null $data data
+     * @param \DateTime|null $export_date export_date
      *
      * @return self
      */
-    public function setData($data)
+    public function setExportDate($export_date)
     {
-        $this->container['data'] = $data;
+        $this->container['export_date'] = $export_date;
 
         return $this;
     }
 
     /**
-     * Gets total_row_count
+     * Gets files
      *
-     * @return int|null
+     * @return \MuxPhp\Models\ExportFile[]|null
      */
-    public function getTotalRowCount()
+    public function getFiles()
     {
-        return $this->container['total_row_count'];
+        return $this->container['files'];
     }
 
     /**
-     * Sets total_row_count
+     * Sets files
      *
-     * @param int|null $total_row_count total_row_count
+     * @param \MuxPhp\Models\ExportFile[]|null $files files
      *
      * @return self
      */
-    public function setTotalRowCount($total_row_count)
+    public function setFiles($files)
     {
-        $this->container['total_row_count'] = $total_row_count;
-
-        return $this;
-    }
-
-    /**
-     * Gets timeframe
-     *
-     * @return int[]|null
-     */
-    public function getTimeframe()
-    {
-        return $this->container['timeframe'];
-    }
-
-    /**
-     * Sets timeframe
-     *
-     * @param int[]|null $timeframe timeframe
-     *
-     * @return self
-     */
-    public function setTimeframe($timeframe)
-    {
-        $this->container['timeframe'] = $timeframe;
+        $this->container['files'] = $files;
 
         return $this;
     }

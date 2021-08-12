@@ -1,6 +1,6 @@
 <?php
 /**
- * GetMetricTimeseriesDataResponse
+ * ListVideoViewExportsResponse
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * GetMetricTimeseriesDataResponse Class Doc Comment
+ * ListVideoViewExportsResponse Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ListVideoViewExportsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GetMetricTimeseriesDataResponse';
+    protected static $openAPIModelName = 'ListVideoViewExportsResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,7 +60,7 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => 'string[][]',
+        'data' => '\MuxPhp\Models\ExportDate[]',
         'total_row_count' => 'int',
         'timeframe' => 'int[]'
     ];
@@ -74,8 +74,8 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPIFormats = [
         'data' => null,
-        'total_row_count' => 'int64',
-        'timeframe' => 'int64'
+        'total_row_count' => 'int32',
+        'timeframe' => 'int32'
     ];
 
     /**
@@ -227,7 +227,7 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
     /**
      * Gets data
      *
-     * @return string[][]|null
+     * @return \MuxPhp\Models\ExportDate[]|null
      */
     public function getData()
     {
@@ -237,7 +237,7 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
     /**
      * Sets data
      *
-     * @param string[][]|null $data data
+     * @param \MuxPhp\Models\ExportDate[]|null $data data
      *
      * @return self
      */

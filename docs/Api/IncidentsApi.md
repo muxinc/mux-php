@@ -17,7 +17,7 @@ getIncident($incident_id): \MuxPhp\Models\IncidentResponse
 
 Get an Incident
 
-Returns the details of an incident
+Returns the details of an incident.
 
 ### Example
 
@@ -79,7 +79,7 @@ listIncidents($limit, $page, $order_by, $order_direction, $status, $severity): \
 
 List Incidents
 
-Returns a list of incidents
+Returns a list of incidents.
 
 ### Example
 
@@ -151,7 +151,7 @@ listRelatedIncidents($incident_id, $limit, $page, $order_by, $order_direction): 
 
 List Related Incidents
 
-Returns all the incidents that seem related to a specific incident
+Returns all the incidents that seem related to a specific incident.
 
 ### Example
 

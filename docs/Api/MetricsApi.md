@@ -19,7 +19,7 @@ getMetricTimeseriesData($metric_id, $timeframe, $filters, $measurement, $order_d
 
 Get metric timeseries data
 
-Returns timeseries data for a specific metric
+Returns timeseries data for a specific metric.
 
 ### Example
 
@@ -43,7 +43,7 @@ $apiInstance = new MuxPhp\Api\MetricsApi(
 $metric_id = video_startup_time; // string | ID of the Metric
 $timeframe = array('timeframe_example'); // string[] | Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]=). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]=1498867200&timeframe[]=1498953600   * duration string e.g. timeframe[]=24:hours or timeframe[]=7:days.
 $filters = array('filters_example'); // string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]=operating_system:windows&filters[]=country:US). Possible filter names are the same as returned by the List Filters endpoint.
-$measurement = 'measurement_example'; // string | Measurement for the provided metric. If omitted, the deafult for the metric will be used.
+$measurement = 'measurement_example'; // string | Measurement for the provided metric. If omitted, the default for the metric will be used.
 $order_direction = 'order_direction_example'; // string | Sort order.
 $group_by = 'group_by_example'; // string | Time granularity to group results by. If this value is omitted, a default granularity is chosen based on the supplied timeframe.
 
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
  **metric_id** | **string**| ID of the Metric |
  **timeframe** | [**string[]**](../Model/string.md)| Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600   * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. | [optional]
  **filters** | [**string[]**](../Model/string.md)| Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US). Possible filter names are the same as returned by the List Filters endpoint. | [optional]
- **measurement** | **string**| Measurement for the provided metric. If omitted, the deafult for the metric will be used. | [optional]
+ **measurement** | **string**| Measurement for the provided metric. If omitted, the default for the metric will be used. | [optional]
  **order_direction** | **string**| Sort order. | [optional]
  **group_by** | **string**| Time granularity to group results by. If this value is omitted, a default granularity is chosen based on the supplied timeframe. | [optional]
 
@@ -115,7 +115,7 @@ $apiInstance = new MuxPhp\Api\MetricsApi(
 $metric_id = video_startup_time; // string | ID of the Metric
 $timeframe = array('timeframe_example'); // string[] | Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]=). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]=1498867200&timeframe[]=1498953600   * duration string e.g. timeframe[]=24:hours or timeframe[]=7:days.
 $filters = array('filters_example'); // string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]=operating_system:windows&filters[]=country:US). Possible filter names are the same as returned by the List Filters endpoint.
-$measurement = 'measurement_example'; // string | Measurement for the provided metric. If omitted, the deafult for the metric will be used.
+$measurement = 'measurement_example'; // string | Measurement for the provided metric. If omitted, the default for the metric will be used.
 
 try {
     $result = $apiInstance->getOverallValues($metric_id, $timeframe, $filters, $measurement);
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
  **metric_id** | **string**| ID of the Metric |
  **timeframe** | [**string[]**](../Model/string.md)| Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600   * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. | [optional]
  **filters** | [**string[]**](../Model/string.md)| Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US). Possible filter names are the same as returned by the List Filters endpoint. | [optional]
- **measurement** | **string**| Measurement for the provided metric. If omitted, the deafult for the metric will be used. | [optional]
+ **measurement** | **string**| Measurement for the provided metric. If omitted, the default for the metric will be used. | [optional]
 
 ### Return type
 
@@ -159,7 +159,7 @@ listAllMetricValues($timeframe, $filters, $dimension, $value): \MuxPhp\Models\Li
 
 List all metric values
 
-List all of the values across every breakdown for a specific metric
+List all of the values across every breakdown for a specific metric.
 
 ### Example
 
@@ -227,7 +227,7 @@ listBreakdownValues($metric_id, $group_by, $measurement, $filters, $limit, $page
 
 List breakdown values
 
-List the breakdown values for a specific metric
+List the breakdown values for a specific metric.
 
 ### Example
 
@@ -250,7 +250,7 @@ $apiInstance = new MuxPhp\Api\MetricsApi(
 );
 $metric_id = video_startup_time; // string | ID of the Metric
 $group_by = 'group_by_example'; // string | Breakdown value to group the results by
-$measurement = 'measurement_example'; // string | Measurement for the provided metric. If omitted, the deafult for the metric will be used.
+$measurement = 'measurement_example'; // string | Measurement for the provided metric. If omitted, the default for the metric will be used.
 $filters = array('filters_example'); // string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]=operating_system:windows&filters[]=country:US). Possible filter names are the same as returned by the List Filters endpoint.
 $limit = 25; // int | Number of items to include in the response
 $page = 1; // int | Offset by this many pages, of the size of `limit`
@@ -272,7 +272,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **metric_id** | **string**| ID of the Metric |
  **group_by** | **string**| Breakdown value to group the results by | [optional]
- **measurement** | **string**| Measurement for the provided metric. If omitted, the deafult for the metric will be used. | [optional]
+ **measurement** | **string**| Measurement for the provided metric. If omitted, the default for the metric will be used. | [optional]
  **filters** | [**string[]**](../Model/string.md)| Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US). Possible filter names are the same as returned by the List Filters endpoint. | [optional]
  **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
  **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
@@ -327,7 +327,7 @@ $apiInstance = new MuxPhp\Api\MetricsApi(
     $config
 );
 $metric_id = video_startup_time; // string | ID of the Metric
-$measurement = 'measurement_example'; // string | Measurement for the provided metric. If omitted, the deafult for the metric will be used.
+$measurement = 'measurement_example'; // string | Measurement for the provided metric. If omitted, the default for the metric will be used.
 $order_direction = 'order_direction_example'; // string | Sort order.
 $timeframe = array('timeframe_example'); // string[] | Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]=). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]=1498867200&timeframe[]=1498953600   * duration string e.g. timeframe[]=24:hours or timeframe[]=7:days.
 
@@ -344,7 +344,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **metric_id** | **string**| ID of the Metric |
- **measurement** | **string**| Measurement for the provided metric. If omitted, the deafult for the metric will be used. | [optional]
+ **measurement** | **string**| Measurement for the provided metric. If omitted, the default for the metric will be used. | [optional]
  **order_direction** | **string**| Sort order. | [optional]
  **timeframe** | [**string[]**](../Model/string.md)| Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;). Accepted formats are...   * array of epoch timestamps e.g. timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600   * duration string e.g. timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days. | [optional]
 

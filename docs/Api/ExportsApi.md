@@ -5,6 +5,7 @@ All URIs are relative to https://api.mux.com.
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**listExports()**](ExportsApi.md#listExports) | **GET** /data/v1/exports | List property video view export links
+[**listExportsViews()**](ExportsApi.md#listExportsViews) | **GET** /data/v1/exports/views | List available property view exports
 
 
 ## `listExports()`
@@ -15,7 +16,7 @@ listExports(): \MuxPhp\Models\ListExportsResponse
 
 List property video view export links
 
-Lists the available video view exports along with URLs to retrieve them
+Deprecated: The API has been replaced by the list-exports-views API call.  Lists the available video view exports along with URLs to retrieve them.
 
 ### Example
 
@@ -52,6 +53,65 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\MuxPhp\Models\ListExportsResponse**](../Model/ListExportsResponse.md)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listExportsViews()`
+
+```php
+listExportsViews(): \MuxPhp\Models\ListVideoViewExportsResponse
+```
+
+List available property view exports
+
+Lists the available video view exports along with URLs to retrieve them.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\ExportsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->listExportsViews();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ExportsApi->listExportsViews: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\MuxPhp\Models\ListVideoViewExportsResponse**](../Model/ListVideoViewExportsResponse.md)
 
 ### Authorization
 

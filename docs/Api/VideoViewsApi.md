@@ -16,7 +16,7 @@ getVideoView($video_view_id): \MuxPhp\Models\VideoViewResponse
 
 Get a Video View
 
-Returns the details of a video view
+Returns the details of a video view.
 
 ### Example
 
@@ -78,7 +78,7 @@ listVideoViews($limit, $page, $viewer_id, $error_id, $order_direction, $filters,
 
 List Video Views
 
-Returns a list of video views
+Returns a list of video views.
 
 ### Example
 

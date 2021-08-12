@@ -1,6 +1,6 @@
 {
     "name": "muxinc/mux-php",
-    "version": "1.0.0-rc.1",
+    "version": "1.0.0",
     "description": "Mux is how developers build online video. This API encompasses both Mux Video and Mux Data functionality to help you build your video-related projects better and faster than ever before.",
     "keywords": [
         "openapitools",
@@ -24,7 +24,7 @@
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^7.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0 || ^9.0",

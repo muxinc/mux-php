@@ -40,6 +40,8 @@ MuxPhp/Models/DimensionValue.php
 MuxPhp/Models/DisableLiveStreamResponse.php
 MuxPhp/Models/EnableLiveStreamResponse.php
 MuxPhp/Models/Error.php
+MuxPhp/Models/ExportDate.php
+MuxPhp/Models/ExportFile.php
 MuxPhp/Models/FilterValue.php
 MuxPhp/Models/GetAssetInputInfoResponse.php
 MuxPhp/Models/GetAssetOrLiveStreamIdResponse.php
@@ -83,6 +85,7 @@ MuxPhp/Models/ListRealTimeMetricsResponse.php
 MuxPhp/Models/ListRelatedIncidentsResponse.php
 MuxPhp/Models/ListSigningKeysResponse.php
 MuxPhp/Models/ListUploadsResponse.php
+MuxPhp/Models/ListVideoViewExportsResponse.php
 MuxPhp/Models/ListVideoViewsResponse.php
 MuxPhp/Models/LiveStream.php
 MuxPhp/Models/LiveStreamResponse.php
@@ -152,6 +155,8 @@ docs/Model/DimensionValue.md
 docs/Model/DisableLiveStreamResponse.md
 docs/Model/EnableLiveStreamResponse.md
 docs/Model/Error.md
+docs/Model/ExportDate.md
+docs/Model/ExportFile.md
 docs/Model/FilterValue.md
 docs/Model/GetAssetInputInfoResponse.md
 docs/Model/GetAssetOrLiveStreamIdResponse.md
@@ -195,6 +200,7 @@ docs/Model/ListRealTimeMetricsResponse.md
 docs/Model/ListRelatedIncidentsResponse.md
 docs/Model/ListSigningKeysResponse.md
 docs/Model/ListUploadsResponse.md
+docs/Model/ListVideoViewExportsResponse.md
 docs/Model/ListVideoViewsResponse.md
 docs/Model/LiveStream.md
 docs/Model/LiveStreamResponse.md

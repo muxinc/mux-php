@@ -15,7 +15,7 @@ listErrors($filters, $timeframe): \MuxPhp\Models\ListErrorsResponse
 
 List Errors
 
-Returns a list of errors
+Returns a list of errors.
 
 ### Example
 

@@ -212,7 +212,7 @@ deleteAsset($asset_id)
 
 Delete an asset
 
-Deletes a video asset and all its data
+Deletes a video asset and all its data.
 
 ### Example
 
@@ -576,7 +576,7 @@ Name | Type | Description  | Notes
 ## `listAssets()`
 
 ```php
-listAssets($limit, $page): \MuxPhp\Models\ListAssetsResponse
+listAssets($limit, $page, $live_stream_id, $upload_id): \MuxPhp\Models\ListAssetsResponse
 ```
 
 List assets
@@ -604,9 +604,11 @@ $apiInstance = new MuxPhp\Api\AssetsApi(
 );
 $limit = 25; // int | Number of items to include in the response
 $page = 1; // int | Offset by this many pages, of the size of `limit`
+$live_stream_id = 'live_stream_id_example'; // string | Filter response to return all the assets for this live stream only
+$upload_id = 'upload_id_example'; // string | Filter response to return an asset created from this direct upload only
 
 try {
-    $result = $apiInstance->listAssets($limit, $page);
+    $result = $apiInstance->listAssets($limit, $page, $live_stream_id, $upload_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AssetsApi->listAssets: ', $e->getMessage(), PHP_EOL;
@@ -619,6 +621,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
  **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
+ **live_stream_id** | **string**| Filter response to return all the assets for this live stream only | [optional]
+ **upload_id** | **string**| Filter response to return an asset created from this direct upload only | [optional]
 
 ### Return type
 

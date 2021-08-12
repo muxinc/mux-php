@@ -1,6 +1,6 @@
 <?php
 /**
- * GetMetricTimeseriesDataResponse
+ * ExportFile
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * GetMetricTimeseriesDataResponse Class Doc Comment
+ * ExportFile Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ExportFile implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GetMetricTimeseriesDataResponse';
+    protected static $openAPIModelName = 'ExportFile';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,9 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => 'string[][]',
-        'total_row_count' => 'int',
-        'timeframe' => 'int[]'
+        'version' => 'int',
+        'type' => 'string',
+        'path' => 'string'
     ];
 
     /**
@@ -73,9 +73,9 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'data' => null,
-        'total_row_count' => 'int64',
-        'timeframe' => 'int64'
+        'version' => 'int32',
+        'type' => null,
+        'path' => null
     ];
 
     /**
@@ -105,9 +105,9 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $attributeMap = [
-        'data' => 'data',
-        'total_row_count' => 'total_row_count',
-        'timeframe' => 'timeframe'
+        'version' => 'version',
+        'type' => 'type',
+        'path' => 'path'
     ];
 
     /**
@@ -116,9 +116,9 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $setters = [
-        'data' => 'setData',
-        'total_row_count' => 'setTotalRowCount',
-        'timeframe' => 'setTimeframe'
+        'version' => 'setVersion',
+        'type' => 'setType',
+        'path' => 'setPath'
     ];
 
     /**
@@ -127,9 +127,9 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $getters = [
-        'data' => 'getData',
-        'total_row_count' => 'getTotalRowCount',
-        'timeframe' => 'getTimeframe'
+        'version' => 'getVersion',
+        'type' => 'getType',
+        'path' => 'getPath'
     ];
 
     /**
@@ -195,9 +195,9 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['data'] = $data['data'] ?? null;
-        $this->container['total_row_count'] = $data['total_row_count'] ?? null;
-        $this->container['timeframe'] = $data['timeframe'] ?? null;
+        $this->container['version'] = $data['version'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['path'] = $data['path'] ?? null;
     }
 
     /**
@@ -225,73 +225,73 @@ class GetMetricTimeseriesDataResponse implements ModelInterface, ArrayAccess, \J
 
 
     /**
-     * Gets data
-     *
-     * @return string[][]|null
-     */
-    public function getData()
-    {
-        return $this->container['data'];
-    }
-
-    /**
-     * Sets data
-     *
-     * @param string[][]|null $data data
-     *
-     * @return self
-     */
-    public function setData($data)
-    {
-        $this->container['data'] = $data;
-
-        return $this;
-    }
-
-    /**
-     * Gets total_row_count
+     * Gets version
      *
      * @return int|null
      */
-    public function getTotalRowCount()
+    public function getVersion()
     {
-        return $this->container['total_row_count'];
+        return $this->container['version'];
     }
 
     /**
-     * Sets total_row_count
+     * Sets version
      *
-     * @param int|null $total_row_count total_row_count
+     * @param int|null $version version
      *
      * @return self
      */
-    public function setTotalRowCount($total_row_count)
+    public function setVersion($version)
     {
-        $this->container['total_row_count'] = $total_row_count;
+        $this->container['version'] = $version;
 
         return $this;
     }
 
     /**
-     * Gets timeframe
+     * Gets type
      *
-     * @return int[]|null
+     * @return string|null
      */
-    public function getTimeframe()
+    public function getType()
     {
-        return $this->container['timeframe'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets timeframe
+     * Sets type
      *
-     * @param int[]|null $timeframe timeframe
+     * @param string|null $type type
      *
      * @return self
      */
-    public function setTimeframe($timeframe)
+    public function setType($type)
     {
-        $this->container['timeframe'] = $timeframe;
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets path
+     *
+     * @return string|null
+     */
+    public function getPath()
+    {
+        return $this->container['path'];
+    }
+
+    /**
+     * Sets path
+     *
+     * @param string|null $path path
+     *
+     * @return self
+     */
+    public function setPath($path)
+    {
+        $this->container['path'] = $path;
 
         return $this;
     }

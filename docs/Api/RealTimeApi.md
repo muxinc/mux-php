@@ -219,7 +219,7 @@ listRealtimeDimensions(): \MuxPhp\Models\ListRealTimeDimensionsResponse
 
 List Real-Time Dimensions
 
-Lists availiable real-time dimensions.
+Lists available real-time dimensions.
 
 ### Example
 
@@ -278,7 +278,7 @@ listRealtimeMetrics(): \MuxPhp\Models\ListRealTimeMetricsResponse
 
 List Real-Time Metrics
 
-Lists availiable real-time metrics.
+Lists available real-time metrics.
 
 ### Example
 

@@ -72,6 +72,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'audio_only' => 'bool',
         'reconnect_window' => 'float',
         'reduced_latency' => 'bool',
+        'low_latency' => 'bool',
         'simulcast_targets' => '\MuxPhp\Models\SimulcastTarget[]',
         'test' => 'bool'
     ];
@@ -96,6 +97,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'audio_only' => null,
         'reconnect_window' => 'float',
         'reduced_latency' => 'boolean',
+        'low_latency' => 'boolean',
         'simulcast_targets' => null,
         'test' => 'boolean'
     ];
@@ -139,6 +141,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'audio_only' => 'audio_only',
         'reconnect_window' => 'reconnect_window',
         'reduced_latency' => 'reduced_latency',
+        'low_latency' => 'low_latency',
         'simulcast_targets' => 'simulcast_targets',
         'test' => 'test'
     ];
@@ -161,6 +164,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'audio_only' => 'setAudioOnly',
         'reconnect_window' => 'setReconnectWindow',
         'reduced_latency' => 'setReducedLatency',
+        'low_latency' => 'setLowLatency',
         'simulcast_targets' => 'setSimulcastTargets',
         'test' => 'setTest'
     ];
@@ -183,6 +187,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'audio_only' => 'getAudioOnly',
         'reconnect_window' => 'getReconnectWindow',
         'reduced_latency' => 'getReducedLatency',
+        'low_latency' => 'getLowLatency',
         'simulcast_targets' => 'getSimulcastTargets',
         'test' => 'getTest'
     ];
@@ -279,6 +284,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['audio_only'] = $data['audio_only'] ?? null;
         $this->container['reconnect_window'] = $data['reconnect_window'] ?? 60;
         $this->container['reduced_latency'] = $data['reduced_latency'] ?? null;
+        $this->container['low_latency'] = $data['low_latency'] ?? null;
         $this->container['simulcast_targets'] = $data['simulcast_targets'] ?? null;
         $this->container['test'] = $data['test'] ?? null;
     }
@@ -610,6 +616,30 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setReducedLatency($reduced_latency)
     {
         $this->container['reduced_latency'] = $reduced_latency;
+
+        return $this;
+    }
+
+    /**
+     * Gets low_latency
+     *
+     * @return bool|null
+     */
+    public function getLowLatency()
+    {
+        return $this->container['low_latency'];
+    }
+
+    /**
+     * Sets low_latency
+     *
+     * @param bool|null $low_latency Latency is the time from when the streamer does something in real life to when you see it happen in the player. Setting this option will enable compatibility with the LL-HLS specification for low-latency streaming. This typically has lower latency than Reduced Latency streams, and cannot be combined with Reduced Latency. Note: Reconnect windows are incompatible with Low Latency and will always be set to zero (0) seconds.
+     *
+     * @return self
+     */
+    public function setLowLatency($low_latency)
+    {
+        $this->container['low_latency'] = $low_latency;
 
         return $this;
     }

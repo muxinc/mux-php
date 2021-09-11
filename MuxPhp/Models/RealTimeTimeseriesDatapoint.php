@@ -62,7 +62,7 @@ class RealTimeTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'value' => 'double',
         'date' => 'string',
-        'concurent_viewers' => 'int'
+        'concurrent_viewers' => 'int'
     ];
 
     /**
@@ -75,7 +75,7 @@ class RealTimeTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPIFormats = [
         'value' => 'double',
         'date' => null,
-        'concurent_viewers' => 'int64'
+        'concurrent_viewers' => 'int64'
     ];
 
     /**
@@ -107,7 +107,7 @@ class RealTimeTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonS
     protected static $attributeMap = [
         'value' => 'value',
         'date' => 'date',
-        'concurent_viewers' => 'concurent_viewers'
+        'concurrent_viewers' => 'concurrent_viewers'
     ];
 
     /**
@@ -118,7 +118,7 @@ class RealTimeTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonS
     protected static $setters = [
         'value' => 'setValue',
         'date' => 'setDate',
-        'concurent_viewers' => 'setConcurentViewers'
+        'concurrent_viewers' => 'setConcurrentViewers'
     ];
 
     /**
@@ -129,7 +129,7 @@ class RealTimeTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonS
     protected static $getters = [
         'value' => 'getValue',
         'date' => 'getDate',
-        'concurent_viewers' => 'getConcurentViewers'
+        'concurrent_viewers' => 'getConcurrentViewers'
     ];
 
     /**
@@ -197,7 +197,7 @@ class RealTimeTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonS
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['value'] = $data['value'] ?? null;
         $this->container['date'] = $data['date'] ?? null;
-        $this->container['concurent_viewers'] = $data['concurent_viewers'] ?? null;
+        $this->container['concurrent_viewers'] = $data['concurrent_viewers'] ?? null;
     }
 
     /**
@@ -273,25 +273,25 @@ class RealTimeTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Gets concurent_viewers
+     * Gets concurrent_viewers
      *
      * @return int|null
      */
-    public function getConcurentViewers()
+    public function getConcurrentViewers()
     {
-        return $this->container['concurent_viewers'];
+        return $this->container['concurrent_viewers'];
     }
 
     /**
-     * Sets concurent_viewers
+     * Sets concurrent_viewers
      *
-     * @param int|null $concurent_viewers concurent_viewers
+     * @param int|null $concurrent_viewers concurrent_viewers
      *
      * @return self
      */
-    public function setConcurentViewers($concurent_viewers)
+    public function setConcurrentViewers($concurrent_viewers)
     {
-        $this->container['concurent_viewers'] = $concurent_viewers;
+        $this->container['concurrent_viewers'] = $concurrent_viewers;
 
         return $this;
     }

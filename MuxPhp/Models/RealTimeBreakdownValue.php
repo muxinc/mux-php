@@ -64,7 +64,7 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         'negative_impact' => 'int',
         'metric_value' => 'double',
         'display_value' => 'string',
-        'concurent_viewers' => 'int'
+        'concurrent_viewers' => 'int'
     ];
 
     /**
@@ -79,7 +79,7 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         'negative_impact' => 'int64',
         'metric_value' => 'double',
         'display_value' => null,
-        'concurent_viewers' => 'int64'
+        'concurrent_viewers' => 'int64'
     ];
 
     /**
@@ -113,7 +113,7 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         'negative_impact' => 'negative_impact',
         'metric_value' => 'metric_value',
         'display_value' => 'display_value',
-        'concurent_viewers' => 'concurent_viewers'
+        'concurrent_viewers' => 'concurrent_viewers'
     ];
 
     /**
@@ -126,7 +126,7 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         'negative_impact' => 'setNegativeImpact',
         'metric_value' => 'setMetricValue',
         'display_value' => 'setDisplayValue',
-        'concurent_viewers' => 'setConcurentViewers'
+        'concurrent_viewers' => 'setConcurrentViewers'
     ];
 
     /**
@@ -139,7 +139,7 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         'negative_impact' => 'getNegativeImpact',
         'metric_value' => 'getMetricValue',
         'display_value' => 'getDisplayValue',
-        'concurent_viewers' => 'getConcurentViewers'
+        'concurrent_viewers' => 'getConcurrentViewers'
     ];
 
     /**
@@ -209,7 +209,7 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         $this->container['negative_impact'] = $data['negative_impact'] ?? null;
         $this->container['metric_value'] = $data['metric_value'] ?? null;
         $this->container['display_value'] = $data['display_value'] ?? null;
-        $this->container['concurent_viewers'] = $data['concurent_viewers'] ?? null;
+        $this->container['concurrent_viewers'] = $data['concurrent_viewers'] ?? null;
     }
 
     /**
@@ -333,25 +333,25 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
-     * Gets concurent_viewers
+     * Gets concurrent_viewers
      *
      * @return int|null
      */
-    public function getConcurentViewers()
+    public function getConcurrentViewers()
     {
-        return $this->container['concurent_viewers'];
+        return $this->container['concurrent_viewers'];
     }
 
     /**
-     * Sets concurent_viewers
+     * Sets concurrent_viewers
      *
-     * @param int|null $concurent_viewers concurent_viewers
+     * @param int|null $concurrent_viewers concurrent_viewers
      *
      * @return self
      */
-    public function setConcurentViewers($concurent_viewers)
+    public function setConcurrentViewers($concurrent_viewers)
     {
-        $this->container['concurent_viewers'] = $concurent_viewers;
+        $this->container['concurrent_viewers'] = $concurrent_viewers;
 
         return $this;
     }

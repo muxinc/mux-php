@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**disableLiveStream()**](LiveStreamsApi.md#disableLiveStream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/disable | Disable a live stream
 [**enableLiveStream()**](LiveStreamsApi.md#enableLiveStream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/enable | Enable a live stream
 [**getLiveStream()**](LiveStreamsApi.md#getLiveStream) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID} | Retrieve a live stream
+[**getLiveStreamPlaybackId()**](LiveStreamsApi.md#getLiveStreamPlaybackId) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Retrieve a live stream playback ID
 [**getLiveStreamSimulcastTarget()**](LiveStreamsApi.md#getLiveStreamSimulcastTarget) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Retrieve a Live Stream Simulcast Target
 [**listLiveStreams()**](LiveStreamsApi.md#listLiveStreams) | **GET** /video/v1/live-streams | List live streams
 [**resetStreamKey()**](LiveStreamsApi.md#resetStreamKey) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key | Reset a live stream’s stream key
@@ -560,6 +561,68 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\MuxPhp\Models\LiveStreamResponse**](../Model/LiveStreamResponse.md)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getLiveStreamPlaybackId()`
+
+```php
+getLiveStreamPlaybackId($live_stream_id, $playback_id): \MuxPhp\Models\GetLiveStreamPlaybackIDResponse
+```
+
+Retrieve a live stream playback ID
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+$playback_id = 'playback_id_example'; // string | The live stream's playback ID.
+
+try {
+    $result = $apiInstance->getLiveStreamPlaybackId($live_stream_id, $playback_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->getLiveStreamPlaybackId: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **live_stream_id** | **string**| The live stream ID |
+ **playback_id** | **string**| The live stream&#39;s playback ID. |
+
+### Return type
+
+[**\MuxPhp\Models\GetLiveStreamPlaybackIDResponse**](../Model/GetLiveStreamPlaybackIDResponse.md)
 
 ### Authorization
 

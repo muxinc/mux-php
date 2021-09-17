@@ -2508,6 +2508,299 @@ class LiveStreamsApi
     }
 
     /**
+     * Operation getLiveStreamPlaybackId
+     *
+     * Retrieve a live stream playback ID
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $playback_id The live stream&#39;s playback ID. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MuxPhp\Models\GetLiveStreamPlaybackIDResponse
+     */
+    public function getLiveStreamPlaybackId($live_stream_id, $playback_id)
+    {
+        list($response) = $this->getLiveStreamPlaybackIdWithHttpInfo($live_stream_id, $playback_id);
+        return $response;
+    }
+
+    /**
+     * Operation getLiveStreamPlaybackIdWithHttpInfo
+     *
+     * Retrieve a live stream playback ID
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $playback_id The live stream&#39;s playback ID. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MuxPhp\Models\GetLiveStreamPlaybackIDResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getLiveStreamPlaybackIdWithHttpInfo($live_stream_id, $playback_id)
+    {
+        $request = $this->getLiveStreamPlaybackIdRequest($live_stream_id, $playback_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\MuxPhp\Models\GetLiveStreamPlaybackIDResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\GetLiveStreamPlaybackIDResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MuxPhp\Models\GetLiveStreamPlaybackIDResponse';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = (string) $responseBody;
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MuxPhp\Models\GetLiveStreamPlaybackIDResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getLiveStreamPlaybackIdAsync
+     *
+     * Retrieve a live stream playback ID
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $playback_id The live stream&#39;s playback ID. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getLiveStreamPlaybackIdAsync($live_stream_id, $playback_id)
+    {
+        return $this->getLiveStreamPlaybackIdAsyncWithHttpInfo($live_stream_id, $playback_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getLiveStreamPlaybackIdAsyncWithHttpInfo
+     *
+     * Retrieve a live stream playback ID
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $playback_id The live stream&#39;s playback ID. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getLiveStreamPlaybackIdAsyncWithHttpInfo($live_stream_id, $playback_id)
+    {
+        $returnType = '\MuxPhp\Models\GetLiveStreamPlaybackIDResponse';
+        $request = $this->getLiveStreamPlaybackIdRequest($live_stream_id, $playback_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getLiveStreamPlaybackId'
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  string $playback_id The live stream&#39;s playback ID. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getLiveStreamPlaybackIdRequest($live_stream_id, $playback_id)
+    {
+        // verify the required parameter 'live_stream_id' is set
+        if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $live_stream_id when calling getLiveStreamPlaybackId'
+            );
+        }
+        // verify the required parameter 'playback_id' is set
+        if ($playback_id === null || (is_array($playback_id) && count($playback_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $playback_id when calling getLiveStreamPlaybackId'
+            );
+        }
+
+        $resourcePath = '/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($live_stream_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'LIVE_STREAM_ID' . '}',
+                ObjectSerializer::toPathValue($live_stream_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($playback_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'PLAYBACK_ID' . '}',
+                ObjectSerializer::toPathValue($playback_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getLiveStreamSimulcastTarget
      *
      * Retrieve a Live Stream Simulcast Target

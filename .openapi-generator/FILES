@@ -48,6 +48,7 @@ MuxPhp/Models/GetAssetOrLiveStreamIdResponse.php
 MuxPhp/Models/GetAssetOrLiveStreamIdResponseData.php
 MuxPhp/Models/GetAssetOrLiveStreamIdResponseDataObject.php
 MuxPhp/Models/GetAssetPlaybackIDResponse.php
+MuxPhp/Models/GetLiveStreamPlaybackIDResponse.php
 MuxPhp/Models/GetMetricTimeseriesDataResponse.php
 MuxPhp/Models/GetOverallValuesResponse.php
 MuxPhp/Models/GetRealTimeBreakdownResponse.php
@@ -163,6 +164,7 @@ docs/Model/GetAssetOrLiveStreamIdResponse.md
 docs/Model/GetAssetOrLiveStreamIdResponseData.md
 docs/Model/GetAssetOrLiveStreamIdResponseDataObject.md
 docs/Model/GetAssetPlaybackIDResponse.md
+docs/Model/GetLiveStreamPlaybackIDResponse.md
 docs/Model/GetMetricTimeseriesDataResponse.md
 docs/Model/GetOverallValuesResponse.md
 docs/Model/GetRealTimeBreakdownResponse.md

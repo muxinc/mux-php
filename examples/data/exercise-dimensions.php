@@ -21,7 +21,12 @@
     print("list-dimensions OK ✅\n");
 
     // ========== list-dimension-values ==========
-    $dimensionValues = $dimensionsApi->listDimensionValues("browser", ["timeframe" => ["7:days"]]);
+    $dimensionValues = $dimensionsApi->listDimensionValues("browser", [
+        "page" => 1,
+        "limit" => 25,
+        "timeframe" => ["7:days"],
+        "filters" => ["region:California"]
+    ]);
     assert($dimensionValues->getData() != null);
     print("list-dimension-values OK ✅\n");
 

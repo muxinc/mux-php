@@ -89,6 +89,7 @@ MuxPhp/Models/ListUploadsResponse.php
 MuxPhp/Models/ListVideoViewExportsResponse.php
 MuxPhp/Models/ListVideoViewsResponse.php
 MuxPhp/Models/LiveStream.php
+MuxPhp/Models/LiveStreamEmbeddedSubtitleSettings.php
 MuxPhp/Models/LiveStreamResponse.php
 MuxPhp/Models/Metric.php
 MuxPhp/Models/ModelInterface.php
@@ -110,6 +111,7 @@ MuxPhp/Models/SimulcastTargetResponse.php
 MuxPhp/Models/Track.php
 MuxPhp/Models/UpdateAssetMP4SupportRequest.php
 MuxPhp/Models/UpdateAssetMasterAccessRequest.php
+MuxPhp/Models/UpdateLiveStreamEmbeddedSubtitlesRequest.php
 MuxPhp/Models/Upload.php
 MuxPhp/Models/UploadError.php
 MuxPhp/Models/UploadResponse.php
@@ -205,6 +207,7 @@ docs/Model/ListUploadsResponse.md
 docs/Model/ListVideoViewExportsResponse.md
 docs/Model/ListVideoViewsResponse.md
 docs/Model/LiveStream.md
+docs/Model/LiveStreamEmbeddedSubtitleSettings.md
 docs/Model/LiveStreamResponse.md
 docs/Model/Metric.md
 docs/Model/NotificationRule.md
@@ -225,6 +228,7 @@ docs/Model/SimulcastTargetResponse.md
 docs/Model/Track.md
 docs/Model/UpdateAssetMP4SupportRequest.md
 docs/Model/UpdateAssetMasterAccessRequest.md
+docs/Model/UpdateLiveStreamEmbeddedSubtitlesRequest.md
 docs/Model/Upload.md
 docs/Model/UploadError.md
 docs/Model/UploadResponse.md

@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**listLiveStreams()**](LiveStreamsApi.md#listLiveStreams) | **GET** /video/v1/live-streams | List live streams
 [**resetStreamKey()**](LiveStreamsApi.md#resetStreamKey) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key | Reset a live stream’s stream key
 [**signalLiveStreamComplete()**](LiveStreamsApi.md#signalLiveStreamComplete) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/complete | Signal a live stream is finished
+[**updateLiveStreamEmbeddedSubtitles()**](LiveStreamsApi.md#updateLiveStreamEmbeddedSubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles | Update a live stream&#39;s embedded subtitles
 
 
 ## `createLiveStream()`
@@ -883,6 +884,70 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateLiveStreamEmbeddedSubtitles()`
+
+```php
+updateLiveStreamEmbeddedSubtitles($live_stream_id, $update_live_stream_embedded_subtitles_request): \MuxPhp\Models\LiveStreamResponse
+```
+
+Update a live stream's embedded subtitles
+
+Configures a live stream to receive embedded subtitles including captions and translations.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+$update_live_stream_embedded_subtitles_request = {"embedded_subtitles":[{"passthrough":"Example"}]}; // \MuxPhp\Models\UpdateLiveStreamEmbeddedSubtitlesRequest
+
+try {
+    $result = $apiInstance->updateLiveStreamEmbeddedSubtitles($live_stream_id, $update_live_stream_embedded_subtitles_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->updateLiveStreamEmbeddedSubtitles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **live_stream_id** | **string**| The live stream ID |
+ **update_live_stream_embedded_subtitles_request** | [**\MuxPhp\Models\UpdateLiveStreamEmbeddedSubtitlesRequest**](../Model/UpdateLiveStreamEmbeddedSubtitlesRequest.md)|  |
+
+### Return type
+
+[**\MuxPhp\Models\LiveStreamResponse**](../Model/LiveStreamResponse.md)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

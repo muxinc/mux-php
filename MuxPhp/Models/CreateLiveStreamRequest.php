@@ -65,6 +65,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'reconnect_window' => 'float',
         'passthrough' => 'string',
         'audio_only' => 'bool',
+        'embedded_subtitles' => '\MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]',
         'reduced_latency' => 'bool',
         'low_latency' => 'bool',
         'test' => 'bool',
@@ -84,6 +85,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'reconnect_window' => 'float',
         'passthrough' => null,
         'audio_only' => null,
+        'embedded_subtitles' => null,
         'reduced_latency' => 'boolean',
         'low_latency' => 'boolean',
         'test' => 'boolean',
@@ -122,6 +124,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'reconnect_window' => 'reconnect_window',
         'passthrough' => 'passthrough',
         'audio_only' => 'audio_only',
+        'embedded_subtitles' => 'embedded_subtitles',
         'reduced_latency' => 'reduced_latency',
         'low_latency' => 'low_latency',
         'test' => 'test',
@@ -139,6 +142,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'reconnect_window' => 'setReconnectWindow',
         'passthrough' => 'setPassthrough',
         'audio_only' => 'setAudioOnly',
+        'embedded_subtitles' => 'setEmbeddedSubtitles',
         'reduced_latency' => 'setReducedLatency',
         'low_latency' => 'setLowLatency',
         'test' => 'setTest',
@@ -156,6 +160,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'reconnect_window' => 'getReconnectWindow',
         'passthrough' => 'getPassthrough',
         'audio_only' => 'getAudioOnly',
+        'embedded_subtitles' => 'getEmbeddedSubtitles',
         'reduced_latency' => 'getReducedLatency',
         'low_latency' => 'getLowLatency',
         'test' => 'getTest',
@@ -230,6 +235,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         $this->container['reconnect_window'] = $data['reconnect_window'] ?? null;
         $this->container['passthrough'] = $data['passthrough'] ?? null;
         $this->container['audio_only'] = $data['audio_only'] ?? null;
+        $this->container['embedded_subtitles'] = $data['embedded_subtitles'] ?? null;
         $this->container['reduced_latency'] = $data['reduced_latency'] ?? null;
         $this->container['low_latency'] = $data['low_latency'] ?? null;
         $this->container['test'] = $data['test'] ?? null;
@@ -392,6 +398,30 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     public function setAudioOnly($audio_only)
     {
         $this->container['audio_only'] = $audio_only;
+
+        return $this;
+    }
+
+    /**
+     * Gets embedded_subtitles
+     *
+     * @return \MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]|null
+     */
+    public function getEmbeddedSubtitles()
+    {
+        return $this->container['embedded_subtitles'];
+    }
+
+    /**
+     * Sets embedded_subtitles
+     *
+     * @param \MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]|null $embedded_subtitles Describe the subtitle contents of the incoming live stream.
+     *
+     * @return self
+     */
+    public function setEmbeddedSubtitles($embedded_subtitles)
+    {
+        $this->container['embedded_subtitles'] = $embedded_subtitles;
 
         return $this;
     }

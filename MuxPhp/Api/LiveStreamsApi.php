@@ -3458,7 +3458,7 @@ class LiveStreamsApi
 
             $responseBody = $response->getBody();
             switch($statusCode) {
-                case 201:
+                case 200:
                     if ('\MuxPhp\Models\LiveStreamResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
@@ -3488,7 +3488,7 @@ class LiveStreamsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 201:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\MuxPhp\Models\LiveStreamResponse',

@@ -66,6 +66,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         'video_gop_size' => 'string',
         'video_frame_rate' => 'string',
         'video_resolution' => 'string',
+        'video_bitrate' => 'string',
         'pixel_aspect_ratio' => 'string',
         'video_edit_list' => 'string',
         'audio_edit_list' => 'string',
@@ -85,6 +86,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         'video_gop_size' => null,
         'video_frame_rate' => null,
         'video_resolution' => null,
+        'video_bitrate' => null,
         'pixel_aspect_ratio' => null,
         'video_edit_list' => null,
         'audio_edit_list' => null,
@@ -123,6 +125,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         'video_gop_size' => 'video_gop_size',
         'video_frame_rate' => 'video_frame_rate',
         'video_resolution' => 'video_resolution',
+        'video_bitrate' => 'video_bitrate',
         'pixel_aspect_ratio' => 'pixel_aspect_ratio',
         'video_edit_list' => 'video_edit_list',
         'audio_edit_list' => 'audio_edit_list',
@@ -140,6 +143,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         'video_gop_size' => 'setVideoGopSize',
         'video_frame_rate' => 'setVideoFrameRate',
         'video_resolution' => 'setVideoResolution',
+        'video_bitrate' => 'setVideoBitrate',
         'pixel_aspect_ratio' => 'setPixelAspectRatio',
         'video_edit_list' => 'setVideoEditList',
         'audio_edit_list' => 'setAudioEditList',
@@ -157,6 +161,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         'video_gop_size' => 'getVideoGopSize',
         'video_frame_rate' => 'getVideoFrameRate',
         'video_resolution' => 'getVideoResolution',
+        'video_bitrate' => 'getVideoBitrate',
         'pixel_aspect_ratio' => 'getPixelAspectRatio',
         'video_edit_list' => 'getVideoEditList',
         'audio_edit_list' => 'getAudioEditList',
@@ -205,6 +210,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
     }
 
     public const VIDEO_GOP_SIZE_HIGH = 'high';
+    public const VIDEO_BITRATE_HIGH = 'high';
     public const VIDEO_EDIT_LIST_NON_STANDARD = 'non-standard';
     public const AUDIO_EDIT_LIST_NON_STANDARD = 'non-standard';
     public const UNEXPECTED_MEDIA_FILE_PARAMETERS_NON_STANDARD = 'non-standard';
@@ -220,6 +226,18 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
     {
         return [
             self::VIDEO_GOP_SIZE_HIGH,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getVideoBitrateAllowableValues()
+    {
+        return [
+            self::VIDEO_BITRATE_HIGH,
         ];
     }
     
@@ -283,6 +301,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         $this->container['video_gop_size'] = $data['video_gop_size'] ?? null;
         $this->container['video_frame_rate'] = $data['video_frame_rate'] ?? null;
         $this->container['video_resolution'] = $data['video_resolution'] ?? null;
+        $this->container['video_bitrate'] = $data['video_bitrate'] ?? null;
         $this->container['pixel_aspect_ratio'] = $data['pixel_aspect_ratio'] ?? null;
         $this->container['video_edit_list'] = $data['video_edit_list'] ?? null;
         $this->container['audio_edit_list'] = $data['audio_edit_list'] ?? null;
@@ -303,6 +322,15 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'video_gop_size', must be one of '%s'",
                 $this->container['video_gop_size'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getVideoBitrateAllowableValues();
+        if (!is_null($this->container['video_bitrate']) && !in_array($this->container['video_bitrate'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'video_bitrate', must be one of '%s'",
+                $this->container['video_bitrate'],
                 implode("', '", $allowedValues)
             );
         }
@@ -475,6 +503,40 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
     public function setVideoResolution($video_resolution)
     {
         $this->container['video_resolution'] = $video_resolution;
+
+        return $this;
+    }
+
+    /**
+     * Gets video_bitrate
+     *
+     * @return string|null
+     */
+    public function getVideoBitrate()
+    {
+        return $this->container['video_bitrate'];
+    }
+
+    /**
+     * Sets video_bitrate
+     *
+     * @param string|null $video_bitrate The video bitrate of the input file is `high`. This parameter is present when the average bitrate of any key frame interval (also known as Group of Pictures or GOP) is higher than what's considered standard which typically is 16 Mbps.
+     *
+     * @return self
+     */
+    public function setVideoBitrate($video_bitrate)
+    {
+        $allowedValues = $this->getVideoBitrateAllowableValues();
+        if (!is_null($video_bitrate) && !in_array($video_bitrate, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'video_bitrate', must be one of '%s'",
+                    $video_bitrate,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['video_bitrate'] = $video_bitrate;
 
         return $this;
     }

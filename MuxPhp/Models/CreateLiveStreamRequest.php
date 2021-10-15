@@ -415,7 +415,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets embedded_subtitles
      *
-     * @param \MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]|null $embedded_subtitles Describe the subtitle contents of the incoming live stream.
+     * @param \MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]|null $embedded_subtitles Describe the embedded closed caption contents of the incoming live stream.
      *
      * @return self
      */

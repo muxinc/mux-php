@@ -225,7 +225,7 @@ class UpdateLiveStreamEmbeddedSubtitlesRequest implements ModelInterface, ArrayA
     /**
      * Sets embedded_subtitles
      *
-     * @param \MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]|null $embedded_subtitles Describe the embedded subtitle contents of the incoming live stream.
+     * @param \MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]|null $embedded_subtitles Describe the embedded closed caption contents of the incoming live stream.
      *
      * @return self
      */

@@ -265,7 +265,7 @@ class LiveStreamEmbeddedSubtitleSettings implements ModelInterface, ArrayAccess,
     /**
      * Sets name
      *
-     * @param string|null $name A name for this live stream subtitle track.
+     * @param string|null $name A name for this live stream closed caption track.
      *
      * @return self
      */
@@ -289,7 +289,7 @@ class LiveStreamEmbeddedSubtitleSettings implements ModelInterface, ArrayAccess,
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary metadata set for the live stream subtitle track. Max 255 characters.
+     * @param string|null $passthrough Arbitrary metadata set for the live stream closed caption track. Max 255 characters.
      *
      * @return self
      */
@@ -313,7 +313,7 @@ class LiveStreamEmbeddedSubtitleSettings implements ModelInterface, ArrayAccess,
     /**
      * Sets language_code
      *
-     * @param string|null $language_code The language of the subtitle stream. Value must be BCP 47 compliant.
+     * @param string|null $language_code The language of the closed caption stream. Value must be BCP 47 compliant.
      *
      * @return self
      */

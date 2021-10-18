@@ -226,10 +226,6 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_VIDEO = 'video';
     public const TYPE_AUDIO = 'audio';
     public const TYPE_TEXT = 'text';
-    public const MAX_CHANNEL_LAYOUT_MONO = 'mono';
-    public const MAX_CHANNEL_LAYOUT_STEREO = 'stereo';
-    public const MAX_CHANNEL_LAYOUT__5_2 = '5.2';
-    public const MAX_CHANNEL_LAYOUT__7_1 = '7.1';
     public const TEXT_TYPE_SUBTITLES = 'subtitles';
     
 
@@ -245,21 +241,6 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_VIDEO,
             self::TYPE_AUDIO,
             self::TYPE_TEXT,
-        ];
-    }
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMaxChannelLayoutAllowableValues()
-    {
-        return [
-            self::MAX_CHANNEL_LAYOUT_MONO,
-            self::MAX_CHANNEL_LAYOUT_STEREO,
-            self::MAX_CHANNEL_LAYOUT__5_2,
-            self::MAX_CHANNEL_LAYOUT__7_1,
         ];
     }
     
@@ -323,15 +304,6 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getMaxChannelLayoutAllowableValues();
-        if (!is_null($this->container['max_channel_layout']) && !in_array($this->container['max_channel_layout'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'max_channel_layout', must be one of '%s'",
-                $this->container['max_channel_layout'],
                 implode("', '", $allowedValues)
             );
         }
@@ -557,16 +529,6 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaxChannelLayout($max_channel_layout)
     {
-        $allowedValues = $this->getMaxChannelLayoutAllowableValues();
-        if (!is_null($max_channel_layout) && !in_array($max_channel_layout, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'max_channel_layout', must be one of '%s'",
-                    $max_channel_layout,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['max_channel_layout'] = $max_channel_layout;
 
         return $this;

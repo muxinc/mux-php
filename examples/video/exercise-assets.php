@@ -111,6 +111,7 @@
     print("create-asset-track OK ✅\n");
 
     // ========== delete-asset-track ==========
+    sleep(5);
     $assetsApi->deleteAssetTrack($createAssetResponse->getData()->getId(), $subtitles->getData()->getId());
     $assetWith1Sub = $assetsApi->getAsset($createAssetResponse->getData()->getId());
     assert(count($assetWith1Sub->getData()->getTracks()) == 3); // Audio, Video, French that we ingested with the asset

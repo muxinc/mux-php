@@ -24,10 +24,9 @@
     $dimensionValues = $dimensionsApi->listDimensionValues("browser", [
         "page" => 1,
         "limit" => 25,
-        "timeframe" => ["7:days"],
-        "filters" => ["region:California"]
+        "timeframe" => ["7:days"]
     ]);
-    assert($dimensionValues->getData() != null);
+    assert(is_array($dimensionValues->getData()));
     print("list-dimension-values OK ✅\n");
 
 ?>

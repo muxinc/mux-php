@@ -17,9 +17,7 @@
 
     // ========== list-errors ==========
     $errors = $errorsApi->listErrors(["filters" => ["browser:Safari"], "timeframe" => ["7:days"]]);
-    assert($errors->getData() != null);
-    assert($errors->getData()[0] != null);
-    assert($errors->getData()[0]->getId() != null);
+    assert(is_array($errors->getData()));
     print("list-errors OK ✅\n");
 
 ?>

@@ -1,26 +1,26 @@
 {
     "name": "muxinc/mux-php",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "description": "Mux is how developers build online video. This API encompasses both Mux Video and Mux Data functionality to help you build your video-related projects better and faster than ever before.",
     "keywords": [
-        "openapitools",
-        "openapi-generator",
-        "openapi",
         "php",
         "sdk",
         "rest",
-        "api"
+        "api",
+        "video",
+        "streaming"
     ],
-    "homepage": "https://openapi-generator.tech",
-    "license": "unlicense",
+    "homepage": "https://mux.com",
+    "license": "MIT",
     "authors": [
         {
-            "name": "OpenAPI-Generator contributors",
-            "homepage": "https://openapi-generator.tech"
+            "name": "Mux SDK Team",
+            "homepage": "https://mux.com",
+            "email": "sdks@mux.com"
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.2.5",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",

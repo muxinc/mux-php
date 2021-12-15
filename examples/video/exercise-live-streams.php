@@ -26,6 +26,18 @@
     assert($stream->getData()->getId() != null);
     print("create-live-stream OK ✅\n");
 
+    # ========== update-live-stream ==========
+    $updateLiveStreamRequest = new MuxPhp\Models\UpdateLiveStreamRequest([
+        "latency_mode" => "standard",
+        "reconnect_window" => 35
+    ]);
+    $updatedStream = $liveApi->updateLiveStream($stream->getData()->getId(), $updateLiveStreamRequest);
+    var_dump($updatedStream);
+    assert($updatedStream->getData()->getReconnectWindow() == 35);
+    assert($updatedStream->getData()->getLatencyMode() == "standard");
+    
+    print("update-live-stream OK ✅\n");
+
     // ========== list-live-streams ==========
     $streams = $liveApi->listLiveStreams();
     assert($streams->getData()[0]->getId() != null);

@@ -1,6 +1,6 @@
 <?php
 /**
- * SimulcastTarget
+ * UpdateLiveStreamRequest
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * SimulcastTarget Class Doc Comment
+ * UpdateLiveStreamRequest Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
+class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SimulcastTarget';
+    protected static $openAPIModelName = 'UpdateLiveStreamRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,11 +60,9 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
         'passthrough' => 'string',
-        'status' => 'string',
-        'stream_key' => 'string',
-        'url' => 'string'
+        'latency_mode' => 'string',
+        'reconnect_window' => 'float'
     ];
 
     /**
@@ -75,11 +73,9 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
         'passthrough' => null,
-        'status' => null,
-        'stream_key' => null,
-        'url' => null
+        'latency_mode' => null,
+        'reconnect_window' => 'float'
     ];
 
     /**
@@ -109,11 +105,9 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
         'passthrough' => 'passthrough',
-        'status' => 'status',
-        'stream_key' => 'stream_key',
-        'url' => 'url'
+        'latency_mode' => 'latency_mode',
+        'reconnect_window' => 'reconnect_window'
     ];
 
     /**
@@ -122,11 +116,9 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
         'passthrough' => 'setPassthrough',
-        'status' => 'setStatus',
-        'stream_key' => 'setStreamKey',
-        'url' => 'setUrl'
+        'latency_mode' => 'setLatencyMode',
+        'reconnect_window' => 'setReconnectWindow'
     ];
 
     /**
@@ -135,11 +127,9 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
         'passthrough' => 'getPassthrough',
-        'status' => 'getStatus',
-        'stream_key' => 'getStreamKey',
-        'url' => 'getUrl'
+        'latency_mode' => 'getLatencyMode',
+        'reconnect_window' => 'getReconnectWindow'
     ];
 
     /**
@@ -183,10 +173,9 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const STATUS_IDLE = 'idle';
-    public const STATUS_STARTING = 'starting';
-    public const STATUS_BROADCASTING = 'broadcasting';
-    public const STATUS_ERRORED = 'errored';
+    public const LATENCY_MODE_LOW = 'low';
+    public const LATENCY_MODE_REDUCED = 'reduced';
+    public const LATENCY_MODE_STANDARD = 'standard';
     
 
     
@@ -195,13 +184,12 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return string[]
      */
-    public function getStatusAllowableValues()
+    public function getLatencyModeAllowableValues()
     {
         return [
-            self::STATUS_IDLE,
-            self::STATUS_STARTING,
-            self::STATUS_BROADCASTING,
-            self::STATUS_ERRORED,
+            self::LATENCY_MODE_LOW,
+            self::LATENCY_MODE_REDUCED,
+            self::LATENCY_MODE_STANDARD,
         ];
     }
     
@@ -224,11 +212,9 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['id'] = $data['id'] ?? null;
         $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['status'] = $data['status'] ?? null;
-        $this->container['stream_key'] = $data['stream_key'] ?? null;
-        $this->container['url'] = $data['url'] ?? null;
+        $this->container['latency_mode'] = $data['latency_mode'] ?? null;
+        $this->container['reconnect_window'] = $data['reconnect_window'] ?? null;
     }
 
     /**
@@ -240,13 +226,21 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+        $allowedValues = $this->getLatencyModeAllowableValues();
+        if (!is_null($this->container['latency_mode']) && !in_array($this->container['latency_mode'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
+                "invalid value '%s' for 'latency_mode', must be one of '%s'",
+                $this->container['latency_mode'],
                 implode("', '", $allowedValues)
             );
+        }
+
+        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] > 300)) {
+            $invalidProperties[] = "invalid value for 'reconnect_window', must be smaller than or equal to 300.";
+        }
+
+        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] < 0.1)) {
+            $invalidProperties[] = "invalid value for 'reconnect_window', must be bigger than or equal to 0.1.";
         }
 
         return $invalidProperties;
@@ -265,30 +259,6 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string|null $id ID of the Simulcast Target
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
      * Gets passthrough
      *
      * @return string|null
@@ -301,7 +271,7 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata set when creating a simulcast target.
+     * @param string|null $passthrough Arbitrary user-supplied metadata set for the live stream. Max 255 characters. In order to clear this value, the field should be included with an empty-string value.
      *
      * @return self
      */
@@ -313,83 +283,67 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets status
+     * Gets latency_mode
      *
      * @return string|null
      */
-    public function getStatus()
+    public function getLatencyMode()
     {
-        return $this->container['status'];
+        return $this->container['latency_mode'];
     }
 
     /**
-     * Sets status
+     * Sets latency_mode
      *
-     * @param string|null $status The current status of the simulcast target. See Statuses below for detailed description.   * `idle`: Default status. When the parent live stream is in disconnected status, simulcast targets will be idle state.   * `starting`: The simulcast target transitions into this state when the parent live stream transition into connected state.   * `broadcasting`: The simulcast target has successfully connected to the third party live streaming service and is pushing video to that service.   * `errored`: The simulcast target encountered an error either while attempting to connect to the third party live streaming service, or mid-broadcasting. Compared to other errored statuses in the Mux Video API, a simulcast may transition back into the broadcasting state if a connection with the service can be re-established.
+     * @param string|null $latency_mode Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this as an alternative to setting low latency or reduced latency flags. The Low Latency value is a beta feature. Note: Reconnect windows are incompatible with Reduced Latency and Low Latency and will always be set to zero (0) seconds. Read more here: https://mux.com/blog/introducing-low-latency-live-streaming/
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setLatencyMode($latency_mode)
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
+        $allowedValues = $this->getLatencyModeAllowableValues();
+        if (!is_null($latency_mode) && !in_array($latency_mode, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
+                    "Invalid value '%s' for 'latency_mode', must be one of '%s'",
+                    $latency_mode,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['status'] = $status;
+        $this->container['latency_mode'] = $latency_mode;
 
         return $this;
     }
 
     /**
-     * Gets stream_key
+     * Gets reconnect_window
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getStreamKey()
+    public function getReconnectWindow()
     {
-        return $this->container['stream_key'];
+        return $this->container['reconnect_window'];
     }
 
     /**
-     * Sets stream_key
+     * Sets reconnect_window
      *
-     * @param string|null $stream_key Stream Key represents an stream identifier for the third party live streaming service to simulcast the parent live stream too.
+     * @param float|null $reconnect_window When live streaming software disconnects from Mux, either intentionally or due to a drop in the network, the Reconnect Window is the time in seconds that Mux should wait for the streaming software to reconnect before considering the live stream finished and completing the recorded asset.
      *
      * @return self
      */
-    public function setStreamKey($stream_key)
+    public function setReconnectWindow($reconnect_window)
     {
-        $this->container['stream_key'] = $stream_key;
 
-        return $this;
-    }
+        if (!is_null($reconnect_window) && ($reconnect_window > 300)) {
+            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling UpdateLiveStreamRequest., must be smaller than or equal to 300.');
+        }
+        if (!is_null($reconnect_window) && ($reconnect_window < 0.1)) {
+            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling UpdateLiveStreamRequest., must be bigger than or equal to 0.1.');
+        }
 
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url RTMP hostname including the application name for the third party live streaming service.
-     *
-     * @return self
-     */
-    public function setUrl($url)
-    {
-        $this->container['url'] = $url;
+        $this->container['reconnect_window'] = $reconnect_window;
 
         return $this;
     }

@@ -43,7 +43,7 @@ $apiInstance = new MuxPhp\Api\RealTimeApi(
 $realtime_metric_id = current-concurrent-viewers; // string | ID of the Realtime Metric
 $dimension = 'dimension_example'; // string | Dimension the specified value belongs to
 $timestamp = 3.4; // float | Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp.
-$filters = array('filters_example'); // string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]=operating_system:windows&filters[]=country:US). Possible filter names are the same as returned by the List Filters endpoint.
+$filters = array('filters_example'); // string[] | Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a `!` character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * `filters[]=operating_system:windows&filters[]=!country:US`
 $order_by = 'order_by_example'; // string | Value to order the results by
 $order_direction = 'order_direction_example'; // string | Sort order.
 
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
  **realtime_metric_id** | **string**| ID of the Realtime Metric |
  **dimension** | **string**| Dimension the specified value belongs to | [optional]
  **timestamp** | **float**| Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. | [optional]
- **filters** | [**string[]**](../Model/string.md)| Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US). Possible filter names are the same as returned by the List Filters endpoint. | [optional]
+ **filters** | [**string[]**](../Model/string.md)| Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; | [optional]
  **order_by** | **string**| Value to order the results by | [optional]
  **order_direction** | **string**| Sort order. | [optional]
 
@@ -113,7 +113,7 @@ $apiInstance = new MuxPhp\Api\RealTimeApi(
     $config
 );
 $realtime_histogram_metric_id = video-startup-time; // string | ID of the Realtime Histogram Metric
-$filters = array('filters_example'); // string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]=operating_system:windows&filters[]=country:US). Possible filter names are the same as returned by the List Filters endpoint.
+$filters = array('filters_example'); // string[] | Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a `!` character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * `filters[]=operating_system:windows&filters[]=!country:US`
 
 try {
     $result = $apiInstance->getRealtimeHistogramTimeseries($realtime_histogram_metric_id, $filters);
@@ -128,7 +128,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **realtime_histogram_metric_id** | **string**| ID of the Realtime Histogram Metric |
- **filters** | [**string[]**](../Model/string.md)| Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US). Possible filter names are the same as returned by the List Filters endpoint. | [optional]
+ **filters** | [**string[]**](../Model/string.md)| Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; | [optional]
 
 ### Return type
 
@@ -177,7 +177,7 @@ $apiInstance = new MuxPhp\Api\RealTimeApi(
     $config
 );
 $realtime_metric_id = current-concurrent-viewers; // string | ID of the Realtime Metric
-$filters = array('filters_example'); // string[] | Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]=operating_system:windows&filters[]=country:US). Possible filter names are the same as returned by the List Filters endpoint.
+$filters = array('filters_example'); // string[] | Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a `!` character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * `filters[]=operating_system:windows&filters[]=!country:US`
 
 try {
     $result = $apiInstance->getRealtimeTimeseries($realtime_metric_id, $filters);
@@ -192,7 +192,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **realtime_metric_id** | **string**| ID of the Realtime Metric |
- **filters** | [**string[]**](../Model/string.md)| Filter key:value pairs. Must be provided as an array query string parameter (e.g. filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;country:US). Possible filter names are the same as returned by the List Filters endpoint. | [optional]
+ **filters** | [**string[]**](../Model/string.md)| Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; | [optional]
 
 ### Return type
 

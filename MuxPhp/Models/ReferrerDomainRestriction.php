@@ -1,6 +1,6 @@
 <?php
 /**
- * SimulcastTarget
+ * ReferrerDomainRestriction
  *
  * PHP version 7.2
  *
@@ -33,9 +33,10 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * SimulcastTarget Class Doc Comment
+ * ReferrerDomainRestriction Class Doc Comment
  *
  * @category Class
+ * @description A list of domains allowed to play your videos.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
@@ -43,7 +44,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
+class ReferrerDomainRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +53,7 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SimulcastTarget';
+    protected static $openAPIModelName = 'ReferrerDomainRestriction';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,11 +61,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'passthrough' => 'string',
-        'status' => 'string',
-        'stream_key' => 'string',
-        'url' => 'string'
+        'allowed_domains' => 'string[]',
+        'allow_no_referrer' => 'bool'
     ];
 
     /**
@@ -75,11 +73,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'passthrough' => null,
-        'status' => null,
-        'stream_key' => null,
-        'url' => null
+        'allowed_domains' => null,
+        'allow_no_referrer' => null
     ];
 
     /**
@@ -109,11 +104,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'passthrough' => 'passthrough',
-        'status' => 'status',
-        'stream_key' => 'stream_key',
-        'url' => 'url'
+        'allowed_domains' => 'allowed_domains',
+        'allow_no_referrer' => 'allow_no_referrer'
     ];
 
     /**
@@ -122,11 +114,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'passthrough' => 'setPassthrough',
-        'status' => 'setStatus',
-        'stream_key' => 'setStreamKey',
-        'url' => 'setUrl'
+        'allowed_domains' => 'setAllowedDomains',
+        'allow_no_referrer' => 'setAllowNoReferrer'
     ];
 
     /**
@@ -135,11 +124,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'passthrough' => 'getPassthrough',
-        'status' => 'getStatus',
-        'stream_key' => 'getStreamKey',
-        'url' => 'getUrl'
+        'allowed_domains' => 'getAllowedDomains',
+        'allow_no_referrer' => 'getAllowNoReferrer'
     ];
 
     /**
@@ -183,27 +169,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const STATUS_IDLE = 'idle';
-    public const STATUS_STARTING = 'starting';
-    public const STATUS_BROADCASTING = 'broadcasting';
-    public const STATUS_ERRORED = 'errored';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_IDLE,
-            self::STATUS_STARTING,
-            self::STATUS_BROADCASTING,
-            self::STATUS_ERRORED,
-        ];
-    }
     
 
     /**
@@ -224,11 +191,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['status'] = $data['status'] ?? null;
-        $this->container['stream_key'] = $data['stream_key'] ?? null;
-        $this->container['url'] = $data['url'] ?? null;
+        $this->container['allowed_domains'] = $data['allowed_domains'] ?? null;
+        $this->container['allow_no_referrer'] = $data['allow_no_referrer'] ?? false;
     }
 
     /**
@@ -239,15 +203,6 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
 
         return $invalidProperties;
     }
@@ -265,131 +220,49 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets allowed_domains
      *
-     * @return string|null
+     * @return string[]|null
      */
-    public function getId()
+    public function getAllowedDomains()
     {
-        return $this->container['id'];
+        return $this->container['allowed_domains'];
     }
 
     /**
-     * Sets id
+     * Sets allowed_domains
      *
-     * @param string|null $id ID of the Simulcast Target
+     * @param string[]|null $allowed_domains List of domains allowed to play videos. Possible values are   * `[]` Empty Array indicates deny video playback requests for all domains   * `[\"*\"]` A Single Wildcard `*` entry means allow video playback requests from any domain   *  `[\"*.example.com\", \"foo.com\"]` A list of up to 10 domains or valid dns-style wildcards
      *
      * @return self
      */
-    public function setId($id)
+    public function setAllowedDomains($allowed_domains)
     {
-        $this->container['id'] = $id;
+        $this->container['allowed_domains'] = $allowed_domains;
 
         return $this;
     }
 
     /**
-     * Gets passthrough
+     * Gets allow_no_referrer
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getPassthrough()
+    public function getAllowNoReferrer()
     {
-        return $this->container['passthrough'];
+        return $this->container['allow_no_referrer'];
     }
 
     /**
-     * Sets passthrough
+     * Sets allow_no_referrer
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata set when creating a simulcast target.
+     * @param bool|null $allow_no_referrer A boolean to determine whether to allow or deny HTTP requests without `Referer` HTTP request header. Playback requests coming from non-web/native applications like iOS, Android or smart TVs will not have a `Referer` HTTP header. Set this value to `true` to allow these playback requests.
      *
      * @return self
      */
-    public function setPassthrough($passthrough)
+    public function setAllowNoReferrer($allow_no_referrer)
     {
-        $this->container['passthrough'] = $passthrough;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status The current status of the simulcast target. See Statuses below for detailed description.   * `idle`: Default status. When the parent live stream is in disconnected status, simulcast targets will be idle state.   * `starting`: The simulcast target transitions into this state when the parent live stream transition into connected state.   * `broadcasting`: The simulcast target has successfully connected to the third party live streaming service and is pushing video to that service.   * `errored`: The simulcast target encountered an error either while attempting to connect to the third party live streaming service, or mid-broadcasting. Compared to other errored statuses in the Mux Video API, a simulcast may transition back into the broadcasting state if a connection with the service can be re-established.
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets stream_key
-     *
-     * @return string|null
-     */
-    public function getStreamKey()
-    {
-        return $this->container['stream_key'];
-    }
-
-    /**
-     * Sets stream_key
-     *
-     * @param string|null $stream_key Stream Key represents an stream identifier for the third party live streaming service to simulcast the parent live stream too.
-     *
-     * @return self
-     */
-    public function setStreamKey($stream_key)
-    {
-        $this->container['stream_key'] = $stream_key;
-
-        return $this;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url RTMP hostname including the application name for the third party live streaming service.
-     *
-     * @return self
-     */
-    public function setUrl($url)
-    {
-        $this->container['url'] = $url;
+        $this->container['allow_no_referrer'] = $allow_no_referrer;
 
         return $this;
     }

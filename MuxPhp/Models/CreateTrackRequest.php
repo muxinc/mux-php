@@ -481,7 +481,7 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary metadata set for the track either when creating the asset or track.
+     * @param string|null $passthrough Arbitrary user-supplied metadata set for the track either when creating the asset or track.
      *
      * @return self
      */

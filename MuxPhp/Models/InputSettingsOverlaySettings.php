@@ -36,7 +36,7 @@ use \MuxPhp\ObjectSerializer;
  * InputSettingsOverlaySettings Class Doc Comment
  *
  * @category Class
- * @description An object that describes how the image file referenced in url should be placed over the video (i.e. watermarking).
+ * @description An object that describes how the image file referenced in URL should be placed over the video (i.e. watermarking). Ensure that the URL is active and persists the entire lifespan of the video object.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com

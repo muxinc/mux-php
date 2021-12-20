@@ -142,6 +142,7 @@ Class | Method | HTTP request | Description
 *AssetsApi* | [**getAssetInputInfo**](docs/Api/AssetsApi.md#getassetinputinfo) | **GET** /video/v1/assets/{ASSET_ID}/input-info | Retrieve asset input info
 *AssetsApi* | [**getAssetPlaybackId**](docs/Api/AssetsApi.md#getassetplaybackid) | **GET** /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID} | Retrieve a playback ID
 *AssetsApi* | [**listAssets**](docs/Api/AssetsApi.md#listassets) | **GET** /video/v1/assets | List assets
+*AssetsApi* | [**updateAsset**](docs/Api/AssetsApi.md#updateasset) | **PATCH** /video/v1/assets/{ASSET_ID} | Update an Asset
 *AssetsApi* | [**updateAssetMasterAccess**](docs/Api/AssetsApi.md#updateassetmasteraccess) | **PUT** /video/v1/assets/{ASSET_ID}/master-access | Update master access
 *AssetsApi* | [**updateAssetMp4Support**](docs/Api/AssetsApi.md#updateassetmp4support) | **PUT** /video/v1/assets/{ASSET_ID}/mp4-support | Update MP4 support
 *DeliveryUsageApi* | [**listDeliveryUsage**](docs/Api/DeliveryUsageApi.md#listdeliveryusage) | **GET** /video/v1/delivery-usage | List Usage
@@ -173,6 +174,7 @@ Class | Method | HTTP request | Description
 *LiveStreamsApi* | [**listLiveStreams**](docs/Api/LiveStreamsApi.md#listlivestreams) | **GET** /video/v1/live-streams | List live streams
 *LiveStreamsApi* | [**resetStreamKey**](docs/Api/LiveStreamsApi.md#resetstreamkey) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key | Reset a live stream’s stream key
 *LiveStreamsApi* | [**signalLiveStreamComplete**](docs/Api/LiveStreamsApi.md#signallivestreamcomplete) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/complete | Signal a live stream is finished
+*LiveStreamsApi* | [**updateLiveStream**](docs/Api/LiveStreamsApi.md#updatelivestream) | **PATCH** /video/v1/live-streams/{LIVE_STREAM_ID} | Update a live stream
 *LiveStreamsApi* | [**updateLiveStreamEmbeddedSubtitles**](docs/Api/LiveStreamsApi.md#updatelivestreamembeddedsubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles | Update a live stream&#39;s embedded subtitles
 *MetricsApi* | [**getMetricTimeseriesData**](docs/Api/MetricsApi.md#getmetrictimeseriesdata) | **GET** /data/v1/metrics/{METRIC_ID}/timeseries | Get metric timeseries data
 *MetricsApi* | [**getOverallValues**](docs/Api/MetricsApi.md#getoverallvalues) | **GET** /data/v1/metrics/{METRIC_ID}/overall | Get Overall values
@@ -180,6 +182,11 @@ Class | Method | HTTP request | Description
 *MetricsApi* | [**listBreakdownValues**](docs/Api/MetricsApi.md#listbreakdownvalues) | **GET** /data/v1/metrics/{METRIC_ID}/breakdown | List breakdown values
 *MetricsApi* | [**listInsights**](docs/Api/MetricsApi.md#listinsights) | **GET** /data/v1/metrics/{METRIC_ID}/insights | List Insights
 *PlaybackIDApi* | [**getAssetOrLivestreamId**](docs/Api/PlaybackIDApi.md#getassetorlivestreamid) | **GET** /video/v1/playback-ids/{PLAYBACK_ID} | Retrieve an Asset or Live Stream ID
+*PlaybackRestrictionsApi* | [**createPlaybackRestriction**](docs/Api/PlaybackRestrictionsApi.md#createplaybackrestriction) | **POST** /video/v1/playback-restrictions | Create a Playback Restriction
+*PlaybackRestrictionsApi* | [**deletePlaybackRestriction**](docs/Api/PlaybackRestrictionsApi.md#deleteplaybackrestriction) | **DELETE** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID} | Delete a Playback Restriction
+*PlaybackRestrictionsApi* | [**getPlaybackRestriction**](docs/Api/PlaybackRestrictionsApi.md#getplaybackrestriction) | **GET** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID} | Retrieve a Playback Restriction
+*PlaybackRestrictionsApi* | [**listPlaybackRestrictions**](docs/Api/PlaybackRestrictionsApi.md#listplaybackrestrictions) | **GET** /video/v1/playback-restrictions | List Playback Restrictions
+*PlaybackRestrictionsApi* | [**updateReferrerDomainRestriction**](docs/Api/PlaybackRestrictionsApi.md#updatereferrerdomainrestriction) | **PUT** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer | Update the Referrer Playback Restriction
 *RealTimeApi* | [**getRealtimeBreakdown**](docs/Api/RealTimeApi.md#getrealtimebreakdown) | **GET** /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/breakdown | Get Real-Time Breakdown
 *RealTimeApi* | [**getRealtimeHistogramTimeseries**](docs/Api/RealTimeApi.md#getrealtimehistogramtimeseries) | **GET** /data/v1/realtime/metrics/{REALTIME_HISTOGRAM_METRIC_ID}/histogram-timeseries | Get Real-Time Histogram Timeseries
 *RealTimeApi* | [**getRealtimeTimeseries**](docs/Api/RealTimeApi.md#getrealtimetimeseries) | **GET** /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/timeseries | Get Real-Time Timeseries
@@ -208,6 +215,7 @@ Class | Method | HTTP request | Description
 - [CreateLiveStreamRequest](docs/Model/CreateLiveStreamRequest.md)
 - [CreatePlaybackIDRequest](docs/Model/CreatePlaybackIDRequest.md)
 - [CreatePlaybackIDResponse](docs/Model/CreatePlaybackIDResponse.md)
+- [CreatePlaybackRestrictionRequest](docs/Model/CreatePlaybackRestrictionRequest.md)
 - [CreateSimulcastTargetRequest](docs/Model/CreateSimulcastTargetRequest.md)
 - [CreateTrackRequest](docs/Model/CreateTrackRequest.md)
 - [CreateTrackResponse](docs/Model/CreateTrackResponse.md)
@@ -273,11 +281,14 @@ Class | Method | HTTP request | Description
 - [OverallValues](docs/Model/OverallValues.md)
 - [PlaybackID](docs/Model/PlaybackID.md)
 - [PlaybackPolicy](docs/Model/PlaybackPolicy.md)
+- [PlaybackRestriction](docs/Model/PlaybackRestriction.md)
+- [PlaybackRestrictionResponse](docs/Model/PlaybackRestrictionResponse.md)
 - [RealTimeBreakdownValue](docs/Model/RealTimeBreakdownValue.md)
 - [RealTimeHistogramTimeseriesBucket](docs/Model/RealTimeHistogramTimeseriesBucket.md)
 - [RealTimeHistogramTimeseriesBucketValues](docs/Model/RealTimeHistogramTimeseriesBucketValues.md)
 - [RealTimeHistogramTimeseriesDatapoint](docs/Model/RealTimeHistogramTimeseriesDatapoint.md)
 - [RealTimeTimeseriesDatapoint](docs/Model/RealTimeTimeseriesDatapoint.md)
+- [ReferrerDomainRestriction](docs/Model/ReferrerDomainRestriction.md)
 - [Score](docs/Model/Score.md)
 - [SignalLiveStreamCompleteResponse](docs/Model/SignalLiveStreamCompleteResponse.md)
 - [SigningKey](docs/Model/SigningKey.md)
@@ -287,7 +298,10 @@ Class | Method | HTTP request | Description
 - [Track](docs/Model/Track.md)
 - [UpdateAssetMP4SupportRequest](docs/Model/UpdateAssetMP4SupportRequest.md)
 - [UpdateAssetMasterAccessRequest](docs/Model/UpdateAssetMasterAccessRequest.md)
+- [UpdateAssetRequest](docs/Model/UpdateAssetRequest.md)
 - [UpdateLiveStreamEmbeddedSubtitlesRequest](docs/Model/UpdateLiveStreamEmbeddedSubtitlesRequest.md)
+- [UpdateLiveStreamRequest](docs/Model/UpdateLiveStreamRequest.md)
+- [UpdateReferrerDomainRestrictionRequest](docs/Model/UpdateReferrerDomainRestrictionRequest.md)
 - [Upload](docs/Model/Upload.md)
 - [UploadError](docs/Model/UploadError.md)
 - [UploadResponse](docs/Model/UploadResponse.md)
@@ -319,5 +333,5 @@ devex@mux.com
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `v1`
-    - Package version: `3.1.0`
+    - Package version: `3.2.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

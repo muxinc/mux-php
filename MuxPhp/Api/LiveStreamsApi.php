@@ -3945,6 +3945,297 @@ class LiveStreamsApi
     }
 
     /**
+     * Operation updateLiveStream
+     *
+     * Update a live stream
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  \MuxPhp\Models\UpdateLiveStreamRequest $update_live_stream_request update_live_stream_request (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MuxPhp\Models\LiveStreamResponse
+     */
+    public function updateLiveStream($live_stream_id, $update_live_stream_request)
+    {
+        list($response) = $this->updateLiveStreamWithHttpInfo($live_stream_id, $update_live_stream_request);
+        return $response;
+    }
+
+    /**
+     * Operation updateLiveStreamWithHttpInfo
+     *
+     * Update a live stream
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  \MuxPhp\Models\UpdateLiveStreamRequest $update_live_stream_request (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MuxPhp\Models\LiveStreamResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateLiveStreamWithHttpInfo($live_stream_id, $update_live_stream_request)
+    {
+        $request = $this->updateLiveStreamRequest($live_stream_id, $update_live_stream_request);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\MuxPhp\Models\LiveStreamResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\LiveStreamResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MuxPhp\Models\LiveStreamResponse';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = (string) $responseBody;
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MuxPhp\Models\LiveStreamResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateLiveStreamAsync
+     *
+     * Update a live stream
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  \MuxPhp\Models\UpdateLiveStreamRequest $update_live_stream_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateLiveStreamAsync($live_stream_id, $update_live_stream_request)
+    {
+        return $this->updateLiveStreamAsyncWithHttpInfo($live_stream_id, $update_live_stream_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateLiveStreamAsyncWithHttpInfo
+     *
+     * Update a live stream
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  \MuxPhp\Models\UpdateLiveStreamRequest $update_live_stream_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateLiveStreamAsyncWithHttpInfo($live_stream_id, $update_live_stream_request)
+    {
+        $returnType = '\MuxPhp\Models\LiveStreamResponse';
+        $request = $this->updateLiveStreamRequest($live_stream_id, $update_live_stream_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateLiveStream'
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     * @param  \MuxPhp\Models\UpdateLiveStreamRequest $update_live_stream_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateLiveStreamRequest($live_stream_id, $update_live_stream_request)
+    {
+        // verify the required parameter 'live_stream_id' is set
+        if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $live_stream_id when calling updateLiveStream'
+            );
+        }
+        // verify the required parameter 'update_live_stream_request' is set
+        if ($update_live_stream_request === null || (is_array($update_live_stream_request) && count($update_live_stream_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $update_live_stream_request when calling updateLiveStream'
+            );
+        }
+
+        $resourcePath = '/video/v1/live-streams/{LIVE_STREAM_ID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($live_stream_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'LIVE_STREAM_ID' . '}',
+                ObjectSerializer::toPathValue($live_stream_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($update_live_stream_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_live_stream_request));
+            } else {
+                $httpBody = $update_live_stream_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
+        return new Request(
+            'PATCH',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation updateLiveStreamEmbeddedSubtitles
      *
      * Update a live stream's embedded subtitles

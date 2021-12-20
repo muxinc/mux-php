@@ -387,7 +387,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary metadata that will be included in the asset details and related webhooks. Can be used to store your own ID for a video along with the asset. **Max: 255 characters**.
+     * @param string|null $passthrough Arbitrary user-supplied metadata that will be included in the asset details and related webhooks. Can be used to store your own ID for a video along with the asset. **Max: 255 characters**.
      *
      * @return self
      */

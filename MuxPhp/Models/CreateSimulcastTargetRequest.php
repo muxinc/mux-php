@@ -240,7 +240,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary metadata set by you when creating a simulcast target.
+     * @param string|null $passthrough Arbitrary user-supplied metadata set by you when creating a simulcast target.
      *
      * @return self
      */

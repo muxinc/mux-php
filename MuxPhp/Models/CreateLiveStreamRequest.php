@@ -68,6 +68,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'embedded_subtitles' => '\MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]',
         'reduced_latency' => 'bool',
         'low_latency' => 'bool',
+        'latency_mode' => 'string',
         'test' => 'bool',
         'simulcast_targets' => '\MuxPhp\Models\CreateSimulcastTargetRequest[]'
     ];
@@ -88,6 +89,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'embedded_subtitles' => null,
         'reduced_latency' => 'boolean',
         'low_latency' => 'boolean',
+        'latency_mode' => null,
         'test' => 'boolean',
         'simulcast_targets' => null
     ];
@@ -127,6 +129,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'embedded_subtitles' => 'embedded_subtitles',
         'reduced_latency' => 'reduced_latency',
         'low_latency' => 'low_latency',
+        'latency_mode' => 'latency_mode',
         'test' => 'test',
         'simulcast_targets' => 'simulcast_targets'
     ];
@@ -145,6 +148,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'embedded_subtitles' => 'setEmbeddedSubtitles',
         'reduced_latency' => 'setReducedLatency',
         'low_latency' => 'setLowLatency',
+        'latency_mode' => 'setLatencyMode',
         'test' => 'setTest',
         'simulcast_targets' => 'setSimulcastTargets'
     ];
@@ -163,6 +167,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'embedded_subtitles' => 'getEmbeddedSubtitles',
         'reduced_latency' => 'getReducedLatency',
         'low_latency' => 'getLowLatency',
+        'latency_mode' => 'getLatencyMode',
         'test' => 'getTest',
         'simulcast_targets' => 'getSimulcastTargets'
     ];
@@ -208,8 +213,25 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
+    public const LATENCY_MODE_LOW = 'low';
+    public const LATENCY_MODE_REDUCED = 'reduced';
+    public const LATENCY_MODE_STANDARD = 'standard';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getLatencyModeAllowableValues()
+    {
+        return [
+            self::LATENCY_MODE_LOW,
+            self::LATENCY_MODE_REDUCED,
+            self::LATENCY_MODE_STANDARD,
+        ];
+    }
     
 
     /**
@@ -238,6 +260,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         $this->container['embedded_subtitles'] = $data['embedded_subtitles'] ?? null;
         $this->container['reduced_latency'] = $data['reduced_latency'] ?? null;
         $this->container['low_latency'] = $data['low_latency'] ?? null;
+        $this->container['latency_mode'] = $data['latency_mode'] ?? null;
         $this->container['test'] = $data['test'] ?? null;
         $this->container['simulcast_targets'] = $data['simulcast_targets'] ?? null;
     }
@@ -257,6 +280,15 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
 
         if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] < 0.1)) {
             $invalidProperties[] = "invalid value for 'reconnect_window', must be bigger than or equal to 0.1.";
+        }
+
+        $allowedValues = $this->getLatencyModeAllowableValues();
+        if (!is_null($this->container['latency_mode']) && !in_array($this->container['latency_mode'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'latency_mode', must be one of '%s'",
+                $this->container['latency_mode'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -439,7 +471,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets reduced_latency
      *
-     * @param bool|null $reduced_latency Latency is the time from when the streamer does something in real life to when you see it happen in the player. Set this if you want lower latency for your live stream. Note: Reconnect windows are incompatible with Reduced Latency and will always be set to zero (0) seconds. Read more here: https://mux.com/blog/reduced-latency-for-mux-live-streaming-now-available/
+     * @param bool|null $reduced_latency This field is deprecated. Please use latency_mode instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this if you want lower latency for your live stream. Note: Reconnect windows are incompatible with Reduced Latency and will always be set to zero (0) seconds. Read more here: https://mux.com/blog/reduced-latency-for-mux-live-streaming-now-available/
      *
      * @return self
      */
@@ -463,13 +495,47 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets low_latency
      *
-     * @param bool|null $low_latency Latency is the time from when the streamer does something in real life to when you see it happen in the player. Setting this option will enable compatibility with the LL-HLS specification for low-latency streaming. This typically has lower latency than Reduced Latency streams, and cannot be combined with Reduced Latency. Note: Reconnect windows are incompatible with Low Latency and will always be set to zero (0) seconds.
+     * @param bool|null $low_latency This field is deprecated. Please use latency_mode instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Setting this option will enable compatibility with the LL-HLS specification for low-latency streaming. This typically has lower latency than Reduced Latency streams, and cannot be combined with Reduced Latency. Note: Reconnect windows are incompatible with Low Latency and will always be set to zero (0) seconds.
      *
      * @return self
      */
     public function setLowLatency($low_latency)
     {
         $this->container['low_latency'] = $low_latency;
+
+        return $this;
+    }
+
+    /**
+     * Gets latency_mode
+     *
+     * @return string|null
+     */
+    public function getLatencyMode()
+    {
+        return $this->container['latency_mode'];
+    }
+
+    /**
+     * Sets latency_mode
+     *
+     * @param string|null $latency_mode Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this as an alternative to setting low latency or reduced latency flags. The Low Latency value is a beta feature. Note: Reconnect windows are incompatible with Reduced Latency and Low Latency and will always be set to zero (0) seconds. Read more here: https://mux.com/blog/introducing-low-latency-live-streaming/
+     *
+     * @return self
+     */
+    public function setLatencyMode($latency_mode)
+    {
+        $allowedValues = $this->getLatencyModeAllowableValues();
+        if (!is_null($latency_mode) && !in_array($latency_mode, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'latency_mode', must be one of '%s'",
+                    $latency_mode,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['latency_mode'] = $latency_mode;
 
         return $this;
     }

@@ -289,7 +289,7 @@ class LiveStreamEmbeddedSubtitleSettings implements ModelInterface, ArrayAccess,
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary metadata set for the live stream closed caption track. Max 255 characters.
+     * @param string|null $passthrough Arbitrary user-supplied metadata set for the live stream closed caption track. Max 255 characters.
      *
      * @return self
      */

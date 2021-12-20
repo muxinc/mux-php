@@ -1,6 +1,6 @@
 <?php
 /**
- * RealTimeApi
+ * PlaybackRestrictionsApi
  * PHP version 7.2
  *
  * @category Class
@@ -40,14 +40,14 @@ use MuxPhp\HeaderSelector;
 use MuxPhp\ObjectSerializer;
 
 /**
- * RealTimeApi Class Doc Comment
+ * PlaybackRestrictionsApi Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
  */
-class RealTimeApi
+class PlaybackRestrictionsApi
 {
     /**
      * @var ClientInterface
@@ -116,46 +116,36 @@ class RealTimeApi
     }
 
     /**
-     * Operation getRealtimeBreakdown
+     * Operation createPlaybackRestriction
      *
-     * Get Real-Time Breakdown
+     * Create a Playback Restriction
      *
-     * @param  string $realtime_metric_id ID of the Realtime Metric (required)
-     * @param  string $dimension Dimension the specified value belongs to (optional)
-     * @param  float $timestamp Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. (optional)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
-     * @param  string $order_by Value to order the results by (optional)
-     * @param  string $order_direction Sort order. (optional)
+     * @param  \MuxPhp\Models\CreatePlaybackRestrictionRequest $create_playback_restriction_request create_playback_restriction_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MuxPhp\Models\GetRealTimeBreakdownResponse
+     * @return \MuxPhp\Models\PlaybackRestriction
      */
-    public function getRealtimeBreakdown($realtime_metric_id, $dimension = null, $timestamp = null, $filters = null, $order_by = null, $order_direction = null)
+    public function createPlaybackRestriction($create_playback_restriction_request)
     {
-        list($response) = $this->getRealtimeBreakdownWithHttpInfo($realtime_metric_id, $dimension, $timestamp, $filters, $order_by, $order_direction);
+        list($response) = $this->createPlaybackRestrictionWithHttpInfo($create_playback_restriction_request);
         return $response;
     }
 
     /**
-     * Operation getRealtimeBreakdownWithHttpInfo
+     * Operation createPlaybackRestrictionWithHttpInfo
      *
-     * Get Real-Time Breakdown
+     * Create a Playback Restriction
      *
-     * @param  string $realtime_metric_id ID of the Realtime Metric (required)
-     * @param  string $dimension Dimension the specified value belongs to (optional)
-     * @param  float $timestamp Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. (optional)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
-     * @param  string $order_by Value to order the results by (optional)
-     * @param  string $order_direction Sort order. (optional)
+     * @param  \MuxPhp\Models\CreatePlaybackRestrictionRequest $create_playback_restriction_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MuxPhp\Models\GetRealTimeBreakdownResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MuxPhp\Models\PlaybackRestriction, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getRealtimeBreakdownWithHttpInfo($realtime_metric_id, $dimension = null, $timestamp = null, $filters = null, $order_by = null, $order_direction = null)
+    public function createPlaybackRestrictionWithHttpInfo($create_playback_restriction_request)
     {
-        $request = $this->getRealtimeBreakdownRequest($realtime_metric_id, $dimension, $timestamp, $filters, $order_by, $order_direction);
+        $request = $this->createPlaybackRestrictionRequest($create_playback_restriction_request);
 
         try {
             $options = $this->createHttpClientOption();
@@ -187,21 +177,21 @@ class RealTimeApi
 
             $responseBody = $response->getBody();
             switch($statusCode) {
-                case 200:
-                    if ('\MuxPhp\Models\GetRealTimeBreakdownResponse' === '\SplFileObject') {
+                case 201:
+                    if ('\MuxPhp\Models\PlaybackRestriction' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\GetRealTimeBreakdownResponse', []),
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\PlaybackRestriction', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MuxPhp\Models\GetRealTimeBreakdownResponse';
+            $returnType = '\MuxPhp\Models\PlaybackRestriction';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -217,10 +207,10 @@ class RealTimeApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
+                case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MuxPhp\Models\GetRealTimeBreakdownResponse',
+                        '\MuxPhp\Models\PlaybackRestriction',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -231,23 +221,18 @@ class RealTimeApi
     }
 
     /**
-     * Operation getRealtimeBreakdownAsync
+     * Operation createPlaybackRestrictionAsync
      *
-     * Get Real-Time Breakdown
+     * Create a Playback Restriction
      *
-     * @param  string $realtime_metric_id ID of the Realtime Metric (required)
-     * @param  string $dimension Dimension the specified value belongs to (optional)
-     * @param  float $timestamp Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. (optional)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
-     * @param  string $order_by Value to order the results by (optional)
-     * @param  string $order_direction Sort order. (optional)
+     * @param  \MuxPhp\Models\CreatePlaybackRestrictionRequest $create_playback_restriction_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRealtimeBreakdownAsync($realtime_metric_id, $dimension = null, $timestamp = null, $filters = null, $order_by = null, $order_direction = null)
+    public function createPlaybackRestrictionAsync($create_playback_restriction_request)
     {
-        return $this->getRealtimeBreakdownAsyncWithHttpInfo($realtime_metric_id, $dimension, $timestamp, $filters, $order_by, $order_direction)
+        return $this->createPlaybackRestrictionAsyncWithHttpInfo($create_playback_restriction_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -256,24 +241,19 @@ class RealTimeApi
     }
 
     /**
-     * Operation getRealtimeBreakdownAsyncWithHttpInfo
+     * Operation createPlaybackRestrictionAsyncWithHttpInfo
      *
-     * Get Real-Time Breakdown
+     * Create a Playback Restriction
      *
-     * @param  string $realtime_metric_id ID of the Realtime Metric (required)
-     * @param  string $dimension Dimension the specified value belongs to (optional)
-     * @param  float $timestamp Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. (optional)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
-     * @param  string $order_by Value to order the results by (optional)
-     * @param  string $order_direction Sort order. (optional)
+     * @param  \MuxPhp\Models\CreatePlaybackRestrictionRequest $create_playback_restriction_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRealtimeBreakdownAsyncWithHttpInfo($realtime_metric_id, $dimension = null, $timestamp = null, $filters = null, $order_by = null, $order_direction = null)
+    public function createPlaybackRestrictionAsyncWithHttpInfo($create_playback_restriction_request)
     {
-        $returnType = '\MuxPhp\Models\GetRealTimeBreakdownResponse';
-        $request = $this->getRealtimeBreakdownRequest($realtime_metric_id, $dimension, $timestamp, $filters, $order_by, $order_direction);
+        $returnType = '\MuxPhp\Models\PlaybackRestriction';
+        $request = $this->createPlaybackRestrictionRequest($create_playback_restriction_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -310,96 +290,534 @@ class RealTimeApi
     }
 
     /**
-     * Create request for operation 'getRealtimeBreakdown'
+     * Create request for operation 'createPlaybackRestriction'
      *
-     * @param  string $realtime_metric_id ID of the Realtime Metric (required)
-     * @param  string $dimension Dimension the specified value belongs to (optional)
-     * @param  float $timestamp Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. (optional)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
-     * @param  string $order_by Value to order the results by (optional)
-     * @param  string $order_direction Sort order. (optional)
+     * @param  \MuxPhp\Models\CreatePlaybackRestrictionRequest $create_playback_restriction_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getRealtimeBreakdownRequest($realtime_metric_id, $dimension = null, $timestamp = null, $filters = null, $order_by = null, $order_direction = null)
+    public function createPlaybackRestrictionRequest($create_playback_restriction_request)
     {
-        // verify the required parameter 'realtime_metric_id' is set
-        if ($realtime_metric_id === null || (is_array($realtime_metric_id) && count($realtime_metric_id) === 0)) {
+        // verify the required parameter 'create_playback_restriction_request' is set
+        if ($create_playback_restriction_request === null || (is_array($create_playback_restriction_request) && count($create_playback_restriction_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $realtime_metric_id when calling getRealtimeBreakdown'
+                'Missing the required parameter $create_playback_restriction_request when calling createPlaybackRestriction'
             );
         }
 
-        $resourcePath = '/data/v1/realtime/metrics/{REALTIME_METRIC_ID}/breakdown';
+        $resourcePath = '/video/v1/playback-restrictions';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        if ($dimension !== null) {
-            if('form' === 'form' && is_array($dimension)) {
-                foreach($dimension as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($create_playback_restriction_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_playback_restriction_request));
+            } else {
+                $httpBody = $create_playback_restriction_request;
             }
-            else {
-                $queryParams['dimension'] = $dimension;
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
             }
         }
-        // query params
-        if ($timestamp !== null) {
-            if('form' === 'form' && is_array($timestamp)) {
-                foreach($timestamp as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['timestamp'] = $timestamp;
-            }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
         }
-        // query params
-        if ($filters !== null) {
-            if('form' === 'form' && is_array($filters)) {
-                foreach($filters as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['filters[]'] = $filters;
-            }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
-        // query params
-        if ($order_by !== null) {
-            if('form' === 'form' && is_array($order_by)) {
-                foreach($order_by as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deletePlaybackRestriction
+     *
+     * Delete a Playback Restriction
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deletePlaybackRestriction($playback_restriction_id)
+    {
+        $this->deletePlaybackRestrictionWithHttpInfo($playback_restriction_id);
+    }
+
+    /**
+     * Operation deletePlaybackRestrictionWithHttpInfo
+     *
+     * Delete a Playback Restriction
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deletePlaybackRestrictionWithHttpInfo($playback_restriction_id)
+    {
+        $request = $this->deletePlaybackRestrictionRequest($playback_restriction_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
             }
-            else {
-                $queryParams['order_by'] = $order_by;
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
             }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
         }
-        // query params
-        if ($order_direction !== null) {
-            if('form' === 'form' && is_array($order_direction)) {
-                foreach($order_direction as $key => $value) {
-                    $queryParams[$key] = $value;
+    }
+
+    /**
+     * Operation deletePlaybackRestrictionAsync
+     *
+     * Delete a Playback Restriction
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePlaybackRestrictionAsync($playback_restriction_id)
+    {
+        return $this->deletePlaybackRestrictionAsyncWithHttpInfo($playback_restriction_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
                 }
-            }
-            else {
-                $queryParams['order_direction'] = $order_direction;
-            }
+            );
+    }
+
+    /**
+     * Operation deletePlaybackRestrictionAsyncWithHttpInfo
+     *
+     * Delete a Playback Restriction
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePlaybackRestrictionAsyncWithHttpInfo($playback_restriction_id)
+    {
+        $returnType = '';
+        $request = $this->deletePlaybackRestrictionRequest($playback_restriction_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deletePlaybackRestriction'
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deletePlaybackRestrictionRequest($playback_restriction_id)
+    {
+        // verify the required parameter 'playback_restriction_id' is set
+        if ($playback_restriction_id === null || (is_array($playback_restriction_id) && count($playback_restriction_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $playback_restriction_id when calling deletePlaybackRestriction'
+            );
         }
+
+        $resourcePath = '/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
 
 
         // path params
-        if ($realtime_metric_id !== null) {
+        if ($playback_restriction_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'REALTIME_METRIC_ID' . '}',
-                ObjectSerializer::toPathValue($realtime_metric_id),
+                '{' . 'PLAYBACK_RESTRICTION_ID' . '}',
+                ObjectSerializer::toPathValue($playback_restriction_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPlaybackRestriction
+     *
+     * Retrieve a Playback Restriction
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MuxPhp\Models\PlaybackRestriction
+     */
+    public function getPlaybackRestriction($playback_restriction_id)
+    {
+        list($response) = $this->getPlaybackRestrictionWithHttpInfo($playback_restriction_id);
+        return $response;
+    }
+
+    /**
+     * Operation getPlaybackRestrictionWithHttpInfo
+     *
+     * Retrieve a Playback Restriction
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MuxPhp\Models\PlaybackRestriction, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPlaybackRestrictionWithHttpInfo($playback_restriction_id)
+    {
+        $request = $this->getPlaybackRestrictionRequest($playback_restriction_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\MuxPhp\Models\PlaybackRestriction' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\PlaybackRestriction', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MuxPhp\Models\PlaybackRestriction';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = (string) $responseBody;
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MuxPhp\Models\PlaybackRestriction',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPlaybackRestrictionAsync
+     *
+     * Retrieve a Playback Restriction
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPlaybackRestrictionAsync($playback_restriction_id)
+    {
+        return $this->getPlaybackRestrictionAsyncWithHttpInfo($playback_restriction_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPlaybackRestrictionAsyncWithHttpInfo
+     *
+     * Retrieve a Playback Restriction
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPlaybackRestrictionAsyncWithHttpInfo($playback_restriction_id)
+    {
+        $returnType = '\MuxPhp\Models\PlaybackRestriction';
+        $request = $this->getPlaybackRestrictionRequest($playback_restriction_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPlaybackRestriction'
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPlaybackRestrictionRequest($playback_restriction_id)
+    {
+        // verify the required parameter 'playback_restriction_id' is set
+        if ($playback_restriction_id === null || (is_array($playback_restriction_id) && count($playback_restriction_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $playback_restriction_id when calling getPlaybackRestriction'
+            );
+        }
+
+        $resourcePath = '/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($playback_restriction_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'PLAYBACK_RESTRICTION_ID' . '}',
+                ObjectSerializer::toPathValue($playback_restriction_id),
                 $resourcePath
             );
         }
@@ -470,38 +888,38 @@ class RealTimeApi
     }
 
     /**
-     * Operation getRealtimeHistogramTimeseries
+     * Operation listPlaybackRestrictions
      *
-     * Get Real-Time Histogram Timeseries
+     * List Playback Restrictions
      *
-     * @param  string $realtime_histogram_metric_id ID of the Realtime Histogram Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  int $limit Number of items to include in the response (optional, default to 25)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MuxPhp\Models\GetRealTimeHistogramTimeseriesResponse
+     * @return \MuxPhp\Models\PlaybackRestriction[]
      */
-    public function getRealtimeHistogramTimeseries($realtime_histogram_metric_id, $filters = null)
+    public function listPlaybackRestrictions($page = 1, $limit = 25)
     {
-        list($response) = $this->getRealtimeHistogramTimeseriesWithHttpInfo($realtime_histogram_metric_id, $filters);
+        list($response) = $this->listPlaybackRestrictionsWithHttpInfo($page, $limit);
         return $response;
     }
 
     /**
-     * Operation getRealtimeHistogramTimeseriesWithHttpInfo
+     * Operation listPlaybackRestrictionsWithHttpInfo
      *
-     * Get Real-Time Histogram Timeseries
+     * List Playback Restrictions
      *
-     * @param  string $realtime_histogram_metric_id ID of the Realtime Histogram Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  int $limit Number of items to include in the response (optional, default to 25)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MuxPhp\Models\GetRealTimeHistogramTimeseriesResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MuxPhp\Models\PlaybackRestriction[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function getRealtimeHistogramTimeseriesWithHttpInfo($realtime_histogram_metric_id, $filters = null)
+    public function listPlaybackRestrictionsWithHttpInfo($page = 1, $limit = 25)
     {
-        $request = $this->getRealtimeHistogramTimeseriesRequest($realtime_histogram_metric_id, $filters);
+        $request = $this->listPlaybackRestrictionsRequest($page, $limit);
 
         try {
             $options = $this->createHttpClientOption();
@@ -534,20 +952,20 @@ class RealTimeApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\MuxPhp\Models\GetRealTimeHistogramTimeseriesResponse' === '\SplFileObject') {
+                    if ('\MuxPhp\Models\PlaybackRestriction[]' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\GetRealTimeHistogramTimeseriesResponse', []),
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\PlaybackRestriction[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MuxPhp\Models\GetRealTimeHistogramTimeseriesResponse';
+            $returnType = '\MuxPhp\Models\PlaybackRestriction[]';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -566,7 +984,7 @@ class RealTimeApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MuxPhp\Models\GetRealTimeHistogramTimeseriesResponse',
+                        '\MuxPhp\Models\PlaybackRestriction[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -577,19 +995,19 @@ class RealTimeApi
     }
 
     /**
-     * Operation getRealtimeHistogramTimeseriesAsync
+     * Operation listPlaybackRestrictionsAsync
      *
-     * Get Real-Time Histogram Timeseries
+     * List Playback Restrictions
      *
-     * @param  string $realtime_histogram_metric_id ID of the Realtime Histogram Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  int $limit Number of items to include in the response (optional, default to 25)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRealtimeHistogramTimeseriesAsync($realtime_histogram_metric_id, $filters = null)
+    public function listPlaybackRestrictionsAsync($page = 1, $limit = 25)
     {
-        return $this->getRealtimeHistogramTimeseriesAsyncWithHttpInfo($realtime_histogram_metric_id, $filters)
+        return $this->listPlaybackRestrictionsAsyncWithHttpInfo($page, $limit)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -598,20 +1016,20 @@ class RealTimeApi
     }
 
     /**
-     * Operation getRealtimeHistogramTimeseriesAsyncWithHttpInfo
+     * Operation listPlaybackRestrictionsAsyncWithHttpInfo
      *
-     * Get Real-Time Histogram Timeseries
+     * List Playback Restrictions
      *
-     * @param  string $realtime_histogram_metric_id ID of the Realtime Histogram Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  int $limit Number of items to include in the response (optional, default to 25)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRealtimeHistogramTimeseriesAsyncWithHttpInfo($realtime_histogram_metric_id, $filters = null)
+    public function listPlaybackRestrictionsAsyncWithHttpInfo($page = 1, $limit = 25)
     {
-        $returnType = '\MuxPhp\Models\GetRealTimeHistogramTimeseriesResponse';
-        $request = $this->getRealtimeHistogramTimeseriesRequest($realtime_histogram_metric_id, $filters);
+        $returnType = '\MuxPhp\Models\PlaybackRestriction[]';
+        $request = $this->listPlaybackRestrictionsRequest($page, $limit);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -648,24 +1066,18 @@ class RealTimeApi
     }
 
     /**
-     * Create request for operation 'getRealtimeHistogramTimeseries'
+     * Create request for operation 'listPlaybackRestrictions'
      *
-     * @param  string $realtime_histogram_metric_id ID of the Realtime Histogram Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  int $limit Number of items to include in the response (optional, default to 25)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getRealtimeHistogramTimeseriesRequest($realtime_histogram_metric_id, $filters = null)
+    public function listPlaybackRestrictionsRequest($page = 1, $limit = 25)
     {
-        // verify the required parameter 'realtime_histogram_metric_id' is set
-        if ($realtime_histogram_metric_id === null || (is_array($realtime_histogram_metric_id) && count($realtime_histogram_metric_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $realtime_histogram_metric_id when calling getRealtimeHistogramTimeseries'
-            );
-        }
 
-        $resourcePath = '/data/v1/realtime/metrics/{REALTIME_HISTOGRAM_METRIC_ID}/histogram-timeseries';
+        $resourcePath = '/video/v1/playback-restrictions';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -673,23 +1085,311 @@ class RealTimeApi
         $multipart = false;
 
         // query params
-        if ($filters !== null) {
-            if('form' === 'form' && is_array($filters)) {
-                foreach($filters as $key => $value) {
+        if ($page !== null) {
+            if('form' === 'form' && is_array($page)) {
+                foreach($page as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['filters[]'] = $filters;
+                $queryParams['page'] = $page;
+            }
+        }
+        // query params
+        if ($limit !== null) {
+            if('form' === 'form' && is_array($limit)) {
+                foreach($limit as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['limit'] = $limit;
             }
         }
 
 
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateReferrerDomainRestriction
+     *
+     * Update the Referrer Playback Restriction
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     * @param  \MuxPhp\Models\ReferrerDomainRestriction $body body (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MuxPhp\Models\PlaybackRestriction
+     */
+    public function updateReferrerDomainRestriction($playback_restriction_id, $body)
+    {
+        list($response) = $this->updateReferrerDomainRestrictionWithHttpInfo($playback_restriction_id, $body);
+        return $response;
+    }
+
+    /**
+     * Operation updateReferrerDomainRestrictionWithHttpInfo
+     *
+     * Update the Referrer Playback Restriction
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     * @param  \MuxPhp\Models\ReferrerDomainRestriction $body (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MuxPhp\Models\PlaybackRestriction, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateReferrerDomainRestrictionWithHttpInfo($playback_restriction_id, $body)
+    {
+        $request = $this->updateReferrerDomainRestrictionRequest($playback_restriction_id, $body);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\MuxPhp\Models\PlaybackRestriction' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\PlaybackRestriction', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MuxPhp\Models\PlaybackRestriction';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = (string) $responseBody;
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MuxPhp\Models\PlaybackRestriction',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateReferrerDomainRestrictionAsync
+     *
+     * Update the Referrer Playback Restriction
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     * @param  \MuxPhp\Models\ReferrerDomainRestriction $body (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateReferrerDomainRestrictionAsync($playback_restriction_id, $body)
+    {
+        return $this->updateReferrerDomainRestrictionAsyncWithHttpInfo($playback_restriction_id, $body)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateReferrerDomainRestrictionAsyncWithHttpInfo
+     *
+     * Update the Referrer Playback Restriction
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     * @param  \MuxPhp\Models\ReferrerDomainRestriction $body (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateReferrerDomainRestrictionAsyncWithHttpInfo($playback_restriction_id, $body)
+    {
+        $returnType = '\MuxPhp\Models\PlaybackRestriction';
+        $request = $this->updateReferrerDomainRestrictionRequest($playback_restriction_id, $body);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateReferrerDomainRestriction'
+     *
+     * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
+     * @param  \MuxPhp\Models\ReferrerDomainRestriction $body (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateReferrerDomainRestrictionRequest($playback_restriction_id, $body)
+    {
+        // verify the required parameter 'playback_restriction_id' is set
+        if ($playback_restriction_id === null || (is_array($playback_restriction_id) && count($playback_restriction_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $playback_restriction_id when calling updateReferrerDomainRestriction'
+            );
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling updateReferrerDomainRestriction'
+            );
+        }
+
+        $resourcePath = '/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
         // path params
-        if ($realtime_histogram_metric_id !== null) {
+        if ($playback_restriction_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'REALTIME_HISTOGRAM_METRIC_ID' . '}',
-                ObjectSerializer::toPathValue($realtime_histogram_metric_id),
+                '{' . 'PLAYBACK_RESTRICTION_ID' . '}',
+                ObjectSerializer::toPathValue($playback_restriction_id),
                 $resourcePath
             );
         }
@@ -702,302 +1402,18 @@ class RealTimeApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['application/json'],
-                []
-            );
-        }
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires HTTP basic authentication
-        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
-            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-
-        // MUX: adds support for array params.
-        // TODO: future upstream?
-        $query = ObjectSerializer::buildBetterQuery($queryParams);
-        return new Request(
-            'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getRealtimeTimeseries
-     *
-     * Get Real-Time Timeseries
-     *
-     * @param  string $realtime_metric_id ID of the Realtime Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
-     *
-     * @throws \MuxPhp\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \MuxPhp\Models\GetRealTimeTimeseriesResponse
-     */
-    public function getRealtimeTimeseries($realtime_metric_id, $filters = null)
-    {
-        list($response) = $this->getRealtimeTimeseriesWithHttpInfo($realtime_metric_id, $filters);
-        return $response;
-    }
-
-    /**
-     * Operation getRealtimeTimeseriesWithHttpInfo
-     *
-     * Get Real-Time Timeseries
-     *
-     * @param  string $realtime_metric_id ID of the Realtime Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
-     *
-     * @throws \MuxPhp\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \MuxPhp\Models\GetRealTimeTimeseriesResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getRealtimeTimeseriesWithHttpInfo($realtime_metric_id, $filters = null)
-    {
-        $request = $this->getRealtimeTimeseriesRequest($realtime_metric_id, $filters);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            switch($statusCode) {
-                case 200:
-                    if ('\MuxPhp\Models\GetRealTimeTimeseriesResponse' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\GetRealTimeTimeseriesResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\MuxPhp\Models\GetRealTimeTimeseriesResponse';
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = (string) $responseBody;
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\MuxPhp\Models\GetRealTimeTimeseriesResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getRealtimeTimeseriesAsync
-     *
-     * Get Real-Time Timeseries
-     *
-     * @param  string $realtime_metric_id ID of the Realtime Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getRealtimeTimeseriesAsync($realtime_metric_id, $filters = null)
-    {
-        return $this->getRealtimeTimeseriesAsyncWithHttpInfo($realtime_metric_id, $filters)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getRealtimeTimeseriesAsyncWithHttpInfo
-     *
-     * Get Real-Time Timeseries
-     *
-     * @param  string $realtime_metric_id ID of the Realtime Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getRealtimeTimeseriesAsyncWithHttpInfo($realtime_metric_id, $filters = null)
-    {
-        $returnType = '\MuxPhp\Models\GetRealTimeTimeseriesResponse';
-        $request = $this->getRealtimeTimeseriesRequest($realtime_metric_id, $filters);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getRealtimeTimeseries'
-     *
-     * @param  string $realtime_metric_id ID of the Realtime Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getRealtimeTimeseriesRequest($realtime_metric_id, $filters = null)
-    {
-        // verify the required parameter 'realtime_metric_id' is set
-        if ($realtime_metric_id === null || (is_array($realtime_metric_id) && count($realtime_metric_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $realtime_metric_id when calling getRealtimeTimeseries'
-            );
-        }
-
-        $resourcePath = '/data/v1/realtime/metrics/{REALTIME_METRIC_ID}/timeseries';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        if ($filters !== null) {
-            if('form' === 'form' && is_array($filters)) {
-                foreach($filters as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['filters[]'] = $filters;
-            }
-        }
-
-
-        // path params
-        if ($realtime_metric_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'REALTIME_METRIC_ID' . '}',
-                ObjectSerializer::toPathValue($realtime_metric_id),
-                $resourcePath
-            );
-        }
-
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
             );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
         }
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($body)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($body));
+            } else {
+                $httpBody = $body;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1042,517 +1458,7 @@ class RealTimeApi
         // TODO: future upstream?
         $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
-            'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation listRealtimeDimensions
-     *
-     * List Real-Time Dimensions
-     *
-     *
-     * @throws \MuxPhp\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \MuxPhp\Models\ListRealTimeDimensionsResponse
-     */
-    public function listRealtimeDimensions()
-    {
-        list($response) = $this->listRealtimeDimensionsWithHttpInfo();
-        return $response;
-    }
-
-    /**
-     * Operation listRealtimeDimensionsWithHttpInfo
-     *
-     * List Real-Time Dimensions
-     *
-     *
-     * @throws \MuxPhp\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \MuxPhp\Models\ListRealTimeDimensionsResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function listRealtimeDimensionsWithHttpInfo()
-    {
-        $request = $this->listRealtimeDimensionsRequest();
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            switch($statusCode) {
-                case 200:
-                    if ('\MuxPhp\Models\ListRealTimeDimensionsResponse' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\ListRealTimeDimensionsResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\MuxPhp\Models\ListRealTimeDimensionsResponse';
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = (string) $responseBody;
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\MuxPhp\Models\ListRealTimeDimensionsResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation listRealtimeDimensionsAsync
-     *
-     * List Real-Time Dimensions
-     *
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function listRealtimeDimensionsAsync()
-    {
-        return $this->listRealtimeDimensionsAsyncWithHttpInfo()
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation listRealtimeDimensionsAsyncWithHttpInfo
-     *
-     * List Real-Time Dimensions
-     *
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function listRealtimeDimensionsAsyncWithHttpInfo()
-    {
-        $returnType = '\MuxPhp\Models\ListRealTimeDimensionsResponse';
-        $request = $this->listRealtimeDimensionsRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'listRealtimeDimensions'
-     *
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function listRealtimeDimensionsRequest()
-    {
-
-        $resourcePath = '/data/v1/realtime/dimensions';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires HTTP basic authentication
-        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
-            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-
-        // MUX: adds support for array params.
-        // TODO: future upstream?
-        $query = ObjectSerializer::buildBetterQuery($queryParams);
-        return new Request(
-            'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation listRealtimeMetrics
-     *
-     * List Real-Time Metrics
-     *
-     *
-     * @throws \MuxPhp\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \MuxPhp\Models\ListRealTimeMetricsResponse
-     */
-    public function listRealtimeMetrics()
-    {
-        list($response) = $this->listRealtimeMetricsWithHttpInfo();
-        return $response;
-    }
-
-    /**
-     * Operation listRealtimeMetricsWithHttpInfo
-     *
-     * List Real-Time Metrics
-     *
-     *
-     * @throws \MuxPhp\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \MuxPhp\Models\ListRealTimeMetricsResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function listRealtimeMetricsWithHttpInfo()
-    {
-        $request = $this->listRealtimeMetricsRequest();
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            switch($statusCode) {
-                case 200:
-                    if ('\MuxPhp\Models\ListRealTimeMetricsResponse' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\ListRealTimeMetricsResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\MuxPhp\Models\ListRealTimeMetricsResponse';
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = (string) $responseBody;
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\MuxPhp\Models\ListRealTimeMetricsResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation listRealtimeMetricsAsync
-     *
-     * List Real-Time Metrics
-     *
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function listRealtimeMetricsAsync()
-    {
-        return $this->listRealtimeMetricsAsyncWithHttpInfo()
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation listRealtimeMetricsAsyncWithHttpInfo
-     *
-     * List Real-Time Metrics
-     *
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function listRealtimeMetricsAsyncWithHttpInfo()
-    {
-        $returnType = '\MuxPhp\Models\ListRealTimeMetricsResponse';
-        $request = $this->listRealtimeMetricsRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'listRealtimeMetrics'
-     *
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function listRealtimeMetricsRequest()
-    {
-
-        $resourcePath = '/data/v1/realtime/metrics';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires HTTP basic authentication
-        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
-            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-
-        // MUX: adds support for array params.
-        // TODO: future upstream?
-        $query = ObjectSerializer::buildBetterQuery($queryParams);
-        return new Request(
-            'GET',
+            'PUT',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

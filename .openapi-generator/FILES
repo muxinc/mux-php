@@ -11,6 +11,7 @@ MuxPhp/Api/IncidentsApi.php
 MuxPhp/Api/LiveStreamsApi.php
 MuxPhp/Api/MetricsApi.php
 MuxPhp/Api/PlaybackIDApi.php
+MuxPhp/Api/PlaybackRestrictionsApi.php
 MuxPhp/Api/RealTimeApi.php
 MuxPhp/Api/URLSigningKeysApi.php
 MuxPhp/Api/VideoViewsApi.php
@@ -31,6 +32,7 @@ MuxPhp/Models/CreateAssetRequest.php
 MuxPhp/Models/CreateLiveStreamRequest.php
 MuxPhp/Models/CreatePlaybackIDRequest.php
 MuxPhp/Models/CreatePlaybackIDResponse.php
+MuxPhp/Models/CreatePlaybackRestrictionRequest.php
 MuxPhp/Models/CreateSimulcastTargetRequest.php
 MuxPhp/Models/CreateTrackRequest.php
 MuxPhp/Models/CreateTrackResponse.php
@@ -97,11 +99,14 @@ MuxPhp/Models/NotificationRule.php
 MuxPhp/Models/OverallValues.php
 MuxPhp/Models/PlaybackID.php
 MuxPhp/Models/PlaybackPolicy.php
+MuxPhp/Models/PlaybackRestriction.php
+MuxPhp/Models/PlaybackRestrictionResponse.php
 MuxPhp/Models/RealTimeBreakdownValue.php
 MuxPhp/Models/RealTimeHistogramTimeseriesBucket.php
 MuxPhp/Models/RealTimeHistogramTimeseriesBucketValues.php
 MuxPhp/Models/RealTimeHistogramTimeseriesDatapoint.php
 MuxPhp/Models/RealTimeTimeseriesDatapoint.php
+MuxPhp/Models/ReferrerDomainRestriction.php
 MuxPhp/Models/Score.php
 MuxPhp/Models/SignalLiveStreamCompleteResponse.php
 MuxPhp/Models/SigningKey.php
@@ -111,7 +116,10 @@ MuxPhp/Models/SimulcastTargetResponse.php
 MuxPhp/Models/Track.php
 MuxPhp/Models/UpdateAssetMP4SupportRequest.php
 MuxPhp/Models/UpdateAssetMasterAccessRequest.php
+MuxPhp/Models/UpdateAssetRequest.php
 MuxPhp/Models/UpdateLiveStreamEmbeddedSubtitlesRequest.php
+MuxPhp/Models/UpdateLiveStreamRequest.php
+MuxPhp/Models/UpdateReferrerDomainRestrictionRequest.php
 MuxPhp/Models/Upload.php
 MuxPhp/Models/UploadError.php
 MuxPhp/Models/UploadResponse.php
@@ -132,6 +140,7 @@ docs/Api/IncidentsApi.md
 docs/Api/LiveStreamsApi.md
 docs/Api/MetricsApi.md
 docs/Api/PlaybackIDApi.md
+docs/Api/PlaybackRestrictionsApi.md
 docs/Api/RealTimeApi.md
 docs/Api/URLSigningKeysApi.md
 docs/Api/VideoViewsApi.md
@@ -149,6 +158,7 @@ docs/Model/CreateAssetRequest.md
 docs/Model/CreateLiveStreamRequest.md
 docs/Model/CreatePlaybackIDRequest.md
 docs/Model/CreatePlaybackIDResponse.md
+docs/Model/CreatePlaybackRestrictionRequest.md
 docs/Model/CreateSimulcastTargetRequest.md
 docs/Model/CreateTrackRequest.md
 docs/Model/CreateTrackResponse.md
@@ -214,11 +224,14 @@ docs/Model/NotificationRule.md
 docs/Model/OverallValues.md
 docs/Model/PlaybackID.md
 docs/Model/PlaybackPolicy.md
+docs/Model/PlaybackRestriction.md
+docs/Model/PlaybackRestrictionResponse.md
 docs/Model/RealTimeBreakdownValue.md
 docs/Model/RealTimeHistogramTimeseriesBucket.md
 docs/Model/RealTimeHistogramTimeseriesBucketValues.md
 docs/Model/RealTimeHistogramTimeseriesDatapoint.md
 docs/Model/RealTimeTimeseriesDatapoint.md
+docs/Model/ReferrerDomainRestriction.md
 docs/Model/Score.md
 docs/Model/SignalLiveStreamCompleteResponse.md
 docs/Model/SigningKey.md
@@ -228,7 +241,10 @@ docs/Model/SimulcastTargetResponse.md
 docs/Model/Track.md
 docs/Model/UpdateAssetMP4SupportRequest.md
 docs/Model/UpdateAssetMasterAccessRequest.md
+docs/Model/UpdateAssetRequest.md
 docs/Model/UpdateLiveStreamEmbeddedSubtitlesRequest.md
+docs/Model/UpdateLiveStreamRequest.md
+docs/Model/UpdateReferrerDomainRestrictionRequest.md
 docs/Model/Upload.md
 docs/Model/UploadError.md
 docs/Model/UploadResponse.md

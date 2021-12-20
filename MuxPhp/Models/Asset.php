@@ -799,7 +799,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary metadata set for the asset. Max 255 characters.
+     * @param string|null $passthrough Arbitrary user-supplied metadata set for the asset. Max 255 characters.
      *
      * @return self
      */

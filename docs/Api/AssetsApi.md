@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**getAssetInputInfo()**](AssetsApi.md#getAssetInputInfo) | **GET** /video/v1/assets/{ASSET_ID}/input-info | Retrieve asset input info
 [**getAssetPlaybackId()**](AssetsApi.md#getAssetPlaybackId) | **GET** /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID} | Retrieve a playback ID
 [**listAssets()**](AssetsApi.md#listAssets) | **GET** /video/v1/assets | List assets
+[**updateAsset()**](AssetsApi.md#updateAsset) | **PATCH** /video/v1/assets/{ASSET_ID} | Update an Asset
 [**updateAssetMasterAccess()**](AssetsApi.md#updateAssetMasterAccess) | **PUT** /video/v1/assets/{ASSET_ID}/master-access | Update master access
 [**updateAssetMp4Support()**](AssetsApi.md#updateAssetMp4Support) | **PUT** /video/v1/assets/{ASSET_ID}/mp4-support | Update MP4 support
 
@@ -637,6 +638,70 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateAsset()`
+
+```php
+updateAsset($asset_id, $update_asset_request): \MuxPhp\Models\AssetResponse
+```
+
+Update an Asset
+
+Updates the details of an already-created Asset with the provided Asset ID. This currently supports only the `passthrough` field.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\AssetsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$asset_id = 'asset_id_example'; // string | The asset ID.
+$update_asset_request = {"passthrough":"Example"}; // \MuxPhp\Models\UpdateAssetRequest
+
+try {
+    $result = $apiInstance->updateAsset($asset_id, $update_asset_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AssetsApi->updateAsset: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset_id** | **string**| The asset ID. |
+ **update_asset_request** | [**\MuxPhp\Models\UpdateAssetRequest**](../Model/UpdateAssetRequest.md)|  |
+
+### Return type
+
+[**\MuxPhp\Models\AssetResponse**](../Model/AssetResponse.md)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

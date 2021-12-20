@@ -122,16 +122,17 @@ class DeliveryUsageApi
      *
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  int $limit Number of items to include in the response (optional, default to 100)
-     * @param  string $asset_id Filter response to return delivery usage for this asset only. (optional)
+     * @param  string $asset_id Filter response to return delivery usage for this asset only. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. (optional)
+     * @param  string $live_stream_id Filter response to return delivery usage for assets for this live stream. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. (optional)
      * @param  string[] $timeframe Time window to get delivery usage information. timeframe[0] indicates the start time, timeframe[1] indicates the end time in seconds since the Unix epoch. Default time window is 1 hour representing usage from 13th to 12th hour from when the request is made. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListDeliveryUsageResponse
      */
-    public function listDeliveryUsage($page = 1, $limit = 100, $asset_id = null, $timeframe = null)
+    public function listDeliveryUsage($page = 1, $limit = 100, $asset_id = null, $live_stream_id = null, $timeframe = null)
     {
-        list($response) = $this->listDeliveryUsageWithHttpInfo($page, $limit, $asset_id, $timeframe);
+        list($response) = $this->listDeliveryUsageWithHttpInfo($page, $limit, $asset_id, $live_stream_id, $timeframe);
         return $response;
     }
 
@@ -142,16 +143,17 @@ class DeliveryUsageApi
      *
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  int $limit Number of items to include in the response (optional, default to 100)
-     * @param  string $asset_id Filter response to return delivery usage for this asset only. (optional)
+     * @param  string $asset_id Filter response to return delivery usage for this asset only. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. (optional)
+     * @param  string $live_stream_id Filter response to return delivery usage for assets for this live stream. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. (optional)
      * @param  string[] $timeframe Time window to get delivery usage information. timeframe[0] indicates the start time, timeframe[1] indicates the end time in seconds since the Unix epoch. Default time window is 1 hour representing usage from 13th to 12th hour from when the request is made. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListDeliveryUsageResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listDeliveryUsageWithHttpInfo($page = 1, $limit = 100, $asset_id = null, $timeframe = null)
+    public function listDeliveryUsageWithHttpInfo($page = 1, $limit = 100, $asset_id = null, $live_stream_id = null, $timeframe = null)
     {
-        $request = $this->listDeliveryUsageRequest($page, $limit, $asset_id, $timeframe);
+        $request = $this->listDeliveryUsageRequest($page, $limit, $asset_id, $live_stream_id, $timeframe);
 
         try {
             $options = $this->createHttpClientOption();
@@ -233,15 +235,16 @@ class DeliveryUsageApi
      *
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  int $limit Number of items to include in the response (optional, default to 100)
-     * @param  string $asset_id Filter response to return delivery usage for this asset only. (optional)
+     * @param  string $asset_id Filter response to return delivery usage for this asset only. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. (optional)
+     * @param  string $live_stream_id Filter response to return delivery usage for assets for this live stream. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. (optional)
      * @param  string[] $timeframe Time window to get delivery usage information. timeframe[0] indicates the start time, timeframe[1] indicates the end time in seconds since the Unix epoch. Default time window is 1 hour representing usage from 13th to 12th hour from when the request is made. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDeliveryUsageAsync($page = 1, $limit = 100, $asset_id = null, $timeframe = null)
+    public function listDeliveryUsageAsync($page = 1, $limit = 100, $asset_id = null, $live_stream_id = null, $timeframe = null)
     {
-        return $this->listDeliveryUsageAsyncWithHttpInfo($page, $limit, $asset_id, $timeframe)
+        return $this->listDeliveryUsageAsyncWithHttpInfo($page, $limit, $asset_id, $live_stream_id, $timeframe)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -256,16 +259,17 @@ class DeliveryUsageApi
      *
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  int $limit Number of items to include in the response (optional, default to 100)
-     * @param  string $asset_id Filter response to return delivery usage for this asset only. (optional)
+     * @param  string $asset_id Filter response to return delivery usage for this asset only. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. (optional)
+     * @param  string $live_stream_id Filter response to return delivery usage for assets for this live stream. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. (optional)
      * @param  string[] $timeframe Time window to get delivery usage information. timeframe[0] indicates the start time, timeframe[1] indicates the end time in seconds since the Unix epoch. Default time window is 1 hour representing usage from 13th to 12th hour from when the request is made. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDeliveryUsageAsyncWithHttpInfo($page = 1, $limit = 100, $asset_id = null, $timeframe = null)
+    public function listDeliveryUsageAsyncWithHttpInfo($page = 1, $limit = 100, $asset_id = null, $live_stream_id = null, $timeframe = null)
     {
         $returnType = '\MuxPhp\Models\ListDeliveryUsageResponse';
-        $request = $this->listDeliveryUsageRequest($page, $limit, $asset_id, $timeframe);
+        $request = $this->listDeliveryUsageRequest($page, $limit, $asset_id, $live_stream_id, $timeframe);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -306,13 +310,14 @@ class DeliveryUsageApi
      *
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  int $limit Number of items to include in the response (optional, default to 100)
-     * @param  string $asset_id Filter response to return delivery usage for this asset only. (optional)
+     * @param  string $asset_id Filter response to return delivery usage for this asset only. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. (optional)
+     * @param  string $live_stream_id Filter response to return delivery usage for assets for this live stream. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. (optional)
      * @param  string[] $timeframe Time window to get delivery usage information. timeframe[0] indicates the start time, timeframe[1] indicates the end time in seconds since the Unix epoch. Default time window is 1 hour representing usage from 13th to 12th hour from when the request is made. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listDeliveryUsageRequest($page = 1, $limit = 100, $asset_id = null, $timeframe = null)
+    public function listDeliveryUsageRequest($page = 1, $limit = 100, $asset_id = null, $live_stream_id = null, $timeframe = null)
     {
 
         $resourcePath = '/video/v1/delivery-usage';
@@ -353,6 +358,17 @@ class DeliveryUsageApi
             }
             else {
                 $queryParams['asset_id'] = $asset_id;
+            }
+        }
+        // query params
+        if ($live_stream_id !== null) {
+            if('form' === 'form' && is_array($live_stream_id)) {
+                foreach($live_stream_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['live_stream_id'] = $live_stream_id;
             }
         }
         // query params

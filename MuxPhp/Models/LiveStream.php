@@ -70,10 +70,12 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest',
         'passthrough' => 'string',
         'audio_only' => 'bool',
+        'embedded_subtitles' => '\MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]',
         'reconnect_window' => 'float',
         'reduced_latency' => 'bool',
         'low_latency' => 'bool',
         'simulcast_targets' => '\MuxPhp\Models\SimulcastTarget[]',
+        'latency_mode' => 'string',
         'test' => 'bool'
     ];
 
@@ -95,10 +97,12 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'new_asset_settings' => null,
         'passthrough' => null,
         'audio_only' => null,
+        'embedded_subtitles' => null,
         'reconnect_window' => 'float',
         'reduced_latency' => 'boolean',
         'low_latency' => 'boolean',
         'simulcast_targets' => null,
+        'latency_mode' => null,
         'test' => 'boolean'
     ];
 
@@ -139,10 +143,12 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'new_asset_settings' => 'new_asset_settings',
         'passthrough' => 'passthrough',
         'audio_only' => 'audio_only',
+        'embedded_subtitles' => 'embedded_subtitles',
         'reconnect_window' => 'reconnect_window',
         'reduced_latency' => 'reduced_latency',
         'low_latency' => 'low_latency',
         'simulcast_targets' => 'simulcast_targets',
+        'latency_mode' => 'latency_mode',
         'test' => 'test'
     ];
 
@@ -162,10 +168,12 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'new_asset_settings' => 'setNewAssetSettings',
         'passthrough' => 'setPassthrough',
         'audio_only' => 'setAudioOnly',
+        'embedded_subtitles' => 'setEmbeddedSubtitles',
         'reconnect_window' => 'setReconnectWindow',
         'reduced_latency' => 'setReducedLatency',
         'low_latency' => 'setLowLatency',
         'simulcast_targets' => 'setSimulcastTargets',
+        'latency_mode' => 'setLatencyMode',
         'test' => 'setTest'
     ];
 
@@ -185,10 +193,12 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'new_asset_settings' => 'getNewAssetSettings',
         'passthrough' => 'getPassthrough',
         'audio_only' => 'getAudioOnly',
+        'embedded_subtitles' => 'getEmbeddedSubtitles',
         'reconnect_window' => 'getReconnectWindow',
         'reduced_latency' => 'getReducedLatency',
         'low_latency' => 'getLowLatency',
         'simulcast_targets' => 'getSimulcastTargets',
+        'latency_mode' => 'getLatencyMode',
         'test' => 'getTest'
     ];
 
@@ -236,6 +246,9 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_ACTIVE = 'active';
     public const STATUS_IDLE = 'idle';
     public const STATUS_DISABLED = 'disabled';
+    public const LATENCY_MODE_LOW = 'low';
+    public const LATENCY_MODE_REDUCED = 'reduced';
+    public const LATENCY_MODE_STANDARD = 'standard';
     
 
     
@@ -250,6 +263,20 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_ACTIVE,
             self::STATUS_IDLE,
             self::STATUS_DISABLED,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getLatencyModeAllowableValues()
+    {
+        return [
+            self::LATENCY_MODE_LOW,
+            self::LATENCY_MODE_REDUCED,
+            self::LATENCY_MODE_STANDARD,
         ];
     }
     
@@ -282,10 +309,12 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['new_asset_settings'] = $data['new_asset_settings'] ?? null;
         $this->container['passthrough'] = $data['passthrough'] ?? null;
         $this->container['audio_only'] = $data['audio_only'] ?? null;
+        $this->container['embedded_subtitles'] = $data['embedded_subtitles'] ?? null;
         $this->container['reconnect_window'] = $data['reconnect_window'] ?? 60;
         $this->container['reduced_latency'] = $data['reduced_latency'] ?? null;
         $this->container['low_latency'] = $data['low_latency'] ?? null;
         $this->container['simulcast_targets'] = $data['simulcast_targets'] ?? null;
+        $this->container['latency_mode'] = $data['latency_mode'] ?? null;
         $this->container['test'] = $data['test'] ?? null;
     }
 
@@ -303,6 +332,15 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'status', must be one of '%s'",
                 $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getLatencyModeAllowableValues();
+        if (!is_null($this->container['latency_mode']) && !in_array($this->container['latency_mode'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'latency_mode', must be one of '%s'",
+                $this->container['latency_mode'],
                 implode("', '", $allowedValues)
             );
         }
@@ -537,7 +575,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary metadata set for the asset. Max 255 characters.
+     * @param string|null $passthrough Arbitrary user-supplied metadata set for the asset. Max 255 characters.
      *
      * @return self
      */
@@ -568,6 +606,30 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAudioOnly($audio_only)
     {
         $this->container['audio_only'] = $audio_only;
+
+        return $this;
+    }
+
+    /**
+     * Gets embedded_subtitles
+     *
+     * @return \MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]|null
+     */
+    public function getEmbeddedSubtitles()
+    {
+        return $this->container['embedded_subtitles'];
+    }
+
+    /**
+     * Sets embedded_subtitles
+     *
+     * @param \MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]|null $embedded_subtitles Describes the embedded closed caption configuration of the incoming live stream.
+     *
+     * @return self
+     */
+    public function setEmbeddedSubtitles($embedded_subtitles)
+    {
+        $this->container['embedded_subtitles'] = $embedded_subtitles;
 
         return $this;
     }
@@ -609,7 +671,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reduced_latency
      *
-     * @param bool|null $reduced_latency Latency is the time from when the streamer does something in real life to when you see it happen in the player. Set this if you want lower latency for your live stream. **Note**: Reconnect windows are incompatible with Reduced Latency and will always be set to zero (0) seconds. See the [Reduce live stream latency guide](https://docs.mux.com/guides/video/reduce-live-stream-latency) to understand the tradeoffs.
+     * @param bool|null $reduced_latency This field is deprecated. Please use latency_mode instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this if you want lower latency for your live stream. **Note**: Reconnect windows are incompatible with Reduced Latency and will always be set to zero (0) seconds. See the [Reduce live stream latency guide](https://docs.mux.com/guides/video/reduce-live-stream-latency) to understand the tradeoffs.
      *
      * @return self
      */
@@ -633,7 +695,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets low_latency
      *
-     * @param bool|null $low_latency Latency is the time from when the streamer does something in real life to when you see it happen in the player. Setting this option will enable compatibility with the LL-HLS specification for low-latency streaming. This typically has lower latency than Reduced Latency streams, and cannot be combined with Reduced Latency. Note: Reconnect windows are incompatible with Low Latency and will always be set to zero (0) seconds.
+     * @param bool|null $low_latency This field is deprecated. Please use latency_mode instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Setting this option will enable compatibility with the LL-HLS specification for low-latency streaming. This typically has lower latency than Reduced Latency streams, and cannot be combined with Reduced Latency. Note: Reconnect windows are incompatible with Low Latency and will always be set to zero (0) seconds.
      *
      * @return self
      */
@@ -664,6 +726,40 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSimulcastTargets($simulcast_targets)
     {
         $this->container['simulcast_targets'] = $simulcast_targets;
+
+        return $this;
+    }
+
+    /**
+     * Gets latency_mode
+     *
+     * @return string|null
+     */
+    public function getLatencyMode()
+    {
+        return $this->container['latency_mode'];
+    }
+
+    /**
+     * Sets latency_mode
+     *
+     * @param string|null $latency_mode Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this as an alternative to setting low latency or reduced latency flags. The Low Latency value is a beta feature. Note: Reconnect windows are incompatible with Reduced Latency and Low Latency and will always be set to zero (0) seconds. Read more here: https://mux.com/blog/introducing-low-latency-live-streaming/
+     *
+     * @return self
+     */
+    public function setLatencyMode($latency_mode)
+    {
+        $allowedValues = $this->getLatencyModeAllowableValues();
+        if (!is_null($latency_mode) && !in_array($latency_mode, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'latency_mode', must be one of '%s'",
+                    $latency_mode,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['latency_mode'] = $latency_mode;
 
         return $this;
     }

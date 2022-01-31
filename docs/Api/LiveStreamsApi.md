@@ -706,7 +706,7 @@ Name | Type | Description  | Notes
 ## `listLiveStreams()`
 
 ```php
-listLiveStreams($limit, $page, $stream_key): \MuxPhp\Models\ListLiveStreamsResponse
+listLiveStreams($limit, $page, $stream_key, $status): \MuxPhp\Models\ListLiveStreamsResponse
 ```
 
 List live streams
@@ -733,9 +733,10 @@ $apiInstance = new MuxPhp\Api\LiveStreamsApi(
 $limit = 25; // int | Number of items to include in the response
 $page = 1; // int | Offset by this many pages, of the size of `limit`
 $stream_key = 'stream_key_example'; // string | Filter response to return live stream for this stream key only
+$status = new \MuxPhp\Models\\MuxPhp\Models\LiveStreamStatus(); // \MuxPhp\Models\LiveStreamStatus | Filter response to return live streams with the specified status only
 
 try {
-    $result = $apiInstance->listLiveStreams($limit, $page, $stream_key);
+    $result = $apiInstance->listLiveStreams($limit, $page, $stream_key, $status);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LiveStreamsApi->listLiveStreams: ', $e->getMessage(), PHP_EOL;
@@ -749,6 +750,7 @@ Name | Type | Description  | Notes
  **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
  **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
  **stream_key** | **string**| Filter response to return live stream for this stream key only | [optional]
+ **status** | [**\MuxPhp\Models\LiveStreamStatus**](../Model/.md)| Filter response to return live streams with the specified status only | [optional]
 
 ### Return type
 

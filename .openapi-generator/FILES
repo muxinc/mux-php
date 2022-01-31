@@ -93,6 +93,7 @@ MuxPhp/Models/ListVideoViewsResponse.php
 MuxPhp/Models/LiveStream.php
 MuxPhp/Models/LiveStreamEmbeddedSubtitleSettings.php
 MuxPhp/Models/LiveStreamResponse.php
+MuxPhp/Models/LiveStreamStatus.php
 MuxPhp/Models/Metric.php
 MuxPhp/Models/ModelInterface.php
 MuxPhp/Models/NotificationRule.php
@@ -219,6 +220,7 @@ docs/Model/ListVideoViewsResponse.md
 docs/Model/LiveStream.md
 docs/Model/LiveStreamEmbeddedSubtitleSettings.md
 docs/Model/LiveStreamResponse.md
+docs/Model/LiveStreamStatus.md
 docs/Model/Metric.md
 docs/Model/NotificationRule.md
 docs/Model/OverallValues.md

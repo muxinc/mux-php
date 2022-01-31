@@ -65,7 +65,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'stream_key' => 'string',
         'active_asset_id' => 'string',
         'recent_asset_ids' => 'string[]',
-        'status' => 'string',
+        'status' => '\MuxPhp\Models\LiveStreamStatus',
         'playback_ids' => '\MuxPhp\Models\PlaybackID[]',
         'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest',
         'passthrough' => 'string',
@@ -243,28 +243,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_IDLE = 'idle';
-    public const STATUS_DISABLED = 'disabled';
     public const LATENCY_MODE_LOW = 'low';
     public const LATENCY_MODE_REDUCED = 'reduced';
     public const LATENCY_MODE_STANDARD = 'standard';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_ACTIVE,
-            self::STATUS_IDLE,
-            self::STATUS_DISABLED,
-        ];
-    }
     
     /**
      * Gets allowable values of the enum
@@ -326,15 +309,6 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
 
         $allowedValues = $this->getLatencyModeAllowableValues();
         if (!is_null($this->container['latency_mode']) && !in_array($this->container['latency_mode'], $allowedValues, true)) {
@@ -483,7 +457,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string|null
+     * @return \MuxPhp\Models\LiveStreamStatus|null
      */
     public function getStatus()
     {
@@ -493,22 +467,12 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string|null $status `idle` indicates that there is no active broadcast. `active` indicates that there is an active broadcast and `disabled` status indicates that no future RTMP streams can be published.
+     * @param \MuxPhp\Models\LiveStreamStatus|null $status status
      *
      * @return self
      */
     public function setStatus($status)
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['status'] = $status;
 
         return $this;

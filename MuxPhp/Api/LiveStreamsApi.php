@@ -3101,14 +3101,15 @@ class LiveStreamsApi
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  string $stream_key Filter response to return live stream for this stream key only (optional)
+     * @param  \MuxPhp\Models\LiveStreamStatus $status Filter response to return live streams with the specified status only (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListLiveStreamsResponse
      */
-    public function listLiveStreams($limit = 25, $page = 1, $stream_key = null)
+    public function listLiveStreams($limit = 25, $page = 1, $stream_key = null, $status = null)
     {
-        list($response) = $this->listLiveStreamsWithHttpInfo($limit, $page, $stream_key);
+        list($response) = $this->listLiveStreamsWithHttpInfo($limit, $page, $stream_key, $status);
         return $response;
     }
 
@@ -3120,14 +3121,15 @@ class LiveStreamsApi
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  string $stream_key Filter response to return live stream for this stream key only (optional)
+     * @param  \MuxPhp\Models\LiveStreamStatus $status Filter response to return live streams with the specified status only (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListLiveStreamsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listLiveStreamsWithHttpInfo($limit = 25, $page = 1, $stream_key = null)
+    public function listLiveStreamsWithHttpInfo($limit = 25, $page = 1, $stream_key = null, $status = null)
     {
-        $request = $this->listLiveStreamsRequest($limit, $page, $stream_key);
+        $request = $this->listLiveStreamsRequest($limit, $page, $stream_key, $status);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3210,13 +3212,14 @@ class LiveStreamsApi
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  string $stream_key Filter response to return live stream for this stream key only (optional)
+     * @param  \MuxPhp\Models\LiveStreamStatus $status Filter response to return live streams with the specified status only (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listLiveStreamsAsync($limit = 25, $page = 1, $stream_key = null)
+    public function listLiveStreamsAsync($limit = 25, $page = 1, $stream_key = null, $status = null)
     {
-        return $this->listLiveStreamsAsyncWithHttpInfo($limit, $page, $stream_key)
+        return $this->listLiveStreamsAsyncWithHttpInfo($limit, $page, $stream_key, $status)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3232,14 +3235,15 @@ class LiveStreamsApi
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  string $stream_key Filter response to return live stream for this stream key only (optional)
+     * @param  \MuxPhp\Models\LiveStreamStatus $status Filter response to return live streams with the specified status only (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listLiveStreamsAsyncWithHttpInfo($limit = 25, $page = 1, $stream_key = null)
+    public function listLiveStreamsAsyncWithHttpInfo($limit = 25, $page = 1, $stream_key = null, $status = null)
     {
         $returnType = '\MuxPhp\Models\ListLiveStreamsResponse';
-        $request = $this->listLiveStreamsRequest($limit, $page, $stream_key);
+        $request = $this->listLiveStreamsRequest($limit, $page, $stream_key, $status);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3281,11 +3285,12 @@ class LiveStreamsApi
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  string $stream_key Filter response to return live stream for this stream key only (optional)
+     * @param  \MuxPhp\Models\LiveStreamStatus $status Filter response to return live streams with the specified status only (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listLiveStreamsRequest($limit = 25, $page = 1, $stream_key = null)
+    public function listLiveStreamsRequest($limit = 25, $page = 1, $stream_key = null, $status = null)
     {
 
         $resourcePath = '/video/v1/live-streams';
@@ -3326,6 +3331,17 @@ class LiveStreamsApi
             }
             else {
                 $queryParams['stream_key'] = $stream_key;
+            }
+        }
+        // query params
+        if ($status !== null) {
+            if('form' === 'form' && is_array($status)) {
+                foreach($status as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['status'] = $status;
             }
         }
 

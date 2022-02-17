@@ -82,6 +82,7 @@ MuxPhp/Models/ListFiltersResponseData.php
 MuxPhp/Models/ListIncidentsResponse.php
 MuxPhp/Models/ListInsightsResponse.php
 MuxPhp/Models/ListLiveStreamsResponse.php
+MuxPhp/Models/ListPlaybackRestrictionsResponse.php
 MuxPhp/Models/ListRealTimeDimensionsResponse.php
 MuxPhp/Models/ListRealTimeDimensionsResponseData.php
 MuxPhp/Models/ListRealTimeMetricsResponse.php
@@ -209,6 +210,7 @@ docs/Model/ListFiltersResponseData.md
 docs/Model/ListIncidentsResponse.md
 docs/Model/ListInsightsResponse.md
 docs/Model/ListLiveStreamsResponse.md
+docs/Model/ListPlaybackRestrictionsResponse.md
 docs/Model/ListRealTimeDimensionsResponse.md
 docs/Model/ListRealTimeDimensionsResponseData.md
 docs/Model/ListRealTimeMetricsResponse.md

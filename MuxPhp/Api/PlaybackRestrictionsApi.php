@@ -124,7 +124,7 @@ class PlaybackRestrictionsApi
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MuxPhp\Models\PlaybackRestriction
+     * @return \MuxPhp\Models\PlaybackRestrictionResponse
      */
     public function createPlaybackRestriction($create_playback_restriction_request)
     {
@@ -141,7 +141,7 @@ class PlaybackRestrictionsApi
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MuxPhp\Models\PlaybackRestriction, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MuxPhp\Models\PlaybackRestrictionResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPlaybackRestrictionWithHttpInfo($create_playback_restriction_request)
     {
@@ -178,20 +178,20 @@ class PlaybackRestrictionsApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 201:
-                    if ('\MuxPhp\Models\PlaybackRestriction' === '\SplFileObject') {
+                    if ('\MuxPhp\Models\PlaybackRestrictionResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\PlaybackRestriction', []),
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\PlaybackRestrictionResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MuxPhp\Models\PlaybackRestriction';
+            $returnType = '\MuxPhp\Models\PlaybackRestrictionResponse';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -210,7 +210,7 @@ class PlaybackRestrictionsApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MuxPhp\Models\PlaybackRestriction',
+                        '\MuxPhp\Models\PlaybackRestrictionResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -252,7 +252,7 @@ class PlaybackRestrictionsApi
      */
     public function createPlaybackRestrictionAsyncWithHttpInfo($create_playback_restriction_request)
     {
-        $returnType = '\MuxPhp\Models\PlaybackRestriction';
+        $returnType = '\MuxPhp\Models\PlaybackRestrictionResponse';
         $request = $this->createPlaybackRestrictionRequest($create_playback_restriction_request);
 
         return $this->client
@@ -622,7 +622,7 @@ class PlaybackRestrictionsApi
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MuxPhp\Models\PlaybackRestriction
+     * @return \MuxPhp\Models\PlaybackRestrictionResponse
      */
     public function getPlaybackRestriction($playback_restriction_id)
     {
@@ -639,7 +639,7 @@ class PlaybackRestrictionsApi
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MuxPhp\Models\PlaybackRestriction, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MuxPhp\Models\PlaybackRestrictionResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPlaybackRestrictionWithHttpInfo($playback_restriction_id)
     {
@@ -676,20 +676,20 @@ class PlaybackRestrictionsApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\MuxPhp\Models\PlaybackRestriction' === '\SplFileObject') {
+                    if ('\MuxPhp\Models\PlaybackRestrictionResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\PlaybackRestriction', []),
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\PlaybackRestrictionResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MuxPhp\Models\PlaybackRestriction';
+            $returnType = '\MuxPhp\Models\PlaybackRestrictionResponse';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -708,7 +708,7 @@ class PlaybackRestrictionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MuxPhp\Models\PlaybackRestriction',
+                        '\MuxPhp\Models\PlaybackRestrictionResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -750,7 +750,7 @@ class PlaybackRestrictionsApi
      */
     public function getPlaybackRestrictionAsyncWithHttpInfo($playback_restriction_id)
     {
-        $returnType = '\MuxPhp\Models\PlaybackRestriction';
+        $returnType = '\MuxPhp\Models\PlaybackRestrictionResponse';
         $request = $this->getPlaybackRestrictionRequest($playback_restriction_id);
 
         return $this->client
@@ -897,7 +897,7 @@ class PlaybackRestrictionsApi
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MuxPhp\Models\PlaybackRestriction[]
+     * @return \MuxPhp\Models\ListPlaybackRestrictionsResponse
      */
     public function listPlaybackRestrictions($page = 1, $limit = 25)
     {
@@ -915,7 +915,7 @@ class PlaybackRestrictionsApi
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MuxPhp\Models\PlaybackRestriction[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MuxPhp\Models\ListPlaybackRestrictionsResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function listPlaybackRestrictionsWithHttpInfo($page = 1, $limit = 25)
     {
@@ -952,20 +952,20 @@ class PlaybackRestrictionsApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\MuxPhp\Models\PlaybackRestriction[]' === '\SplFileObject') {
+                    if ('\MuxPhp\Models\ListPlaybackRestrictionsResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\PlaybackRestriction[]', []),
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\ListPlaybackRestrictionsResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MuxPhp\Models\PlaybackRestriction[]';
+            $returnType = '\MuxPhp\Models\ListPlaybackRestrictionsResponse';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -984,7 +984,7 @@ class PlaybackRestrictionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MuxPhp\Models\PlaybackRestriction[]',
+                        '\MuxPhp\Models\ListPlaybackRestrictionsResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1028,7 +1028,7 @@ class PlaybackRestrictionsApi
      */
     public function listPlaybackRestrictionsAsyncWithHttpInfo($page = 1, $limit = 25)
     {
-        $returnType = '\MuxPhp\Models\PlaybackRestriction[]';
+        $returnType = '\MuxPhp\Models\ListPlaybackRestrictionsResponse';
         $request = $this->listPlaybackRestrictionsRequest($page, $limit);
 
         return $this->client
@@ -1184,7 +1184,7 @@ class PlaybackRestrictionsApi
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MuxPhp\Models\PlaybackRestriction
+     * @return \MuxPhp\Models\PlaybackRestrictionResponse
      */
     public function updateReferrerDomainRestriction($playback_restriction_id, $body)
     {
@@ -1202,7 +1202,7 @@ class PlaybackRestrictionsApi
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MuxPhp\Models\PlaybackRestriction, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MuxPhp\Models\PlaybackRestrictionResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateReferrerDomainRestrictionWithHttpInfo($playback_restriction_id, $body)
     {
@@ -1239,20 +1239,20 @@ class PlaybackRestrictionsApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\MuxPhp\Models\PlaybackRestriction' === '\SplFileObject') {
+                    if ('\MuxPhp\Models\PlaybackRestrictionResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\PlaybackRestriction', []),
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\PlaybackRestrictionResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MuxPhp\Models\PlaybackRestriction';
+            $returnType = '\MuxPhp\Models\PlaybackRestrictionResponse';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -1271,7 +1271,7 @@ class PlaybackRestrictionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MuxPhp\Models\PlaybackRestriction',
+                        '\MuxPhp\Models\PlaybackRestrictionResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1315,7 +1315,7 @@ class PlaybackRestrictionsApi
      */
     public function updateReferrerDomainRestrictionAsyncWithHttpInfo($playback_restriction_id, $body)
     {
-        $returnType = '\MuxPhp\Models\PlaybackRestriction';
+        $returnType = '\MuxPhp\Models\PlaybackRestrictionResponse';
         $request = $this->updateReferrerDomainRestrictionRequest($playback_restriction_id, $body);
 
         return $this->client

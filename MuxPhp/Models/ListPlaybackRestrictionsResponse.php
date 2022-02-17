@@ -1,6 +1,6 @@
 <?php
 /**
- * PlaybackRestrictionResponse
+ * ListPlaybackRestrictionsResponse
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * PlaybackRestrictionResponse Class Doc Comment
+ * ListPlaybackRestrictionsResponse Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class PlaybackRestrictionResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ListPlaybackRestrictionsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class PlaybackRestrictionResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PlaybackRestrictionResponse';
+    protected static $openAPIModelName = 'ListPlaybackRestrictionsResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,7 +60,7 @@ class PlaybackRestrictionResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\MuxPhp\Models\PlaybackRestriction'
+        'data' => '\MuxPhp\Models\PlaybackRestriction[]'
     ];
 
     /**
@@ -215,7 +215,7 @@ class PlaybackRestrictionResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets data
      *
-     * @return \MuxPhp\Models\PlaybackRestriction|null
+     * @return \MuxPhp\Models\PlaybackRestriction[]|null
      */
     public function getData()
     {
@@ -225,7 +225,7 @@ class PlaybackRestrictionResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets data
      *
-     * @param \MuxPhp\Models\PlaybackRestriction|null $data data
+     * @param \MuxPhp\Models\PlaybackRestriction[]|null $data data
      *
      * @return self
      */

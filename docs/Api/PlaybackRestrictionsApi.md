@@ -14,7 +14,7 @@ Method | HTTP request | Description
 ## `createPlaybackRestriction()`
 
 ```php
-createPlaybackRestriction($create_playback_restriction_request): \MuxPhp\Models\PlaybackRestriction
+createPlaybackRestriction($create_playback_restriction_request): \MuxPhp\Models\PlaybackRestrictionResponse
 ```
 
 Create a Playback Restriction
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MuxPhp\Models\PlaybackRestriction**](../Model/PlaybackRestriction.md)
+[**\MuxPhp\Models\PlaybackRestrictionResponse**](../Model/PlaybackRestrictionResponse.md)
 
 ### Authorization
 
@@ -137,7 +137,7 @@ void (empty response body)
 ## `getPlaybackRestriction()`
 
 ```php
-getPlaybackRestriction($playback_restriction_id): \MuxPhp\Models\PlaybackRestriction
+getPlaybackRestriction($playback_restriction_id): \MuxPhp\Models\PlaybackRestrictionResponse
 ```
 
 Retrieve a Playback Restriction
@@ -181,7 +181,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MuxPhp\Models\PlaybackRestriction**](../Model/PlaybackRestriction.md)
+[**\MuxPhp\Models\PlaybackRestrictionResponse**](../Model/PlaybackRestrictionResponse.md)
 
 ### Authorization
 
@@ -199,7 +199,7 @@ Name | Type | Description  | Notes
 ## `listPlaybackRestrictions()`
 
 ```php
-listPlaybackRestrictions($page, $limit): \MuxPhp\Models\PlaybackRestriction[]
+listPlaybackRestrictions($page, $limit): \MuxPhp\Models\ListPlaybackRestrictionsResponse
 ```
 
 List Playback Restrictions
@@ -245,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MuxPhp\Models\PlaybackRestriction[]**](../Model/PlaybackRestriction.md)
+[**\MuxPhp\Models\ListPlaybackRestrictionsResponse**](../Model/ListPlaybackRestrictionsResponse.md)
 
 ### Authorization
 
@@ -263,12 +263,12 @@ Name | Type | Description  | Notes
 ## `updateReferrerDomainRestriction()`
 
 ```php
-updateReferrerDomainRestriction($playback_restriction_id, $body): \MuxPhp\Models\PlaybackRestriction
+updateReferrerDomainRestriction($playback_restriction_id, $body): \MuxPhp\Models\PlaybackRestrictionResponse
 ```
 
 Update the Referrer Playback Restriction
 
-Allows you to modify the list of domians or change how Mux validates playback requests without the `Referer` HTTP header. The Referrer restriction fully replaces the old list with this new list of domains.
+Allows you to modify the list of domains or change how Mux validates playback requests without the `Referer` HTTP header. The Referrer restriction fully replaces the old list with this new list of domains.
 
 ### Example
 
@@ -309,7 +309,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MuxPhp\Models\PlaybackRestriction**](../Model/PlaybackRestriction.md)
+[**\MuxPhp\Models\PlaybackRestrictionResponse**](../Model/PlaybackRestrictionResponse.md)
 
 ### Authorization
 

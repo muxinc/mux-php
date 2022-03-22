@@ -33,7 +33,7 @@ final class WebhooksTest extends TestCase
     {
         $body = json_encode(['hello' => 'world']);
 
-        // Create a stub for the SomeClass class.
+        // Create a stub for the Webhooks class.
         $stub = $this->getMockBuilder(MuxPhp\Utils\Webhooks::class)
             ->disableOriginalConstructor()
             ->setMethods(['getRequestBody'])

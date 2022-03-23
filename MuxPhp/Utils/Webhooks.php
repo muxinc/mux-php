@@ -9,11 +9,12 @@ class Webhooks
     return file_get_contents('php://input');
   }
 
-  public function isValidSignature(string $signature) {
+  public function isValidSignature(string $signature = '') : bool {
     // Split the signature based on ','.
     // Format is 't=[timestamp],v1=[hash]'
     $muxSigArray = explode(',', $signature);
 
+    // Make sure we have at least 2 items in the array.
     if(empty($muxSigArray) || empty($muxSigArray[0]) || empty($muxSigArray[1])) {
         return false;
     }

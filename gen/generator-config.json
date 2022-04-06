@@ -5,7 +5,8 @@
   "apiPackage": "Api",
   "srcBasePath": "MuxPhp",
   "invokerPackage": "MuxPhp",
-  "artifactVersion": "3.3.1",
+  "artifactVersion": "3.4.0",
   "gitUserId": "muxinc",
-  "gitRepoId": "mux-php"
+  "gitRepoId": "mux-php",
+  "composerPackageName": "muxinc/mux-php"
 }

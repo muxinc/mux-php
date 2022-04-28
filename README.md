@@ -1,7 +1,5 @@
 ![Mux PHP Banner](https://banner.mux.dev/?image=php)
 
-![](https://github.com/muxinc/mux-php/workflows/Integration%20Test/badge.svg)
-
 <p align="center">
   <a href="https://packagist.org/packages/muxinc/mux-php"><img src="https://img.shields.io/packagist/v/muxinc/mux-php" title="Packagist" /></a>
   <a href="https://github.com/muxinc/mux-php/workflows/Integration%20Test"><img src="https://github.com/muxinc/mux-php/workflows/Integration%20Test/badge.svg" title="CI" /></a>

@@ -9,6 +9,7 @@ CONFIG_PATH=./generator-config.json
 OUTPUT_DIR=..
 TEMPLATE_DIR=./templates
 GENERATED_TEMPLATE_DIR=./tmp/oas-base-templates
+JQ=./node_modules/node-jq/bin/jq
 
 ensure:
 	yarn install
@@ -21,7 +22,11 @@ clean-products:
 	rm -rf "${OUTPUT_DIR}/docs"
 
 build: ensure clean-products
-	${OAS_CLI} generate -g "${GENERATOR_TYPE}" -c "${CONFIG_PATH}" -t "${TEMPLATE_DIR}" -o "${OUTPUT_DIR}" -i "${OAS_SPEC_PATH}"
+	$(eval TMP_SPEC := $(shell mktemp --suffix=.json))
+	echo "${TMP_SPEC}"
+	cat "${OAS_SPEC_PATH}" | grep -v 'x-group-parameters' > "${TMP_SPEC}"
+	${OAS_CLI} generate -g "${GENERATOR_TYPE}" -c "${CONFIG_PATH}" -t "${TEMPLATE_DIR}" -o "${OUTPUT_DIR}" -i "${TMP_SPEC}"
+	rm "${TMP_SPEC}"
 
 config-help: ensure
 	${OAS_CLI} config-help -g "${GENERATOR_TYPE}"

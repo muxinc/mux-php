@@ -4,19 +4,24 @@ on:
   push:
     branches:
       - master
-  pull_request:
+  pull_request: {}
 
 jobs:
   build:
     name: Integration Test
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-version: ['7.4', '8.1']
+
     steps:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Install PHP 
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.3'
+          php-version: ${{ matrix.php-version }}
       - name: Install PHP Dependencies
         run: composer install
       - name: Run Integration Tests

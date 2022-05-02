@@ -62,7 +62,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPITypes = [
         'passthrough' => 'string',
         'latency_mode' => 'string',
-        'reconnect_window' => 'float'
+        'reconnect_window' => 'float',
+        'max_continuous_duration' => 'int'
     ];
 
     /**
@@ -75,7 +76,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPIFormats = [
         'passthrough' => null,
         'latency_mode' => null,
-        'reconnect_window' => 'float'
+        'reconnect_window' => 'float',
+        'max_continuous_duration' => 'int32'
     ];
 
     /**
@@ -107,7 +109,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $attributeMap = [
         'passthrough' => 'passthrough',
         'latency_mode' => 'latency_mode',
-        'reconnect_window' => 'reconnect_window'
+        'reconnect_window' => 'reconnect_window',
+        'max_continuous_duration' => 'max_continuous_duration'
     ];
 
     /**
@@ -118,7 +121,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $setters = [
         'passthrough' => 'setPassthrough',
         'latency_mode' => 'setLatencyMode',
-        'reconnect_window' => 'setReconnectWindow'
+        'reconnect_window' => 'setReconnectWindow',
+        'max_continuous_duration' => 'setMaxContinuousDuration'
     ];
 
     /**
@@ -129,7 +133,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $getters = [
         'passthrough' => 'getPassthrough',
         'latency_mode' => 'getLatencyMode',
-        'reconnect_window' => 'getReconnectWindow'
+        'reconnect_window' => 'getReconnectWindow',
+        'max_continuous_duration' => 'getMaxContinuousDuration'
     ];
 
     /**
@@ -215,6 +220,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         $this->container['passthrough'] = $data['passthrough'] ?? null;
         $this->container['latency_mode'] = $data['latency_mode'] ?? null;
         $this->container['reconnect_window'] = $data['reconnect_window'] ?? null;
+        $this->container['max_continuous_duration'] = $data['max_continuous_duration'] ?? 43200;
     }
 
     /**
@@ -241,6 +247,14 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
 
         if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] < 0.1)) {
             $invalidProperties[] = "invalid value for 'reconnect_window', must be bigger than or equal to 0.1.";
+        }
+
+        if (!is_null($this->container['max_continuous_duration']) && ($this->container['max_continuous_duration'] > 43200)) {
+            $invalidProperties[] = "invalid value for 'max_continuous_duration', must be smaller than or equal to 43200.";
+        }
+
+        if (!is_null($this->container['max_continuous_duration']) && ($this->container['max_continuous_duration'] < 60)) {
+            $invalidProperties[] = "invalid value for 'max_continuous_duration', must be bigger than or equal to 60.";
         }
 
         return $invalidProperties;
@@ -347,6 +361,38 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
 
         return $this;
     }
+
+    /**
+     * Gets max_continuous_duration
+     *
+     * @return int|null
+     */
+    public function getMaxContinuousDuration()
+    {
+        return $this->container['max_continuous_duration'];
+    }
+
+    /**
+     * Sets max_continuous_duration
+     *
+     * @param int|null $max_continuous_duration The time in seconds a live stream may be continuously active before being disconnected. Defaults to 12 hours.
+     *
+     * @return self
+     */
+    public function setMaxContinuousDuration($max_continuous_duration)
+    {
+
+        if (!is_null($max_continuous_duration) && ($max_continuous_duration > 43200)) {
+            throw new \InvalidArgumentException('invalid value for $max_continuous_duration when calling UpdateLiveStreamRequest., must be smaller than or equal to 43200.');
+        }
+        if (!is_null($max_continuous_duration) && ($max_continuous_duration < 60)) {
+            throw new \InvalidArgumentException('invalid value for $max_continuous_duration when calling UpdateLiveStreamRequest., must be bigger than or equal to 60.');
+        }
+
+        $this->container['max_continuous_duration'] = $max_continuous_duration;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -354,7 +400,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -366,7 +412,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -379,7 +425,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -395,7 +441,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -407,7 +453,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }
@@ -417,7 +463,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
@@ -430,7 +476,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return string
      */
-    public function toHeaderValue()
+    public function toHeaderValue(): string
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }

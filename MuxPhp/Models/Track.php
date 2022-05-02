@@ -72,7 +72,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'language_code' => 'string',
         'name' => 'string',
         'closed_captions' => 'bool',
-        'passthrough' => 'string'
+        'passthrough' => 'string',
+        'status' => 'string'
     ];
 
     /**
@@ -95,7 +96,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'language_code' => null,
         'name' => null,
         'closed_captions' => null,
-        'passthrough' => null
+        'passthrough' => null,
+        'status' => null
     ];
 
     /**
@@ -137,7 +139,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'language_code' => 'language_code',
         'name' => 'name',
         'closed_captions' => 'closed_captions',
-        'passthrough' => 'passthrough'
+        'passthrough' => 'passthrough',
+        'status' => 'status'
     ];
 
     /**
@@ -158,7 +161,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'language_code' => 'setLanguageCode',
         'name' => 'setName',
         'closed_captions' => 'setClosedCaptions',
-        'passthrough' => 'setPassthrough'
+        'passthrough' => 'setPassthrough',
+        'status' => 'setStatus'
     ];
 
     /**
@@ -179,7 +183,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'language_code' => 'getLanguageCode',
         'name' => 'getName',
         'closed_captions' => 'getClosedCaptions',
-        'passthrough' => 'getPassthrough'
+        'passthrough' => 'getPassthrough',
+        'status' => 'getStatus'
     ];
 
     /**
@@ -227,6 +232,9 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_AUDIO = 'audio';
     public const TYPE_TEXT = 'text';
     public const TEXT_TYPE_SUBTITLES = 'subtitles';
+    public const STATUS_PREPARING = 'preparing';
+    public const STATUS_READY = 'ready';
+    public const STATUS_ERRORED = 'errored';
     
 
     
@@ -253,6 +261,20 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::TEXT_TYPE_SUBTITLES,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_PREPARING,
+            self::STATUS_READY,
+            self::STATUS_ERRORED,
         ];
     }
     
@@ -288,6 +310,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['name'] = $data['name'] ?? null;
         $this->container['closed_captions'] = $data['closed_captions'] ?? null;
         $this->container['passthrough'] = $data['passthrough'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
     }
 
     /**
@@ -313,6 +336,15 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'text_type', must be one of '%s'",
                 $this->container['text_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
                 implode("', '", $allowedValues)
             );
         }
@@ -403,7 +435,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets duration
      *
-     * @param double|null $duration The duration in seconds of the track media. This parameter is not set for the `text` type track. This field is optional and may not be set. The top level `duration` field of an asset will always be set.
+     * @param double|null $duration The duration in seconds of the track media. This parameter is not set for `text` type tracks. This field is optional and may not be set. The top level `duration` field of an asset will always be set.
      *
      * @return self
      */
@@ -547,7 +579,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets text_type
      *
-     * @param string|null $text_type This parameter is set only for the `text` type track.
+     * @param string|null $text_type This parameter is only set for `text` type tracks.
      *
      * @return self
      */
@@ -581,7 +613,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets language_code
      *
-     * @param string|null $language_code The language code value represents [BCP 47](https://tools.ietf.org/html/bcp47) specification compliant value. For example, `en` for English or `en-US` for the US version of English. This parameter is set for `text` type and `subtitles` text type track.
+     * @param string|null $language_code The language code value represents [BCP 47](https://tools.ietf.org/html/bcp47) specification compliant value. For example, `en` for English or `en-US` for the US version of English. This parameter is only set for `text` type and `subtitles` text type tracks.
      *
      * @return self
      */
@@ -605,7 +637,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name The name of the track containing a human-readable description. The hls manifest will associate a subtitle text track with this value. For example, the value is \"English\" for subtitles text track for the `language_code` value of `en-US`. This parameter is set for the `text` type and `subtitles` text type track.
+     * @param string|null $name The name of the track containing a human-readable description. The hls manifest will associate a subtitle text track with this value. For example, the value is \"English\" for subtitles text track for the `language_code` value of `en-US`. This parameter is only set for `text` type and `subtitles` text type tracks.
      *
      * @return self
      */
@@ -629,7 +661,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets closed_captions
      *
-     * @param bool|null $closed_captions Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH). This parameter is set for the `text` type and `subtitles` text type track.
+     * @param bool|null $closed_captions Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH). This parameter is only set for `text` type and `subtitles` text type tracks.
      *
      * @return self
      */
@@ -653,13 +685,47 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata set for the track either when creating the asset or track. This parameter is set for `text` type and `subtitles` text type track. Max 255 characters.
+     * @param string|null $passthrough Arbitrary user-supplied metadata set for the track either when creating the asset or track. This parameter is only set for `text` type tracks. Max 255 characters.
      *
      * @return self
      */
     public function setPassthrough($passthrough)
     {
         $this->container['passthrough'] = $passthrough;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string|null $status The status of the track. This parameter is only set for `text` type tracks.
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
 
         return $this;
     }
@@ -670,7 +736,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -682,7 +748,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -695,7 +761,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -711,7 +777,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -723,7 +789,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }
@@ -733,7 +799,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
@@ -746,7 +812,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return string
      */
-    public function toHeaderValue()
+    public function toHeaderValue(): string
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }

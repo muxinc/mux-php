@@ -438,7 +438,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets video_gop_size
      *
-     * @param string|null $video_gop_size The video key frame Interval (also called as Group of Picture or GOP) of the input file is `high`. This parameter is present when the gop is greater than 10 seconds.
+     * @param string|null $video_gop_size The video key frame Interval (also called as Group of Picture or GOP) of the input file is `high`. This parameter is present when the gop is greater than 20 seconds.
      *
      * @return self
      */
@@ -472,7 +472,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets video_frame_rate
      *
-     * @param string|null $video_frame_rate The video frame rate of the input file. Video with average frames per second (fps) less than 10 or greater than 120 is non-standard. A `-1` frame rate value indicates Mux could not determine the frame rate of the video track.
+     * @param string|null $video_frame_rate The video frame rate of the input file. Video with average frames per second (fps) less than 5 or greater than 120 is non-standard. A `-1` frame rate value indicates Mux could not determine the frame rate of the video track.
      *
      * @return self
      */
@@ -673,7 +673,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -685,7 +685,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -698,7 +698,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -714,7 +714,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -726,7 +726,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }
@@ -736,7 +736,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
@@ -749,7 +749,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
      *
      * @return string
      */
-    public function toHeaderValue()
+    public function toHeaderValue(): string
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }

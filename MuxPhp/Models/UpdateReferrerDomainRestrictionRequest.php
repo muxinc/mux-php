@@ -60,7 +60,8 @@ class UpdateReferrerDomainRestrictionRequest implements ModelInterface, ArrayAcc
       * @var string[]
       */
     protected static $openAPITypes = [
-        
+        'allowed_domains' => 'string[]',
+        'allow_no_referrer' => 'bool'
     ];
 
     /**
@@ -71,7 +72,8 @@ class UpdateReferrerDomainRestrictionRequest implements ModelInterface, ArrayAcc
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        
+        'allowed_domains' => null,
+        'allow_no_referrer' => null
     ];
 
     /**
@@ -101,7 +103,8 @@ class UpdateReferrerDomainRestrictionRequest implements ModelInterface, ArrayAcc
      * @var string[]
      */
     protected static $attributeMap = [
-        
+        'allowed_domains' => 'allowed_domains',
+        'allow_no_referrer' => 'allow_no_referrer'
     ];
 
     /**
@@ -110,7 +113,8 @@ class UpdateReferrerDomainRestrictionRequest implements ModelInterface, ArrayAcc
      * @var string[]
      */
     protected static $setters = [
-        
+        'allowed_domains' => 'setAllowedDomains',
+        'allow_no_referrer' => 'setAllowNoReferrer'
     ];
 
     /**
@@ -119,7 +123,8 @@ class UpdateReferrerDomainRestrictionRequest implements ModelInterface, ArrayAcc
      * @var string[]
      */
     protected static $getters = [
-        
+        'allowed_domains' => 'getAllowedDomains',
+        'allow_no_referrer' => 'getAllowNoReferrer'
     ];
 
     /**
@@ -185,6 +190,8 @@ class UpdateReferrerDomainRestrictionRequest implements ModelInterface, ArrayAcc
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
+        $this->container['allowed_domains'] = $data['allowed_domains'] ?? null;
+        $this->container['allow_no_referrer'] = $data['allow_no_referrer'] ?? false;
     }
 
     /**
@@ -210,6 +217,54 @@ class UpdateReferrerDomainRestrictionRequest implements ModelInterface, ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets allowed_domains
+     *
+     * @return string[]|null
+     */
+    public function getAllowedDomains()
+    {
+        return $this->container['allowed_domains'];
+    }
+
+    /**
+     * Sets allowed_domains
+     *
+     * @param string[]|null $allowed_domains List of domains allowed to play videos. Possible values are   * `[]` Empty Array indicates deny video playback requests for all domains   * `[\"*\"]` A Single Wildcard `*` entry means allow video playback requests from any domain   *  `[\"*.example.com\", \"foo.com\"]` A list of up to 10 domains or valid dns-style wildcards
+     *
+     * @return self
+     */
+    public function setAllowedDomains($allowed_domains)
+    {
+        $this->container['allowed_domains'] = $allowed_domains;
+
+        return $this;
+    }
+
+    /**
+     * Gets allow_no_referrer
+     *
+     * @return bool|null
+     */
+    public function getAllowNoReferrer()
+    {
+        return $this->container['allow_no_referrer'];
+    }
+
+    /**
+     * Sets allow_no_referrer
+     *
+     * @param bool|null $allow_no_referrer A boolean to determine whether to allow or deny HTTP requests without `Referer` HTTP request header. Playback requests coming from non-web/native applications like iOS, Android or smart TVs will not have a `Referer` HTTP header. Set this value to `true` to allow these playback requests.
+     *
+     * @return self
+     */
+    public function setAllowNoReferrer($allow_no_referrer)
+    {
+        $this->container['allow_no_referrer'] = $allow_no_referrer;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *

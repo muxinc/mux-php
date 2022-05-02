@@ -48,7 +48,7 @@ $apiInstance = new MuxPhp\Api\AssetsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_asset_request = {"input":"https://muxed.s3.amazonaws.com/leds.mp4","playback_policy":["public"]}; // \MuxPhp\Models\CreateAssetRequest
+$create_asset_request = {"input":[{"url":"https://muxed.s3.amazonaws.com/leds.mp4"}],"playback_policy":["public"]}; // \MuxPhp\Models\CreateAssetRequest
 
 try {
     $result = $apiInstance->createAsset($create_asset_request);
@@ -88,6 +88,8 @@ createAssetPlaybackId($asset_id, $create_playback_id_request): \MuxPhp\Models\Cr
 ```
 
 Create a playback ID
+
+Creates a playback ID that can be used to stream the asset to a viewer.
 
 ### Example
 
@@ -150,6 +152,8 @@ createAssetTrack($asset_id, $create_track_request): \MuxPhp\Models\CreateTrackRe
 ```
 
 Create an asset track
+
+Adds an asset track (for example, subtitles) to an asset.
 
 ### Example
 
@@ -273,6 +277,8 @@ deleteAssetPlaybackId($asset_id, $playback_id)
 ```
 
 Delete a playback ID
+
+Deletes a playback ID, rendering it nonfunctional for viewing an asset's video content. Please note that deleting the playback ID removes access to the underlying asset; a viewer who started playback before the playback ID was deleted may be able to watch the entire video for a limited duration.
 
 ### Example
 
@@ -521,6 +527,8 @@ getAssetPlaybackId($asset_id, $playback_id): \MuxPhp\Models\GetAssetPlaybackIDRe
 ```
 
 Retrieve a playback ID
+
+Retrieves information about the specified playback ID.
 
 ### Example
 

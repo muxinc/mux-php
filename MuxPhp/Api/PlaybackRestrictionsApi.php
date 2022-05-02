@@ -1180,15 +1180,15 @@ class PlaybackRestrictionsApi
      * Update the Referrer Playback Restriction
      *
      * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
-     * @param  \MuxPhp\Models\ReferrerDomainRestriction $body body (required)
+     * @param  \MuxPhp\Models\UpdateReferrerDomainRestrictionRequest $update_referrer_domain_restriction_request update_referrer_domain_restriction_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\PlaybackRestrictionResponse
      */
-    public function updateReferrerDomainRestriction($playback_restriction_id, $body)
+    public function updateReferrerDomainRestriction($playback_restriction_id, $update_referrer_domain_restriction_request)
     {
-        list($response) = $this->updateReferrerDomainRestrictionWithHttpInfo($playback_restriction_id, $body);
+        list($response) = $this->updateReferrerDomainRestrictionWithHttpInfo($playback_restriction_id, $update_referrer_domain_restriction_request);
         return $response;
     }
 
@@ -1198,15 +1198,15 @@ class PlaybackRestrictionsApi
      * Update the Referrer Playback Restriction
      *
      * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
-     * @param  \MuxPhp\Models\ReferrerDomainRestriction $body (required)
+     * @param  \MuxPhp\Models\UpdateReferrerDomainRestrictionRequest $update_referrer_domain_restriction_request (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\PlaybackRestrictionResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateReferrerDomainRestrictionWithHttpInfo($playback_restriction_id, $body)
+    public function updateReferrerDomainRestrictionWithHttpInfo($playback_restriction_id, $update_referrer_domain_restriction_request)
     {
-        $request = $this->updateReferrerDomainRestrictionRequest($playback_restriction_id, $body);
+        $request = $this->updateReferrerDomainRestrictionRequest($playback_restriction_id, $update_referrer_domain_restriction_request);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1287,14 +1287,14 @@ class PlaybackRestrictionsApi
      * Update the Referrer Playback Restriction
      *
      * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
-     * @param  \MuxPhp\Models\ReferrerDomainRestriction $body (required)
+     * @param  \MuxPhp\Models\UpdateReferrerDomainRestrictionRequest $update_referrer_domain_restriction_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateReferrerDomainRestrictionAsync($playback_restriction_id, $body)
+    public function updateReferrerDomainRestrictionAsync($playback_restriction_id, $update_referrer_domain_restriction_request)
     {
-        return $this->updateReferrerDomainRestrictionAsyncWithHttpInfo($playback_restriction_id, $body)
+        return $this->updateReferrerDomainRestrictionAsyncWithHttpInfo($playback_restriction_id, $update_referrer_domain_restriction_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1308,15 +1308,15 @@ class PlaybackRestrictionsApi
      * Update the Referrer Playback Restriction
      *
      * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
-     * @param  \MuxPhp\Models\ReferrerDomainRestriction $body (required)
+     * @param  \MuxPhp\Models\UpdateReferrerDomainRestrictionRequest $update_referrer_domain_restriction_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateReferrerDomainRestrictionAsyncWithHttpInfo($playback_restriction_id, $body)
+    public function updateReferrerDomainRestrictionAsyncWithHttpInfo($playback_restriction_id, $update_referrer_domain_restriction_request)
     {
         $returnType = '\MuxPhp\Models\PlaybackRestrictionResponse';
-        $request = $this->updateReferrerDomainRestrictionRequest($playback_restriction_id, $body);
+        $request = $this->updateReferrerDomainRestrictionRequest($playback_restriction_id, $update_referrer_domain_restriction_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1356,12 +1356,12 @@ class PlaybackRestrictionsApi
      * Create request for operation 'updateReferrerDomainRestriction'
      *
      * @param  string $playback_restriction_id ID of the Playback Restriction. (required)
-     * @param  \MuxPhp\Models\ReferrerDomainRestriction $body (required)
+     * @param  \MuxPhp\Models\UpdateReferrerDomainRestrictionRequest $update_referrer_domain_restriction_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateReferrerDomainRestrictionRequest($playback_restriction_id, $body)
+    public function updateReferrerDomainRestrictionRequest($playback_restriction_id, $update_referrer_domain_restriction_request)
     {
         // verify the required parameter 'playback_restriction_id' is set
         if ($playback_restriction_id === null || (is_array($playback_restriction_id) && count($playback_restriction_id) === 0)) {
@@ -1369,10 +1369,10 @@ class PlaybackRestrictionsApi
                 'Missing the required parameter $playback_restriction_id when calling updateReferrerDomainRestriction'
             );
         }
-        // verify the required parameter 'body' is set
-        if ($body === null || (is_array($body) && count($body) === 0)) {
+        // verify the required parameter 'update_referrer_domain_restriction_request' is set
+        if ($update_referrer_domain_restriction_request === null || (is_array($update_referrer_domain_restriction_request) && count($update_referrer_domain_restriction_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling updateReferrerDomainRestriction'
+                'Missing the required parameter $update_referrer_domain_restriction_request when calling updateReferrerDomainRestriction'
             );
         }
 
@@ -1407,11 +1407,11 @@ class PlaybackRestrictionsApi
         }
 
         // for model (json/xml)
-        if (isset($body)) {
+        if (isset($update_referrer_domain_restriction_request)) {
             if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_referrer_domain_restriction_request));
             } else {
-                $httpBody = $body;
+                $httpBody = $update_referrer_domain_restriction_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

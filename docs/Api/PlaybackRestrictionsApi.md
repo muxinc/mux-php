@@ -263,7 +263,7 @@ Name | Type | Description  | Notes
 ## `updateReferrerDomainRestriction()`
 
 ```php
-updateReferrerDomainRestriction($playback_restriction_id, $body): \MuxPhp\Models\PlaybackRestrictionResponse
+updateReferrerDomainRestriction($playback_restriction_id, $update_referrer_domain_restriction_request): \MuxPhp\Models\PlaybackRestrictionResponse
 ```
 
 Update the Referrer Playback Restriction
@@ -290,10 +290,10 @@ $apiInstance = new MuxPhp\Api\PlaybackRestrictionsApi(
     $config
 );
 $playback_restriction_id = 'playback_restriction_id_example'; // string | ID of the Playback Restriction.
-$body = {"allowed_domains":["*.example.com"],"allow_no_referrer":true}; // \MuxPhp\Models\ReferrerDomainRestriction
+$update_referrer_domain_restriction_request = {"allowed_domains":["*.example.com"],"allow_no_referrer":true}; // \MuxPhp\Models\UpdateReferrerDomainRestrictionRequest
 
 try {
-    $result = $apiInstance->updateReferrerDomainRestriction($playback_restriction_id, $body);
+    $result = $apiInstance->updateReferrerDomainRestriction($playback_restriction_id, $update_referrer_domain_restriction_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PlaybackRestrictionsApi->updateReferrerDomainRestriction: ', $e->getMessage(), PHP_EOL;
@@ -305,7 +305,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **playback_restriction_id** | **string**| ID of the Playback Restriction. |
- **body** | **\MuxPhp\Models\ReferrerDomainRestriction**|  |
+ **update_referrer_domain_restriction_request** | [**\MuxPhp\Models\UpdateReferrerDomainRestrictionRequest**](../Model/UpdateReferrerDomainRestrictionRequest.md)|  |
 
 ### Return type
 

@@ -775,7 +775,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets is_live
      *
-     * @param bool|null $is_live Whether the asset is created from a live stream and the live stream is currently `active` and not in `idle` state.
+     * @param bool|null $is_live Indicates whether the live stream that created this asset is currently `active` and not in `idle` state. This is an optional parameter added when the asset is created from a live stream.
      *
      * @return self
      */

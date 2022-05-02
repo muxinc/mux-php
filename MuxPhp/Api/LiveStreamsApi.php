@@ -3415,7 +3415,7 @@ class LiveStreamsApi
     /**
      * Operation resetStreamKey
      *
-     * Reset a live stream’s stream key
+     * Reset a live stream's stream key
      *
      * @param  string $live_stream_id The live stream ID (required)
      *
@@ -3432,7 +3432,7 @@ class LiveStreamsApi
     /**
      * Operation resetStreamKeyWithHttpInfo
      *
-     * Reset a live stream’s stream key
+     * Reset a live stream's stream key
      *
      * @param  string $live_stream_id The live stream ID (required)
      *
@@ -3520,7 +3520,7 @@ class LiveStreamsApi
     /**
      * Operation resetStreamKeyAsync
      *
-     * Reset a live stream’s stream key
+     * Reset a live stream's stream key
      *
      * @param  string $live_stream_id The live stream ID (required)
      *
@@ -3540,7 +3540,7 @@ class LiveStreamsApi
     /**
      * Operation resetStreamKeyAsyncWithHttpInfo
      *
-     * Reset a live stream’s stream key
+     * Reset a live stream's stream key
      *
      * @param  string $live_stream_id The live stream ID (required)
      *

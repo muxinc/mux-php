@@ -80,6 +80,8 @@ createDirectUpload($create_upload_request): \MuxPhp\Models\UploadResponse
 
 Create a new direct upload URL
 
+Creates a new direct upload, through which video content can be uploaded for ingest to Mux.
+
 ### Example
 
 ```php
@@ -140,6 +142,8 @@ getDirectUpload($upload_id): \MuxPhp\Models\UploadResponse
 
 Retrieve a single direct upload's info
 
+Fetches information about a single direct upload in the current environment.
+
 ### Example
 
 ```php
@@ -199,6 +203,8 @@ listDirectUploads($limit, $page): \MuxPhp\Models\ListUploadsResponse
 ```
 
 List direct uploads
+
+Lists currently extant direct uploads in the current environment.
 
 ### Example
 

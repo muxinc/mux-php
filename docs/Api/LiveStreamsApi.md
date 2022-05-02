@@ -16,7 +16,7 @@ Method | HTTP request | Description
 [**getLiveStreamPlaybackId()**](LiveStreamsApi.md#getLiveStreamPlaybackId) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Retrieve a live stream playback ID
 [**getLiveStreamSimulcastTarget()**](LiveStreamsApi.md#getLiveStreamSimulcastTarget) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Retrieve a Live Stream Simulcast Target
 [**listLiveStreams()**](LiveStreamsApi.md#listLiveStreams) | **GET** /video/v1/live-streams | List live streams
-[**resetStreamKey()**](LiveStreamsApi.md#resetStreamKey) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key | Reset a live stream’s stream key
+[**resetStreamKey()**](LiveStreamsApi.md#resetStreamKey) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key | Reset a live stream&#39;s stream key
 [**signalLiveStreamComplete()**](LiveStreamsApi.md#signalLiveStreamComplete) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/complete | Signal a live stream is finished
 [**updateLiveStream()**](LiveStreamsApi.md#updateLiveStream) | **PATCH** /video/v1/live-streams/{LIVE_STREAM_ID} | Update a live stream
 [**updateLiveStreamEmbeddedSubtitles()**](LiveStreamsApi.md#updateLiveStreamEmbeddedSubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles | Update a live stream&#39;s embedded subtitles
@@ -29,6 +29,8 @@ createLiveStream($create_live_stream_request): \MuxPhp\Models\LiveStreamResponse
 ```
 
 Create a live stream
+
+Creates a new live stream. Once created, an encoder can connect to Mux via the specified stream key and begin streaming to an audience.
 
 ### Example
 
@@ -49,7 +51,7 @@ $apiInstance = new MuxPhp\Api\LiveStreamsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_live_stream_request = {"playback_policy":"public","new_asset_settings":{"playback_policy":"public"}}; // \MuxPhp\Models\CreateLiveStreamRequest
+$create_live_stream_request = {"playback_policy":["public"],"new_asset_settings":{"playback_policy":["public"]}}; // \MuxPhp\Models\CreateLiveStreamRequest
 
 try {
     $result = $apiInstance->createLiveStream($create_live_stream_request);
@@ -89,6 +91,8 @@ createLiveStreamPlaybackId($live_stream_id, $create_playback_id_request): \MuxPh
 ```
 
 Create a live stream playback ID
+
+Create a new playback ID for this live stream, through which a viewer can watch the streamed content of the live stream.
 
 ### Example
 
@@ -216,6 +220,8 @@ deleteLiveStream($live_stream_id)
 
 Delete a live stream
 
+Deletes a live stream from the current environment. If the live stream is currently active and being streamed to, ingest will be terminated and the encoder will be disconnected.
+
 ### Example
 
 ```php
@@ -274,6 +280,8 @@ deleteLiveStreamPlaybackId($live_stream_id, $playback_id)
 ```
 
 Delete a live stream playback ID
+
+Deletes the playback ID for the live stream. This will not disable ingest (as the live stream still exists). New attempts to play back the live stream will fail immediately. However, current viewers will be able to continue watching the stream for some period of time.
 
 ### Example
 
@@ -585,6 +593,8 @@ getLiveStreamPlaybackId($live_stream_id, $playback_id): \MuxPhp\Models\GetLiveSt
 
 Retrieve a live stream playback ID
 
+Fetches information about a live stream's playback ID, through which a viewer can watch the streamed content from this live stream.
+
 ### Example
 
 ```php
@@ -711,6 +721,8 @@ listLiveStreams($limit, $page, $stream_key, $status): \MuxPhp\Models\ListLiveStr
 
 List live streams
 
+Lists the live streams that currently exist in the current environment.
+
 ### Example
 
 ```php
@@ -775,7 +787,7 @@ Name | Type | Description  | Notes
 resetStreamKey($live_stream_id): \MuxPhp\Models\LiveStreamResponse
 ```
 
-Reset a live stream’s stream key
+Reset a live stream's stream key
 
 Reset a live stream key if you want to immediately stop the current stream key from working and create a new stream key that can be used for future broadcasts.
 

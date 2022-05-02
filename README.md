@@ -180,7 +180,7 @@ Class | Method | HTTP request | Description
 *LiveStreamsApi* | [**getLiveStreamPlaybackId**](docs/Api/LiveStreamsApi.md#getlivestreamplaybackid) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Retrieve a live stream playback ID
 *LiveStreamsApi* | [**getLiveStreamSimulcastTarget**](docs/Api/LiveStreamsApi.md#getlivestreamsimulcasttarget) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Retrieve a Live Stream Simulcast Target
 *LiveStreamsApi* | [**listLiveStreams**](docs/Api/LiveStreamsApi.md#listlivestreams) | **GET** /video/v1/live-streams | List live streams
-*LiveStreamsApi* | [**resetStreamKey**](docs/Api/LiveStreamsApi.md#resetstreamkey) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key | Reset a live stream’s stream key
+*LiveStreamsApi* | [**resetStreamKey**](docs/Api/LiveStreamsApi.md#resetstreamkey) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key | Reset a live stream&#39;s stream key
 *LiveStreamsApi* | [**signalLiveStreamComplete**](docs/Api/LiveStreamsApi.md#signallivestreamcomplete) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/complete | Signal a live stream is finished
 *LiveStreamsApi* | [**updateLiveStream**](docs/Api/LiveStreamsApi.md#updatelivestream) | **PATCH** /video/v1/live-streams/{LIVE_STREAM_ID} | Update a live stream
 *LiveStreamsApi* | [**updateLiveStreamEmbeddedSubtitles**](docs/Api/LiveStreamsApi.md#updatelivestreamembeddedsubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles | Update a live stream&#39;s embedded subtitles

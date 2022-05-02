@@ -923,7 +923,7 @@ $apiInstance = new MuxPhp\Api\LiveStreamsApi(
     $config
 );
 $live_stream_id = 'live_stream_id_example'; // string | The live stream ID
-$update_live_stream_request = {"latency_mode":"standard","reconnect_window":30}; // \MuxPhp\Models\UpdateLiveStreamRequest
+$update_live_stream_request = {"latency_mode":"standard","reconnect_window":30,"max_continuous_duration":1200}; // \MuxPhp\Models\UpdateLiveStreamRequest
 
 try {
     $result = $apiInstance->updateLiveStream($live_stream_id, $update_live_stream_request);

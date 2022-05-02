@@ -70,7 +70,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'low_latency' => 'bool',
         'latency_mode' => 'string',
         'test' => 'bool',
-        'simulcast_targets' => '\MuxPhp\Models\CreateSimulcastTargetRequest[]'
+        'simulcast_targets' => '\MuxPhp\Models\CreateSimulcastTargetRequest[]',
+        'max_continuous_duration' => 'int'
     ];
 
     /**
@@ -91,7 +92,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'low_latency' => 'boolean',
         'latency_mode' => null,
         'test' => 'boolean',
-        'simulcast_targets' => null
+        'simulcast_targets' => null,
+        'max_continuous_duration' => 'int32'
     ];
 
     /**
@@ -131,7 +133,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'low_latency' => 'low_latency',
         'latency_mode' => 'latency_mode',
         'test' => 'test',
-        'simulcast_targets' => 'simulcast_targets'
+        'simulcast_targets' => 'simulcast_targets',
+        'max_continuous_duration' => 'max_continuous_duration'
     ];
 
     /**
@@ -150,7 +153,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'low_latency' => 'setLowLatency',
         'latency_mode' => 'setLatencyMode',
         'test' => 'setTest',
-        'simulcast_targets' => 'setSimulcastTargets'
+        'simulcast_targets' => 'setSimulcastTargets',
+        'max_continuous_duration' => 'setMaxContinuousDuration'
     ];
 
     /**
@@ -169,7 +173,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'low_latency' => 'getLowLatency',
         'latency_mode' => 'getLatencyMode',
         'test' => 'getTest',
-        'simulcast_targets' => 'getSimulcastTargets'
+        'simulcast_targets' => 'getSimulcastTargets',
+        'max_continuous_duration' => 'getMaxContinuousDuration'
     ];
 
     /**
@@ -263,6 +268,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         $this->container['latency_mode'] = $data['latency_mode'] ?? null;
         $this->container['test'] = $data['test'] ?? null;
         $this->container['simulcast_targets'] = $data['simulcast_targets'] ?? null;
+        $this->container['max_continuous_duration'] = $data['max_continuous_duration'] ?? 43200;
     }
 
     /**
@@ -289,6 +295,14 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
                 $this->container['latency_mode'],
                 implode("', '", $allowedValues)
             );
+        }
+
+        if (!is_null($this->container['max_continuous_duration']) && ($this->container['max_continuous_duration'] > 43200)) {
+            $invalidProperties[] = "invalid value for 'max_continuous_duration', must be smaller than or equal to 43200.";
+        }
+
+        if (!is_null($this->container['max_continuous_duration']) && ($this->container['max_continuous_duration'] < 60)) {
+            $invalidProperties[] = "invalid value for 'max_continuous_duration', must be bigger than or equal to 60.";
         }
 
         return $invalidProperties;
@@ -587,6 +601,38 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
 
         return $this;
     }
+
+    /**
+     * Gets max_continuous_duration
+     *
+     * @return int|null
+     */
+    public function getMaxContinuousDuration()
+    {
+        return $this->container['max_continuous_duration'];
+    }
+
+    /**
+     * Sets max_continuous_duration
+     *
+     * @param int|null $max_continuous_duration The time in seconds a live stream may be continuously active before being disconnected. Defaults to 12 hours.
+     *
+     * @return self
+     */
+    public function setMaxContinuousDuration($max_continuous_duration)
+    {
+
+        if (!is_null($max_continuous_duration) && ($max_continuous_duration > 43200)) {
+            throw new \InvalidArgumentException('invalid value for $max_continuous_duration when calling CreateLiveStreamRequest., must be smaller than or equal to 43200.');
+        }
+        if (!is_null($max_continuous_duration) && ($max_continuous_duration < 60)) {
+            throw new \InvalidArgumentException('invalid value for $max_continuous_duration when calling CreateLiveStreamRequest., must be bigger than or equal to 60.');
+        }
+
+        $this->container['max_continuous_duration'] = $max_continuous_duration;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -594,7 +640,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -606,7 +652,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -619,7 +665,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -635,7 +681,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -647,7 +693,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }
@@ -657,7 +703,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
@@ -670,7 +716,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return string
      */
-    public function toHeaderValue()
+    public function toHeaderValue(): string
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }

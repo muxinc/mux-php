@@ -200,6 +200,15 @@ Class | Method | HTTP request | Description
 *RealTimeApi* | [**getRealtimeTimeseries**](docs/Api/RealTimeApi.md#getrealtimetimeseries) | **GET** /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/timeseries | Get Real-Time Timeseries
 *RealTimeApi* | [**listRealtimeDimensions**](docs/Api/RealTimeApi.md#listrealtimedimensions) | **GET** /data/v1/realtime/dimensions | List Real-Time Dimensions
 *RealTimeApi* | [**listRealtimeMetrics**](docs/Api/RealTimeApi.md#listrealtimemetrics) | **GET** /data/v1/realtime/metrics | List Real-Time Metrics
+*SpacesApi* | [**createSpace**](docs/Api/SpacesApi.md#createspace) | **POST** /video/v1/spaces | Create a space
+*SpacesApi* | [**createSpaceBroadcast**](docs/Api/SpacesApi.md#createspacebroadcast) | **POST** /video/v1/spaces/${SPACE_ID}/broadcasts | Create a space broadcast
+*SpacesApi* | [**deleteSpace**](docs/Api/SpacesApi.md#deletespace) | **DELETE** /video/v1/spaces/${SPACE_ID} | Delete a space
+*SpacesApi* | [**deleteSpaceBroadcast**](docs/Api/SpacesApi.md#deletespacebroadcast) | **DELETE** /video/v1/spaces/${SPACE_ID}/broadcasts/${BROADCAST_ID} | Delete a space broadcast
+*SpacesApi* | [**getSpace**](docs/Api/SpacesApi.md#getspace) | **GET** /video/v1/spaces/${SPACE_ID} | Retrieve a space
+*SpacesApi* | [**getSpaceBroadcast**](docs/Api/SpacesApi.md#getspacebroadcast) | **GET** /video/v1/spaces/${SPACE_ID}/broadcasts/${BROADCAST_ID} | Retrieve space broadcast
+*SpacesApi* | [**listSpaces**](docs/Api/SpacesApi.md#listspaces) | **GET** /video/v1/spaces | List spaces
+*SpacesApi* | [**startSpaceBroadcast**](docs/Api/SpacesApi.md#startspacebroadcast) | **POST** /video/v1/spaces/${SPACE_ID}/broadcasts/${BROADCAST_ID}/start | Start a space broadcast
+*SpacesApi* | [**stopSpaceBroadcast**](docs/Api/SpacesApi.md#stopspacebroadcast) | **POST** /video/v1/spaces/${SPACE_ID}/broadcasts/${BROADCAST_ID}/stop | Stop a space broadcast
 *URLSigningKeysApi* | [**createUrlSigningKey**](docs/Api/URLSigningKeysApi.md#createurlsigningkey) | **POST** /video/v1/signing-keys | Create a URL signing key
 *URLSigningKeysApi* | [**deleteUrlSigningKey**](docs/Api/URLSigningKeysApi.md#deleteurlsigningkey) | **DELETE** /video/v1/signing-keys/{SIGNING_KEY_ID} | Delete a URL signing key
 *URLSigningKeysApi* | [**getUrlSigningKey**](docs/Api/URLSigningKeysApi.md#geturlsigningkey) | **GET** /video/v1/signing-keys/{SIGNING_KEY_ID} | Retrieve a URL signing key
@@ -219,12 +228,19 @@ Class | Method | HTTP request | Description
 - [AssetStaticRenditions](docs/Model/AssetStaticRenditions.md)
 - [AssetStaticRenditionsFiles](docs/Model/AssetStaticRenditionsFiles.md)
 - [BreakdownValue](docs/Model/BreakdownValue.md)
+- [Broadcast](docs/Model/Broadcast.md)
+- [BroadcastLayout](docs/Model/BroadcastLayout.md)
+- [BroadcastResolution](docs/Model/BroadcastResolution.md)
+- [BroadcastResponse](docs/Model/BroadcastResponse.md)
+- [BroadcastStatus](docs/Model/BroadcastStatus.md)
 - [CreateAssetRequest](docs/Model/CreateAssetRequest.md)
+- [CreateBroadcastRequest](docs/Model/CreateBroadcastRequest.md)
 - [CreateLiveStreamRequest](docs/Model/CreateLiveStreamRequest.md)
 - [CreatePlaybackIDRequest](docs/Model/CreatePlaybackIDRequest.md)
 - [CreatePlaybackIDResponse](docs/Model/CreatePlaybackIDResponse.md)
 - [CreatePlaybackRestrictionRequest](docs/Model/CreatePlaybackRestrictionRequest.md)
 - [CreateSimulcastTargetRequest](docs/Model/CreateSimulcastTargetRequest.md)
+- [CreateSpaceRequest](docs/Model/CreateSpaceRequest.md)
 - [CreateTrackRequest](docs/Model/CreateTrackRequest.md)
 - [CreateTrackResponse](docs/Model/CreateTrackResponse.md)
 - [CreateUploadRequest](docs/Model/CreateUploadRequest.md)
@@ -279,6 +295,7 @@ Class | Method | HTTP request | Description
 - [ListRealTimeMetricsResponse](docs/Model/ListRealTimeMetricsResponse.md)
 - [ListRelatedIncidentsResponse](docs/Model/ListRelatedIncidentsResponse.md)
 - [ListSigningKeysResponse](docs/Model/ListSigningKeysResponse.md)
+- [ListSpacesResponse](docs/Model/ListSpacesResponse.md)
 - [ListUploadsResponse](docs/Model/ListUploadsResponse.md)
 - [ListVideoViewExportsResponse](docs/Model/ListVideoViewExportsResponse.md)
 - [ListVideoViewsResponse](docs/Model/ListVideoViewsResponse.md)
@@ -305,6 +322,12 @@ Class | Method | HTTP request | Description
 - [SigningKeyResponse](docs/Model/SigningKeyResponse.md)
 - [SimulcastTarget](docs/Model/SimulcastTarget.md)
 - [SimulcastTargetResponse](docs/Model/SimulcastTargetResponse.md)
+- [Space](docs/Model/Space.md)
+- [SpaceResponse](docs/Model/SpaceResponse.md)
+- [SpaceStatus](docs/Model/SpaceStatus.md)
+- [SpaceType](docs/Model/SpaceType.md)
+- [StartSpaceBroadcastResponse](docs/Model/StartSpaceBroadcastResponse.md)
+- [StopSpaceBroadcastResponse](docs/Model/StopSpaceBroadcastResponse.md)
 - [Track](docs/Model/Track.md)
 - [UpdateAssetMP4SupportRequest](docs/Model/UpdateAssetMP4SupportRequest.md)
 - [UpdateAssetMasterAccessRequest](docs/Model/UpdateAssetMasterAccessRequest.md)
@@ -343,5 +366,5 @@ devex@mux.com
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `v1`
-    - Package version: `3.3.1`
+    - Package version: `3.5.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

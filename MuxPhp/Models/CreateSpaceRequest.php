@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateSimulcastTargetRequest
+ * CreateSpaceRequest
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * CreateSimulcastTargetRequest Class Doc Comment
+ * CreateSpaceRequest Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateSpaceRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CreateSimulcastTargetRequest';
+    protected static $openAPIModelName = 'CreateSpaceRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,9 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
+        'type' => '\MuxPhp\Models\SpaceType',
         'passthrough' => 'string',
-        'stream_key' => 'string',
-        'url' => 'string'
+        'broadcasts' => '\MuxPhp\Models\CreateBroadcastRequest[]'
     ];
 
     /**
@@ -73,9 +73,9 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'type' => null,
         'passthrough' => null,
-        'stream_key' => null,
-        'url' => null
+        'broadcasts' => null
     ];
 
     /**
@@ -105,9 +105,9 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
+        'type' => 'type',
         'passthrough' => 'passthrough',
-        'stream_key' => 'stream_key',
-        'url' => 'url'
+        'broadcasts' => 'broadcasts'
     ];
 
     /**
@@ -116,9 +116,9 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
+        'type' => 'setType',
         'passthrough' => 'setPassthrough',
-        'stream_key' => 'setStreamKey',
-        'url' => 'setUrl'
+        'broadcasts' => 'setBroadcasts'
     ];
 
     /**
@@ -127,9 +127,9 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
+        'type' => 'getType',
         'passthrough' => 'getPassthrough',
-        'stream_key' => 'getStreamKey',
-        'url' => 'getUrl'
+        'broadcasts' => 'getBroadcasts'
     ];
 
     /**
@@ -195,9 +195,9 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
+        $this->container['type'] = $data['type'] ?? null;
         $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['stream_key'] = $data['stream_key'] ?? null;
-        $this->container['url'] = $data['url'] ?? null;
+        $this->container['broadcasts'] = $data['broadcasts'] ?? null;
     }
 
     /**
@@ -209,9 +209,6 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -228,6 +225,30 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
 
 
     /**
+     * Gets type
+     *
+     * @return \MuxPhp\Models\SpaceType|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param \MuxPhp\Models\SpaceType|null $type type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
      * Gets passthrough
      *
      * @return string|null
@@ -240,7 +261,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata set by you when creating a simulcast target.
+     * @param string|null $passthrough Arbitrary user-supplied metadata that will be included in the space details and related webhooks. Max: 255 characters.
      *
      * @return self
      */
@@ -252,49 +273,25 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
-     * Gets stream_key
+     * Gets broadcasts
      *
-     * @return string|null
+     * @return \MuxPhp\Models\CreateBroadcastRequest[]|null
      */
-    public function getStreamKey()
+    public function getBroadcasts()
     {
-        return $this->container['stream_key'];
+        return $this->container['broadcasts'];
     }
 
     /**
-     * Sets stream_key
+     * Sets broadcasts
      *
-     * @param string|null $stream_key Stream Key represents a stream identifier on the third party live streaming service to send the parent live stream to.
+     * @param \MuxPhp\Models\CreateBroadcastRequest[]|null $broadcasts An array of broadcast destinations you want to stream the space to. **Note:** By default only a single broadcast destination can be specified. Contact Mux support if you need more.
      *
      * @return self
      */
-    public function setStreamKey($stream_key)
+    public function setBroadcasts($broadcasts)
     {
-        $this->container['stream_key'] = $stream_key;
-
-        return $this;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string $url RTMP hostname including application name for the third party live streaming service. Example: `rtmp://live.example.com/app`.
-     *
-     * @return self
-     */
-    public function setUrl($url)
-    {
-        $this->container['url'] = $url;
+        $this->container['broadcasts'] = $broadcasts;
 
         return $this;
     }

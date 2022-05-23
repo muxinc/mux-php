@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateSimulcastTargetRequest
+ * Broadcast
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * CreateSimulcastTargetRequest Class Doc Comment
+ * Broadcast Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class Broadcast implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CreateSimulcastTargetRequest';
+    protected static $openAPIModelName = 'Broadcast';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,13 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'string',
         'passthrough' => 'string',
-        'stream_key' => 'string',
-        'url' => 'string'
+        'live_stream_id' => 'string',
+        'status' => '\MuxPhp\Models\BroadcastStatus',
+        'layout' => '\MuxPhp\Models\BroadcastLayout',
+        'background' => 'string',
+        'resolution' => '\MuxPhp\Models\BroadcastResolution'
     ];
 
     /**
@@ -73,9 +77,13 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'id' => null,
         'passthrough' => null,
-        'stream_key' => null,
-        'url' => null
+        'live_stream_id' => null,
+        'status' => null,
+        'layout' => null,
+        'background' => null,
+        'resolution' => null
     ];
 
     /**
@@ -105,9 +113,13 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
         'passthrough' => 'passthrough',
-        'stream_key' => 'stream_key',
-        'url' => 'url'
+        'live_stream_id' => 'live_stream_id',
+        'status' => 'status',
+        'layout' => 'layout',
+        'background' => 'background',
+        'resolution' => 'resolution'
     ];
 
     /**
@@ -116,9 +128,13 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
         'passthrough' => 'setPassthrough',
-        'stream_key' => 'setStreamKey',
-        'url' => 'setUrl'
+        'live_stream_id' => 'setLiveStreamId',
+        'status' => 'setStatus',
+        'layout' => 'setLayout',
+        'background' => 'setBackground',
+        'resolution' => 'setResolution'
     ];
 
     /**
@@ -127,9 +143,13 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
         'passthrough' => 'getPassthrough',
-        'stream_key' => 'getStreamKey',
-        'url' => 'getUrl'
+        'live_stream_id' => 'getLiveStreamId',
+        'status' => 'getStatus',
+        'layout' => 'getLayout',
+        'background' => 'getBackground',
+        'resolution' => 'getResolution'
     ];
 
     /**
@@ -195,9 +215,13 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
+        $this->container['id'] = $data['id'] ?? null;
         $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['stream_key'] = $data['stream_key'] ?? null;
-        $this->container['url'] = $data['url'] ?? null;
+        $this->container['live_stream_id'] = $data['live_stream_id'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
+        $this->container['layout'] = $data['layout'] ?? null;
+        $this->container['background'] = $data['background'] ?? null;
+        $this->container['resolution'] = $data['resolution'] ?? null;
     }
 
     /**
@@ -209,8 +233,20 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['live_stream_id'] === null) {
+            $invalidProperties[] = "'live_stream_id' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        if ($this->container['layout'] === null) {
+            $invalidProperties[] = "'layout' can't be null";
+        }
+        if ($this->container['resolution'] === null) {
+            $invalidProperties[] = "'resolution' can't be null";
         }
         return $invalidProperties;
     }
@@ -228,6 +264,30 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
 
 
     /**
+     * Gets id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string $id Unique identifier for the broadcast. Max 255 characters.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
      * Gets passthrough
      *
      * @return string|null
@@ -240,7 +300,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata set by you when creating a simulcast target.
+     * @param string|null $passthrough Arbitrary user-supplied metadata that will be included in the broadcast details and related webhooks. Max: 255 characters.
      *
      * @return self
      */
@@ -252,49 +312,121 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
-     * Gets stream_key
+     * Gets live_stream_id
      *
-     * @return string|null
+     * @return string
      */
-    public function getStreamKey()
+    public function getLiveStreamId()
     {
-        return $this->container['stream_key'];
+        return $this->container['live_stream_id'];
     }
 
     /**
-     * Sets stream_key
+     * Sets live_stream_id
      *
-     * @param string|null $stream_key Stream Key represents a stream identifier on the third party live streaming service to send the parent live stream to.
+     * @param string $live_stream_id The ID of the live stream that the broadcast will be sent to.
      *
      * @return self
      */
-    public function setStreamKey($stream_key)
+    public function setLiveStreamId($live_stream_id)
     {
-        $this->container['stream_key'] = $stream_key;
+        $this->container['live_stream_id'] = $live_stream_id;
 
         return $this;
     }
 
     /**
-     * Gets url
+     * Gets status
      *
-     * @return string
+     * @return \MuxPhp\Models\BroadcastStatus
      */
-    public function getUrl()
+    public function getStatus()
     {
-        return $this->container['url'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets url
+     * Sets status
      *
-     * @param string $url RTMP hostname including application name for the third party live streaming service. Example: `rtmp://live.example.com/app`.
+     * @param \MuxPhp\Models\BroadcastStatus $status status
      *
      * @return self
      */
-    public function setUrl($url)
+    public function setStatus($status)
     {
-        $this->container['url'] = $url;
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets layout
+     *
+     * @return \MuxPhp\Models\BroadcastLayout
+     */
+    public function getLayout()
+    {
+        return $this->container['layout'];
+    }
+
+    /**
+     * Sets layout
+     *
+     * @param \MuxPhp\Models\BroadcastLayout $layout layout
+     *
+     * @return self
+     */
+    public function setLayout($layout)
+    {
+        $this->container['layout'] = $layout;
+
+        return $this;
+    }
+
+    /**
+     * Gets background
+     *
+     * @return string|null
+     */
+    public function getBackground()
+    {
+        return $this->container['background'];
+    }
+
+    /**
+     * Sets background
+     *
+     * @param string|null $background URL of an image to display as the background of the broadcast. Its dimensions should match the provided resolution.
+     *
+     * @return self
+     */
+    public function setBackground($background)
+    {
+        $this->container['background'] = $background;
+
+        return $this;
+    }
+
+    /**
+     * Gets resolution
+     *
+     * @return \MuxPhp\Models\BroadcastResolution
+     */
+    public function getResolution()
+    {
+        return $this->container['resolution'];
+    }
+
+    /**
+     * Sets resolution
+     *
+     * @param \MuxPhp\Models\BroadcastResolution $resolution resolution
+     *
+     * @return self
+     */
+    public function setResolution($resolution)
+    {
+        $this->container['resolution'] = $resolution;
 
         return $this;
     }

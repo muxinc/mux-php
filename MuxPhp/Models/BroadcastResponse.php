@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateSimulcastTargetRequest
+ * BroadcastResponse
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * CreateSimulcastTargetRequest Class Doc Comment
+ * BroadcastResponse Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class BroadcastResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CreateSimulcastTargetRequest';
+    protected static $openAPIModelName = 'BroadcastResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'passthrough' => 'string',
-        'stream_key' => 'string',
-        'url' => 'string'
+        'data' => '\MuxPhp\Models\Broadcast'
     ];
 
     /**
@@ -73,9 +71,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'passthrough' => null,
-        'stream_key' => null,
-        'url' => null
+        'data' => null
     ];
 
     /**
@@ -105,9 +101,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'passthrough' => 'passthrough',
-        'stream_key' => 'stream_key',
-        'url' => 'url'
+        'data' => 'data'
     ];
 
     /**
@@ -116,9 +110,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'passthrough' => 'setPassthrough',
-        'stream_key' => 'setStreamKey',
-        'url' => 'setUrl'
+        'data' => 'setData'
     ];
 
     /**
@@ -127,9 +119,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'passthrough' => 'getPassthrough',
-        'stream_key' => 'getStreamKey',
-        'url' => 'getUrl'
+        'data' => 'getData'
     ];
 
     /**
@@ -195,9 +185,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['stream_key'] = $data['stream_key'] ?? null;
-        $this->container['url'] = $data['url'] ?? null;
+        $this->container['data'] = $data['data'] ?? null;
     }
 
     /**
@@ -209,8 +197,8 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
+        if ($this->container['data'] === null) {
+            $invalidProperties[] = "'data' can't be null";
         }
         return $invalidProperties;
     }
@@ -228,73 +216,25 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets passthrough
+     * Gets data
      *
-     * @return string|null
+     * @return \MuxPhp\Models\Broadcast
      */
-    public function getPassthrough()
+    public function getData()
     {
-        return $this->container['passthrough'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets passthrough
+     * Sets data
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata set by you when creating a simulcast target.
+     * @param \MuxPhp\Models\Broadcast $data data
      *
      * @return self
      */
-    public function setPassthrough($passthrough)
+    public function setData($data)
     {
-        $this->container['passthrough'] = $passthrough;
-
-        return $this;
-    }
-
-    /**
-     * Gets stream_key
-     *
-     * @return string|null
-     */
-    public function getStreamKey()
-    {
-        return $this->container['stream_key'];
-    }
-
-    /**
-     * Sets stream_key
-     *
-     * @param string|null $stream_key Stream Key represents a stream identifier on the third party live streaming service to send the parent live stream to.
-     *
-     * @return self
-     */
-    public function setStreamKey($stream_key)
-    {
-        $this->container['stream_key'] = $stream_key;
-
-        return $this;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string $url RTMP hostname including application name for the third party live streaming service. Example: `rtmp://live.example.com/app`.
-     *
-     * @return self
-     */
-    public function setUrl($url)
-    {
-        $this->container['url'] = $url;
+        $this->container['data'] = $data;
 
         return $this;
     }

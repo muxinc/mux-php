@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateSimulcastTargetRequest
+ * Space
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * CreateSimulcastTargetRequest Class Doc Comment
+ * Space Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class Space implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CreateSimulcastTargetRequest';
+    protected static $openAPIModelName = 'Space';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,13 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'string',
+        'created_at' => 'string',
+        'type' => '\MuxPhp\Models\SpaceType',
+        'status' => '\MuxPhp\Models\SpaceStatus',
         'passthrough' => 'string',
-        'stream_key' => 'string',
-        'url' => 'string'
+        'broadcasts' => '\MuxPhp\Models\Broadcast[]',
+        'active_session_id' => 'string'
     ];
 
     /**
@@ -73,9 +77,13 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'id' => null,
+        'created_at' => 'int64',
+        'type' => null,
+        'status' => null,
         'passthrough' => null,
-        'stream_key' => null,
-        'url' => null
+        'broadcasts' => null,
+        'active_session_id' => null
     ];
 
     /**
@@ -105,9 +113,13 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
+        'created_at' => 'created_at',
+        'type' => 'type',
+        'status' => 'status',
         'passthrough' => 'passthrough',
-        'stream_key' => 'stream_key',
-        'url' => 'url'
+        'broadcasts' => 'broadcasts',
+        'active_session_id' => 'active_session_id'
     ];
 
     /**
@@ -116,9 +128,13 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
+        'created_at' => 'setCreatedAt',
+        'type' => 'setType',
+        'status' => 'setStatus',
         'passthrough' => 'setPassthrough',
-        'stream_key' => 'setStreamKey',
-        'url' => 'setUrl'
+        'broadcasts' => 'setBroadcasts',
+        'active_session_id' => 'setActiveSessionId'
     ];
 
     /**
@@ -127,9 +143,13 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
+        'created_at' => 'getCreatedAt',
+        'type' => 'getType',
+        'status' => 'getStatus',
         'passthrough' => 'getPassthrough',
-        'stream_key' => 'getStreamKey',
-        'url' => 'getUrl'
+        'broadcasts' => 'getBroadcasts',
+        'active_session_id' => 'getActiveSessionId'
     ];
 
     /**
@@ -195,9 +215,13 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
         $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['stream_key'] = $data['stream_key'] ?? null;
-        $this->container['url'] = $data['url'] ?? null;
+        $this->container['broadcasts'] = $data['broadcasts'] ?? null;
+        $this->container['active_session_id'] = $data['active_session_id'] ?? null;
     }
 
     /**
@@ -209,8 +233,17 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
         return $invalidProperties;
     }
@@ -228,6 +261,102 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
 
 
     /**
+     * Gets id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string $id Unique identifier for the space. Max 255 characters.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param string $created_at Time the space was created, defined as a Unix timestamp (seconds since epoch).
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return \MuxPhp\Models\SpaceType
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param \MuxPhp\Models\SpaceType $type type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return \MuxPhp\Models\SpaceStatus
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param \MuxPhp\Models\SpaceStatus $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
      * Gets passthrough
      *
      * @return string|null
@@ -240,7 +369,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata set by you when creating a simulcast target.
+     * @param string|null $passthrough Arbitrary user-supplied metadata that will be included in the space details and related webhooks. Max: 255 characters.
      *
      * @return self
      */
@@ -252,49 +381,49 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
-     * Gets stream_key
+     * Gets broadcasts
      *
-     * @return string|null
+     * @return \MuxPhp\Models\Broadcast[]|null
      */
-    public function getStreamKey()
+    public function getBroadcasts()
     {
-        return $this->container['stream_key'];
+        return $this->container['broadcasts'];
     }
 
     /**
-     * Sets stream_key
+     * Sets broadcasts
      *
-     * @param string|null $stream_key Stream Key represents a stream identifier on the third party live streaming service to send the parent live stream to.
+     * @param \MuxPhp\Models\Broadcast[]|null $broadcasts An array of broadcast destinations.
      *
      * @return self
      */
-    public function setStreamKey($stream_key)
+    public function setBroadcasts($broadcasts)
     {
-        $this->container['stream_key'] = $stream_key;
+        $this->container['broadcasts'] = $broadcasts;
 
         return $this;
     }
 
     /**
-     * Gets url
+     * Gets active_session_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getUrl()
+    public function getActiveSessionId()
     {
-        return $this->container['url'];
+        return $this->container['active_session_id'];
     }
 
     /**
-     * Sets url
+     * Sets active_session_id
      *
-     * @param string $url RTMP hostname including application name for the third party live streaming service. Example: `rtmp://live.example.com/app`.
+     * @param string|null $active_session_id Unique identifier for the current lifecycle of the space. Only set when the space is `active` and is set to a new value each time the space transitions from `idle` to `active`. This value is useful for logging and debugging issues. Max 255 characters.
      *
      * @return self
      */
-    public function setUrl($url)
+    public function setActiveSessionId($active_session_id)
     {
-        $this->container['url'] = $url;
+        $this->container['active_session_id'] = $active_session_id;
 
         return $this;
     }

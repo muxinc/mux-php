@@ -589,7 +589,7 @@ class SpacesApi
             );
         }
 
-        $resourcePath = '/video/v1/spaces/${SPACE_ID}/broadcasts';
+        $resourcePath = '/video/v1/spaces/{SPACE_ID}/broadcasts';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -821,7 +821,7 @@ class SpacesApi
             );
         }
 
-        $resourcePath = '/video/v1/spaces/${SPACE_ID}';
+        $resourcePath = '/video/v1/spaces/{SPACE_ID}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1058,7 +1058,7 @@ class SpacesApi
             );
         }
 
-        $resourcePath = '/video/v1/spaces/${SPACE_ID}/broadcasts/${BROADCAST_ID}';
+        $resourcePath = '/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1340,7 +1340,7 @@ class SpacesApi
             );
         }
 
-        $resourcePath = '/video/v1/spaces/${SPACE_ID}';
+        $resourcePath = '/video/v1/spaces/{SPACE_ID}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1625,7 +1625,7 @@ class SpacesApi
             );
         }
 
-        $resourcePath = '/video/v1/spaces/${SPACE_ID}/broadcasts/${BROADCAST_ID}';
+        $resourcePath = '/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2205,7 +2205,7 @@ class SpacesApi
             );
         }
 
-        $resourcePath = '/video/v1/spaces/${SPACE_ID}/broadcasts/${BROADCAST_ID}/start';
+        $resourcePath = '/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/start';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2498,7 +2498,7 @@ class SpacesApi
             );
         }
 
-        $resourcePath = '/video/v1/spaces/${SPACE_ID}/broadcasts/${BROADCAST_ID}/stop';
+        $resourcePath = '/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/stop';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

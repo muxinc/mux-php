@@ -5,14 +5,14 @@ All URIs are relative to https://api.mux.com.
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createSpace()**](SpacesApi.md#createSpace) | **POST** /video/v1/spaces | Create a space
-[**createSpaceBroadcast()**](SpacesApi.md#createSpaceBroadcast) | **POST** /video/v1/spaces/${SPACE_ID}/broadcasts | Create a space broadcast
-[**deleteSpace()**](SpacesApi.md#deleteSpace) | **DELETE** /video/v1/spaces/${SPACE_ID} | Delete a space
-[**deleteSpaceBroadcast()**](SpacesApi.md#deleteSpaceBroadcast) | **DELETE** /video/v1/spaces/${SPACE_ID}/broadcasts/${BROADCAST_ID} | Delete a space broadcast
-[**getSpace()**](SpacesApi.md#getSpace) | **GET** /video/v1/spaces/${SPACE_ID} | Retrieve a space
-[**getSpaceBroadcast()**](SpacesApi.md#getSpaceBroadcast) | **GET** /video/v1/spaces/${SPACE_ID}/broadcasts/${BROADCAST_ID} | Retrieve space broadcast
+[**createSpaceBroadcast()**](SpacesApi.md#createSpaceBroadcast) | **POST** /video/v1/spaces/{SPACE_ID}/broadcasts | Create a space broadcast
+[**deleteSpace()**](SpacesApi.md#deleteSpace) | **DELETE** /video/v1/spaces/{SPACE_ID} | Delete a space
+[**deleteSpaceBroadcast()**](SpacesApi.md#deleteSpaceBroadcast) | **DELETE** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID} | Delete a space broadcast
+[**getSpace()**](SpacesApi.md#getSpace) | **GET** /video/v1/spaces/{SPACE_ID} | Retrieve a space
+[**getSpaceBroadcast()**](SpacesApi.md#getSpaceBroadcast) | **GET** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID} | Retrieve space broadcast
 [**listSpaces()**](SpacesApi.md#listSpaces) | **GET** /video/v1/spaces | List spaces
-[**startSpaceBroadcast()**](SpacesApi.md#startSpaceBroadcast) | **POST** /video/v1/spaces/${SPACE_ID}/broadcasts/${BROADCAST_ID}/start | Start a space broadcast
-[**stopSpaceBroadcast()**](SpacesApi.md#stopSpaceBroadcast) | **POST** /video/v1/spaces/${SPACE_ID}/broadcasts/${BROADCAST_ID}/stop | Stop a space broadcast
+[**startSpaceBroadcast()**](SpacesApi.md#startSpaceBroadcast) | **POST** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/start | Start a space broadcast
+[**stopSpaceBroadcast()**](SpacesApi.md#stopSpaceBroadcast) | **POST** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/stop | Stop a space broadcast
 
 
 ## `createSpace()`

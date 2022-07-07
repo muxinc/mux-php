@@ -71,6 +71,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'passthrough' => 'string',
         'audio_only' => 'bool',
         'embedded_subtitles' => '\MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]',
+        'generated_subtitles' => '\MuxPhp\Models\LiveStreamGeneratedSubtitleSettings[]',
         'reconnect_window' => 'float',
         'reduced_latency' => 'bool',
         'low_latency' => 'bool',
@@ -99,6 +100,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'passthrough' => null,
         'audio_only' => null,
         'embedded_subtitles' => null,
+        'generated_subtitles' => null,
         'reconnect_window' => 'float',
         'reduced_latency' => 'boolean',
         'low_latency' => 'boolean',
@@ -146,6 +148,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'passthrough' => 'passthrough',
         'audio_only' => 'audio_only',
         'embedded_subtitles' => 'embedded_subtitles',
+        'generated_subtitles' => 'generated_subtitles',
         'reconnect_window' => 'reconnect_window',
         'reduced_latency' => 'reduced_latency',
         'low_latency' => 'low_latency',
@@ -172,6 +175,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'passthrough' => 'setPassthrough',
         'audio_only' => 'setAudioOnly',
         'embedded_subtitles' => 'setEmbeddedSubtitles',
+        'generated_subtitles' => 'setGeneratedSubtitles',
         'reconnect_window' => 'setReconnectWindow',
         'reduced_latency' => 'setReducedLatency',
         'low_latency' => 'setLowLatency',
@@ -198,6 +202,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'passthrough' => 'getPassthrough',
         'audio_only' => 'getAudioOnly',
         'embedded_subtitles' => 'getEmbeddedSubtitles',
+        'generated_subtitles' => 'getGeneratedSubtitles',
         'reconnect_window' => 'getReconnectWindow',
         'reduced_latency' => 'getReducedLatency',
         'low_latency' => 'getLowLatency',
@@ -298,6 +303,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['passthrough'] = $data['passthrough'] ?? null;
         $this->container['audio_only'] = $data['audio_only'] ?? null;
         $this->container['embedded_subtitles'] = $data['embedded_subtitles'] ?? null;
+        $this->container['generated_subtitles'] = $data['generated_subtitles'] ?? null;
         $this->container['reconnect_window'] = $data['reconnect_window'] ?? 60;
         $this->container['reduced_latency'] = $data['reduced_latency'] ?? null;
         $this->container['low_latency'] = $data['low_latency'] ?? null;
@@ -613,6 +619,30 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets generated_subtitles
+     *
+     * @return \MuxPhp\Models\LiveStreamGeneratedSubtitleSettings[]|null
+     */
+    public function getGeneratedSubtitles()
+    {
+        return $this->container['generated_subtitles'];
+    }
+
+    /**
+     * Sets generated_subtitles
+     *
+     * @param \MuxPhp\Models\LiveStreamGeneratedSubtitleSettings[]|null $generated_subtitles Configure the incoming live stream to include subtitles created with automatic speech recognition. Each Asset created from a live stream with `generated_subtitles` configured will automatically receive two text tracks. The first of these will have a `text_source` value of `generated_live`, and will be available with `ready` status as soon as the stream is live. The second text track will have a `text_source` value of `generated_live_final` and will contain subtitles with improved accuracy, timing, and formatting. However, `generated_live_final` tracks will not be available in `ready` status until the live stream ends. If an Asset has both `generated_live` and `generated_live_final` tracks that are `ready`, then only the `generated_live_final` track will be included during playback.
+     *
+     * @return self
+     */
+    public function setGeneratedSubtitles($generated_subtitles)
+    {
+        $this->container['generated_subtitles'] = $generated_subtitles;
+
+        return $this;
+    }
+
+    /**
      * Gets reconnect_window
      *
      * @return float|null
@@ -625,7 +655,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reconnect_window
      *
-     * @param float|null $reconnect_window When live streaming software disconnects from Mux, either intentionally or due to a drop in the network, the Reconnect Window is the time in seconds that Mux should wait for the streaming software to reconnect before considering the live stream finished and completing the recorded asset. **Min**: 0.1s. **Max**: 300s (5 minutes).
+     * @param float|null $reconnect_window When live streaming software disconnects from Mux, either intentionally or due to a drop in the network, the Reconnect Window is the time in seconds that Mux should wait for the streaming software to reconnect before considering the live stream finished and completing the recorded asset. **Min**: 0.1s. **Max**: 1800s (30 minutes).
      *
      * @return self
      */

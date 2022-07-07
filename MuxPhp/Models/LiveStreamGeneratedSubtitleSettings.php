@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateLiveStreamRequest
+ * LiveStreamGeneratedSubtitleSettings
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * UpdateLiveStreamRequest Class Doc Comment
+ * LiveStreamGeneratedSubtitleSettings Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class LiveStreamGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdateLiveStreamRequest';
+    protected static $openAPIModelName = 'LiveStreamGeneratedSubtitleSettings';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,10 +60,10 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
+        'name' => 'string',
         'passthrough' => 'string',
-        'latency_mode' => 'string',
-        'reconnect_window' => 'float',
-        'max_continuous_duration' => 'int'
+        'language_code' => 'string',
+        'transcription_vocabulary_ids' => 'string[]'
     ];
 
     /**
@@ -74,10 +74,10 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'name' => null,
         'passthrough' => null,
-        'latency_mode' => null,
-        'reconnect_window' => 'float',
-        'max_continuous_duration' => 'int32'
+        'language_code' => null,
+        'transcription_vocabulary_ids' => null
     ];
 
     /**
@@ -107,10 +107,10 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
+        'name' => 'name',
         'passthrough' => 'passthrough',
-        'latency_mode' => 'latency_mode',
-        'reconnect_window' => 'reconnect_window',
-        'max_continuous_duration' => 'max_continuous_duration'
+        'language_code' => 'language_code',
+        'transcription_vocabulary_ids' => 'transcription_vocabulary_ids'
     ];
 
     /**
@@ -119,10 +119,10 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
+        'name' => 'setName',
         'passthrough' => 'setPassthrough',
-        'latency_mode' => 'setLatencyMode',
-        'reconnect_window' => 'setReconnectWindow',
-        'max_continuous_duration' => 'setMaxContinuousDuration'
+        'language_code' => 'setLanguageCode',
+        'transcription_vocabulary_ids' => 'setTranscriptionVocabularyIds'
     ];
 
     /**
@@ -131,10 +131,10 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
+        'name' => 'getName',
         'passthrough' => 'getPassthrough',
-        'latency_mode' => 'getLatencyMode',
-        'reconnect_window' => 'getReconnectWindow',
-        'max_continuous_duration' => 'getMaxContinuousDuration'
+        'language_code' => 'getLanguageCode',
+        'transcription_vocabulary_ids' => 'getTranscriptionVocabularyIds'
     ];
 
     /**
@@ -178,9 +178,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
-    public const LATENCY_MODE_LOW = 'low';
-    public const LATENCY_MODE_REDUCED = 'reduced';
-    public const LATENCY_MODE_STANDARD = 'standard';
+    public const LANGUAGE_CODE_EN = 'en';
+    public const LANGUAGE_CODE_EN_US = 'en-US';
     
 
     
@@ -189,12 +188,11 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return string[]
      */
-    public function getLatencyModeAllowableValues()
+    public function getLanguageCodeAllowableValues()
     {
         return [
-            self::LATENCY_MODE_LOW,
-            self::LATENCY_MODE_REDUCED,
-            self::LATENCY_MODE_STANDARD,
+            self::LANGUAGE_CODE_EN,
+            self::LANGUAGE_CODE_EN_US,
         ];
     }
     
@@ -217,10 +215,10 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
+        $this->container['name'] = $data['name'] ?? null;
         $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['latency_mode'] = $data['latency_mode'] ?? null;
-        $this->container['reconnect_window'] = $data['reconnect_window'] ?? null;
-        $this->container['max_continuous_duration'] = $data['max_continuous_duration'] ?? 43200;
+        $this->container['language_code'] = $data['language_code'] ?? self::LANGUAGE_CODE_EN;
+        $this->container['transcription_vocabulary_ids'] = $data['transcription_vocabulary_ids'] ?? null;
     }
 
     /**
@@ -232,29 +230,13 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getLatencyModeAllowableValues();
-        if (!is_null($this->container['latency_mode']) && !in_array($this->container['latency_mode'], $allowedValues, true)) {
+        $allowedValues = $this->getLanguageCodeAllowableValues();
+        if (!is_null($this->container['language_code']) && !in_array($this->container['language_code'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'latency_mode', must be one of '%s'",
-                $this->container['latency_mode'],
+                "invalid value '%s' for 'language_code', must be one of '%s'",
+                $this->container['language_code'],
                 implode("', '", $allowedValues)
             );
-        }
-
-        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] > 1800)) {
-            $invalidProperties[] = "invalid value for 'reconnect_window', must be smaller than or equal to 1800.";
-        }
-
-        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] < 0.1)) {
-            $invalidProperties[] = "invalid value for 'reconnect_window', must be bigger than or equal to 0.1.";
-        }
-
-        if (!is_null($this->container['max_continuous_duration']) && ($this->container['max_continuous_duration'] > 43200)) {
-            $invalidProperties[] = "invalid value for 'max_continuous_duration', must be smaller than or equal to 43200.";
-        }
-
-        if (!is_null($this->container['max_continuous_duration']) && ($this->container['max_continuous_duration'] < 60)) {
-            $invalidProperties[] = "invalid value for 'max_continuous_duration', must be bigger than or equal to 60.";
         }
 
         return $invalidProperties;
@@ -273,6 +255,30 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name A name for this live stream subtitle track.
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
      * Gets passthrough
      *
      * @return string|null
@@ -285,7 +291,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata set for the live stream. Max 255 characters. In order to clear this value, the field should be included with an empty-string value.
+     * @param string|null $passthrough Arbitrary metadata set for the live stream subtitle track. Max 255 characters.
      *
      * @return self
      */
@@ -297,99 +303,59 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets latency_mode
+     * Gets language_code
      *
      * @return string|null
      */
-    public function getLatencyMode()
+    public function getLanguageCode()
     {
-        return $this->container['latency_mode'];
+        return $this->container['language_code'];
     }
 
     /**
-     * Sets latency_mode
+     * Sets language_code
      *
-     * @param string|null $latency_mode Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this as an alternative to setting low latency or reduced latency flags. The Low Latency value is a beta feature. Note: Reconnect windows are incompatible with Reduced Latency and Low Latency and will always be set to zero (0) seconds. Read more here: https://mux.com/blog/introducing-low-latency-live-streaming/
+     * @param string|null $language_code The language to generate subtitles in.
      *
      * @return self
      */
-    public function setLatencyMode($latency_mode)
+    public function setLanguageCode($language_code)
     {
-        $allowedValues = $this->getLatencyModeAllowableValues();
-        if (!is_null($latency_mode) && !in_array($latency_mode, $allowedValues, true)) {
+        $allowedValues = $this->getLanguageCodeAllowableValues();
+        if (!is_null($language_code) && !in_array($language_code, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'latency_mode', must be one of '%s'",
-                    $latency_mode,
+                    "Invalid value '%s' for 'language_code', must be one of '%s'",
+                    $language_code,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['latency_mode'] = $latency_mode;
+        $this->container['language_code'] = $language_code;
 
         return $this;
     }
 
     /**
-     * Gets reconnect_window
+     * Gets transcription_vocabulary_ids
      *
-     * @return float|null
+     * @return string[]|null
      */
-    public function getReconnectWindow()
+    public function getTranscriptionVocabularyIds()
     {
-        return $this->container['reconnect_window'];
+        return $this->container['transcription_vocabulary_ids'];
     }
 
     /**
-     * Sets reconnect_window
+     * Sets transcription_vocabulary_ids
      *
-     * @param float|null $reconnect_window When live streaming software disconnects from Mux, either intentionally or due to a drop in the network, the Reconnect Window is the time in seconds that Mux should wait for the streaming software to reconnect before considering the live stream finished and completing the recorded asset.
+     * @param string[]|null $transcription_vocabulary_ids Unique identifiers for existing Transcription Vocabularies to use while generating subtitles for the live stream. If the Transcription Vocabularies provided collectively have more than 1000 phrases, only the first 1000 phrases will be included.
      *
      * @return self
      */
-    public function setReconnectWindow($reconnect_window)
+    public function setTranscriptionVocabularyIds($transcription_vocabulary_ids)
     {
-
-        if (!is_null($reconnect_window) && ($reconnect_window > 1800)) {
-            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling UpdateLiveStreamRequest., must be smaller than or equal to 1800.');
-        }
-        if (!is_null($reconnect_window) && ($reconnect_window < 0.1)) {
-            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling UpdateLiveStreamRequest., must be bigger than or equal to 0.1.');
-        }
-
-        $this->container['reconnect_window'] = $reconnect_window;
-
-        return $this;
-    }
-
-    /**
-     * Gets max_continuous_duration
-     *
-     * @return int|null
-     */
-    public function getMaxContinuousDuration()
-    {
-        return $this->container['max_continuous_duration'];
-    }
-
-    /**
-     * Sets max_continuous_duration
-     *
-     * @param int|null $max_continuous_duration The time in seconds a live stream may be continuously active before being disconnected. Defaults to 12 hours.
-     *
-     * @return self
-     */
-    public function setMaxContinuousDuration($max_continuous_duration)
-    {
-
-        if (!is_null($max_continuous_duration) && ($max_continuous_duration > 43200)) {
-            throw new \InvalidArgumentException('invalid value for $max_continuous_duration when calling UpdateLiveStreamRequest., must be smaller than or equal to 43200.');
-        }
-        if (!is_null($max_continuous_duration) && ($max_continuous_duration < 60)) {
-            throw new \InvalidArgumentException('invalid value for $max_continuous_duration when calling UpdateLiveStreamRequest., must be bigger than or equal to 60.');
-        }
-
-        $this->container['max_continuous_duration'] = $max_continuous_duration;
+        $this->container['transcription_vocabulary_ids'] = $transcription_vocabulary_ids;
 
         return $this;
     }

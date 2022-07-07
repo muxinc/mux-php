@@ -20,6 +20,7 @@ Method | HTTP request | Description
 [**signalLiveStreamComplete()**](LiveStreamsApi.md#signalLiveStreamComplete) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/complete | Signal a live stream is finished
 [**updateLiveStream()**](LiveStreamsApi.md#updateLiveStream) | **PATCH** /video/v1/live-streams/{LIVE_STREAM_ID} | Update a live stream
 [**updateLiveStreamEmbeddedSubtitles()**](LiveStreamsApi.md#updateLiveStreamEmbeddedSubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles | Update a live stream&#39;s embedded subtitles
+[**updateLiveStreamGeneratedSubtitles()**](LiveStreamsApi.md#updateLiveStreamGeneratedSubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles | Update a live stream&#39;s generated subtitles
 
 
 ## `createLiveStream()`
@@ -1015,6 +1016,70 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **live_stream_id** | **string**| The live stream ID |
  **update_live_stream_embedded_subtitles_request** | [**\MuxPhp\Models\UpdateLiveStreamEmbeddedSubtitlesRequest**](../Model/UpdateLiveStreamEmbeddedSubtitlesRequest.md)|  |
+
+### Return type
+
+[**\MuxPhp\Models\LiveStreamResponse**](../Model/LiveStreamResponse.md)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateLiveStreamGeneratedSubtitles()`
+
+```php
+updateLiveStreamGeneratedSubtitles($live_stream_id, $update_live_stream_generated_subtitles_request): \MuxPhp\Models\LiveStreamResponse
+```
+
+Update a live stream's generated subtitles
+
+Updates a live stream's automatic-speech-recognition-generated subtitle configuration. Automatic speech recognition subtitles can be removed by sending an empty array in the request payload.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+$update_live_stream_generated_subtitles_request = {"generated_subtitles":[{"name":"English CC (ASR)","language":"en","passthrough":"Example"}]}; // \MuxPhp\Models\UpdateLiveStreamGeneratedSubtitlesRequest
+
+try {
+    $result = $apiInstance->updateLiveStreamGeneratedSubtitles($live_stream_id, $update_live_stream_generated_subtitles_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->updateLiveStreamGeneratedSubtitles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **live_stream_id** | **string**| The live stream ID |
+ **update_live_stream_generated_subtitles_request** | [**\MuxPhp\Models\UpdateLiveStreamGeneratedSubtitlesRequest**](../Model/UpdateLiveStreamGeneratedSubtitlesRequest.md)|  |
 
 ### Return type
 

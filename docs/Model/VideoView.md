@@ -124,5 +124,10 @@ Name | Type | Description | Notes
 **viewer_connection_type** | **string** |  | [optional]
 **viewer_device_model** | **string** |  | [optional]
 **weighted_average_bitrate** | **int** |  | [optional]
+**custom_1** | **string** |  | [optional]
+**custom_2** | **string** |  | [optional]
+**custom_3** | **string** |  | [optional]
+**custom_4** | **string** |  | [optional]
+**custom_5** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

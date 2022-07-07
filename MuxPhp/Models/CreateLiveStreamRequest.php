@@ -66,6 +66,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'passthrough' => 'string',
         'audio_only' => 'bool',
         'embedded_subtitles' => '\MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]',
+        'generated_subtitles' => '\MuxPhp\Models\LiveStreamGeneratedSubtitleSettings[]',
         'reduced_latency' => 'bool',
         'low_latency' => 'bool',
         'latency_mode' => 'string',
@@ -88,6 +89,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'passthrough' => null,
         'audio_only' => null,
         'embedded_subtitles' => null,
+        'generated_subtitles' => null,
         'reduced_latency' => 'boolean',
         'low_latency' => 'boolean',
         'latency_mode' => null,
@@ -129,6 +131,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'passthrough' => 'passthrough',
         'audio_only' => 'audio_only',
         'embedded_subtitles' => 'embedded_subtitles',
+        'generated_subtitles' => 'generated_subtitles',
         'reduced_latency' => 'reduced_latency',
         'low_latency' => 'low_latency',
         'latency_mode' => 'latency_mode',
@@ -149,6 +152,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'passthrough' => 'setPassthrough',
         'audio_only' => 'setAudioOnly',
         'embedded_subtitles' => 'setEmbeddedSubtitles',
+        'generated_subtitles' => 'setGeneratedSubtitles',
         'reduced_latency' => 'setReducedLatency',
         'low_latency' => 'setLowLatency',
         'latency_mode' => 'setLatencyMode',
@@ -169,6 +173,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'passthrough' => 'getPassthrough',
         'audio_only' => 'getAudioOnly',
         'embedded_subtitles' => 'getEmbeddedSubtitles',
+        'generated_subtitles' => 'getGeneratedSubtitles',
         'reduced_latency' => 'getReducedLatency',
         'low_latency' => 'getLowLatency',
         'latency_mode' => 'getLatencyMode',
@@ -263,6 +268,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         $this->container['passthrough'] = $data['passthrough'] ?? null;
         $this->container['audio_only'] = $data['audio_only'] ?? null;
         $this->container['embedded_subtitles'] = $data['embedded_subtitles'] ?? null;
+        $this->container['generated_subtitles'] = $data['generated_subtitles'] ?? null;
         $this->container['reduced_latency'] = $data['reduced_latency'] ?? null;
         $this->container['low_latency'] = $data['low_latency'] ?? null;
         $this->container['latency_mode'] = $data['latency_mode'] ?? null;
@@ -280,8 +286,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] > 300)) {
-            $invalidProperties[] = "invalid value for 'reconnect_window', must be smaller than or equal to 300.";
+        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] > 1800)) {
+            $invalidProperties[] = "invalid value for 'reconnect_window', must be smaller than or equal to 1800.";
         }
 
         if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] < 0.1)) {
@@ -388,8 +394,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     public function setReconnectWindow($reconnect_window)
     {
 
-        if (!is_null($reconnect_window) && ($reconnect_window > 300)) {
-            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling CreateLiveStreamRequest., must be smaller than or equal to 300.');
+        if (!is_null($reconnect_window) && ($reconnect_window > 1800)) {
+            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling CreateLiveStreamRequest., must be smaller than or equal to 1800.');
         }
         if (!is_null($reconnect_window) && ($reconnect_window < 0.1)) {
             throw new \InvalidArgumentException('invalid value for $reconnect_window when calling CreateLiveStreamRequest., must be bigger than or equal to 0.1.');
@@ -468,6 +474,30 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     public function setEmbeddedSubtitles($embedded_subtitles)
     {
         $this->container['embedded_subtitles'] = $embedded_subtitles;
+
+        return $this;
+    }
+
+    /**
+     * Gets generated_subtitles
+     *
+     * @return \MuxPhp\Models\LiveStreamGeneratedSubtitleSettings[]|null
+     */
+    public function getGeneratedSubtitles()
+    {
+        return $this->container['generated_subtitles'];
+    }
+
+    /**
+     * Sets generated_subtitles
+     *
+     * @param \MuxPhp\Models\LiveStreamGeneratedSubtitleSettings[]|null $generated_subtitles Configure the incoming live stream to include subtitles created with automatic speech recognition. Each Asset created from a live stream with `generated_subtitles` configured will automatically receive two text tracks. The first of these will have a `text_source` value of `generated_live`, and will be available with `ready` status as soon as the stream is live. The second text track will have a `text_source` value of `generated_live_final` and will contain subtitles with improved accuracy, timing, and formatting. However, `generated_live_final` tracks will not be available in `ready` status until the live stream ends. If an Asset has both `generated_live` and `generated_live_final` tracks that are `ready`, then only the `generated_live_final` track will be included during playback.
+     *
+     * @return self
+     */
+    public function setGeneratedSubtitles($generated_subtitles)
+    {
+        $this->container['generated_subtitles'] = $generated_subtitles;
 
         return $this;
     }

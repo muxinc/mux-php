@@ -179,7 +179,12 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_session_id' => 'string',
         'viewer_connection_type' => 'string',
         'viewer_device_model' => 'string',
-        'weighted_average_bitrate' => 'int'
+        'weighted_average_bitrate' => 'int',
+        'custom_1' => 'string',
+        'custom_2' => 'string',
+        'custom_3' => 'string',
+        'custom_4' => 'string',
+        'custom_5' => 'string'
     ];
 
     /**
@@ -309,7 +314,12 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_session_id' => null,
         'viewer_connection_type' => null,
         'viewer_device_model' => null,
-        'weighted_average_bitrate' => 'int64'
+        'weighted_average_bitrate' => 'int64',
+        'custom_1' => null,
+        'custom_2' => null,
+        'custom_3' => null,
+        'custom_4' => null,
+        'custom_5' => null
     ];
 
     /**
@@ -458,7 +468,12 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_session_id' => 'view_session_id',
         'viewer_connection_type' => 'viewer_connection_type',
         'viewer_device_model' => 'viewer_device_model',
-        'weighted_average_bitrate' => 'weighted_average_bitrate'
+        'weighted_average_bitrate' => 'weighted_average_bitrate',
+        'custom_1' => 'custom_1',
+        'custom_2' => 'custom_2',
+        'custom_3' => 'custom_3',
+        'custom_4' => 'custom_4',
+        'custom_5' => 'custom_5'
     ];
 
     /**
@@ -586,7 +601,12 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_session_id' => 'setViewSessionId',
         'viewer_connection_type' => 'setViewerConnectionType',
         'viewer_device_model' => 'setViewerDeviceModel',
-        'weighted_average_bitrate' => 'setWeightedAverageBitrate'
+        'weighted_average_bitrate' => 'setWeightedAverageBitrate',
+        'custom_1' => 'setCustom1',
+        'custom_2' => 'setCustom2',
+        'custom_3' => 'setCustom3',
+        'custom_4' => 'setCustom4',
+        'custom_5' => 'setCustom5'
     ];
 
     /**
@@ -714,7 +734,12 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_session_id' => 'getViewSessionId',
         'viewer_connection_type' => 'getViewerConnectionType',
         'viewer_device_model' => 'getViewerDeviceModel',
-        'weighted_average_bitrate' => 'getWeightedAverageBitrate'
+        'weighted_average_bitrate' => 'getWeightedAverageBitrate',
+        'custom_1' => 'getCustom1',
+        'custom_2' => 'getCustom2',
+        'custom_3' => 'getCustom3',
+        'custom_4' => 'getCustom4',
+        'custom_5' => 'getCustom5'
     ];
 
     /**
@@ -900,6 +925,11 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['viewer_connection_type'] = $data['viewer_connection_type'] ?? null;
         $this->container['viewer_device_model'] = $data['viewer_device_model'] ?? null;
         $this->container['weighted_average_bitrate'] = $data['weighted_average_bitrate'] ?? null;
+        $this->container['custom_1'] = $data['custom_1'] ?? null;
+        $this->container['custom_2'] = $data['custom_2'] ?? null;
+        $this->container['custom_3'] = $data['custom_3'] ?? null;
+        $this->container['custom_4'] = $data['custom_4'] ?? null;
+        $this->container['custom_5'] = $data['custom_5'] ?? null;
     }
 
     /**
@@ -3802,6 +3832,126 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setWeightedAverageBitrate($weighted_average_bitrate)
     {
         $this->container['weighted_average_bitrate'] = $weighted_average_bitrate;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_1
+     *
+     * @return string|null
+     */
+    public function getCustom1()
+    {
+        return $this->container['custom_1'];
+    }
+
+    /**
+     * Sets custom_1
+     *
+     * @param string|null $custom_1 custom_1
+     *
+     * @return self
+     */
+    public function setCustom1($custom_1)
+    {
+        $this->container['custom_1'] = $custom_1;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_2
+     *
+     * @return string|null
+     */
+    public function getCustom2()
+    {
+        return $this->container['custom_2'];
+    }
+
+    /**
+     * Sets custom_2
+     *
+     * @param string|null $custom_2 custom_2
+     *
+     * @return self
+     */
+    public function setCustom2($custom_2)
+    {
+        $this->container['custom_2'] = $custom_2;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_3
+     *
+     * @return string|null
+     */
+    public function getCustom3()
+    {
+        return $this->container['custom_3'];
+    }
+
+    /**
+     * Sets custom_3
+     *
+     * @param string|null $custom_3 custom_3
+     *
+     * @return self
+     */
+    public function setCustom3($custom_3)
+    {
+        $this->container['custom_3'] = $custom_3;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_4
+     *
+     * @return string|null
+     */
+    public function getCustom4()
+    {
+        return $this->container['custom_4'];
+    }
+
+    /**
+     * Sets custom_4
+     *
+     * @param string|null $custom_4 custom_4
+     *
+     * @return self
+     */
+    public function setCustom4($custom_4)
+    {
+        $this->container['custom_4'] = $custom_4;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_5
+     *
+     * @return string|null
+     */
+    public function getCustom5()
+    {
+        return $this->container['custom_5'];
+    }
+
+    /**
+     * Sets custom_5
+     *
+     * @param string|null $custom_5 custom_5
+     *
+     * @return self
+     */
+    public function setCustom5($custom_5)
+    {
+        $this->container['custom_5'] = $custom_5;
 
         return $this;
     }

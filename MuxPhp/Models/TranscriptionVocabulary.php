@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateLiveStreamRequest
+ * TranscriptionVocabulary
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * UpdateLiveStreamRequest Class Doc Comment
+ * TranscriptionVocabulary Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdateLiveStreamRequest';
+    protected static $openAPIModelName = 'TranscriptionVocabulary';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,10 +60,12 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'string',
+        'name' => 'string',
+        'phrases' => 'string[]',
         'passthrough' => 'string',
-        'latency_mode' => 'string',
-        'reconnect_window' => 'float',
-        'max_continuous_duration' => 'int'
+        'created_at' => 'string',
+        'updated_at' => 'string'
     ];
 
     /**
@@ -74,10 +76,12 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'id' => null,
+        'name' => null,
+        'phrases' => null,
         'passthrough' => null,
-        'latency_mode' => null,
-        'reconnect_window' => 'float',
-        'max_continuous_duration' => 'int32'
+        'created_at' => 'int64',
+        'updated_at' => 'int64'
     ];
 
     /**
@@ -107,10 +111,12 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
+        'name' => 'name',
+        'phrases' => 'phrases',
         'passthrough' => 'passthrough',
-        'latency_mode' => 'latency_mode',
-        'reconnect_window' => 'reconnect_window',
-        'max_continuous_duration' => 'max_continuous_duration'
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at'
     ];
 
     /**
@@ -119,10 +125,12 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
+        'name' => 'setName',
+        'phrases' => 'setPhrases',
         'passthrough' => 'setPassthrough',
-        'latency_mode' => 'setLatencyMode',
-        'reconnect_window' => 'setReconnectWindow',
-        'max_continuous_duration' => 'setMaxContinuousDuration'
+        'created_at' => 'setCreatedAt',
+        'updated_at' => 'setUpdatedAt'
     ];
 
     /**
@@ -131,10 +139,12 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
+        'name' => 'getName',
+        'phrases' => 'getPhrases',
         'passthrough' => 'getPassthrough',
-        'latency_mode' => 'getLatencyMode',
-        'reconnect_window' => 'getReconnectWindow',
-        'max_continuous_duration' => 'getMaxContinuousDuration'
+        'created_at' => 'getCreatedAt',
+        'updated_at' => 'getUpdatedAt'
     ];
 
     /**
@@ -178,25 +188,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
-    public const LATENCY_MODE_LOW = 'low';
-    public const LATENCY_MODE_REDUCED = 'reduced';
-    public const LATENCY_MODE_STANDARD = 'standard';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getLatencyModeAllowableValues()
-    {
-        return [
-            self::LATENCY_MODE_LOW,
-            self::LATENCY_MODE_REDUCED,
-            self::LATENCY_MODE_STANDARD,
-        ];
-    }
     
 
     /**
@@ -217,10 +210,12 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['phrases'] = $data['phrases'] ?? null;
         $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['latency_mode'] = $data['latency_mode'] ?? null;
-        $this->container['reconnect_window'] = $data['reconnect_window'] ?? null;
-        $this->container['max_continuous_duration'] = $data['max_continuous_duration'] ?? 43200;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
     }
 
     /**
@@ -232,29 +227,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getLatencyModeAllowableValues();
-        if (!is_null($this->container['latency_mode']) && !in_array($this->container['latency_mode'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'latency_mode', must be one of '%s'",
-                $this->container['latency_mode'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] > 1800)) {
-            $invalidProperties[] = "invalid value for 'reconnect_window', must be smaller than or equal to 1800.";
-        }
-
-        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] < 0.1)) {
-            $invalidProperties[] = "invalid value for 'reconnect_window', must be bigger than or equal to 0.1.";
-        }
-
-        if (!is_null($this->container['max_continuous_duration']) && ($this->container['max_continuous_duration'] > 43200)) {
-            $invalidProperties[] = "invalid value for 'max_continuous_duration', must be smaller than or equal to 43200.";
-        }
-
-        if (!is_null($this->container['max_continuous_duration']) && ($this->container['max_continuous_duration'] < 60)) {
-            $invalidProperties[] = "invalid value for 'max_continuous_duration', must be bigger than or equal to 60.";
+        if (!is_null($this->container['phrases']) && (count($this->container['phrases']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'phrases', number of items must be less than or equal to 1000.";
         }
 
         return $invalidProperties;
@@ -273,6 +247,82 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id Unique identifier for the Transcription Vocabulary
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name The user-supplied name of the Transcription Vocabulary.
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets phrases
+     *
+     * @return string[]|null
+     */
+    public function getPhrases()
+    {
+        return $this->container['phrases'];
+    }
+
+    /**
+     * Sets phrases
+     *
+     * @param string[]|null $phrases Phrases, individual words, or proper names to include in the Transcription Vocabulary. When the Transcription Vocabulary is attached to a live stream's `generated_subtitles` configuration, the probability of successful speech recognition for these words or phrases is boosted.
+     *
+     * @return self
+     */
+    public function setPhrases($phrases)
+    {
+
+        if (!is_null($phrases) && (count($phrases) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $phrases when calling TranscriptionVocabulary., number of items must be less than or equal to 1000.');
+        }
+        $this->container['phrases'] = $phrases;
+
+        return $this;
+    }
+
+    /**
      * Gets passthrough
      *
      * @return string|null
@@ -285,7 +335,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata set for the live stream. Max 255 characters. In order to clear this value, the field should be included with an empty-string value.
+     * @param string|null $passthrough Arbitrary user-supplied metadata set for the Transcription Vocabulary. Max 255 characters.
      *
      * @return self
      */
@@ -297,99 +347,49 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets latency_mode
+     * Gets created_at
      *
      * @return string|null
      */
-    public function getLatencyMode()
+    public function getCreatedAt()
     {
-        return $this->container['latency_mode'];
+        return $this->container['created_at'];
     }
 
     /**
-     * Sets latency_mode
+     * Sets created_at
      *
-     * @param string|null $latency_mode Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this as an alternative to setting low latency or reduced latency flags. The Low Latency value is a beta feature. Note: Reconnect windows are incompatible with Reduced Latency and Low Latency and will always be set to zero (0) seconds. Read more here: https://mux.com/blog/introducing-low-latency-live-streaming/
+     * @param string|null $created_at Time the Transcription Vocabulary was created, defined as a Unix timestamp (seconds since epoch).
      *
      * @return self
      */
-    public function setLatencyMode($latency_mode)
+    public function setCreatedAt($created_at)
     {
-        $allowedValues = $this->getLatencyModeAllowableValues();
-        if (!is_null($latency_mode) && !in_array($latency_mode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'latency_mode', must be one of '%s'",
-                    $latency_mode,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['latency_mode'] = $latency_mode;
+        $this->container['created_at'] = $created_at;
 
         return $this;
     }
 
     /**
-     * Gets reconnect_window
+     * Gets updated_at
      *
-     * @return float|null
+     * @return string|null
      */
-    public function getReconnectWindow()
+    public function getUpdatedAt()
     {
-        return $this->container['reconnect_window'];
+        return $this->container['updated_at'];
     }
 
     /**
-     * Sets reconnect_window
+     * Sets updated_at
      *
-     * @param float|null $reconnect_window When live streaming software disconnects from Mux, either intentionally or due to a drop in the network, the Reconnect Window is the time in seconds that Mux should wait for the streaming software to reconnect before considering the live stream finished and completing the recorded asset.
+     * @param string|null $updated_at Time the Transcription Vocabulary was updated, defined as a Unix timestamp (seconds since epoch).
      *
      * @return self
      */
-    public function setReconnectWindow($reconnect_window)
+    public function setUpdatedAt($updated_at)
     {
-
-        if (!is_null($reconnect_window) && ($reconnect_window > 1800)) {
-            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling UpdateLiveStreamRequest., must be smaller than or equal to 1800.');
-        }
-        if (!is_null($reconnect_window) && ($reconnect_window < 0.1)) {
-            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling UpdateLiveStreamRequest., must be bigger than or equal to 0.1.');
-        }
-
-        $this->container['reconnect_window'] = $reconnect_window;
-
-        return $this;
-    }
-
-    /**
-     * Gets max_continuous_duration
-     *
-     * @return int|null
-     */
-    public function getMaxContinuousDuration()
-    {
-        return $this->container['max_continuous_duration'];
-    }
-
-    /**
-     * Sets max_continuous_duration
-     *
-     * @param int|null $max_continuous_duration The time in seconds a live stream may be continuously active before being disconnected. Defaults to 12 hours.
-     *
-     * @return self
-     */
-    public function setMaxContinuousDuration($max_continuous_duration)
-    {
-
-        if (!is_null($max_continuous_duration) && ($max_continuous_duration > 43200)) {
-            throw new \InvalidArgumentException('invalid value for $max_continuous_duration when calling UpdateLiveStreamRequest., must be smaller than or equal to 43200.');
-        }
-        if (!is_null($max_continuous_duration) && ($max_continuous_duration < 60)) {
-            throw new \InvalidArgumentException('invalid value for $max_continuous_duration when calling UpdateLiveStreamRequest., must be bigger than or equal to 60.');
-        }
-
-        $this->container['max_continuous_duration'] = $max_continuous_duration;
+        $this->container['updated_at'] = $updated_at;
 
         return $this;
     }

@@ -184,6 +184,7 @@ Class | Method | HTTP request | Description
 *LiveStreamsApi* | [**signalLiveStreamComplete**](docs/Api/LiveStreamsApi.md#signallivestreamcomplete) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/complete | Signal a live stream is finished
 *LiveStreamsApi* | [**updateLiveStream**](docs/Api/LiveStreamsApi.md#updatelivestream) | **PATCH** /video/v1/live-streams/{LIVE_STREAM_ID} | Update a live stream
 *LiveStreamsApi* | [**updateLiveStreamEmbeddedSubtitles**](docs/Api/LiveStreamsApi.md#updatelivestreamembeddedsubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles | Update a live stream&#39;s embedded subtitles
+*LiveStreamsApi* | [**updateLiveStreamGeneratedSubtitles**](docs/Api/LiveStreamsApi.md#updatelivestreamgeneratedsubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles | Update a live stream&#39;s generated subtitles
 *MetricsApi* | [**getMetricTimeseriesData**](docs/Api/MetricsApi.md#getmetrictimeseriesdata) | **GET** /data/v1/metrics/{METRIC_ID}/timeseries | Get metric timeseries data
 *MetricsApi* | [**getOverallValues**](docs/Api/MetricsApi.md#getoverallvalues) | **GET** /data/v1/metrics/{METRIC_ID}/overall | Get Overall values
 *MetricsApi* | [**listAllMetricValues**](docs/Api/MetricsApi.md#listallmetricvalues) | **GET** /data/v1/metrics/comparison | List all metric values
@@ -209,6 +210,11 @@ Class | Method | HTTP request | Description
 *SpacesApi* | [**listSpaces**](docs/Api/SpacesApi.md#listspaces) | **GET** /video/v1/spaces | List spaces
 *SpacesApi* | [**startSpaceBroadcast**](docs/Api/SpacesApi.md#startspacebroadcast) | **POST** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/start | Start a space broadcast
 *SpacesApi* | [**stopSpaceBroadcast**](docs/Api/SpacesApi.md#stopspacebroadcast) | **POST** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/stop | Stop a space broadcast
+*TranscriptionVocabulariesApi* | [**createTranscriptionVocabulary**](docs/Api/TranscriptionVocabulariesApi.md#createtranscriptionvocabulary) | **POST** /video/v1/transcription-vocabularies | Create a Transcription Vocabulary
+*TranscriptionVocabulariesApi* | [**deleteTranscriptionVocabulary**](docs/Api/TranscriptionVocabulariesApi.md#deletetranscriptionvocabulary) | **DELETE** /video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID} | Delete a Transcription Vocabulary
+*TranscriptionVocabulariesApi* | [**getTranscriptionVocabulary**](docs/Api/TranscriptionVocabulariesApi.md#gettranscriptionvocabulary) | **GET** /video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID} | Retrieve a Transcription Vocabulary
+*TranscriptionVocabulariesApi* | [**listTranscriptionVocabularies**](docs/Api/TranscriptionVocabulariesApi.md#listtranscriptionvocabularies) | **GET** /video/v1/transcription-vocabularies | List Transcription Vocabularies
+*TranscriptionVocabulariesApi* | [**updateTranscriptionVocabulary**](docs/Api/TranscriptionVocabulariesApi.md#updatetranscriptionvocabulary) | **PUT** /video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID} | Update a Transcription Vocabulary
 *URLSigningKeysApi* | [**createUrlSigningKey**](docs/Api/URLSigningKeysApi.md#createurlsigningkey) | **POST** /video/v1/signing-keys | Create a URL signing key
 *URLSigningKeysApi* | [**deleteUrlSigningKey**](docs/Api/URLSigningKeysApi.md#deleteurlsigningkey) | **DELETE** /video/v1/signing-keys/{SIGNING_KEY_ID} | Delete a URL signing key
 *URLSigningKeysApi* | [**getUrlSigningKey**](docs/Api/URLSigningKeysApi.md#geturlsigningkey) | **GET** /video/v1/signing-keys/{SIGNING_KEY_ID} | Retrieve a URL signing key
@@ -243,6 +249,7 @@ Class | Method | HTTP request | Description
 - [CreateSpaceRequest](docs/Model/CreateSpaceRequest.md)
 - [CreateTrackRequest](docs/Model/CreateTrackRequest.md)
 - [CreateTrackResponse](docs/Model/CreateTrackResponse.md)
+- [CreateTranscriptionVocabularyRequest](docs/Model/CreateTranscriptionVocabularyRequest.md)
 - [CreateUploadRequest](docs/Model/CreateUploadRequest.md)
 - [DeliveryReport](docs/Model/DeliveryReport.md)
 - [DimensionValue](docs/Model/DimensionValue.md)
@@ -296,11 +303,13 @@ Class | Method | HTTP request | Description
 - [ListRelatedIncidentsResponse](docs/Model/ListRelatedIncidentsResponse.md)
 - [ListSigningKeysResponse](docs/Model/ListSigningKeysResponse.md)
 - [ListSpacesResponse](docs/Model/ListSpacesResponse.md)
+- [ListTranscriptionVocabulariesResponse](docs/Model/ListTranscriptionVocabulariesResponse.md)
 - [ListUploadsResponse](docs/Model/ListUploadsResponse.md)
 - [ListVideoViewExportsResponse](docs/Model/ListVideoViewExportsResponse.md)
 - [ListVideoViewsResponse](docs/Model/ListVideoViewsResponse.md)
 - [LiveStream](docs/Model/LiveStream.md)
 - [LiveStreamEmbeddedSubtitleSettings](docs/Model/LiveStreamEmbeddedSubtitleSettings.md)
+- [LiveStreamGeneratedSubtitleSettings](docs/Model/LiveStreamGeneratedSubtitleSettings.md)
 - [LiveStreamResponse](docs/Model/LiveStreamResponse.md)
 - [LiveStreamStatus](docs/Model/LiveStreamStatus.md)
 - [Metric](docs/Model/Metric.md)
@@ -329,12 +338,16 @@ Class | Method | HTTP request | Description
 - [StartSpaceBroadcastResponse](docs/Model/StartSpaceBroadcastResponse.md)
 - [StopSpaceBroadcastResponse](docs/Model/StopSpaceBroadcastResponse.md)
 - [Track](docs/Model/Track.md)
+- [TranscriptionVocabulary](docs/Model/TranscriptionVocabulary.md)
+- [TranscriptionVocabularyResponse](docs/Model/TranscriptionVocabularyResponse.md)
 - [UpdateAssetMP4SupportRequest](docs/Model/UpdateAssetMP4SupportRequest.md)
 - [UpdateAssetMasterAccessRequest](docs/Model/UpdateAssetMasterAccessRequest.md)
 - [UpdateAssetRequest](docs/Model/UpdateAssetRequest.md)
 - [UpdateLiveStreamEmbeddedSubtitlesRequest](docs/Model/UpdateLiveStreamEmbeddedSubtitlesRequest.md)
+- [UpdateLiveStreamGeneratedSubtitlesRequest](docs/Model/UpdateLiveStreamGeneratedSubtitlesRequest.md)
 - [UpdateLiveStreamRequest](docs/Model/UpdateLiveStreamRequest.md)
 - [UpdateReferrerDomainRestrictionRequest](docs/Model/UpdateReferrerDomainRestrictionRequest.md)
+- [UpdateTranscriptionVocabularyRequest](docs/Model/UpdateTranscriptionVocabularyRequest.md)
 - [Upload](docs/Model/Upload.md)
 - [UploadError](docs/Model/UploadError.md)
 - [UploadResponse](docs/Model/UploadResponse.md)
@@ -366,5 +379,5 @@ devex@mux.com
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `v1`
-    - Package version: `3.5.2`
+    - Package version: `3.6.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

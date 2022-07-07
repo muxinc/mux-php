@@ -69,6 +69,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'max_channels' => 'int',
         'max_channel_layout' => 'string',
         'text_type' => 'string',
+        'text_source' => 'string',
         'language_code' => 'string',
         'name' => 'string',
         'closed_captions' => 'bool',
@@ -93,6 +94,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'max_channels' => 'int64',
         'max_channel_layout' => null,
         'text_type' => null,
+        'text_source' => null,
         'language_code' => null,
         'name' => null,
         'closed_captions' => null,
@@ -136,6 +138,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'max_channels' => 'max_channels',
         'max_channel_layout' => 'max_channel_layout',
         'text_type' => 'text_type',
+        'text_source' => 'text_source',
         'language_code' => 'language_code',
         'name' => 'name',
         'closed_captions' => 'closed_captions',
@@ -158,6 +161,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'max_channels' => 'setMaxChannels',
         'max_channel_layout' => 'setMaxChannelLayout',
         'text_type' => 'setTextType',
+        'text_source' => 'setTextSource',
         'language_code' => 'setLanguageCode',
         'name' => 'setName',
         'closed_captions' => 'setClosedCaptions',
@@ -180,6 +184,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'max_channels' => 'getMaxChannels',
         'max_channel_layout' => 'getMaxChannelLayout',
         'text_type' => 'getTextType',
+        'text_source' => 'getTextSource',
         'language_code' => 'getLanguageCode',
         'name' => 'getName',
         'closed_captions' => 'getClosedCaptions',
@@ -232,6 +237,10 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_AUDIO = 'audio';
     public const TYPE_TEXT = 'text';
     public const TEXT_TYPE_SUBTITLES = 'subtitles';
+    public const TEXT_SOURCE_UPLOADED = 'uploaded';
+    public const TEXT_SOURCE_EMBEDDED = 'embedded';
+    public const TEXT_SOURCE_GENERATED_LIVE = 'generated_live';
+    public const TEXT_SOURCE_GENERATED_LIVE_FINAL = 'generated_live_final';
     public const STATUS_PREPARING = 'preparing';
     public const STATUS_READY = 'ready';
     public const STATUS_ERRORED = 'errored';
@@ -261,6 +270,21 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::TEXT_TYPE_SUBTITLES,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTextSourceAllowableValues()
+    {
+        return [
+            self::TEXT_SOURCE_UPLOADED,
+            self::TEXT_SOURCE_EMBEDDED,
+            self::TEXT_SOURCE_GENERATED_LIVE,
+            self::TEXT_SOURCE_GENERATED_LIVE_FINAL,
         ];
     }
     
@@ -306,6 +330,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['max_channels'] = $data['max_channels'] ?? null;
         $this->container['max_channel_layout'] = $data['max_channel_layout'] ?? null;
         $this->container['text_type'] = $data['text_type'] ?? null;
+        $this->container['text_source'] = $data['text_source'] ?? null;
         $this->container['language_code'] = $data['language_code'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
         $this->container['closed_captions'] = $data['closed_captions'] ?? null;
@@ -336,6 +361,15 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'text_type', must be one of '%s'",
                 $this->container['text_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getTextSourceAllowableValues();
+        if (!is_null($this->container['text_source']) && !in_array($this->container['text_source'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'text_source', must be one of '%s'",
+                $this->container['text_source'],
                 implode("', '", $allowedValues)
             );
         }
@@ -596,6 +630,40 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['text_type'] = $text_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets text_source
+     *
+     * @return string|null
+     */
+    public function getTextSource()
+    {
+        return $this->container['text_source'];
+    }
+
+    /**
+     * Sets text_source
+     *
+     * @param string|null $text_source The source of the text contained in a Track of type `text`. Valid `text_source` values are listed below. * `uploaded`: Tracks uploaded to Mux as caption or subtitle files using the Create Asset Track API. * `embedded`: Tracks extracted from an embedded stream of CEA-608 closed captions. * `generated_live`: Tracks generated by automatic speech recognition on a live stream configured with `generated_subtitles`.  If an Asset has both `generated_live` and `generated_live_final` tracks that are `ready`, then only the `generated_live_final` track will be included during playback. * `generated_live_final`: Tracks generated by automatic speech recognition on a live stream using `generated_subtitles`. The accuracy, timing, and formatting of these subtitles is improved compared to the corresponding `generated_live` tracks. However, `generated_live_final` tracks will not be available in `ready` status until the live stream ends. If an Asset has both `generated_live` and `generated_live_final` tracks that are `ready`, then only the `generated_live_final` track will be included during playback.
+     *
+     * @return self
+     */
+    public function setTextSource($text_source)
+    {
+        $allowedValues = $this->getTextSourceAllowableValues();
+        if (!is_null($text_source) && !in_array($text_source, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'text_source', must be one of '%s'",
+                    $text_source,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['text_source'] = $text_source;
 
         return $this;
     }

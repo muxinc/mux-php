@@ -61,7 +61,8 @@ class AssetRecordingTimes implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPITypes = [
         'started_at' => '\DateTime',
-        'duration' => 'double'
+        'duration' => 'double',
+        'type' => 'string'
     ];
 
     /**
@@ -73,7 +74,8 @@ class AssetRecordingTimes implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPIFormats = [
         'started_at' => 'date-time',
-        'duration' => 'double'
+        'duration' => 'double',
+        'type' => null
     ];
 
     /**
@@ -104,7 +106,8 @@ class AssetRecordingTimes implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $attributeMap = [
         'started_at' => 'started_at',
-        'duration' => 'duration'
+        'duration' => 'duration',
+        'type' => 'type'
     ];
 
     /**
@@ -114,7 +117,8 @@ class AssetRecordingTimes implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $setters = [
         'started_at' => 'setStartedAt',
-        'duration' => 'setDuration'
+        'duration' => 'setDuration',
+        'type' => 'setType'
     ];
 
     /**
@@ -124,7 +128,8 @@ class AssetRecordingTimes implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $getters = [
         'started_at' => 'getStartedAt',
-        'duration' => 'getDuration'
+        'duration' => 'getDuration',
+        'type' => 'getType'
     ];
 
     /**
@@ -168,8 +173,23 @@ class AssetRecordingTimes implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
+    public const TYPE_CONTENT = 'content';
+    public const TYPE_SLATE = 'slate';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_CONTENT,
+            self::TYPE_SLATE,
+        ];
+    }
     
 
     /**
@@ -192,6 +212,7 @@ class AssetRecordingTimes implements ModelInterface, ArrayAccess, \JsonSerializa
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->container['started_at'] = $data['started_at'] ?? null;
         $this->container['duration'] = $data['duration'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
     }
 
     /**
@@ -202,6 +223,15 @@ class AssetRecordingTimes implements ModelInterface, ArrayAccess, \JsonSerializa
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -262,6 +292,40 @@ class AssetRecordingTimes implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setDuration($duration)
     {
         $this->container['duration'] = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type The type of media represented by the recording session, either `content` for normal stream content or `slate` for slate media inserted during stream interruptions.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

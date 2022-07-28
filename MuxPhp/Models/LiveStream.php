@@ -73,6 +73,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'embedded_subtitles' => '\MuxPhp\Models\LiveStreamEmbeddedSubtitleSettings[]',
         'generated_subtitles' => '\MuxPhp\Models\LiveStreamGeneratedSubtitleSettings[]',
         'reconnect_window' => 'float',
+        'use_slate_for_standard_latency' => 'bool',
+        'reconnect_slate_url' => 'string',
         'reduced_latency' => 'bool',
         'low_latency' => 'bool',
         'simulcast_targets' => '\MuxPhp\Models\SimulcastTarget[]',
@@ -102,6 +104,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'embedded_subtitles' => null,
         'generated_subtitles' => null,
         'reconnect_window' => 'float',
+        'use_slate_for_standard_latency' => 'boolean',
+        'reconnect_slate_url' => null,
         'reduced_latency' => 'boolean',
         'low_latency' => 'boolean',
         'simulcast_targets' => null,
@@ -150,6 +154,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'embedded_subtitles' => 'embedded_subtitles',
         'generated_subtitles' => 'generated_subtitles',
         'reconnect_window' => 'reconnect_window',
+        'use_slate_for_standard_latency' => 'use_slate_for_standard_latency',
+        'reconnect_slate_url' => 'reconnect_slate_url',
         'reduced_latency' => 'reduced_latency',
         'low_latency' => 'low_latency',
         'simulcast_targets' => 'simulcast_targets',
@@ -177,6 +183,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'embedded_subtitles' => 'setEmbeddedSubtitles',
         'generated_subtitles' => 'setGeneratedSubtitles',
         'reconnect_window' => 'setReconnectWindow',
+        'use_slate_for_standard_latency' => 'setUseSlateForStandardLatency',
+        'reconnect_slate_url' => 'setReconnectSlateUrl',
         'reduced_latency' => 'setReducedLatency',
         'low_latency' => 'setLowLatency',
         'simulcast_targets' => 'setSimulcastTargets',
@@ -204,6 +212,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'embedded_subtitles' => 'getEmbeddedSubtitles',
         'generated_subtitles' => 'getGeneratedSubtitles',
         'reconnect_window' => 'getReconnectWindow',
+        'use_slate_for_standard_latency' => 'getUseSlateForStandardLatency',
+        'reconnect_slate_url' => 'getReconnectSlateUrl',
         'reduced_latency' => 'getReducedLatency',
         'low_latency' => 'getLowLatency',
         'simulcast_targets' => 'getSimulcastTargets',
@@ -305,6 +315,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['embedded_subtitles'] = $data['embedded_subtitles'] ?? null;
         $this->container['generated_subtitles'] = $data['generated_subtitles'] ?? null;
         $this->container['reconnect_window'] = $data['reconnect_window'] ?? 60;
+        $this->container['use_slate_for_standard_latency'] = $data['use_slate_for_standard_latency'] ?? false;
+        $this->container['reconnect_slate_url'] = $data['reconnect_slate_url'] ?? null;
         $this->container['reduced_latency'] = $data['reduced_latency'] ?? null;
         $this->container['low_latency'] = $data['low_latency'] ?? null;
         $this->container['simulcast_targets'] = $data['simulcast_targets'] ?? null;
@@ -321,6 +333,14 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] > 1800)) {
+            $invalidProperties[] = "invalid value for 'reconnect_window', must be smaller than or equal to 1800.";
+        }
+
+        if (!is_null($this->container['reconnect_window']) && ($this->container['reconnect_window'] < 0)) {
+            $invalidProperties[] = "invalid value for 'reconnect_window', must be bigger than or equal to 0.";
+        }
 
         $allowedValues = $this->getLatencyModeAllowableValues();
         if (!is_null($this->container['latency_mode']) && !in_array($this->container['latency_mode'], $allowedValues, true)) {
@@ -655,13 +675,69 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reconnect_window
      *
-     * @param float|null $reconnect_window When live streaming software disconnects from Mux, either intentionally or due to a drop in the network, the Reconnect Window is the time in seconds that Mux should wait for the streaming software to reconnect before considering the live stream finished and completing the recorded asset. **Min**: 0.1s. **Max**: 1800s (30 minutes).
+     * @param float|null $reconnect_window When live streaming software disconnects from Mux, either intentionally or due to a drop in the network, the Reconnect Window is the time in seconds that Mux should wait for the streaming software to reconnect before considering the live stream finished and completing the recorded asset. **Max**: 1800s (30 minutes).  Reduced and Low Latency streams with a Reconnect Window greater than zero will insert slate media into the recorded asset while waiting for the streaming software to reconnect or when there are brief interruptions in the live stream media. When using a Reconnect Window setting higher than 60 seconds with a Standard Latency stream, we highly recommend enabling slate with the `use_slate_for_standard_latency` option.
      *
      * @return self
      */
     public function setReconnectWindow($reconnect_window)
     {
+
+        if (!is_null($reconnect_window) && ($reconnect_window > 1800)) {
+            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling LiveStream., must be smaller than or equal to 1800.');
+        }
+        if (!is_null($reconnect_window) && ($reconnect_window < 0)) {
+            throw new \InvalidArgumentException('invalid value for $reconnect_window when calling LiveStream., must be bigger than or equal to 0.');
+        }
+
         $this->container['reconnect_window'] = $reconnect_window;
+
+        return $this;
+    }
+
+    /**
+     * Gets use_slate_for_standard_latency
+     *
+     * @return bool|null
+     */
+    public function getUseSlateForStandardLatency()
+    {
+        return $this->container['use_slate_for_standard_latency'];
+    }
+
+    /**
+     * Sets use_slate_for_standard_latency
+     *
+     * @param bool|null $use_slate_for_standard_latency By default, Standard Latency live streams do not have slate media inserted while waiting for live streaming software to reconnect to Mux.  Setting this to true enables slate insertion on a Standard Latency stream.
+     *
+     * @return self
+     */
+    public function setUseSlateForStandardLatency($use_slate_for_standard_latency)
+    {
+        $this->container['use_slate_for_standard_latency'] = $use_slate_for_standard_latency;
+
+        return $this;
+    }
+
+    /**
+     * Gets reconnect_slate_url
+     *
+     * @return string|null
+     */
+    public function getReconnectSlateUrl()
+    {
+        return $this->container['reconnect_slate_url'];
+    }
+
+    /**
+     * Sets reconnect_slate_url
+     *
+     * @param string|null $reconnect_slate_url The URL of the image file that Mux should download and use as slate media during interruptions of the live stream media.  This file will be downloaded each time a new recorded asset is created from the live stream.  If this is not set, the default slate media will be used.
+     *
+     * @return self
+     */
+    public function setReconnectSlateUrl($reconnect_slate_url)
+    {
+        $this->container['reconnect_slate_url'] = $reconnect_slate_url;
 
         return $this;
     }
@@ -679,7 +755,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reduced_latency
      *
-     * @param bool|null $reduced_latency This field is deprecated. Please use latency_mode instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this if you want lower latency for your live stream. **Note**: Reconnect windows are incompatible with Reduced Latency and will always be set to zero (0) seconds. See the [Reduce live stream latency guide](https://docs.mux.com/guides/video/reduce-live-stream-latency) to understand the tradeoffs.
+     * @param bool|null $reduced_latency This field is deprecated. Please use latency_mode instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this if you want lower latency for your live stream. See the [Reduce live stream latency guide](https://docs.mux.com/guides/video/reduce-live-stream-latency) to understand the tradeoffs.
      *
      * @return self
      */
@@ -703,7 +779,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets low_latency
      *
-     * @param bool|null $low_latency This field is deprecated. Please use latency_mode instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Setting this option will enable compatibility with the LL-HLS specification for low-latency streaming. This typically has lower latency than Reduced Latency streams, and cannot be combined with Reduced Latency. Note: Reconnect windows are incompatible with Low Latency and will always be set to zero (0) seconds.
+     * @param bool|null $low_latency This field is deprecated. Please use latency_mode instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Setting this option will enable compatibility with the LL-HLS specification for low-latency streaming. This typically has lower latency than Reduced Latency streams, and cannot be combined with Reduced Latency.
      *
      * @return self
      */
@@ -751,7 +827,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets latency_mode
      *
-     * @param string|null $latency_mode Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this as an alternative to setting low latency or reduced latency flags. The Low Latency value is a beta feature. Note: Reconnect windows are incompatible with Reduced Latency and Low Latency and will always be set to zero (0) seconds. Read more here: https://mux.com/blog/introducing-low-latency-live-streaming/
+     * @param string|null $latency_mode Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this as an alternative to setting low latency or reduced latency flags. The Low Latency value is a beta feature. Read more here: https://mux.com/blog/introducing-low-latency-live-streaming/
      *
      * @return self
      */

@@ -682,7 +682,7 @@ $apiInstance = new MuxPhp\Api\AssetsApi(
     $config
 );
 $asset_id = 'asset_id_example'; // string | The asset ID.
-$update_asset_request = {"passthrough":"Example"}; // \MuxPhp\Models\UpdateAssetRequest
+$update_asset_request = new \MuxPhp\Models\UpdateAssetRequest(['passthrough' => "Example"]); // \MuxPhp\Models\UpdateAssetRequest
 
 try {
     $result = $apiInstance->updateAsset($asset_id, $update_asset_request);

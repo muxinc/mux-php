@@ -85,6 +85,27 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'name' => false,
+		'ext' => false,
+		'height' => false,
+		'width' => false,
+		'bitrate' => false,
+		'filesize' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -102,6 +123,48 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -194,9 +257,7 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
     public const NAME_AUDIO_M4A = 'audio.m4a';
     public const EXT_MP4 = 'mp4';
     public const EXT_M4A = 'm4a';
-    
 
-    
     /**
      * Gets allowable values of the enum
      *
@@ -211,7 +272,7 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
             self::NAME_AUDIO_M4A,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -224,7 +285,6 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
             self::EXT_M4A,
         ];
     }
-    
 
     /**
      * Associative array for storing property values
@@ -244,12 +304,30 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['ext'] = $data['ext'] ?? null;
-        $this->container['height'] = $data['height'] ?? null;
-        $this->container['width'] = $data['width'] ?? null;
-        $this->container['bitrate'] = $data['bitrate'] ?? null;
-        $this->container['filesize'] = $data['filesize'] ?? null;
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('ext', $data ?? [], null);
+        $this->setIfExists('height', $data ?? [], null);
+        $this->setIfExists('width', $data ?? [], null);
+        $this->setIfExists('bitrate', $data ?? [], null);
+        $this->setIfExists('filesize', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -323,6 +401,11 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
                 )
             );
         }
+
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+
         $this->container['name'] = $name;
 
         return $this;
@@ -357,6 +440,11 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
                 )
             );
         }
+
+        if (is_null($ext)) {
+            throw new \InvalidArgumentException('non-nullable ext cannot be null');
+        }
+
         $this->container['ext'] = $ext;
 
         return $this;
@@ -381,6 +469,11 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setHeight($height)
     {
+
+        if (is_null($height)) {
+            throw new \InvalidArgumentException('non-nullable height cannot be null');
+        }
+
         $this->container['height'] = $height;
 
         return $this;
@@ -405,6 +498,11 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setWidth($width)
     {
+
+        if (is_null($width)) {
+            throw new \InvalidArgumentException('non-nullable width cannot be null');
+        }
+
         $this->container['width'] = $width;
 
         return $this;
@@ -429,6 +527,11 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setBitrate($bitrate)
     {
+
+        if (is_null($bitrate)) {
+            throw new \InvalidArgumentException('non-nullable bitrate cannot be null');
+        }
+
         $this->container['bitrate'] = $bitrate;
 
         return $this;
@@ -453,6 +556,11 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setFilesize($filesize)
     {
+
+        if (is_null($filesize)) {
+            throw new \InvalidArgumentException('non-nullable filesize cannot be null');
+        }
+
         $this->container['filesize'] = $filesize;
 
         return $this;
@@ -476,7 +584,8 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -517,7 +626,8 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

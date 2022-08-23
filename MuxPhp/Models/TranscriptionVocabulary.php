@@ -85,6 +85,27 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'id' => false,
+		'name' => false,
+		'phrases' => false,
+		'passthrough' => false,
+		'created_at' => false,
+		'updated_at' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -102,6 +123,48 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -188,9 +251,6 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
-    
-
-    
 
     /**
      * Associative array for storing property values
@@ -210,12 +270,30 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['phrases'] = $data['phrases'] ?? null;
-        $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['created_at'] = $data['created_at'] ?? null;
-        $this->container['updated_at'] = $data['updated_at'] ?? null;
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('phrases', $data ?? [], null);
+        $this->setIfExists('passthrough', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('updated_at', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -265,6 +343,11 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setId($id)
     {
+
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+
         $this->container['id'] = $id;
 
         return $this;
@@ -289,6 +372,11 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setName($name)
     {
+
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+
         $this->container['name'] = $name;
 
         return $this;
@@ -317,6 +405,11 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
         if (!is_null($phrases) && (count($phrases) > 1000)) {
             throw new \InvalidArgumentException('invalid value for $phrases when calling TranscriptionVocabulary., number of items must be less than or equal to 1000.');
         }
+
+        if (is_null($phrases)) {
+            throw new \InvalidArgumentException('non-nullable phrases cannot be null');
+        }
+
         $this->container['phrases'] = $phrases;
 
         return $this;
@@ -341,6 +434,11 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setPassthrough($passthrough)
     {
+
+        if (is_null($passthrough)) {
+            throw new \InvalidArgumentException('non-nullable passthrough cannot be null');
+        }
+
         $this->container['passthrough'] = $passthrough;
 
         return $this;
@@ -365,6 +463,11 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCreatedAt($created_at)
     {
+
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+
         $this->container['created_at'] = $created_at;
 
         return $this;
@@ -389,6 +492,11 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setUpdatedAt($updated_at)
     {
+
+        if (is_null($updated_at)) {
+            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
+        }
+
         $this->container['updated_at'] = $updated_at;
 
         return $this;
@@ -412,7 +520,8 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -453,7 +562,8 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

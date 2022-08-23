@@ -115,6 +115,42 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'threshold' => false,
+		'status' => false,
+		'started_at' => false,
+		'severity' => false,
+		'sample_size_unit' => false,
+		'sample_size' => false,
+		'resolved_at' => false,
+		'notifications' => false,
+		'notification_rules' => false,
+		'measurement' => false,
+		'measured_value_on_close' => false,
+		'measured_value' => false,
+		'incident_key' => false,
+		'impact' => false,
+		'id' => false,
+		'error_description' => false,
+		'description' => false,
+		'breakdowns' => false,
+		'affected_views_per_hour_on_open' => false,
+		'affected_views_per_hour' => false,
+		'affected_views' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -132,6 +168,48 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -263,9 +341,6 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    
-
-    
 
     /**
      * Associative array for storing property values
@@ -285,27 +360,45 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['threshold'] = $data['threshold'] ?? null;
-        $this->container['status'] = $data['status'] ?? null;
-        $this->container['started_at'] = $data['started_at'] ?? null;
-        $this->container['severity'] = $data['severity'] ?? null;
-        $this->container['sample_size_unit'] = $data['sample_size_unit'] ?? null;
-        $this->container['sample_size'] = $data['sample_size'] ?? null;
-        $this->container['resolved_at'] = $data['resolved_at'] ?? null;
-        $this->container['notifications'] = $data['notifications'] ?? null;
-        $this->container['notification_rules'] = $data['notification_rules'] ?? null;
-        $this->container['measurement'] = $data['measurement'] ?? null;
-        $this->container['measured_value_on_close'] = $data['measured_value_on_close'] ?? null;
-        $this->container['measured_value'] = $data['measured_value'] ?? null;
-        $this->container['incident_key'] = $data['incident_key'] ?? null;
-        $this->container['impact'] = $data['impact'] ?? null;
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['error_description'] = $data['error_description'] ?? null;
-        $this->container['description'] = $data['description'] ?? null;
-        $this->container['breakdowns'] = $data['breakdowns'] ?? null;
-        $this->container['affected_views_per_hour_on_open'] = $data['affected_views_per_hour_on_open'] ?? null;
-        $this->container['affected_views_per_hour'] = $data['affected_views_per_hour'] ?? null;
-        $this->container['affected_views'] = $data['affected_views'] ?? null;
+        $this->setIfExists('threshold', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('started_at', $data ?? [], null);
+        $this->setIfExists('severity', $data ?? [], null);
+        $this->setIfExists('sample_size_unit', $data ?? [], null);
+        $this->setIfExists('sample_size', $data ?? [], null);
+        $this->setIfExists('resolved_at', $data ?? [], null);
+        $this->setIfExists('notifications', $data ?? [], null);
+        $this->setIfExists('notification_rules', $data ?? [], null);
+        $this->setIfExists('measurement', $data ?? [], null);
+        $this->setIfExists('measured_value_on_close', $data ?? [], null);
+        $this->setIfExists('measured_value', $data ?? [], null);
+        $this->setIfExists('incident_key', $data ?? [], null);
+        $this->setIfExists('impact', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('error_description', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('breakdowns', $data ?? [], null);
+        $this->setIfExists('affected_views_per_hour_on_open', $data ?? [], null);
+        $this->setIfExists('affected_views_per_hour', $data ?? [], null);
+        $this->setIfExists('affected_views', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -351,6 +444,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setThreshold($threshold)
     {
+
+        if (is_null($threshold)) {
+            throw new \InvalidArgumentException('non-nullable threshold cannot be null');
+        }
+
         $this->container['threshold'] = $threshold;
 
         return $this;
@@ -375,6 +473,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
+
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+
         $this->container['status'] = $status;
 
         return $this;
@@ -399,6 +502,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStartedAt($started_at)
     {
+
+        if (is_null($started_at)) {
+            throw new \InvalidArgumentException('non-nullable started_at cannot be null');
+        }
+
         $this->container['started_at'] = $started_at;
 
         return $this;
@@ -423,6 +531,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSeverity($severity)
     {
+
+        if (is_null($severity)) {
+            throw new \InvalidArgumentException('non-nullable severity cannot be null');
+        }
+
         $this->container['severity'] = $severity;
 
         return $this;
@@ -447,6 +560,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSampleSizeUnit($sample_size_unit)
     {
+
+        if (is_null($sample_size_unit)) {
+            throw new \InvalidArgumentException('non-nullable sample_size_unit cannot be null');
+        }
+
         $this->container['sample_size_unit'] = $sample_size_unit;
 
         return $this;
@@ -471,6 +589,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSampleSize($sample_size)
     {
+
+        if (is_null($sample_size)) {
+            throw new \InvalidArgumentException('non-nullable sample_size cannot be null');
+        }
+
         $this->container['sample_size'] = $sample_size;
 
         return $this;
@@ -495,6 +618,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResolvedAt($resolved_at)
     {
+
+        if (is_null($resolved_at)) {
+            throw new \InvalidArgumentException('non-nullable resolved_at cannot be null');
+        }
+
         $this->container['resolved_at'] = $resolved_at;
 
         return $this;
@@ -519,6 +647,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNotifications($notifications)
     {
+
+        if (is_null($notifications)) {
+            throw new \InvalidArgumentException('non-nullable notifications cannot be null');
+        }
+
         $this->container['notifications'] = $notifications;
 
         return $this;
@@ -543,6 +676,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNotificationRules($notification_rules)
     {
+
+        if (is_null($notification_rules)) {
+            throw new \InvalidArgumentException('non-nullable notification_rules cannot be null');
+        }
+
         $this->container['notification_rules'] = $notification_rules;
 
         return $this;
@@ -567,6 +705,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMeasurement($measurement)
     {
+
+        if (is_null($measurement)) {
+            throw new \InvalidArgumentException('non-nullable measurement cannot be null');
+        }
+
         $this->container['measurement'] = $measurement;
 
         return $this;
@@ -591,6 +734,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMeasuredValueOnClose($measured_value_on_close)
     {
+
+        if (is_null($measured_value_on_close)) {
+            throw new \InvalidArgumentException('non-nullable measured_value_on_close cannot be null');
+        }
+
         $this->container['measured_value_on_close'] = $measured_value_on_close;
 
         return $this;
@@ -615,6 +763,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMeasuredValue($measured_value)
     {
+
+        if (is_null($measured_value)) {
+            throw new \InvalidArgumentException('non-nullable measured_value cannot be null');
+        }
+
         $this->container['measured_value'] = $measured_value;
 
         return $this;
@@ -639,6 +792,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIncidentKey($incident_key)
     {
+
+        if (is_null($incident_key)) {
+            throw new \InvalidArgumentException('non-nullable incident_key cannot be null');
+        }
+
         $this->container['incident_key'] = $incident_key;
 
         return $this;
@@ -663,6 +821,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setImpact($impact)
     {
+
+        if (is_null($impact)) {
+            throw new \InvalidArgumentException('non-nullable impact cannot be null');
+        }
+
         $this->container['impact'] = $impact;
 
         return $this;
@@ -687,6 +850,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
+
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+
         $this->container['id'] = $id;
 
         return $this;
@@ -711,6 +879,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setErrorDescription($error_description)
     {
+
+        if (is_null($error_description)) {
+            throw new \InvalidArgumentException('non-nullable error_description cannot be null');
+        }
+
         $this->container['error_description'] = $error_description;
 
         return $this;
@@ -735,6 +908,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
+
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+
         $this->container['description'] = $description;
 
         return $this;
@@ -759,6 +937,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBreakdowns($breakdowns)
     {
+
+        if (is_null($breakdowns)) {
+            throw new \InvalidArgumentException('non-nullable breakdowns cannot be null');
+        }
+
         $this->container['breakdowns'] = $breakdowns;
 
         return $this;
@@ -783,6 +966,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAffectedViewsPerHourOnOpen($affected_views_per_hour_on_open)
     {
+
+        if (is_null($affected_views_per_hour_on_open)) {
+            throw new \InvalidArgumentException('non-nullable affected_views_per_hour_on_open cannot be null');
+        }
+
         $this->container['affected_views_per_hour_on_open'] = $affected_views_per_hour_on_open;
 
         return $this;
@@ -807,6 +995,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAffectedViewsPerHour($affected_views_per_hour)
     {
+
+        if (is_null($affected_views_per_hour)) {
+            throw new \InvalidArgumentException('non-nullable affected_views_per_hour cannot be null');
+        }
+
         $this->container['affected_views_per_hour'] = $affected_views_per_hour;
 
         return $this;
@@ -831,6 +1024,11 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAffectedViews($affected_views)
     {
+
+        if (is_null($affected_views)) {
+            throw new \InvalidArgumentException('non-nullable affected_views cannot be null');
+        }
+
         $this->container['affected_views'] = $affected_views;
 
         return $this;
@@ -854,7 +1052,8 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -895,7 +1094,8 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

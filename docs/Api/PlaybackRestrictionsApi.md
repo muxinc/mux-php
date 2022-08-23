@@ -1,14 +1,14 @@
 # MuxPhp\PlaybackRestrictionsApi
 
-All URIs are relative to https://api.mux.com.
+All URIs are relative to https://api.mux.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createPlaybackRestriction()**](PlaybackRestrictionsApi.md#createPlaybackRestriction) | **POST** /video/v1/playback-restrictions | Create a Playback Restriction
-[**deletePlaybackRestriction()**](PlaybackRestrictionsApi.md#deletePlaybackRestriction) | **DELETE** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID} | Delete a Playback Restriction
-[**getPlaybackRestriction()**](PlaybackRestrictionsApi.md#getPlaybackRestriction) | **GET** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID} | Retrieve a Playback Restriction
-[**listPlaybackRestrictions()**](PlaybackRestrictionsApi.md#listPlaybackRestrictions) | **GET** /video/v1/playback-restrictions | List Playback Restrictions
-[**updateReferrerDomainRestriction()**](PlaybackRestrictionsApi.md#updateReferrerDomainRestriction) | **PUT** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer | Update the Referrer Playback Restriction
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createPlaybackRestriction()**](PlaybackRestrictionsApi.md#createPlaybackRestriction) | **POST** /video/v1/playback-restrictions | Create a Playback Restriction |
+| [**deletePlaybackRestriction()**](PlaybackRestrictionsApi.md#deletePlaybackRestriction) | **DELETE** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID} | Delete a Playback Restriction |
+| [**getPlaybackRestriction()**](PlaybackRestrictionsApi.md#getPlaybackRestriction) | **GET** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID} | Retrieve a Playback Restriction |
+| [**listPlaybackRestrictions()**](PlaybackRestrictionsApi.md#listPlaybackRestrictions) | **GET** /video/v1/playback-restrictions | List Playback Restrictions |
+| [**updateReferrerDomainRestriction()**](PlaybackRestrictionsApi.md#updateReferrerDomainRestriction) | **PUT** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer | Update the Referrer Playback Restriction |
 
 
 ## `createPlaybackRestriction()`
@@ -40,7 +40,17 @@ $apiInstance = new MuxPhp\Api\PlaybackRestrictionsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_playback_restriction_request = {"referrer":{"allowed_domains":["*.example.com"],"allow_no_referrer":true}}; // \MuxPhp\Models\CreatePlaybackRestrictionRequest
+
+// This API method wants a \MuxPhp\Models\CreatePlaybackRestrictionRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\CreatePlaybackRestrictionRequest" directly.
+$create_playback_restriction_request = json_decode('{"referrer":{"allowed_domains":["*.example.com"],"allow_no_referrer":true}}',true); // \MuxPhp\Models\CreatePlaybackRestrictionRequest
 
 try {
     $result = $apiInstance->createPlaybackRestriction($create_playback_restriction_request);
@@ -52,9 +62,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **create_playback_restriction_request** | [**\MuxPhp\Models\CreatePlaybackRestrictionRequest**](../Model/CreatePlaybackRestrictionRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_playback_restriction_request** | [**\MuxPhp\Models\CreatePlaybackRestrictionRequest**](../Model/CreatePlaybackRestrictionRequest.md)|  | |
 
 ### Return type
 
@@ -113,9 +123,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **playback_restriction_id** | **string**| ID of the Playback Restriction. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **playback_restriction_id** | **string**| ID of the Playback Restriction. | |
 
 ### Return type
 
@@ -175,9 +185,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **playback_restriction_id** | **string**| ID of the Playback Restriction. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **playback_restriction_id** | **string**| ID of the Playback Restriction. | |
 
 ### Return type
 
@@ -238,10 +248,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
- **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1] |
+| **limit** | **int**| Number of items to include in the response | [optional] [default to 25] |
 
 ### Return type
 
@@ -290,7 +300,17 @@ $apiInstance = new MuxPhp\Api\PlaybackRestrictionsApi(
     $config
 );
 $playback_restriction_id = 'playback_restriction_id_example'; // string | ID of the Playback Restriction.
-$update_referrer_domain_restriction_request = {"allowed_domains":["*.example.com"],"allow_no_referrer":true}; // \MuxPhp\Models\UpdateReferrerDomainRestrictionRequest
+
+// This API method wants a \MuxPhp\Models\UpdateReferrerDomainRestrictionRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\UpdateReferrerDomainRestrictionRequest" directly.
+$update_referrer_domain_restriction_request = json_decode('{"allowed_domains":["*.example.com"],"allow_no_referrer":true}',true); // \MuxPhp\Models\UpdateReferrerDomainRestrictionRequest
 
 try {
     $result = $apiInstance->updateReferrerDomainRestriction($playback_restriction_id, $update_referrer_domain_restriction_request);
@@ -302,10 +322,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **playback_restriction_id** | **string**| ID of the Playback Restriction. |
- **update_referrer_domain_restriction_request** | [**\MuxPhp\Models\UpdateReferrerDomainRestrictionRequest**](../Model/UpdateReferrerDomainRestrictionRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **playback_restriction_id** | **string**| ID of the Playback Restriction. | |
+| **update_referrer_domain_restriction_request** | [**\MuxPhp\Models\UpdateReferrerDomainRestrictionRequest**](../Model/UpdateReferrerDomainRestrictionRequest.md)|  | |
 
 ### Return type
 

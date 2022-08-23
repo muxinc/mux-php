@@ -87,6 +87,28 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'timestamp' => false,
+		'sum' => false,
+		'p95' => false,
+		'median' => false,
+		'max_percentage' => false,
+		'bucket_values' => false,
+		'average' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -104,6 +126,48 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -193,9 +257,6 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
         return self::$openAPIModelName;
     }
 
-    
-
-    
 
     /**
      * Associative array for storing property values
@@ -215,13 +276,31 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['timestamp'] = $data['timestamp'] ?? null;
-        $this->container['sum'] = $data['sum'] ?? null;
-        $this->container['p95'] = $data['p95'] ?? null;
-        $this->container['median'] = $data['median'] ?? null;
-        $this->container['max_percentage'] = $data['max_percentage'] ?? null;
-        $this->container['bucket_values'] = $data['bucket_values'] ?? null;
-        $this->container['average'] = $data['average'] ?? null;
+        $this->setIfExists('timestamp', $data ?? [], null);
+        $this->setIfExists('sum', $data ?? [], null);
+        $this->setIfExists('p95', $data ?? [], null);
+        $this->setIfExists('median', $data ?? [], null);
+        $this->setIfExists('max_percentage', $data ?? [], null);
+        $this->setIfExists('bucket_values', $data ?? [], null);
+        $this->setIfExists('average', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -267,6 +346,11 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
      */
     public function setTimestamp($timestamp)
     {
+
+        if (is_null($timestamp)) {
+            throw new \InvalidArgumentException('non-nullable timestamp cannot be null');
+        }
+
         $this->container['timestamp'] = $timestamp;
 
         return $this;
@@ -291,6 +375,11 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
      */
     public function setSum($sum)
     {
+
+        if (is_null($sum)) {
+            throw new \InvalidArgumentException('non-nullable sum cannot be null');
+        }
+
         $this->container['sum'] = $sum;
 
         return $this;
@@ -315,6 +404,11 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
      */
     public function setP95($p95)
     {
+
+        if (is_null($p95)) {
+            throw new \InvalidArgumentException('non-nullable p95 cannot be null');
+        }
+
         $this->container['p95'] = $p95;
 
         return $this;
@@ -339,6 +433,11 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
      */
     public function setMedian($median)
     {
+
+        if (is_null($median)) {
+            throw new \InvalidArgumentException('non-nullable median cannot be null');
+        }
+
         $this->container['median'] = $median;
 
         return $this;
@@ -363,6 +462,11 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
      */
     public function setMaxPercentage($max_percentage)
     {
+
+        if (is_null($max_percentage)) {
+            throw new \InvalidArgumentException('non-nullable max_percentage cannot be null');
+        }
+
         $this->container['max_percentage'] = $max_percentage;
 
         return $this;
@@ -387,6 +491,11 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
      */
     public function setBucketValues($bucket_values)
     {
+
+        if (is_null($bucket_values)) {
+            throw new \InvalidArgumentException('non-nullable bucket_values cannot be null');
+        }
+
         $this->container['bucket_values'] = $bucket_values;
 
         return $this;
@@ -411,6 +520,11 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
      */
     public function setAverage($average)
     {
+
+        if (is_null($average)) {
+            throw new \InvalidArgumentException('non-nullable average cannot be null');
+        }
+
         $this->container['average'] = $average;
 
         return $this;
@@ -434,7 +548,8 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -475,7 +590,8 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

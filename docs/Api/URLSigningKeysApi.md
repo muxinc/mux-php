@@ -1,13 +1,13 @@
 # MuxPhp\URLSigningKeysApi
 
-All URIs are relative to https://api.mux.com.
+All URIs are relative to https://api.mux.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createUrlSigningKey()**](URLSigningKeysApi.md#createUrlSigningKey) | **POST** /video/v1/signing-keys | Create a URL signing key
-[**deleteUrlSigningKey()**](URLSigningKeysApi.md#deleteUrlSigningKey) | **DELETE** /video/v1/signing-keys/{SIGNING_KEY_ID} | Delete a URL signing key
-[**getUrlSigningKey()**](URLSigningKeysApi.md#getUrlSigningKey) | **GET** /video/v1/signing-keys/{SIGNING_KEY_ID} | Retrieve a URL signing key
-[**listUrlSigningKeys()**](URLSigningKeysApi.md#listUrlSigningKeys) | **GET** /video/v1/signing-keys | List URL signing keys
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createUrlSigningKey()**](URLSigningKeysApi.md#createUrlSigningKey) | **POST** /video/v1/signing-keys | Create a URL signing key |
+| [**deleteUrlSigningKey()**](URLSigningKeysApi.md#deleteUrlSigningKey) | **DELETE** /video/v1/signing-keys/{SIGNING_KEY_ID} | Delete a URL signing key |
+| [**getUrlSigningKey()**](URLSigningKeysApi.md#getUrlSigningKey) | **GET** /video/v1/signing-keys/{SIGNING_KEY_ID} | Retrieve a URL signing key |
+| [**listUrlSigningKeys()**](URLSigningKeysApi.md#listUrlSigningKeys) | **GET** /video/v1/signing-keys | List URL signing keys |
 
 
 ## `createUrlSigningKey()`
@@ -109,9 +109,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **signing_key_id** | **string**| The ID of the signing key. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **signing_key_id** | **string**| The ID of the signing key. | |
 
 ### Return type
 
@@ -171,9 +171,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **signing_key_id** | **string**| The ID of the signing key. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **signing_key_id** | **string**| The ID of the signing key. | |
 
 ### Return type
 
@@ -234,10 +234,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
- **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **limit** | **int**| Number of items to include in the response | [optional] [default to 25] |
+| **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1] |
 
 ### Return type
 

@@ -1,13 +1,13 @@
 # MuxPhp\DirectUploadsApi
 
-All URIs are relative to https://api.mux.com.
+All URIs are relative to https://api.mux.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**cancelDirectUpload()**](DirectUploadsApi.md#cancelDirectUpload) | **PUT** /video/v1/uploads/{UPLOAD_ID}/cancel | Cancel a direct upload
-[**createDirectUpload()**](DirectUploadsApi.md#createDirectUpload) | **POST** /video/v1/uploads | Create a new direct upload URL
-[**getDirectUpload()**](DirectUploadsApi.md#getDirectUpload) | **GET** /video/v1/uploads/{UPLOAD_ID} | Retrieve a single direct upload&#39;s info
-[**listDirectUploads()**](DirectUploadsApi.md#listDirectUploads) | **GET** /video/v1/uploads | List direct uploads
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**cancelDirectUpload()**](DirectUploadsApi.md#cancelDirectUpload) | **PUT** /video/v1/uploads/{UPLOAD_ID}/cancel | Cancel a direct upload |
+| [**createDirectUpload()**](DirectUploadsApi.md#createDirectUpload) | **POST** /video/v1/uploads | Create a new direct upload URL |
+| [**getDirectUpload()**](DirectUploadsApi.md#getDirectUpload) | **GET** /video/v1/uploads/{UPLOAD_ID} | Retrieve a single direct upload&#39;s info |
+| [**listDirectUploads()**](DirectUploadsApi.md#listDirectUploads) | **GET** /video/v1/uploads | List direct uploads |
 
 
 ## `cancelDirectUpload()`
@@ -51,9 +51,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **upload_id** | **string**| ID of the Upload |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **upload_id** | **string**| ID of the Upload | |
 
 ### Return type
 
@@ -101,7 +101,17 @@ $apiInstance = new MuxPhp\Api\DirectUploadsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_upload_request = {"cors_origin":"https://example.com/","new_asset_settings":{"playback_policy":["public"],"mp4_support":"standard"}}; // \MuxPhp\Models\CreateUploadRequest
+
+// This API method wants a \MuxPhp\Models\CreateUploadRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\CreateUploadRequest" directly.
+$create_upload_request = json_decode('{"cors_origin":"https://example.com/","new_asset_settings":{"playback_policy":["public"],"mp4_support":"standard"}}',true); // \MuxPhp\Models\CreateUploadRequest
 
 try {
     $result = $apiInstance->createDirectUpload($create_upload_request);
@@ -113,9 +123,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **create_upload_request** | [**\MuxPhp\Models\CreateUploadRequest**](../Model/CreateUploadRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_upload_request** | [**\MuxPhp\Models\CreateUploadRequest**](../Model/CreateUploadRequest.md)|  | |
 
 ### Return type
 
@@ -175,9 +185,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **upload_id** | **string**| ID of the Upload |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **upload_id** | **string**| ID of the Upload | |
 
 ### Return type
 
@@ -238,10 +248,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
- **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **limit** | **int**| Number of items to include in the response | [optional] [default to 25] |
+| **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1] |
 
 ### Return type
 

@@ -85,6 +85,27 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'passthrough' => false,
+		'latency_mode' => false,
+		'reconnect_window' => false,
+		'use_slate_for_standard_latency' => false,
+		'reconnect_slate_url' => false,
+		'max_continuous_duration' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -102,6 +123,48 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -191,9 +254,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     public const LATENCY_MODE_LOW = 'low';
     public const LATENCY_MODE_REDUCED = 'reduced';
     public const LATENCY_MODE_STANDARD = 'standard';
-    
 
-    
     /**
      * Gets allowable values of the enum
      *
@@ -207,7 +268,6 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
             self::LATENCY_MODE_STANDARD,
         ];
     }
-    
 
     /**
      * Associative array for storing property values
@@ -227,12 +287,30 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['latency_mode'] = $data['latency_mode'] ?? null;
-        $this->container['reconnect_window'] = $data['reconnect_window'] ?? 60;
-        $this->container['use_slate_for_standard_latency'] = $data['use_slate_for_standard_latency'] ?? false;
-        $this->container['reconnect_slate_url'] = $data['reconnect_slate_url'] ?? null;
-        $this->container['max_continuous_duration'] = $data['max_continuous_duration'] ?? 43200;
+        $this->setIfExists('passthrough', $data ?? [], null);
+        $this->setIfExists('latency_mode', $data ?? [], null);
+        $this->setIfExists('reconnect_window', $data ?? [], 60);
+        $this->setIfExists('use_slate_for_standard_latency', $data ?? [], false);
+        $this->setIfExists('reconnect_slate_url', $data ?? [], null);
+        $this->setIfExists('max_continuous_duration', $data ?? [], 43200);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -303,6 +381,11 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setPassthrough($passthrough)
     {
+
+        if (is_null($passthrough)) {
+            throw new \InvalidArgumentException('non-nullable passthrough cannot be null');
+        }
+
         $this->container['passthrough'] = $passthrough;
 
         return $this;
@@ -337,6 +420,11 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
                 )
             );
         }
+
+        if (is_null($latency_mode)) {
+            throw new \InvalidArgumentException('non-nullable latency_mode cannot be null');
+        }
+
         $this->container['latency_mode'] = $latency_mode;
 
         return $this;
@@ -369,6 +457,11 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('invalid value for $reconnect_window when calling UpdateLiveStreamRequest., must be bigger than or equal to 0.');
         }
 
+
+        if (is_null($reconnect_window)) {
+            throw new \InvalidArgumentException('non-nullable reconnect_window cannot be null');
+        }
+
         $this->container['reconnect_window'] = $reconnect_window;
 
         return $this;
@@ -387,12 +480,17 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets use_slate_for_standard_latency
      *
-     * @param bool|null $use_slate_for_standard_latency By default, Standard Latency live streams do not have slate media inserted while waiting for live streaming software to reconnect to Mux.  Setting this to true enables slate insertion on a Standard Latency stream.
+     * @param bool|null $use_slate_for_standard_latency By default, Standard Latency live streams do not have slate media inserted while waiting for live streaming software to reconnect to Mux. Setting this to true enables slate insertion on a Standard Latency stream.
      *
      * @return self
      */
     public function setUseSlateForStandardLatency($use_slate_for_standard_latency)
     {
+
+        if (is_null($use_slate_for_standard_latency)) {
+            throw new \InvalidArgumentException('non-nullable use_slate_for_standard_latency cannot be null');
+        }
+
         $this->container['use_slate_for_standard_latency'] = $use_slate_for_standard_latency;
 
         return $this;
@@ -411,12 +509,17 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets reconnect_slate_url
      *
-     * @param string|null $reconnect_slate_url The URL of the image file that Mux should download and use as slate media during interruptions of the live stream media.  This file will be downloaded each time a new recorded asset is created from the live stream.  Set this to a blank string to clear the value so that the default slate media will be used.
+     * @param string|null $reconnect_slate_url The URL of the image file that Mux should download and use as slate media during interruptions of the live stream media. This file will be downloaded each time a new recorded asset is created from the live stream. Set this to a blank string to clear the value so that the default slate media will be used.
      *
      * @return self
      */
     public function setReconnectSlateUrl($reconnect_slate_url)
     {
+
+        if (is_null($reconnect_slate_url)) {
+            throw new \InvalidArgumentException('non-nullable reconnect_slate_url cannot be null');
+        }
+
         $this->container['reconnect_slate_url'] = $reconnect_slate_url;
 
         return $this;
@@ -449,6 +552,11 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('invalid value for $max_continuous_duration when calling UpdateLiveStreamRequest., must be bigger than or equal to 60.');
         }
 
+
+        if (is_null($max_continuous_duration)) {
+            throw new \InvalidArgumentException('non-nullable max_continuous_duration cannot be null');
+        }
+
         $this->container['max_continuous_duration'] = $max_continuous_duration;
 
         return $this;
@@ -472,7 +580,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -513,7 +622,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

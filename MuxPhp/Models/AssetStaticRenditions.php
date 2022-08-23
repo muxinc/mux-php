@@ -78,6 +78,23 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'status' => false,
+		'files' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -95,6 +112,48 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -173,9 +232,7 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
     public const STATUS_PREPARING = 'preparing';
     public const STATUS_DISABLED = 'disabled';
     public const STATUS_ERRORED = 'errored';
-    
 
-    
     /**
      * Gets allowable values of the enum
      *
@@ -190,7 +247,6 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
             self::STATUS_ERRORED,
         ];
     }
-    
 
     /**
      * Associative array for storing property values
@@ -210,8 +266,26 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['status'] = $data['status'] ?? self::STATUS_DISABLED;
-        $this->container['files'] = $data['files'] ?? null;
+        $this->setIfExists('status', $data ?? [], self::STATUS_DISABLED);
+        $this->setIfExists('files', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -276,6 +350,11 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
                 )
             );
         }
+
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+
         $this->container['status'] = $status;
 
         return $this;
@@ -300,6 +379,11 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setFiles($files)
     {
+
+        if (is_null($files)) {
+            throw new \InvalidArgumentException('non-nullable files cannot be null');
+        }
+
         $this->container['files'] = $files;
 
         return $this;
@@ -323,7 +407,8 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -364,7 +449,8 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

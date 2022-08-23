@@ -75,6 +75,10 @@ To use the Mux API, you'll need an access token and a secret. [Details on obtain
 
 Its up to you to manage your token and secret. In our examples, we read them from `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` in your environment.
 
+### Documentation note
+
+Please note that our SDK and the API documentation are generated from our OpenAPI specification. Many of the examples in our specification have JSON strings representing the sample values.  Because of this, many of the API documentation examples use the `json_encode()` function to convert that JSON string into a PHP associative array. In your own code, you can skip that step and use an associative array directly, or create a new object using the appropriate model as shown in the example below.
+
 ### Example Usage
 
 Below is a quick example of using mux-php to ingest a new Video in your Mux account.

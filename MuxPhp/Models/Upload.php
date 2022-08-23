@@ -91,6 +91,30 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'id' => false,
+		'timeout' => false,
+		'status' => false,
+		'new_asset_settings' => false,
+		'asset_id' => false,
+		'error' => false,
+		'cors_origin' => false,
+		'url' => false,
+		'test' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -108,6 +132,48 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -208,9 +274,7 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_ERRORED = 'errored';
     public const STATUS_CANCELLED = 'cancelled';
     public const STATUS_TIMED_OUT = 'timed_out';
-    
 
-    
     /**
      * Gets allowable values of the enum
      *
@@ -226,7 +290,6 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_TIMED_OUT,
         ];
     }
-    
 
     /**
      * Associative array for storing property values
@@ -246,15 +309,33 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['timeout'] = $data['timeout'] ?? 3600;
-        $this->container['status'] = $data['status'] ?? null;
-        $this->container['new_asset_settings'] = $data['new_asset_settings'] ?? null;
-        $this->container['asset_id'] = $data['asset_id'] ?? null;
-        $this->container['error'] = $data['error'] ?? null;
-        $this->container['cors_origin'] = $data['cors_origin'] ?? null;
-        $this->container['url'] = $data['url'] ?? null;
-        $this->container['test'] = $data['test'] ?? null;
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('timeout', $data ?? [], 3600);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('new_asset_settings', $data ?? [], null);
+        $this->setIfExists('asset_id', $data ?? [], null);
+        $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('cors_origin', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('test', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -317,6 +398,11 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
+
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+
         $this->container['id'] = $id;
 
         return $this;
@@ -347,6 +433,11 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if (!is_null($timeout) && ($timeout < 60)) {
             throw new \InvalidArgumentException('invalid value for $timeout when calling Upload., must be bigger than or equal to 60.');
+        }
+
+
+        if (is_null($timeout)) {
+            throw new \InvalidArgumentException('non-nullable timeout cannot be null');
         }
 
         $this->container['timeout'] = $timeout;
@@ -383,6 +474,11 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
                 )
             );
         }
+
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+
         $this->container['status'] = $status;
 
         return $this;
@@ -407,6 +503,11 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNewAssetSettings($new_asset_settings)
     {
+
+        if (is_null($new_asset_settings)) {
+            throw new \InvalidArgumentException('non-nullable new_asset_settings cannot be null');
+        }
+
         $this->container['new_asset_settings'] = $new_asset_settings;
 
         return $this;
@@ -431,6 +532,11 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAssetId($asset_id)
     {
+
+        if (is_null($asset_id)) {
+            throw new \InvalidArgumentException('non-nullable asset_id cannot be null');
+        }
+
         $this->container['asset_id'] = $asset_id;
 
         return $this;
@@ -455,6 +561,11 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setError($error)
     {
+
+        if (is_null($error)) {
+            throw new \InvalidArgumentException('non-nullable error cannot be null');
+        }
+
         $this->container['error'] = $error;
 
         return $this;
@@ -479,6 +590,11 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCorsOrigin($cors_origin)
     {
+
+        if (is_null($cors_origin)) {
+            throw new \InvalidArgumentException('non-nullable cors_origin cannot be null');
+        }
+
         $this->container['cors_origin'] = $cors_origin;
 
         return $this;
@@ -503,6 +619,11 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUrl($url)
     {
+
+        if (is_null($url)) {
+            throw new \InvalidArgumentException('non-nullable url cannot be null');
+        }
+
         $this->container['url'] = $url;
 
         return $this;
@@ -527,6 +648,11 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTest($test)
     {
+
+        if (is_null($test)) {
+            throw new \InvalidArgumentException('non-nullable test cannot be null');
+        }
+
         $this->container['test'] = $test;
 
         return $this;
@@ -550,7 +676,8 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -591,7 +718,8 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

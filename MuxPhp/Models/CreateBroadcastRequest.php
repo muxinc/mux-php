@@ -83,6 +83,26 @@ class CreateBroadcastRequest implements ModelInterface, ArrayAccess, \JsonSerial
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'passthrough' => false,
+		'live_stream_id' => false,
+		'layout' => false,
+		'background' => false,
+		'resolution' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -100,6 +120,48 @@ class CreateBroadcastRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -183,9 +245,6 @@ class CreateBroadcastRequest implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
-    
-
-    
 
     /**
      * Associative array for storing property values
@@ -205,11 +264,29 @@ class CreateBroadcastRequest implements ModelInterface, ArrayAccess, \JsonSerial
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['live_stream_id'] = $data['live_stream_id'] ?? null;
-        $this->container['layout'] = $data['layout'] ?? null;
-        $this->container['background'] = $data['background'] ?? null;
-        $this->container['resolution'] = $data['resolution'] ?? null;
+        $this->setIfExists('passthrough', $data ?? [], null);
+        $this->setIfExists('live_stream_id', $data ?? [], null);
+        $this->setIfExists('layout', $data ?? [], null);
+        $this->setIfExists('background', $data ?? [], null);
+        $this->setIfExists('resolution', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -258,6 +335,11 @@ class CreateBroadcastRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setPassthrough($passthrough)
     {
+
+        if (is_null($passthrough)) {
+            throw new \InvalidArgumentException('non-nullable passthrough cannot be null');
+        }
+
         $this->container['passthrough'] = $passthrough;
 
         return $this;
@@ -282,6 +364,11 @@ class CreateBroadcastRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setLiveStreamId($live_stream_id)
     {
+
+        if (is_null($live_stream_id)) {
+            throw new \InvalidArgumentException('non-nullable live_stream_id cannot be null');
+        }
+
         $this->container['live_stream_id'] = $live_stream_id;
 
         return $this;
@@ -306,6 +393,11 @@ class CreateBroadcastRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setLayout($layout)
     {
+
+        if (is_null($layout)) {
+            throw new \InvalidArgumentException('non-nullable layout cannot be null');
+        }
+
         $this->container['layout'] = $layout;
 
         return $this;
@@ -330,6 +422,11 @@ class CreateBroadcastRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setBackground($background)
     {
+
+        if (is_null($background)) {
+            throw new \InvalidArgumentException('non-nullable background cannot be null');
+        }
+
         $this->container['background'] = $background;
 
         return $this;
@@ -354,6 +451,11 @@ class CreateBroadcastRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setResolution($resolution)
     {
+
+        if (is_null($resolution)) {
+            throw new \InvalidArgumentException('non-nullable resolution cannot be null');
+        }
+
         $this->container['resolution'] = $resolution;
 
         return $this;
@@ -377,7 +479,8 @@ class CreateBroadcastRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -418,7 +521,8 @@ class CreateBroadcastRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

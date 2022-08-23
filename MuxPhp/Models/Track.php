@@ -103,6 +103,36 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'id' => false,
+		'type' => false,
+		'duration' => false,
+		'max_width' => false,
+		'max_height' => false,
+		'max_frame_rate' => false,
+		'max_channels' => false,
+		'max_channel_layout' => false,
+		'text_type' => false,
+		'text_source' => false,
+		'language_code' => false,
+		'name' => false,
+		'closed_captions' => false,
+		'passthrough' => false,
+		'status' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -120,6 +150,48 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -244,9 +316,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_PREPARING = 'preparing';
     public const STATUS_READY = 'ready';
     public const STATUS_ERRORED = 'errored';
-    
 
-    
     /**
      * Gets allowable values of the enum
      *
@@ -260,7 +330,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_TEXT,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -272,7 +342,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TEXT_TYPE_SUBTITLES,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -287,7 +357,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TEXT_SOURCE_GENERATED_LIVE_FINAL,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -301,7 +371,6 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_ERRORED,
         ];
     }
-    
 
     /**
      * Associative array for storing property values
@@ -321,21 +390,39 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['type'] = $data['type'] ?? null;
-        $this->container['duration'] = $data['duration'] ?? null;
-        $this->container['max_width'] = $data['max_width'] ?? null;
-        $this->container['max_height'] = $data['max_height'] ?? null;
-        $this->container['max_frame_rate'] = $data['max_frame_rate'] ?? null;
-        $this->container['max_channels'] = $data['max_channels'] ?? null;
-        $this->container['max_channel_layout'] = $data['max_channel_layout'] ?? null;
-        $this->container['text_type'] = $data['text_type'] ?? null;
-        $this->container['text_source'] = $data['text_source'] ?? null;
-        $this->container['language_code'] = $data['language_code'] ?? null;
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['closed_captions'] = $data['closed_captions'] ?? null;
-        $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['status'] = $data['status'] ?? null;
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('duration', $data ?? [], null);
+        $this->setIfExists('max_width', $data ?? [], null);
+        $this->setIfExists('max_height', $data ?? [], null);
+        $this->setIfExists('max_frame_rate', $data ?? [], null);
+        $this->setIfExists('max_channels', $data ?? [], null);
+        $this->setIfExists('max_channel_layout', $data ?? [], null);
+        $this->setIfExists('text_type', $data ?? [], null);
+        $this->setIfExists('text_source', $data ?? [], null);
+        $this->setIfExists('language_code', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('closed_captions', $data ?? [], null);
+        $this->setIfExists('passthrough', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -417,6 +504,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
+
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+
         $this->container['id'] = $id;
 
         return $this;
@@ -451,6 +543,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
                 )
             );
         }
+
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+
         $this->container['type'] = $type;
 
         return $this;
@@ -475,6 +572,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDuration($duration)
     {
+
+        if (is_null($duration)) {
+            throw new \InvalidArgumentException('non-nullable duration cannot be null');
+        }
+
         $this->container['duration'] = $duration;
 
         return $this;
@@ -499,6 +601,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaxWidth($max_width)
     {
+
+        if (is_null($max_width)) {
+            throw new \InvalidArgumentException('non-nullable max_width cannot be null');
+        }
+
         $this->container['max_width'] = $max_width;
 
         return $this;
@@ -523,6 +630,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaxHeight($max_height)
     {
+
+        if (is_null($max_height)) {
+            throw new \InvalidArgumentException('non-nullable max_height cannot be null');
+        }
+
         $this->container['max_height'] = $max_height;
 
         return $this;
@@ -547,6 +659,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaxFrameRate($max_frame_rate)
     {
+
+        if (is_null($max_frame_rate)) {
+            throw new \InvalidArgumentException('non-nullable max_frame_rate cannot be null');
+        }
+
         $this->container['max_frame_rate'] = $max_frame_rate;
 
         return $this;
@@ -571,6 +688,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaxChannels($max_channels)
     {
+
+        if (is_null($max_channels)) {
+            throw new \InvalidArgumentException('non-nullable max_channels cannot be null');
+        }
+
         $this->container['max_channels'] = $max_channels;
 
         return $this;
@@ -595,6 +717,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaxChannelLayout($max_channel_layout)
     {
+
+        if (is_null($max_channel_layout)) {
+            throw new \InvalidArgumentException('non-nullable max_channel_layout cannot be null');
+        }
+
         $this->container['max_channel_layout'] = $max_channel_layout;
 
         return $this;
@@ -629,6 +756,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
                 )
             );
         }
+
+        if (is_null($text_type)) {
+            throw new \InvalidArgumentException('non-nullable text_type cannot be null');
+        }
+
         $this->container['text_type'] = $text_type;
 
         return $this;
@@ -647,7 +779,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets text_source
      *
-     * @param string|null $text_source The source of the text contained in a Track of type `text`. Valid `text_source` values are listed below. * `uploaded`: Tracks uploaded to Mux as caption or subtitle files using the Create Asset Track API. * `embedded`: Tracks extracted from an embedded stream of CEA-608 closed captions. * `generated_live`: Tracks generated by automatic speech recognition on a live stream configured with `generated_subtitles`.  If an Asset has both `generated_live` and `generated_live_final` tracks that are `ready`, then only the `generated_live_final` track will be included during playback. * `generated_live_final`: Tracks generated by automatic speech recognition on a live stream using `generated_subtitles`. The accuracy, timing, and formatting of these subtitles is improved compared to the corresponding `generated_live` tracks. However, `generated_live_final` tracks will not be available in `ready` status until the live stream ends. If an Asset has both `generated_live` and `generated_live_final` tracks that are `ready`, then only the `generated_live_final` track will be included during playback.
+     * @param string|null $text_source The source of the text contained in a Track of type `text`. Valid `text_source` values are listed below. * `uploaded`: Tracks uploaded to Mux as caption or subtitle files using the Create Asset Track API. * `embedded`: Tracks extracted from an embedded stream of CEA-608 closed captions. * `generated_live`: Tracks generated by automatic speech recognition on a live stream configured with `generated_subtitles`. If an Asset has both `generated_live` and `generated_live_final` tracks that are `ready`, then only the `generated_live_final` track will be included during playback. * `generated_live_final`: Tracks generated by automatic speech recognition on a live stream using `generated_subtitles`. The accuracy, timing, and formatting of these subtitles is improved compared to the corresponding `generated_live` tracks. However, `generated_live_final` tracks will not be available in `ready` status until the live stream ends. If an Asset has both `generated_live` and `generated_live_final` tracks that are `ready`, then only the `generated_live_final` track will be included during playback.
      *
      * @return self
      */
@@ -663,6 +795,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
                 )
             );
         }
+
+        if (is_null($text_source)) {
+            throw new \InvalidArgumentException('non-nullable text_source cannot be null');
+        }
+
         $this->container['text_source'] = $text_source;
 
         return $this;
@@ -687,6 +824,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLanguageCode($language_code)
     {
+
+        if (is_null($language_code)) {
+            throw new \InvalidArgumentException('non-nullable language_code cannot be null');
+        }
+
         $this->container['language_code'] = $language_code;
 
         return $this;
@@ -711,6 +853,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
+
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+
         $this->container['name'] = $name;
 
         return $this;
@@ -735,6 +882,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setClosedCaptions($closed_captions)
     {
+
+        if (is_null($closed_captions)) {
+            throw new \InvalidArgumentException('non-nullable closed_captions cannot be null');
+        }
+
         $this->container['closed_captions'] = $closed_captions;
 
         return $this;
@@ -759,6 +911,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPassthrough($passthrough)
     {
+
+        if (is_null($passthrough)) {
+            throw new \InvalidArgumentException('non-nullable passthrough cannot be null');
+        }
+
         $this->container['passthrough'] = $passthrough;
 
         return $this;
@@ -793,6 +950,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
                 )
             );
         }
+
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+
         $this->container['status'] = $status;
 
         return $this;
@@ -816,7 +978,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -857,7 +1020,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

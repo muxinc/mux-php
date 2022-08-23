@@ -121,6 +121,45 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'id' => false,
+		'created_at' => false,
+		'status' => false,
+		'duration' => false,
+		'max_stored_resolution' => false,
+		'max_stored_frame_rate' => false,
+		'aspect_ratio' => false,
+		'playback_ids' => false,
+		'tracks' => false,
+		'errors' => false,
+		'per_title_encode' => false,
+		'upload_id' => false,
+		'is_live' => false,
+		'passthrough' => false,
+		'live_stream_id' => false,
+		'master' => false,
+		'master_access' => false,
+		'mp4_support' => false,
+		'source_asset_id' => false,
+		'normalize_audio' => false,
+		'static_renditions' => false,
+		'recording_times' => false,
+		'non_standard_input_reasons' => false,
+		'test' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -138,6 +177,48 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -290,9 +371,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const MASTER_ACCESS_NONE = 'none';
     public const MP4_SUPPORT_STANDARD = 'standard';
     public const MP4_SUPPORT_NONE = 'none';
-    
 
-    
     /**
      * Gets allowable values of the enum
      *
@@ -306,7 +385,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_ERRORED,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -322,7 +401,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             self::MAX_STORED_RESOLUTION_UHD,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -335,7 +414,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             self::MASTER_ACCESS_NONE,
         ];
     }
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -348,7 +427,6 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             self::MP4_SUPPORT_NONE,
         ];
     }
-    
 
     /**
      * Associative array for storing property values
@@ -368,30 +446,48 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['created_at'] = $data['created_at'] ?? null;
-        $this->container['status'] = $data['status'] ?? null;
-        $this->container['duration'] = $data['duration'] ?? null;
-        $this->container['max_stored_resolution'] = $data['max_stored_resolution'] ?? null;
-        $this->container['max_stored_frame_rate'] = $data['max_stored_frame_rate'] ?? null;
-        $this->container['aspect_ratio'] = $data['aspect_ratio'] ?? null;
-        $this->container['playback_ids'] = $data['playback_ids'] ?? null;
-        $this->container['tracks'] = $data['tracks'] ?? null;
-        $this->container['errors'] = $data['errors'] ?? null;
-        $this->container['per_title_encode'] = $data['per_title_encode'] ?? null;
-        $this->container['upload_id'] = $data['upload_id'] ?? null;
-        $this->container['is_live'] = $data['is_live'] ?? null;
-        $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['live_stream_id'] = $data['live_stream_id'] ?? null;
-        $this->container['master'] = $data['master'] ?? null;
-        $this->container['master_access'] = $data['master_access'] ?? self::MASTER_ACCESS_NONE;
-        $this->container['mp4_support'] = $data['mp4_support'] ?? self::MP4_SUPPORT_NONE;
-        $this->container['source_asset_id'] = $data['source_asset_id'] ?? null;
-        $this->container['normalize_audio'] = $data['normalize_audio'] ?? false;
-        $this->container['static_renditions'] = $data['static_renditions'] ?? null;
-        $this->container['recording_times'] = $data['recording_times'] ?? null;
-        $this->container['non_standard_input_reasons'] = $data['non_standard_input_reasons'] ?? null;
-        $this->container['test'] = $data['test'] ?? null;
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('duration', $data ?? [], null);
+        $this->setIfExists('max_stored_resolution', $data ?? [], null);
+        $this->setIfExists('max_stored_frame_rate', $data ?? [], null);
+        $this->setIfExists('aspect_ratio', $data ?? [], null);
+        $this->setIfExists('playback_ids', $data ?? [], null);
+        $this->setIfExists('tracks', $data ?? [], null);
+        $this->setIfExists('errors', $data ?? [], null);
+        $this->setIfExists('per_title_encode', $data ?? [], null);
+        $this->setIfExists('upload_id', $data ?? [], null);
+        $this->setIfExists('is_live', $data ?? [], null);
+        $this->setIfExists('passthrough', $data ?? [], null);
+        $this->setIfExists('live_stream_id', $data ?? [], null);
+        $this->setIfExists('master', $data ?? [], null);
+        $this->setIfExists('master_access', $data ?? [], self::MASTER_ACCESS_NONE);
+        $this->setIfExists('mp4_support', $data ?? [], self::MP4_SUPPORT_NONE);
+        $this->setIfExists('source_asset_id', $data ?? [], null);
+        $this->setIfExists('normalize_audio', $data ?? [], false);
+        $this->setIfExists('static_renditions', $data ?? [], null);
+        $this->setIfExists('recording_times', $data ?? [], null);
+        $this->setIfExists('non_standard_input_reasons', $data ?? [], null);
+        $this->setIfExists('test', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -473,6 +569,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
+
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+
         $this->container['id'] = $id;
 
         return $this;
@@ -497,6 +598,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreatedAt($created_at)
     {
+
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+
         $this->container['created_at'] = $created_at;
 
         return $this;
@@ -531,6 +637,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
                 )
             );
         }
+
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+
         $this->container['status'] = $status;
 
         return $this;
@@ -555,6 +666,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDuration($duration)
     {
+
+        if (is_null($duration)) {
+            throw new \InvalidArgumentException('non-nullable duration cannot be null');
+        }
+
         $this->container['duration'] = $duration;
 
         return $this;
@@ -589,6 +705,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
                 )
             );
         }
+
+        if (is_null($max_stored_resolution)) {
+            throw new \InvalidArgumentException('non-nullable max_stored_resolution cannot be null');
+        }
+
         $this->container['max_stored_resolution'] = $max_stored_resolution;
 
         return $this;
@@ -613,6 +734,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaxStoredFrameRate($max_stored_frame_rate)
     {
+
+        if (is_null($max_stored_frame_rate)) {
+            throw new \InvalidArgumentException('non-nullable max_stored_frame_rate cannot be null');
+        }
+
         $this->container['max_stored_frame_rate'] = $max_stored_frame_rate;
 
         return $this;
@@ -637,6 +763,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAspectRatio($aspect_ratio)
     {
+
+        if (is_null($aspect_ratio)) {
+            throw new \InvalidArgumentException('non-nullable aspect_ratio cannot be null');
+        }
+
         $this->container['aspect_ratio'] = $aspect_ratio;
 
         return $this;
@@ -661,6 +792,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPlaybackIds($playback_ids)
     {
+
+        if (is_null($playback_ids)) {
+            throw new \InvalidArgumentException('non-nullable playback_ids cannot be null');
+        }
+
         $this->container['playback_ids'] = $playback_ids;
 
         return $this;
@@ -685,6 +821,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTracks($tracks)
     {
+
+        if (is_null($tracks)) {
+            throw new \InvalidArgumentException('non-nullable tracks cannot be null');
+        }
+
         $this->container['tracks'] = $tracks;
 
         return $this;
@@ -709,6 +850,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setErrors($errors)
     {
+
+        if (is_null($errors)) {
+            throw new \InvalidArgumentException('non-nullable errors cannot be null');
+        }
+
         $this->container['errors'] = $errors;
 
         return $this;
@@ -718,6 +864,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets per_title_encode
      *
      * @return bool|null
+     * @deprecated
      */
     public function getPerTitleEncode()
     {
@@ -730,9 +877,15 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param bool|null $per_title_encode per_title_encode
      *
      * @return self
+     * @deprecated
      */
     public function setPerTitleEncode($per_title_encode)
     {
+
+        if (is_null($per_title_encode)) {
+            throw new \InvalidArgumentException('non-nullable per_title_encode cannot be null');
+        }
+
         $this->container['per_title_encode'] = $per_title_encode;
 
         return $this;
@@ -757,6 +910,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUploadId($upload_id)
     {
+
+        if (is_null($upload_id)) {
+            throw new \InvalidArgumentException('non-nullable upload_id cannot be null');
+        }
+
         $this->container['upload_id'] = $upload_id;
 
         return $this;
@@ -781,6 +939,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIsLive($is_live)
     {
+
+        if (is_null($is_live)) {
+            throw new \InvalidArgumentException('non-nullable is_live cannot be null');
+        }
+
         $this->container['is_live'] = $is_live;
 
         return $this;
@@ -805,6 +968,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPassthrough($passthrough)
     {
+
+        if (is_null($passthrough)) {
+            throw new \InvalidArgumentException('non-nullable passthrough cannot be null');
+        }
+
         $this->container['passthrough'] = $passthrough;
 
         return $this;
@@ -829,6 +997,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLiveStreamId($live_stream_id)
     {
+
+        if (is_null($live_stream_id)) {
+            throw new \InvalidArgumentException('non-nullable live_stream_id cannot be null');
+        }
+
         $this->container['live_stream_id'] = $live_stream_id;
 
         return $this;
@@ -853,6 +1026,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaster($master)
     {
+
+        if (is_null($master)) {
+            throw new \InvalidArgumentException('non-nullable master cannot be null');
+        }
+
         $this->container['master'] = $master;
 
         return $this;
@@ -887,6 +1065,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
                 )
             );
         }
+
+        if (is_null($master_access)) {
+            throw new \InvalidArgumentException('non-nullable master_access cannot be null');
+        }
+
         $this->container['master_access'] = $master_access;
 
         return $this;
@@ -921,6 +1104,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
                 )
             );
         }
+
+        if (is_null($mp4_support)) {
+            throw new \InvalidArgumentException('non-nullable mp4_support cannot be null');
+        }
+
         $this->container['mp4_support'] = $mp4_support;
 
         return $this;
@@ -945,6 +1133,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSourceAssetId($source_asset_id)
     {
+
+        if (is_null($source_asset_id)) {
+            throw new \InvalidArgumentException('non-nullable source_asset_id cannot be null');
+        }
+
         $this->container['source_asset_id'] = $source_asset_id;
 
         return $this;
@@ -969,6 +1162,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNormalizeAudio($normalize_audio)
     {
+
+        if (is_null($normalize_audio)) {
+            throw new \InvalidArgumentException('non-nullable normalize_audio cannot be null');
+        }
+
         $this->container['normalize_audio'] = $normalize_audio;
 
         return $this;
@@ -993,6 +1191,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStaticRenditions($static_renditions)
     {
+
+        if (is_null($static_renditions)) {
+            throw new \InvalidArgumentException('non-nullable static_renditions cannot be null');
+        }
+
         $this->container['static_renditions'] = $static_renditions;
 
         return $this;
@@ -1011,12 +1214,17 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets recording_times
      *
-     * @param \MuxPhp\Models\AssetRecordingTimes[]|null $recording_times An array of individual live stream recording sessions. A recording session is created on each encoder connection during the live stream.  Additionally any time slate media is inserted during brief interruptions in the live stream media or times when the live streaming software disconnects, a recording session representing the slate media will be added with a \"slate\" type.
+     * @param \MuxPhp\Models\AssetRecordingTimes[]|null $recording_times An array of individual live stream recording sessions. A recording session is created on each encoder connection during the live stream. Additionally any time slate media is inserted during brief interruptions in the live stream media or times when the live streaming software disconnects, a recording session representing the slate media will be added with a \"slate\" type.
      *
      * @return self
      */
     public function setRecordingTimes($recording_times)
     {
+
+        if (is_null($recording_times)) {
+            throw new \InvalidArgumentException('non-nullable recording_times cannot be null');
+        }
+
         $this->container['recording_times'] = $recording_times;
 
         return $this;
@@ -1041,6 +1249,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNonStandardInputReasons($non_standard_input_reasons)
     {
+
+        if (is_null($non_standard_input_reasons)) {
+            throw new \InvalidArgumentException('non-nullable non_standard_input_reasons cannot be null');
+        }
+
         $this->container['non_standard_input_reasons'] = $non_standard_input_reasons;
 
         return $this;
@@ -1065,6 +1278,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTest($test)
     {
+
+        if (is_null($test)) {
+            throw new \InvalidArgumentException('non-nullable test cannot be null');
+        }
+
         $this->container['test'] = $test;
 
         return $this;
@@ -1088,7 +1306,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -1129,7 +1348,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

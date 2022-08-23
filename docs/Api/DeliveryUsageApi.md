@@ -1,10 +1,10 @@
 # MuxPhp\DeliveryUsageApi
 
-All URIs are relative to https://api.mux.com.
+All URIs are relative to https://api.mux.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**listDeliveryUsage()**](DeliveryUsageApi.md#listDeliveryUsage) | **GET** /video/v1/delivery-usage | List Usage
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**listDeliveryUsage()**](DeliveryUsageApi.md#listDeliveryUsage) | **GET** /video/v1/delivery-usage | List Usage |
 
 
 ## `listDeliveryUsage()`
@@ -52,13 +52,13 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
- **limit** | **int**| Number of items to include in the response | [optional] [default to 100]
- **asset_id** | **string**| Filter response to return delivery usage for this asset only. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. | [optional]
- **live_stream_id** | **string**| Filter response to return delivery usage for assets for this live stream. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. | [optional]
- **timeframe** | [**string[]**](../Model/string.md)| Time window to get delivery usage information. timeframe[0] indicates the start time, timeframe[1] indicates the end time in seconds since the Unix epoch. Default time window is 1 hour representing usage from 13th to 12th hour from when the request is made. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1] |
+| **limit** | **int**| Number of items to include in the response | [optional] [default to 100] |
+| **asset_id** | **string**| Filter response to return delivery usage for this asset only. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. | [optional] |
+| **live_stream_id** | **string**| Filter response to return delivery usage for assets for this live stream. You cannot specify both the &#x60;asset_id&#x60; and &#x60;live_stream_id&#x60; parameters together. | [optional] |
+| **timeframe** | [**string[]**](../Model/string.md)| Time window to get delivery usage information. timeframe[0] indicates the start time, timeframe[1] indicates the end time in seconds since the Unix epoch. Default time window is 1 hour representing usage from 13th to 12th hour from when the request is made. | [optional] |
 
 ### Return type
 

@@ -83,6 +83,26 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'value' => false,
+		'negative_impact' => false,
+		'metric_value' => false,
+		'display_value' => false,
+		'concurrent_viewers' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -100,6 +120,48 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -183,9 +245,6 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
-    
-
-    
 
     /**
      * Associative array for storing property values
@@ -205,11 +264,29 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['value'] = $data['value'] ?? null;
-        $this->container['negative_impact'] = $data['negative_impact'] ?? null;
-        $this->container['metric_value'] = $data['metric_value'] ?? null;
-        $this->container['display_value'] = $data['display_value'] ?? null;
-        $this->container['concurrent_viewers'] = $data['concurrent_viewers'] ?? null;
+        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('negative_impact', $data ?? [], null);
+        $this->setIfExists('metric_value', $data ?? [], null);
+        $this->setIfExists('display_value', $data ?? [], null);
+        $this->setIfExists('concurrent_viewers', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -255,6 +332,11 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setValue($value)
     {
+
+        if (is_null($value)) {
+            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        }
+
         $this->container['value'] = $value;
 
         return $this;
@@ -279,6 +361,11 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setNegativeImpact($negative_impact)
     {
+
+        if (is_null($negative_impact)) {
+            throw new \InvalidArgumentException('non-nullable negative_impact cannot be null');
+        }
+
         $this->container['negative_impact'] = $negative_impact;
 
         return $this;
@@ -303,6 +390,11 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setMetricValue($metric_value)
     {
+
+        if (is_null($metric_value)) {
+            throw new \InvalidArgumentException('non-nullable metric_value cannot be null');
+        }
+
         $this->container['metric_value'] = $metric_value;
 
         return $this;
@@ -327,6 +419,11 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDisplayValue($display_value)
     {
+
+        if (is_null($display_value)) {
+            throw new \InvalidArgumentException('non-nullable display_value cannot be null');
+        }
+
         $this->container['display_value'] = $display_value;
 
         return $this;
@@ -351,6 +448,11 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setConcurrentViewers($concurrent_viewers)
     {
+
+        if (is_null($concurrent_viewers)) {
+            throw new \InvalidArgumentException('non-nullable concurrent_viewers cannot be null');
+        }
+
         $this->container['concurrent_viewers'] = $concurrent_viewers;
 
         return $this;
@@ -374,7 +476,8 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -415,7 +518,8 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

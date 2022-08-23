@@ -1,10 +1,10 @@
 # MuxPhp\PlaybackIDApi
 
-All URIs are relative to https://api.mux.com.
+All URIs are relative to https://api.mux.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getAssetOrLivestreamId()**](PlaybackIDApi.md#getAssetOrLivestreamId) | **GET** /video/v1/playback-ids/{PLAYBACK_ID} | Retrieve an Asset or Live Stream ID
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getAssetOrLivestreamId()**](PlaybackIDApi.md#getAssetOrLivestreamId) | **GET** /video/v1/playback-ids/{PLAYBACK_ID} | Retrieve an Asset or Live Stream ID |
 
 
 ## `getAssetOrLivestreamId()`
@@ -48,9 +48,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **playback_id** | **string**| The live stream&#39;s playback ID. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **playback_id** | **string**| The live stream&#39;s playback ID. | |
 
 ### Return type
 

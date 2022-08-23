@@ -1,14 +1,14 @@
 # MuxPhp\TranscriptionVocabulariesApi
 
-All URIs are relative to https://api.mux.com.
+All URIs are relative to https://api.mux.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createTranscriptionVocabulary()**](TranscriptionVocabulariesApi.md#createTranscriptionVocabulary) | **POST** /video/v1/transcription-vocabularies | Create a Transcription Vocabulary
-[**deleteTranscriptionVocabulary()**](TranscriptionVocabulariesApi.md#deleteTranscriptionVocabulary) | **DELETE** /video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID} | Delete a Transcription Vocabulary
-[**getTranscriptionVocabulary()**](TranscriptionVocabulariesApi.md#getTranscriptionVocabulary) | **GET** /video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID} | Retrieve a Transcription Vocabulary
-[**listTranscriptionVocabularies()**](TranscriptionVocabulariesApi.md#listTranscriptionVocabularies) | **GET** /video/v1/transcription-vocabularies | List Transcription Vocabularies
-[**updateTranscriptionVocabulary()**](TranscriptionVocabulariesApi.md#updateTranscriptionVocabulary) | **PUT** /video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID} | Update a Transcription Vocabulary
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createTranscriptionVocabulary()**](TranscriptionVocabulariesApi.md#createTranscriptionVocabulary) | **POST** /video/v1/transcription-vocabularies | Create a Transcription Vocabulary |
+| [**deleteTranscriptionVocabulary()**](TranscriptionVocabulariesApi.md#deleteTranscriptionVocabulary) | **DELETE** /video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID} | Delete a Transcription Vocabulary |
+| [**getTranscriptionVocabulary()**](TranscriptionVocabulariesApi.md#getTranscriptionVocabulary) | **GET** /video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID} | Retrieve a Transcription Vocabulary |
+| [**listTranscriptionVocabularies()**](TranscriptionVocabulariesApi.md#listTranscriptionVocabularies) | **GET** /video/v1/transcription-vocabularies | List Transcription Vocabularies |
+| [**updateTranscriptionVocabulary()**](TranscriptionVocabulariesApi.md#updateTranscriptionVocabulary) | **PUT** /video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID} | Update a Transcription Vocabulary |
 
 
 ## `createTranscriptionVocabulary()`
@@ -40,7 +40,17 @@ $apiInstance = new MuxPhp\Api\TranscriptionVocabulariesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_transcription_vocabulary_request = {"name":"Mux API Vocabulary","phrases":["Mux","Live Stream","Playback ID","video encoding"]}; // \MuxPhp\Models\CreateTranscriptionVocabularyRequest
+
+// This API method wants a \MuxPhp\Models\CreateTranscriptionVocabularyRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\CreateTranscriptionVocabularyRequest" directly.
+$create_transcription_vocabulary_request = json_decode('{"name":"Mux API Vocabulary","phrases":["Mux","Live Stream","Playback ID","video encoding"]}',true); // \MuxPhp\Models\CreateTranscriptionVocabularyRequest
 
 try {
     $result = $apiInstance->createTranscriptionVocabulary($create_transcription_vocabulary_request);
@@ -52,9 +62,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **create_transcription_vocabulary_request** | [**\MuxPhp\Models\CreateTranscriptionVocabularyRequest**](../Model/CreateTranscriptionVocabularyRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_transcription_vocabulary_request** | [**\MuxPhp\Models\CreateTranscriptionVocabularyRequest**](../Model/CreateTranscriptionVocabularyRequest.md)|  | |
 
 ### Return type
 
@@ -113,9 +123,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **transcription_vocabulary_id** | **string**| The ID of the Transcription Vocabulary. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transcription_vocabulary_id** | **string**| The ID of the Transcription Vocabulary. | |
 
 ### Return type
 
@@ -175,9 +185,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **transcription_vocabulary_id** | **string**| The ID of the Transcription Vocabulary. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transcription_vocabulary_id** | **string**| The ID of the Transcription Vocabulary. | |
 
 ### Return type
 
@@ -238,10 +248,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **int**| Number of items to include in the response | [optional] [default to 10]
- **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **limit** | **int**| Number of items to include in the response | [optional] [default to 10] |
+| **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1] |
 
 ### Return type
 
@@ -290,7 +300,17 @@ $apiInstance = new MuxPhp\Api\TranscriptionVocabulariesApi(
     $config
 );
 $transcription_vocabulary_id = 'transcription_vocabulary_id_example'; // string | The ID of the Transcription Vocabulary.
-$update_transcription_vocabulary_request = {"name":"Mux API Vocabulary - Updated","phrases":["Mux","Live Stream","RTMP","Stream Key"]}; // \MuxPhp\Models\UpdateTranscriptionVocabularyRequest
+
+// This API method wants a \MuxPhp\Models\UpdateTranscriptionVocabularyRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\UpdateTranscriptionVocabularyRequest" directly.
+$update_transcription_vocabulary_request = json_decode('{"name":"Mux API Vocabulary - Updated","phrases":["Mux","Live Stream","RTMP","Stream Key"]}',true); // \MuxPhp\Models\UpdateTranscriptionVocabularyRequest
 
 try {
     $result = $apiInstance->updateTranscriptionVocabulary($transcription_vocabulary_id, $update_transcription_vocabulary_request);
@@ -302,10 +322,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **transcription_vocabulary_id** | **string**| The ID of the Transcription Vocabulary. |
- **update_transcription_vocabulary_request** | [**\MuxPhp\Models\UpdateTranscriptionVocabularyRequest**](../Model/UpdateTranscriptionVocabularyRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transcription_vocabulary_id** | **string**| The ID of the Transcription Vocabulary. | |
+| **update_transcription_vocabulary_request** | [**\MuxPhp\Models\UpdateTranscriptionVocabularyRequest**](../Model/UpdateTranscriptionVocabularyRequest.md)|  | |
 
 ### Return type
 

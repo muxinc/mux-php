@@ -24,8 +24,15 @@
     $captionsInput = new MuxPhp\Models\InputSettings(["url" => "https://tears-of-steel-subtitles.s3.amazonaws.com/tears-fr.vtt", "type" => "text", "text_type" => "subtitles", "name" => "French", "language_code" => "fr", "closed_captions" => false]);
     $createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["input" => [$input, $captionsInput]]);
     $createAssetResponse = $assetsApi->createAsset($createAssetRequest);
+    $assetId = $createAssetResponse->getData()->getId();
     assert($createAssetResponse->getData()->getId() != null);
     print("create-asset OK ✅\n");
+
+    $updatePassthrough = ["passthrough" => "Example"];
+    $updateAssetResponse = $assetsApi->UpdateAsset($createAssetResponse->getData()->getId(),$updatePassthrough);
+    assert($updateAssetResponse->getData()->getId() != null);
+    assert($updateAssetResponse->getData()->getPassthrough() != null);
+    print("update-asset OK ✅\n");
 
     // ========== list-assets ==========
     $listAssetsResult = $assetsApi->listAssets();

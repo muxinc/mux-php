@@ -1,12 +1,12 @@
 # MuxPhp\IncidentsApi
 
-All URIs are relative to https://api.mux.com.
+All URIs are relative to https://api.mux.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getIncident()**](IncidentsApi.md#getIncident) | **GET** /data/v1/incidents/{INCIDENT_ID} | Get an Incident
-[**listIncidents()**](IncidentsApi.md#listIncidents) | **GET** /data/v1/incidents | List Incidents
-[**listRelatedIncidents()**](IncidentsApi.md#listRelatedIncidents) | **GET** /data/v1/incidents/{INCIDENT_ID}/related | List Related Incidents
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getIncident()**](IncidentsApi.md#getIncident) | **GET** /data/v1/incidents/{INCIDENT_ID} | Get an Incident |
+| [**listIncidents()**](IncidentsApi.md#listIncidents) | **GET** /data/v1/incidents | List Incidents |
+| [**listRelatedIncidents()**](IncidentsApi.md#listRelatedIncidents) | **GET** /data/v1/incidents/{INCIDENT_ID}/related | List Related Incidents |
 
 
 ## `getIncident()`
@@ -50,9 +50,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **incident_id** | **string**| ID of the Incident |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **incident_id** | **string**| ID of the Incident | |
 
 ### Return type
 
@@ -117,14 +117,14 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
- **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
- **order_by** | **string**| Value to order the results by | [optional]
- **order_direction** | **string**| Sort order. | [optional]
- **status** | **string**| Status to filter incidents by | [optional]
- **severity** | **string**| Severity to filter incidents by | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **limit** | **int**| Number of items to include in the response | [optional] [default to 25] |
+| **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1] |
+| **order_by** | **string**| Value to order the results by | [optional] |
+| **order_direction** | **string**| Sort order. | [optional] |
+| **status** | **string**| Status to filter incidents by | [optional] |
+| **severity** | **string**| Severity to filter incidents by | [optional] |
 
 ### Return type
 
@@ -188,13 +188,13 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **incident_id** | **string**| ID of the Incident |
- **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
- **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
- **order_by** | **string**| Value to order the results by | [optional]
- **order_direction** | **string**| Sort order. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **incident_id** | **string**| ID of the Incident | |
+| **limit** | **int**| Number of items to include in the response | [optional] [default to 25] |
+| **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1] |
+| **order_by** | **string**| Value to order the results by | [optional] |
+| **order_direction** | **string**| Sort order. | [optional] |
 
 ### Return type
 

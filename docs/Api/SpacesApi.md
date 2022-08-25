@@ -1,18 +1,18 @@
 # MuxPhp\SpacesApi
 
-All URIs are relative to https://api.mux.com.
+All URIs are relative to https://api.mux.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createSpace()**](SpacesApi.md#createSpace) | **POST** /video/v1/spaces | Create a space
-[**createSpaceBroadcast()**](SpacesApi.md#createSpaceBroadcast) | **POST** /video/v1/spaces/{SPACE_ID}/broadcasts | Create a space broadcast
-[**deleteSpace()**](SpacesApi.md#deleteSpace) | **DELETE** /video/v1/spaces/{SPACE_ID} | Delete a space
-[**deleteSpaceBroadcast()**](SpacesApi.md#deleteSpaceBroadcast) | **DELETE** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID} | Delete a space broadcast
-[**getSpace()**](SpacesApi.md#getSpace) | **GET** /video/v1/spaces/{SPACE_ID} | Retrieve a space
-[**getSpaceBroadcast()**](SpacesApi.md#getSpaceBroadcast) | **GET** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID} | Retrieve space broadcast
-[**listSpaces()**](SpacesApi.md#listSpaces) | **GET** /video/v1/spaces | List spaces
-[**startSpaceBroadcast()**](SpacesApi.md#startSpaceBroadcast) | **POST** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/start | Start a space broadcast
-[**stopSpaceBroadcast()**](SpacesApi.md#stopSpaceBroadcast) | **POST** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/stop | Stop a space broadcast
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createSpace()**](SpacesApi.md#createSpace) | **POST** /video/v1/spaces | Create a space |
+| [**createSpaceBroadcast()**](SpacesApi.md#createSpaceBroadcast) | **POST** /video/v1/spaces/{SPACE_ID}/broadcasts | Create a space broadcast |
+| [**deleteSpace()**](SpacesApi.md#deleteSpace) | **DELETE** /video/v1/spaces/{SPACE_ID} | Delete a space |
+| [**deleteSpaceBroadcast()**](SpacesApi.md#deleteSpaceBroadcast) | **DELETE** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID} | Delete a space broadcast |
+| [**getSpace()**](SpacesApi.md#getSpace) | **GET** /video/v1/spaces/{SPACE_ID} | Retrieve a space |
+| [**getSpaceBroadcast()**](SpacesApi.md#getSpaceBroadcast) | **GET** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID} | Retrieve space broadcast |
+| [**listSpaces()**](SpacesApi.md#listSpaces) | **GET** /video/v1/spaces | List spaces |
+| [**startSpaceBroadcast()**](SpacesApi.md#startSpaceBroadcast) | **POST** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/start | Start a space broadcast |
+| [**stopSpaceBroadcast()**](SpacesApi.md#stopSpaceBroadcast) | **POST** /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/stop | Stop a space broadcast |
 
 
 ## `createSpace()`
@@ -44,7 +44,17 @@ $apiInstance = new MuxPhp\Api\SpacesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_space_request = {"type":"server"}; // \MuxPhp\Models\CreateSpaceRequest
+
+// This API method wants a \MuxPhp\Models\CreateSpaceRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\CreateSpaceRequest" directly.
+$create_space_request = json_decode('{"type":"server"}',true); // \MuxPhp\Models\CreateSpaceRequest
 
 try {
     $result = $apiInstance->createSpace($create_space_request);
@@ -56,9 +66,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **create_space_request** | [**\MuxPhp\Models\CreateSpaceRequest**](../Model/CreateSpaceRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_space_request** | [**\MuxPhp\Models\CreateSpaceRequest**](../Model/CreateSpaceRequest.md)|  | |
 
 ### Return type
 
@@ -107,7 +117,17 @@ $apiInstance = new MuxPhp\Api\SpacesApi(
     $config
 );
 $space_id = 'space_id_example'; // string | The space ID.
-$create_broadcast_request = {"live_stream_id":"GQ9025mPqzyjOy3kKQW006qKTqmULW9vFO"}; // \MuxPhp\Models\CreateBroadcastRequest
+
+// This API method wants a \MuxPhp\Models\CreateBroadcastRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\CreateBroadcastRequest" directly.
+$create_broadcast_request = json_decode('{"live_stream_id":"GQ9025mPqzyjOy3kKQW006qKTqmULW9vFO"}',true); // \MuxPhp\Models\CreateBroadcastRequest
 
 try {
     $result = $apiInstance->createSpaceBroadcast($space_id, $create_broadcast_request);
@@ -119,10 +139,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **space_id** | **string**| The space ID. |
- **create_broadcast_request** | [**\MuxPhp\Models\CreateBroadcastRequest**](../Model/CreateBroadcastRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **space_id** | **string**| The space ID. | |
+| **create_broadcast_request** | [**\MuxPhp\Models\CreateBroadcastRequest**](../Model/CreateBroadcastRequest.md)|  | |
 
 ### Return type
 
@@ -181,9 +201,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **space_id** | **string**| The space ID. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **space_id** | **string**| The space ID. | |
 
 ### Return type
 
@@ -243,10 +263,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **space_id** | **string**| The space ID. |
- **broadcast_id** | **string**| The broadcast ID. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **space_id** | **string**| The space ID. | |
+| **broadcast_id** | **string**| The broadcast ID. | |
 
 ### Return type
 
@@ -306,9 +326,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **space_id** | **string**| The space ID. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **space_id** | **string**| The space ID. | |
 
 ### Return type
 
@@ -369,10 +389,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **space_id** | **string**| The space ID. |
- **broadcast_id** | **string**| The broadcast ID. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **space_id** | **string**| The space ID. | |
+| **broadcast_id** | **string**| The broadcast ID. | |
 
 ### Return type
 
@@ -433,10 +453,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
- **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **limit** | **int**| Number of items to include in the response | [optional] [default to 25] |
+| **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1] |
 
 ### Return type
 
@@ -497,10 +517,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **space_id** | **string**| The space ID. |
- **broadcast_id** | **string**| The broadcast ID. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **space_id** | **string**| The space ID. | |
+| **broadcast_id** | **string**| The broadcast ID. | |
 
 ### Return type
 
@@ -561,10 +581,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **space_id** | **string**| The space ID. |
- **broadcast_id** | **string**| The broadcast ID. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **space_id** | **string**| The space ID. | |
+| **broadcast_id** | **string**| The broadcast ID. | |
 
 ### Return type
 

@@ -1,11 +1,11 @@
 # MuxPhp\ExportsApi
 
-All URIs are relative to https://api.mux.com.
+All URIs are relative to https://api.mux.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**listExports()**](ExportsApi.md#listExports) | **GET** /data/v1/exports | List property video view export links
-[**listExportsViews()**](ExportsApi.md#listExportsViews) | **GET** /data/v1/exports/views | List available property view exports
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**listExports()**](ExportsApi.md#listExports) | **GET** /data/v1/exports | List property video view export links |
+| [**listExportsViews()**](ExportsApi.md#listExportsViews) | **GET** /data/v1/exports/views | List available property view exports |
 
 
 ## `listExports()`

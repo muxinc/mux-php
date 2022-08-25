@@ -115,6 +115,42 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'id' => false,
+		'created_at' => false,
+		'stream_key' => false,
+		'active_asset_id' => false,
+		'recent_asset_ids' => false,
+		'status' => false,
+		'playback_ids' => false,
+		'new_asset_settings' => false,
+		'passthrough' => false,
+		'audio_only' => false,
+		'embedded_subtitles' => false,
+		'generated_subtitles' => false,
+		'reconnect_window' => false,
+		'use_slate_for_standard_latency' => false,
+		'reconnect_slate_url' => false,
+		'reduced_latency' => false,
+		'low_latency' => false,
+		'simulcast_targets' => false,
+		'latency_mode' => false,
+		'test' => false,
+		'max_continuous_duration' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -132,6 +168,48 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -266,9 +344,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     public const LATENCY_MODE_LOW = 'low';
     public const LATENCY_MODE_REDUCED = 'reduced';
     public const LATENCY_MODE_STANDARD = 'standard';
-    
 
-    
     /**
      * Gets allowable values of the enum
      *
@@ -282,7 +358,6 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
             self::LATENCY_MODE_STANDARD,
         ];
     }
-    
 
     /**
      * Associative array for storing property values
@@ -302,27 +377,45 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['created_at'] = $data['created_at'] ?? null;
-        $this->container['stream_key'] = $data['stream_key'] ?? null;
-        $this->container['active_asset_id'] = $data['active_asset_id'] ?? null;
-        $this->container['recent_asset_ids'] = $data['recent_asset_ids'] ?? null;
-        $this->container['status'] = $data['status'] ?? null;
-        $this->container['playback_ids'] = $data['playback_ids'] ?? null;
-        $this->container['new_asset_settings'] = $data['new_asset_settings'] ?? null;
-        $this->container['passthrough'] = $data['passthrough'] ?? null;
-        $this->container['audio_only'] = $data['audio_only'] ?? null;
-        $this->container['embedded_subtitles'] = $data['embedded_subtitles'] ?? null;
-        $this->container['generated_subtitles'] = $data['generated_subtitles'] ?? null;
-        $this->container['reconnect_window'] = $data['reconnect_window'] ?? 60;
-        $this->container['use_slate_for_standard_latency'] = $data['use_slate_for_standard_latency'] ?? false;
-        $this->container['reconnect_slate_url'] = $data['reconnect_slate_url'] ?? null;
-        $this->container['reduced_latency'] = $data['reduced_latency'] ?? null;
-        $this->container['low_latency'] = $data['low_latency'] ?? null;
-        $this->container['simulcast_targets'] = $data['simulcast_targets'] ?? null;
-        $this->container['latency_mode'] = $data['latency_mode'] ?? null;
-        $this->container['test'] = $data['test'] ?? null;
-        $this->container['max_continuous_duration'] = $data['max_continuous_duration'] ?? 43200;
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('stream_key', $data ?? [], null);
+        $this->setIfExists('active_asset_id', $data ?? [], null);
+        $this->setIfExists('recent_asset_ids', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('playback_ids', $data ?? [], null);
+        $this->setIfExists('new_asset_settings', $data ?? [], null);
+        $this->setIfExists('passthrough', $data ?? [], null);
+        $this->setIfExists('audio_only', $data ?? [], null);
+        $this->setIfExists('embedded_subtitles', $data ?? [], null);
+        $this->setIfExists('generated_subtitles', $data ?? [], null);
+        $this->setIfExists('reconnect_window', $data ?? [], 60);
+        $this->setIfExists('use_slate_for_standard_latency', $data ?? [], false);
+        $this->setIfExists('reconnect_slate_url', $data ?? [], null);
+        $this->setIfExists('reduced_latency', $data ?? [], null);
+        $this->setIfExists('low_latency', $data ?? [], null);
+        $this->setIfExists('simulcast_targets', $data ?? [], null);
+        $this->setIfExists('latency_mode', $data ?? [], null);
+        $this->setIfExists('test', $data ?? [], null);
+        $this->setIfExists('max_continuous_duration', $data ?? [], 43200);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -393,6 +486,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
+
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+
         $this->container['id'] = $id;
 
         return $this;
@@ -417,6 +515,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreatedAt($created_at)
     {
+
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+
         $this->container['created_at'] = $created_at;
 
         return $this;
@@ -441,6 +544,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStreamKey($stream_key)
     {
+
+        if (is_null($stream_key)) {
+            throw new \InvalidArgumentException('non-nullable stream_key cannot be null');
+        }
+
         $this->container['stream_key'] = $stream_key;
 
         return $this;
@@ -465,6 +573,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActiveAssetId($active_asset_id)
     {
+
+        if (is_null($active_asset_id)) {
+            throw new \InvalidArgumentException('non-nullable active_asset_id cannot be null');
+        }
+
         $this->container['active_asset_id'] = $active_asset_id;
 
         return $this;
@@ -489,6 +602,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecentAssetIds($recent_asset_ids)
     {
+
+        if (is_null($recent_asset_ids)) {
+            throw new \InvalidArgumentException('non-nullable recent_asset_ids cannot be null');
+        }
+
         $this->container['recent_asset_ids'] = $recent_asset_ids;
 
         return $this;
@@ -513,6 +631,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
+
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+
         $this->container['status'] = $status;
 
         return $this;
@@ -537,6 +660,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPlaybackIds($playback_ids)
     {
+
+        if (is_null($playback_ids)) {
+            throw new \InvalidArgumentException('non-nullable playback_ids cannot be null');
+        }
+
         $this->container['playback_ids'] = $playback_ids;
 
         return $this;
@@ -561,6 +689,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNewAssetSettings($new_asset_settings)
     {
+
+        if (is_null($new_asset_settings)) {
+            throw new \InvalidArgumentException('non-nullable new_asset_settings cannot be null');
+        }
+
         $this->container['new_asset_settings'] = $new_asset_settings;
 
         return $this;
@@ -585,6 +718,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPassthrough($passthrough)
     {
+
+        if (is_null($passthrough)) {
+            throw new \InvalidArgumentException('non-nullable passthrough cannot be null');
+        }
+
         $this->container['passthrough'] = $passthrough;
 
         return $this;
@@ -609,6 +747,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAudioOnly($audio_only)
     {
+
+        if (is_null($audio_only)) {
+            throw new \InvalidArgumentException('non-nullable audio_only cannot be null');
+        }
+
         $this->container['audio_only'] = $audio_only;
 
         return $this;
@@ -633,6 +776,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmbeddedSubtitles($embedded_subtitles)
     {
+
+        if (is_null($embedded_subtitles)) {
+            throw new \InvalidArgumentException('non-nullable embedded_subtitles cannot be null');
+        }
+
         $this->container['embedded_subtitles'] = $embedded_subtitles;
 
         return $this;
@@ -657,6 +805,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGeneratedSubtitles($generated_subtitles)
     {
+
+        if (is_null($generated_subtitles)) {
+            throw new \InvalidArgumentException('non-nullable generated_subtitles cannot be null');
+        }
+
         $this->container['generated_subtitles'] = $generated_subtitles;
 
         return $this;
@@ -689,6 +842,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid value for $reconnect_window when calling LiveStream., must be bigger than or equal to 0.');
         }
 
+
+        if (is_null($reconnect_window)) {
+            throw new \InvalidArgumentException('non-nullable reconnect_window cannot be null');
+        }
+
         $this->container['reconnect_window'] = $reconnect_window;
 
         return $this;
@@ -707,12 +865,17 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets use_slate_for_standard_latency
      *
-     * @param bool|null $use_slate_for_standard_latency By default, Standard Latency live streams do not have slate media inserted while waiting for live streaming software to reconnect to Mux.  Setting this to true enables slate insertion on a Standard Latency stream.
+     * @param bool|null $use_slate_for_standard_latency By default, Standard Latency live streams do not have slate media inserted while waiting for live streaming software to reconnect to Mux. Setting this to true enables slate insertion on a Standard Latency stream.
      *
      * @return self
      */
     public function setUseSlateForStandardLatency($use_slate_for_standard_latency)
     {
+
+        if (is_null($use_slate_for_standard_latency)) {
+            throw new \InvalidArgumentException('non-nullable use_slate_for_standard_latency cannot be null');
+        }
+
         $this->container['use_slate_for_standard_latency'] = $use_slate_for_standard_latency;
 
         return $this;
@@ -731,12 +894,17 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reconnect_slate_url
      *
-     * @param string|null $reconnect_slate_url The URL of the image file that Mux should download and use as slate media during interruptions of the live stream media.  This file will be downloaded each time a new recorded asset is created from the live stream.  If this is not set, the default slate media will be used.
+     * @param string|null $reconnect_slate_url The URL of the image file that Mux should download and use as slate media during interruptions of the live stream media. This file will be downloaded each time a new recorded asset is created from the live stream. If this is not set, the default slate media will be used.
      *
      * @return self
      */
     public function setReconnectSlateUrl($reconnect_slate_url)
     {
+
+        if (is_null($reconnect_slate_url)) {
+            throw new \InvalidArgumentException('non-nullable reconnect_slate_url cannot be null');
+        }
+
         $this->container['reconnect_slate_url'] = $reconnect_slate_url;
 
         return $this;
@@ -746,6 +914,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets reduced_latency
      *
      * @return bool|null
+     * @deprecated
      */
     public function getReducedLatency()
     {
@@ -758,9 +927,15 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param bool|null $reduced_latency This field is deprecated. Please use latency_mode instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this if you want lower latency for your live stream. See the [Reduce live stream latency guide](https://docs.mux.com/guides/video/reduce-live-stream-latency) to understand the tradeoffs.
      *
      * @return self
+     * @deprecated
      */
     public function setReducedLatency($reduced_latency)
     {
+
+        if (is_null($reduced_latency)) {
+            throw new \InvalidArgumentException('non-nullable reduced_latency cannot be null');
+        }
+
         $this->container['reduced_latency'] = $reduced_latency;
 
         return $this;
@@ -770,6 +945,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets low_latency
      *
      * @return bool|null
+     * @deprecated
      */
     public function getLowLatency()
     {
@@ -782,9 +958,15 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param bool|null $low_latency This field is deprecated. Please use latency_mode instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Setting this option will enable compatibility with the LL-HLS specification for low-latency streaming. This typically has lower latency than Reduced Latency streams, and cannot be combined with Reduced Latency.
      *
      * @return self
+     * @deprecated
      */
     public function setLowLatency($low_latency)
     {
+
+        if (is_null($low_latency)) {
+            throw new \InvalidArgumentException('non-nullable low_latency cannot be null');
+        }
+
         $this->container['low_latency'] = $low_latency;
 
         return $this;
@@ -809,6 +991,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSimulcastTargets($simulcast_targets)
     {
+
+        if (is_null($simulcast_targets)) {
+            throw new \InvalidArgumentException('non-nullable simulcast_targets cannot be null');
+        }
+
         $this->container['simulcast_targets'] = $simulcast_targets;
 
         return $this;
@@ -843,6 +1030,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
                 )
             );
         }
+
+        if (is_null($latency_mode)) {
+            throw new \InvalidArgumentException('non-nullable latency_mode cannot be null');
+        }
+
         $this->container['latency_mode'] = $latency_mode;
 
         return $this;
@@ -867,6 +1059,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTest($test)
     {
+
+        if (is_null($test)) {
+            throw new \InvalidArgumentException('non-nullable test cannot be null');
+        }
+
         $this->container['test'] = $test;
 
         return $this;
@@ -899,6 +1096,11 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid value for $max_continuous_duration when calling LiveStream., must be bigger than or equal to 60.');
         }
 
+
+        if (is_null($max_continuous_duration)) {
+            throw new \InvalidArgumentException('non-nullable max_continuous_duration cannot be null');
+        }
+
         $this->container['max_continuous_duration'] = $max_continuous_duration;
 
         return $this;
@@ -922,7 +1124,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -963,7 +1166,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

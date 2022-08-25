@@ -95,6 +95,32 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'id' => false,
+		'viewer_os_family' => true,
+		'viewer_application_name' => true,
+		'video_title' => true,
+		'total_row_count' => false,
+		'player_error_message' => true,
+		'player_error_code' => true,
+		'error_type_id' => true,
+		'country_code' => true,
+		'view_start' => false,
+		'view_end' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -112,6 +138,48 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -213,9 +281,6 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
-    
-
-    
 
     /**
      * Associative array for storing property values
@@ -235,17 +300,35 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['viewer_os_family'] = $data['viewer_os_family'] ?? null;
-        $this->container['viewer_application_name'] = $data['viewer_application_name'] ?? null;
-        $this->container['video_title'] = $data['video_title'] ?? null;
-        $this->container['total_row_count'] = $data['total_row_count'] ?? null;
-        $this->container['player_error_message'] = $data['player_error_message'] ?? null;
-        $this->container['player_error_code'] = $data['player_error_code'] ?? null;
-        $this->container['error_type_id'] = $data['error_type_id'] ?? null;
-        $this->container['country_code'] = $data['country_code'] ?? null;
-        $this->container['view_start'] = $data['view_start'] ?? null;
-        $this->container['view_end'] = $data['view_end'] ?? null;
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('viewer_os_family', $data ?? [], null);
+        $this->setIfExists('viewer_application_name', $data ?? [], null);
+        $this->setIfExists('video_title', $data ?? [], null);
+        $this->setIfExists('total_row_count', $data ?? [], null);
+        $this->setIfExists('player_error_message', $data ?? [], null);
+        $this->setIfExists('player_error_code', $data ?? [], null);
+        $this->setIfExists('error_type_id', $data ?? [], null);
+        $this->setIfExists('country_code', $data ?? [], null);
+        $this->setIfExists('view_start', $data ?? [], null);
+        $this->setIfExists('view_end', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -291,6 +374,11 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setId($id)
     {
+
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+
         $this->container['id'] = $id;
 
         return $this;
@@ -315,6 +403,18 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setViewerOsFamily($viewer_os_family)
     {
+
+        if (is_null($viewer_os_family)) {
+            array_push($this->openAPINullablesSetToNull, 'viewer_os_family');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('viewer_os_family', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
         $this->container['viewer_os_family'] = $viewer_os_family;
 
         return $this;
@@ -339,6 +439,18 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setViewerApplicationName($viewer_application_name)
     {
+
+        if (is_null($viewer_application_name)) {
+            array_push($this->openAPINullablesSetToNull, 'viewer_application_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('viewer_application_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
         $this->container['viewer_application_name'] = $viewer_application_name;
 
         return $this;
@@ -363,6 +475,18 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setVideoTitle($video_title)
     {
+
+        if (is_null($video_title)) {
+            array_push($this->openAPINullablesSetToNull, 'video_title');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('video_title', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
         $this->container['video_title'] = $video_title;
 
         return $this;
@@ -387,6 +511,11 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setTotalRowCount($total_row_count)
     {
+
+        if (is_null($total_row_count)) {
+            throw new \InvalidArgumentException('non-nullable total_row_count cannot be null');
+        }
+
         $this->container['total_row_count'] = $total_row_count;
 
         return $this;
@@ -411,6 +540,18 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setPlayerErrorMessage($player_error_message)
     {
+
+        if (is_null($player_error_message)) {
+            array_push($this->openAPINullablesSetToNull, 'player_error_message');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('player_error_message', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
         $this->container['player_error_message'] = $player_error_message;
 
         return $this;
@@ -435,6 +576,18 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setPlayerErrorCode($player_error_code)
     {
+
+        if (is_null($player_error_code)) {
+            array_push($this->openAPINullablesSetToNull, 'player_error_code');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('player_error_code', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
         $this->container['player_error_code'] = $player_error_code;
 
         return $this;
@@ -459,6 +612,18 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setErrorTypeId($error_type_id)
     {
+
+        if (is_null($error_type_id)) {
+            array_push($this->openAPINullablesSetToNull, 'error_type_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('error_type_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
         $this->container['error_type_id'] = $error_type_id;
 
         return $this;
@@ -483,6 +648,18 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setCountryCode($country_code)
     {
+
+        if (is_null($country_code)) {
+            array_push($this->openAPINullablesSetToNull, 'country_code');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('country_code', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
         $this->container['country_code'] = $country_code;
 
         return $this;
@@ -507,6 +684,11 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setViewStart($view_start)
     {
+
+        if (is_null($view_start)) {
+            throw new \InvalidArgumentException('non-nullable view_start cannot be null');
+        }
+
         $this->container['view_start'] = $view_start;
 
         return $this;
@@ -531,6 +713,11 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setViewEnd($view_end)
     {
+
+        if (is_null($view_end)) {
+            throw new \InvalidArgumentException('non-nullable view_end cannot be null');
+        }
+
         $this->container['view_end'] = $view_end;
 
         return $this;
@@ -554,7 +741,8 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @return mixed|null
      */
-    public function offsetGet($offset): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
     }
@@ -595,7 +783,8 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize(): mixed
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

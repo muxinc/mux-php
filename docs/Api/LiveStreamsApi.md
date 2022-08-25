@@ -1,26 +1,26 @@
 # MuxPhp\LiveStreamsApi
 
-All URIs are relative to https://api.mux.com.
+All URIs are relative to https://api.mux.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createLiveStream()**](LiveStreamsApi.md#createLiveStream) | **POST** /video/v1/live-streams | Create a live stream
-[**createLiveStreamPlaybackId()**](LiveStreamsApi.md#createLiveStreamPlaybackId) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids | Create a live stream playback ID
-[**createLiveStreamSimulcastTarget()**](LiveStreamsApi.md#createLiveStreamSimulcastTarget) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets | Create a live stream simulcast target
-[**deleteLiveStream()**](LiveStreamsApi.md#deleteLiveStream) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID} | Delete a live stream
-[**deleteLiveStreamPlaybackId()**](LiveStreamsApi.md#deleteLiveStreamPlaybackId) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Delete a live stream playback ID
-[**deleteLiveStreamSimulcastTarget()**](LiveStreamsApi.md#deleteLiveStreamSimulcastTarget) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Delete a Live Stream Simulcast Target
-[**disableLiveStream()**](LiveStreamsApi.md#disableLiveStream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/disable | Disable a live stream
-[**enableLiveStream()**](LiveStreamsApi.md#enableLiveStream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/enable | Enable a live stream
-[**getLiveStream()**](LiveStreamsApi.md#getLiveStream) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID} | Retrieve a live stream
-[**getLiveStreamPlaybackId()**](LiveStreamsApi.md#getLiveStreamPlaybackId) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Retrieve a live stream playback ID
-[**getLiveStreamSimulcastTarget()**](LiveStreamsApi.md#getLiveStreamSimulcastTarget) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Retrieve a Live Stream Simulcast Target
-[**listLiveStreams()**](LiveStreamsApi.md#listLiveStreams) | **GET** /video/v1/live-streams | List live streams
-[**resetStreamKey()**](LiveStreamsApi.md#resetStreamKey) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key | Reset a live stream&#39;s stream key
-[**signalLiveStreamComplete()**](LiveStreamsApi.md#signalLiveStreamComplete) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/complete | Signal a live stream is finished
-[**updateLiveStream()**](LiveStreamsApi.md#updateLiveStream) | **PATCH** /video/v1/live-streams/{LIVE_STREAM_ID} | Update a live stream
-[**updateLiveStreamEmbeddedSubtitles()**](LiveStreamsApi.md#updateLiveStreamEmbeddedSubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles | Update a live stream&#39;s embedded subtitles
-[**updateLiveStreamGeneratedSubtitles()**](LiveStreamsApi.md#updateLiveStreamGeneratedSubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles | Update a live stream&#39;s generated subtitles
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createLiveStream()**](LiveStreamsApi.md#createLiveStream) | **POST** /video/v1/live-streams | Create a live stream |
+| [**createLiveStreamPlaybackId()**](LiveStreamsApi.md#createLiveStreamPlaybackId) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids | Create a live stream playback ID |
+| [**createLiveStreamSimulcastTarget()**](LiveStreamsApi.md#createLiveStreamSimulcastTarget) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets | Create a live stream simulcast target |
+| [**deleteLiveStream()**](LiveStreamsApi.md#deleteLiveStream) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID} | Delete a live stream |
+| [**deleteLiveStreamPlaybackId()**](LiveStreamsApi.md#deleteLiveStreamPlaybackId) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Delete a live stream playback ID |
+| [**deleteLiveStreamSimulcastTarget()**](LiveStreamsApi.md#deleteLiveStreamSimulcastTarget) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Delete a Live Stream Simulcast Target |
+| [**disableLiveStream()**](LiveStreamsApi.md#disableLiveStream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/disable | Disable a live stream |
+| [**enableLiveStream()**](LiveStreamsApi.md#enableLiveStream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/enable | Enable a live stream |
+| [**getLiveStream()**](LiveStreamsApi.md#getLiveStream) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID} | Retrieve a live stream |
+| [**getLiveStreamPlaybackId()**](LiveStreamsApi.md#getLiveStreamPlaybackId) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Retrieve a live stream playback ID |
+| [**getLiveStreamSimulcastTarget()**](LiveStreamsApi.md#getLiveStreamSimulcastTarget) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Retrieve a Live Stream Simulcast Target |
+| [**listLiveStreams()**](LiveStreamsApi.md#listLiveStreams) | **GET** /video/v1/live-streams | List live streams |
+| [**resetStreamKey()**](LiveStreamsApi.md#resetStreamKey) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key | Reset a live stream&#39;s stream key |
+| [**signalLiveStreamComplete()**](LiveStreamsApi.md#signalLiveStreamComplete) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/complete | Signal a live stream is finished |
+| [**updateLiveStream()**](LiveStreamsApi.md#updateLiveStream) | **PATCH** /video/v1/live-streams/{LIVE_STREAM_ID} | Update a live stream |
+| [**updateLiveStreamEmbeddedSubtitles()**](LiveStreamsApi.md#updateLiveStreamEmbeddedSubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles | Update a live stream&#39;s embedded subtitles |
+| [**updateLiveStreamGeneratedSubtitles()**](LiveStreamsApi.md#updateLiveStreamGeneratedSubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles | Update a live stream&#39;s generated subtitles |
 
 
 ## `createLiveStream()`
@@ -52,7 +52,17 @@ $apiInstance = new MuxPhp\Api\LiveStreamsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_live_stream_request = {"playback_policy":["public"],"new_asset_settings":{"playback_policy":["public"]}}; // \MuxPhp\Models\CreateLiveStreamRequest
+
+// This API method wants a \MuxPhp\Models\CreateLiveStreamRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\CreateLiveStreamRequest" directly.
+$create_live_stream_request = json_decode('{"playback_policy":["public"],"new_asset_settings":{"playback_policy":["public"]}}',true); // \MuxPhp\Models\CreateLiveStreamRequest
 
 try {
     $result = $apiInstance->createLiveStream($create_live_stream_request);
@@ -64,9 +74,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **create_live_stream_request** | [**\MuxPhp\Models\CreateLiveStreamRequest**](../Model/CreateLiveStreamRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_live_stream_request** | [**\MuxPhp\Models\CreateLiveStreamRequest**](../Model/CreateLiveStreamRequest.md)|  | |
 
 ### Return type
 
@@ -115,7 +125,17 @@ $apiInstance = new MuxPhp\Api\LiveStreamsApi(
     $config
 );
 $live_stream_id = 'live_stream_id_example'; // string | The live stream ID
-$create_playback_id_request = {"policy":"signed"}; // \MuxPhp\Models\CreatePlaybackIDRequest
+
+// This API method wants a \MuxPhp\Models\CreatePlaybackIDRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\CreatePlaybackIDRequest" directly.
+$create_playback_id_request = json_decode('{"policy":"signed"}',true); // \MuxPhp\Models\CreatePlaybackIDRequest
 
 try {
     $result = $apiInstance->createLiveStreamPlaybackId($live_stream_id, $create_playback_id_request);
@@ -127,10 +147,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
- **create_playback_id_request** | [**\MuxPhp\Models\CreatePlaybackIDRequest**](../Model/CreatePlaybackIDRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
+| **create_playback_id_request** | [**\MuxPhp\Models\CreatePlaybackIDRequest**](../Model/CreatePlaybackIDRequest.md)|  | |
 
 ### Return type
 
@@ -179,7 +199,17 @@ $apiInstance = new MuxPhp\Api\LiveStreamsApi(
     $config
 );
 $live_stream_id = 'live_stream_id_example'; // string | The live stream ID
-$create_simulcast_target_request = {"url":"rtmp://live.example.com/app","stream_key":"abcdefgh","passthrough":"Example"}; // \MuxPhp\Models\CreateSimulcastTargetRequest
+
+// This API method wants a \MuxPhp\Models\CreateSimulcastTargetRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\CreateSimulcastTargetRequest" directly.
+$create_simulcast_target_request = json_decode('{"url":"rtmp://live.example.com/app","stream_key":"abcdefgh","passthrough":"Example"}',true); // \MuxPhp\Models\CreateSimulcastTargetRequest
 
 try {
     $result = $apiInstance->createLiveStreamSimulcastTarget($live_stream_id, $create_simulcast_target_request);
@@ -191,10 +221,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
- **create_simulcast_target_request** | [**\MuxPhp\Models\CreateSimulcastTargetRequest**](../Model/CreateSimulcastTargetRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
+| **create_simulcast_target_request** | [**\MuxPhp\Models\CreateSimulcastTargetRequest**](../Model/CreateSimulcastTargetRequest.md)|  | |
 
 ### Return type
 
@@ -253,9 +283,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
 
 ### Return type
 
@@ -315,10 +345,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
- **playback_id** | **string**| The live stream&#39;s playback ID. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
+| **playback_id** | **string**| The live stream&#39;s playback ID. | |
 
 ### Return type
 
@@ -378,10 +408,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
- **simulcast_target_id** | **string**| The ID of the simulcast target. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
+| **simulcast_target_id** | **string**| The ID of the simulcast target. | |
 
 ### Return type
 
@@ -441,9 +471,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
 
 ### Return type
 
@@ -503,9 +533,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
 
 ### Return type
 
@@ -565,9 +595,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
 
 ### Return type
 
@@ -628,10 +658,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
- **playback_id** | **string**| The live stream&#39;s playback ID. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
+| **playback_id** | **string**| The live stream&#39;s playback ID. | |
 
 ### Return type
 
@@ -692,10 +722,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
- **simulcast_target_id** | **string**| The ID of the simulcast target. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
+| **simulcast_target_id** | **string**| The ID of the simulcast target. | |
 
 ### Return type
 
@@ -758,12 +788,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **int**| Number of items to include in the response | [optional] [default to 25]
- **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1]
- **stream_key** | **string**| Filter response to return live stream for this stream key only | [optional]
- **status** | [**\MuxPhp\Models\LiveStreamStatus**](../Model/.md)| Filter response to return live streams with the specified status only | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **limit** | **int**| Number of items to include in the response | [optional] [default to 25] |
+| **page** | **int**| Offset by this many pages, of the size of &#x60;limit&#x60; | [optional] [default to 1] |
+| **stream_key** | **string**| Filter response to return live stream for this stream key only | [optional] |
+| **status** | [**\MuxPhp\Models\LiveStreamStatus**](../Model/.md)| Filter response to return live streams with the specified status only | [optional] |
 
 ### Return type
 
@@ -823,9 +853,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
 
 ### Return type
 
@@ -885,9 +915,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
 
 ### Return type
 
@@ -936,7 +966,17 @@ $apiInstance = new MuxPhp\Api\LiveStreamsApi(
     $config
 );
 $live_stream_id = 'live_stream_id_example'; // string | The live stream ID
-$update_live_stream_request = {"latency_mode":"standard","reconnect_window":30,"max_continuous_duration":1200}; // \MuxPhp\Models\UpdateLiveStreamRequest
+
+// This API method wants a \MuxPhp\Models\UpdateLiveStreamRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\UpdateLiveStreamRequest" directly.
+$update_live_stream_request = json_decode('{"latency_mode":"standard","reconnect_window":30,"max_continuous_duration":1200}',true); // \MuxPhp\Models\UpdateLiveStreamRequest
 
 try {
     $result = $apiInstance->updateLiveStream($live_stream_id, $update_live_stream_request);
@@ -948,10 +988,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
- **update_live_stream_request** | [**\MuxPhp\Models\UpdateLiveStreamRequest**](../Model/UpdateLiveStreamRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
+| **update_live_stream_request** | [**\MuxPhp\Models\UpdateLiveStreamRequest**](../Model/UpdateLiveStreamRequest.md)|  | |
 
 ### Return type
 
@@ -1000,7 +1040,17 @@ $apiInstance = new MuxPhp\Api\LiveStreamsApi(
     $config
 );
 $live_stream_id = 'live_stream_id_example'; // string | The live stream ID
-$update_live_stream_embedded_subtitles_request = {"embedded_subtitles":[{"passthrough":"Example"}]}; // \MuxPhp\Models\UpdateLiveStreamEmbeddedSubtitlesRequest
+
+// This API method wants a \MuxPhp\Models\UpdateLiveStreamEmbeddedSubtitlesRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\UpdateLiveStreamEmbeddedSubtitlesRequest" directly.
+$update_live_stream_embedded_subtitles_request = json_decode('{"embedded_subtitles":[{"passthrough":"Example"}]}',true); // \MuxPhp\Models\UpdateLiveStreamEmbeddedSubtitlesRequest
 
 try {
     $result = $apiInstance->updateLiveStreamEmbeddedSubtitles($live_stream_id, $update_live_stream_embedded_subtitles_request);
@@ -1012,10 +1062,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
- **update_live_stream_embedded_subtitles_request** | [**\MuxPhp\Models\UpdateLiveStreamEmbeddedSubtitlesRequest**](../Model/UpdateLiveStreamEmbeddedSubtitlesRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
+| **update_live_stream_embedded_subtitles_request** | [**\MuxPhp\Models\UpdateLiveStreamEmbeddedSubtitlesRequest**](../Model/UpdateLiveStreamEmbeddedSubtitlesRequest.md)|  | |
 
 ### Return type
 
@@ -1064,7 +1114,17 @@ $apiInstance = new MuxPhp\Api\LiveStreamsApi(
     $config
 );
 $live_stream_id = 'live_stream_id_example'; // string | The live stream ID
-$update_live_stream_generated_subtitles_request = {"generated_subtitles":[{"name":"English CC (ASR)","language":"en","passthrough":"Example"}]}; // \MuxPhp\Models\UpdateLiveStreamGeneratedSubtitlesRequest
+
+// This API method wants a \MuxPhp\Models\UpdateLiveStreamGeneratedSubtitlesRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\UpdateLiveStreamGeneratedSubtitlesRequest" directly.
+$update_live_stream_generated_subtitles_request = json_decode('{"generated_subtitles":[{"name":"English CC (ASR)","language":"en","passthrough":"Example"}]}',true); // \MuxPhp\Models\UpdateLiveStreamGeneratedSubtitlesRequest
 
 try {
     $result = $apiInstance->updateLiveStreamGeneratedSubtitles($live_stream_id, $update_live_stream_generated_subtitles_request);
@@ -1076,10 +1136,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **live_stream_id** | **string**| The live stream ID |
- **update_live_stream_generated_subtitles_request** | [**\MuxPhp\Models\UpdateLiveStreamGeneratedSubtitlesRequest**](../Model/UpdateLiveStreamGeneratedSubtitlesRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
+| **update_live_stream_generated_subtitles_request** | [**\MuxPhp\Models\UpdateLiveStreamGeneratedSubtitlesRequest**](../Model/UpdateLiveStreamGeneratedSubtitlesRequest.md)|  | |
 
 ### Return type
 

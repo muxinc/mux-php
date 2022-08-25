@@ -722,7 +722,7 @@ $asset_id = 'asset_id_example'; // string | The asset ID.
 //
 // In your own code you should use an associative array, or
 // use a "new \MuxPhp\Models\UpdateAssetRequest" directly.
-$update_asset_request = json_decode('{"passthrough":"Example2"}',true); // \MuxPhp\Models\UpdateAssetRequest
+$update_asset_request = json_decode('{"passthrough":"Example"}',true); // \MuxPhp\Models\UpdateAssetRequest
 
 try {
     $result = $apiInstance->updateAsset($asset_id, $update_asset_request);

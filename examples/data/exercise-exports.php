@@ -16,7 +16,7 @@
     );
 
     // ========== list-exports ==========
-    $exports = $exportsApi->listExports();
+    $exports = $exportsApi->listExportsViews();
     assert($exports->getData() != null);
     assert($exports->getData()[0] != null);
     print("list-exports OK ✅\n");

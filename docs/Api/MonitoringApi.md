@@ -1,25 +1,25 @@
-# MuxPhp\RealTimeApi
+# MuxPhp\MonitoringApi
 
 All URIs are relative to https://api.mux.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**getRealtimeBreakdown()**](RealTimeApi.md#getRealtimeBreakdown) | **GET** /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/breakdown | Get Real-Time Breakdown |
-| [**getRealtimeHistogramTimeseries()**](RealTimeApi.md#getRealtimeHistogramTimeseries) | **GET** /data/v1/realtime/metrics/{REALTIME_HISTOGRAM_METRIC_ID}/histogram-timeseries | Get Real-Time Histogram Timeseries |
-| [**getRealtimeTimeseries()**](RealTimeApi.md#getRealtimeTimeseries) | **GET** /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/timeseries | Get Real-Time Timeseries |
-| [**listRealtimeDimensions()**](RealTimeApi.md#listRealtimeDimensions) | **GET** /data/v1/realtime/dimensions | List Real-Time Dimensions |
-| [**listRealtimeMetrics()**](RealTimeApi.md#listRealtimeMetrics) | **GET** /data/v1/realtime/metrics | List Real-Time Metrics |
+| [**getMonitoringBreakdown()**](MonitoringApi.md#getMonitoringBreakdown) | **GET** /data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/breakdown | Get Monitoring Breakdown |
+| [**getMonitoringHistogramTimeseries()**](MonitoringApi.md#getMonitoringHistogramTimeseries) | **GET** /data/v1/monitoring/metrics/{MONITORING_HISTOGRAM_METRIC_ID}/histogram-timeseries | Get Monitoring Histogram Timeseries |
+| [**getMonitoringTimeseries()**](MonitoringApi.md#getMonitoringTimeseries) | **GET** /data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/timeseries | Get Monitoring Timeseries |
+| [**listMonitoringDimensions()**](MonitoringApi.md#listMonitoringDimensions) | **GET** /data/v1/monitoring/dimensions | List Monitoring Dimensions |
+| [**listMonitoringMetrics()**](MonitoringApi.md#listMonitoringMetrics) | **GET** /data/v1/monitoring/metrics | List Monitoring Metrics |
 
 
-## `getRealtimeBreakdown()`
+## `getMonitoringBreakdown()`
 
 ```php
-getRealtimeBreakdown($realtime_metric_id, $dimension, $timestamp, $filters, $order_by, $order_direction): \MuxPhp\Models\GetRealTimeBreakdownResponse
+getMonitoringBreakdown($monitoring_metric_id, $dimension, $timestamp, $filters, $order_by, $order_direction): \MuxPhp\Models\GetMonitoringBreakdownResponse
 ```
 
-Get Real-Time Breakdown
+Get Monitoring Breakdown
 
-Gets breakdown information for a specific dimension and metric along with the number of concurrent viewers and negative impact score. This API is now deprecated, please use the `Get Monitoring Breakdown` API.
+Gets breakdown information for a specific dimension and metric along with the number of concurrent viewers and negative impact score.
 
 ### Example
 
@@ -34,13 +34,13 @@ $config = MuxPhp\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new MuxPhp\Api\RealTimeApi(
+$apiInstance = new MuxPhp\Api\MonitoringApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$realtime_metric_id = current-concurrent-viewers; // string | ID of the Realtime Metric
+$monitoring_metric_id = current-concurrent-viewers; // string | ID of the Monitoring Metric
 $dimension = 'dimension_example'; // string | Dimension the specified value belongs to
 $timestamp = 56; // int | Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp.
 $filters = array('filters_example'); // string[] | Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a `!` character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * `filters[]=operating_system:windows&filters[]=!country:US`
@@ -48,10 +48,10 @@ $order_by = 'order_by_example'; // string | Value to order the results by
 $order_direction = 'order_direction_example'; // string | Sort order.
 
 try {
-    $result = $apiInstance->getRealtimeBreakdown($realtime_metric_id, $dimension, $timestamp, $filters, $order_by, $order_direction);
+    $result = $apiInstance->getMonitoringBreakdown($monitoring_metric_id, $dimension, $timestamp, $filters, $order_by, $order_direction);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling RealTimeApi->getRealtimeBreakdown: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MonitoringApi->getMonitoringBreakdown: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -59,7 +59,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **realtime_metric_id** | **string**| ID of the Realtime Metric | |
+| **monitoring_metric_id** | **string**| ID of the Monitoring Metric | |
 | **dimension** | **string**| Dimension the specified value belongs to | [optional] |
 | **timestamp** | **int**| Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. | [optional] |
 | **filters** | [**string[]**](../Model/string.md)| Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; | [optional] |
@@ -68,7 +68,7 @@ try {
 
 ### Return type
 
-[**\MuxPhp\Models\GetRealTimeBreakdownResponse**](../Model/GetRealTimeBreakdownResponse.md)
+[**\MuxPhp\Models\GetMonitoringBreakdownResponse**](../Model/GetMonitoringBreakdownResponse.md)
 
 ### Authorization
 
@@ -83,15 +83,15 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getRealtimeHistogramTimeseries()`
+## `getMonitoringHistogramTimeseries()`
 
 ```php
-getRealtimeHistogramTimeseries($realtime_histogram_metric_id, $filters): \MuxPhp\Models\GetRealTimeHistogramTimeseriesResponse
+getMonitoringHistogramTimeseries($monitoring_histogram_metric_id, $filters): \MuxPhp\Models\GetMonitoringHistogramTimeseriesResponse
 ```
 
-Get Real-Time Histogram Timeseries
+Get Monitoring Histogram Timeseries
 
-Gets histogram timeseries information for a specific metric. This API is now deprecated, please use the `Get Monitoring Histogram Timeseries` API.
+Gets histogram timeseries information for a specific metric.
 
 ### Example
 
@@ -106,20 +106,20 @@ $config = MuxPhp\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new MuxPhp\Api\RealTimeApi(
+$apiInstance = new MuxPhp\Api\MonitoringApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$realtime_histogram_metric_id = video-startup-time; // string | ID of the Realtime Histogram Metric
+$monitoring_histogram_metric_id = video-startup-time; // string | ID of the Monitoring Histogram Metric
 $filters = array('filters_example'); // string[] | Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a `!` character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * `filters[]=operating_system:windows&filters[]=!country:US`
 
 try {
-    $result = $apiInstance->getRealtimeHistogramTimeseries($realtime_histogram_metric_id, $filters);
+    $result = $apiInstance->getMonitoringHistogramTimeseries($monitoring_histogram_metric_id, $filters);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling RealTimeApi->getRealtimeHistogramTimeseries: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MonitoringApi->getMonitoringHistogramTimeseries: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -127,12 +127,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **realtime_histogram_metric_id** | **string**| ID of the Realtime Histogram Metric | |
+| **monitoring_histogram_metric_id** | **string**| ID of the Monitoring Histogram Metric | |
 | **filters** | [**string[]**](../Model/string.md)| Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; | [optional] |
 
 ### Return type
 
-[**\MuxPhp\Models\GetRealTimeHistogramTimeseriesResponse**](../Model/GetRealTimeHistogramTimeseriesResponse.md)
+[**\MuxPhp\Models\GetMonitoringHistogramTimeseriesResponse**](../Model/GetMonitoringHistogramTimeseriesResponse.md)
 
 ### Authorization
 
@@ -147,15 +147,15 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getRealtimeTimeseries()`
+## `getMonitoringTimeseries()`
 
 ```php
-getRealtimeTimeseries($realtime_metric_id, $filters): \MuxPhp\Models\GetRealTimeTimeseriesResponse
+getMonitoringTimeseries($monitoring_metric_id, $filters): \MuxPhp\Models\GetMonitoringTimeseriesResponse
 ```
 
-Get Real-Time Timeseries
+Get Monitoring Timeseries
 
-Gets Time series information for a specific metric along with the number of concurrent viewers. This API is now deprecated, please use the `Get Monitoring Timeseries` API.
+Gets Time series information for a specific metric along with the number of concurrent viewers.
 
 ### Example
 
@@ -170,20 +170,20 @@ $config = MuxPhp\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new MuxPhp\Api\RealTimeApi(
+$apiInstance = new MuxPhp\Api\MonitoringApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$realtime_metric_id = current-concurrent-viewers; // string | ID of the Realtime Metric
+$monitoring_metric_id = current-concurrent-viewers; // string | ID of the Monitoring Metric
 $filters = array('filters_example'); // string[] | Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a `!` character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * `filters[]=operating_system:windows&filters[]=!country:US`
 
 try {
-    $result = $apiInstance->getRealtimeTimeseries($realtime_metric_id, $filters);
+    $result = $apiInstance->getMonitoringTimeseries($monitoring_metric_id, $filters);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling RealTimeApi->getRealtimeTimeseries: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MonitoringApi->getMonitoringTimeseries: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -191,12 +191,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **realtime_metric_id** | **string**| ID of the Realtime Metric | |
+| **monitoring_metric_id** | **string**| ID of the Monitoring Metric | |
 | **filters** | [**string[]**](../Model/string.md)| Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; | [optional] |
 
 ### Return type
 
-[**\MuxPhp\Models\GetRealTimeTimeseriesResponse**](../Model/GetRealTimeTimeseriesResponse.md)
+[**\MuxPhp\Models\GetMonitoringTimeseriesResponse**](../Model/GetMonitoringTimeseriesResponse.md)
 
 ### Authorization
 
@@ -211,15 +211,15 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `listRealtimeDimensions()`
+## `listMonitoringDimensions()`
 
 ```php
-listRealtimeDimensions(): \MuxPhp\Models\ListRealTimeDimensionsResponse
+listMonitoringDimensions(): \MuxPhp\Models\ListMonitoringDimensionsResponse
 ```
 
-List Real-Time Dimensions
+List Monitoring Dimensions
 
-Lists available real-time dimensions. This API is now deprecated, please use the `List Monitoring Dimensions` API.
+Lists available monitoring dimensions.
 
 ### Example
 
@@ -234,7 +234,7 @@ $config = MuxPhp\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new MuxPhp\Api\RealTimeApi(
+$apiInstance = new MuxPhp\Api\MonitoringApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -242,10 +242,10 @@ $apiInstance = new MuxPhp\Api\RealTimeApi(
 );
 
 try {
-    $result = $apiInstance->listRealtimeDimensions();
+    $result = $apiInstance->listMonitoringDimensions();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling RealTimeApi->listRealtimeDimensions: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MonitoringApi->listMonitoringDimensions: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -255,7 +255,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MuxPhp\Models\ListRealTimeDimensionsResponse**](../Model/ListRealTimeDimensionsResponse.md)
+[**\MuxPhp\Models\ListMonitoringDimensionsResponse**](../Model/ListMonitoringDimensionsResponse.md)
 
 ### Authorization
 
@@ -270,15 +270,15 @@ This endpoint does not need any parameter.
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `listRealtimeMetrics()`
+## `listMonitoringMetrics()`
 
 ```php
-listRealtimeMetrics(): \MuxPhp\Models\ListRealTimeMetricsResponse
+listMonitoringMetrics(): \MuxPhp\Models\ListMonitoringMetricsResponse
 ```
 
-List Real-Time Metrics
+List Monitoring Metrics
 
-Lists available real-time metrics. This API is now deprecated, please use the `List Monitoring Metrics` API.
+Lists available monitoring metrics.
 
 ### Example
 
@@ -293,7 +293,7 @@ $config = MuxPhp\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new MuxPhp\Api\RealTimeApi(
+$apiInstance = new MuxPhp\Api\MonitoringApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -301,10 +301,10 @@ $apiInstance = new MuxPhp\Api\RealTimeApi(
 );
 
 try {
-    $result = $apiInstance->listRealtimeMetrics();
+    $result = $apiInstance->listMonitoringMetrics();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling RealTimeApi->listRealtimeMetrics: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MonitoringApi->listMonitoringMetrics: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -314,7 +314,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MuxPhp\Models\ListRealTimeMetricsResponse**](../Model/ListRealTimeMetricsResponse.md)
+[**\MuxPhp\Models\ListMonitoringMetricsResponse**](../Model/ListMonitoringMetricsResponse.md)
 
 ### Authorization
 

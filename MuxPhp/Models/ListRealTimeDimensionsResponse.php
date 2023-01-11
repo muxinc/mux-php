@@ -60,7 +60,7 @@ class ListRealTimeDimensionsResponse implements ModelInterface, ArrayAccess, \Js
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\MuxPhp\Models\ListRealTimeDimensionsResponseData[]',
+        'data' => '\MuxPhp\Models\ListMonitoringDimensionsResponseData[]',
         'total_row_count' => 'int',
         'timeframe' => 'int[]'
     ];
@@ -302,7 +302,7 @@ class ListRealTimeDimensionsResponse implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets data
      *
-     * @return \MuxPhp\Models\ListRealTimeDimensionsResponseData[]|null
+     * @return \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null
      */
     public function getData()
     {
@@ -312,7 +312,7 @@ class ListRealTimeDimensionsResponse implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets data
      *
-     * @param \MuxPhp\Models\ListRealTimeDimensionsResponseData[]|null $data data
+     * @param \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null $data data
      *
      * @return self
      */

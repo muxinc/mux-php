@@ -10,6 +10,7 @@ MuxPhp/Api/FiltersApi.php
 MuxPhp/Api/IncidentsApi.php
 MuxPhp/Api/LiveStreamsApi.php
 MuxPhp/Api/MetricsApi.php
+MuxPhp/Api/MonitoringApi.php
 MuxPhp/Api/PlaybackIDApi.php
 MuxPhp/Api/PlaybackRestrictionsApi.php
 MuxPhp/Api/RealTimeApi.php
@@ -62,6 +63,10 @@ MuxPhp/Models/GetAssetOrLiveStreamIdResponseDataObject.php
 MuxPhp/Models/GetAssetPlaybackIDResponse.php
 MuxPhp/Models/GetLiveStreamPlaybackIDResponse.php
 MuxPhp/Models/GetMetricTimeseriesDataResponse.php
+MuxPhp/Models/GetMonitoringBreakdownResponse.php
+MuxPhp/Models/GetMonitoringHistogramTimeseriesResponse.php
+MuxPhp/Models/GetMonitoringHistogramTimeseriesResponseMeta.php
+MuxPhp/Models/GetMonitoringTimeseriesResponse.php
 MuxPhp/Models/GetOverallValuesResponse.php
 MuxPhp/Models/GetRealTimeBreakdownResponse.php
 MuxPhp/Models/GetRealTimeHistogramTimeseriesResponse.php
@@ -92,9 +97,11 @@ MuxPhp/Models/ListFiltersResponseData.php
 MuxPhp/Models/ListIncidentsResponse.php
 MuxPhp/Models/ListInsightsResponse.php
 MuxPhp/Models/ListLiveStreamsResponse.php
+MuxPhp/Models/ListMonitoringDimensionsResponse.php
+MuxPhp/Models/ListMonitoringDimensionsResponseData.php
+MuxPhp/Models/ListMonitoringMetricsResponse.php
 MuxPhp/Models/ListPlaybackRestrictionsResponse.php
 MuxPhp/Models/ListRealTimeDimensionsResponse.php
-MuxPhp/Models/ListRealTimeDimensionsResponseData.php
 MuxPhp/Models/ListRealTimeMetricsResponse.php
 MuxPhp/Models/ListRelatedIncidentsResponse.php
 MuxPhp/Models/ListSigningKeysResponse.php
@@ -110,6 +117,11 @@ MuxPhp/Models/LiveStreamResponse.php
 MuxPhp/Models/LiveStreamStatus.php
 MuxPhp/Models/Metric.php
 MuxPhp/Models/ModelInterface.php
+MuxPhp/Models/MonitoringBreakdownValue.php
+MuxPhp/Models/MonitoringHistogramTimeseriesBucket.php
+MuxPhp/Models/MonitoringHistogramTimeseriesBucketValues.php
+MuxPhp/Models/MonitoringHistogramTimeseriesDatapoint.php
+MuxPhp/Models/MonitoringTimeseriesDatapoint.php
 MuxPhp/Models/NotificationRule.php
 MuxPhp/Models/OverallValues.php
 MuxPhp/Models/PlaybackID.php
@@ -164,6 +176,7 @@ docs/Api/FiltersApi.md
 docs/Api/IncidentsApi.md
 docs/Api/LiveStreamsApi.md
 docs/Api/MetricsApi.md
+docs/Api/MonitoringApi.md
 docs/Api/PlaybackIDApi.md
 docs/Api/PlaybackRestrictionsApi.md
 docs/Api/RealTimeApi.md
@@ -213,6 +226,10 @@ docs/Model/GetAssetOrLiveStreamIdResponseDataObject.md
 docs/Model/GetAssetPlaybackIDResponse.md
 docs/Model/GetLiveStreamPlaybackIDResponse.md
 docs/Model/GetMetricTimeseriesDataResponse.md
+docs/Model/GetMonitoringBreakdownResponse.md
+docs/Model/GetMonitoringHistogramTimeseriesResponse.md
+docs/Model/GetMonitoringHistogramTimeseriesResponseMeta.md
+docs/Model/GetMonitoringTimeseriesResponse.md
 docs/Model/GetOverallValuesResponse.md
 docs/Model/GetRealTimeBreakdownResponse.md
 docs/Model/GetRealTimeHistogramTimeseriesResponse.md
@@ -243,9 +260,11 @@ docs/Model/ListFiltersResponseData.md
 docs/Model/ListIncidentsResponse.md
 docs/Model/ListInsightsResponse.md
 docs/Model/ListLiveStreamsResponse.md
+docs/Model/ListMonitoringDimensionsResponse.md
+docs/Model/ListMonitoringDimensionsResponseData.md
+docs/Model/ListMonitoringMetricsResponse.md
 docs/Model/ListPlaybackRestrictionsResponse.md
 docs/Model/ListRealTimeDimensionsResponse.md
-docs/Model/ListRealTimeDimensionsResponseData.md
 docs/Model/ListRealTimeMetricsResponse.md
 docs/Model/ListRelatedIncidentsResponse.md
 docs/Model/ListSigningKeysResponse.md
@@ -260,6 +279,11 @@ docs/Model/LiveStreamGeneratedSubtitleSettings.md
 docs/Model/LiveStreamResponse.md
 docs/Model/LiveStreamStatus.md
 docs/Model/Metric.md
+docs/Model/MonitoringBreakdownValue.md
+docs/Model/MonitoringHistogramTimeseriesBucket.md
+docs/Model/MonitoringHistogramTimeseriesBucketValues.md
+docs/Model/MonitoringHistogramTimeseriesDatapoint.md
+docs/Model/MonitoringTimeseriesDatapoint.md
 docs/Model/NotificationRule.md
 docs/Model/OverallValues.md
 docs/Model/PlaybackID.md

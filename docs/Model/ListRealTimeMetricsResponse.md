@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**\MuxPhp\Models\ListRealTimeDimensionsResponseData[]**](ListRealTimeDimensionsResponseData.md) |  | [optional]
+**data** | [**\MuxPhp\Models\ListMonitoringDimensionsResponseData[]**](ListMonitoringDimensionsResponseData.md) |  | [optional]
 **total_row_count** | **int** |  | [optional]
 **timeframe** | **int[]** |  | [optional]
 

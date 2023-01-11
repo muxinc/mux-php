@@ -1,6 +1,6 @@
 <?php
 /**
- * ListRealTimeMetricsResponse
+ * ListMonitoringMetricsResponse
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListRealTimeMetricsResponse Class Doc Comment
+ * ListMonitoringMetricsResponse Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ListMonitoringMetricsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListRealTimeMetricsResponse';
+    protected static $openAPIModelName = 'ListMonitoringMetricsResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

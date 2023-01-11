@@ -1,10 +1,10 @@
-# # ListRealTimeDimensionsResponse
+# # GetMonitoringTimeseriesResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**\MuxPhp\Models\ListMonitoringDimensionsResponseData[]**](ListMonitoringDimensionsResponseData.md) |  | [optional]
+**data** | [**\MuxPhp\Models\MonitoringTimeseriesDatapoint[]**](MonitoringTimeseriesDatapoint.md) |  | [optional]
 **total_row_count** | **int** |  | [optional]
 **timeframe** | **int[]** |  | [optional]
 

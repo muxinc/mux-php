@@ -1,6 +1,6 @@
 <?php
 /**
- * ListRealTimeMetricsResponse
+ * GetMonitoringBreakdownResponse
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListRealTimeMetricsResponse Class Doc Comment
+ * GetMonitoringBreakdownResponse Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetMonitoringBreakdownResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListRealTimeMetricsResponse';
+    protected static $openAPIModelName = 'GetMonitoringBreakdownResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,7 +60,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\MuxPhp\Models\ListMonitoringDimensionsResponseData[]',
+        'data' => '\MuxPhp\Models\MonitoringBreakdownValue[]',
         'total_row_count' => 'int',
         'timeframe' => 'int[]'
     ];
@@ -302,7 +302,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets data
      *
-     * @return \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null
+     * @return \MuxPhp\Models\MonitoringBreakdownValue[]|null
      */
     public function getData()
     {
@@ -312,7 +312,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets data
      *
-     * @param \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null $data data
+     * @param \MuxPhp\Models\MonitoringBreakdownValue[]|null $data data
      *
      * @return self
      */

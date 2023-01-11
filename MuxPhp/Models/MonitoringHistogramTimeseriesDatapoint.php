@@ -1,6 +1,6 @@
 <?php
 /**
- * ListRealTimeMetricsResponse
+ * MonitoringHistogramTimeseriesDatapoint
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListRealTimeMetricsResponse Class Doc Comment
+ * MonitoringHistogramTimeseriesDatapoint Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class MonitoringHistogramTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListRealTimeMetricsResponse';
+    protected static $openAPIModelName = 'MonitoringHistogramTimeseriesDatapoint';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,13 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\MuxPhp\Models\ListMonitoringDimensionsResponseData[]',
-        'total_row_count' => 'int',
-        'timeframe' => 'int[]'
+        'timestamp' => 'string',
+        'sum' => 'int',
+        'p95' => 'double',
+        'median' => 'double',
+        'max_percentage' => 'double',
+        'bucket_values' => '\MuxPhp\Models\MonitoringHistogramTimeseriesBucketValues[]',
+        'average' => 'double'
     ];
 
     /**
@@ -73,9 +77,13 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'data' => null,
-        'total_row_count' => 'int64',
-        'timeframe' => 'int64'
+        'timestamp' => null,
+        'sum' => 'int64',
+        'p95' => 'double',
+        'median' => 'double',
+        'max_percentage' => 'double',
+        'bucket_values' => null,
+        'average' => 'double'
     ];
 
     /**
@@ -84,9 +92,13 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'data' => false,
-		'total_row_count' => false,
-		'timeframe' => false
+        'timestamp' => false,
+		'sum' => false,
+		'p95' => false,
+		'median' => false,
+		'max_percentage' => false,
+		'bucket_values' => false,
+		'average' => false
     ];
 
     /**
@@ -165,9 +177,13 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'data' => 'data',
-        'total_row_count' => 'total_row_count',
-        'timeframe' => 'timeframe'
+        'timestamp' => 'timestamp',
+        'sum' => 'sum',
+        'p95' => 'p95',
+        'median' => 'median',
+        'max_percentage' => 'max_percentage',
+        'bucket_values' => 'bucket_values',
+        'average' => 'average'
     ];
 
     /**
@@ -176,9 +192,13 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'data' => 'setData',
-        'total_row_count' => 'setTotalRowCount',
-        'timeframe' => 'setTimeframe'
+        'timestamp' => 'setTimestamp',
+        'sum' => 'setSum',
+        'p95' => 'setP95',
+        'median' => 'setMedian',
+        'max_percentage' => 'setMaxPercentage',
+        'bucket_values' => 'setBucketValues',
+        'average' => 'setAverage'
     ];
 
     /**
@@ -187,9 +207,13 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'data' => 'getData',
-        'total_row_count' => 'getTotalRowCount',
-        'timeframe' => 'getTimeframe'
+        'timestamp' => 'getTimestamp',
+        'sum' => 'getSum',
+        'p95' => 'getP95',
+        'median' => 'getMedian',
+        'max_percentage' => 'getMaxPercentage',
+        'bucket_values' => 'getBucketValues',
+        'average' => 'getAverage'
     ];
 
     /**
@@ -252,9 +276,13 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('data', $data ?? [], null);
-        $this->setIfExists('total_row_count', $data ?? [], null);
-        $this->setIfExists('timeframe', $data ?? [], null);
+        $this->setIfExists('timestamp', $data ?? [], null);
+        $this->setIfExists('sum', $data ?? [], null);
+        $this->setIfExists('p95', $data ?? [], null);
+        $this->setIfExists('median', $data ?? [], null);
+        $this->setIfExists('max_percentage', $data ?? [], null);
+        $this->setIfExists('bucket_values', $data ?? [], null);
+        $this->setIfExists('average', $data ?? [], null);
     }
 
     /**
@@ -300,88 +328,204 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets data
+     * Gets timestamp
      *
-     * @return \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null
+     * @return string|null
      */
-    public function getData()
+    public function getTimestamp()
     {
-        return $this->container['data'];
+        return $this->container['timestamp'];
     }
 
     /**
-     * Sets data
+     * Sets timestamp
      *
-     * @param \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null $data data
+     * @param string|null $timestamp timestamp
      *
      * @return self
      */
-    public function setData($data)
+    public function setTimestamp($timestamp)
     {
 
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
+        if (is_null($timestamp)) {
+            throw new \InvalidArgumentException('non-nullable timestamp cannot be null');
         }
 
-        $this->container['data'] = $data;
+        $this->container['timestamp'] = $timestamp;
 
         return $this;
     }
 
     /**
-     * Gets total_row_count
+     * Gets sum
      *
      * @return int|null
      */
-    public function getTotalRowCount()
+    public function getSum()
     {
-        return $this->container['total_row_count'];
+        return $this->container['sum'];
     }
 
     /**
-     * Sets total_row_count
+     * Sets sum
      *
-     * @param int|null $total_row_count total_row_count
+     * @param int|null $sum sum
      *
      * @return self
      */
-    public function setTotalRowCount($total_row_count)
+    public function setSum($sum)
     {
 
-        if (is_null($total_row_count)) {
-            throw new \InvalidArgumentException('non-nullable total_row_count cannot be null');
+        if (is_null($sum)) {
+            throw new \InvalidArgumentException('non-nullable sum cannot be null');
         }
 
-        $this->container['total_row_count'] = $total_row_count;
+        $this->container['sum'] = $sum;
 
         return $this;
     }
 
     /**
-     * Gets timeframe
+     * Gets p95
      *
-     * @return int[]|null
+     * @return double|null
      */
-    public function getTimeframe()
+    public function getP95()
     {
-        return $this->container['timeframe'];
+        return $this->container['p95'];
     }
 
     /**
-     * Sets timeframe
+     * Sets p95
      *
-     * @param int[]|null $timeframe timeframe
+     * @param double|null $p95 p95
      *
      * @return self
      */
-    public function setTimeframe($timeframe)
+    public function setP95($p95)
     {
 
-        if (is_null($timeframe)) {
-            throw new \InvalidArgumentException('non-nullable timeframe cannot be null');
+        if (is_null($p95)) {
+            throw new \InvalidArgumentException('non-nullable p95 cannot be null');
         }
 
-        $this->container['timeframe'] = $timeframe;
+        $this->container['p95'] = $p95;
+
+        return $this;
+    }
+
+    /**
+     * Gets median
+     *
+     * @return double|null
+     */
+    public function getMedian()
+    {
+        return $this->container['median'];
+    }
+
+    /**
+     * Sets median
+     *
+     * @param double|null $median median
+     *
+     * @return self
+     */
+    public function setMedian($median)
+    {
+
+        if (is_null($median)) {
+            throw new \InvalidArgumentException('non-nullable median cannot be null');
+        }
+
+        $this->container['median'] = $median;
+
+        return $this;
+    }
+
+    /**
+     * Gets max_percentage
+     *
+     * @return double|null
+     */
+    public function getMaxPercentage()
+    {
+        return $this->container['max_percentage'];
+    }
+
+    /**
+     * Sets max_percentage
+     *
+     * @param double|null $max_percentage max_percentage
+     *
+     * @return self
+     */
+    public function setMaxPercentage($max_percentage)
+    {
+
+        if (is_null($max_percentage)) {
+            throw new \InvalidArgumentException('non-nullable max_percentage cannot be null');
+        }
+
+        $this->container['max_percentage'] = $max_percentage;
+
+        return $this;
+    }
+
+    /**
+     * Gets bucket_values
+     *
+     * @return \MuxPhp\Models\MonitoringHistogramTimeseriesBucketValues[]|null
+     */
+    public function getBucketValues()
+    {
+        return $this->container['bucket_values'];
+    }
+
+    /**
+     * Sets bucket_values
+     *
+     * @param \MuxPhp\Models\MonitoringHistogramTimeseriesBucketValues[]|null $bucket_values bucket_values
+     *
+     * @return self
+     */
+    public function setBucketValues($bucket_values)
+    {
+
+        if (is_null($bucket_values)) {
+            throw new \InvalidArgumentException('non-nullable bucket_values cannot be null');
+        }
+
+        $this->container['bucket_values'] = $bucket_values;
+
+        return $this;
+    }
+
+    /**
+     * Gets average
+     *
+     * @return double|null
+     */
+    public function getAverage()
+    {
+        return $this->container['average'];
+    }
+
+    /**
+     * Sets average
+     *
+     * @param double|null $average average
+     *
+     * @return self
+     */
+    public function setAverage($average)
+    {
+
+        if (is_null($average)) {
+            throw new \InvalidArgumentException('non-nullable average cannot be null');
+        }
+
+        $this->container['average'] = $average;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * ListRealTimeMetricsResponse
+ * MonitoringBreakdownValue
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListRealTimeMetricsResponse Class Doc Comment
+ * MonitoringBreakdownValue Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class MonitoringBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListRealTimeMetricsResponse';
+    protected static $openAPIModelName = 'MonitoringBreakdownValue';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,11 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\MuxPhp\Models\ListMonitoringDimensionsResponseData[]',
-        'total_row_count' => 'int',
-        'timeframe' => 'int[]'
+        'value' => 'string',
+        'negative_impact' => 'int',
+        'metric_value' => 'double',
+        'display_value' => 'string',
+        'concurrent_viewers' => 'int'
     ];
 
     /**
@@ -73,9 +75,11 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'data' => null,
-        'total_row_count' => 'int64',
-        'timeframe' => 'int64'
+        'value' => null,
+        'negative_impact' => 'int64',
+        'metric_value' => 'double',
+        'display_value' => null,
+        'concurrent_viewers' => 'int64'
     ];
 
     /**
@@ -84,9 +88,11 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'data' => false,
-		'total_row_count' => false,
-		'timeframe' => false
+        'value' => false,
+		'negative_impact' => false,
+		'metric_value' => false,
+		'display_value' => false,
+		'concurrent_viewers' => false
     ];
 
     /**
@@ -165,9 +171,11 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'data' => 'data',
-        'total_row_count' => 'total_row_count',
-        'timeframe' => 'timeframe'
+        'value' => 'value',
+        'negative_impact' => 'negative_impact',
+        'metric_value' => 'metric_value',
+        'display_value' => 'display_value',
+        'concurrent_viewers' => 'concurrent_viewers'
     ];
 
     /**
@@ -176,9 +184,11 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'data' => 'setData',
-        'total_row_count' => 'setTotalRowCount',
-        'timeframe' => 'setTimeframe'
+        'value' => 'setValue',
+        'negative_impact' => 'setNegativeImpact',
+        'metric_value' => 'setMetricValue',
+        'display_value' => 'setDisplayValue',
+        'concurrent_viewers' => 'setConcurrentViewers'
     ];
 
     /**
@@ -187,9 +197,11 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'data' => 'getData',
-        'total_row_count' => 'getTotalRowCount',
-        'timeframe' => 'getTimeframe'
+        'value' => 'getValue',
+        'negative_impact' => 'getNegativeImpact',
+        'metric_value' => 'getMetricValue',
+        'display_value' => 'getDisplayValue',
+        'concurrent_viewers' => 'getConcurrentViewers'
     ];
 
     /**
@@ -252,9 +264,11 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('data', $data ?? [], null);
-        $this->setIfExists('total_row_count', $data ?? [], null);
-        $this->setIfExists('timeframe', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('negative_impact', $data ?? [], null);
+        $this->setIfExists('metric_value', $data ?? [], null);
+        $this->setIfExists('display_value', $data ?? [], null);
+        $this->setIfExists('concurrent_viewers', $data ?? [], null);
     }
 
     /**
@@ -300,88 +314,146 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets data
+     * Gets value
      *
-     * @return \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null
+     * @return string|null
      */
-    public function getData()
+    public function getValue()
     {
-        return $this->container['data'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets data
+     * Sets value
      *
-     * @param \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null $data data
+     * @param string|null $value value
      *
      * @return self
      */
-    public function setData($data)
+    public function setValue($value)
     {
 
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
+        if (is_null($value)) {
+            throw new \InvalidArgumentException('non-nullable value cannot be null');
         }
 
-        $this->container['data'] = $data;
+        $this->container['value'] = $value;
 
         return $this;
     }
 
     /**
-     * Gets total_row_count
+     * Gets negative_impact
      *
      * @return int|null
      */
-    public function getTotalRowCount()
+    public function getNegativeImpact()
     {
-        return $this->container['total_row_count'];
+        return $this->container['negative_impact'];
     }
 
     /**
-     * Sets total_row_count
+     * Sets negative_impact
      *
-     * @param int|null $total_row_count total_row_count
+     * @param int|null $negative_impact negative_impact
      *
      * @return self
      */
-    public function setTotalRowCount($total_row_count)
+    public function setNegativeImpact($negative_impact)
     {
 
-        if (is_null($total_row_count)) {
-            throw new \InvalidArgumentException('non-nullable total_row_count cannot be null');
+        if (is_null($negative_impact)) {
+            throw new \InvalidArgumentException('non-nullable negative_impact cannot be null');
         }
 
-        $this->container['total_row_count'] = $total_row_count;
+        $this->container['negative_impact'] = $negative_impact;
 
         return $this;
     }
 
     /**
-     * Gets timeframe
+     * Gets metric_value
      *
-     * @return int[]|null
+     * @return double|null
      */
-    public function getTimeframe()
+    public function getMetricValue()
     {
-        return $this->container['timeframe'];
+        return $this->container['metric_value'];
     }
 
     /**
-     * Sets timeframe
+     * Sets metric_value
      *
-     * @param int[]|null $timeframe timeframe
+     * @param double|null $metric_value metric_value
      *
      * @return self
      */
-    public function setTimeframe($timeframe)
+    public function setMetricValue($metric_value)
     {
 
-        if (is_null($timeframe)) {
-            throw new \InvalidArgumentException('non-nullable timeframe cannot be null');
+        if (is_null($metric_value)) {
+            throw new \InvalidArgumentException('non-nullable metric_value cannot be null');
         }
 
-        $this->container['timeframe'] = $timeframe;
+        $this->container['metric_value'] = $metric_value;
+
+        return $this;
+    }
+
+    /**
+     * Gets display_value
+     *
+     * @return string|null
+     */
+    public function getDisplayValue()
+    {
+        return $this->container['display_value'];
+    }
+
+    /**
+     * Sets display_value
+     *
+     * @param string|null $display_value display_value
+     *
+     * @return self
+     */
+    public function setDisplayValue($display_value)
+    {
+
+        if (is_null($display_value)) {
+            throw new \InvalidArgumentException('non-nullable display_value cannot be null');
+        }
+
+        $this->container['display_value'] = $display_value;
+
+        return $this;
+    }
+
+    /**
+     * Gets concurrent_viewers
+     *
+     * @return int|null
+     */
+    public function getConcurrentViewers()
+    {
+        return $this->container['concurrent_viewers'];
+    }
+
+    /**
+     * Sets concurrent_viewers
+     *
+     * @param int|null $concurrent_viewers concurrent_viewers
+     *
+     * @return self
+     */
+    public function setConcurrentViewers($concurrent_viewers)
+    {
+
+        if (is_null($concurrent_viewers)) {
+            throw new \InvalidArgumentException('non-nullable concurrent_viewers cannot be null');
+        }
+
+        $this->container['concurrent_viewers'] = $concurrent_viewers;
 
         return $this;
     }

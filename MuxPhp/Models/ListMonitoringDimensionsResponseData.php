@@ -1,6 +1,6 @@
 <?php
 /**
- * ListRealTimeMetricsResponse
+ * ListMonitoringDimensionsResponseData
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListRealTimeMetricsResponse Class Doc Comment
+ * ListMonitoringDimensionsResponseData Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ListMonitoringDimensionsResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListRealTimeMetricsResponse';
+    protected static $openAPIModelName = 'ListMonitoringDimensionsResponse_data';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\MuxPhp\Models\ListMonitoringDimensionsResponseData[]',
-        'total_row_count' => 'int',
-        'timeframe' => 'int[]'
+        'name' => 'string',
+        'display_name' => 'string'
     ];
 
     /**
@@ -73,9 +72,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'data' => null,
-        'total_row_count' => 'int64',
-        'timeframe' => 'int64'
+        'name' => null,
+        'display_name' => null
     ];
 
     /**
@@ -84,9 +82,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'data' => false,
-		'total_row_count' => false,
-		'timeframe' => false
+        'name' => false,
+		'display_name' => false
     ];
 
     /**
@@ -165,9 +162,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'data' => 'data',
-        'total_row_count' => 'total_row_count',
-        'timeframe' => 'timeframe'
+        'name' => 'name',
+        'display_name' => 'display_name'
     ];
 
     /**
@@ -176,9 +172,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'data' => 'setData',
-        'total_row_count' => 'setTotalRowCount',
-        'timeframe' => 'setTimeframe'
+        'name' => 'setName',
+        'display_name' => 'setDisplayName'
     ];
 
     /**
@@ -187,9 +182,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'data' => 'getData',
-        'total_row_count' => 'getTotalRowCount',
-        'timeframe' => 'getTimeframe'
+        'name' => 'getName',
+        'display_name' => 'getDisplayName'
     ];
 
     /**
@@ -252,9 +246,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('data', $data ?? [], null);
-        $this->setIfExists('total_row_count', $data ?? [], null);
-        $this->setIfExists('timeframe', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('display_name', $data ?? [], null);
     }
 
     /**
@@ -300,88 +293,59 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets data
+     * Gets name
      *
-     * @return \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null
+     * @return string|null
      */
-    public function getData()
+    public function getName()
     {
-        return $this->container['data'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets data
+     * Sets name
      *
-     * @param \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null $data data
+     * @param string|null $name name
      *
      * @return self
      */
-    public function setData($data)
+    public function setName($name)
     {
 
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
 
-        $this->container['data'] = $data;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets total_row_count
+     * Gets display_name
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getTotalRowCount()
+    public function getDisplayName()
     {
-        return $this->container['total_row_count'];
+        return $this->container['display_name'];
     }
 
     /**
-     * Sets total_row_count
+     * Sets display_name
      *
-     * @param int|null $total_row_count total_row_count
+     * @param string|null $display_name display_name
      *
      * @return self
      */
-    public function setTotalRowCount($total_row_count)
+    public function setDisplayName($display_name)
     {
 
-        if (is_null($total_row_count)) {
-            throw new \InvalidArgumentException('non-nullable total_row_count cannot be null');
+        if (is_null($display_name)) {
+            throw new \InvalidArgumentException('non-nullable display_name cannot be null');
         }
 
-        $this->container['total_row_count'] = $total_row_count;
-
-        return $this;
-    }
-
-    /**
-     * Gets timeframe
-     *
-     * @return int[]|null
-     */
-    public function getTimeframe()
-    {
-        return $this->container['timeframe'];
-    }
-
-    /**
-     * Sets timeframe
-     *
-     * @param int[]|null $timeframe timeframe
-     *
-     * @return self
-     */
-    public function setTimeframe($timeframe)
-    {
-
-        if (is_null($timeframe)) {
-            throw new \InvalidArgumentException('non-nullable timeframe cannot be null');
-        }
-
-        $this->container['timeframe'] = $timeframe;
+        $this->container['display_name'] = $display_name;
 
         return $this;
     }

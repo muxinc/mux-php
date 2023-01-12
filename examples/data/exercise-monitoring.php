@@ -8,54 +8,54 @@
         ->setPassword(getenv('MUX_TOKEN_SECRET'));
 
     // API Client Initialization
-    $realtimeApi = new MuxPhp\Api\RealTimeApi(
+    $monitoringApi = new MuxPhp\Api\MonitoringApi(
         new GuzzleHttp\Client(),
         $config
     );
 
     // Test coverage here isn't fantastic due to not knowning if the account we're testing against has
-    // any real-time data. The behaviour has been manually verified against real-world data.
+    // any monitring data. The behaviour has been manually verified against real-world data.
 
-    // ========== list-realtime-dimensions ==========
-    $dimensions = $realtimeApi->listRealtimeDimensions();
+    // ========== list-monitoring-dimensions ==========
+    $dimensions = $monitoringApi->listMonitoringDimensions();
     assert($dimensions != null);
     assert(is_array($dimensions->getData()));
     assert(count($dimensions->getData()) > 0);
     assert($dimensions->getData()[0]->getName() != '');
     assert($dimensions->getData()[0]->getDisplayName() != '');
-    print("list-realtime-dimensions OK ✅\n");
+    print("list-monitoring-dimensions OK ✅\n");
 
-    // ========== list-realtime-metrics ==========
-    $metrics = $realtimeApi->listRealtimeMetrics();
+    // ========== list-monitoring-metrics ==========
+    $metrics = $monitoringApi->listMonitoringMetrics();
     assert($metrics != null);
     assert(is_array($metrics->getData()));
     assert(count($metrics->getData()) > 0);
     assert($metrics->getData()[0]->getName() != '');
     assert($metrics->getData()[0]->getDisplayName() != '');
-    print("list-realtime-metrics OK ✅\n");
+    print("list-monitoring-metrics OK ✅\n");
 
-    // ========== get-realtime-breakdown ==========
-    $breakdown = $realtimeApi->GetRealtimeBreakdown('current-rebuffering-percentage', ['dimension' => 'asn']);
+    // ========== get-monitoring-breakdown ==========
+    $breakdown = $monitoringApi->GetMonitoringBreakdown('current-rebuffering-percentage', ['dimension' => 'asn']);
     assert($breakdown != null);
     assert(is_array($breakdown->getData()));
-    print("get-realtime-breakdown OK ✅\n");
+    print("get-monitoring-breakdown OK ✅\n");
 
-    // ========== get-realtime-histogram-timeseries ==========
-    $histogramTimeseries = $realtimeApi->GetRealtimeHistogramTimeseries('video-startup-time');
+    // ========== get-monitoring-histogram-timeseries ==========
+    $histogramTimeseries = $monitoringApi->GetMonitoringHistogramTimeseries('video-startup-time');
     assert($histogramTimeseries != null);
     assert($histogramTimeseries->getMeta() != null);
     assert($histogramTimeseries->getMeta()->getBuckets() != null);
     assert(count($histogramTimeseries->getMeta()->getBuckets()) > 0);
     assert($histogramTimeseries->getData() != null);
     assert(count($histogramTimeseries->getData()) > 0);
-    print("get-realtime-histogram-timeseries OK ✅\n");
+    print("get-monitoring-histogram-timeseries OK ✅\n");
     
-    // ========== get-realtime-timeseries ==========
-    $timeseries = $realtimeApi->GetRealtimeTimeseries('current-rebuffering-percentage');
+    // ========== get-monitoring-timeseries ==========
+    $timeseries = $monitoringApi->GetMonitoringTimeseries('current-rebuffering-percentage');
     assert($timeseries != null);
     assert(is_array($timeseries->getData()));
     assert(count($timeseries->getData()) > 0);
     assert($timeseries->getData()[0]->getDate() != '');
-    print("get-realtime-timeseries OK ✅\n");
+    print("get-monitoring-timeseries OK ✅\n");
     
 ?>

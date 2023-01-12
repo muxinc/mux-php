@@ -78,7 +78,7 @@ listVideoViews($limit, $page, $viewer_id, $error_id, $order_direction, $filters,
 
 List Video Views
 
-Returns a list of video views.
+Returns a list of video views which match the filters and have a `view_end` within the specified timeframe.
 
 ### Example
 

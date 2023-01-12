@@ -1,6 +1,6 @@
 <?php
 /**
- * ListRealTimeMetricsResponse
+ * GetMonitoringHistogramTimeseriesResponseMeta
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListRealTimeMetricsResponse Class Doc Comment
+ * GetMonitoringHistogramTimeseriesResponseMeta Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetMonitoringHistogramTimeseriesResponseMeta implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListRealTimeMetricsResponse';
+    protected static $openAPIModelName = 'GetMonitoringHistogramTimeseriesResponse_meta';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\MuxPhp\Models\ListMonitoringDimensionsResponseData[]',
-        'total_row_count' => 'int',
-        'timeframe' => 'int[]'
+        'buckets' => '\MuxPhp\Models\MonitoringHistogramTimeseriesBucket[]'
     ];
 
     /**
@@ -73,9 +71,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'data' => null,
-        'total_row_count' => 'int64',
-        'timeframe' => 'int64'
+        'buckets' => null
     ];
 
     /**
@@ -84,9 +80,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'data' => false,
-		'total_row_count' => false,
-		'timeframe' => false
+        'buckets' => false
     ];
 
     /**
@@ -165,9 +159,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'data' => 'data',
-        'total_row_count' => 'total_row_count',
-        'timeframe' => 'timeframe'
+        'buckets' => 'buckets'
     ];
 
     /**
@@ -176,9 +168,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'data' => 'setData',
-        'total_row_count' => 'setTotalRowCount',
-        'timeframe' => 'setTimeframe'
+        'buckets' => 'setBuckets'
     ];
 
     /**
@@ -187,9 +177,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'data' => 'getData',
-        'total_row_count' => 'getTotalRowCount',
-        'timeframe' => 'getTimeframe'
+        'buckets' => 'getBuckets'
     ];
 
     /**
@@ -252,9 +240,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('data', $data ?? [], null);
-        $this->setIfExists('total_row_count', $data ?? [], null);
-        $this->setIfExists('timeframe', $data ?? [], null);
+        $this->setIfExists('buckets', $data ?? [], null);
     }
 
     /**
@@ -300,88 +286,30 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets data
+     * Gets buckets
      *
-     * @return \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null
+     * @return \MuxPhp\Models\MonitoringHistogramTimeseriesBucket[]|null
      */
-    public function getData()
+    public function getBuckets()
     {
-        return $this->container['data'];
+        return $this->container['buckets'];
     }
 
     /**
-     * Sets data
+     * Sets buckets
      *
-     * @param \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null $data data
+     * @param \MuxPhp\Models\MonitoringHistogramTimeseriesBucket[]|null $buckets buckets
      *
      * @return self
      */
-    public function setData($data)
+    public function setBuckets($buckets)
     {
 
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
+        if (is_null($buckets)) {
+            throw new \InvalidArgumentException('non-nullable buckets cannot be null');
         }
 
-        $this->container['data'] = $data;
-
-        return $this;
-    }
-
-    /**
-     * Gets total_row_count
-     *
-     * @return int|null
-     */
-    public function getTotalRowCount()
-    {
-        return $this->container['total_row_count'];
-    }
-
-    /**
-     * Sets total_row_count
-     *
-     * @param int|null $total_row_count total_row_count
-     *
-     * @return self
-     */
-    public function setTotalRowCount($total_row_count)
-    {
-
-        if (is_null($total_row_count)) {
-            throw new \InvalidArgumentException('non-nullable total_row_count cannot be null');
-        }
-
-        $this->container['total_row_count'] = $total_row_count;
-
-        return $this;
-    }
-
-    /**
-     * Gets timeframe
-     *
-     * @return int[]|null
-     */
-    public function getTimeframe()
-    {
-        return $this->container['timeframe'];
-    }
-
-    /**
-     * Sets timeframe
-     *
-     * @param int[]|null $timeframe timeframe
-     *
-     * @return self
-     */
-    public function setTimeframe($timeframe)
-    {
-
-        if (is_null($timeframe)) {
-            throw new \InvalidArgumentException('non-nullable timeframe cannot be null');
-        }
-
-        $this->container['timeframe'] = $timeframe;
+        $this->container['buckets'] = $buckets;
 
         return $this;
     }

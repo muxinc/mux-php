@@ -1,6 +1,6 @@
 <?php
 /**
- * ListRealTimeMetricsResponse
+ * MonitoringHistogramTimeseriesBucketValues
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListRealTimeMetricsResponse Class Doc Comment
+ * MonitoringHistogramTimeseriesBucketValues Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class MonitoringHistogramTimeseriesBucketValues implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListRealTimeMetricsResponse';
+    protected static $openAPIModelName = 'MonitoringHistogramTimeseriesBucketValues';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\MuxPhp\Models\ListMonitoringDimensionsResponseData[]',
-        'total_row_count' => 'int',
-        'timeframe' => 'int[]'
+        'percentage' => 'double',
+        'count' => 'int'
     ];
 
     /**
@@ -73,9 +72,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'data' => null,
-        'total_row_count' => 'int64',
-        'timeframe' => 'int64'
+        'percentage' => 'double',
+        'count' => 'int64'
     ];
 
     /**
@@ -84,9 +82,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'data' => false,
-		'total_row_count' => false,
-		'timeframe' => false
+        'percentage' => false,
+		'count' => false
     ];
 
     /**
@@ -165,9 +162,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'data' => 'data',
-        'total_row_count' => 'total_row_count',
-        'timeframe' => 'timeframe'
+        'percentage' => 'percentage',
+        'count' => 'count'
     ];
 
     /**
@@ -176,9 +172,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'data' => 'setData',
-        'total_row_count' => 'setTotalRowCount',
-        'timeframe' => 'setTimeframe'
+        'percentage' => 'setPercentage',
+        'count' => 'setCount'
     ];
 
     /**
@@ -187,9 +182,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'data' => 'getData',
-        'total_row_count' => 'getTotalRowCount',
-        'timeframe' => 'getTimeframe'
+        'percentage' => 'getPercentage',
+        'count' => 'getCount'
     ];
 
     /**
@@ -252,9 +246,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('data', $data ?? [], null);
-        $this->setIfExists('total_row_count', $data ?? [], null);
-        $this->setIfExists('timeframe', $data ?? [], null);
+        $this->setIfExists('percentage', $data ?? [], null);
+        $this->setIfExists('count', $data ?? [], null);
     }
 
     /**
@@ -300,88 +293,59 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets data
+     * Gets percentage
      *
-     * @return \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null
+     * @return double|null
      */
-    public function getData()
+    public function getPercentage()
     {
-        return $this->container['data'];
+        return $this->container['percentage'];
     }
 
     /**
-     * Sets data
+     * Sets percentage
      *
-     * @param \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null $data data
+     * @param double|null $percentage percentage
      *
      * @return self
      */
-    public function setData($data)
+    public function setPercentage($percentage)
     {
 
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
+        if (is_null($percentage)) {
+            throw new \InvalidArgumentException('non-nullable percentage cannot be null');
         }
 
-        $this->container['data'] = $data;
+        $this->container['percentage'] = $percentage;
 
         return $this;
     }
 
     /**
-     * Gets total_row_count
+     * Gets count
      *
      * @return int|null
      */
-    public function getTotalRowCount()
+    public function getCount()
     {
-        return $this->container['total_row_count'];
+        return $this->container['count'];
     }
 
     /**
-     * Sets total_row_count
+     * Sets count
      *
-     * @param int|null $total_row_count total_row_count
+     * @param int|null $count count
      *
      * @return self
      */
-    public function setTotalRowCount($total_row_count)
+    public function setCount($count)
     {
 
-        if (is_null($total_row_count)) {
-            throw new \InvalidArgumentException('non-nullable total_row_count cannot be null');
+        if (is_null($count)) {
+            throw new \InvalidArgumentException('non-nullable count cannot be null');
         }
 
-        $this->container['total_row_count'] = $total_row_count;
-
-        return $this;
-    }
-
-    /**
-     * Gets timeframe
-     *
-     * @return int[]|null
-     */
-    public function getTimeframe()
-    {
-        return $this->container['timeframe'];
-    }
-
-    /**
-     * Sets timeframe
-     *
-     * @param int[]|null $timeframe timeframe
-     *
-     * @return self
-     */
-    public function setTimeframe($timeframe)
-    {
-
-        if (is_null($timeframe)) {
-            throw new \InvalidArgumentException('non-nullable timeframe cannot be null');
-        }
-
-        $this->container['timeframe'] = $timeframe;
+        $this->container['count'] = $count;
 
         return $this;
     }

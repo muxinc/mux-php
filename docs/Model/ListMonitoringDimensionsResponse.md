@@ -1,4 +1,4 @@
-# # ListRealTimeDimensionsResponse
+# # ListMonitoringDimensionsResponse
 
 ## Properties
 

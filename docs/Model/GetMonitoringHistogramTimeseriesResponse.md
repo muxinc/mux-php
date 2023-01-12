@@ -1,10 +1,11 @@
-# # ListRealTimeDimensionsResponse
+# # GetMonitoringHistogramTimeseriesResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**\MuxPhp\Models\ListMonitoringDimensionsResponseData[]**](ListMonitoringDimensionsResponseData.md) |  | [optional]
+**meta** | [**\MuxPhp\Models\GetMonitoringHistogramTimeseriesResponseMeta**](GetMonitoringHistogramTimeseriesResponseMeta.md) |  | [optional]
+**data** | [**\MuxPhp\Models\MonitoringHistogramTimeseriesDatapoint[]**](MonitoringHistogramTimeseriesDatapoint.md) |  | [optional]
 **total_row_count** | **int** |  | [optional]
 **timeframe** | **int[]** |  | [optional]
 

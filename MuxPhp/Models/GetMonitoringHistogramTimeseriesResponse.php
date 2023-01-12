@@ -1,6 +1,6 @@
 <?php
 /**
- * ListRealTimeMetricsResponse
+ * GetMonitoringHistogramTimeseriesResponse
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListRealTimeMetricsResponse Class Doc Comment
+ * GetMonitoringHistogramTimeseriesResponse Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetMonitoringHistogramTimeseriesResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListRealTimeMetricsResponse';
+    protected static $openAPIModelName = 'GetMonitoringHistogramTimeseriesResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,7 +60,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\MuxPhp\Models\ListMonitoringDimensionsResponseData[]',
+        'meta' => '\MuxPhp\Models\GetMonitoringHistogramTimeseriesResponseMeta',
+        'data' => '\MuxPhp\Models\MonitoringHistogramTimeseriesDatapoint[]',
         'total_row_count' => 'int',
         'timeframe' => 'int[]'
     ];
@@ -73,6 +74,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'meta' => null,
         'data' => null,
         'total_row_count' => 'int64',
         'timeframe' => 'int64'
@@ -84,7 +86,8 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'data' => false,
+        'meta' => false,
+		'data' => false,
 		'total_row_count' => false,
 		'timeframe' => false
     ];
@@ -165,6 +168,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
+        'meta' => 'meta',
         'data' => 'data',
         'total_row_count' => 'total_row_count',
         'timeframe' => 'timeframe'
@@ -176,6 +180,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
+        'meta' => 'setMeta',
         'data' => 'setData',
         'total_row_count' => 'setTotalRowCount',
         'timeframe' => 'setTimeframe'
@@ -187,6 +192,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
+        'meta' => 'getMeta',
         'data' => 'getData',
         'total_row_count' => 'getTotalRowCount',
         'timeframe' => 'getTimeframe'
@@ -252,6 +258,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
+        $this->setIfExists('meta', $data ?? [], null);
         $this->setIfExists('data', $data ?? [], null);
         $this->setIfExists('total_row_count', $data ?? [], null);
         $this->setIfExists('timeframe', $data ?? [], null);
@@ -300,9 +307,38 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
+     * Gets meta
+     *
+     * @return \MuxPhp\Models\GetMonitoringHistogramTimeseriesResponseMeta|null
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \MuxPhp\Models\GetMonitoringHistogramTimeseriesResponseMeta|null $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+
+        $this->container['meta'] = $meta;
+
+        return $this;
+    }
+
+    /**
      * Gets data
      *
-     * @return \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null
+     * @return \MuxPhp\Models\MonitoringHistogramTimeseriesDatapoint[]|null
      */
     public function getData()
     {
@@ -312,7 +348,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets data
      *
-     * @param \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null $data data
+     * @param \MuxPhp\Models\MonitoringHistogramTimeseriesDatapoint[]|null $data data
      *
      * @return self
      */

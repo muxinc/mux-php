@@ -1,6 +1,6 @@
 <?php
 /**
- * ListRealTimeMetricsResponse
+ * MonitoringTimeseriesDatapoint
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListRealTimeMetricsResponse Class Doc Comment
+ * MonitoringTimeseriesDatapoint Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class MonitoringTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListRealTimeMetricsResponse';
+    protected static $openAPIModelName = 'MonitoringTimeseriesDatapoint';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,9 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\MuxPhp\Models\ListMonitoringDimensionsResponseData[]',
-        'total_row_count' => 'int',
-        'timeframe' => 'int[]'
+        'value' => 'double',
+        'date' => 'string',
+        'concurrent_viewers' => 'int'
     ];
 
     /**
@@ -73,9 +73,9 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'data' => null,
-        'total_row_count' => 'int64',
-        'timeframe' => 'int64'
+        'value' => 'double',
+        'date' => null,
+        'concurrent_viewers' => 'int64'
     ];
 
     /**
@@ -84,9 +84,9 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'data' => false,
-		'total_row_count' => false,
-		'timeframe' => false
+        'value' => false,
+		'date' => false,
+		'concurrent_viewers' => false
     ];
 
     /**
@@ -165,9 +165,9 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'data' => 'data',
-        'total_row_count' => 'total_row_count',
-        'timeframe' => 'timeframe'
+        'value' => 'value',
+        'date' => 'date',
+        'concurrent_viewers' => 'concurrent_viewers'
     ];
 
     /**
@@ -176,9 +176,9 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'data' => 'setData',
-        'total_row_count' => 'setTotalRowCount',
-        'timeframe' => 'setTimeframe'
+        'value' => 'setValue',
+        'date' => 'setDate',
+        'concurrent_viewers' => 'setConcurrentViewers'
     ];
 
     /**
@@ -187,9 +187,9 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'data' => 'getData',
-        'total_row_count' => 'getTotalRowCount',
-        'timeframe' => 'getTimeframe'
+        'value' => 'getValue',
+        'date' => 'getDate',
+        'concurrent_viewers' => 'getConcurrentViewers'
     ];
 
     /**
@@ -252,9 +252,9 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('data', $data ?? [], null);
-        $this->setIfExists('total_row_count', $data ?? [], null);
-        $this->setIfExists('timeframe', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('date', $data ?? [], null);
+        $this->setIfExists('concurrent_viewers', $data ?? [], null);
     }
 
     /**
@@ -300,88 +300,88 @@ class ListRealTimeMetricsResponse implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets data
+     * Gets value
      *
-     * @return \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null
+     * @return double|null
      */
-    public function getData()
+    public function getValue()
     {
-        return $this->container['data'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets data
+     * Sets value
      *
-     * @param \MuxPhp\Models\ListMonitoringDimensionsResponseData[]|null $data data
+     * @param double|null $value value
      *
      * @return self
      */
-    public function setData($data)
+    public function setValue($value)
     {
 
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
+        if (is_null($value)) {
+            throw new \InvalidArgumentException('non-nullable value cannot be null');
         }
 
-        $this->container['data'] = $data;
+        $this->container['value'] = $value;
 
         return $this;
     }
 
     /**
-     * Gets total_row_count
+     * Gets date
+     *
+     * @return string|null
+     */
+    public function getDate()
+    {
+        return $this->container['date'];
+    }
+
+    /**
+     * Sets date
+     *
+     * @param string|null $date date
+     *
+     * @return self
+     */
+    public function setDate($date)
+    {
+
+        if (is_null($date)) {
+            throw new \InvalidArgumentException('non-nullable date cannot be null');
+        }
+
+        $this->container['date'] = $date;
+
+        return $this;
+    }
+
+    /**
+     * Gets concurrent_viewers
      *
      * @return int|null
      */
-    public function getTotalRowCount()
+    public function getConcurrentViewers()
     {
-        return $this->container['total_row_count'];
+        return $this->container['concurrent_viewers'];
     }
 
     /**
-     * Sets total_row_count
+     * Sets concurrent_viewers
      *
-     * @param int|null $total_row_count total_row_count
+     * @param int|null $concurrent_viewers concurrent_viewers
      *
      * @return self
      */
-    public function setTotalRowCount($total_row_count)
+    public function setConcurrentViewers($concurrent_viewers)
     {
 
-        if (is_null($total_row_count)) {
-            throw new \InvalidArgumentException('non-nullable total_row_count cannot be null');
+        if (is_null($concurrent_viewers)) {
+            throw new \InvalidArgumentException('non-nullable concurrent_viewers cannot be null');
         }
 
-        $this->container['total_row_count'] = $total_row_count;
-
-        return $this;
-    }
-
-    /**
-     * Gets timeframe
-     *
-     * @return int[]|null
-     */
-    public function getTimeframe()
-    {
-        return $this->container['timeframe'];
-    }
-
-    /**
-     * Sets timeframe
-     *
-     * @param int[]|null $timeframe timeframe
-     *
-     * @return self
-     */
-    public function setTimeframe($timeframe)
-    {
-
-        if (is_null($timeframe)) {
-            throw new \InvalidArgumentException('non-nullable timeframe cannot be null');
-        }
-
-        $this->container['timeframe'] = $timeframe;
+        $this->container['concurrent_viewers'] = $concurrent_viewers;
 
         return $this;
     }

@@ -89,10 +89,10 @@ class BreakdownValue implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'views' => false,
-	 'value' => false,
-	 'total_watch_time' => false,
-	 'negative_impact' => false,
-	 'field' => false
+        'value' => false,
+        'total_watch_time' => false,
+        'negative_impact' => false,
+        'field' => false
     ];
 
     /**

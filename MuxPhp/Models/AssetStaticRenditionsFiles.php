@@ -91,11 +91,11 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static array $openAPINullables = [
         'name' => false,
-	 'ext' => false,
-	 'height' => false,
-	 'width' => false,
-	 'bitrate' => false,
-	 'filesize' => false
+        'ext' => false,
+        'height' => false,
+        'width' => false,
+        'bitrate' => false,
+        'filesize' => false
     ];
 
     /**

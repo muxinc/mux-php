@@ -83,7 +83,7 @@ class ListFiltersResponseData implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static array $openAPINullables = [
         'basic' => false,
-	 'advanced' => false
+        'advanced' => false
     ];
 
     /**

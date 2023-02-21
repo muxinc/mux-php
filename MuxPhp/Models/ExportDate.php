@@ -83,7 +83,7 @@ class ExportDate implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'export_date' => false,
-	 'files' => false
+        'files' => false
     ];
 
     /**

@@ -83,7 +83,7 @@ class IncidentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'data' => false,
-	 'timeframe' => false
+        'timeframe' => false
     ];
 
     /**

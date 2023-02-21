@@ -109,20 +109,20 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static array $openAPINullables = [
         'playback_policy' => false,
-	 'new_asset_settings' => false,
-	 'reconnect_window' => false,
-	 'use_slate_for_standard_latency' => false,
-	 'reconnect_slate_url' => false,
-	 'passthrough' => false,
-	 'audio_only' => false,
-	 'embedded_subtitles' => false,
-	 'generated_subtitles' => false,
-	 'reduced_latency' => false,
-	 'low_latency' => false,
-	 'latency_mode' => false,
-	 'test' => false,
-	 'simulcast_targets' => false,
-	 'max_continuous_duration' => false
+        'new_asset_settings' => false,
+        'reconnect_window' => false,
+        'use_slate_for_standard_latency' => false,
+        'reconnect_slate_url' => false,
+        'passthrough' => false,
+        'audio_only' => false,
+        'embedded_subtitles' => false,
+        'generated_subtitles' => false,
+        'reduced_latency' => false,
+        'low_latency' => false,
+        'latency_mode' => false,
+        'test' => false,
+        'simulcast_targets' => false,
+        'max_continuous_duration' => false
     ];
 
     /**

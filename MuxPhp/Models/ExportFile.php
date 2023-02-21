@@ -85,8 +85,8 @@ class ExportFile implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'version' => false,
-	 'type' => false,
-	 'path' => false
+        'type' => false,
+        'path' => false
     ];
 
     /**

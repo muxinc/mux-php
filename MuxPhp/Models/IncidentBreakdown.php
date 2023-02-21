@@ -85,8 +85,8 @@ class IncidentBreakdown implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static array $openAPINullables = [
         'value' => false,
-	 'name' => false,
-	 'id' => false
+        'name' => false,
+        'id' => false
     ];
 
     /**

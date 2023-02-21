@@ -94,12 +94,12 @@ class InputSettingsOverlaySettings implements ModelInterface, ArrayAccess, \Json
       */
     protected static array $openAPINullables = [
         'vertical_align' => false,
-	 'vertical_margin' => false,
-	 'horizontal_align' => false,
-	 'horizontal_margin' => false,
-	 'width' => false,
-	 'height' => false,
-	 'opacity' => false
+        'vertical_margin' => false,
+        'horizontal_align' => false,
+        'horizontal_margin' => false,
+        'width' => false,
+        'height' => false,
+        'opacity' => false
     ];
 
     /**

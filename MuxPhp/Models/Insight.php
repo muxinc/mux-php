@@ -91,11 +91,11 @@ class Insight implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'total_watch_time' => false,
-	 'total_views' => false,
-	 'negative_impact_score' => false,
-	 'metric' => false,
-	 'filter_value' => false,
-	 'filter_column' => false
+        'total_views' => false,
+        'negative_impact_score' => false,
+        'metric' => false,
+        'filter_value' => false,
+        'filter_column' => false
     ];
 
     /**

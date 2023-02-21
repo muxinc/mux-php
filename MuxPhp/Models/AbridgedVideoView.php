@@ -101,16 +101,16 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static array $openAPINullables = [
         'id' => false,
-	 'viewer_os_family' => true,
-	 'viewer_application_name' => true,
-	 'video_title' => true,
-	 'total_row_count' => false,
-	 'player_error_message' => true,
-	 'player_error_code' => true,
-	 'error_type_id' => true,
-	 'country_code' => true,
-	 'view_start' => false,
-	 'view_end' => false
+        'viewer_os_family' => true,
+        'viewer_application_name' => true,
+        'video_title' => true,
+        'total_row_count' => false,
+        'player_error_message' => true,
+        'player_error_code' => true,
+        'error_type_id' => true,
+        'country_code' => true,
+        'view_start' => false,
+        'view_end' => false
     ];
 
     /**
@@ -409,7 +409,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('viewer_os_family', $nullablesSetToNull, true);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -445,7 +445,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('viewer_application_name', $nullablesSetToNull, true);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -481,7 +481,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('video_title', $nullablesSetToNull, true);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -546,7 +546,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('player_error_message', $nullablesSetToNull, true);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -582,7 +582,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('player_error_code', $nullablesSetToNull, true);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -618,7 +618,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('error_type_id', $nullablesSetToNull, true);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -654,7 +654,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('country_code', $nullablesSetToNull, true);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }

@@ -83,7 +83,7 @@ class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'id' => false,
-	 'policy' => false
+        'policy' => false
     ];
 
     /**

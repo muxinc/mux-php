@@ -83,7 +83,7 @@ class VideoViewResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static array $openAPINullables = [
         'data' => false,
-	 'timeframe' => false
+        'timeframe' => false
     ];
 
     /**

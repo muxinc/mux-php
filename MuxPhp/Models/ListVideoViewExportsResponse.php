@@ -85,8 +85,8 @@ class ListVideoViewExportsResponse implements ModelInterface, ArrayAccess, \Json
       */
     protected static array $openAPINullables = [
         'data' => false,
-	 'total_row_count' => false,
-	 'timeframe' => false
+        'total_row_count' => false,
+        'timeframe' => false
     ];
 
     /**

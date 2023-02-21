@@ -93,12 +93,12 @@ class Broadcast implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'id' => false,
-	 'passthrough' => false,
-	 'live_stream_id' => false,
-	 'status' => false,
-	 'layout' => false,
-	 'background' => false,
-	 'resolution' => false
+        'passthrough' => false,
+        'live_stream_id' => false,
+        'status' => false,
+        'layout' => false,
+        'background' => false,
+        'resolution' => false
     ];
 
     /**

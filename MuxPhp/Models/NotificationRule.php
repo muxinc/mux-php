@@ -85,8 +85,8 @@ class NotificationRule implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'value' => false,
-	 'name' => false,
-	 'id' => false
+        'name' => false,
+        'id' => false
     ];
 
     /**

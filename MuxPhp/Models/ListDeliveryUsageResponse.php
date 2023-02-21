@@ -87,9 +87,9 @@ class ListDeliveryUsageResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static array $openAPINullables = [
         'data' => false,
-	 'total_row_count' => false,
-	 'timeframe' => false,
-	 'limit' => false
+        'total_row_count' => false,
+        'timeframe' => false,
+        'limit' => false
     ];
 
     /**

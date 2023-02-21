@@ -89,10 +89,10 @@ class IncidentNotificationRule implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static array $openAPINullables = [
         'status' => false,
-	 'rules' => false,
-	 'property_id' => false,
-	 'id' => false,
-	 'action' => false
+        'rules' => false,
+        'property_id' => false,
+        'id' => false,
+        'action' => false
     ];
 
     /**

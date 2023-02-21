@@ -97,14 +97,14 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'id' => false,
-	 'timeout' => false,
-	 'status' => false,
-	 'new_asset_settings' => false,
-	 'asset_id' => false,
-	 'error' => false,
-	 'cors_origin' => false,
-	 'url' => false,
-	 'test' => false
+        'timeout' => false,
+        'status' => false,
+        'new_asset_settings' => false,
+        'asset_id' => false,
+        'error' => false,
+        'cors_origin' => false,
+        'url' => false,
+        'test' => false
     ];
 
     /**

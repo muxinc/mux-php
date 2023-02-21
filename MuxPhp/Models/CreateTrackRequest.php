@@ -93,12 +93,12 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static array $openAPINullables = [
         'url' => false,
-	 'type' => false,
-	 'text_type' => false,
-	 'language_code' => false,
-	 'name' => false,
-	 'closed_captions' => false,
-	 'passthrough' => false
+        'type' => false,
+        'text_type' => false,
+        'language_code' => false,
+        'name' => false,
+        'closed_captions' => false,
+        'passthrough' => false
     ];
 
     /**

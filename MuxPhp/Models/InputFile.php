@@ -83,7 +83,7 @@ class InputFile implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'container_format' => false,
-	 'tracks' => false
+        'tracks' => false
     ];
 
     /**

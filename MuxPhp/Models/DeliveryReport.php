@@ -97,14 +97,14 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'live_stream_id' => false,
-	 'asset_id' => false,
-	 'passthrough' => false,
-	 'created_at' => false,
-	 'deleted_at' => false,
-	 'asset_state' => false,
-	 'asset_duration' => false,
-	 'delivered_seconds' => false,
-	 'delivered_seconds_by_resolution' => false
+        'asset_id' => false,
+        'passthrough' => false,
+        'created_at' => false,
+        'deleted_at' => false,
+        'asset_state' => false,
+        'asset_duration' => false,
+        'delivered_seconds' => false,
+        'delivered_seconds_by_resolution' => false
     ];
 
     /**

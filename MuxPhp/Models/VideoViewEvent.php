@@ -87,9 +87,9 @@ class VideoViewEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'viewer_time' => false,
-	 'playback_time' => false,
-	 'name' => false,
-	 'event_time' => false
+        'playback_time' => false,
+        'name' => false,
+        'event_time' => false
     ];
 
     /**

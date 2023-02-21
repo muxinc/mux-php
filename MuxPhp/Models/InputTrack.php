@@ -97,14 +97,14 @@ class InputTrack implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'type' => false,
-	 'duration' => false,
-	 'encoding' => false,
-	 'width' => false,
-	 'height' => false,
-	 'frame_rate' => false,
-	 'sample_rate' => false,
-	 'sample_size' => false,
-	 'channels' => false
+        'duration' => false,
+        'encoding' => false,
+        'width' => false,
+        'height' => false,
+        'frame_rate' => false,
+        'sample_rate' => false,
+        'sample_size' => false,
+        'channels' => false
     ];
 
     /**

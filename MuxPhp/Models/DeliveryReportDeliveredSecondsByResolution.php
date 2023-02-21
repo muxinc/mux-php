@@ -86,8 +86,8 @@ class DeliveryReportDeliveredSecondsByResolution implements ModelInterface, Arra
       */
     protected static array $openAPINullables = [
         'tier_1080p' => false,
-	 'tier_720p' => false,
-	 'tier_audio_only' => false
+        'tier_720p' => false,
+        'tier_audio_only' => false
     ];
 
     /**

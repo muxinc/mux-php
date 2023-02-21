@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **asset_state** | **string** | The state of the asset. | [optional]
 **asset_duration** | **double** | The duration of the asset in seconds. | [optional]
 **delivered_seconds** | **double** | Total number of delivered seconds during this time window. | [optional]
+**delivered_seconds_by_resolution** | [**\MuxPhp\Models\DeliveryReportDeliveredSecondsByResolution**](DeliveryReportDeliveredSecondsByResolution.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

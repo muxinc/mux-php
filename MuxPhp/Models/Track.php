@@ -316,6 +316,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_PREPARING = 'preparing';
     public const STATUS_READY = 'ready';
     public const STATUS_ERRORED = 'errored';
+    public const STATUS_DELETED = 'deleted';
 
     /**
      * Gets allowable values of the enum
@@ -369,6 +370,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_PREPARING,
             self::STATUS_READY,
             self::STATUS_ERRORED,
+            self::STATUS_DELETED,
         ];
     }
 

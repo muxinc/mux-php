@@ -100,15 +100,15 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
       */
     protected static array $openAPINullables = [
         'video_codec' => false,
-		'audio_codec' => false,
-		'video_gop_size' => false,
-		'video_frame_rate' => false,
-		'video_resolution' => false,
-		'video_bitrate' => false,
-		'pixel_aspect_ratio' => false,
-		'video_edit_list' => false,
-		'audio_edit_list' => false,
-		'unexpected_media_file_parameters' => false
+	 'audio_codec' => false,
+	 'video_gop_size' => false,
+	 'video_frame_rate' => false,
+	 'video_resolution' => false,
+	 'video_bitrate' => false,
+	 'pixel_aspect_ratio' => false,
+	 'video_edit_list' => false,
+	 'audio_edit_list' => false,
+	 'unexpected_media_file_parameters' => false
     ];
 
     /**

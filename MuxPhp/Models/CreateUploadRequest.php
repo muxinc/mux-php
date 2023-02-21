@@ -87,9 +87,9 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static array $openAPINullables = [
         'timeout' => false,
-		'cors_origin' => false,
-		'new_asset_settings' => false,
-		'test' => false
+	 'cors_origin' => false,
+	 'new_asset_settings' => false,
+	 'test' => false
     ];
 
     /**

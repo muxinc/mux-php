@@ -1,8 +1,14 @@
 <?php
 
-return PhpCsFixer\Config::create()
-    ->setUsingCache(true)
-    ->setRules([
+$finder = PhpCsFixer\Finder::create()
+           ->exclude('test')
+           ->exclude('tests')
+           ->in(__DIR__)
+;
+
+$config = new PhpCsFixer\Config();
+
+return $config->setRules([
         '@PSR2' => true,
         'ordered_imports' => true,
         'phpdoc_order' => true,
@@ -15,9 +21,5 @@ return PhpCsFixer\Config::create()
         'single_blank_line_at_eof' => false,
         'blank_line_after_namespace' => false,
     ])
-    ->setFinder(
-        PhpCsFixer\Finder::create()
-        ->exclude('test')
-        ->exclude('tests')
-        ->in(__DIR__)
-    );
+    ->setFinder($finder)
+;

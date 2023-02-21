@@ -83,7 +83,7 @@ class MonitoringHistogramTimeseriesBucketValues implements ModelInterface, Array
       */
     protected static array $openAPINullables = [
         'percentage' => false,
-		'count' => false
+	 'count' => false
     ];
 
     /**

@@ -85,8 +85,8 @@ class ListInsightsResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static array $openAPINullables = [
         'data' => false,
-		'total_row_count' => false,
-		'timeframe' => false
+	 'total_row_count' => false,
+	 'timeframe' => false
     ];
 
     /**

@@ -85,8 +85,8 @@ class IncidentNotification implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static array $openAPINullables = [
         'queued_at' => false,
-		'id' => false,
-		'attempted_at' => false
+	 'id' => false,
+	 'attempted_at' => false
     ];
 
     /**

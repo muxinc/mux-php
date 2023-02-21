@@ -85,8 +85,8 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
       */
     protected static array $openAPINullables = [
         'passthrough' => false,
-		'stream_key' => false,
-		'url' => false
+	 'stream_key' => false,
+	 'url' => false
     ];
 
     /**

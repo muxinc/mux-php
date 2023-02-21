@@ -87,9 +87,9 @@ class GetRealTimeHistogramTimeseriesResponse implements ModelInterface, ArrayAcc
       */
     protected static array $openAPINullables = [
         'meta' => false,
-		'data' => false,
-		'total_row_count' => false,
-		'timeframe' => false
+	 'data' => false,
+	 'total_row_count' => false,
+	 'timeframe' => false
     ];
 
     /**

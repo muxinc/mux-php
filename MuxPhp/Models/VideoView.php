@@ -329,130 +329,130 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'view_total_upscaling' => true,
-		'preroll_ad_asset_hostname' => true,
-		'player_source_domain' => true,
-		'region' => true,
-		'viewer_user_agent' => true,
-		'preroll_requested' => true,
-		'page_type' => true,
-		'startup_score' => true,
-		'view_seek_duration' => true,
-		'country_name' => true,
-		'player_source_height' => true,
-		'longitude' => true,
-		'buffering_count' => true,
-		'video_duration' => true,
-		'player_source_type' => true,
-		'city' => true,
-		'view_id' => false,
-		'platform_description' => true,
-		'video_startup_preroll_request_time' => true,
-		'viewer_device_name' => true,
-		'video_series' => true,
-		'viewer_application_name' => true,
-		'updated_at' => false,
-		'view_total_content_playback_time' => true,
-		'cdn' => true,
-		'player_instance_id' => true,
-		'video_language' => true,
-		'player_source_width' => true,
-		'player_error_message' => true,
-		'player_mux_plugin_version' => true,
-		'watched' => false,
-		'playback_score' => true,
-		'page_url' => true,
-		'metro' => true,
-		'view_max_request_latency' => true,
-		'requests_for_first_preroll' => true,
-		'view_total_downscaling' => true,
-		'latitude' => true,
-		'player_source_host_name' => true,
-		'inserted_at' => false,
-		'view_end' => false,
-		'mux_embed_version' => true,
-		'player_language' => true,
-		'page_load_time' => true,
-		'viewer_device_category' => true,
-		'video_startup_preroll_load_time' => true,
-		'player_version' => true,
-		'watch_time' => true,
-		'player_source_stream_type' => true,
-		'preroll_ad_tag_hostname' => true,
-		'viewer_device_manufacturer' => true,
-		'rebuffering_score' => true,
-		'experiment_name' => true,
-		'viewer_os_version' => true,
-		'player_preload' => false,
-		'buffering_duration' => true,
-		'player_view_count' => true,
-		'player_software' => true,
-		'player_load_time' => true,
-		'platform_summary' => true,
-		'video_encoding_variant' => true,
-		'player_width' => true,
-		'view_seek_count' => true,
-		'viewer_experience_score' => true,
-		'view_error_id' => true,
-		'video_variant_name' => true,
-		'preroll_played' => true,
-		'viewer_application_engine' => true,
-		'viewer_os_architecture' => true,
-		'player_error_code' => true,
-		'buffering_rate' => true,
-		'events' => false,
-		'player_name' => true,
-		'view_start' => false,
-		'view_average_request_throughput' => true,
-		'video_producer' => true,
-		'error_type_id' => true,
-		'mux_viewer_id' => false,
-		'video_id' => true,
-		'continent_code' => true,
-		'session_id' => false,
-		'exit_before_video_start' => false,
-		'video_content_type' => true,
-		'viewer_os_family' => true,
-		'player_poster' => true,
-		'view_average_request_latency' => true,
-		'video_variant_id' => true,
-		'player_source_duration' => true,
-		'player_source_url' => true,
-		'mux_api_version' => false,
-		'video_title' => true,
-		'id' => false,
-		'short_time' => false,
-		'rebuffer_percentage' => true,
-		'time_to_first_frame' => true,
-		'viewer_user_id' => true,
-		'video_stream_type' => true,
-		'player_startup_time' => true,
-		'viewer_application_version' => true,
-		'view_max_downscale_percentage' => true,
-		'view_max_upscale_percentage' => true,
-		'country_code' => true,
-		'used_fullscreen' => false,
-		'isp' => true,
-		'property_id' => false,
-		'player_autoplay' => false,
-		'player_height' => true,
-		'asn' => true,
-		'asn_name' => true,
-		'quality_score' => true,
-		'player_software_version' => true,
-		'player_mux_plugin_name' => true,
-		'sub_property_id' => true,
-		'player_remote_played' => true,
-		'view_max_playhead_position' => true,
-		'view_playing_time' => true,
-		'view_session_id' => true,
-		'viewer_connection_type' => true,
-		'viewer_device_model' => true,
-		'weighted_average_bitrate' => true,
-		'custom_1' => true,
-		'custom_2' => true,
-		'custom_3' => true,
-		'custom_4' => true,
-		'custom_5' => true
+	 'preroll_ad_asset_hostname' => true,
+	 'player_source_domain' => true,
+	 'region' => true,
+	 'viewer_user_agent' => true,
+	 'preroll_requested' => true,
+	 'page_type' => true,
+	 'startup_score' => true,
+	 'view_seek_duration' => true,
+	 'country_name' => true,
+	 'player_source_height' => true,
+	 'longitude' => true,
+	 'buffering_count' => true,
+	 'video_duration' => true,
+	 'player_source_type' => true,
+	 'city' => true,
+	 'view_id' => false,
+	 'platform_description' => true,
+	 'video_startup_preroll_request_time' => true,
+	 'viewer_device_name' => true,
+	 'video_series' => true,
+	 'viewer_application_name' => true,
+	 'updated_at' => false,
+	 'view_total_content_playback_time' => true,
+	 'cdn' => true,
+	 'player_instance_id' => true,
+	 'video_language' => true,
+	 'player_source_width' => true,
+	 'player_error_message' => true,
+	 'player_mux_plugin_version' => true,
+	 'watched' => false,
+	 'playback_score' => true,
+	 'page_url' => true,
+	 'metro' => true,
+	 'view_max_request_latency' => true,
+	 'requests_for_first_preroll' => true,
+	 'view_total_downscaling' => true,
+	 'latitude' => true,
+	 'player_source_host_name' => true,
+	 'inserted_at' => false,
+	 'view_end' => false,
+	 'mux_embed_version' => true,
+	 'player_language' => true,
+	 'page_load_time' => true,
+	 'viewer_device_category' => true,
+	 'video_startup_preroll_load_time' => true,
+	 'player_version' => true,
+	 'watch_time' => true,
+	 'player_source_stream_type' => true,
+	 'preroll_ad_tag_hostname' => true,
+	 'viewer_device_manufacturer' => true,
+	 'rebuffering_score' => true,
+	 'experiment_name' => true,
+	 'viewer_os_version' => true,
+	 'player_preload' => false,
+	 'buffering_duration' => true,
+	 'player_view_count' => true,
+	 'player_software' => true,
+	 'player_load_time' => true,
+	 'platform_summary' => true,
+	 'video_encoding_variant' => true,
+	 'player_width' => true,
+	 'view_seek_count' => true,
+	 'viewer_experience_score' => true,
+	 'view_error_id' => true,
+	 'video_variant_name' => true,
+	 'preroll_played' => true,
+	 'viewer_application_engine' => true,
+	 'viewer_os_architecture' => true,
+	 'player_error_code' => true,
+	 'buffering_rate' => true,
+	 'events' => false,
+	 'player_name' => true,
+	 'view_start' => false,
+	 'view_average_request_throughput' => true,
+	 'video_producer' => true,
+	 'error_type_id' => true,
+	 'mux_viewer_id' => false,
+	 'video_id' => true,
+	 'continent_code' => true,
+	 'session_id' => false,
+	 'exit_before_video_start' => false,
+	 'video_content_type' => true,
+	 'viewer_os_family' => true,
+	 'player_poster' => true,
+	 'view_average_request_latency' => true,
+	 'video_variant_id' => true,
+	 'player_source_duration' => true,
+	 'player_source_url' => true,
+	 'mux_api_version' => false,
+	 'video_title' => true,
+	 'id' => false,
+	 'short_time' => false,
+	 'rebuffer_percentage' => true,
+	 'time_to_first_frame' => true,
+	 'viewer_user_id' => true,
+	 'video_stream_type' => true,
+	 'player_startup_time' => true,
+	 'viewer_application_version' => true,
+	 'view_max_downscale_percentage' => true,
+	 'view_max_upscale_percentage' => true,
+	 'country_code' => true,
+	 'used_fullscreen' => false,
+	 'isp' => true,
+	 'property_id' => false,
+	 'player_autoplay' => false,
+	 'player_height' => true,
+	 'asn' => true,
+	 'asn_name' => true,
+	 'quality_score' => true,
+	 'player_software_version' => true,
+	 'player_mux_plugin_name' => true,
+	 'sub_property_id' => true,
+	 'player_remote_played' => true,
+	 'view_max_playhead_position' => true,
+	 'view_playing_time' => true,
+	 'view_session_id' => true,
+	 'viewer_connection_type' => true,
+	 'viewer_device_model' => true,
+	 'weighted_average_bitrate' => true,
+	 'custom_1' => true,
+	 'custom_2' => true,
+	 'custom_3' => true,
+	 'custom_4' => true,
+	 'custom_5' => true
     ];
 
     /**
@@ -1177,7 +1177,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_total_upscaling');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_total_upscaling', $nullablesSetToNull);
+            $index = array_search('view_total_upscaling', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1213,7 +1213,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'preroll_ad_asset_hostname');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('preroll_ad_asset_hostname', $nullablesSetToNull);
+            $index = array_search('preroll_ad_asset_hostname', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1249,7 +1249,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_source_domain');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_source_domain', $nullablesSetToNull);
+            $index = array_search('player_source_domain', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1285,7 +1285,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'region');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('region', $nullablesSetToNull);
+            $index = array_search('region', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1321,7 +1321,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_user_agent');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_user_agent', $nullablesSetToNull);
+            $index = array_search('viewer_user_agent', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1357,7 +1357,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'preroll_requested');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('preroll_requested', $nullablesSetToNull);
+            $index = array_search('preroll_requested', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1393,7 +1393,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'page_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('page_type', $nullablesSetToNull);
+            $index = array_search('page_type', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1429,7 +1429,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'startup_score');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('startup_score', $nullablesSetToNull);
+            $index = array_search('startup_score', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1465,7 +1465,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_seek_duration');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_seek_duration', $nullablesSetToNull);
+            $index = array_search('view_seek_duration', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1501,7 +1501,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'country_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('country_name', $nullablesSetToNull);
+            $index = array_search('country_name', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1537,7 +1537,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_source_height');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_source_height', $nullablesSetToNull);
+            $index = array_search('player_source_height', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1573,7 +1573,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'longitude');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('longitude', $nullablesSetToNull);
+            $index = array_search('longitude', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1609,7 +1609,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'buffering_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('buffering_count', $nullablesSetToNull);
+            $index = array_search('buffering_count', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1645,7 +1645,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_duration');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_duration', $nullablesSetToNull);
+            $index = array_search('video_duration', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1681,7 +1681,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_source_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_source_type', $nullablesSetToNull);
+            $index = array_search('player_source_type', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1717,7 +1717,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'city');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('city', $nullablesSetToNull);
+            $index = array_search('city', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1782,7 +1782,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'platform_description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('platform_description', $nullablesSetToNull);
+            $index = array_search('platform_description', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1818,7 +1818,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_startup_preroll_request_time');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_startup_preroll_request_time', $nullablesSetToNull);
+            $index = array_search('video_startup_preroll_request_time', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1854,7 +1854,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_device_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_device_name', $nullablesSetToNull);
+            $index = array_search('viewer_device_name', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1890,7 +1890,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_series');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_series', $nullablesSetToNull);
+            $index = array_search('video_series', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1926,7 +1926,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_application_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_application_name', $nullablesSetToNull);
+            $index = array_search('viewer_application_name', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1991,7 +1991,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_total_content_playback_time');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_total_content_playback_time', $nullablesSetToNull);
+            $index = array_search('view_total_content_playback_time', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2027,7 +2027,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'cdn');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cdn', $nullablesSetToNull);
+            $index = array_search('cdn', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2063,7 +2063,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_instance_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_instance_id', $nullablesSetToNull);
+            $index = array_search('player_instance_id', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2099,7 +2099,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_language');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_language', $nullablesSetToNull);
+            $index = array_search('video_language', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2135,7 +2135,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_source_width');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_source_width', $nullablesSetToNull);
+            $index = array_search('player_source_width', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2171,7 +2171,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_error_message');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_error_message', $nullablesSetToNull);
+            $index = array_search('player_error_message', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2207,7 +2207,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_mux_plugin_version');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_mux_plugin_version', $nullablesSetToNull);
+            $index = array_search('player_mux_plugin_version', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2272,7 +2272,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'playback_score');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('playback_score', $nullablesSetToNull);
+            $index = array_search('playback_score', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2308,7 +2308,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'page_url');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('page_url', $nullablesSetToNull);
+            $index = array_search('page_url', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2344,7 +2344,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'metro');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metro', $nullablesSetToNull);
+            $index = array_search('metro', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2380,7 +2380,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_max_request_latency');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_max_request_latency', $nullablesSetToNull);
+            $index = array_search('view_max_request_latency', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2416,7 +2416,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'requests_for_first_preroll');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('requests_for_first_preroll', $nullablesSetToNull);
+            $index = array_search('requests_for_first_preroll', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2452,7 +2452,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_total_downscaling');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_total_downscaling', $nullablesSetToNull);
+            $index = array_search('view_total_downscaling', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2488,7 +2488,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'latitude');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('latitude', $nullablesSetToNull);
+            $index = array_search('latitude', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2524,7 +2524,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_source_host_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_source_host_name', $nullablesSetToNull);
+            $index = array_search('player_source_host_name', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2618,7 +2618,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'mux_embed_version');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('mux_embed_version', $nullablesSetToNull);
+            $index = array_search('mux_embed_version', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2654,7 +2654,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_language');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_language', $nullablesSetToNull);
+            $index = array_search('player_language', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2690,7 +2690,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'page_load_time');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('page_load_time', $nullablesSetToNull);
+            $index = array_search('page_load_time', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2726,7 +2726,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_device_category');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_device_category', $nullablesSetToNull);
+            $index = array_search('viewer_device_category', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2762,7 +2762,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_startup_preroll_load_time');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_startup_preroll_load_time', $nullablesSetToNull);
+            $index = array_search('video_startup_preroll_load_time', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2798,7 +2798,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_version');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_version', $nullablesSetToNull);
+            $index = array_search('player_version', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2834,7 +2834,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'watch_time');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('watch_time', $nullablesSetToNull);
+            $index = array_search('watch_time', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2870,7 +2870,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_source_stream_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_source_stream_type', $nullablesSetToNull);
+            $index = array_search('player_source_stream_type', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2906,7 +2906,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'preroll_ad_tag_hostname');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('preroll_ad_tag_hostname', $nullablesSetToNull);
+            $index = array_search('preroll_ad_tag_hostname', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2942,7 +2942,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_device_manufacturer');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_device_manufacturer', $nullablesSetToNull);
+            $index = array_search('viewer_device_manufacturer', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -2978,7 +2978,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'rebuffering_score');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rebuffering_score', $nullablesSetToNull);
+            $index = array_search('rebuffering_score', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3014,7 +3014,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'experiment_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('experiment_name', $nullablesSetToNull);
+            $index = array_search('experiment_name', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3050,7 +3050,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_os_version');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_os_version', $nullablesSetToNull);
+            $index = array_search('viewer_os_version', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3115,7 +3115,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'buffering_duration');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('buffering_duration', $nullablesSetToNull);
+            $index = array_search('buffering_duration', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3151,7 +3151,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_view_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_view_count', $nullablesSetToNull);
+            $index = array_search('player_view_count', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3187,7 +3187,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_software');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_software', $nullablesSetToNull);
+            $index = array_search('player_software', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3223,7 +3223,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_load_time');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_load_time', $nullablesSetToNull);
+            $index = array_search('player_load_time', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3259,7 +3259,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'platform_summary');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('platform_summary', $nullablesSetToNull);
+            $index = array_search('platform_summary', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3295,7 +3295,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_encoding_variant');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_encoding_variant', $nullablesSetToNull);
+            $index = array_search('video_encoding_variant', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3331,7 +3331,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_width');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_width', $nullablesSetToNull);
+            $index = array_search('player_width', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3367,7 +3367,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_seek_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_seek_count', $nullablesSetToNull);
+            $index = array_search('view_seek_count', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3403,7 +3403,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_experience_score');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_experience_score', $nullablesSetToNull);
+            $index = array_search('viewer_experience_score', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3439,7 +3439,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_error_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_error_id', $nullablesSetToNull);
+            $index = array_search('view_error_id', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3475,7 +3475,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_variant_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_variant_name', $nullablesSetToNull);
+            $index = array_search('video_variant_name', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3511,7 +3511,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'preroll_played');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('preroll_played', $nullablesSetToNull);
+            $index = array_search('preroll_played', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3547,7 +3547,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_application_engine');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_application_engine', $nullablesSetToNull);
+            $index = array_search('viewer_application_engine', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3583,7 +3583,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_os_architecture');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_os_architecture', $nullablesSetToNull);
+            $index = array_search('viewer_os_architecture', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3619,7 +3619,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_error_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_error_code', $nullablesSetToNull);
+            $index = array_search('player_error_code', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3655,7 +3655,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'buffering_rate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('buffering_rate', $nullablesSetToNull);
+            $index = array_search('buffering_rate', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3720,7 +3720,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_name', $nullablesSetToNull);
+            $index = array_search('player_name', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3785,7 +3785,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_average_request_throughput');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_average_request_throughput', $nullablesSetToNull);
+            $index = array_search('view_average_request_throughput', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3821,7 +3821,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_producer');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_producer', $nullablesSetToNull);
+            $index = array_search('video_producer', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3857,7 +3857,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'error_type_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('error_type_id', $nullablesSetToNull);
+            $index = array_search('error_type_id', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3922,7 +3922,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_id', $nullablesSetToNull);
+            $index = array_search('video_id', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -3958,7 +3958,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'continent_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('continent_code', $nullablesSetToNull);
+            $index = array_search('continent_code', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4052,7 +4052,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_content_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_content_type', $nullablesSetToNull);
+            $index = array_search('video_content_type', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4088,7 +4088,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_os_family');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_os_family', $nullablesSetToNull);
+            $index = array_search('viewer_os_family', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4124,7 +4124,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_poster');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_poster', $nullablesSetToNull);
+            $index = array_search('player_poster', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4160,7 +4160,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_average_request_latency');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_average_request_latency', $nullablesSetToNull);
+            $index = array_search('view_average_request_latency', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4196,7 +4196,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_variant_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_variant_id', $nullablesSetToNull);
+            $index = array_search('video_variant_id', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4232,7 +4232,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_source_duration');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_source_duration', $nullablesSetToNull);
+            $index = array_search('player_source_duration', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4268,7 +4268,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_source_url');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_source_url', $nullablesSetToNull);
+            $index = array_search('player_source_url', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4333,7 +4333,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_title');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_title', $nullablesSetToNull);
+            $index = array_search('video_title', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4427,7 +4427,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'rebuffer_percentage');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rebuffer_percentage', $nullablesSetToNull);
+            $index = array_search('rebuffer_percentage', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4463,7 +4463,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'time_to_first_frame');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('time_to_first_frame', $nullablesSetToNull);
+            $index = array_search('time_to_first_frame', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4499,7 +4499,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_user_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_user_id', $nullablesSetToNull);
+            $index = array_search('viewer_user_id', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4535,7 +4535,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'video_stream_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_stream_type', $nullablesSetToNull);
+            $index = array_search('video_stream_type', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4571,7 +4571,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_startup_time');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_startup_time', $nullablesSetToNull);
+            $index = array_search('player_startup_time', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4607,7 +4607,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_application_version');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_application_version', $nullablesSetToNull);
+            $index = array_search('viewer_application_version', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4643,7 +4643,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_max_downscale_percentage');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_max_downscale_percentage', $nullablesSetToNull);
+            $index = array_search('view_max_downscale_percentage', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4679,7 +4679,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_max_upscale_percentage');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_max_upscale_percentage', $nullablesSetToNull);
+            $index = array_search('view_max_upscale_percentage', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4715,7 +4715,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'country_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('country_code', $nullablesSetToNull);
+            $index = array_search('country_code', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4780,7 +4780,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'isp');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('isp', $nullablesSetToNull);
+            $index = array_search('isp', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4874,7 +4874,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_height');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_height', $nullablesSetToNull);
+            $index = array_search('player_height', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4910,7 +4910,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'asn');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('asn', $nullablesSetToNull);
+            $index = array_search('asn', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4946,7 +4946,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'asn_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('asn_name', $nullablesSetToNull);
+            $index = array_search('asn_name', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -4982,7 +4982,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'quality_score');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('quality_score', $nullablesSetToNull);
+            $index = array_search('quality_score', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5018,7 +5018,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_software_version');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_software_version', $nullablesSetToNull);
+            $index = array_search('player_software_version', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5054,7 +5054,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_mux_plugin_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_mux_plugin_name', $nullablesSetToNull);
+            $index = array_search('player_mux_plugin_name', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5090,7 +5090,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'sub_property_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('sub_property_id', $nullablesSetToNull);
+            $index = array_search('sub_property_id', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5126,7 +5126,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'player_remote_played');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_remote_played', $nullablesSetToNull);
+            $index = array_search('player_remote_played', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5162,7 +5162,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_max_playhead_position');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_max_playhead_position', $nullablesSetToNull);
+            $index = array_search('view_max_playhead_position', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5198,7 +5198,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_playing_time');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_playing_time', $nullablesSetToNull);
+            $index = array_search('view_playing_time', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5234,7 +5234,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'view_session_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_session_id', $nullablesSetToNull);
+            $index = array_search('view_session_id', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5270,7 +5270,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_connection_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_connection_type', $nullablesSetToNull);
+            $index = array_search('viewer_connection_type', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5306,7 +5306,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'viewer_device_model');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_device_model', $nullablesSetToNull);
+            $index = array_search('viewer_device_model', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5342,7 +5342,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'weighted_average_bitrate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('weighted_average_bitrate', $nullablesSetToNull);
+            $index = array_search('weighted_average_bitrate', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5378,7 +5378,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'custom_1');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('custom_1', $nullablesSetToNull);
+            $index = array_search('custom_1', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5414,7 +5414,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'custom_2');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('custom_2', $nullablesSetToNull);
+            $index = array_search('custom_2', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5450,7 +5450,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'custom_3');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('custom_3', $nullablesSetToNull);
+            $index = array_search('custom_3', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5486,7 +5486,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'custom_4');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('custom_4', $nullablesSetToNull);
+            $index = array_search('custom_4', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -5522,7 +5522,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'custom_5');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('custom_5', $nullablesSetToNull);
+            $index = array_search('custom_5', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);

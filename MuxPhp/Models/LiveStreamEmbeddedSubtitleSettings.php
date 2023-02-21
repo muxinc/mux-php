@@ -87,9 +87,9 @@ class LiveStreamEmbeddedSubtitleSettings implements ModelInterface, ArrayAccess,
       */
     protected static array $openAPINullables = [
         'name' => false,
-		'passthrough' => false,
-		'language_code' => false,
-		'language_channel' => false
+	 'passthrough' => false,
+	 'language_code' => false,
+	 'language_channel' => false
     ];
 
     /**

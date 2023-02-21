@@ -83,7 +83,7 @@ class ListRealTimeDimensionsResponseData implements ModelInterface, ArrayAccess,
       */
     protected static array $openAPINullables = [
         'name' => false,
-		'display_name' => false
+        'display_name' => false
     ];
 
     /**

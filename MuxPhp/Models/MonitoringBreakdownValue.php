@@ -89,10 +89,10 @@ class MonitoringBreakdownValue implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static array $openAPINullables = [
         'value' => false,
-		'negative_impact' => false,
-		'metric_value' => false,
-		'display_value' => false,
-		'concurrent_viewers' => false
+	 'negative_impact' => false,
+	 'metric_value' => false,
+	 'display_value' => false,
+	 'concurrent_viewers' => false
     ];
 
     /**

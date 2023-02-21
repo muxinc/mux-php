@@ -101,16 +101,16 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static array $openAPINullables = [
         'id' => false,
-		'viewer_os_family' => true,
-		'viewer_application_name' => true,
-		'video_title' => true,
-		'total_row_count' => false,
-		'player_error_message' => true,
-		'player_error_code' => true,
-		'error_type_id' => true,
-		'country_code' => true,
-		'view_start' => false,
-		'view_end' => false
+	 'viewer_os_family' => true,
+	 'viewer_application_name' => true,
+	 'video_title' => true,
+	 'total_row_count' => false,
+	 'player_error_message' => true,
+	 'player_error_code' => true,
+	 'error_type_id' => true,
+	 'country_code' => true,
+	 'view_start' => false,
+	 'view_end' => false
     ];
 
     /**
@@ -408,7 +408,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'viewer_os_family');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_os_family', $nullablesSetToNull);
+            $index = array_search('viewer_os_family', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -444,7 +444,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'viewer_application_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('viewer_application_name', $nullablesSetToNull);
+            $index = array_search('viewer_application_name', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -480,7 +480,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'video_title');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('video_title', $nullablesSetToNull);
+            $index = array_search('video_title', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -545,7 +545,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'player_error_message');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_error_message', $nullablesSetToNull);
+            $index = array_search('player_error_message', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -581,7 +581,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'player_error_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('player_error_code', $nullablesSetToNull);
+            $index = array_search('player_error_code', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -617,7 +617,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'error_type_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('error_type_id', $nullablesSetToNull);
+            $index = array_search('error_type_id', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -653,7 +653,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'country_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('country_code', $nullablesSetToNull);
+            $index = array_search('country_code', $nullablesSetToNull, true);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);

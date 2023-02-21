@@ -85,8 +85,8 @@ class SigningKey implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'id' => false,
-		'created_at' => false,
-		'private_key' => false
+	 'created_at' => false,
+	 'private_key' => false
     ];
 
     /**

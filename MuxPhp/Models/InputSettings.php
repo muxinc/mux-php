@@ -100,15 +100,15 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'url' => false,
-		'overlay_settings' => false,
-		'start_time' => false,
-		'end_time' => false,
-		'type' => false,
-		'text_type' => false,
-		'language_code' => false,
-		'name' => false,
-		'closed_captions' => false,
-		'passthrough' => false
+	 'overlay_settings' => false,
+	 'start_time' => false,
+	 'end_time' => false,
+	 'type' => false,
+	 'text_type' => false,
+	 'language_code' => false,
+	 'name' => false,
+	 'closed_captions' => false,
+	 'passthrough' => false
     ];
 
     /**

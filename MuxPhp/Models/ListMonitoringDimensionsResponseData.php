@@ -83,7 +83,7 @@ class ListMonitoringDimensionsResponseData implements ModelInterface, ArrayAcces
       */
     protected static array $openAPINullables = [
         'name' => false,
-		'display_name' => false
+	 'display_name' => false
     ];
 
     /**

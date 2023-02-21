@@ -25,4 +25,3 @@
     } catch (Exception $e) {
         echo 'Exception when calling AssetsApi->listAssets: ', $e->getMessage(), PHP_EOL;
     }
-?>

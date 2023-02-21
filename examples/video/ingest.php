@@ -21,6 +21,4 @@
     $result = $assetsApi->createAsset($createAssetRequest);
 
     // Print URL
-    print "Playback URL: https://stream.mux.com/" . $result->getData()->getPlaybackIds()[0]->getId() . ".m3u8\n"
-
-?>
+    print "Playback URL: https://stream.mux.com/" . $result->getData()->getPlaybackIds()[0]->getId() . ".m3u8\n";

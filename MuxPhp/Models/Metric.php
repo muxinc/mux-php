@@ -89,10 +89,10 @@ class Metric implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'value' => false,
-		'type' => false,
-		'name' => false,
-		'metric' => false,
-		'measurement' => false
+	 'type' => false,
+	 'name' => false,
+	 'metric' => false,
+	 'measurement' => false
     ];
 
     /**

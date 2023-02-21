@@ -15,9 +15,9 @@
 
     // ========== list-filters ==========
     $dimensions = $dimensionsApi->listDimensions();
-    assert($dimensions->getData() != null);
-    assert($dimensions->getData()->getBasic() != null);
-    assert($dimensions->getData()->getAdvanced() != null);
+    assert($dimensions->getData() !== null);
+    assert($dimensions->getData()->getBasic() !== null);
+    assert($dimensions->getData()->getAdvanced() !== null);
     print("list-dimensions OK ✅\n");
 
     // ========== list-dimension-values ==========
@@ -28,5 +28,3 @@
     ]);
     assert(is_array($dimensionValues->getData()));
     print("list-dimension-values OK ✅\n");
-
-?>

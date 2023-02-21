@@ -93,12 +93,12 @@ class RealTimeHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcces
       */
     protected static array $openAPINullables = [
         'timestamp' => false,
-		'sum' => false,
-		'p95' => false,
-		'median' => false,
-		'max_percentage' => false,
-		'bucket_values' => false,
-		'average' => false
+	 'sum' => false,
+	 'p95' => false,
+	 'median' => false,
+	 'max_percentage' => false,
+	 'bucket_values' => false,
+	 'average' => false
     ];
 
     /**

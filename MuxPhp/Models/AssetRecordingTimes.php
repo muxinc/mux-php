@@ -85,8 +85,8 @@ class AssetRecordingTimes implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static array $openAPINullables = [
         'started_at' => false,
-		'duration' => false,
-		'type' => false
+	 'duration' => false,
+	 'type' => false
     ];
 
     /**

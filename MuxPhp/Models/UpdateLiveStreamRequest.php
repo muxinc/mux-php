@@ -91,11 +91,11 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static array $openAPINullables = [
         'passthrough' => false,
-		'latency_mode' => false,
-		'reconnect_window' => false,
-		'use_slate_for_standard_latency' => false,
-		'reconnect_slate_url' => false,
-		'max_continuous_duration' => false
+	 'latency_mode' => false,
+	 'reconnect_window' => false,
+	 'use_slate_for_standard_latency' => false,
+	 'reconnect_slate_url' => false,
+	 'max_continuous_duration' => false
     ];
 
     /**

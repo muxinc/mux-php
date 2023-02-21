@@ -85,8 +85,8 @@ class CreateSpaceRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static array $openAPINullables = [
         'type' => false,
-		'passthrough' => false,
-		'broadcasts' => false
+	 'passthrough' => false,
+	 'broadcasts' => false
     ];
 
     /**

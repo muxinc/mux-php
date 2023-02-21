@@ -19,25 +19,24 @@
     $createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::_PUBLIC]]);
     $createUploadRequest = new MuxPhp\Models\CreateUploadRequest(["timeout" => 3600, "new_asset_settings" => $createAssetRequest, "cors_origin" => "philcluff.co.uk"]);
     $upload = $uploadsApi->createDirectUpload($createUploadRequest);
-    assert($upload->getData()->getId() != null);
+    assert($upload->getData()->getId() !== null);
     print("create-direct-upload OK ✅\n");
 
     // ========== list-direct-uploads ==========
     $uploads = $uploadsApi->listDirectUploads();
-    assert($uploads->getData()[0]->getId() != null);
-    assert($uploads->getData()[0]->getId() == $upload->getData()->getId());
+    assert($uploads->getData()[0]->getId() !== null);
+    assert($uploads->getData()[0]->getId() === $upload->getData()->getId());
     print("list-direct-uploads OK ✅\n");
 
     // ========== get-direct-upload ==========
     $getUpload = $uploadsApi->getDirectUpload($upload->getData()->getId());
-    assert($getUpload->getData()->getId() != null);
-    assert($getUpload->getData()->getId() == $upload->getData()->getId());
+    assert($getUpload->getData()->getId() !== null);
+    assert($getUpload->getData()->getId() === $upload->getData()->getId());
     print("get-direct-upload OK ✅\n"); 
 
     // ========== cancel-direct-upload ==========
     $cancelled = $uploadsApi->cancelDirectUpload($upload->getData()->getId());
-    assert($cancelled->getData()->getId() != null);
-    assert($cancelled->getData()->getId() == $upload->getData()->getId());
-    assert($cancelled->getData()->getStatus() == "cancelled");
-    print("cancel-direct-upload OK ✅\n"); 
-?>
+    assert($cancelled->getData()->getId() !== null);
+    assert($cancelled->getData()->getId() === $upload->getData()->getId());
+    assert($cancelled->getData()->getStatus() === "cancelled");
+    print("cancel-direct-upload OK ✅\n");

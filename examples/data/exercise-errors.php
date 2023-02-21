@@ -19,5 +19,3 @@
     $errors = $errorsApi->listErrors(["filters" => ["browser:Safari"], "timeframe" => ["7:days"]]);
     assert(is_array($errors->getData()));
     print("list-errors OK ✅\n");
-
-?>

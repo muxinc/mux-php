@@ -85,8 +85,8 @@ class GetAssetOrLiveStreamIdResponseData implements ModelInterface, ArrayAccess,
       */
     protected static array $openAPINullables = [
         'id' => false,
-		'policy' => false,
-		'object' => false
+        'policy' => false,
+        'object' => false
     ];
 
     /**

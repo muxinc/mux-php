@@ -84,7 +84,7 @@ class AssetMaster implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'status' => false,
-		'url' => false
+        'url' => false
     ];
 
     /**

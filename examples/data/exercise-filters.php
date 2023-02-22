@@ -17,14 +17,12 @@
 
     // ========== list-filters ==========
     $filters = $filtersApi->listFilters();
-    assert($filters->getData() != null);
-    assert($filters->getData()->getBasic() != null);
-    assert($filters->getData()->getAdvanced() != null);
+    assert($filters->getData() !== null);
+    assert($filters->getData()->getBasic() !== null);
+    assert($filters->getData()->getAdvanced() !== null);
     print("list-filters OK ✅\n");
 
     // ========== list-filter-values ==========
     $filterValues = $filtersApi->listFilterValues("browser", ["timeframe" => ["7:days"]]);
-    assert($filters->getData() != null);
+    assert($filters->getData() !== null);
     print("list-filter-values OK ✅\n");
-
-?>

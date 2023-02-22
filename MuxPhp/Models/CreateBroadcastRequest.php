@@ -89,10 +89,10 @@ class CreateBroadcastRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static array $openAPINullables = [
         'passthrough' => false,
-		'live_stream_id' => false,
-		'layout' => false,
-		'background' => false,
-		'resolution' => false
+        'live_stream_id' => false,
+        'layout' => false,
+        'background' => false,
+        'resolution' => false
     ];
 
     /**

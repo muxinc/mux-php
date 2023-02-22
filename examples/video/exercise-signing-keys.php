@@ -17,22 +17,22 @@
 
     // ========== create-url-signing-key ==========
     $createKeyResponse = $keysApi->createUrlSigningKey();
-    assert($createKeyResponse->getData()->getId() != null);
-    assert($createKeyResponse->getData()->getPrivateKey() != null);
+    assert($createKeyResponse->getData()->getId() !== null);
+    assert($createKeyResponse->getData()->getPrivateKey() !== null);
     print("create-url-signing-key OK ✅\n");
 
     // ========== list-url-signing-keys ==========
     $keys = $keysApi->listUrlSigningKeys();
-    assert($keys->getData()[0]->getId() != null);
-    assert($keys->getData()[0]->getId() == $createKeyResponse->getData()->getId());
-    assert($keys->getData()[0]->getPrivateKey() == null);
+    assert($keys->getData()[0]->getId() !== null);
+    assert($keys->getData()[0]->getId() === $createKeyResponse->getData()->getId());
+    assert($keys->getData()[0]->getPrivateKey() === null);
     print("list-url-signing-keys OK ✅\n");
 
     // ========== get-url-signing-key ==========
     $key = $keysApi->getUrlSigningKey($createKeyResponse->getData()->getId());
-    assert($key->getData()->getId() != null);
-    assert($key->getData()->getId() == $createKeyResponse->getData()->getId());
-    assert($key->getData()->getPrivateKey() == null);
+    assert($key->getData()->getId() !== null);
+    assert($key->getData()->getId() === $createKeyResponse->getData()->getId());
+    assert($key->getData()->getPrivateKey() === null);
     print("get-url-signing-key OK ✅\n");
 
     // ========== delete-url-signing-key ==========
@@ -44,4 +44,3 @@
     } catch (Exception $e) {
         print("delete-url-signing-key OK ✅\n");
     }
-?>

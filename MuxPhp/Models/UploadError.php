@@ -84,7 +84,7 @@ class UploadError implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'type' => false,
-		'message' => false
+        'message' => false
     ];
 
     /**

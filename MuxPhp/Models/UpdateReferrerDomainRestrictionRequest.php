@@ -83,7 +83,7 @@ class UpdateReferrerDomainRestrictionRequest implements ModelInterface, ArrayAcc
       */
     protected static array $openAPINullables = [
         'allowed_domains' => false,
-		'allow_no_referrer' => false
+        'allow_no_referrer' => false
     ];
 
     /**

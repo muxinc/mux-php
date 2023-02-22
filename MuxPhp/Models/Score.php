@@ -91,11 +91,11 @@ class Score implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'watch_time' => false,
-		'view_count' => false,
-		'name' => false,
-		'value' => false,
-		'metric' => false,
-		'items' => false
+        'view_count' => false,
+        'name' => false,
+        'value' => false,
+        'metric' => false,
+        'items' => false
     ];
 
     /**

@@ -93,12 +93,12 @@ class Space implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'id' => false,
-		'created_at' => false,
-		'type' => false,
-		'status' => false,
-		'passthrough' => false,
-		'broadcasts' => false,
-		'active_session_id' => false
+        'created_at' => false,
+        'type' => false,
+        'status' => false,
+        'passthrough' => false,
+        'broadcasts' => false,
+        'active_session_id' => false
     ];
 
     /**

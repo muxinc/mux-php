@@ -83,7 +83,7 @@ class DimensionValue implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'value' => false,
-		'total_count' => false
+        'total_count' => false
     ];
 
     /**

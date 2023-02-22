@@ -85,8 +85,8 @@ class CreateTranscriptionVocabularyRequest implements ModelInterface, ArrayAcces
       */
     protected static array $openAPINullables = [
         'name' => false,
-		'phrases' => false,
-		'passthrough' => false
+        'phrases' => false,
+        'passthrough' => false
     ];
 
     /**

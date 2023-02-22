@@ -67,7 +67,8 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted_at' => 'string',
         'asset_state' => 'string',
         'asset_duration' => 'double',
-        'delivered_seconds' => 'double'
+        'delivered_seconds' => 'double',
+        'delivered_seconds_by_resolution' => '\MuxPhp\Models\DeliveryReportDeliveredSecondsByResolution'
     ];
 
     /**
@@ -85,7 +86,8 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted_at' => null,
         'asset_state' => null,
         'asset_duration' => 'double',
-        'delivered_seconds' => 'double'
+        'delivered_seconds' => 'double',
+        'delivered_seconds_by_resolution' => null
     ];
 
     /**
@@ -95,13 +97,14 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'live_stream_id' => false,
-		'asset_id' => false,
-		'passthrough' => false,
-		'created_at' => false,
-		'deleted_at' => false,
-		'asset_state' => false,
-		'asset_duration' => false,
-		'delivered_seconds' => false
+        'asset_id' => false,
+        'passthrough' => false,
+        'created_at' => false,
+        'deleted_at' => false,
+        'asset_state' => false,
+        'asset_duration' => false,
+        'delivered_seconds' => false,
+        'delivered_seconds_by_resolution' => false
     ];
 
     /**
@@ -187,7 +190,8 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted_at' => 'deleted_at',
         'asset_state' => 'asset_state',
         'asset_duration' => 'asset_duration',
-        'delivered_seconds' => 'delivered_seconds'
+        'delivered_seconds' => 'delivered_seconds',
+        'delivered_seconds_by_resolution' => 'delivered_seconds_by_resolution'
     ];
 
     /**
@@ -203,7 +207,8 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted_at' => 'setDeletedAt',
         'asset_state' => 'setAssetState',
         'asset_duration' => 'setAssetDuration',
-        'delivered_seconds' => 'setDeliveredSeconds'
+        'delivered_seconds' => 'setDeliveredSeconds',
+        'delivered_seconds_by_resolution' => 'setDeliveredSecondsByResolution'
     ];
 
     /**
@@ -219,7 +224,8 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted_at' => 'getDeletedAt',
         'asset_state' => 'getAssetState',
         'asset_duration' => 'getAssetDuration',
-        'delivered_seconds' => 'getDeliveredSeconds'
+        'delivered_seconds' => 'getDeliveredSeconds',
+        'delivered_seconds_by_resolution' => 'getDeliveredSecondsByResolution'
     ];
 
     /**
@@ -307,6 +313,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('asset_state', $data ?? [], null);
         $this->setIfExists('asset_duration', $data ?? [], null);
         $this->setIfExists('delivered_seconds', $data ?? [], null);
+        $this->setIfExists('delivered_seconds_by_resolution', $data ?? [], null);
     }
 
     /**
@@ -598,6 +605,35 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['delivered_seconds'] = $delivered_seconds;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivered_seconds_by_resolution
+     *
+     * @return \MuxPhp\Models\DeliveryReportDeliveredSecondsByResolution|null
+     */
+    public function getDeliveredSecondsByResolution()
+    {
+        return $this->container['delivered_seconds_by_resolution'];
+    }
+
+    /**
+     * Sets delivered_seconds_by_resolution
+     *
+     * @param \MuxPhp\Models\DeliveryReportDeliveredSecondsByResolution|null $delivered_seconds_by_resolution delivered_seconds_by_resolution
+     *
+     * @return self
+     */
+    public function setDeliveredSecondsByResolution($delivered_seconds_by_resolution)
+    {
+
+        if (is_null($delivered_seconds_by_resolution)) {
+            throw new \InvalidArgumentException('non-nullable delivered_seconds_by_resolution cannot be null');
+        }
+
+        $this->container['delivered_seconds_by_resolution'] = $delivered_seconds_by_resolution;
 
         return $this;
     }

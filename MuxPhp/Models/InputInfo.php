@@ -83,7 +83,7 @@ class InputInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'settings' => false,
-		'file' => false
+        'file' => false
     ];
 
     /**

@@ -17,8 +17,6 @@
     // Example with a valid timeframe:
     // $usage = $usageApi->listDeliveryUsage(['timeframe' => ['1574175600', '1574305200']]);
     $usage = $usageApi->listDeliveryUsage();
-    assert($usage != null);
+    assert($usage !== null);
     assert(is_array($usage->getData())); // Closest assertion I can so is that it's an array, I can't assert not nil...
     print("list-delivery-usage OK ✅\n");
-
-?>

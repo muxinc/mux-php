@@ -95,13 +95,13 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'id' => false,
-		'percentage' => false,
-		'notes' => false,
-		'message' => false,
-		'last_seen' => false,
-		'description' => false,
-		'count' => false,
-		'code' => false
+        'percentage' => false,
+        'notes' => false,
+        'message' => false,
+        'last_seen' => false,
+        'description' => false,
+        'count' => false,
+        'code' => false
     ];
 
     /**

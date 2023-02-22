@@ -85,8 +85,8 @@ class MonitoringTimeseriesDatapoint implements ModelInterface, ArrayAccess, \Jso
       */
     protected static array $openAPINullables = [
         'value' => false,
-		'date' => false,
-		'concurrent_viewers' => false
+        'date' => false,
+        'concurrent_viewers' => false
     ];
 
     /**

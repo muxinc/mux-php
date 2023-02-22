@@ -34,7 +34,7 @@ use \MuxPhp\ObjectSerializer;
  * BroadcastLayout Class Doc Comment
  *
  * @category Class
- * @description The layout used when broadcasting the space. Defaults to &#x60;gallery&#x60; if not set.
+ * @description The layout used when broadcasting the space.  The &#x60;gallery&#x60; layout will show participants in a grid that automatically resizes each participant’s stream to best fit up to 10 participants in the window. The &#x60;active-speaker&#x60; layout will show only the current active speaker, without a border. The &#x60;crop&#x60; layout uses as much of the available space as possible to show the participant&#39;s stream.  Defaults to &#x60;gallery&#x60; if not set.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
@@ -46,6 +46,7 @@ class BroadcastLayout
      */
     public const GALLERY = 'gallery';
     public const ACTIVE_SPEAKER = 'active-speaker';
+    public const CROP = 'crop';
     
     /**
      * Gets allowable values of the enum
@@ -56,6 +57,7 @@ class BroadcastLayout
         return [
             self::GALLERY,
             self::ACTIVE_SPEAKER,
+            self::CROP,
         ];
     }
 }

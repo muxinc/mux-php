@@ -17,14 +17,13 @@
 
     # ========== list-video-views ==========
     $views = $viewsApi->listVideoViews(["filters" => ['country:US', 'browser:Safari'], "timeframe" => ['7:days']]);
-    assert($views->getData() != null);
+    assert($views->getData() !== null);
     assert(sizeof($views->getData()) > 0);
-    assert($views->getData()[0]->getId() != null);
+    assert($views->getData()[0]->getId() !== null);
     print("list-video-views OK ✅\n");
 
     # ========== get-video-view ==========
     $view = $viewsApi->getVideoView($views->getData()[0]->getId());
-    assert($view->getData() != null);
-    assert($view->getData()->getId() != null);
+    assert($view->getData() !== null);
+    assert($view->getData()->getId() !== null);
     print("get-video-view OK ✅\n");
-?>

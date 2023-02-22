@@ -84,7 +84,7 @@ class AssetErrors implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'type' => false,
-		'messages' => false
+        'messages' => false
     ];
 
     /**

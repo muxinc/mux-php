@@ -17,7 +17,7 @@
 
     // ========== list-incidents ==========
     $incidents = $incidentsApi->listIncidents();
-    assert($incidents != null);
+    assert($incidents !== null);
     assert(is_array($incidents->getData()));
     print("list-incidents OK ✅\n");
 
@@ -26,5 +26,3 @@
 
     // ========== list-related-incidents ==========
     print("list-related-incidents SKIP ⚠️\n");
-
-?>

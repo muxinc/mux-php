@@ -109,20 +109,20 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'id' => false,
-		'type' => false,
-		'duration' => false,
-		'max_width' => false,
-		'max_height' => false,
-		'max_frame_rate' => false,
-		'max_channels' => false,
-		'max_channel_layout' => false,
-		'text_type' => false,
-		'text_source' => false,
-		'language_code' => false,
-		'name' => false,
-		'closed_captions' => false,
-		'passthrough' => false,
-		'status' => false
+        'type' => false,
+        'duration' => false,
+        'max_width' => false,
+        'max_height' => false,
+        'max_frame_rate' => false,
+        'max_channels' => false,
+        'max_channel_layout' => false,
+        'text_type' => false,
+        'text_source' => false,
+        'language_code' => false,
+        'name' => false,
+        'closed_captions' => false,
+        'passthrough' => false,
+        'status' => false
     ];
 
     /**
@@ -316,6 +316,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_PREPARING = 'preparing';
     public const STATUS_READY = 'ready';
     public const STATUS_ERRORED = 'errored';
+    public const STATUS_DELETED = 'deleted';
 
     /**
      * Gets allowable values of the enum
@@ -369,6 +370,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_PREPARING,
             self::STATUS_READY,
             self::STATUS_ERRORED,
+            self::STATUS_DELETED,
         ];
     }
 

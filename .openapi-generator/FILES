@@ -49,6 +49,7 @@ MuxPhp/Models/CreateTrackResponse.php
 MuxPhp/Models/CreateTranscriptionVocabularyRequest.php
 MuxPhp/Models/CreateUploadRequest.php
 MuxPhp/Models/DeliveryReport.php
+MuxPhp/Models/DeliveryReportDeliveredSecondsByResolution.php
 MuxPhp/Models/DimensionValue.php
 MuxPhp/Models/DisableLiveStreamResponse.php
 MuxPhp/Models/EnableLiveStreamResponse.php
@@ -212,6 +213,7 @@ docs/Model/CreateTrackResponse.md
 docs/Model/CreateTranscriptionVocabularyRequest.md
 docs/Model/CreateUploadRequest.md
 docs/Model/DeliveryReport.md
+docs/Model/DeliveryReportDeliveredSecondsByResolution.md
 docs/Model/DimensionValue.md
 docs/Model/DisableLiveStreamResponse.md
 docs/Model/EnableLiveStreamResponse.md

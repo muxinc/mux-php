@@ -1,6 +1,6 @@
 <?php
 /**
- * ListRealTimeDimensionsResponseData
+ * DeliveryReportDeliveredSecondsByResolution
  *
  * PHP version 7.2
  *
@@ -33,9 +33,10 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListRealTimeDimensionsResponseData Class Doc Comment
+ * DeliveryReportDeliveredSecondsByResolution Class Doc Comment
  *
  * @category Class
+ * @description Seconds delivered broken into resolution tiers. Each tier will only be displayed if there was content delivered in the tier.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
@@ -43,7 +44,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListRealTimeDimensionsResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
+class DeliveryReportDeliveredSecondsByResolution implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +53,7 @@ class ListRealTimeDimensionsResponseData implements ModelInterface, ArrayAccess,
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListRealTimeDimensionsResponse_data';
+    protected static $openAPIModelName = 'DeliveryReport_delivered_seconds_by_resolution';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +61,9 @@ class ListRealTimeDimensionsResponseData implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'display_name' => 'string'
+        'tier_1080p' => 'double',
+        'tier_720p' => 'double',
+        'tier_audio_only' => 'double'
     ];
 
     /**
@@ -72,8 +74,9 @@ class ListRealTimeDimensionsResponseData implements ModelInterface, ArrayAccess,
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'display_name' => null
+        'tier_1080p' => 'double',
+        'tier_720p' => 'double',
+        'tier_audio_only' => 'double'
     ];
 
     /**
@@ -82,8 +85,9 @@ class ListRealTimeDimensionsResponseData implements ModelInterface, ArrayAccess,
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => false,
-		'display_name' => false
+        'tier_1080p' => false,
+        'tier_720p' => false,
+        'tier_audio_only' => false
     ];
 
     /**
@@ -162,8 +166,9 @@ class ListRealTimeDimensionsResponseData implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'display_name' => 'display_name'
+        'tier_1080p' => 'tier_1080p',
+        'tier_720p' => 'tier_720p',
+        'tier_audio_only' => 'tier_audio_only'
     ];
 
     /**
@@ -172,8 +177,9 @@ class ListRealTimeDimensionsResponseData implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'display_name' => 'setDisplayName'
+        'tier_1080p' => 'setTier1080p',
+        'tier_720p' => 'setTier720p',
+        'tier_audio_only' => 'setTierAudioOnly'
     ];
 
     /**
@@ -182,8 +188,9 @@ class ListRealTimeDimensionsResponseData implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'display_name' => 'getDisplayName'
+        'tier_1080p' => 'getTier1080p',
+        'tier_720p' => 'getTier720p',
+        'tier_audio_only' => 'getTierAudioOnly'
     ];
 
     /**
@@ -246,8 +253,9 @@ class ListRealTimeDimensionsResponseData implements ModelInterface, ArrayAccess,
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('display_name', $data ?? [], null);
+        $this->setIfExists('tier_1080p', $data ?? [], null);
+        $this->setIfExists('tier_720p', $data ?? [], null);
+        $this->setIfExists('tier_audio_only', $data ?? [], null);
     }
 
     /**
@@ -293,59 +301,88 @@ class ListRealTimeDimensionsResponseData implements ModelInterface, ArrayAccess,
 
 
     /**
-     * Gets name
+     * Gets tier_1080p
      *
-     * @return string|null
+     * @return double|null
      */
-    public function getName()
+    public function getTier1080p()
     {
-        return $this->container['name'];
+        return $this->container['tier_1080p'];
     }
 
     /**
-     * Sets name
+     * Sets tier_1080p
      *
-     * @param string|null $name name
+     * @param double|null $tier_1080p Total number of delivered seconds during this time window that had a resolution larger than the 720p tier (over 921,600 pixels total).
      *
      * @return self
      */
-    public function setName($name)
+    public function setTier1080p($tier_1080p)
     {
 
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($tier_1080p)) {
+            throw new \InvalidArgumentException('non-nullable tier_1080p cannot be null');
         }
 
-        $this->container['name'] = $name;
+        $this->container['tier_1080p'] = $tier_1080p;
 
         return $this;
     }
 
     /**
-     * Gets display_name
+     * Gets tier_720p
      *
-     * @return string|null
+     * @return double|null
      */
-    public function getDisplayName()
+    public function getTier720p()
     {
-        return $this->container['display_name'];
+        return $this->container['tier_720p'];
     }
 
     /**
-     * Sets display_name
+     * Sets tier_720p
      *
-     * @param string|null $display_name display_name
+     * @param double|null $tier_720p Total number of delivered seconds during this time window that had a resolution within the 720p tier (up to 921,600 pixels total, based on typical 1280x720).
      *
      * @return self
      */
-    public function setDisplayName($display_name)
+    public function setTier720p($tier_720p)
     {
 
-        if (is_null($display_name)) {
-            throw new \InvalidArgumentException('non-nullable display_name cannot be null');
+        if (is_null($tier_720p)) {
+            throw new \InvalidArgumentException('non-nullable tier_720p cannot be null');
         }
 
-        $this->container['display_name'] = $display_name;
+        $this->container['tier_720p'] = $tier_720p;
+
+        return $this;
+    }
+
+    /**
+     * Gets tier_audio_only
+     *
+     * @return double|null
+     */
+    public function getTierAudioOnly()
+    {
+        return $this->container['tier_audio_only'];
+    }
+
+    /**
+     * Sets tier_audio_only
+     *
+     * @param double|null $tier_audio_only Total number of delivered seconds during this time window that had a resolution of audio only.
+     *
+     * @return self
+     */
+    public function setTierAudioOnly($tier_audio_only)
+    {
+
+        if (is_null($tier_audio_only)) {
+            throw new \InvalidArgumentException('non-nullable tier_audio_only cannot be null');
+        }
+
+        $this->container['tier_audio_only'] = $tier_audio_only;
 
         return $this;
     }

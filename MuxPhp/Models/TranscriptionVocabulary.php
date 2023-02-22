@@ -91,11 +91,11 @@ class TranscriptionVocabulary implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static array $openAPINullables = [
         'id' => false,
-		'name' => false,
-		'phrases' => false,
-		'passthrough' => false,
-		'created_at' => false,
-		'updated_at' => false
+        'name' => false,
+        'phrases' => false,
+        'passthrough' => false,
+        'created_at' => false,
+        'updated_at' => false
     ];
 
     /**

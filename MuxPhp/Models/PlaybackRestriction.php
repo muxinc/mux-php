@@ -87,9 +87,9 @@ class PlaybackRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static array $openAPINullables = [
         'id' => false,
-		'created_at' => false,
-		'updated_at' => false,
-		'referrer' => false
+        'created_at' => false,
+        'updated_at' => false,
+        'referrer' => false
     ];
 
     /**

@@ -89,10 +89,10 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'id' => false,
-		'passthrough' => false,
-		'status' => false,
-		'stream_key' => false,
-		'url' => false
+        'passthrough' => false,
+        'status' => false,
+        'stream_key' => false,
+        'url' => false
     ];
 
     /**

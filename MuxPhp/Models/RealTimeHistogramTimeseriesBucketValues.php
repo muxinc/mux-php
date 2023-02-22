@@ -83,7 +83,7 @@ class RealTimeHistogramTimeseriesBucketValues implements ModelInterface, ArrayAc
       */
     protected static array $openAPINullables = [
         'percentage' => false,
-		'count' => false
+        'count' => false
     ];
 
     /**

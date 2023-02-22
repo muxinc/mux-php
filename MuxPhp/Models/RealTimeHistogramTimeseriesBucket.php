@@ -83,7 +83,7 @@ class RealTimeHistogramTimeseriesBucket implements ModelInterface, ArrayAccess, 
       */
     protected static array $openAPINullables = [
         'start' => false,
-		'end' => false
+        'end' => false
     ];
 
     /**

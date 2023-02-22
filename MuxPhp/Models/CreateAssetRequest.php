@@ -95,13 +95,13 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static array $openAPINullables = [
         'input' => false,
-		'playback_policy' => false,
-		'per_title_encode' => false,
-		'passthrough' => false,
-		'mp4_support' => false,
-		'normalize_audio' => false,
-		'master_access' => false,
-		'test' => false
+        'playback_policy' => false,
+        'per_title_encode' => false,
+        'passthrough' => false,
+        'mp4_support' => false,
+        'normalize_audio' => false,
+        'master_access' => false,
+        'test' => false
     ];
 
     /**

@@ -84,7 +84,7 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static array $openAPINullables = [
         'status' => false,
-		'files' => false
+        'files' => false
     ];
 
     /**

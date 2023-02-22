@@ -87,9 +87,9 @@ class LiveStreamGeneratedSubtitleSettings implements ModelInterface, ArrayAccess
       */
     protected static array $openAPINullables = [
         'name' => false,
-		'passthrough' => false,
-		'language_code' => false,
-		'transcription_vocabulary_ids' => false
+        'passthrough' => false,
+        'language_code' => false,
+        'transcription_vocabulary_ids' => false
     ];
 
     /**

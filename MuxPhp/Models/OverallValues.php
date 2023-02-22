@@ -87,9 +87,9 @@ class OverallValues implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'value' => false,
-		'total_watch_time' => false,
-		'total_views' => false,
-		'global_value' => false
+        'total_watch_time' => false,
+        'total_views' => false,
+        'global_value' => false
     ];
 
     /**

@@ -61,6 +61,8 @@ class DeliveryReportDeliveredSecondsByResolution implements ModelInterface, Arra
       * @var string[]
       */
     protected static $openAPITypes = [
+        'tier_2160p' => 'double',
+        'tier_1440p' => 'double',
         'tier_1080p' => 'double',
         'tier_720p' => 'double',
         'tier_audio_only' => 'double'
@@ -74,6 +76,8 @@ class DeliveryReportDeliveredSecondsByResolution implements ModelInterface, Arra
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'tier_2160p' => 'double',
+        'tier_1440p' => 'double',
         'tier_1080p' => 'double',
         'tier_720p' => 'double',
         'tier_audio_only' => 'double'
@@ -85,6 +89,8 @@ class DeliveryReportDeliveredSecondsByResolution implements ModelInterface, Arra
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'tier_2160p' => false,
+        'tier_1440p' => false,
         'tier_1080p' => false,
         'tier_720p' => false,
         'tier_audio_only' => false
@@ -166,6 +172,8 @@ class DeliveryReportDeliveredSecondsByResolution implements ModelInterface, Arra
      * @var string[]
      */
     protected static $attributeMap = [
+        'tier_2160p' => 'tier_2160p',
+        'tier_1440p' => 'tier_1440p',
         'tier_1080p' => 'tier_1080p',
         'tier_720p' => 'tier_720p',
         'tier_audio_only' => 'tier_audio_only'
@@ -177,6 +185,8 @@ class DeliveryReportDeliveredSecondsByResolution implements ModelInterface, Arra
      * @var string[]
      */
     protected static $setters = [
+        'tier_2160p' => 'setTier2160p',
+        'tier_1440p' => 'setTier1440p',
         'tier_1080p' => 'setTier1080p',
         'tier_720p' => 'setTier720p',
         'tier_audio_only' => 'setTierAudioOnly'
@@ -188,6 +198,8 @@ class DeliveryReportDeliveredSecondsByResolution implements ModelInterface, Arra
      * @var string[]
      */
     protected static $getters = [
+        'tier_2160p' => 'getTier2160p',
+        'tier_1440p' => 'getTier1440p',
         'tier_1080p' => 'getTier1080p',
         'tier_720p' => 'getTier720p',
         'tier_audio_only' => 'getTierAudioOnly'
@@ -253,6 +265,8 @@ class DeliveryReportDeliveredSecondsByResolution implements ModelInterface, Arra
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
+        $this->setIfExists('tier_2160p', $data ?? [], null);
+        $this->setIfExists('tier_1440p', $data ?? [], null);
         $this->setIfExists('tier_1080p', $data ?? [], null);
         $this->setIfExists('tier_720p', $data ?? [], null);
         $this->setIfExists('tier_audio_only', $data ?? [], null);
@@ -301,6 +315,64 @@ class DeliveryReportDeliveredSecondsByResolution implements ModelInterface, Arra
 
 
     /**
+     * Gets tier_2160p
+     *
+     * @return double|null
+     */
+    public function getTier2160p()
+    {
+        return $this->container['tier_2160p'];
+    }
+
+    /**
+     * Sets tier_2160p
+     *
+     * @param double|null $tier_2160p Total number of delivered seconds during this time window that had a resolution larger than the 1440p tier (over 4,194,304 pixels total).
+     *
+     * @return self
+     */
+    public function setTier2160p($tier_2160p)
+    {
+
+        if (is_null($tier_2160p)) {
+            throw new \InvalidArgumentException('non-nullable tier_2160p cannot be null');
+        }
+
+        $this->container['tier_2160p'] = $tier_2160p;
+
+        return $this;
+    }
+
+    /**
+     * Gets tier_1440p
+     *
+     * @return double|null
+     */
+    public function getTier1440p()
+    {
+        return $this->container['tier_1440p'];
+    }
+
+    /**
+     * Sets tier_1440p
+     *
+     * @param double|null $tier_1440p Total number of delivered seconds during this time window that had a resolution larger than the 1080p tier but less than or equal to the 2160p tier (over 2,073,600 and <= 4,194,304 pixels total).
+     *
+     * @return self
+     */
+    public function setTier1440p($tier_1440p)
+    {
+
+        if (is_null($tier_1440p)) {
+            throw new \InvalidArgumentException('non-nullable tier_1440p cannot be null');
+        }
+
+        $this->container['tier_1440p'] = $tier_1440p;
+
+        return $this;
+    }
+
+    /**
      * Gets tier_1080p
      *
      * @return double|null
@@ -313,7 +385,7 @@ class DeliveryReportDeliveredSecondsByResolution implements ModelInterface, Arra
     /**
      * Sets tier_1080p
      *
-     * @param double|null $tier_1080p Total number of delivered seconds during this time window that had a resolution larger than the 720p tier (over 921,600 pixels total).
+     * @param double|null $tier_1080p Total number of delivered seconds during this time window that had a resolution larger than the 720p tier but less than or equal to the 1440p tier (over 921,600 and <= 2,073,600 pixels total).
      *
      * @return self
      */

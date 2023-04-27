@@ -240,6 +240,9 @@ class LiveStreamEmbeddedSubtitleSettings implements ModelInterface, ArrayAccess,
     }
 
     public const LANGUAGE_CHANNEL_CC1 = 'cc1';
+    public const LANGUAGE_CHANNEL_CC2 = 'cc2';
+    public const LANGUAGE_CHANNEL_CC3 = 'cc3';
+    public const LANGUAGE_CHANNEL_CC4 = 'cc4';
 
     /**
      * Gets allowable values of the enum
@@ -250,6 +253,9 @@ class LiveStreamEmbeddedSubtitleSettings implements ModelInterface, ArrayAccess,
     {
         return [
             self::LANGUAGE_CHANNEL_CC1,
+            self::LANGUAGE_CHANNEL_CC2,
+            self::LANGUAGE_CHANNEL_CC3,
+            self::LANGUAGE_CHANNEL_CC4,
         ];
     }
 

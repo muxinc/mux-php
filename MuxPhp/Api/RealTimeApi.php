@@ -766,14 +766,15 @@ class RealTimeApi
      *
      * @param  string $realtime_metric_id ID of the Realtime Metric (required)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $timestamp Timestamp to use as the start of the timeseries data. This value must be provided as a unix timestamp. Defaults to 30 minutes ago. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\GetRealTimeTimeseriesResponse
      */
-    public function getRealtimeTimeseries($realtime_metric_id, $filters = null)
+    public function getRealtimeTimeseries($realtime_metric_id, $filters = null, $timestamp = null)
     {
-        list($response) = $this->getRealtimeTimeseriesWithHttpInfo($realtime_metric_id, $filters);
+        list($response) = $this->getRealtimeTimeseriesWithHttpInfo($realtime_metric_id, $filters, $timestamp);
         return $response;
     }
 
@@ -784,14 +785,15 @@ class RealTimeApi
      *
      * @param  string $realtime_metric_id ID of the Realtime Metric (required)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $timestamp Timestamp to use as the start of the timeseries data. This value must be provided as a unix timestamp. Defaults to 30 minutes ago. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\GetRealTimeTimeseriesResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getRealtimeTimeseriesWithHttpInfo($realtime_metric_id, $filters = null)
+    public function getRealtimeTimeseriesWithHttpInfo($realtime_metric_id, $filters = null, $timestamp = null)
     {
-        $request = $this->getRealtimeTimeseriesRequest($realtime_metric_id, $filters);
+        $request = $this->getRealtimeTimeseriesRequest($realtime_metric_id, $filters, $timestamp);
 
         try {
             $options = $this->createHttpClientOption();
@@ -873,13 +875,14 @@ class RealTimeApi
      *
      * @param  string $realtime_metric_id ID of the Realtime Metric (required)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $timestamp Timestamp to use as the start of the timeseries data. This value must be provided as a unix timestamp. Defaults to 30 minutes ago. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRealtimeTimeseriesAsync($realtime_metric_id, $filters = null)
+    public function getRealtimeTimeseriesAsync($realtime_metric_id, $filters = null, $timestamp = null)
     {
-        return $this->getRealtimeTimeseriesAsyncWithHttpInfo($realtime_metric_id, $filters)
+        return $this->getRealtimeTimeseriesAsyncWithHttpInfo($realtime_metric_id, $filters, $timestamp)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -894,14 +897,15 @@ class RealTimeApi
      *
      * @param  string $realtime_metric_id ID of the Realtime Metric (required)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $timestamp Timestamp to use as the start of the timeseries data. This value must be provided as a unix timestamp. Defaults to 30 minutes ago. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRealtimeTimeseriesAsyncWithHttpInfo($realtime_metric_id, $filters = null)
+    public function getRealtimeTimeseriesAsyncWithHttpInfo($realtime_metric_id, $filters = null, $timestamp = null)
     {
         $returnType = '\MuxPhp\Models\GetRealTimeTimeseriesResponse';
-        $request = $this->getRealtimeTimeseriesRequest($realtime_metric_id, $filters);
+        $request = $this->getRealtimeTimeseriesRequest($realtime_metric_id, $filters, $timestamp);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -942,11 +946,12 @@ class RealTimeApi
      *
      * @param  string $realtime_metric_id ID of the Realtime Metric (required)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $timestamp Timestamp to use as the start of the timeseries data. This value must be provided as a unix timestamp. Defaults to 30 minutes ago. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getRealtimeTimeseriesRequest($realtime_metric_id, $filters = null)
+    public function getRealtimeTimeseriesRequest($realtime_metric_id, $filters = null, $timestamp = null)
     {
         // verify the required parameter 'realtime_metric_id' is set
         if ($realtime_metric_id === null || (is_array($realtime_metric_id) && count($realtime_metric_id) === 0)) {
@@ -971,6 +976,17 @@ class RealTimeApi
             }
             else {
                 $queryParams['filters[]'] = $filters;
+            }
+        }
+        // query params
+        if ($timestamp !== null) {
+            if('form' === 'form' && is_array($timestamp)) {
+                foreach($timestamp as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['timestamp'] = $timestamp;
             }
         }
 

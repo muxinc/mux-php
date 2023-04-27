@@ -1,24 +1,24 @@
-# MuxPhp\DirectUploadsApi
+# MuxPhp\SigningKeysApi
 
 All URIs are relative to https://api.mux.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**cancelDirectUpload()**](DirectUploadsApi.md#cancelDirectUpload) | **PUT** /video/v1/uploads/{UPLOAD_ID}/cancel | Cancel a direct upload |
-| [**createDirectUpload()**](DirectUploadsApi.md#createDirectUpload) | **POST** /video/v1/uploads | Create a new direct upload URL |
-| [**getDirectUpload()**](DirectUploadsApi.md#getDirectUpload) | **GET** /video/v1/uploads/{UPLOAD_ID} | Retrieve a single direct upload&#39;s info |
-| [**listDirectUploads()**](DirectUploadsApi.md#listDirectUploads) | **GET** /video/v1/uploads | List direct uploads |
+| [**createSigningKey()**](SigningKeysApi.md#createSigningKey) | **POST** /system/v1/signing-keys | Create a signing key |
+| [**deleteSigningKey()**](SigningKeysApi.md#deleteSigningKey) | **DELETE** /system/v1/signing-keys/{SIGNING_KEY_ID} | Delete a signing key |
+| [**getSigningKey()**](SigningKeysApi.md#getSigningKey) | **GET** /system/v1/signing-keys/{SIGNING_KEY_ID} | Retrieve a signing key |
+| [**listSigningKeys()**](SigningKeysApi.md#listSigningKeys) | **GET** /system/v1/signing-keys | List signing keys |
 
 
-## `cancelDirectUpload()`
+## `createSigningKey()`
 
 ```php
-cancelDirectUpload($upload_id): \MuxPhp\Models\UploadResponse
+createSigningKey(): \MuxPhp\Models\SigningKeyResponse
 ```
 
-Cancel a direct upload
+Create a signing key
 
-Cancels a direct upload and marks it as cancelled. If a pending upload finishes after this request, no asset will be created. This request will only succeed if the upload is still in the `waiting` state.
+Creates a new signing key pair. When creating a new signing key, the API will generate a 2048-bit RSA key-pair and return the private key and a generated key-id; the public key will be stored at Mux to validate signed tokens.
 
 ### Example
 
@@ -33,31 +33,28 @@ $config = MuxPhp\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new MuxPhp\Api\DirectUploadsApi(
+$apiInstance = new MuxPhp\Api\SigningKeysApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$upload_id = abcd1234; // string | ID of the Upload
 
 try {
-    $result = $apiInstance->cancelDirectUpload($upload_id);
+    $result = $apiInstance->createSigningKey();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DirectUploadsApi->cancelDirectUpload: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SigningKeysApi->createSigningKey: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **upload_id** | **string**| ID of the Upload | |
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MuxPhp\Models\UploadResponse**](../Model/UploadResponse.md)
+[**\MuxPhp\Models\SigningKeyResponse**](../Model/SigningKeyResponse.md)
 
 ### Authorization
 
@@ -72,15 +69,15 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createDirectUpload()`
+## `deleteSigningKey()`
 
 ```php
-createDirectUpload($create_upload_request): \MuxPhp\Models\UploadResponse
+deleteSigningKey($signing_key_id)
 ```
 
-Create a new direct upload URL
+Delete a signing key
 
-Creates a new direct upload, through which video content can be uploaded for ingest to Mux.
+Deletes an existing signing key. Use with caution, as this will invalidate any existing signatures and no JWTs can be signed using the key again.
 
 ### Example
 
@@ -95,29 +92,18 @@ $config = MuxPhp\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new MuxPhp\Api\DirectUploadsApi(
+$apiInstance = new MuxPhp\Api\SigningKeysApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-
-// This API method wants a \MuxPhp\Models\CreateUploadRequest
-// as the second parameter.  That being said, these API docs are 
-// auto-generated from our OpenAPI specification, which 
-// gives us the example parameter as a JSON string.  In this example,
-// we'll use json_decode() to turn it into an associative array, which
-// is compatible with the model.
-//
-// In your own code you should use an associative array, or
-// use a "new \MuxPhp\Models\CreateUploadRequest" directly.
-$create_upload_request = json_decode('{"cors_origin":"https://example.com/","new_asset_settings":{"playback_policy":["public"],"mp4_support":"standard"}}',true); // \MuxPhp\Models\CreateUploadRequest
+$signing_key_id = 'signing_key_id_example'; // string | The ID of the signing key.
 
 try {
-    $result = $apiInstance->createDirectUpload($create_upload_request);
-    print_r($result);
+    $apiInstance->deleteSigningKey($signing_key_id);
 } catch (Exception $e) {
-    echo 'Exception when calling DirectUploadsApi->createDirectUpload: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SigningKeysApi->deleteSigningKey: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -125,11 +111,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_upload_request** | [**\MuxPhp\Models\CreateUploadRequest**](../Model/CreateUploadRequest.md)|  | |
+| **signing_key_id** | **string**| The ID of the signing key. | |
 
 ### Return type
 
-[**\MuxPhp\Models\UploadResponse**](../Model/UploadResponse.md)
+void (empty response body)
 
 ### Authorization
 
@@ -137,22 +123,22 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getDirectUpload()`
+## `getSigningKey()`
 
 ```php
-getDirectUpload($upload_id): \MuxPhp\Models\UploadResponse
+getSigningKey($signing_key_id): \MuxPhp\Models\SigningKeyResponse
 ```
 
-Retrieve a single direct upload's info
+Retrieve a signing key
 
-Fetches information about a single direct upload in the current environment.
+Retrieves the details of a signing key that has previously been created. Supply the unique signing key ID that was returned from your previous request, and Mux will return the corresponding signing key information. **The private key is not returned in this response.**
 
 ### Example
 
@@ -167,19 +153,19 @@ $config = MuxPhp\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new MuxPhp\Api\DirectUploadsApi(
+$apiInstance = new MuxPhp\Api\SigningKeysApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$upload_id = abcd1234; // string | ID of the Upload
+$signing_key_id = 'signing_key_id_example'; // string | The ID of the signing key.
 
 try {
-    $result = $apiInstance->getDirectUpload($upload_id);
+    $result = $apiInstance->getSigningKey($signing_key_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DirectUploadsApi->getDirectUpload: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SigningKeysApi->getSigningKey: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -187,11 +173,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **upload_id** | **string**| ID of the Upload | |
+| **signing_key_id** | **string**| The ID of the signing key. | |
 
 ### Return type
 
-[**\MuxPhp\Models\UploadResponse**](../Model/UploadResponse.md)
+[**\MuxPhp\Models\SigningKeyResponse**](../Model/SigningKeyResponse.md)
 
 ### Authorization
 
@@ -206,15 +192,15 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `listDirectUploads()`
+## `listSigningKeys()`
 
 ```php
-listDirectUploads($limit, $page): \MuxPhp\Models\ListUploadsResponse
+listSigningKeys($limit, $page): \MuxPhp\Models\ListSigningKeysResponse
 ```
 
-List direct uploads
+List signing keys
 
-Lists direct uploads in the current environment.
+Returns a list of signing keys.
 
 ### Example
 
@@ -229,7 +215,7 @@ $config = MuxPhp\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new MuxPhp\Api\DirectUploadsApi(
+$apiInstance = new MuxPhp\Api\SigningKeysApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -239,10 +225,10 @@ $limit = 25; // int | Number of items to include in the response
 $page = 1; // int | Offset by this many pages, of the size of `limit`
 
 try {
-    $result = $apiInstance->listDirectUploads($limit, $page);
+    $result = $apiInstance->listSigningKeys($limit, $page);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DirectUploadsApi->listDirectUploads: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SigningKeysApi->listSigningKeys: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -255,7 +241,7 @@ try {
 
 ### Return type
 
-[**\MuxPhp\Models\ListUploadsResponse**](../Model/ListUploadsResponse.md)
+[**\MuxPhp\Models\ListSigningKeysResponse**](../Model/ListSigningKeysResponse.md)
 
 ### Authorization
 

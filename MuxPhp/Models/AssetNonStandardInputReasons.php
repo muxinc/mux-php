@@ -70,7 +70,8 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         'pixel_aspect_ratio' => 'string',
         'video_edit_list' => 'string',
         'audio_edit_list' => 'string',
-        'unexpected_media_file_parameters' => 'string'
+        'unexpected_media_file_parameters' => 'string',
+        'unsupported_pixel_format' => 'string'
     ];
 
     /**
@@ -90,7 +91,8 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         'pixel_aspect_ratio' => null,
         'video_edit_list' => null,
         'audio_edit_list' => null,
-        'unexpected_media_file_parameters' => null
+        'unexpected_media_file_parameters' => null,
+        'unsupported_pixel_format' => null
     ];
 
     /**
@@ -108,7 +110,8 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         'pixel_aspect_ratio' => false,
         'video_edit_list' => false,
         'audio_edit_list' => false,
-        'unexpected_media_file_parameters' => false
+        'unexpected_media_file_parameters' => false,
+        'unsupported_pixel_format' => false
     ];
 
     /**
@@ -196,7 +199,8 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         'pixel_aspect_ratio' => 'pixel_aspect_ratio',
         'video_edit_list' => 'video_edit_list',
         'audio_edit_list' => 'audio_edit_list',
-        'unexpected_media_file_parameters' => 'unexpected_media_file_parameters'
+        'unexpected_media_file_parameters' => 'unexpected_media_file_parameters',
+        'unsupported_pixel_format' => 'unsupported_pixel_format'
     ];
 
     /**
@@ -214,7 +218,8 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         'pixel_aspect_ratio' => 'setPixelAspectRatio',
         'video_edit_list' => 'setVideoEditList',
         'audio_edit_list' => 'setAudioEditList',
-        'unexpected_media_file_parameters' => 'setUnexpectedMediaFileParameters'
+        'unexpected_media_file_parameters' => 'setUnexpectedMediaFileParameters',
+        'unsupported_pixel_format' => 'setUnsupportedPixelFormat'
     ];
 
     /**
@@ -232,7 +237,8 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         'pixel_aspect_ratio' => 'getPixelAspectRatio',
         'video_edit_list' => 'getVideoEditList',
         'audio_edit_list' => 'getAudioEditList',
-        'unexpected_media_file_parameters' => 'getUnexpectedMediaFileParameters'
+        'unexpected_media_file_parameters' => 'getUnexpectedMediaFileParameters',
+        'unsupported_pixel_format' => 'getUnsupportedPixelFormat'
     ];
 
     /**
@@ -370,6 +376,7 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('video_edit_list', $data ?? [], null);
         $this->setIfExists('audio_edit_list', $data ?? [], null);
         $this->setIfExists('unexpected_media_file_parameters', $data ?? [], null);
+        $this->setIfExists('unsupported_pixel_format', $data ?? [], null);
     }
 
     /**
@@ -795,6 +802,35 @@ class AssetNonStandardInputReasons implements ModelInterface, ArrayAccess, \Json
         }
 
         $this->container['unexpected_media_file_parameters'] = $unexpected_media_file_parameters;
+
+        return $this;
+    }
+
+    /**
+     * Gets unsupported_pixel_format
+     *
+     * @return string|null
+     */
+    public function getUnsupportedPixelFormat()
+    {
+        return $this->container['unsupported_pixel_format'];
+    }
+
+    /**
+     * Sets unsupported_pixel_format
+     *
+     * @param string|null $unsupported_pixel_format The video pixel format, as a string, returned by libav. Considered non-standard if not one of yuv420p or yuvj420p.
+     *
+     * @return self
+     */
+    public function setUnsupportedPixelFormat($unsupported_pixel_format)
+    {
+
+        if (is_null($unsupported_pixel_format)) {
+            throw new \InvalidArgumentException('non-nullable unsupported_pixel_format cannot be null');
+        }
+
+        $this->container['unsupported_pixel_format'] = $unsupported_pixel_format;
 
         return $this;
     }

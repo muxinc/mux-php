@@ -14,6 +14,7 @@ MuxPhp/Api/MonitoringApi.php
 MuxPhp/Api/PlaybackIDApi.php
 MuxPhp/Api/PlaybackRestrictionsApi.php
 MuxPhp/Api/RealTimeApi.php
+MuxPhp/Api/SigningKeysApi.php
 MuxPhp/Api/SpacesApi.php
 MuxPhp/Api/TranscriptionVocabulariesApi.php
 MuxPhp/Api/URLSigningKeysApi.php
@@ -181,6 +182,7 @@ docs/Api/MonitoringApi.md
 docs/Api/PlaybackIDApi.md
 docs/Api/PlaybackRestrictionsApi.md
 docs/Api/RealTimeApi.md
+docs/Api/SigningKeysApi.md
 docs/Api/SpacesApi.md
 docs/Api/TranscriptionVocabulariesApi.md
 docs/Api/URLSigningKeysApi.md

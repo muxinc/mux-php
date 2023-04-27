@@ -184,7 +184,22 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_2' => 'string',
         'custom_3' => 'string',
         'custom_4' => 'string',
-        'custom_5' => 'string'
+        'custom_5' => 'string',
+        'custom_6' => 'string',
+        'custom_7' => 'string',
+        'custom_8' => 'string',
+        'custom_9' => 'string',
+        'custom_10' => 'string',
+        'live_stream_latency' => 'int',
+        'asset_id' => 'string',
+        'environment_id' => 'string',
+        'live_stream_id' => 'string',
+        'mux_embed' => 'string',
+        'playback_id' => 'string',
+        'player_error_context' => 'string',
+        'view_drm_type' => 'string',
+        'view_dropped_frame_count' => 'int',
+        'view_has_ad' => 'bool'
     ];
 
     /**
@@ -319,7 +334,22 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_2' => null,
         'custom_3' => null,
         'custom_4' => null,
-        'custom_5' => null
+        'custom_5' => null,
+        'custom_6' => null,
+        'custom_7' => null,
+        'custom_8' => null,
+        'custom_9' => null,
+        'custom_10' => null,
+        'live_stream_latency' => 'int64',
+        'asset_id' => null,
+        'environment_id' => null,
+        'live_stream_id' => null,
+        'mux_embed' => null,
+        'playback_id' => null,
+        'player_error_context' => null,
+        'view_drm_type' => null,
+        'view_dropped_frame_count' => 'int64',
+        'view_has_ad' => null
     ];
 
     /**
@@ -452,7 +482,22 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_2' => true,
         'custom_3' => true,
         'custom_4' => true,
-        'custom_5' => true
+        'custom_5' => true,
+        'custom_6' => true,
+        'custom_7' => true,
+        'custom_8' => true,
+        'custom_9' => true,
+        'custom_10' => true,
+        'live_stream_latency' => true,
+        'asset_id' => true,
+        'environment_id' => false,
+        'live_stream_id' => true,
+        'mux_embed' => true,
+        'playback_id' => true,
+        'player_error_context' => true,
+        'view_drm_type' => true,
+        'view_dropped_frame_count' => true,
+        'view_has_ad' => false
     ];
 
     /**
@@ -655,7 +700,22 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_2' => 'custom_2',
         'custom_3' => 'custom_3',
         'custom_4' => 'custom_4',
-        'custom_5' => 'custom_5'
+        'custom_5' => 'custom_5',
+        'custom_6' => 'custom_6',
+        'custom_7' => 'custom_7',
+        'custom_8' => 'custom_8',
+        'custom_9' => 'custom_9',
+        'custom_10' => 'custom_10',
+        'live_stream_latency' => 'live_stream_latency',
+        'asset_id' => 'asset_id',
+        'environment_id' => 'environment_id',
+        'live_stream_id' => 'live_stream_id',
+        'mux_embed' => 'mux_embed',
+        'playback_id' => 'playback_id',
+        'player_error_context' => 'player_error_context',
+        'view_drm_type' => 'view_drm_type',
+        'view_dropped_frame_count' => 'view_dropped_frame_count',
+        'view_has_ad' => 'view_has_ad'
     ];
 
     /**
@@ -788,7 +848,22 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_2' => 'setCustom2',
         'custom_3' => 'setCustom3',
         'custom_4' => 'setCustom4',
-        'custom_5' => 'setCustom5'
+        'custom_5' => 'setCustom5',
+        'custom_6' => 'setCustom6',
+        'custom_7' => 'setCustom7',
+        'custom_8' => 'setCustom8',
+        'custom_9' => 'setCustom9',
+        'custom_10' => 'setCustom10',
+        'live_stream_latency' => 'setLiveStreamLatency',
+        'asset_id' => 'setAssetId',
+        'environment_id' => 'setEnvironmentId',
+        'live_stream_id' => 'setLiveStreamId',
+        'mux_embed' => 'setMuxEmbed',
+        'playback_id' => 'setPlaybackId',
+        'player_error_context' => 'setPlayerErrorContext',
+        'view_drm_type' => 'setViewDrmType',
+        'view_dropped_frame_count' => 'setViewDroppedFrameCount',
+        'view_has_ad' => 'setViewHasAd'
     ];
 
     /**
@@ -921,7 +996,22 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_2' => 'getCustom2',
         'custom_3' => 'getCustom3',
         'custom_4' => 'getCustom4',
-        'custom_5' => 'getCustom5'
+        'custom_5' => 'getCustom5',
+        'custom_6' => 'getCustom6',
+        'custom_7' => 'getCustom7',
+        'custom_8' => 'getCustom8',
+        'custom_9' => 'getCustom9',
+        'custom_10' => 'getCustom10',
+        'live_stream_latency' => 'getLiveStreamLatency',
+        'asset_id' => 'getAssetId',
+        'environment_id' => 'getEnvironmentId',
+        'live_stream_id' => 'getLiveStreamId',
+        'mux_embed' => 'getMuxEmbed',
+        'playback_id' => 'getPlaybackId',
+        'player_error_context' => 'getPlayerErrorContext',
+        'view_drm_type' => 'getViewDrmType',
+        'view_dropped_frame_count' => 'getViewDroppedFrameCount',
+        'view_has_ad' => 'getViewHasAd'
     ];
 
     /**
@@ -1109,6 +1199,21 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('custom_3', $data ?? [], null);
         $this->setIfExists('custom_4', $data ?? [], null);
         $this->setIfExists('custom_5', $data ?? [], null);
+        $this->setIfExists('custom_6', $data ?? [], null);
+        $this->setIfExists('custom_7', $data ?? [], null);
+        $this->setIfExists('custom_8', $data ?? [], null);
+        $this->setIfExists('custom_9', $data ?? [], null);
+        $this->setIfExists('custom_10', $data ?? [], null);
+        $this->setIfExists('live_stream_latency', $data ?? [], null);
+        $this->setIfExists('asset_id', $data ?? [], null);
+        $this->setIfExists('environment_id', $data ?? [], null);
+        $this->setIfExists('live_stream_id', $data ?? [], null);
+        $this->setIfExists('mux_embed', $data ?? [], null);
+        $this->setIfExists('playback_id', $data ?? [], null);
+        $this->setIfExists('player_error_context', $data ?? [], null);
+        $this->setIfExists('view_drm_type', $data ?? [], null);
+        $this->setIfExists('view_dropped_frame_count', $data ?? [], null);
+        $this->setIfExists('view_has_ad', $data ?? [], null);
     }
 
     /**
@@ -5530,6 +5635,532 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['custom_5'] = $custom_5;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_6
+     *
+     * @return string|null
+     */
+    public function getCustom6()
+    {
+        return $this->container['custom_6'];
+    }
+
+    /**
+     * Sets custom_6
+     *
+     * @param string|null $custom_6 custom_6
+     *
+     * @return self
+     */
+    public function setCustom6($custom_6)
+    {
+
+        if (is_null($custom_6)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_6');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_6', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['custom_6'] = $custom_6;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_7
+     *
+     * @return string|null
+     */
+    public function getCustom7()
+    {
+        return $this->container['custom_7'];
+    }
+
+    /**
+     * Sets custom_7
+     *
+     * @param string|null $custom_7 custom_7
+     *
+     * @return self
+     */
+    public function setCustom7($custom_7)
+    {
+
+        if (is_null($custom_7)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_7');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_7', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['custom_7'] = $custom_7;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_8
+     *
+     * @return string|null
+     */
+    public function getCustom8()
+    {
+        return $this->container['custom_8'];
+    }
+
+    /**
+     * Sets custom_8
+     *
+     * @param string|null $custom_8 custom_8
+     *
+     * @return self
+     */
+    public function setCustom8($custom_8)
+    {
+
+        if (is_null($custom_8)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_8');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_8', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['custom_8'] = $custom_8;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_9
+     *
+     * @return string|null
+     */
+    public function getCustom9()
+    {
+        return $this->container['custom_9'];
+    }
+
+    /**
+     * Sets custom_9
+     *
+     * @param string|null $custom_9 custom_9
+     *
+     * @return self
+     */
+    public function setCustom9($custom_9)
+    {
+
+        if (is_null($custom_9)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_9');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_9', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['custom_9'] = $custom_9;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_10
+     *
+     * @return string|null
+     */
+    public function getCustom10()
+    {
+        return $this->container['custom_10'];
+    }
+
+    /**
+     * Sets custom_10
+     *
+     * @param string|null $custom_10 custom_10
+     *
+     * @return self
+     */
+    public function setCustom10($custom_10)
+    {
+
+        if (is_null($custom_10)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_10');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_10', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['custom_10'] = $custom_10;
+
+        return $this;
+    }
+
+    /**
+     * Gets live_stream_latency
+     *
+     * @return int|null
+     */
+    public function getLiveStreamLatency()
+    {
+        return $this->container['live_stream_latency'];
+    }
+
+    /**
+     * Sets live_stream_latency
+     *
+     * @param int|null $live_stream_latency live_stream_latency
+     *
+     * @return self
+     */
+    public function setLiveStreamLatency($live_stream_latency)
+    {
+
+        if (is_null($live_stream_latency)) {
+            array_push($this->openAPINullablesSetToNull, 'live_stream_latency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('live_stream_latency', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['live_stream_latency'] = $live_stream_latency;
+
+        return $this;
+    }
+
+    /**
+     * Gets asset_id
+     *
+     * @return string|null
+     */
+    public function getAssetId()
+    {
+        return $this->container['asset_id'];
+    }
+
+    /**
+     * Sets asset_id
+     *
+     * @param string|null $asset_id asset_id
+     *
+     * @return self
+     */
+    public function setAssetId($asset_id)
+    {
+
+        if (is_null($asset_id)) {
+            array_push($this->openAPINullablesSetToNull, 'asset_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('asset_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['asset_id'] = $asset_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets environment_id
+     *
+     * @return string|null
+     */
+    public function getEnvironmentId()
+    {
+        return $this->container['environment_id'];
+    }
+
+    /**
+     * Sets environment_id
+     *
+     * @param string|null $environment_id environment_id
+     *
+     * @return self
+     */
+    public function setEnvironmentId($environment_id)
+    {
+
+        if (is_null($environment_id)) {
+            throw new \InvalidArgumentException('non-nullable environment_id cannot be null');
+        }
+
+        $this->container['environment_id'] = $environment_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets live_stream_id
+     *
+     * @return string|null
+     */
+    public function getLiveStreamId()
+    {
+        return $this->container['live_stream_id'];
+    }
+
+    /**
+     * Sets live_stream_id
+     *
+     * @param string|null $live_stream_id live_stream_id
+     *
+     * @return self
+     */
+    public function setLiveStreamId($live_stream_id)
+    {
+
+        if (is_null($live_stream_id)) {
+            array_push($this->openAPINullablesSetToNull, 'live_stream_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('live_stream_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['live_stream_id'] = $live_stream_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets mux_embed
+     *
+     * @return string|null
+     */
+    public function getMuxEmbed()
+    {
+        return $this->container['mux_embed'];
+    }
+
+    /**
+     * Sets mux_embed
+     *
+     * @param string|null $mux_embed mux_embed
+     *
+     * @return self
+     */
+    public function setMuxEmbed($mux_embed)
+    {
+
+        if (is_null($mux_embed)) {
+            array_push($this->openAPINullablesSetToNull, 'mux_embed');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('mux_embed', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['mux_embed'] = $mux_embed;
+
+        return $this;
+    }
+
+    /**
+     * Gets playback_id
+     *
+     * @return string|null
+     */
+    public function getPlaybackId()
+    {
+        return $this->container['playback_id'];
+    }
+
+    /**
+     * Sets playback_id
+     *
+     * @param string|null $playback_id playback_id
+     *
+     * @return self
+     */
+    public function setPlaybackId($playback_id)
+    {
+
+        if (is_null($playback_id)) {
+            array_push($this->openAPINullablesSetToNull, 'playback_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('playback_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['playback_id'] = $playback_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets player_error_context
+     *
+     * @return string|null
+     */
+    public function getPlayerErrorContext()
+    {
+        return $this->container['player_error_context'];
+    }
+
+    /**
+     * Sets player_error_context
+     *
+     * @param string|null $player_error_context player_error_context
+     *
+     * @return self
+     */
+    public function setPlayerErrorContext($player_error_context)
+    {
+
+        if (is_null($player_error_context)) {
+            array_push($this->openAPINullablesSetToNull, 'player_error_context');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('player_error_context', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['player_error_context'] = $player_error_context;
+
+        return $this;
+    }
+
+    /**
+     * Gets view_drm_type
+     *
+     * @return string|null
+     */
+    public function getViewDrmType()
+    {
+        return $this->container['view_drm_type'];
+    }
+
+    /**
+     * Sets view_drm_type
+     *
+     * @param string|null $view_drm_type view_drm_type
+     *
+     * @return self
+     */
+    public function setViewDrmType($view_drm_type)
+    {
+
+        if (is_null($view_drm_type)) {
+            array_push($this->openAPINullablesSetToNull, 'view_drm_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('view_drm_type', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['view_drm_type'] = $view_drm_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets view_dropped_frame_count
+     *
+     * @return int|null
+     */
+    public function getViewDroppedFrameCount()
+    {
+        return $this->container['view_dropped_frame_count'];
+    }
+
+    /**
+     * Sets view_dropped_frame_count
+     *
+     * @param int|null $view_dropped_frame_count view_dropped_frame_count
+     *
+     * @return self
+     */
+    public function setViewDroppedFrameCount($view_dropped_frame_count)
+    {
+
+        if (is_null($view_dropped_frame_count)) {
+            array_push($this->openAPINullablesSetToNull, 'view_dropped_frame_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('view_dropped_frame_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['view_dropped_frame_count'] = $view_dropped_frame_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets view_has_ad
+     *
+     * @return bool|null
+     */
+    public function getViewHasAd()
+    {
+        return $this->container['view_has_ad'];
+    }
+
+    /**
+     * Sets view_has_ad
+     *
+     * @param bool|null $view_has_ad view_has_ad
+     *
+     * @return self
+     */
+    public function setViewHasAd($view_has_ad)
+    {
+
+        if (is_null($view_has_ad)) {
+            throw new \InvalidArgumentException('non-nullable view_has_ad cannot be null');
+        }
+
+        $this->container['view_has_ad'] = $view_has_ad;
 
         return $this;
     }

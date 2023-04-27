@@ -23,9 +23,11 @@
 
     // ========== list-url-signing-keys ==========
     $keys = $keysApi->listUrlSigningKeys();
-    assert($keys->getData()[0]->getId() !== null);
-    assert($keys->getData()[0]->getId() === $createKeyResponse->getData()->getId());
-    assert($keys->getData()[0]->getPrivateKey() === null);
+    $list = $keys->getData();
+    $last = end($list);
+    assert($last->getId() !== null);
+    assert($last->getId() === $createKeyResponse->getData()->getId());
+    assert($last->getPrivateKey() === null);
     print("list-url-signing-keys OK ✅\n");
 
     // ========== get-url-signing-key ==========
@@ -38,6 +40,14 @@
     // ========== delete-url-signing-key ==========
     $keysApi->deleteUrlSigningKey($createKeyResponse->getData()->getId());
     try {
+        print("Sleeping for 60 seconds to ensure key cache is invalidated ⏳");
+        for ($remaining=60;$remaining>0;--$remaining) {
+            print("\r");
+            print(sprintf("%2d seconds remaining.                                        ",$remaining));
+            flush();
+            sleep(1);
+        }
+        print("\rSleep complete! ⏳                                          \n");
         $result = $keysApi->getUrlSigningKey($createKeyResponse->getData()->getId());
         print("Should have 404'd when getting deleted signing key ❌ \n");
         exit(1);

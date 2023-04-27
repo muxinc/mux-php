@@ -18,7 +18,7 @@ createUrlSigningKey(): \MuxPhp\Models\SigningKeyResponse
 
 Create a URL signing key
 
-Creates a new signing key pair. When creating a new signing key, the API will generate a 2048-bit RSA key-pair and return the private key and a generated key-id; the public key will be stored at Mux to validate signed tokens.
+This route is now deprecated, please use the `Signing Keys` API. Creates a new signing key pair. When creating a new signing key, the API will generate a 2048-bit RSA key-pair and return the private key and a generated key-id; the public key will be stored at Mux to validate signed tokens.  Note: Any new access tokens authenticating this route will be required to have `System` level permissions.
 
 ### Example
 
@@ -77,7 +77,7 @@ deleteUrlSigningKey($signing_key_id)
 
 Delete a URL signing key
 
-Deletes an existing signing key. Use with caution, as this will invalidate any existing signatures and no URLs can be signed using the key again.
+This route is now deprecated, please use the `Signing Keys` API. Deletes an existing signing key. Use with caution, as this will invalidate any existing signatures and no URLs can be signed using the key again.  Note: Any new access tokens authenticating this route will be required to have `System` level permissions.
 
 ### Example
 
@@ -138,7 +138,7 @@ getUrlSigningKey($signing_key_id): \MuxPhp\Models\SigningKeyResponse
 
 Retrieve a URL signing key
 
-Retrieves the details of a URL signing key that has previously been created. Supply the unique signing key ID that was returned from your previous request, and Mux will return the corresponding signing key information. **The private key is not returned in this response.**
+This route is now deprecated, please use the `Signing Keys` API. Retrieves the details of a URL signing key that has previously been created. Supply the unique signing key ID that was returned from your previous request, and Mux will return the corresponding signing key information. **The private key is not returned in this response.**  Note: Any new access tokens authenticating this route will be required to have `System` level permissions.
 
 ### Example
 
@@ -200,7 +200,7 @@ listUrlSigningKeys($limit, $page): \MuxPhp\Models\ListSigningKeysResponse
 
 List URL signing keys
 
-Returns a list of URL signing keys.
+This route is now deprecated, please use the `Signing Keys` API. Returns a list of URL signing keys.  Note: Any new access tokens authenticating this route will be required to have `System` level permissions.
 
 ### Example
 

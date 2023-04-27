@@ -150,7 +150,7 @@ try {
 ## `getMonitoringTimeseries()`
 
 ```php
-getMonitoringTimeseries($monitoring_metric_id, $filters): \MuxPhp\Models\GetMonitoringTimeseriesResponse
+getMonitoringTimeseries($monitoring_metric_id, $filters, $timestamp): \MuxPhp\Models\GetMonitoringTimeseriesResponse
 ```
 
 Get Monitoring Timeseries
@@ -178,9 +178,10 @@ $apiInstance = new MuxPhp\Api\MonitoringApi(
 );
 $monitoring_metric_id = current-concurrent-viewers; // string | ID of the Monitoring Metric
 $filters = array('filters_example'); // string[] | Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a `!` character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * `filters[]=operating_system:windows&filters[]=!country:US`
+$timestamp = 56; // int | Timestamp to use as the start of the timeseries data. This value must be provided as a unix timestamp. Defaults to 30 minutes ago.
 
 try {
-    $result = $apiInstance->getMonitoringTimeseries($monitoring_metric_id, $filters);
+    $result = $apiInstance->getMonitoringTimeseries($monitoring_metric_id, $filters, $timestamp);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MonitoringApi->getMonitoringTimeseries: ', $e->getMessage(), PHP_EOL;
@@ -193,6 +194,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **monitoring_metric_id** | **string**| ID of the Monitoring Metric | |
 | **filters** | [**string[]**](../Model/string.md)| Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; | [optional] |
+| **timestamp** | **int**| Timestamp to use as the start of the timeseries data. This value must be provided as a unix timestamp. Defaults to 30 minutes ago. | [optional] |
 
 ### Return type
 

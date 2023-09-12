@@ -21,7 +21,7 @@
     print("list-breakdown-values OK ✅\n");
 
     // ========== get-overall-values ==========
-    $overall = $metricsApi->getOverallValues("video_startup_time", ["timeframe" => ["7:days"]]);
+    $overall = $metricsApi->getOverallValues("video_startup_time", ["timeframe" => [1498867200, 1498953600]]);
     assert($overall->getData() !== null);
     print("get-overall-values OK ✅\n");
 

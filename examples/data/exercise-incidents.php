@@ -13,7 +13,7 @@
         $config
     );
 
-    // Test coverage here is poor due to not knowning if the account we're testing against has any incidents.
+    // Test coverage here is poor due to not knowing if the account we're testing against has any incidents.
 
     // ========== list-incidents ==========
     $incidents = $incidentsApi->listIncidents();

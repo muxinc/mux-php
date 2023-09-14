@@ -13,8 +13,8 @@
         $config
     );
 
-    // Test coverage here isn't fantastic due to not knowning if the account we're testing against has
-    // any monitring data. The behaviour has been manually verified against real-world data.
+    // Test coverage here isn't fantastic due to not knowing if the account we're testing against has
+    // any monitoring data. The behaviour has been manually verified against real-world data.
 
     // ========== list-monitoring-dimensions ==========
     $dimensions = $monitoringApi->listMonitoringDimensions();

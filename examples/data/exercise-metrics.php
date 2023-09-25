@@ -22,6 +22,7 @@
 
     // ========== get-overall-values ==========
     $overall = $metricsApi->getOverallValues("video_startup_time", ["timeframe" => ["7:days"]]);
+    // Alternatively specify an array of epoch timestamps e.g.: $overall = $metricsApi->getOverallValues("video_startup_time", ["timeframe" => [1498867200, 1498953600]]);
     assert($overall->getData() !== null);
     print("get-overall-values OK ✅\n");
 

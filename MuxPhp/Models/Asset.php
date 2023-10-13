@@ -65,6 +65,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'string',
         'duration' => 'double',
         'max_stored_resolution' => 'string',
+        'resolution_tier' => 'string',
+        'max_resolution_tier' => 'string',
+        'encoding_tier' => 'string',
         'max_stored_frame_rate' => 'double',
         'aspect_ratio' => 'string',
         'playback_ids' => '\MuxPhp\Models\PlaybackID[]',
@@ -99,6 +102,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => null,
         'duration' => 'double',
         'max_stored_resolution' => null,
+        'resolution_tier' => null,
+        'max_resolution_tier' => null,
+        'encoding_tier' => null,
         'max_stored_frame_rate' => 'double',
         'aspect_ratio' => null,
         'playback_ids' => null,
@@ -131,6 +137,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => false,
         'duration' => false,
         'max_stored_resolution' => false,
+        'resolution_tier' => false,
+        'max_resolution_tier' => false,
+        'encoding_tier' => false,
         'max_stored_frame_rate' => false,
         'aspect_ratio' => false,
         'playback_ids' => false,
@@ -233,6 +242,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'status',
         'duration' => 'duration',
         'max_stored_resolution' => 'max_stored_resolution',
+        'resolution_tier' => 'resolution_tier',
+        'max_resolution_tier' => 'max_resolution_tier',
+        'encoding_tier' => 'encoding_tier',
         'max_stored_frame_rate' => 'max_stored_frame_rate',
         'aspect_ratio' => 'aspect_ratio',
         'playback_ids' => 'playback_ids',
@@ -265,6 +277,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'setStatus',
         'duration' => 'setDuration',
         'max_stored_resolution' => 'setMaxStoredResolution',
+        'resolution_tier' => 'setResolutionTier',
+        'max_resolution_tier' => 'setMaxResolutionTier',
+        'encoding_tier' => 'setEncodingTier',
         'max_stored_frame_rate' => 'setMaxStoredFrameRate',
         'aspect_ratio' => 'setAspectRatio',
         'playback_ids' => 'setPlaybackIds',
@@ -297,6 +312,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'getStatus',
         'duration' => 'getDuration',
         'max_stored_resolution' => 'getMaxStoredResolution',
+        'resolution_tier' => 'getResolutionTier',
+        'max_resolution_tier' => 'getMaxResolutionTier',
+        'encoding_tier' => 'getEncodingTier',
         'max_stored_frame_rate' => 'getMaxStoredFrameRate',
         'aspect_ratio' => 'getAspectRatio',
         'playback_ids' => 'getPlaybackIds',
@@ -367,6 +385,16 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const MAX_STORED_RESOLUTION_HD = 'HD';
     public const MAX_STORED_RESOLUTION_FHD = 'FHD';
     public const MAX_STORED_RESOLUTION_UHD = 'UHD';
+    public const RESOLUTION_TIER_AUDIO_ONLY = 'audio-only';
+    public const RESOLUTION_TIER__720P = '720p';
+    public const RESOLUTION_TIER__1080P = '1080p';
+    public const RESOLUTION_TIER__1440P = '1440p';
+    public const RESOLUTION_TIER__2160P = '2160p';
+    public const MAX_RESOLUTION_TIER__1080P = '1080p';
+    public const MAX_RESOLUTION_TIER__1440P = '1440p';
+    public const MAX_RESOLUTION_TIER__2160P = '2160p';
+    public const ENCODING_TIER_SMART = 'smart';
+    public const ENCODING_TIER_BASELINE = 'baseline';
     public const MASTER_ACCESS_TEMPORARY = 'temporary';
     public const MASTER_ACCESS_NONE = 'none';
     public const MP4_SUPPORT_STANDARD = 'standard';
@@ -399,6 +427,49 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             self::MAX_STORED_RESOLUTION_HD,
             self::MAX_STORED_RESOLUTION_FHD,
             self::MAX_STORED_RESOLUTION_UHD,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getResolutionTierAllowableValues()
+    {
+        return [
+            self::RESOLUTION_TIER_AUDIO_ONLY,
+            self::RESOLUTION_TIER__720P,
+            self::RESOLUTION_TIER__1080P,
+            self::RESOLUTION_TIER__1440P,
+            self::RESOLUTION_TIER__2160P,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getMaxResolutionTierAllowableValues()
+    {
+        return [
+            self::MAX_RESOLUTION_TIER__1080P,
+            self::MAX_RESOLUTION_TIER__1440P,
+            self::MAX_RESOLUTION_TIER__2160P,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getEncodingTierAllowableValues()
+    {
+        return [
+            self::ENCODING_TIER_SMART,
+            self::ENCODING_TIER_BASELINE,
         ];
     }
 
@@ -451,6 +522,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('duration', $data ?? [], null);
         $this->setIfExists('max_stored_resolution', $data ?? [], null);
+        $this->setIfExists('resolution_tier', $data ?? [], null);
+        $this->setIfExists('max_resolution_tier', $data ?? [], null);
+        $this->setIfExists('encoding_tier', $data ?? [], null);
         $this->setIfExists('max_stored_frame_rate', $data ?? [], null);
         $this->setIfExists('aspect_ratio', $data ?? [], null);
         $this->setIfExists('playback_ids', $data ?? [], null);
@@ -513,6 +587,33 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'max_stored_resolution', must be one of '%s'",
                 $this->container['max_stored_resolution'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getResolutionTierAllowableValues();
+        if (!is_null($this->container['resolution_tier']) && !in_array($this->container['resolution_tier'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'resolution_tier', must be one of '%s'",
+                $this->container['resolution_tier'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getMaxResolutionTierAllowableValues();
+        if (!is_null($this->container['max_resolution_tier']) && !in_array($this->container['max_resolution_tier'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'max_resolution_tier', must be one of '%s'",
+                $this->container['max_resolution_tier'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getEncodingTierAllowableValues();
+        if (!is_null($this->container['encoding_tier']) && !in_array($this->container['encoding_tier'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'encoding_tier', must be one of '%s'",
+                $this->container['encoding_tier'],
                 implode("', '", $allowedValues)
             );
         }
@@ -680,6 +781,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets max_stored_resolution
      *
      * @return string|null
+     * @deprecated
      */
     public function getMaxStoredResolution()
     {
@@ -689,9 +791,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets max_stored_resolution
      *
-     * @param string|null $max_stored_resolution The maximum resolution that has been stored for the asset. The asset may be delivered at lower resolutions depending on the device and bandwidth, however it cannot be delivered at a higher value than is stored.
+     * @param string|null $max_stored_resolution This field is deprecated. Please use `resolution_tier` instead. The maximum resolution that has been stored for the asset. The asset may be delivered at lower resolutions depending on the device and bandwidth, however it cannot be delivered at a higher value than is stored.
      *
      * @return self
+     * @deprecated
      */
     public function setMaxStoredResolution($max_stored_resolution)
     {
@@ -711,6 +814,123 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['max_stored_resolution'] = $max_stored_resolution;
+
+        return $this;
+    }
+
+    /**
+     * Gets resolution_tier
+     *
+     * @return string|null
+     */
+    public function getResolutionTier()
+    {
+        return $this->container['resolution_tier'];
+    }
+
+    /**
+     * Sets resolution_tier
+     *
+     * @param string|null $resolution_tier The resolution tier that the asset was ingested at, affecting billing for ingest & storage. This field also represents the highest resolution tier that the content can be delivered at, however the actual resolution may be lower depending on the device, bandwidth, and exact resolution of the uploaded asset.
+     *
+     * @return self
+     */
+    public function setResolutionTier($resolution_tier)
+    {
+        $allowedValues = $this->getResolutionTierAllowableValues();
+        if (!is_null($resolution_tier) && !in_array($resolution_tier, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'resolution_tier', must be one of '%s'",
+                    $resolution_tier,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($resolution_tier)) {
+            throw new \InvalidArgumentException('non-nullable resolution_tier cannot be null');
+        }
+
+        $this->container['resolution_tier'] = $resolution_tier;
+
+        return $this;
+    }
+
+    /**
+     * Gets max_resolution_tier
+     *
+     * @return string|null
+     */
+    public function getMaxResolutionTier()
+    {
+        return $this->container['max_resolution_tier'];
+    }
+
+    /**
+     * Sets max_resolution_tier
+     *
+     * @param string|null $max_resolution_tier Max resolution tier can be used to control the maximum `resolution_tier` your asset is encoded, stored, and streamed at. If not set, this defaults to `1080p`.
+     *
+     * @return self
+     */
+    public function setMaxResolutionTier($max_resolution_tier)
+    {
+        $allowedValues = $this->getMaxResolutionTierAllowableValues();
+        if (!is_null($max_resolution_tier) && !in_array($max_resolution_tier, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'max_resolution_tier', must be one of '%s'",
+                    $max_resolution_tier,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($max_resolution_tier)) {
+            throw new \InvalidArgumentException('non-nullable max_resolution_tier cannot be null');
+        }
+
+        $this->container['max_resolution_tier'] = $max_resolution_tier;
+
+        return $this;
+    }
+
+    /**
+     * Gets encoding_tier
+     *
+     * @return string|null
+     */
+    public function getEncodingTier()
+    {
+        return $this->container['encoding_tier'];
+    }
+
+    /**
+     * Sets encoding_tier
+     *
+     * @param string|null $encoding_tier The encoding tier informs the cost, quality, and available platform features for the asset. By default the `smart` encoding tier is used.
+     *
+     * @return self
+     */
+    public function setEncodingTier($encoding_tier)
+    {
+        $allowedValues = $this->getEncodingTierAllowableValues();
+        if (!is_null($encoding_tier) && !in_array($encoding_tier, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'encoding_tier', must be one of '%s'",
+                    $encoding_tier,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($encoding_tier)) {
+            throw new \InvalidArgumentException('non-nullable encoding_tier cannot be null');
+        }
+
+        $this->container['encoding_tier'] = $encoding_tier;
 
         return $this;
     }

@@ -123,7 +123,7 @@ class MonitoringApi
      * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
      * @param  string $dimension Dimension the specified value belongs to (optional)
      * @param  int $timestamp Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. (optional)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      * @param  string $order_by Value to order the results by (optional)
      * @param  string $order_direction Sort order. (optional)
      *
@@ -145,7 +145,7 @@ class MonitoringApi
      * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
      * @param  string $dimension Dimension the specified value belongs to (optional)
      * @param  int $timestamp Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. (optional)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      * @param  string $order_by Value to order the results by (optional)
      * @param  string $order_direction Sort order. (optional)
      *
@@ -238,7 +238,7 @@ class MonitoringApi
      * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
      * @param  string $dimension Dimension the specified value belongs to (optional)
      * @param  int $timestamp Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. (optional)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      * @param  string $order_by Value to order the results by (optional)
      * @param  string $order_direction Sort order. (optional)
      *
@@ -263,7 +263,7 @@ class MonitoringApi
      * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
      * @param  string $dimension Dimension the specified value belongs to (optional)
      * @param  int $timestamp Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. (optional)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      * @param  string $order_by Value to order the results by (optional)
      * @param  string $order_direction Sort order. (optional)
      *
@@ -315,7 +315,7 @@ class MonitoringApi
      * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
      * @param  string $dimension Dimension the specified value belongs to (optional)
      * @param  int $timestamp Timestamp to limit results by. This value must be provided as a unix timestamp. Defaults to the current unix timestamp. (optional)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      * @param  string $order_by Value to order the results by (optional)
      * @param  string $order_direction Sort order. (optional)
      *
@@ -470,12 +470,382 @@ class MonitoringApi
     }
 
     /**
+     * Operation getMonitoringBreakdownTimeseries
+     *
+     * Get Monitoring Breakdown Timeseries
+     *
+     * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
+     * @param  string $dimension Dimension the specified value belongs to (optional)
+     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  The default for this is the last 60 seconds of available data. Timeframes larger than 10 minutes are not allowed, and must be within the last 24 hours. (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $limit Number of items to include in each timestamp&#39;s &#x60;value&#x60; list.  The default is 10, and the maximum is 100. (optional, default to 10)
+     * @param  string $order_by Value to order the results by (optional)
+     * @param  string $order_direction Sort order. (optional)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MuxPhp\Models\GetMonitoringBreakdownTimeseriesResponse
+     */
+    public function getMonitoringBreakdownTimeseries($monitoring_metric_id, $dimension = null, $timeframe = null, $filters = null, $limit = 10, $order_by = null, $order_direction = null)
+    {
+        list($response) = $this->getMonitoringBreakdownTimeseriesWithHttpInfo($monitoring_metric_id, $dimension, $timeframe, $filters, $limit, $order_by, $order_direction);
+        return $response;
+    }
+
+    /**
+     * Operation getMonitoringBreakdownTimeseriesWithHttpInfo
+     *
+     * Get Monitoring Breakdown Timeseries
+     *
+     * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
+     * @param  string $dimension Dimension the specified value belongs to (optional)
+     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  The default for this is the last 60 seconds of available data. Timeframes larger than 10 minutes are not allowed, and must be within the last 24 hours. (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $limit Number of items to include in each timestamp&#39;s &#x60;value&#x60; list.  The default is 10, and the maximum is 100. (optional, default to 10)
+     * @param  string $order_by Value to order the results by (optional)
+     * @param  string $order_direction Sort order. (optional)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MuxPhp\Models\GetMonitoringBreakdownTimeseriesResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getMonitoringBreakdownTimeseriesWithHttpInfo($monitoring_metric_id, $dimension = null, $timeframe = null, $filters = null, $limit = 10, $order_by = null, $order_direction = null)
+    {
+        $request = $this->getMonitoringBreakdownTimeseriesRequest($monitoring_metric_id, $dimension, $timeframe, $filters, $limit, $order_by, $order_direction);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\MuxPhp\Models\GetMonitoringBreakdownTimeseriesResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\GetMonitoringBreakdownTimeseriesResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MuxPhp\Models\GetMonitoringBreakdownTimeseriesResponse';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = (string) $responseBody;
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MuxPhp\Models\GetMonitoringBreakdownTimeseriesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getMonitoringBreakdownTimeseriesAsync
+     *
+     * Get Monitoring Breakdown Timeseries
+     *
+     * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
+     * @param  string $dimension Dimension the specified value belongs to (optional)
+     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  The default for this is the last 60 seconds of available data. Timeframes larger than 10 minutes are not allowed, and must be within the last 24 hours. (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $limit Number of items to include in each timestamp&#39;s &#x60;value&#x60; list.  The default is 10, and the maximum is 100. (optional, default to 10)
+     * @param  string $order_by Value to order the results by (optional)
+     * @param  string $order_direction Sort order. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getMonitoringBreakdownTimeseriesAsync($monitoring_metric_id, $dimension = null, $timeframe = null, $filters = null, $limit = 10, $order_by = null, $order_direction = null)
+    {
+        return $this->getMonitoringBreakdownTimeseriesAsyncWithHttpInfo($monitoring_metric_id, $dimension, $timeframe, $filters, $limit, $order_by, $order_direction)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getMonitoringBreakdownTimeseriesAsyncWithHttpInfo
+     *
+     * Get Monitoring Breakdown Timeseries
+     *
+     * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
+     * @param  string $dimension Dimension the specified value belongs to (optional)
+     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  The default for this is the last 60 seconds of available data. Timeframes larger than 10 minutes are not allowed, and must be within the last 24 hours. (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $limit Number of items to include in each timestamp&#39;s &#x60;value&#x60; list.  The default is 10, and the maximum is 100. (optional, default to 10)
+     * @param  string $order_by Value to order the results by (optional)
+     * @param  string $order_direction Sort order. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getMonitoringBreakdownTimeseriesAsyncWithHttpInfo($monitoring_metric_id, $dimension = null, $timeframe = null, $filters = null, $limit = 10, $order_by = null, $order_direction = null)
+    {
+        $returnType = '\MuxPhp\Models\GetMonitoringBreakdownTimeseriesResponse';
+        $request = $this->getMonitoringBreakdownTimeseriesRequest($monitoring_metric_id, $dimension, $timeframe, $filters, $limit, $order_by, $order_direction);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getMonitoringBreakdownTimeseries'
+     *
+     * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
+     * @param  string $dimension Dimension the specified value belongs to (optional)
+     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  The default for this is the last 60 seconds of available data. Timeframes larger than 10 minutes are not allowed, and must be within the last 24 hours. (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  int $limit Number of items to include in each timestamp&#39;s &#x60;value&#x60; list.  The default is 10, and the maximum is 100. (optional, default to 10)
+     * @param  string $order_by Value to order the results by (optional)
+     * @param  string $order_direction Sort order. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getMonitoringBreakdownTimeseriesRequest($monitoring_metric_id, $dimension = null, $timeframe = null, $filters = null, $limit = 10, $order_by = null, $order_direction = null)
+    {
+        // verify the required parameter 'monitoring_metric_id' is set
+        if ($monitoring_metric_id === null || (is_array($monitoring_metric_id) && count($monitoring_metric_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $monitoring_metric_id when calling getMonitoringBreakdownTimeseries'
+            );
+        }
+
+        $resourcePath = '/data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/breakdown-timeseries';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($dimension !== null) {
+            if('form' === 'form' && is_array($dimension)) {
+                foreach($dimension as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['dimension'] = $dimension;
+            }
+        }
+        // query params
+        if ($timeframe !== null) {
+            if('form' === 'form' && is_array($timeframe)) {
+                foreach($timeframe as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['timeframe[]'] = $timeframe;
+            }
+        }
+        // query params
+        if ($filters !== null) {
+            if('form' === 'form' && is_array($filters)) {
+                foreach($filters as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['filters[]'] = $filters;
+            }
+        }
+        // query params
+        if ($limit !== null) {
+            if('form' === 'form' && is_array($limit)) {
+                foreach($limit as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['limit'] = $limit;
+            }
+        }
+        // query params
+        if ($order_by !== null) {
+            if('form' === 'form' && is_array($order_by)) {
+                foreach($order_by as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['order_by'] = $order_by;
+            }
+        }
+        // query params
+        if ($order_direction !== null) {
+            if('form' === 'form' && is_array($order_direction)) {
+                foreach($order_direction as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['order_direction'] = $order_direction;
+            }
+        }
+
+
+        // path params
+        if ($monitoring_metric_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'MONITORING_METRIC_ID' . '}',
+                ObjectSerializer::toPathValue($monitoring_metric_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getMonitoringHistogramTimeseries
      *
      * Get Monitoring Histogram Timeseries
      *
      * @param  string $monitoring_histogram_metric_id ID of the Monitoring Histogram Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -493,7 +863,7 @@ class MonitoringApi
      * Get Monitoring Histogram Timeseries
      *
      * @param  string $monitoring_histogram_metric_id ID of the Monitoring Histogram Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -582,7 +952,7 @@ class MonitoringApi
      * Get Monitoring Histogram Timeseries
      *
      * @param  string $monitoring_histogram_metric_id ID of the Monitoring Histogram Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -603,7 +973,7 @@ class MonitoringApi
      * Get Monitoring Histogram Timeseries
      *
      * @param  string $monitoring_histogram_metric_id ID of the Monitoring Histogram Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -651,7 +1021,7 @@ class MonitoringApi
      * Create request for operation 'getMonitoringHistogramTimeseries'
      *
      * @param  string $monitoring_histogram_metric_id ID of the Monitoring Histogram Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -765,7 +1135,7 @@ class MonitoringApi
      * Get Monitoring Timeseries
      *
      * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      * @param  int $timestamp Timestamp to use as the start of the timeseries data. This value must be provided as a unix timestamp. Defaults to 30 minutes ago. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
@@ -784,7 +1154,7 @@ class MonitoringApi
      * Get Monitoring Timeseries
      *
      * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      * @param  int $timestamp Timestamp to use as the start of the timeseries data. This value must be provided as a unix timestamp. Defaults to 30 minutes ago. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
@@ -874,7 +1244,7 @@ class MonitoringApi
      * Get Monitoring Timeseries
      *
      * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      * @param  int $timestamp Timestamp to use as the start of the timeseries data. This value must be provided as a unix timestamp. Defaults to 30 minutes ago. (optional)
      *
      * @throws \InvalidArgumentException
@@ -896,7 +1266,7 @@ class MonitoringApi
      * Get Monitoring Timeseries
      *
      * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      * @param  int $timestamp Timestamp to use as the start of the timeseries data. This value must be provided as a unix timestamp. Defaults to 30 minutes ago. (optional)
      *
      * @throws \InvalidArgumentException
@@ -945,7 +1315,7 @@ class MonitoringApi
      * Create request for operation 'getMonitoringTimeseries'
      *
      * @param  string $monitoring_metric_id ID of the Monitoring Metric (required)
-     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Monitoring Dimensions endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
      * @param  int $timestamp Timestamp to use as the start of the timeseries data. This value must be provided as a unix timestamp. Defaults to 30 minutes ago. (optional)
      *
      * @throws \InvalidArgumentException

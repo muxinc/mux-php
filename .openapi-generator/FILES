@@ -25,6 +25,7 @@ MuxPhp/HeaderSelector.php
 MuxPhp/Models/AbridgedVideoView.php
 MuxPhp/Models/Asset.php
 MuxPhp/Models/AssetErrors.php
+MuxPhp/Models/AssetGeneratedSubtitleSettings.php
 MuxPhp/Models/AssetMaster.php
 MuxPhp/Models/AssetNonStandardInputReasons.php
 MuxPhp/Models/AssetRecordingTimes.php
@@ -66,6 +67,7 @@ MuxPhp/Models/GetAssetPlaybackIDResponse.php
 MuxPhp/Models/GetLiveStreamPlaybackIDResponse.php
 MuxPhp/Models/GetMetricTimeseriesDataResponse.php
 MuxPhp/Models/GetMonitoringBreakdownResponse.php
+MuxPhp/Models/GetMonitoringBreakdownTimeseriesResponse.php
 MuxPhp/Models/GetMonitoringHistogramTimeseriesResponse.php
 MuxPhp/Models/GetMonitoringHistogramTimeseriesResponseMeta.php
 MuxPhp/Models/GetMonitoringTimeseriesResponse.php
@@ -119,6 +121,8 @@ MuxPhp/Models/LiveStreamResponse.php
 MuxPhp/Models/LiveStreamStatus.php
 MuxPhp/Models/Metric.php
 MuxPhp/Models/ModelInterface.php
+MuxPhp/Models/MonitoringBreakdownTimeseriesDatapoint.php
+MuxPhp/Models/MonitoringBreakdownTimeseriesValues.php
 MuxPhp/Models/MonitoringBreakdownValue.php
 MuxPhp/Models/MonitoringHistogramTimeseriesBucket.php
 MuxPhp/Models/MonitoringHistogramTimeseriesBucketValues.php
@@ -190,6 +194,7 @@ docs/Api/VideoViewsApi.md
 docs/Model/AbridgedVideoView.md
 docs/Model/Asset.md
 docs/Model/AssetErrors.md
+docs/Model/AssetGeneratedSubtitleSettings.md
 docs/Model/AssetMaster.md
 docs/Model/AssetNonStandardInputReasons.md
 docs/Model/AssetRecordingTimes.md
@@ -231,6 +236,7 @@ docs/Model/GetAssetPlaybackIDResponse.md
 docs/Model/GetLiveStreamPlaybackIDResponse.md
 docs/Model/GetMetricTimeseriesDataResponse.md
 docs/Model/GetMonitoringBreakdownResponse.md
+docs/Model/GetMonitoringBreakdownTimeseriesResponse.md
 docs/Model/GetMonitoringHistogramTimeseriesResponse.md
 docs/Model/GetMonitoringHistogramTimeseriesResponseMeta.md
 docs/Model/GetMonitoringTimeseriesResponse.md
@@ -283,6 +289,8 @@ docs/Model/LiveStreamGeneratedSubtitleSettings.md
 docs/Model/LiveStreamResponse.md
 docs/Model/LiveStreamStatus.md
 docs/Model/Metric.md
+docs/Model/MonitoringBreakdownTimeseriesDatapoint.md
+docs/Model/MonitoringBreakdownTimeseriesValues.md
 docs/Model/MonitoringBreakdownValue.md
 docs/Model/MonitoringHistogramTimeseriesBucket.md
 docs/Model/MonitoringHistogramTimeseriesBucketValues.md

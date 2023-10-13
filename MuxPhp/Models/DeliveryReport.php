@@ -67,6 +67,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted_at' => 'string',
         'asset_state' => 'string',
         'asset_duration' => 'double',
+        'asset_resolution_tier' => 'string',
         'delivered_seconds' => 'double',
         'delivered_seconds_by_resolution' => '\MuxPhp\Models\DeliveryReportDeliveredSecondsByResolution'
     ];
@@ -86,6 +87,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted_at' => null,
         'asset_state' => null,
         'asset_duration' => 'double',
+        'asset_resolution_tier' => null,
         'delivered_seconds' => 'double',
         'delivered_seconds_by_resolution' => null
     ];
@@ -103,6 +105,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted_at' => false,
         'asset_state' => false,
         'asset_duration' => false,
+        'asset_resolution_tier' => false,
         'delivered_seconds' => false,
         'delivered_seconds_by_resolution' => false
     ];
@@ -190,6 +193,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted_at' => 'deleted_at',
         'asset_state' => 'asset_state',
         'asset_duration' => 'asset_duration',
+        'asset_resolution_tier' => 'asset_resolution_tier',
         'delivered_seconds' => 'delivered_seconds',
         'delivered_seconds_by_resolution' => 'delivered_seconds_by_resolution'
     ];
@@ -207,6 +211,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted_at' => 'setDeletedAt',
         'asset_state' => 'setAssetState',
         'asset_duration' => 'setAssetDuration',
+        'asset_resolution_tier' => 'setAssetResolutionTier',
         'delivered_seconds' => 'setDeliveredSeconds',
         'delivered_seconds_by_resolution' => 'setDeliveredSecondsByResolution'
     ];
@@ -224,6 +229,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'deleted_at' => 'getDeletedAt',
         'asset_state' => 'getAssetState',
         'asset_duration' => 'getAssetDuration',
+        'asset_resolution_tier' => 'getAssetResolutionTier',
         'delivered_seconds' => 'getDeliveredSeconds',
         'delivered_seconds_by_resolution' => 'getDeliveredSecondsByResolution'
     ];
@@ -272,6 +278,11 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
     public const ASSET_STATE_READY = 'ready';
     public const ASSET_STATE_ERRORED = 'errored';
     public const ASSET_STATE_DELETED = 'deleted';
+    public const ASSET_RESOLUTION_TIER_AUDIO_ONLY = 'audio-only';
+    public const ASSET_RESOLUTION_TIER__720P = '720p';
+    public const ASSET_RESOLUTION_TIER__1080P = '1080p';
+    public const ASSET_RESOLUTION_TIER__1440P = '1440p';
+    public const ASSET_RESOLUTION_TIER__2160P = '2160p';
 
     /**
      * Gets allowable values of the enum
@@ -284,6 +295,22 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
             self::ASSET_STATE_READY,
             self::ASSET_STATE_ERRORED,
             self::ASSET_STATE_DELETED,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAssetResolutionTierAllowableValues()
+    {
+        return [
+            self::ASSET_RESOLUTION_TIER_AUDIO_ONLY,
+            self::ASSET_RESOLUTION_TIER__720P,
+            self::ASSET_RESOLUTION_TIER__1080P,
+            self::ASSET_RESOLUTION_TIER__1440P,
+            self::ASSET_RESOLUTION_TIER__2160P,
         ];
     }
 
@@ -312,6 +339,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('deleted_at', $data ?? [], null);
         $this->setIfExists('asset_state', $data ?? [], null);
         $this->setIfExists('asset_duration', $data ?? [], null);
+        $this->setIfExists('asset_resolution_tier', $data ?? [], null);
         $this->setIfExists('delivered_seconds', $data ?? [], null);
         $this->setIfExists('delivered_seconds_by_resolution', $data ?? [], null);
     }
@@ -348,6 +376,15 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'asset_state', must be one of '%s'",
                 $this->container['asset_state'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getAssetResolutionTierAllowableValues();
+        if (!is_null($this->container['asset_resolution_tier']) && !in_array($this->container['asset_resolution_tier'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'asset_resolution_tier', must be one of '%s'",
+                $this->container['asset_resolution_tier'],
                 implode("', '", $allowedValues)
             );
         }
@@ -576,6 +613,45 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['asset_duration'] = $asset_duration;
+
+        return $this;
+    }
+
+    /**
+     * Gets asset_resolution_tier
+     *
+     * @return string|null
+     */
+    public function getAssetResolutionTier()
+    {
+        return $this->container['asset_resolution_tier'];
+    }
+
+    /**
+     * Sets asset_resolution_tier
+     *
+     * @param string|null $asset_resolution_tier The resolution tier that the asset was ingested at, affecting billing for ingest & storage
+     *
+     * @return self
+     */
+    public function setAssetResolutionTier($asset_resolution_tier)
+    {
+        $allowedValues = $this->getAssetResolutionTierAllowableValues();
+        if (!is_null($asset_resolution_tier) && !in_array($asset_resolution_tier, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'asset_resolution_tier', must be one of '%s'",
+                    $asset_resolution_tier,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($asset_resolution_tier)) {
+            throw new \InvalidArgumentException('non-nullable asset_resolution_tier cannot be null');
+        }
+
+        $this->container['asset_resolution_tier'] = $asset_resolution_tier;
 
         return $this;
     }

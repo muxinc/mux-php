@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateTrackRequest
+ * AssetGeneratedSubtitleSettings
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * CreateTrackRequest Class Doc Comment
+ * AssetGeneratedSubtitleSettings Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CreateTrackRequest';
+    protected static $openAPIModelName = 'AssetGeneratedSubtitleSettings';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,13 +60,9 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'url' => 'string',
-        'type' => 'string',
-        'text_type' => 'string',
-        'language_code' => 'string',
         'name' => 'string',
-        'closed_captions' => 'bool',
-        'passthrough' => 'string'
+        'passthrough' => 'string',
+        'language_code' => 'string'
     ];
 
     /**
@@ -77,13 +73,9 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'url' => null,
-        'type' => null,
-        'text_type' => null,
-        'language_code' => null,
         'name' => null,
-        'closed_captions' => null,
-        'passthrough' => null
+        'passthrough' => null,
+        'language_code' => null
     ];
 
     /**
@@ -92,13 +84,9 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'url' => false,
-        'type' => false,
-        'text_type' => false,
-        'language_code' => false,
         'name' => false,
-        'closed_captions' => false,
-        'passthrough' => false
+        'passthrough' => false,
+        'language_code' => false
     ];
 
     /**
@@ -177,13 +165,9 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'url' => 'url',
-        'type' => 'type',
-        'text_type' => 'text_type',
-        'language_code' => 'language_code',
         'name' => 'name',
-        'closed_captions' => 'closed_captions',
-        'passthrough' => 'passthrough'
+        'passthrough' => 'passthrough',
+        'language_code' => 'language_code'
     ];
 
     /**
@@ -192,13 +176,9 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'url' => 'setUrl',
-        'type' => 'setType',
-        'text_type' => 'setTextType',
-        'language_code' => 'setLanguageCode',
         'name' => 'setName',
-        'closed_captions' => 'setClosedCaptions',
-        'passthrough' => 'setPassthrough'
+        'passthrough' => 'setPassthrough',
+        'language_code' => 'setLanguageCode'
     ];
 
     /**
@@ -207,13 +187,9 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'url' => 'getUrl',
-        'type' => 'getType',
-        'text_type' => 'getTextType',
-        'language_code' => 'getLanguageCode',
         'name' => 'getName',
-        'closed_captions' => 'getClosedCaptions',
-        'passthrough' => 'getPassthrough'
+        'passthrough' => 'getPassthrough',
+        'language_code' => 'getLanguageCode'
     ];
 
     /**
@@ -257,32 +233,19 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    public const TYPE_TEXT = 'text';
-    public const TYPE_AUDIO = 'audio';
-    public const TEXT_TYPE_SUBTITLES = 'subtitles';
+    public const LANGUAGE_CODE_EN = 'en';
+    public const LANGUAGE_CODE_EN_US = 'en-US';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getTypeAllowableValues()
+    public function getLanguageCodeAllowableValues()
     {
         return [
-            self::TYPE_TEXT,
-            self::TYPE_AUDIO,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTextTypeAllowableValues()
-    {
-        return [
-            self::TEXT_TYPE_SUBTITLES,
+            self::LANGUAGE_CODE_EN,
+            self::LANGUAGE_CODE_EN_US,
         ];
     }
 
@@ -304,13 +267,9 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('url', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('text_type', $data ?? [], null);
-        $this->setIfExists('language_code', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('closed_captions', $data ?? [], null);
         $this->setIfExists('passthrough', $data ?? [], null);
+        $this->setIfExists('language_code', $data ?? [], self::LANGUAGE_CODE_EN);
     }
 
     /**
@@ -340,36 +299,15 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+        $allowedValues = $this->getLanguageCodeAllowableValues();
+        if (!is_null($this->container['language_code']) && !in_array($this->container['language_code'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
+                "invalid value '%s' for 'language_code', must be one of '%s'",
+                $this->container['language_code'],
                 implode("', '", $allowedValues)
             );
         }
 
-        if ($this->container['text_type'] === null) {
-            $invalidProperties[] = "'text_type' can't be null";
-        }
-        $allowedValues = $this->getTextTypeAllowableValues();
-        if (!is_null($this->container['text_type']) && !in_array($this->container['text_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'text_type', must be one of '%s'",
-                $this->container['text_type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['language_code'] === null) {
-            $invalidProperties[] = "'language_code' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -386,142 +324,6 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string $url The URL of the file that Mux should download and use. * For `audio` tracks, the URL is the location of the audio file for Mux to download, for example an M4A, WAV, or MP3 file. Mux supports most audio file formats and codecs, but for fastest processing, you should [use standard inputs wherever possible](https://docs.mux.com/guides/video/minimize-processing-time). * For `text` tracks, the URL is the location of subtitle/captions file. Mux supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting Subtitles and Closed Captions.
-     *
-     * @return self
-     */
-    public function setUrl($url)
-    {
-
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
-
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type type
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets text_type
-     *
-     * @return string
-     */
-    public function getTextType()
-    {
-        return $this->container['text_type'];
-    }
-
-    /**
-     * Sets text_type
-     *
-     * @param string $text_type text_type
-     *
-     * @return self
-     */
-    public function setTextType($text_type)
-    {
-        $allowedValues = $this->getTextTypeAllowableValues();
-        if (!in_array($text_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'text_type', must be one of '%s'",
-                    $text_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-
-        if (is_null($text_type)) {
-            throw new \InvalidArgumentException('non-nullable text_type cannot be null');
-        }
-
-        $this->container['text_type'] = $text_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets language_code
-     *
-     * @return string
-     */
-    public function getLanguageCode()
-    {
-        return $this->container['language_code'];
-    }
-
-    /**
-     * Sets language_code
-     *
-     * @param string $language_code The language code value must be a valid BCP 47 specification compliant value. For example, en for English or en-US for the US version of English.
-     *
-     * @return self
-     */
-    public function setLanguageCode($language_code)
-    {
-
-        if (is_null($language_code)) {
-            throw new \InvalidArgumentException('non-nullable language_code cannot be null');
-        }
-
-        $this->container['language_code'] = $language_code;
-
-        return $this;
-    }
-
-    /**
      * Gets name
      *
      * @return string|null
@@ -534,7 +336,7 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets name
      *
-     * @param string|null $name The name of the track containing a human-readable description. This value must be unique within each group of `text` or `audio` track types. The HLS manifest will associate the `text` or `audio` track with this value. For example, set the value to \"English\" for subtitles text track with `language_code` as en-US. If this parameter is not included, Mux will auto-populate a value based on the `language_code` value.
+     * @param string|null $name A name for this subtitle track.
      *
      * @return self
      */
@@ -546,35 +348,6 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets closed_captions
-     *
-     * @return bool|null
-     */
-    public function getClosedCaptions()
-    {
-        return $this->container['closed_captions'];
-    }
-
-    /**
-     * Sets closed_captions
-     *
-     * @param bool|null $closed_captions Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
-     *
-     * @return self
-     */
-    public function setClosedCaptions($closed_captions)
-    {
-
-        if (is_null($closed_captions)) {
-            throw new \InvalidArgumentException('non-nullable closed_captions cannot be null');
-        }
-
-        $this->container['closed_captions'] = $closed_captions;
 
         return $this;
     }
@@ -592,7 +365,7 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata set for the track either when creating the asset or track.
+     * @param string|null $passthrough Arbitrary metadata set for the subtitle track. Max 255 characters.
      *
      * @return self
      */
@@ -604,6 +377,45 @@ class CreateTrackRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['passthrough'] = $passthrough;
+
+        return $this;
+    }
+
+    /**
+     * Gets language_code
+     *
+     * @return string|null
+     */
+    public function getLanguageCode()
+    {
+        return $this->container['language_code'];
+    }
+
+    /**
+     * Sets language_code
+     *
+     * @param string|null $language_code The language to generate subtitles in.
+     *
+     * @return self
+     */
+    public function setLanguageCode($language_code)
+    {
+        $allowedValues = $this->getLanguageCodeAllowableValues();
+        if (!is_null($language_code) && !in_array($language_code, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'language_code', must be one of '%s'",
+                    $language_code,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($language_code)) {
+            throw new \InvalidArgumentException('non-nullable language_code cannot be null');
+        }
+
+        $this->container['language_code'] = $language_code;
 
         return $this;
     }

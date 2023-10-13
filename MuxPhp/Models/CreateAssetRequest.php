@@ -67,7 +67,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'mp4_support' => 'string',
         'normalize_audio' => 'bool',
         'master_access' => 'string',
-        'test' => 'bool'
+        'test' => 'bool',
+        'max_resolution_tier' => 'string',
+        'encoding_tier' => 'string'
     ];
 
     /**
@@ -85,7 +87,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'mp4_support' => null,
         'normalize_audio' => 'boolean',
         'master_access' => null,
-        'test' => 'boolean'
+        'test' => 'boolean',
+        'max_resolution_tier' => null,
+        'encoding_tier' => null
     ];
 
     /**
@@ -101,7 +105,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'mp4_support' => false,
         'normalize_audio' => false,
         'master_access' => false,
-        'test' => false
+        'test' => false,
+        'max_resolution_tier' => false,
+        'encoding_tier' => false
     ];
 
     /**
@@ -187,7 +193,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'mp4_support' => 'mp4_support',
         'normalize_audio' => 'normalize_audio',
         'master_access' => 'master_access',
-        'test' => 'test'
+        'test' => 'test',
+        'max_resolution_tier' => 'max_resolution_tier',
+        'encoding_tier' => 'encoding_tier'
     ];
 
     /**
@@ -203,7 +211,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'mp4_support' => 'setMp4Support',
         'normalize_audio' => 'setNormalizeAudio',
         'master_access' => 'setMasterAccess',
-        'test' => 'setTest'
+        'test' => 'setTest',
+        'max_resolution_tier' => 'setMaxResolutionTier',
+        'encoding_tier' => 'setEncodingTier'
     ];
 
     /**
@@ -219,7 +229,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'mp4_support' => 'getMp4Support',
         'normalize_audio' => 'getNormalizeAudio',
         'master_access' => 'getMasterAccess',
-        'test' => 'getTest'
+        'test' => 'getTest',
+        'max_resolution_tier' => 'getMaxResolutionTier',
+        'encoding_tier' => 'getEncodingTier'
     ];
 
     /**
@@ -267,6 +279,11 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     public const MP4_SUPPORT_STANDARD = 'standard';
     public const MASTER_ACCESS_NONE = 'none';
     public const MASTER_ACCESS_TEMPORARY = 'temporary';
+    public const MAX_RESOLUTION_TIER__1080P = '1080p';
+    public const MAX_RESOLUTION_TIER__1440P = '1440p';
+    public const MAX_RESOLUTION_TIER__2160P = '2160p';
+    public const ENCODING_TIER_SMART = 'smart';
+    public const ENCODING_TIER_BASELINE = 'baseline';
 
     /**
      * Gets allowable values of the enum
@@ -291,6 +308,33 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         return [
             self::MASTER_ACCESS_NONE,
             self::MASTER_ACCESS_TEMPORARY,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getMaxResolutionTierAllowableValues()
+    {
+        return [
+            self::MAX_RESOLUTION_TIER__1080P,
+            self::MAX_RESOLUTION_TIER__1440P,
+            self::MAX_RESOLUTION_TIER__2160P,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getEncodingTierAllowableValues()
+    {
+        return [
+            self::ENCODING_TIER_SMART,
+            self::ENCODING_TIER_BASELINE,
         ];
     }
 
@@ -320,6 +364,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('normalize_audio', $data ?? [], false);
         $this->setIfExists('master_access', $data ?? [], null);
         $this->setIfExists('test', $data ?? [], null);
+        $this->setIfExists('max_resolution_tier', $data ?? [], null);
+        $this->setIfExists('encoding_tier', $data ?? [], null);
     }
 
     /**
@@ -363,6 +409,24 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'master_access', must be one of '%s'",
                 $this->container['master_access'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getMaxResolutionTierAllowableValues();
+        if (!is_null($this->container['max_resolution_tier']) && !in_array($this->container['max_resolution_tier'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'max_resolution_tier', must be one of '%s'",
+                $this->container['max_resolution_tier'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getEncodingTierAllowableValues();
+        if (!is_null($this->container['encoding_tier']) && !in_array($this->container['encoding_tier'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'encoding_tier', must be one of '%s'",
+                $this->container['encoding_tier'],
                 implode("', '", $allowedValues)
             );
         }
@@ -632,6 +696,84 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['test'] = $test;
+
+        return $this;
+    }
+
+    /**
+     * Gets max_resolution_tier
+     *
+     * @return string|null
+     */
+    public function getMaxResolutionTier()
+    {
+        return $this->container['max_resolution_tier'];
+    }
+
+    /**
+     * Sets max_resolution_tier
+     *
+     * @param string|null $max_resolution_tier Max resolution tier can be used to control the maximum `resolution_tier` your asset is encoded, stored, and streamed at. If not set, this defaults to `1080p`.
+     *
+     * @return self
+     */
+    public function setMaxResolutionTier($max_resolution_tier)
+    {
+        $allowedValues = $this->getMaxResolutionTierAllowableValues();
+        if (!is_null($max_resolution_tier) && !in_array($max_resolution_tier, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'max_resolution_tier', must be one of '%s'",
+                    $max_resolution_tier,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($max_resolution_tier)) {
+            throw new \InvalidArgumentException('non-nullable max_resolution_tier cannot be null');
+        }
+
+        $this->container['max_resolution_tier'] = $max_resolution_tier;
+
+        return $this;
+    }
+
+    /**
+     * Gets encoding_tier
+     *
+     * @return string|null
+     */
+    public function getEncodingTier()
+    {
+        return $this->container['encoding_tier'];
+    }
+
+    /**
+     * Sets encoding_tier
+     *
+     * @param string|null $encoding_tier The encoding tier informs the cost, quality, and available platform features for the asset. By default the `smart` encoding tier is used.
+     *
+     * @return self
+     */
+    public function setEncodingTier($encoding_tier)
+    {
+        $allowedValues = $this->getEncodingTierAllowableValues();
+        if (!is_null($encoding_tier) && !in_array($encoding_tier, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'encoding_tier', must be one of '%s'",
+                    $encoding_tier,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($encoding_tier)) {
+            throw new \InvalidArgumentException('non-nullable encoding_tier cannot be null');
+        }
+
+        $this->container['encoding_tier'] = $encoding_tier;
 
         return $this;
     }

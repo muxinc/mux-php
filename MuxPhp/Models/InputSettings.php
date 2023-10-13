@@ -63,6 +63,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'url' => 'string',
         'overlay_settings' => '\MuxPhp\Models\InputSettingsOverlaySettings',
+        'generated_subtitles' => '\MuxPhp\Models\AssetGeneratedSubtitleSettings[]',
         'start_time' => 'double',
         'end_time' => 'double',
         'type' => 'string',
@@ -83,6 +84,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'url' => null,
         'overlay_settings' => null,
+        'generated_subtitles' => null,
         'start_time' => 'double',
         'end_time' => 'double',
         'type' => null,
@@ -101,6 +103,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'url' => false,
         'overlay_settings' => false,
+        'generated_subtitles' => false,
         'start_time' => false,
         'end_time' => false,
         'type' => false,
@@ -189,6 +192,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'url' => 'url',
         'overlay_settings' => 'overlay_settings',
+        'generated_subtitles' => 'generated_subtitles',
         'start_time' => 'start_time',
         'end_time' => 'end_time',
         'type' => 'type',
@@ -207,6 +211,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'url' => 'setUrl',
         'overlay_settings' => 'setOverlaySettings',
+        'generated_subtitles' => 'setGeneratedSubtitles',
         'start_time' => 'setStartTime',
         'end_time' => 'setEndTime',
         'type' => 'setType',
@@ -225,6 +230,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'url' => 'getUrl',
         'overlay_settings' => 'getOverlaySettings',
+        'generated_subtitles' => 'getGeneratedSubtitles',
         'start_time' => 'getStartTime',
         'end_time' => 'getEndTime',
         'type' => 'getType',
@@ -327,6 +333,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('overlay_settings', $data ?? [], null);
+        $this->setIfExists('generated_subtitles', $data ?? [], null);
         $this->setIfExists('start_time', $data ?? [], null);
         $this->setIfExists('end_time', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -410,7 +417,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets url
      *
-     * @param string|null $url The URL of the file that Mux should download and use. * For subtitles text tracks, the URL is the location of subtitle/captions file. Mux supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) format for ingesting Subtitles and Closed Captions. * For Watermarking or Overlay, the URL is the location of the watermark image. * When creating clips from existing Mux assets, the URL is defined with `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier for creating the clip from.
+     * @param string|null $url The URL of the file that Mux should download and use. * For the main input file, this should be the URL to the muxed file for Mux to download, for example an MP4, MOV, MKV, or TS file. Mux supports most audio/video file formats and codecs, but for fastest processing, you should [use standard inputs wherever possible](https://docs.mux.com/guides/video/minimize-processing-time). * For `audio` tracks, the URL is the location of the audio file for Mux to download, for example an M4A, WAV, or MP3 file. Mux supports most audio file formats and codecs, but for fastest processing, you should [use standard inputs wherever possible](https://docs.mux.com/guides/video/minimize-processing-time). * For `text` tracks, the URL is the location of subtitle/captions file. Mux supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting Subtitles and Closed Captions. * For Watermarking or Overlay, the URL is the location of the watermark image. * When creating clips from existing Mux assets, the URL is defined with `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier for creating the clip from. The url property may be omitted on the first input object when providing asset settings for LiveStream and Upload objects, in order to configure settings related to the primary (live stream or direct upload) input.
      *
      * @return self
      */
@@ -451,6 +458,35 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['overlay_settings'] = $overlay_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets generated_subtitles
+     *
+     * @return \MuxPhp\Models\AssetGeneratedSubtitleSettings[]|null
+     */
+    public function getGeneratedSubtitles()
+    {
+        return $this->container['generated_subtitles'];
+    }
+
+    /**
+     * Sets generated_subtitles
+     *
+     * @param \MuxPhp\Models\AssetGeneratedSubtitleSettings[]|null $generated_subtitles Generate subtitle tracks using automatic speech recognition using this configuration. This may only be provided for the first input object (the main input file). For direct uploads, this first input should omit the url parameter, as the main input file is provided via the direct upload. This will create subtitles based on the audio track ingested from that main input file. Note that subtitle generation happens after initial ingest, so the generated tracks will be in the `preparing` state when the asset transitions to `ready`.
+     *
+     * @return self
+     */
+    public function setGeneratedSubtitles($generated_subtitles)
+    {
+
+        if (is_null($generated_subtitles)) {
+            throw new \InvalidArgumentException('non-nullable generated_subtitles cannot be null');
+        }
+
+        $this->container['generated_subtitles'] = $generated_subtitles;
 
         return $this;
     }
@@ -604,7 +640,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets language_code
      *
-     * @param string|null $language_code The language code value must be a valid [BCP 47](https://tools.ietf.org/html/bcp47) specification compliant value. For example, en for English or en-US for the US version of English. This parameter is required for text type and subtitles text type track.
+     * @param string|null $language_code The language code value must be a valid [BCP 47](https://tools.ietf.org/html/bcp47) specification compliant value. For example, `en` for English or `en-US` for the US version of English. This parameter is required for `text` and `audio` track types.
      *
      * @return self
      */
@@ -633,7 +669,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name The name of the track containing a human-readable description. This value must be unique across all text type and subtitles `text` type tracks. The hls manifest will associate a subtitle text track with this value. For example, the value should be \"English\" for subtitles text track with language_code as en. This optional parameter should be used only for `text` type and subtitles `text` type tracks. If this parameter is not included, Mux will auto-populate based on the `input[].language_code` value.
+     * @param string|null $name The name of the track containing a human-readable description. This value must be unique within each group of `text` or `audio` track types. The HLS manifest will associate a subtitle text track with this value. For example, the value should be \"English\" for a subtitle text track with `language_code` set to `en`. This optional parameter should be used only for `text` and `audio` type tracks. This parameter can be optionally provided for the first video input to denote the name of the muxed audio track if present. If this parameter is not included, Mux will auto-populate based on the `input[].language_code` value.
      *
      * @return self
      */
@@ -662,7 +698,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets closed_captions
      *
-     * @param bool|null $closed_captions Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH). This optional parameter should be used for `text` type and subtitles `text` type tracks.
+     * @param bool|null $closed_captions Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH). This optional parameter should be used for tracks with `type` of `text` and `text_type` set to `subtitles`.
      *
      * @return self
      */
@@ -691,7 +727,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough This optional parameter should be used for `text` type and subtitles `text` type tracks.
+     * @param string|null $passthrough This optional parameter should be used tracks with `type` of `text` and `text_type` set to `subtitles`.
      *
      * @return self
      */

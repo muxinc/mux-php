@@ -708,7 +708,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets reduced_latency
      *
-     * @param bool|null $reduced_latency This field is deprecated. Please use latency_mode instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this if you want lower latency for your live stream. Read more here: https://mux.com/blog/reduced-latency-for-mux-live-streaming-now-available/
+     * @param bool|null $reduced_latency This field is deprecated. Please use `latency_mode` instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Set this if you want lower latency for your live stream. Read more here: https://mux.com/blog/reduced-latency-for-mux-live-streaming-now-available/
      *
      * @return self
      * @deprecated
@@ -739,7 +739,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets low_latency
      *
-     * @param bool|null $low_latency This field is deprecated. Please use latency_mode instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Setting this option will enable compatibility with the LL-HLS specification for low-latency streaming. This typically has lower latency than Reduced Latency streams, and cannot be combined with Reduced Latency.
+     * @param bool|null $low_latency This field is deprecated. Please use `latency_mode` instead. Latency is the time from when the streamer transmits a frame of video to when you see it in the player. Setting this option will enable compatibility with the LL-HLS specification for low-latency streaming. This typically has lower latency than Reduced Latency streams, and cannot be combined with Reduced Latency.
      *
      * @return self
      * @deprecated

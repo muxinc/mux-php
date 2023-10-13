@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **deleted_at** | **string** | If exists, time at which the asset was deleted. Measured in seconds since the Unix epoch. | [optional]
 **asset_state** | **string** | The state of the asset. | [optional]
 **asset_duration** | **double** | The duration of the asset in seconds. | [optional]
+**asset_resolution_tier** | **string** | The resolution tier that the asset was ingested at, affecting billing for ingest &amp; storage | [optional]
 **delivered_seconds** | **double** | Total number of delivered seconds during this time window. | [optional]
 **delivered_seconds_by_resolution** | [**\MuxPhp\Models\DeliveryReportDeliveredSecondsByResolution**](DeliveryReportDeliveredSecondsByResolution.md) |  | [optional]
 

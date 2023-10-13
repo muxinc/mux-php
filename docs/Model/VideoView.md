@@ -144,5 +144,6 @@ Name | Type | Description | Notes
 **view_drm_type** | **string** |  | [optional]
 **view_dropped_frame_count** | **int** |  | [optional]
 **view_has_ad** | **bool** |  | [optional]
+**video_startup_failure** | **bool** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

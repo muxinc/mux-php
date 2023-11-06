@@ -16,7 +16,9 @@
     );
 
     // ========== create-direct-upload ==========
-    $createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::_PUBLIC]]);
+    $subtitles = new MuxPhp\Models\AssetGeneratedSubtitleSettings(["language_code" => "en", "name" => "English (Generated)"]);
+    $input = new MuxPhp\Models\InputSettings(["generated_subtitles" => [$subtitles]]);
+    $createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["input" => [$input], "playback_policy" => [MuxPhp\Models\PlaybackPolicy::_PUBLIC]]);
     $createUploadRequest = new MuxPhp\Models\CreateUploadRequest(["timeout" => 3600, "new_asset_settings" => $createAssetRequest, "cors_origin" => "philcluff.co.uk"]);
     $upload = $uploadsApi->createDirectUpload($createUploadRequest);
     assert($upload->getData()->getId() !== null);

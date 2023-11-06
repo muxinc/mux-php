@@ -125,14 +125,14 @@
     assert($subtitles->getData()->getId() !== null);
     assert($subtitles->getData()->getName() === "English");
     $assetWith2Subs = $assetsApi->getAsset($createAssetResponse->getData()->getId());
-    assert(count($assetWith2Subs->getData()->getTracks()) === 5); // Audio, Video, French that we ingested with the asset, and the English we added here!
+    assert(count($assetWith2Subs->getData()->getTracks()) === 5); // Audio, Video, French that we ingested with the asset, generated English, and the English we added here!
     print("create-asset-track OK ✅\n");
 
     // ========== delete-asset-track ==========
     sleep(5);
     $assetsApi->deleteAssetTrack($createAssetResponse->getData()->getId(), $subtitles->getData()->getId());
     $assetWith1Sub = $assetsApi->getAsset($createAssetResponse->getData()->getId());
-    assert(count($assetWith1Sub->getData()->getTracks()) === 4); // Audio, Video, French that we ingested with the asset
+    assert(count($assetWith1Sub->getData()->getTracks()) === 4); // Audio, Video, French that we ingested with the asset, generated English
     print("delete-asset-track OK ✅\n");
 
     // ========== delete-asset-playback-id ==========

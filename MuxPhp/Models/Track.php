@@ -313,6 +313,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TEXT_SOURCE_EMBEDDED = 'embedded';
     public const TEXT_SOURCE_GENERATED_LIVE = 'generated_live';
     public const TEXT_SOURCE_GENERATED_LIVE_FINAL = 'generated_live_final';
+    public const TEXT_SOURCE_GENERATED_VOD = 'generated_vod';
     public const STATUS_PREPARING = 'preparing';
     public const STATUS_READY = 'ready';
     public const STATUS_ERRORED = 'errored';
@@ -356,6 +357,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TEXT_SOURCE_EMBEDDED,
             self::TEXT_SOURCE_GENERATED_LIVE,
             self::TEXT_SOURCE_GENERATED_LIVE_FINAL,
+            self::TEXT_SOURCE_GENERATED_VOD,
         ];
     }
 

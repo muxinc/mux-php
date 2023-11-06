@@ -20,7 +20,8 @@
     );
 
     // ========== create-asset ==========
-    $input = new MuxPhp\Models\InputSettings(["url" => "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4"]);
+    $subtitles = new MuxPhp\Models\AssetGeneratedSubtitleSettings(["language_code" => "en", "name" => "English (Generated)"]);
+    $input = new MuxPhp\Models\InputSettings(["url" => "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4", "generated_subtitles" => [$subtitles]]);
     $captionsInput = new MuxPhp\Models\InputSettings(["url" => "https://tears-of-steel-subtitles.s3.amazonaws.com/tears-fr.vtt", "type" => "text", "text_type" => "subtitles", "name" => "French", "language_code" => "fr", "closed_captions" => false]);
     $createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["input" => [$input, $captionsInput]]);
     $createAssetResponse = $assetsApi->createAsset($createAssetRequest);
@@ -40,7 +41,7 @@
     assert($listAssetsResult->getData()[0]->getId() === $createAssetResponse->getData()->getId());
     print("list-assets OK ✅\n");
     
-    // Wait for the asset to become ready...
+    // Wait for the asset (and all tracks) to become ready...
     if ($createAssetResponse->getData()->getStatus() !== 'ready') {
         print("    waiting for asset to become ready...\n");
         while(true){
@@ -53,6 +54,16 @@
                 sleep(1);
             }
             else {
+                // Check if all tracks are ready
+                foreach ($waitingAsset->getData()->getTracks() as &$track) {
+                    if ($track->getStatus() !== null) {
+                        if ($track->getStatus() === MuxPhp\Models\Track::STATUS_PREPARING) {
+                            print "    found a prearing track, so waiting... \n";
+                            sleep(1);
+                            continue 2;
+                        }
+                    }
+                }
                 // ========== get-asset-input-info ==========
                 $assetInputInfo = $assetsApi->getAssetInputInfo($createAssetResponse->getData()->getId());
                 assert($assetInputInfo->getData() !== null);
@@ -114,14 +125,14 @@
     assert($subtitles->getData()->getId() !== null);
     assert($subtitles->getData()->getName() === "English");
     $assetWith2Subs = $assetsApi->getAsset($createAssetResponse->getData()->getId());
-    assert(count($assetWith2Subs->getData()->getTracks()) === 4); // Audio, Video, French that we ingested with the asset, and the English we added here!
+    assert(count($assetWith2Subs->getData()->getTracks()) === 5); // Audio, Video, French that we ingested with the asset, and the English we added here!
     print("create-asset-track OK ✅\n");
 
     // ========== delete-asset-track ==========
     sleep(5);
     $assetsApi->deleteAssetTrack($createAssetResponse->getData()->getId(), $subtitles->getData()->getId());
     $assetWith1Sub = $assetsApi->getAsset($createAssetResponse->getData()->getId());
-    assert(count($assetWith1Sub->getData()->getTracks()) === 3); // Audio, Video, French that we ingested with the asset
+    assert(count($assetWith1Sub->getData()->getTracks()) === 4); // Audio, Video, French that we ingested with the asset
     print("delete-asset-track OK ✅\n");
 
     // ========== delete-asset-playback-id ==========

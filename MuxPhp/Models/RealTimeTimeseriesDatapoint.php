@@ -84,7 +84,7 @@ class RealTimeTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'value' => false,
+        'value' => true,
         'date' => false,
         'concurrent_viewers' => false
     ];
@@ -320,7 +320,14 @@ class RealTimeTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonS
     {
 
         if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'value');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('value', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['value'] = $value;

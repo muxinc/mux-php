@@ -284,9 +284,6 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -363,7 +360,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
     public function getUrl()
     {
@@ -373,7 +370,7 @@ class CreateSimulcastTargetRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets url
      *
-     * @param string $url RTMP hostname including application name for the third party live streaming service. Example: `rtmp://live.example.com/app`.
+     * @param string|null $url RTMP hostname including application name for the third party live streaming service. Example: `rtmp://live.example.com/app`.
      *
      * @return self
      */

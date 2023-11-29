@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **message** | **string** | The error message. | [optional]
 **last_seen** | **string** | The last time this error was seen (ISO 8601 timestamp). | [optional]
 **description** | **string** | Description of the error. | [optional]
-**count** | **int** | The total number of views that experiend this error. | [optional]
+**count** | **int** | The total number of views that experienced this error. | [optional]
 **code** | **int** | The error code | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

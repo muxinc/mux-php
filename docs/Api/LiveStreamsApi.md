@@ -1124,7 +1124,7 @@ $live_stream_id = 'live_stream_id_example'; // string | The live stream ID
 //
 // In your own code you should use an associative array, or
 // use a "new \MuxPhp\Models\UpdateLiveStreamGeneratedSubtitlesRequest" directly.
-$update_live_stream_generated_subtitles_request = json_decode('{"generated_subtitles":[{"name":"English CC (ASR)","language":"en","passthrough":"Example"}]}',true); // \MuxPhp\Models\UpdateLiveStreamGeneratedSubtitlesRequest
+$update_live_stream_generated_subtitles_request = json_decode('{"generated_subtitles":[{"name":"English CC (ASR)","language_code":"en","passthrough":"Example"}]}',true); // \MuxPhp\Models\UpdateLiveStreamGeneratedSubtitlesRequest
 
 try {
     $result = $apiInstance->updateLiveStreamGeneratedSubtitles($live_stream_id, $update_live_stream_generated_subtitles_request);

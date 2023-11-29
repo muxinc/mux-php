@@ -61,6 +61,7 @@ class Insight implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'total_watch_time' => 'int',
+        'total_playing_time' => 'int',
         'total_views' => 'int',
         'negative_impact_score' => 'float',
         'metric' => 'double',
@@ -77,6 +78,7 @@ class Insight implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'total_watch_time' => 'int64',
+        'total_playing_time' => 'int64',
         'total_views' => 'int64',
         'negative_impact_score' => 'float',
         'metric' => 'double',
@@ -90,11 +92,12 @@ class Insight implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'total_watch_time' => false,
+        'total_watch_time' => true,
+        'total_playing_time' => true,
         'total_views' => false,
         'negative_impact_score' => false,
         'metric' => false,
-        'filter_value' => false,
+        'filter_value' => true,
         'filter_column' => false
     ];
 
@@ -175,6 +178,7 @@ class Insight implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'total_watch_time' => 'total_watch_time',
+        'total_playing_time' => 'total_playing_time',
         'total_views' => 'total_views',
         'negative_impact_score' => 'negative_impact_score',
         'metric' => 'metric',
@@ -189,6 +193,7 @@ class Insight implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'total_watch_time' => 'setTotalWatchTime',
+        'total_playing_time' => 'setTotalPlayingTime',
         'total_views' => 'setTotalViews',
         'negative_impact_score' => 'setNegativeImpactScore',
         'metric' => 'setMetric',
@@ -203,6 +208,7 @@ class Insight implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'total_watch_time' => 'getTotalWatchTime',
+        'total_playing_time' => 'getTotalPlayingTime',
         'total_views' => 'getTotalViews',
         'negative_impact_score' => 'getNegativeImpactScore',
         'metric' => 'getMetric',
@@ -271,6 +277,7 @@ class Insight implements ModelInterface, ArrayAccess, \JsonSerializable
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('total_watch_time', $data ?? [], null);
+        $this->setIfExists('total_playing_time', $data ?? [], null);
         $this->setIfExists('total_views', $data ?? [], null);
         $this->setIfExists('negative_impact_score', $data ?? [], null);
         $this->setIfExists('metric', $data ?? [], null);
@@ -341,10 +348,53 @@ class Insight implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($total_watch_time)) {
-            throw new \InvalidArgumentException('non-nullable total_watch_time cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'total_watch_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total_watch_time', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['total_watch_time'] = $total_watch_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_playing_time
+     *
+     * @return int|null
+     */
+    public function getTotalPlayingTime()
+    {
+        return $this->container['total_playing_time'];
+    }
+
+    /**
+     * Sets total_playing_time
+     *
+     * @param int|null $total_playing_time total_playing_time
+     *
+     * @return self
+     */
+    public function setTotalPlayingTime($total_playing_time)
+    {
+
+        if (is_null($total_playing_time)) {
+            array_push($this->openAPINullablesSetToNull, 'total_playing_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total_playing_time', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['total_playing_time'] = $total_playing_time;
 
         return $this;
     }
@@ -457,7 +507,14 @@ class Insight implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($filter_value)) {
-            throw new \InvalidArgumentException('non-nullable filter_value cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'filter_value');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('filter_value', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['filter_value'] = $filter_value;

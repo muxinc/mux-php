@@ -85,7 +85,7 @@ class ListFiltersResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static array $openAPINullables = [
         'data' => false,
-        'total_row_count' => false,
+        'total_row_count' => true,
         'timeframe' => false
     ];
 
@@ -349,7 +349,14 @@ class ListFiltersResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     {
 
         if (is_null($total_row_count)) {
-            throw new \InvalidArgumentException('non-nullable total_row_count cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'total_row_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total_row_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['total_row_count'] = $total_row_count;

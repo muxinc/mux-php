@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **views** | **int** |  | [optional]
 **value** | **double** |  | [optional]
 **total_watch_time** | **int** |  | [optional]
+**total_playing_time** | **int** |  | [optional]
 **negative_impact** | **int** |  | [optional]
 **field** | **string** |  | [optional]
 

@@ -83,7 +83,7 @@ class RealTimeHistogramTimeseriesBucket implements ModelInterface, ArrayAccess, 
       */
     protected static array $openAPINullables = [
         'start' => false,
-        'end' => false
+        'end' => true
     ];
 
     /**
@@ -342,7 +342,14 @@ class RealTimeHistogramTimeseriesBucket implements ModelInterface, ArrayAccess, 
     {
 
         if (is_null($end)) {
-            throw new \InvalidArgumentException('non-nullable end cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'end');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('end', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['end'] = $end;

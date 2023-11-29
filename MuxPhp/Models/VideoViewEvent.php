@@ -63,7 +63,8 @@ class VideoViewEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'viewer_time' => 'int',
         'playback_time' => 'int',
         'name' => 'string',
-        'event_time' => 'int'
+        'event_time' => 'int',
+        'details' => 'map[string,object]'
     ];
 
     /**
@@ -77,7 +78,8 @@ class VideoViewEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'viewer_time' => 'int64',
         'playback_time' => 'int64',
         'name' => null,
-        'event_time' => 'int64'
+        'event_time' => 'int64',
+        'details' => null
     ];
 
     /**
@@ -89,7 +91,8 @@ class VideoViewEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'viewer_time' => false,
         'playback_time' => false,
         'name' => false,
-        'event_time' => false
+        'event_time' => false,
+        'details' => false
     ];
 
     /**
@@ -171,7 +174,8 @@ class VideoViewEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'viewer_time' => 'viewer_time',
         'playback_time' => 'playback_time',
         'name' => 'name',
-        'event_time' => 'event_time'
+        'event_time' => 'event_time',
+        'details' => 'details'
     ];
 
     /**
@@ -183,7 +187,8 @@ class VideoViewEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'viewer_time' => 'setViewerTime',
         'playback_time' => 'setPlaybackTime',
         'name' => 'setName',
-        'event_time' => 'setEventTime'
+        'event_time' => 'setEventTime',
+        'details' => 'setDetails'
     ];
 
     /**
@@ -195,7 +200,8 @@ class VideoViewEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'viewer_time' => 'getViewerTime',
         'playback_time' => 'getPlaybackTime',
         'name' => 'getName',
-        'event_time' => 'getEventTime'
+        'event_time' => 'getEventTime',
+        'details' => 'getDetails'
     ];
 
     /**
@@ -262,6 +268,7 @@ class VideoViewEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('playback_time', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('event_time', $data ?? [], null);
+        $this->setIfExists('details', $data ?? [], null);
     }
 
     /**
@@ -418,6 +425,35 @@ class VideoViewEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['event_time'] = $event_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets details
+     *
+     * @return map[string,object]|null
+     */
+    public function getDetails()
+    {
+        return $this->container['details'];
+    }
+
+    /**
+     * Sets details
+     *
+     * @param map[string,object]|null $details details
+     *
+     * @return self
+     */
+    public function setDetails($details)
+    {
+
+        if (is_null($details)) {
+            throw new \InvalidArgumentException('non-nullable details cannot be null');
+        }
+
+        $this->container['details'] = $details;
 
         return $this;
     }

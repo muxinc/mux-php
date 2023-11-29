@@ -235,6 +235,14 @@ Class | Method | HTTP request | Description
 *URLSigningKeysApi* | [**listUrlSigningKeys**](docs/Api/URLSigningKeysApi.md#listurlsigningkeys) | **GET** /video/v1/signing-keys | List URL signing keys
 *VideoViewsApi* | [**getVideoView**](docs/Api/VideoViewsApi.md#getvideoview) | **GET** /data/v1/video-views/{VIDEO_VIEW_ID} | Get a Video View
 *VideoViewsApi* | [**listVideoViews**](docs/Api/VideoViewsApi.md#listvideoviews) | **GET** /data/v1/video-views | List Video Views
+*WebInputsApi* | [**createWebInput**](docs/Api/WebInputsApi.md#createwebinput) | **POST** /video/v1/web-inputs | Create a new Web Input
+*WebInputsApi* | [**deleteWebInput**](docs/Api/WebInputsApi.md#deletewebinput) | **DELETE** /video/v1/web-inputs/{WEB_INPUT_ID} | Delete a Web Input
+*WebInputsApi* | [**getWebInput**](docs/Api/WebInputsApi.md#getwebinput) | **GET** /video/v1/web-inputs/{WEB_INPUT_ID} | Retrieve a Web Input
+*WebInputsApi* | [**launchWebInput**](docs/Api/WebInputsApi.md#launchwebinput) | **PUT** /video/v1/web-inputs/{WEB_INPUT_ID}/launch | Launch a Web Input
+*WebInputsApi* | [**listWebInputs**](docs/Api/WebInputsApi.md#listwebinputs) | **GET** /video/v1/web-inputs | List Web Inputs
+*WebInputsApi* | [**reloadWebInput**](docs/Api/WebInputsApi.md#reloadwebinput) | **PUT** /video/v1/web-inputs/{WEB_INPUT_ID}/reload | Reload a Web Input
+*WebInputsApi* | [**shutdownWebInput**](docs/Api/WebInputsApi.md#shutdownwebinput) | **PUT** /video/v1/web-inputs/{WEB_INPUT_ID}/shutdown | Shut down a Web Input
+*WebInputsApi* | [**updateWebInputUrl**](docs/Api/WebInputsApi.md#updatewebinputurl) | **PUT** /video/v1/web-inputs/{WEB_INPUT_ID}/url | Update Web Input URL
 
 ## Models
 
@@ -266,6 +274,7 @@ Class | Method | HTTP request | Description
 - [CreateTrackResponse](docs/Model/CreateTrackResponse.md)
 - [CreateTranscriptionVocabularyRequest](docs/Model/CreateTranscriptionVocabularyRequest.md)
 - [CreateUploadRequest](docs/Model/CreateUploadRequest.md)
+- [CreateWebInputRequest](docs/Model/CreateWebInputRequest.md)
 - [DeliveryReport](docs/Model/DeliveryReport.md)
 - [DeliveryReportDeliveredSecondsByResolution](docs/Model/DeliveryReportDeliveredSecondsByResolution.md)
 - [DimensionValue](docs/Model/DimensionValue.md)
@@ -303,9 +312,11 @@ Class | Method | HTTP request | Description
 - [InputSettingsOverlaySettings](docs/Model/InputSettingsOverlaySettings.md)
 - [InputTrack](docs/Model/InputTrack.md)
 - [Insight](docs/Model/Insight.md)
+- [LaunchWebInputResponse](docs/Model/LaunchWebInputResponse.md)
 - [ListAllMetricValuesResponse](docs/Model/ListAllMetricValuesResponse.md)
 - [ListAssetsResponse](docs/Model/ListAssetsResponse.md)
 - [ListBreakdownValuesResponse](docs/Model/ListBreakdownValuesResponse.md)
+- [ListBreakdownValuesResponseMeta](docs/Model/ListBreakdownValuesResponseMeta.md)
 - [ListDeliveryUsageResponse](docs/Model/ListDeliveryUsageResponse.md)
 - [ListDimensionValuesResponse](docs/Model/ListDimensionValuesResponse.md)
 - [ListDimensionsResponse](docs/Model/ListDimensionsResponse.md)
@@ -330,6 +341,7 @@ Class | Method | HTTP request | Description
 - [ListUploadsResponse](docs/Model/ListUploadsResponse.md)
 - [ListVideoViewExportsResponse](docs/Model/ListVideoViewExportsResponse.md)
 - [ListVideoViewsResponse](docs/Model/ListVideoViewsResponse.md)
+- [ListWebInputsResponse](docs/Model/ListWebInputsResponse.md)
 - [LiveStream](docs/Model/LiveStream.md)
 - [LiveStreamEmbeddedSubtitleSettings](docs/Model/LiveStreamEmbeddedSubtitleSettings.md)
 - [LiveStreamGeneratedSubtitleSettings](docs/Model/LiveStreamGeneratedSubtitleSettings.md)
@@ -355,7 +367,9 @@ Class | Method | HTTP request | Description
 - [RealTimeHistogramTimeseriesDatapoint](docs/Model/RealTimeHistogramTimeseriesDatapoint.md)
 - [RealTimeTimeseriesDatapoint](docs/Model/RealTimeTimeseriesDatapoint.md)
 - [ReferrerDomainRestriction](docs/Model/ReferrerDomainRestriction.md)
+- [ReloadWebInputResponse](docs/Model/ReloadWebInputResponse.md)
 - [Score](docs/Model/Score.md)
+- [ShutdownWebInputResponse](docs/Model/ShutdownWebInputResponse.md)
 - [SignalLiveStreamCompleteResponse](docs/Model/SignalLiveStreamCompleteResponse.md)
 - [SigningKey](docs/Model/SigningKey.md)
 - [SigningKeyResponse](docs/Model/SigningKeyResponse.md)
@@ -378,12 +392,15 @@ Class | Method | HTTP request | Description
 - [UpdateLiveStreamRequest](docs/Model/UpdateLiveStreamRequest.md)
 - [UpdateReferrerDomainRestrictionRequest](docs/Model/UpdateReferrerDomainRestrictionRequest.md)
 - [UpdateTranscriptionVocabularyRequest](docs/Model/UpdateTranscriptionVocabularyRequest.md)
+- [UpdateWebInputUrlRequest](docs/Model/UpdateWebInputUrlRequest.md)
 - [Upload](docs/Model/Upload.md)
 - [UploadError](docs/Model/UploadError.md)
 - [UploadResponse](docs/Model/UploadResponse.md)
 - [VideoView](docs/Model/VideoView.md)
 - [VideoViewEvent](docs/Model/VideoViewEvent.md)
 - [VideoViewResponse](docs/Model/VideoViewResponse.md)
+- [WebInput](docs/Model/WebInput.md)
+- [WebInputResponse](docs/Model/WebInputResponse.md)
 
 ## Authorization
 
@@ -409,5 +426,5 @@ devex@mux.com
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `v1`
-    - Package version: `3.12.1`
+    - Package version: `3.12.2`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

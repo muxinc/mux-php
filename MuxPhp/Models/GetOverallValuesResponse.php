@@ -62,7 +62,8 @@ class GetOverallValuesResponse implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPITypes = [
         'data' => '\MuxPhp\Models\OverallValues',
         'total_row_count' => 'int',
-        'timeframe' => 'int[]'
+        'timeframe' => 'int[]',
+        'meta' => '\MuxPhp\Models\ListBreakdownValuesResponseMeta'
     ];
 
     /**
@@ -75,7 +76,8 @@ class GetOverallValuesResponse implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPIFormats = [
         'data' => null,
         'total_row_count' => 'int64',
-        'timeframe' => 'int64'
+        'timeframe' => 'int64',
+        'meta' => null
     ];
 
     /**
@@ -85,8 +87,9 @@ class GetOverallValuesResponse implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static array $openAPINullables = [
         'data' => false,
-        'total_row_count' => false,
-        'timeframe' => false
+        'total_row_count' => true,
+        'timeframe' => false,
+        'meta' => false
     ];
 
     /**
@@ -167,7 +170,8 @@ class GetOverallValuesResponse implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $attributeMap = [
         'data' => 'data',
         'total_row_count' => 'total_row_count',
-        'timeframe' => 'timeframe'
+        'timeframe' => 'timeframe',
+        'meta' => 'meta'
     ];
 
     /**
@@ -178,7 +182,8 @@ class GetOverallValuesResponse implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $setters = [
         'data' => 'setData',
         'total_row_count' => 'setTotalRowCount',
-        'timeframe' => 'setTimeframe'
+        'timeframe' => 'setTimeframe',
+        'meta' => 'setMeta'
     ];
 
     /**
@@ -189,7 +194,8 @@ class GetOverallValuesResponse implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $getters = [
         'data' => 'getData',
         'total_row_count' => 'getTotalRowCount',
-        'timeframe' => 'getTimeframe'
+        'timeframe' => 'getTimeframe',
+        'meta' => 'getMeta'
     ];
 
     /**
@@ -255,6 +261,7 @@ class GetOverallValuesResponse implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('data', $data ?? [], null);
         $this->setIfExists('total_row_count', $data ?? [], null);
         $this->setIfExists('timeframe', $data ?? [], null);
+        $this->setIfExists('meta', $data ?? [], null);
     }
 
     /**
@@ -349,7 +356,14 @@ class GetOverallValuesResponse implements ModelInterface, ArrayAccess, \JsonSeri
     {
 
         if (is_null($total_row_count)) {
-            throw new \InvalidArgumentException('non-nullable total_row_count cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'total_row_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total_row_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['total_row_count'] = $total_row_count;
@@ -382,6 +396,35 @@ class GetOverallValuesResponse implements ModelInterface, ArrayAccess, \JsonSeri
         }
 
         $this->container['timeframe'] = $timeframe;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta
+     *
+     * @return \MuxPhp\Models\ListBreakdownValuesResponseMeta|null
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \MuxPhp\Models\ListBreakdownValuesResponseMeta|null $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+
+        $this->container['meta'] = $meta;
 
         return $this;
     }

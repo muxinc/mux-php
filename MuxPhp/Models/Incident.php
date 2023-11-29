@@ -126,12 +126,12 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
         'severity' => false,
         'sample_size_unit' => false,
         'sample_size' => false,
-        'resolved_at' => false,
+        'resolved_at' => true,
         'notifications' => false,
         'notification_rules' => false,
         'measurement' => false,
-        'measured_value_on_close' => false,
-        'measured_value' => false,
+        'measured_value_on_close' => true,
+        'measured_value' => true,
         'incident_key' => false,
         'impact' => false,
         'id' => false,
@@ -620,7 +620,14 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($resolved_at)) {
-            throw new \InvalidArgumentException('non-nullable resolved_at cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'resolved_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resolved_at', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['resolved_at'] = $resolved_at;
@@ -736,7 +743,14 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($measured_value_on_close)) {
-            throw new \InvalidArgumentException('non-nullable measured_value_on_close cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'measured_value_on_close');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('measured_value_on_close', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['measured_value_on_close'] = $measured_value_on_close;
@@ -765,7 +779,14 @@ class Incident implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($measured_value)) {
-            throw new \InvalidArgumentException('non-nullable measured_value cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'measured_value');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('measured_value', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['measured_value'] = $measured_value;

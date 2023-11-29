@@ -36,7 +36,7 @@ use \MuxPhp\ObjectSerializer;
  * AssetMaster Class Doc Comment
  *
  * @category Class
- * @description An object containing the current status of Master Access and the link to the Master MP4 file when ready. This object does not exist if &#x60;master_acess&#x60; is set to &#x60;none&#x60; and when the temporary URL expires.
+ * @description An object containing the current status of Master Access and the link to the Master MP4 file when ready. This object does not exist if &#x60;master_access&#x60; is set to &#x60;none&#x60; and when the temporary URL expires.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com

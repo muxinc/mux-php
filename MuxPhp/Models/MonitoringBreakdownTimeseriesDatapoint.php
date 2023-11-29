@@ -84,8 +84,8 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'value' => false,
-        'metric_value' => false,
+        'value' => true,
+        'metric_value' => true,
         'concurrent_viewers' => false
     ];
 
@@ -320,7 +320,14 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
     {
 
         if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'value');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('value', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['value'] = $value;
@@ -349,7 +356,14 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
     {
 
         if (is_null($metric_value)) {
-            throw new \InvalidArgumentException('non-nullable metric_value cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'metric_value');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('metric_value', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['metric_value'] = $metric_value;

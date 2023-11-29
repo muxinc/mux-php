@@ -200,7 +200,9 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_drm_type' => 'string',
         'view_dropped_frame_count' => 'int',
         'view_has_ad' => 'bool',
-        'video_startup_failure' => 'bool'
+        'video_startup_failure' => 'bool',
+        'long_resume' => 'bool',
+        'long_rebuffering' => 'bool'
     ];
 
     /**
@@ -351,7 +353,9 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_drm_type' => null,
         'view_dropped_frame_count' => 'int64',
         'view_has_ad' => null,
-        'video_startup_failure' => null
+        'video_startup_failure' => null,
+        'long_resume' => null,
+        'long_rebuffering' => null
     ];
 
     /**
@@ -500,7 +504,9 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_drm_type' => true,
         'view_dropped_frame_count' => true,
         'view_has_ad' => false,
-        'video_startup_failure' => false
+        'video_startup_failure' => false,
+        'long_resume' => false,
+        'long_rebuffering' => false
     ];
 
     /**
@@ -719,7 +725,9 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_drm_type' => 'view_drm_type',
         'view_dropped_frame_count' => 'view_dropped_frame_count',
         'view_has_ad' => 'view_has_ad',
-        'video_startup_failure' => 'video_startup_failure'
+        'video_startup_failure' => 'video_startup_failure',
+        'long_resume' => 'long_resume',
+        'long_rebuffering' => 'long_rebuffering'
     ];
 
     /**
@@ -868,7 +876,9 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_drm_type' => 'setViewDrmType',
         'view_dropped_frame_count' => 'setViewDroppedFrameCount',
         'view_has_ad' => 'setViewHasAd',
-        'video_startup_failure' => 'setVideoStartupFailure'
+        'video_startup_failure' => 'setVideoStartupFailure',
+        'long_resume' => 'setLongResume',
+        'long_rebuffering' => 'setLongRebuffering'
     ];
 
     /**
@@ -1017,7 +1027,9 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_drm_type' => 'getViewDrmType',
         'view_dropped_frame_count' => 'getViewDroppedFrameCount',
         'view_has_ad' => 'getViewHasAd',
-        'video_startup_failure' => 'getVideoStartupFailure'
+        'video_startup_failure' => 'getVideoStartupFailure',
+        'long_resume' => 'getLongResume',
+        'long_rebuffering' => 'getLongRebuffering'
     ];
 
     /**
@@ -1221,6 +1233,8 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('view_dropped_frame_count', $data ?? [], null);
         $this->setIfExists('view_has_ad', $data ?? [], null);
         $this->setIfExists('video_startup_failure', $data ?? [], null);
+        $this->setIfExists('long_resume', $data ?? [], null);
+        $this->setIfExists('long_rebuffering', $data ?? [], null);
     }
 
     /**
@@ -6197,6 +6211,64 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['video_startup_failure'] = $video_startup_failure;
+
+        return $this;
+    }
+
+    /**
+     * Gets long_resume
+     *
+     * @return bool|null
+     */
+    public function getLongResume()
+    {
+        return $this->container['long_resume'];
+    }
+
+    /**
+     * Sets long_resume
+     *
+     * @param bool|null $long_resume long_resume
+     *
+     * @return self
+     */
+    public function setLongResume($long_resume)
+    {
+
+        if (is_null($long_resume)) {
+            throw new \InvalidArgumentException('non-nullable long_resume cannot be null');
+        }
+
+        $this->container['long_resume'] = $long_resume;
+
+        return $this;
+    }
+
+    /**
+     * Gets long_rebuffering
+     *
+     * @return bool|null
+     */
+    public function getLongRebuffering()
+    {
+        return $this->container['long_rebuffering'];
+    }
+
+    /**
+     * Sets long_rebuffering
+     *
+     * @param bool|null $long_rebuffering long_rebuffering
+     *
+     * @return self
+     */
+    public function setLongRebuffering($long_rebuffering)
+    {
+
+        if (is_null($long_rebuffering)) {
+            throw new \InvalidArgumentException('non-nullable long_rebuffering cannot be null');
+        }
+
+        $this->container['long_rebuffering'] = $long_rebuffering;
 
         return $this;
     }

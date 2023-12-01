@@ -63,6 +63,7 @@ class OverallValues implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'double',
         'total_watch_time' => 'int',
         'total_views' => 'int',
+        'total_playing_time' => 'int',
         'global_value' => 'double'
     ];
 
@@ -77,6 +78,7 @@ class OverallValues implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'double',
         'total_watch_time' => 'int64',
         'total_views' => 'int64',
+        'total_playing_time' => 'int64',
         'global_value' => 'double'
     ];
 
@@ -87,9 +89,10 @@ class OverallValues implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'value' => false,
-        'total_watch_time' => false,
+        'total_watch_time' => true,
         'total_views' => false,
-        'global_value' => false
+        'total_playing_time' => true,
+        'global_value' => true
     ];
 
     /**
@@ -171,6 +174,7 @@ class OverallValues implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'value',
         'total_watch_time' => 'total_watch_time',
         'total_views' => 'total_views',
+        'total_playing_time' => 'total_playing_time',
         'global_value' => 'global_value'
     ];
 
@@ -183,6 +187,7 @@ class OverallValues implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'setValue',
         'total_watch_time' => 'setTotalWatchTime',
         'total_views' => 'setTotalViews',
+        'total_playing_time' => 'setTotalPlayingTime',
         'global_value' => 'setGlobalValue'
     ];
 
@@ -195,6 +200,7 @@ class OverallValues implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'getValue',
         'total_watch_time' => 'getTotalWatchTime',
         'total_views' => 'getTotalViews',
+        'total_playing_time' => 'getTotalPlayingTime',
         'global_value' => 'getGlobalValue'
     ];
 
@@ -261,6 +267,7 @@ class OverallValues implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('value', $data ?? [], null);
         $this->setIfExists('total_watch_time', $data ?? [], null);
         $this->setIfExists('total_views', $data ?? [], null);
+        $this->setIfExists('total_playing_time', $data ?? [], null);
         $this->setIfExists('global_value', $data ?? [], null);
     }
 
@@ -356,7 +363,14 @@ class OverallValues implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($total_watch_time)) {
-            throw new \InvalidArgumentException('non-nullable total_watch_time cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'total_watch_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total_watch_time', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['total_watch_time'] = $total_watch_time;
@@ -394,6 +408,42 @@ class OverallValues implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets total_playing_time
+     *
+     * @return int|null
+     */
+    public function getTotalPlayingTime()
+    {
+        return $this->container['total_playing_time'];
+    }
+
+    /**
+     * Sets total_playing_time
+     *
+     * @param int|null $total_playing_time total_playing_time
+     *
+     * @return self
+     */
+    public function setTotalPlayingTime($total_playing_time)
+    {
+
+        if (is_null($total_playing_time)) {
+            array_push($this->openAPINullablesSetToNull, 'total_playing_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total_playing_time', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['total_playing_time'] = $total_playing_time;
+
+        return $this;
+    }
+
+    /**
      * Gets global_value
      *
      * @return double|null
@@ -414,7 +464,14 @@ class OverallValues implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($global_value)) {
-            throw new \InvalidArgumentException('non-nullable global_value cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'global_value');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('global_value', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['global_value'] = $global_value;

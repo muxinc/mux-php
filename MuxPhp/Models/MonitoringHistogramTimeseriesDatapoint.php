@@ -94,11 +94,11 @@ class MonitoringHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcc
     protected static array $openAPINullables = [
         'timestamp' => false,
         'sum' => false,
-        'p95' => false,
-        'median' => false,
+        'p95' => true,
+        'median' => true,
         'max_percentage' => false,
         'bucket_values' => false,
-        'average' => false
+        'average' => true
     ];
 
     /**
@@ -406,7 +406,14 @@ class MonitoringHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcc
     {
 
         if (is_null($p95)) {
-            throw new \InvalidArgumentException('non-nullable p95 cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'p95');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('p95', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['p95'] = $p95;
@@ -435,7 +442,14 @@ class MonitoringHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcc
     {
 
         if (is_null($median)) {
-            throw new \InvalidArgumentException('non-nullable median cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'median');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('median', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['median'] = $median;
@@ -522,7 +536,14 @@ class MonitoringHistogramTimeseriesDatapoint implements ModelInterface, ArrayAcc
     {
 
         if (is_null($average)) {
-            throw new \InvalidArgumentException('non-nullable average cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'average');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('average', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['average'] = $average;

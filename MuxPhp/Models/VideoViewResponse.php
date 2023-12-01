@@ -61,7 +61,8 @@ class VideoViewResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPITypes = [
         'data' => '\MuxPhp\Models\VideoView',
-        'timeframe' => 'int[]'
+        'timeframe' => 'int[]',
+        'total_row_count' => 'int'
     ];
 
     /**
@@ -73,7 +74,8 @@ class VideoViewResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPIFormats = [
         'data' => null,
-        'timeframe' => 'int64'
+        'timeframe' => 'int64',
+        'total_row_count' => 'int64'
     ];
 
     /**
@@ -83,7 +85,8 @@ class VideoViewResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static array $openAPINullables = [
         'data' => false,
-        'timeframe' => false
+        'timeframe' => false,
+        'total_row_count' => true
     ];
 
     /**
@@ -163,7 +166,8 @@ class VideoViewResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $attributeMap = [
         'data' => 'data',
-        'timeframe' => 'timeframe'
+        'timeframe' => 'timeframe',
+        'total_row_count' => 'total_row_count'
     ];
 
     /**
@@ -173,7 +177,8 @@ class VideoViewResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $setters = [
         'data' => 'setData',
-        'timeframe' => 'setTimeframe'
+        'timeframe' => 'setTimeframe',
+        'total_row_count' => 'setTotalRowCount'
     ];
 
     /**
@@ -183,7 +188,8 @@ class VideoViewResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $getters = [
         'data' => 'getData',
-        'timeframe' => 'getTimeframe'
+        'timeframe' => 'getTimeframe',
+        'total_row_count' => 'getTotalRowCount'
     ];
 
     /**
@@ -248,6 +254,7 @@ class VideoViewResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('data', $data ?? [], null);
         $this->setIfExists('timeframe', $data ?? [], null);
+        $this->setIfExists('total_row_count', $data ?? [], null);
     }
 
     /**
@@ -346,6 +353,42 @@ class VideoViewResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
         }
 
         $this->container['timeframe'] = $timeframe;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_row_count
+     *
+     * @return int|null
+     */
+    public function getTotalRowCount()
+    {
+        return $this->container['total_row_count'];
+    }
+
+    /**
+     * Sets total_row_count
+     *
+     * @param int|null $total_row_count total_row_count
+     *
+     * @return self
+     */
+    public function setTotalRowCount($total_row_count)
+    {
+
+        if (is_null($total_row_count)) {
+            array_push($this->openAPINullablesSetToNull, 'total_row_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total_row_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['total_row_count'] = $total_row_count;
 
         return $this;
     }

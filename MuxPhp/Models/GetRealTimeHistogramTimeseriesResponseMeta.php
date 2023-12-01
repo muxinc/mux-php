@@ -60,6 +60,7 @@ class GetRealTimeHistogramTimeseriesResponseMeta implements ModelInterface, Arra
       * @var string[]
       */
     protected static $openAPITypes = [
+        'bucket_unit' => 'string',
         'buckets' => '\MuxPhp\Models\RealTimeHistogramTimeseriesBucket[]'
     ];
 
@@ -71,6 +72,7 @@ class GetRealTimeHistogramTimeseriesResponseMeta implements ModelInterface, Arra
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'bucket_unit' => null,
         'buckets' => null
     ];
 
@@ -80,6 +82,7 @@ class GetRealTimeHistogramTimeseriesResponseMeta implements ModelInterface, Arra
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'bucket_unit' => false,
         'buckets' => false
     ];
 
@@ -159,6 +162,7 @@ class GetRealTimeHistogramTimeseriesResponseMeta implements ModelInterface, Arra
      * @var string[]
      */
     protected static $attributeMap = [
+        'bucket_unit' => 'bucket_unit',
         'buckets' => 'buckets'
     ];
 
@@ -168,6 +172,7 @@ class GetRealTimeHistogramTimeseriesResponseMeta implements ModelInterface, Arra
      * @var string[]
      */
     protected static $setters = [
+        'bucket_unit' => 'setBucketUnit',
         'buckets' => 'setBuckets'
     ];
 
@@ -177,6 +182,7 @@ class GetRealTimeHistogramTimeseriesResponseMeta implements ModelInterface, Arra
      * @var string[]
      */
     protected static $getters = [
+        'bucket_unit' => 'getBucketUnit',
         'buckets' => 'getBuckets'
     ];
 
@@ -240,6 +246,7 @@ class GetRealTimeHistogramTimeseriesResponseMeta implements ModelInterface, Arra
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
+        $this->setIfExists('bucket_unit', $data ?? [], null);
         $this->setIfExists('buckets', $data ?? [], null);
     }
 
@@ -284,6 +291,35 @@ class GetRealTimeHistogramTimeseriesResponseMeta implements ModelInterface, Arra
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets bucket_unit
+     *
+     * @return string|null
+     */
+    public function getBucketUnit()
+    {
+        return $this->container['bucket_unit'];
+    }
+
+    /**
+     * Sets bucket_unit
+     *
+     * @param string|null $bucket_unit bucket_unit
+     *
+     * @return self
+     */
+    public function setBucketUnit($bucket_unit)
+    {
+
+        if (is_null($bucket_unit)) {
+            throw new \InvalidArgumentException('non-nullable bucket_unit cannot be null');
+        }
+
+        $this->container['bucket_unit'] = $bucket_unit;
+
+        return $this;
+    }
 
     /**
      * Gets buckets

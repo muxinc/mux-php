@@ -61,6 +61,7 @@ class IncidentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'data' => '\MuxPhp\Models\Incident',
+        'total_row_count' => 'int',
         'timeframe' => 'int[]'
     ];
 
@@ -73,6 +74,7 @@ class IncidentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'data' => null,
+        'total_row_count' => 'int64',
         'timeframe' => 'int64'
     ];
 
@@ -83,6 +85,7 @@ class IncidentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'data' => false,
+        'total_row_count' => true,
         'timeframe' => false
     ];
 
@@ -163,6 +166,7 @@ class IncidentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'data' => 'data',
+        'total_row_count' => 'total_row_count',
         'timeframe' => 'timeframe'
     ];
 
@@ -173,6 +177,7 @@ class IncidentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'data' => 'setData',
+        'total_row_count' => 'setTotalRowCount',
         'timeframe' => 'setTimeframe'
     ];
 
@@ -183,6 +188,7 @@ class IncidentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'data' => 'getData',
+        'total_row_count' => 'getTotalRowCount',
         'timeframe' => 'getTimeframe'
     ];
 
@@ -247,6 +253,7 @@ class IncidentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('data', $data ?? [], null);
+        $this->setIfExists('total_row_count', $data ?? [], null);
         $this->setIfExists('timeframe', $data ?? [], null);
     }
 
@@ -317,6 +324,42 @@ class IncidentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['data'] = $data;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_row_count
+     *
+     * @return int|null
+     */
+    public function getTotalRowCount()
+    {
+        return $this->container['total_row_count'];
+    }
+
+    /**
+     * Sets total_row_count
+     *
+     * @param int|null $total_row_count total_row_count
+     *
+     * @return self
+     */
+    public function setTotalRowCount($total_row_count)
+    {
+
+        if (is_null($total_row_count)) {
+            array_push($this->openAPINullablesSetToNull, 'total_row_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total_row_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['total_row_count'] = $total_row_count;
 
         return $this;
     }

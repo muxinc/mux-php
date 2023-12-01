@@ -419,7 +419,7 @@ listSpaces($limit, $page): \MuxPhp\Models\ListSpacesResponse
 
 List spaces
 
-List all spaces in the current enviroment.
+List all spaces in the current environment.
 
 ### Example
 

@@ -64,7 +64,8 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         'negative_impact' => 'int',
         'metric_value' => 'double',
         'display_value' => 'string',
-        'concurrent_viewers' => 'int'
+        'concurrent_viewers' => 'int',
+        'starting_up_viewers' => 'int'
     ];
 
     /**
@@ -79,7 +80,8 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         'negative_impact' => 'int64',
         'metric_value' => 'double',
         'display_value' => null,
-        'concurrent_viewers' => 'int64'
+        'concurrent_viewers' => 'int64',
+        'starting_up_viewers' => 'int64'
     ];
 
     /**
@@ -88,11 +90,12 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'value' => false,
+        'value' => true,
         'negative_impact' => false,
-        'metric_value' => false,
+        'metric_value' => true,
         'display_value' => false,
-        'concurrent_viewers' => false
+        'concurrent_viewers' => false,
+        'starting_up_viewers' => false
     ];
 
     /**
@@ -175,7 +178,8 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         'negative_impact' => 'negative_impact',
         'metric_value' => 'metric_value',
         'display_value' => 'display_value',
-        'concurrent_viewers' => 'concurrent_viewers'
+        'concurrent_viewers' => 'concurrent_viewers',
+        'starting_up_viewers' => 'starting_up_viewers'
     ];
 
     /**
@@ -188,7 +192,8 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         'negative_impact' => 'setNegativeImpact',
         'metric_value' => 'setMetricValue',
         'display_value' => 'setDisplayValue',
-        'concurrent_viewers' => 'setConcurrentViewers'
+        'concurrent_viewers' => 'setConcurrentViewers',
+        'starting_up_viewers' => 'setStartingUpViewers'
     ];
 
     /**
@@ -201,7 +206,8 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         'negative_impact' => 'getNegativeImpact',
         'metric_value' => 'getMetricValue',
         'display_value' => 'getDisplayValue',
-        'concurrent_viewers' => 'getConcurrentViewers'
+        'concurrent_viewers' => 'getConcurrentViewers',
+        'starting_up_viewers' => 'getStartingUpViewers'
     ];
 
     /**
@@ -269,6 +275,7 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('metric_value', $data ?? [], null);
         $this->setIfExists('display_value', $data ?? [], null);
         $this->setIfExists('concurrent_viewers', $data ?? [], null);
+        $this->setIfExists('starting_up_viewers', $data ?? [], null);
     }
 
     /**
@@ -334,7 +341,14 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
     {
 
         if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'value');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('value', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['value'] = $value;
@@ -392,7 +406,14 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
     {
 
         if (is_null($metric_value)) {
-            throw new \InvalidArgumentException('non-nullable metric_value cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'metric_value');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('metric_value', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['metric_value'] = $metric_value;
@@ -454,6 +475,35 @@ class RealTimeBreakdownValue implements ModelInterface, ArrayAccess, \JsonSerial
         }
 
         $this->container['concurrent_viewers'] = $concurrent_viewers;
+
+        return $this;
+    }
+
+    /**
+     * Gets starting_up_viewers
+     *
+     * @return int|null
+     */
+    public function getStartingUpViewers()
+    {
+        return $this->container['starting_up_viewers'];
+    }
+
+    /**
+     * Sets starting_up_viewers
+     *
+     * @param int|null $starting_up_viewers starting_up_viewers
+     *
+     * @return self
+     */
+    public function setStartingUpViewers($starting_up_viewers)
+    {
+
+        if (is_null($starting_up_viewers)) {
+            throw new \InvalidArgumentException('non-nullable starting_up_viewers cannot be null');
+        }
+
+        $this->container['starting_up_viewers'] = $starting_up_viewers;
 
         return $this;
     }

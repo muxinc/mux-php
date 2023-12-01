@@ -63,6 +63,7 @@ class BreakdownValue implements ModelInterface, ArrayAccess, \JsonSerializable
         'views' => 'int',
         'value' => 'double',
         'total_watch_time' => 'int',
+        'total_playing_time' => 'int',
         'negative_impact' => 'int',
         'field' => 'string'
     ];
@@ -78,6 +79,7 @@ class BreakdownValue implements ModelInterface, ArrayAccess, \JsonSerializable
         'views' => 'int64',
         'value' => 'double',
         'total_watch_time' => 'int64',
+        'total_playing_time' => 'int64',
         'negative_impact' => 'int32',
         'field' => null
     ];
@@ -90,9 +92,10 @@ class BreakdownValue implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'views' => false,
         'value' => false,
-        'total_watch_time' => false,
+        'total_watch_time' => true,
+        'total_playing_time' => true,
         'negative_impact' => false,
-        'field' => false
+        'field' => true
     ];
 
     /**
@@ -174,6 +177,7 @@ class BreakdownValue implements ModelInterface, ArrayAccess, \JsonSerializable
         'views' => 'views',
         'value' => 'value',
         'total_watch_time' => 'total_watch_time',
+        'total_playing_time' => 'total_playing_time',
         'negative_impact' => 'negative_impact',
         'field' => 'field'
     ];
@@ -187,6 +191,7 @@ class BreakdownValue implements ModelInterface, ArrayAccess, \JsonSerializable
         'views' => 'setViews',
         'value' => 'setValue',
         'total_watch_time' => 'setTotalWatchTime',
+        'total_playing_time' => 'setTotalPlayingTime',
         'negative_impact' => 'setNegativeImpact',
         'field' => 'setField'
     ];
@@ -200,6 +205,7 @@ class BreakdownValue implements ModelInterface, ArrayAccess, \JsonSerializable
         'views' => 'getViews',
         'value' => 'getValue',
         'total_watch_time' => 'getTotalWatchTime',
+        'total_playing_time' => 'getTotalPlayingTime',
         'negative_impact' => 'getNegativeImpact',
         'field' => 'getField'
     ];
@@ -267,6 +273,7 @@ class BreakdownValue implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('views', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
         $this->setIfExists('total_watch_time', $data ?? [], null);
+        $this->setIfExists('total_playing_time', $data ?? [], null);
         $this->setIfExists('negative_impact', $data ?? [], null);
         $this->setIfExists('field', $data ?? [], null);
     }
@@ -392,10 +399,53 @@ class BreakdownValue implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($total_watch_time)) {
-            throw new \InvalidArgumentException('non-nullable total_watch_time cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'total_watch_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total_watch_time', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['total_watch_time'] = $total_watch_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_playing_time
+     *
+     * @return int|null
+     */
+    public function getTotalPlayingTime()
+    {
+        return $this->container['total_playing_time'];
+    }
+
+    /**
+     * Sets total_playing_time
+     *
+     * @param int|null $total_playing_time total_playing_time
+     *
+     * @return self
+     */
+    public function setTotalPlayingTime($total_playing_time)
+    {
+
+        if (is_null($total_playing_time)) {
+            array_push($this->openAPINullablesSetToNull, 'total_playing_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total_playing_time', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['total_playing_time'] = $total_playing_time;
 
         return $this;
     }
@@ -450,7 +500,14 @@ class BreakdownValue implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($field)) {
-            throw new \InvalidArgumentException('non-nullable field cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'field');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('field', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['field'] = $field;

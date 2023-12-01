@@ -62,8 +62,13 @@ class Score implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'watch_time' => 'int',
         'view_count' => 'int',
+        'unique_viewers' => 'int',
+        'started_views' => 'int',
+        'total_playing_time' => 'int',
         'name' => 'string',
+        'ended_views' => 'int',
         'value' => 'double',
+        'type' => 'string',
         'metric' => 'string',
         'items' => '\MuxPhp\Models\Metric[]'
     ];
@@ -78,8 +83,13 @@ class Score implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'watch_time' => 'int64',
         'view_count' => 'int64',
+        'unique_viewers' => 'int64',
+        'started_views' => 'int64',
+        'total_playing_time' => 'int64',
         'name' => null,
+        'ended_views' => 'int64',
         'value' => 'double',
+        'type' => null,
         'metric' => null,
         'items' => null
     ];
@@ -90,10 +100,15 @@ class Score implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'watch_time' => false,
+        'watch_time' => true,
         'view_count' => false,
+        'unique_viewers' => false,
+        'started_views' => false,
+        'total_playing_time' => true,
         'name' => false,
+        'ended_views' => false,
         'value' => false,
+        'type' => false,
         'metric' => false,
         'items' => false
     ];
@@ -176,8 +191,13 @@ class Score implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'watch_time' => 'watch_time',
         'view_count' => 'view_count',
+        'unique_viewers' => 'unique_viewers',
+        'started_views' => 'started_views',
+        'total_playing_time' => 'total_playing_time',
         'name' => 'name',
+        'ended_views' => 'ended_views',
         'value' => 'value',
+        'type' => 'type',
         'metric' => 'metric',
         'items' => 'items'
     ];
@@ -190,8 +210,13 @@ class Score implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'watch_time' => 'setWatchTime',
         'view_count' => 'setViewCount',
+        'unique_viewers' => 'setUniqueViewers',
+        'started_views' => 'setStartedViews',
+        'total_playing_time' => 'setTotalPlayingTime',
         'name' => 'setName',
+        'ended_views' => 'setEndedViews',
         'value' => 'setValue',
+        'type' => 'setType',
         'metric' => 'setMetric',
         'items' => 'setItems'
     ];
@@ -204,8 +229,13 @@ class Score implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'watch_time' => 'getWatchTime',
         'view_count' => 'getViewCount',
+        'unique_viewers' => 'getUniqueViewers',
+        'started_views' => 'getStartedViews',
+        'total_playing_time' => 'getTotalPlayingTime',
         'name' => 'getName',
+        'ended_views' => 'getEndedViews',
         'value' => 'getValue',
+        'type' => 'getType',
         'metric' => 'getMetric',
         'items' => 'getItems'
     ];
@@ -272,8 +302,13 @@ class Score implements ModelInterface, ArrayAccess, \JsonSerializable
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('watch_time', $data ?? [], null);
         $this->setIfExists('view_count', $data ?? [], null);
+        $this->setIfExists('unique_viewers', $data ?? [], null);
+        $this->setIfExists('started_views', $data ?? [], null);
+        $this->setIfExists('total_playing_time', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('ended_views', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('metric', $data ?? [], null);
         $this->setIfExists('items', $data ?? [], null);
     }
@@ -341,7 +376,14 @@ class Score implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($watch_time)) {
-            throw new \InvalidArgumentException('non-nullable watch_time cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'watch_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('watch_time', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['watch_time'] = $watch_time;
@@ -379,6 +421,100 @@ class Score implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets unique_viewers
+     *
+     * @return int|null
+     */
+    public function getUniqueViewers()
+    {
+        return $this->container['unique_viewers'];
+    }
+
+    /**
+     * Sets unique_viewers
+     *
+     * @param int|null $unique_viewers unique_viewers
+     *
+     * @return self
+     */
+    public function setUniqueViewers($unique_viewers)
+    {
+
+        if (is_null($unique_viewers)) {
+            throw new \InvalidArgumentException('non-nullable unique_viewers cannot be null');
+        }
+
+        $this->container['unique_viewers'] = $unique_viewers;
+
+        return $this;
+    }
+
+    /**
+     * Gets started_views
+     *
+     * @return int|null
+     */
+    public function getStartedViews()
+    {
+        return $this->container['started_views'];
+    }
+
+    /**
+     * Sets started_views
+     *
+     * @param int|null $started_views started_views
+     *
+     * @return self
+     */
+    public function setStartedViews($started_views)
+    {
+
+        if (is_null($started_views)) {
+            throw new \InvalidArgumentException('non-nullable started_views cannot be null');
+        }
+
+        $this->container['started_views'] = $started_views;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_playing_time
+     *
+     * @return int|null
+     */
+    public function getTotalPlayingTime()
+    {
+        return $this->container['total_playing_time'];
+    }
+
+    /**
+     * Sets total_playing_time
+     *
+     * @param int|null $total_playing_time total_playing_time
+     *
+     * @return self
+     */
+    public function setTotalPlayingTime($total_playing_time)
+    {
+
+        if (is_null($total_playing_time)) {
+            array_push($this->openAPINullablesSetToNull, 'total_playing_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total_playing_time', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['total_playing_time'] = $total_playing_time;
+
+        return $this;
+    }
+
+    /**
      * Gets name
      *
      * @return string|null
@@ -408,6 +544,35 @@ class Score implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets ended_views
+     *
+     * @return int|null
+     */
+    public function getEndedViews()
+    {
+        return $this->container['ended_views'];
+    }
+
+    /**
+     * Sets ended_views
+     *
+     * @param int|null $ended_views ended_views
+     *
+     * @return self
+     */
+    public function setEndedViews($ended_views)
+    {
+
+        if (is_null($ended_views)) {
+            throw new \InvalidArgumentException('non-nullable ended_views cannot be null');
+        }
+
+        $this->container['ended_views'] = $ended_views;
+
+        return $this;
+    }
+
+    /**
      * Gets value
      *
      * @return double|null
@@ -432,6 +597,35 @@ class Score implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['value'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+
+        $this->container['type'] = $type;
 
         return $this;
     }

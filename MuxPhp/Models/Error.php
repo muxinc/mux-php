@@ -96,12 +96,12 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'id' => false,
         'percentage' => false,
-        'notes' => false,
-        'message' => false,
+        'notes' => true,
+        'message' => true,
         'last_seen' => false,
-        'description' => false,
+        'description' => true,
         'count' => false,
-        'code' => false
+        'code' => true
     ];
 
     /**
@@ -413,7 +413,14 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($notes)) {
-            throw new \InvalidArgumentException('non-nullable notes cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'notes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('notes', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['notes'] = $notes;
@@ -442,7 +449,14 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'message');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('message', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['message'] = $message;
@@ -500,7 +514,14 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['description'] = $description;
@@ -521,7 +542,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets count
      *
-     * @param int|null $count The total number of views that experiend this error.
+     * @param int|null $count The total number of views that experienced this error.
      *
      * @return self
      */
@@ -558,7 +579,14 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     {
 
         if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'code');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('code', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
 
         $this->container['code'] = $code;

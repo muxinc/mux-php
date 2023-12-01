@@ -299,9 +299,6 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess, \JsonSerializa
             $invalidProperties[] = "invalid value for 'timeout', must be bigger than or equal to 60.";
         }
 
-        if ($this->container['new_asset_settings'] === null) {
-            $invalidProperties[] = "'new_asset_settings' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -386,7 +383,7 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets new_asset_settings
      *
-     * @return \MuxPhp\Models\CreateAssetRequest
+     * @return \MuxPhp\Models\CreateAssetRequest|null
      */
     public function getNewAssetSettings()
     {
@@ -396,7 +393,7 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets new_asset_settings
      *
-     * @param \MuxPhp\Models\CreateAssetRequest $new_asset_settings new_asset_settings
+     * @param \MuxPhp\Models\CreateAssetRequest|null $new_asset_settings new_asset_settings
      *
      * @return self
      */

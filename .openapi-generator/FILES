@@ -19,6 +19,7 @@ MuxPhp/Api/SpacesApi.php
 MuxPhp/Api/TranscriptionVocabulariesApi.php
 MuxPhp/Api/URLSigningKeysApi.php
 MuxPhp/Api/VideoViewsApi.php
+MuxPhp/Api/WebInputsApi.php
 MuxPhp/ApiException.php
 MuxPhp/Configuration.php
 MuxPhp/HeaderSelector.php
@@ -50,6 +51,7 @@ MuxPhp/Models/CreateTrackRequest.php
 MuxPhp/Models/CreateTrackResponse.php
 MuxPhp/Models/CreateTranscriptionVocabularyRequest.php
 MuxPhp/Models/CreateUploadRequest.php
+MuxPhp/Models/CreateWebInputRequest.php
 MuxPhp/Models/DeliveryReport.php
 MuxPhp/Models/DeliveryReportDeliveredSecondsByResolution.php
 MuxPhp/Models/DimensionValue.php
@@ -87,9 +89,11 @@ MuxPhp/Models/InputSettings.php
 MuxPhp/Models/InputSettingsOverlaySettings.php
 MuxPhp/Models/InputTrack.php
 MuxPhp/Models/Insight.php
+MuxPhp/Models/LaunchWebInputResponse.php
 MuxPhp/Models/ListAllMetricValuesResponse.php
 MuxPhp/Models/ListAssetsResponse.php
 MuxPhp/Models/ListBreakdownValuesResponse.php
+MuxPhp/Models/ListBreakdownValuesResponseMeta.php
 MuxPhp/Models/ListDeliveryUsageResponse.php
 MuxPhp/Models/ListDimensionValuesResponse.php
 MuxPhp/Models/ListDimensionsResponse.php
@@ -114,6 +118,7 @@ MuxPhp/Models/ListTranscriptionVocabulariesResponse.php
 MuxPhp/Models/ListUploadsResponse.php
 MuxPhp/Models/ListVideoViewExportsResponse.php
 MuxPhp/Models/ListVideoViewsResponse.php
+MuxPhp/Models/ListWebInputsResponse.php
 MuxPhp/Models/LiveStream.php
 MuxPhp/Models/LiveStreamEmbeddedSubtitleSettings.php
 MuxPhp/Models/LiveStreamGeneratedSubtitleSettings.php
@@ -140,7 +145,9 @@ MuxPhp/Models/RealTimeHistogramTimeseriesBucketValues.php
 MuxPhp/Models/RealTimeHistogramTimeseriesDatapoint.php
 MuxPhp/Models/RealTimeTimeseriesDatapoint.php
 MuxPhp/Models/ReferrerDomainRestriction.php
+MuxPhp/Models/ReloadWebInputResponse.php
 MuxPhp/Models/Score.php
+MuxPhp/Models/ShutdownWebInputResponse.php
 MuxPhp/Models/SignalLiveStreamCompleteResponse.php
 MuxPhp/Models/SigningKey.php
 MuxPhp/Models/SigningKeyResponse.php
@@ -163,12 +170,15 @@ MuxPhp/Models/UpdateLiveStreamGeneratedSubtitlesRequest.php
 MuxPhp/Models/UpdateLiveStreamRequest.php
 MuxPhp/Models/UpdateReferrerDomainRestrictionRequest.php
 MuxPhp/Models/UpdateTranscriptionVocabularyRequest.php
+MuxPhp/Models/UpdateWebInputUrlRequest.php
 MuxPhp/Models/Upload.php
 MuxPhp/Models/UploadError.php
 MuxPhp/Models/UploadResponse.php
 MuxPhp/Models/VideoView.php
 MuxPhp/Models/VideoViewEvent.php
 MuxPhp/Models/VideoViewResponse.php
+MuxPhp/Models/WebInput.php
+MuxPhp/Models/WebInputResponse.php
 MuxPhp/ObjectSerializer.php
 README.md
 composer.json
@@ -191,6 +201,7 @@ docs/Api/SpacesApi.md
 docs/Api/TranscriptionVocabulariesApi.md
 docs/Api/URLSigningKeysApi.md
 docs/Api/VideoViewsApi.md
+docs/Api/WebInputsApi.md
 docs/Model/AbridgedVideoView.md
 docs/Model/Asset.md
 docs/Model/AssetErrors.md
@@ -219,6 +230,7 @@ docs/Model/CreateTrackRequest.md
 docs/Model/CreateTrackResponse.md
 docs/Model/CreateTranscriptionVocabularyRequest.md
 docs/Model/CreateUploadRequest.md
+docs/Model/CreateWebInputRequest.md
 docs/Model/DeliveryReport.md
 docs/Model/DeliveryReportDeliveredSecondsByResolution.md
 docs/Model/DimensionValue.md
@@ -256,9 +268,11 @@ docs/Model/InputSettings.md
 docs/Model/InputSettingsOverlaySettings.md
 docs/Model/InputTrack.md
 docs/Model/Insight.md
+docs/Model/LaunchWebInputResponse.md
 docs/Model/ListAllMetricValuesResponse.md
 docs/Model/ListAssetsResponse.md
 docs/Model/ListBreakdownValuesResponse.md
+docs/Model/ListBreakdownValuesResponseMeta.md
 docs/Model/ListDeliveryUsageResponse.md
 docs/Model/ListDimensionValuesResponse.md
 docs/Model/ListDimensionsResponse.md
@@ -283,6 +297,7 @@ docs/Model/ListTranscriptionVocabulariesResponse.md
 docs/Model/ListUploadsResponse.md
 docs/Model/ListVideoViewExportsResponse.md
 docs/Model/ListVideoViewsResponse.md
+docs/Model/ListWebInputsResponse.md
 docs/Model/LiveStream.md
 docs/Model/LiveStreamEmbeddedSubtitleSettings.md
 docs/Model/LiveStreamGeneratedSubtitleSettings.md
@@ -308,7 +323,9 @@ docs/Model/RealTimeHistogramTimeseriesBucketValues.md
 docs/Model/RealTimeHistogramTimeseriesDatapoint.md
 docs/Model/RealTimeTimeseriesDatapoint.md
 docs/Model/ReferrerDomainRestriction.md
+docs/Model/ReloadWebInputResponse.md
 docs/Model/Score.md
+docs/Model/ShutdownWebInputResponse.md
 docs/Model/SignalLiveStreamCompleteResponse.md
 docs/Model/SigningKey.md
 docs/Model/SigningKeyResponse.md
@@ -331,10 +348,13 @@ docs/Model/UpdateLiveStreamGeneratedSubtitlesRequest.md
 docs/Model/UpdateLiveStreamRequest.md
 docs/Model/UpdateReferrerDomainRestrictionRequest.md
 docs/Model/UpdateTranscriptionVocabularyRequest.md
+docs/Model/UpdateWebInputUrlRequest.md
 docs/Model/Upload.md
 docs/Model/UploadError.md
 docs/Model/UploadResponse.md
 docs/Model/VideoView.md
 docs/Model/VideoViewEvent.md
 docs/Model/VideoViewResponse.md
+docs/Model/WebInput.md
+docs/Model/WebInputResponse.md
 phpunit.xml.dist

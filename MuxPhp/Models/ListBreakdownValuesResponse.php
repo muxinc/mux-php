@@ -62,7 +62,8 @@ class ListBreakdownValuesResponse implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'data' => '\MuxPhp\Models\BreakdownValue[]',
         'total_row_count' => 'int',
-        'timeframe' => 'int[]'
+        'timeframe' => 'int[]',
+        'meta' => '\MuxPhp\Models\ListBreakdownValuesResponseMeta'
     ];
 
     /**
@@ -75,7 +76,8 @@ class ListBreakdownValuesResponse implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPIFormats = [
         'data' => null,
         'total_row_count' => 'int64',
-        'timeframe' => 'int64'
+        'timeframe' => 'int64',
+        'meta' => null
     ];
 
     /**
@@ -86,7 +88,8 @@ class ListBreakdownValuesResponse implements ModelInterface, ArrayAccess, \JsonS
     protected static array $openAPINullables = [
         'data' => false,
         'total_row_count' => false,
-        'timeframe' => false
+        'timeframe' => false,
+        'meta' => false
     ];
 
     /**
@@ -167,7 +170,8 @@ class ListBreakdownValuesResponse implements ModelInterface, ArrayAccess, \JsonS
     protected static $attributeMap = [
         'data' => 'data',
         'total_row_count' => 'total_row_count',
-        'timeframe' => 'timeframe'
+        'timeframe' => 'timeframe',
+        'meta' => 'meta'
     ];
 
     /**
@@ -178,7 +182,8 @@ class ListBreakdownValuesResponse implements ModelInterface, ArrayAccess, \JsonS
     protected static $setters = [
         'data' => 'setData',
         'total_row_count' => 'setTotalRowCount',
-        'timeframe' => 'setTimeframe'
+        'timeframe' => 'setTimeframe',
+        'meta' => 'setMeta'
     ];
 
     /**
@@ -189,7 +194,8 @@ class ListBreakdownValuesResponse implements ModelInterface, ArrayAccess, \JsonS
     protected static $getters = [
         'data' => 'getData',
         'total_row_count' => 'getTotalRowCount',
-        'timeframe' => 'getTimeframe'
+        'timeframe' => 'getTimeframe',
+        'meta' => 'getMeta'
     ];
 
     /**
@@ -255,6 +261,7 @@ class ListBreakdownValuesResponse implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('data', $data ?? [], null);
         $this->setIfExists('total_row_count', $data ?? [], null);
         $this->setIfExists('timeframe', $data ?? [], null);
+        $this->setIfExists('meta', $data ?? [], null);
     }
 
     /**
@@ -382,6 +389,35 @@ class ListBreakdownValuesResponse implements ModelInterface, ArrayAccess, \JsonS
         }
 
         $this->container['timeframe'] = $timeframe;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta
+     *
+     * @return \MuxPhp\Models\ListBreakdownValuesResponseMeta|null
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \MuxPhp\Models\ListBreakdownValuesResponseMeta|null $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+
+        $this->container['meta'] = $meta;
 
         return $this;
     }

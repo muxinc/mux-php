@@ -234,7 +234,27 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
     }
 
     public const LANGUAGE_CODE_EN = 'en';
-    public const LANGUAGE_CODE_EN_US = 'en-US';
+    public const LANGUAGE_CODE_ES = 'es';
+    public const LANGUAGE_CODE_IT = 'it';
+    public const LANGUAGE_CODE_PT = 'pt';
+    public const LANGUAGE_CODE_DE = 'de';
+    public const LANGUAGE_CODE_FR = 'fr';
+    public const LANGUAGE_CODE_PL = 'pl';
+    public const LANGUAGE_CODE_RU = 'ru';
+    public const LANGUAGE_CODE_NL = 'nl';
+    public const LANGUAGE_CODE_CA = 'ca';
+    public const LANGUAGE_CODE_TR = 'tr';
+    public const LANGUAGE_CODE_SV = 'sv';
+    public const LANGUAGE_CODE_UK = 'uk';
+    public const LANGUAGE_CODE_NO = 'no';
+    public const LANGUAGE_CODE_FI = 'fi';
+    public const LANGUAGE_CODE_SK = 'sk';
+    public const LANGUAGE_CODE_EL = 'el';
+    public const LANGUAGE_CODE_CS = 'cs';
+    public const LANGUAGE_CODE_HR = 'hr';
+    public const LANGUAGE_CODE_DA = 'da';
+    public const LANGUAGE_CODE_RO = 'ro';
+    public const LANGUAGE_CODE_BG = 'bg';
 
     /**
      * Gets allowable values of the enum
@@ -245,7 +265,27 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
     {
         return [
             self::LANGUAGE_CODE_EN,
-            self::LANGUAGE_CODE_EN_US,
+            self::LANGUAGE_CODE_ES,
+            self::LANGUAGE_CODE_IT,
+            self::LANGUAGE_CODE_PT,
+            self::LANGUAGE_CODE_DE,
+            self::LANGUAGE_CODE_FR,
+            self::LANGUAGE_CODE_PL,
+            self::LANGUAGE_CODE_RU,
+            self::LANGUAGE_CODE_NL,
+            self::LANGUAGE_CODE_CA,
+            self::LANGUAGE_CODE_TR,
+            self::LANGUAGE_CODE_SV,
+            self::LANGUAGE_CODE_UK,
+            self::LANGUAGE_CODE_NO,
+            self::LANGUAGE_CODE_FI,
+            self::LANGUAGE_CODE_SK,
+            self::LANGUAGE_CODE_EL,
+            self::LANGUAGE_CODE_CS,
+            self::LANGUAGE_CODE_HR,
+            self::LANGUAGE_CODE_DA,
+            self::LANGUAGE_CODE_RO,
+            self::LANGUAGE_CODE_BG,
         ];
     }
 

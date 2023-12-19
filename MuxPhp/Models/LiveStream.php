@@ -80,7 +80,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'simulcast_targets' => '\MuxPhp\Models\SimulcastTarget[]',
         'latency_mode' => 'string',
         'test' => 'bool',
-        'max_continuous_duration' => 'int'
+        'max_continuous_duration' => 'int',
+        'srt_passphrase' => 'string'
     ];
 
     /**
@@ -111,7 +112,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'simulcast_targets' => null,
         'latency_mode' => null,
         'test' => 'boolean',
-        'max_continuous_duration' => 'int32'
+        'max_continuous_duration' => 'int32',
+        'srt_passphrase' => null
     ];
 
     /**
@@ -140,7 +142,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'simulcast_targets' => false,
         'latency_mode' => false,
         'test' => false,
-        'max_continuous_duration' => false
+        'max_continuous_duration' => false,
+        'srt_passphrase' => false
     ];
 
     /**
@@ -239,7 +242,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'simulcast_targets' => 'simulcast_targets',
         'latency_mode' => 'latency_mode',
         'test' => 'test',
-        'max_continuous_duration' => 'max_continuous_duration'
+        'max_continuous_duration' => 'max_continuous_duration',
+        'srt_passphrase' => 'srt_passphrase'
     ];
 
     /**
@@ -268,7 +272,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'simulcast_targets' => 'setSimulcastTargets',
         'latency_mode' => 'setLatencyMode',
         'test' => 'setTest',
-        'max_continuous_duration' => 'setMaxContinuousDuration'
+        'max_continuous_duration' => 'setMaxContinuousDuration',
+        'srt_passphrase' => 'setSrtPassphrase'
     ];
 
     /**
@@ -297,7 +302,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'simulcast_targets' => 'getSimulcastTargets',
         'latency_mode' => 'getLatencyMode',
         'test' => 'getTest',
-        'max_continuous_duration' => 'getMaxContinuousDuration'
+        'max_continuous_duration' => 'getMaxContinuousDuration',
+        'srt_passphrase' => 'getSrtPassphrase'
     ];
 
     /**
@@ -398,6 +404,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('latency_mode', $data ?? [], null);
         $this->setIfExists('test', $data ?? [], null);
         $this->setIfExists('max_continuous_duration', $data ?? [], 43200);
+        $this->setIfExists('srt_passphrase', $data ?? [], null);
     }
 
     /**
@@ -1102,6 +1109,35 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['max_continuous_duration'] = $max_continuous_duration;
+
+        return $this;
+    }
+
+    /**
+     * Gets srt_passphrase
+     *
+     * @return string|null
+     */
+    public function getSrtPassphrase()
+    {
+        return $this->container['srt_passphrase'];
+    }
+
+    /**
+     * Sets srt_passphrase
+     *
+     * @param string|null $srt_passphrase Unique key used for encrypting a stream to a Mux SRT endpoint.
+     *
+     * @return self
+     */
+    public function setSrtPassphrase($srt_passphrase)
+    {
+
+        if (is_null($srt_passphrase)) {
+            throw new \InvalidArgumentException('non-nullable srt_passphrase cannot be null');
+        }
+
+        $this->container['srt_passphrase'] = $srt_passphrase;
 
         return $this;
     }

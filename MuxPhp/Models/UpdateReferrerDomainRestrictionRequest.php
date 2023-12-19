@@ -305,7 +305,7 @@ class UpdateReferrerDomainRestrictionRequest implements ModelInterface, ArrayAcc
     /**
      * Sets allowed_domains
      *
-     * @param string[]|null $allowed_domains List of domains allowed to play videos. Possible values are   * `[]` Empty Array indicates deny video playback requests for all domains   * `[\"*\"]` A Single Wildcard `*` entry means allow video playback requests from any domain   *  `[\"*.example.com\", \"foo.com\"]` A list of up to 10 domains or valid dns-style wildcards
+     * @param string[]|null $allowed_domains List of domains allowed to play videos. Possible values are   * `[]` Empty Array indicates deny video playback requests for all domains   * `[\"*\"]` A Single Wildcard `*` entry means allow video playback requests from any domain   * `[\"*.example.com\", \"foo.com\"]` A list of up to 10 domains or valid dns-style wildcards
      *
      * @return self
      */

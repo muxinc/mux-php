@@ -70,7 +70,9 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'error_type_id' => 'int',
         'country_code' => 'string',
         'view_start' => 'string',
-        'view_end' => 'string'
+        'view_end' => 'string',
+        'viewer_experience_score' => 'float',
+        'watch_time' => 'int'
     ];
 
     /**
@@ -91,7 +93,9 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'error_type_id' => 'int32',
         'country_code' => null,
         'view_start' => null,
-        'view_end' => null
+        'view_end' => null,
+        'viewer_experience_score' => 'float',
+        'watch_time' => 'int32'
     ];
 
     /**
@@ -110,7 +114,9 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'error_type_id' => true,
         'country_code' => true,
         'view_start' => false,
-        'view_end' => false
+        'view_end' => false,
+        'viewer_experience_score' => true,
+        'watch_time' => true
     ];
 
     /**
@@ -199,7 +205,9 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'error_type_id' => 'error_type_id',
         'country_code' => 'country_code',
         'view_start' => 'view_start',
-        'view_end' => 'view_end'
+        'view_end' => 'view_end',
+        'viewer_experience_score' => 'viewer_experience_score',
+        'watch_time' => 'watch_time'
     ];
 
     /**
@@ -218,7 +226,9 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'error_type_id' => 'setErrorTypeId',
         'country_code' => 'setCountryCode',
         'view_start' => 'setViewStart',
-        'view_end' => 'setViewEnd'
+        'view_end' => 'setViewEnd',
+        'viewer_experience_score' => 'setViewerExperienceScore',
+        'watch_time' => 'setWatchTime'
     ];
 
     /**
@@ -237,7 +247,9 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'error_type_id' => 'getErrorTypeId',
         'country_code' => 'getCountryCode',
         'view_start' => 'getViewStart',
-        'view_end' => 'getViewEnd'
+        'view_end' => 'getViewEnd',
+        'viewer_experience_score' => 'getViewerExperienceScore',
+        'watch_time' => 'getWatchTime'
     ];
 
     /**
@@ -311,6 +323,8 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('country_code', $data ?? [], null);
         $this->setIfExists('view_start', $data ?? [], null);
         $this->setIfExists('view_end', $data ?? [], null);
+        $this->setIfExists('viewer_experience_score', $data ?? [], null);
+        $this->setIfExists('watch_time', $data ?? [], null);
     }
 
     /**
@@ -719,6 +733,78 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         }
 
         $this->container['view_end'] = $view_end;
+
+        return $this;
+    }
+
+    /**
+     * Gets viewer_experience_score
+     *
+     * @return float|null
+     */
+    public function getViewerExperienceScore()
+    {
+        return $this->container['viewer_experience_score'];
+    }
+
+    /**
+     * Sets viewer_experience_score
+     *
+     * @param float|null $viewer_experience_score viewer_experience_score
+     *
+     * @return self
+     */
+    public function setViewerExperienceScore($viewer_experience_score)
+    {
+
+        if (is_null($viewer_experience_score)) {
+            array_push($this->openAPINullablesSetToNull, 'viewer_experience_score');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('viewer_experience_score', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['viewer_experience_score'] = $viewer_experience_score;
+
+        return $this;
+    }
+
+    /**
+     * Gets watch_time
+     *
+     * @return int|null
+     */
+    public function getWatchTime()
+    {
+        return $this->container['watch_time'];
+    }
+
+    /**
+     * Sets watch_time
+     *
+     * @param int|null $watch_time watch_time
+     *
+     * @return self
+     */
+    public function setWatchTime($watch_time)
+    {
+
+        if (is_null($watch_time)) {
+            array_push($this->openAPINullablesSetToNull, 'watch_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('watch_time', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['watch_time'] = $watch_time;
 
         return $this;
     }

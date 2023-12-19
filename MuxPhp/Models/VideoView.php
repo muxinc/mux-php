@@ -179,7 +179,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_session_id' => 'string',
         'viewer_connection_type' => 'string',
         'viewer_device_model' => 'string',
-        'weighted_average_bitrate' => 'int',
+        'weighted_average_bitrate' => 'double',
         'custom_1' => 'string',
         'custom_2' => 'string',
         'custom_3' => 'string',
@@ -201,6 +201,17 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_dropped_frame_count' => 'int',
         'view_has_ad' => 'bool',
         'video_startup_failure' => 'bool',
+        'ad_attempt_count' => 'int',
+        'ad_break_count' => 'int',
+        'ad_break_error_count' => 'int',
+        'ad_break_error_percentage' => 'string',
+        'ad_error_count' => 'int',
+        'ad_error_percentage' => 'string',
+        'ad_impression_count' => 'int',
+        'ad_startup_error_count' => 'int',
+        'ad_startup_error_percentage' => 'string',
+        'ad_exit_before_start_count' => 'int',
+        'ad_exit_before_start_percentage' => 'string',
         'long_resume' => 'bool',
         'long_rebuffering' => 'bool'
     ];
@@ -332,7 +343,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_session_id' => null,
         'viewer_connection_type' => null,
         'viewer_device_model' => null,
-        'weighted_average_bitrate' => 'int64',
+        'weighted_average_bitrate' => 'double',
         'custom_1' => null,
         'custom_2' => null,
         'custom_3' => null,
@@ -354,6 +365,17 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_dropped_frame_count' => 'int64',
         'view_has_ad' => null,
         'video_startup_failure' => null,
+        'ad_attempt_count' => 'int32',
+        'ad_break_count' => 'int32',
+        'ad_break_error_count' => 'int32',
+        'ad_break_error_percentage' => null,
+        'ad_error_count' => 'int32',
+        'ad_error_percentage' => null,
+        'ad_impression_count' => 'int32',
+        'ad_startup_error_count' => 'int32',
+        'ad_startup_error_percentage' => null,
+        'ad_exit_before_start_count' => 'int32',
+        'ad_exit_before_start_percentage' => null,
         'long_resume' => null,
         'long_rebuffering' => null
     ];
@@ -505,6 +527,17 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_dropped_frame_count' => true,
         'view_has_ad' => false,
         'video_startup_failure' => false,
+        'ad_attempt_count' => true,
+        'ad_break_count' => true,
+        'ad_break_error_count' => true,
+        'ad_break_error_percentage' => true,
+        'ad_error_count' => true,
+        'ad_error_percentage' => true,
+        'ad_impression_count' => true,
+        'ad_startup_error_count' => true,
+        'ad_startup_error_percentage' => true,
+        'ad_exit_before_start_count' => true,
+        'ad_exit_before_start_percentage' => true,
         'long_resume' => false,
         'long_rebuffering' => false
     ];
@@ -726,6 +759,17 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_dropped_frame_count' => 'view_dropped_frame_count',
         'view_has_ad' => 'view_has_ad',
         'video_startup_failure' => 'video_startup_failure',
+        'ad_attempt_count' => 'ad_attempt_count',
+        'ad_break_count' => 'ad_break_count',
+        'ad_break_error_count' => 'ad_break_error_count',
+        'ad_break_error_percentage' => 'ad_break_error_percentage',
+        'ad_error_count' => 'ad_error_count',
+        'ad_error_percentage' => 'ad_error_percentage',
+        'ad_impression_count' => 'ad_impression_count',
+        'ad_startup_error_count' => 'ad_startup_error_count',
+        'ad_startup_error_percentage' => 'ad_startup_error_percentage',
+        'ad_exit_before_start_count' => 'ad_exit_before_start_count',
+        'ad_exit_before_start_percentage' => 'ad_exit_before_start_percentage',
         'long_resume' => 'long_resume',
         'long_rebuffering' => 'long_rebuffering'
     ];
@@ -877,6 +921,17 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_dropped_frame_count' => 'setViewDroppedFrameCount',
         'view_has_ad' => 'setViewHasAd',
         'video_startup_failure' => 'setVideoStartupFailure',
+        'ad_attempt_count' => 'setAdAttemptCount',
+        'ad_break_count' => 'setAdBreakCount',
+        'ad_break_error_count' => 'setAdBreakErrorCount',
+        'ad_break_error_percentage' => 'setAdBreakErrorPercentage',
+        'ad_error_count' => 'setAdErrorCount',
+        'ad_error_percentage' => 'setAdErrorPercentage',
+        'ad_impression_count' => 'setAdImpressionCount',
+        'ad_startup_error_count' => 'setAdStartupErrorCount',
+        'ad_startup_error_percentage' => 'setAdStartupErrorPercentage',
+        'ad_exit_before_start_count' => 'setAdExitBeforeStartCount',
+        'ad_exit_before_start_percentage' => 'setAdExitBeforeStartPercentage',
         'long_resume' => 'setLongResume',
         'long_rebuffering' => 'setLongRebuffering'
     ];
@@ -1028,6 +1083,17 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'view_dropped_frame_count' => 'getViewDroppedFrameCount',
         'view_has_ad' => 'getViewHasAd',
         'video_startup_failure' => 'getVideoStartupFailure',
+        'ad_attempt_count' => 'getAdAttemptCount',
+        'ad_break_count' => 'getAdBreakCount',
+        'ad_break_error_count' => 'getAdBreakErrorCount',
+        'ad_break_error_percentage' => 'getAdBreakErrorPercentage',
+        'ad_error_count' => 'getAdErrorCount',
+        'ad_error_percentage' => 'getAdErrorPercentage',
+        'ad_impression_count' => 'getAdImpressionCount',
+        'ad_startup_error_count' => 'getAdStartupErrorCount',
+        'ad_startup_error_percentage' => 'getAdStartupErrorPercentage',
+        'ad_exit_before_start_count' => 'getAdExitBeforeStartCount',
+        'ad_exit_before_start_percentage' => 'getAdExitBeforeStartPercentage',
         'long_resume' => 'getLongResume',
         'long_rebuffering' => 'getLongRebuffering'
     ];
@@ -1233,6 +1299,17 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('view_dropped_frame_count', $data ?? [], null);
         $this->setIfExists('view_has_ad', $data ?? [], null);
         $this->setIfExists('video_startup_failure', $data ?? [], null);
+        $this->setIfExists('ad_attempt_count', $data ?? [], null);
+        $this->setIfExists('ad_break_count', $data ?? [], null);
+        $this->setIfExists('ad_break_error_count', $data ?? [], null);
+        $this->setIfExists('ad_break_error_percentage', $data ?? [], null);
+        $this->setIfExists('ad_error_count', $data ?? [], null);
+        $this->setIfExists('ad_error_percentage', $data ?? [], null);
+        $this->setIfExists('ad_impression_count', $data ?? [], null);
+        $this->setIfExists('ad_startup_error_count', $data ?? [], null);
+        $this->setIfExists('ad_startup_error_percentage', $data ?? [], null);
+        $this->setIfExists('ad_exit_before_start_count', $data ?? [], null);
+        $this->setIfExists('ad_exit_before_start_percentage', $data ?? [], null);
         $this->setIfExists('long_resume', $data ?? [], null);
         $this->setIfExists('long_rebuffering', $data ?? [], null);
     }
@@ -5447,7 +5524,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets weighted_average_bitrate
      *
-     * @return int|null
+     * @return double|null
      */
     public function getWeightedAverageBitrate()
     {
@@ -5457,7 +5534,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets weighted_average_bitrate
      *
-     * @param int|null $weighted_average_bitrate weighted_average_bitrate
+     * @param double|null $weighted_average_bitrate weighted_average_bitrate
      *
      * @return self
      */
@@ -6211,6 +6288,402 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['video_startup_failure'] = $video_startup_failure;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_attempt_count
+     *
+     * @return int|null
+     */
+    public function getAdAttemptCount()
+    {
+        return $this->container['ad_attempt_count'];
+    }
+
+    /**
+     * Sets ad_attempt_count
+     *
+     * @param int|null $ad_attempt_count ad_attempt_count
+     *
+     * @return self
+     */
+    public function setAdAttemptCount($ad_attempt_count)
+    {
+
+        if (is_null($ad_attempt_count)) {
+            array_push($this->openAPINullablesSetToNull, 'ad_attempt_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ad_attempt_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['ad_attempt_count'] = $ad_attempt_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_break_count
+     *
+     * @return int|null
+     */
+    public function getAdBreakCount()
+    {
+        return $this->container['ad_break_count'];
+    }
+
+    /**
+     * Sets ad_break_count
+     *
+     * @param int|null $ad_break_count ad_break_count
+     *
+     * @return self
+     */
+    public function setAdBreakCount($ad_break_count)
+    {
+
+        if (is_null($ad_break_count)) {
+            array_push($this->openAPINullablesSetToNull, 'ad_break_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ad_break_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['ad_break_count'] = $ad_break_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_break_error_count
+     *
+     * @return int|null
+     */
+    public function getAdBreakErrorCount()
+    {
+        return $this->container['ad_break_error_count'];
+    }
+
+    /**
+     * Sets ad_break_error_count
+     *
+     * @param int|null $ad_break_error_count ad_break_error_count
+     *
+     * @return self
+     */
+    public function setAdBreakErrorCount($ad_break_error_count)
+    {
+
+        if (is_null($ad_break_error_count)) {
+            array_push($this->openAPINullablesSetToNull, 'ad_break_error_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ad_break_error_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['ad_break_error_count'] = $ad_break_error_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_break_error_percentage
+     *
+     * @return string|null
+     */
+    public function getAdBreakErrorPercentage()
+    {
+        return $this->container['ad_break_error_percentage'];
+    }
+
+    /**
+     * Sets ad_break_error_percentage
+     *
+     * @param string|null $ad_break_error_percentage ad_break_error_percentage
+     *
+     * @return self
+     */
+    public function setAdBreakErrorPercentage($ad_break_error_percentage)
+    {
+
+        if (is_null($ad_break_error_percentage)) {
+            array_push($this->openAPINullablesSetToNull, 'ad_break_error_percentage');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ad_break_error_percentage', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['ad_break_error_percentage'] = $ad_break_error_percentage;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_error_count
+     *
+     * @return int|null
+     */
+    public function getAdErrorCount()
+    {
+        return $this->container['ad_error_count'];
+    }
+
+    /**
+     * Sets ad_error_count
+     *
+     * @param int|null $ad_error_count ad_error_count
+     *
+     * @return self
+     */
+    public function setAdErrorCount($ad_error_count)
+    {
+
+        if (is_null($ad_error_count)) {
+            array_push($this->openAPINullablesSetToNull, 'ad_error_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ad_error_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['ad_error_count'] = $ad_error_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_error_percentage
+     *
+     * @return string|null
+     */
+    public function getAdErrorPercentage()
+    {
+        return $this->container['ad_error_percentage'];
+    }
+
+    /**
+     * Sets ad_error_percentage
+     *
+     * @param string|null $ad_error_percentage ad_error_percentage
+     *
+     * @return self
+     */
+    public function setAdErrorPercentage($ad_error_percentage)
+    {
+
+        if (is_null($ad_error_percentage)) {
+            array_push($this->openAPINullablesSetToNull, 'ad_error_percentage');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ad_error_percentage', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['ad_error_percentage'] = $ad_error_percentage;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_impression_count
+     *
+     * @return int|null
+     */
+    public function getAdImpressionCount()
+    {
+        return $this->container['ad_impression_count'];
+    }
+
+    /**
+     * Sets ad_impression_count
+     *
+     * @param int|null $ad_impression_count ad_impression_count
+     *
+     * @return self
+     */
+    public function setAdImpressionCount($ad_impression_count)
+    {
+
+        if (is_null($ad_impression_count)) {
+            array_push($this->openAPINullablesSetToNull, 'ad_impression_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ad_impression_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['ad_impression_count'] = $ad_impression_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_startup_error_count
+     *
+     * @return int|null
+     */
+    public function getAdStartupErrorCount()
+    {
+        return $this->container['ad_startup_error_count'];
+    }
+
+    /**
+     * Sets ad_startup_error_count
+     *
+     * @param int|null $ad_startup_error_count ad_startup_error_count
+     *
+     * @return self
+     */
+    public function setAdStartupErrorCount($ad_startup_error_count)
+    {
+
+        if (is_null($ad_startup_error_count)) {
+            array_push($this->openAPINullablesSetToNull, 'ad_startup_error_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ad_startup_error_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['ad_startup_error_count'] = $ad_startup_error_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_startup_error_percentage
+     *
+     * @return string|null
+     */
+    public function getAdStartupErrorPercentage()
+    {
+        return $this->container['ad_startup_error_percentage'];
+    }
+
+    /**
+     * Sets ad_startup_error_percentage
+     *
+     * @param string|null $ad_startup_error_percentage ad_startup_error_percentage
+     *
+     * @return self
+     */
+    public function setAdStartupErrorPercentage($ad_startup_error_percentage)
+    {
+
+        if (is_null($ad_startup_error_percentage)) {
+            array_push($this->openAPINullablesSetToNull, 'ad_startup_error_percentage');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ad_startup_error_percentage', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['ad_startup_error_percentage'] = $ad_startup_error_percentage;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_exit_before_start_count
+     *
+     * @return int|null
+     */
+    public function getAdExitBeforeStartCount()
+    {
+        return $this->container['ad_exit_before_start_count'];
+    }
+
+    /**
+     * Sets ad_exit_before_start_count
+     *
+     * @param int|null $ad_exit_before_start_count ad_exit_before_start_count
+     *
+     * @return self
+     */
+    public function setAdExitBeforeStartCount($ad_exit_before_start_count)
+    {
+
+        if (is_null($ad_exit_before_start_count)) {
+            array_push($this->openAPINullablesSetToNull, 'ad_exit_before_start_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ad_exit_before_start_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['ad_exit_before_start_count'] = $ad_exit_before_start_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_exit_before_start_percentage
+     *
+     * @return string|null
+     */
+    public function getAdExitBeforeStartPercentage()
+    {
+        return $this->container['ad_exit_before_start_percentage'];
+    }
+
+    /**
+     * Sets ad_exit_before_start_percentage
+     *
+     * @param string|null $ad_exit_before_start_percentage ad_exit_before_start_percentage
+     *
+     * @return self
+     */
+    public function setAdExitBeforeStartPercentage($ad_exit_before_start_percentage)
+    {
+
+        if (is_null($ad_exit_before_start_percentage)) {
+            array_push($this->openAPINullablesSetToNull, 'ad_exit_before_start_percentage');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ad_exit_before_start_percentage', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['ad_exit_before_start_percentage'] = $ad_exit_before_start_percentage;
 
         return $this;
     }

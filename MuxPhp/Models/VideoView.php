@@ -213,7 +213,10 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_exit_before_start_count' => 'int',
         'ad_exit_before_start_percentage' => 'string',
         'long_resume' => 'bool',
-        'long_rebuffering' => 'bool'
+        'long_rebuffering' => 'bool',
+        'playback_failure_error_type_id' => 'int',
+        'playback_business_exception_error_type_id' => 'int',
+        'video_startup_business_exception_error_type_id' => 'int'
     ];
 
     /**
@@ -377,7 +380,10 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_exit_before_start_count' => 'int32',
         'ad_exit_before_start_percentage' => null,
         'long_resume' => null,
-        'long_rebuffering' => null
+        'long_rebuffering' => null,
+        'playback_failure_error_type_id' => 'int32',
+        'playback_business_exception_error_type_id' => 'int32',
+        'video_startup_business_exception_error_type_id' => 'int32'
     ];
 
     /**
@@ -539,7 +545,10 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_exit_before_start_count' => true,
         'ad_exit_before_start_percentage' => true,
         'long_resume' => false,
-        'long_rebuffering' => false
+        'long_rebuffering' => false,
+        'playback_failure_error_type_id' => false,
+        'playback_business_exception_error_type_id' => false,
+        'video_startup_business_exception_error_type_id' => false
     ];
 
     /**
@@ -771,7 +780,10 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_exit_before_start_count' => 'ad_exit_before_start_count',
         'ad_exit_before_start_percentage' => 'ad_exit_before_start_percentage',
         'long_resume' => 'long_resume',
-        'long_rebuffering' => 'long_rebuffering'
+        'long_rebuffering' => 'long_rebuffering',
+        'playback_failure_error_type_id' => 'playback_failure_error_type_id',
+        'playback_business_exception_error_type_id' => 'playback_business_exception_error_type_id',
+        'video_startup_business_exception_error_type_id' => 'video_startup_business_exception_error_type_id'
     ];
 
     /**
@@ -933,7 +945,10 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_exit_before_start_count' => 'setAdExitBeforeStartCount',
         'ad_exit_before_start_percentage' => 'setAdExitBeforeStartPercentage',
         'long_resume' => 'setLongResume',
-        'long_rebuffering' => 'setLongRebuffering'
+        'long_rebuffering' => 'setLongRebuffering',
+        'playback_failure_error_type_id' => 'setPlaybackFailureErrorTypeId',
+        'playback_business_exception_error_type_id' => 'setPlaybackBusinessExceptionErrorTypeId',
+        'video_startup_business_exception_error_type_id' => 'setVideoStartupBusinessExceptionErrorTypeId'
     ];
 
     /**
@@ -1095,7 +1110,10 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_exit_before_start_count' => 'getAdExitBeforeStartCount',
         'ad_exit_before_start_percentage' => 'getAdExitBeforeStartPercentage',
         'long_resume' => 'getLongResume',
-        'long_rebuffering' => 'getLongRebuffering'
+        'long_rebuffering' => 'getLongRebuffering',
+        'playback_failure_error_type_id' => 'getPlaybackFailureErrorTypeId',
+        'playback_business_exception_error_type_id' => 'getPlaybackBusinessExceptionErrorTypeId',
+        'video_startup_business_exception_error_type_id' => 'getVideoStartupBusinessExceptionErrorTypeId'
     ];
 
     /**
@@ -1312,6 +1330,9 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('ad_exit_before_start_percentage', $data ?? [], null);
         $this->setIfExists('long_resume', $data ?? [], null);
         $this->setIfExists('long_rebuffering', $data ?? [], null);
+        $this->setIfExists('playback_failure_error_type_id', $data ?? [], null);
+        $this->setIfExists('playback_business_exception_error_type_id', $data ?? [], null);
+        $this->setIfExists('video_startup_business_exception_error_type_id', $data ?? [], null);
     }
 
     /**
@@ -6742,6 +6763,93 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['long_rebuffering'] = $long_rebuffering;
+
+        return $this;
+    }
+
+    /**
+     * Gets playback_failure_error_type_id
+     *
+     * @return int|null
+     */
+    public function getPlaybackFailureErrorTypeId()
+    {
+        return $this->container['playback_failure_error_type_id'];
+    }
+
+    /**
+     * Sets playback_failure_error_type_id
+     *
+     * @param int|null $playback_failure_error_type_id playback_failure_error_type_id
+     *
+     * @return self
+     */
+    public function setPlaybackFailureErrorTypeId($playback_failure_error_type_id)
+    {
+
+        if (is_null($playback_failure_error_type_id)) {
+            throw new \InvalidArgumentException('non-nullable playback_failure_error_type_id cannot be null');
+        }
+
+        $this->container['playback_failure_error_type_id'] = $playback_failure_error_type_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets playback_business_exception_error_type_id
+     *
+     * @return int|null
+     */
+    public function getPlaybackBusinessExceptionErrorTypeId()
+    {
+        return $this->container['playback_business_exception_error_type_id'];
+    }
+
+    /**
+     * Sets playback_business_exception_error_type_id
+     *
+     * @param int|null $playback_business_exception_error_type_id playback_business_exception_error_type_id
+     *
+     * @return self
+     */
+    public function setPlaybackBusinessExceptionErrorTypeId($playback_business_exception_error_type_id)
+    {
+
+        if (is_null($playback_business_exception_error_type_id)) {
+            throw new \InvalidArgumentException('non-nullable playback_business_exception_error_type_id cannot be null');
+        }
+
+        $this->container['playback_business_exception_error_type_id'] = $playback_business_exception_error_type_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets video_startup_business_exception_error_type_id
+     *
+     * @return int|null
+     */
+    public function getVideoStartupBusinessExceptionErrorTypeId()
+    {
+        return $this->container['video_startup_business_exception_error_type_id'];
+    }
+
+    /**
+     * Sets video_startup_business_exception_error_type_id
+     *
+     * @param int|null $video_startup_business_exception_error_type_id video_startup_business_exception_error_type_id
+     *
+     * @return self
+     */
+    public function setVideoStartupBusinessExceptionErrorTypeId($video_startup_business_exception_error_type_id)
+    {
+
+        if (is_null($video_startup_business_exception_error_type_id)) {
+            throw new \InvalidArgumentException('non-nullable video_startup_business_exception_error_type_id cannot be null');
+        }
+
+        $this->container['video_startup_business_exception_error_type_id'] = $video_startup_business_exception_error_type_id;
 
         return $this;
     }

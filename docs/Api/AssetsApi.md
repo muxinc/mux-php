@@ -10,11 +10,12 @@ All URIs are relative to https://api.mux.com, except if the operation defines an
 | [**deleteAsset()**](AssetsApi.md#deleteAsset) | **DELETE** /video/v1/assets/{ASSET_ID} | Delete an asset |
 | [**deleteAssetPlaybackId()**](AssetsApi.md#deleteAssetPlaybackId) | **DELETE** /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID} | Delete a playback ID |
 | [**deleteAssetTrack()**](AssetsApi.md#deleteAssetTrack) | **DELETE** /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID} | Delete an asset track |
+| [**generateAssetTrackSubtitles()**](AssetsApi.md#generateAssetTrackSubtitles) | **POST** /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}/generate-subtitles | Generate track subtitles |
 | [**getAsset()**](AssetsApi.md#getAsset) | **GET** /video/v1/assets/{ASSET_ID} | Retrieve an asset |
 | [**getAssetInputInfo()**](AssetsApi.md#getAssetInputInfo) | **GET** /video/v1/assets/{ASSET_ID}/input-info | Retrieve asset input info |
 | [**getAssetPlaybackId()**](AssetsApi.md#getAssetPlaybackId) | **GET** /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID} | Retrieve a playback ID |
 | [**listAssets()**](AssetsApi.md#listAssets) | **GET** /video/v1/assets | List assets |
-| [**updateAsset()**](AssetsApi.md#updateAsset) | **PATCH** /video/v1/assets/{ASSET_ID} | Update an Asset |
+| [**updateAsset()**](AssetsApi.md#updateAsset) | **PATCH** /video/v1/assets/{ASSET_ID} | Update an asset |
 | [**updateAssetMasterAccess()**](AssetsApi.md#updateAssetMasterAccess) | **PUT** /video/v1/assets/{ASSET_ID}/master-access | Update master access |
 | [**updateAssetMp4Support()**](AssetsApi.md#updateAssetMp4Support) | **PUT** /video/v1/assets/{ASSET_ID}/mp4-support | Update MP4 support |
 
@@ -58,7 +59,7 @@ $apiInstance = new MuxPhp\Api\AssetsApi(
 //
 // In your own code you should use an associative array, or
 // use a "new \MuxPhp\Models\CreateAssetRequest" directly.
-$create_asset_request = json_decode('{"input":[{"url":"https://muxed.s3.amazonaws.com/leds.mp4"}],"playback_policy":["public"]}',true); // \MuxPhp\Models\CreateAssetRequest
+$create_asset_request = json_decode('{"input":[{"url":"https://muxed.s3.amazonaws.com/leds.mp4"}],"playback_policy":["public"],"encoding_tier":"baseline"}',true); // \MuxPhp\Models\CreateAssetRequest
 
 try {
     $result = $apiInstance->createAsset($create_asset_request);
@@ -426,6 +427,82 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `generateAssetTrackSubtitles()`
+
+```php
+generateAssetTrackSubtitles($asset_id, $track_id, $generate_track_subtitles_request): \MuxPhp\Models\GenerateTrackSubtitlesResponse
+```
+
+Generate track subtitles
+
+Generates subtitles (captions) for a given audio track. This API can be used for up to 7 days after an asset is created.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\AssetsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$asset_id = 'asset_id_example'; // string | The asset ID.
+$track_id = 'track_id_example'; // string | The track ID.
+
+// This API method wants a \MuxPhp\Models\GenerateTrackSubtitlesRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\GenerateTrackSubtitlesRequest" directly.
+$generate_track_subtitles_request = json_decode('{"generated_subtitles":[{"language_code":"en","name":"English (generated)","passthrough":"English (generated)"}]}',true); // \MuxPhp\Models\GenerateTrackSubtitlesRequest
+
+try {
+    $result = $apiInstance->generateAssetTrackSubtitles($asset_id, $track_id, $generate_track_subtitles_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AssetsApi->generateAssetTrackSubtitles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **asset_id** | **string**| The asset ID. | |
+| **track_id** | **string**| The track ID. | |
+| **generate_track_subtitles_request** | [**\MuxPhp\Models\GenerateTrackSubtitlesRequest**](../Model/GenerateTrackSubtitlesRequest.md)|  | |
+
+### Return type
+
+[**\MuxPhp\Models\GenerateTrackSubtitlesResponse**](../Model/GenerateTrackSubtitlesResponse.md)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getAsset()`
 
 ```php
@@ -688,7 +765,7 @@ try {
 updateAsset($asset_id, $update_asset_request): \MuxPhp\Models\AssetResponse
 ```
 
-Update an Asset
+Update an asset
 
 Updates the details of an already-created Asset with the provided Asset ID. This currently supports only the `passthrough` field.
 

@@ -61,6 +61,8 @@ MuxPhp/Models/Error.php
 MuxPhp/Models/ExportDate.php
 MuxPhp/Models/ExportFile.php
 MuxPhp/Models/FilterValue.php
+MuxPhp/Models/GenerateTrackSubtitlesRequest.php
+MuxPhp/Models/GenerateTrackSubtitlesResponse.php
 MuxPhp/Models/GetAssetInputInfoResponse.php
 MuxPhp/Models/GetAssetOrLiveStreamIdResponse.php
 MuxPhp/Models/GetAssetOrLiveStreamIdResponseData.php
@@ -240,6 +242,8 @@ docs/Model/Error.md
 docs/Model/ExportDate.md
 docs/Model/ExportFile.md
 docs/Model/FilterValue.md
+docs/Model/GenerateTrackSubtitlesRequest.md
+docs/Model/GenerateTrackSubtitlesResponse.md
 docs/Model/GetAssetInputInfoResponse.md
 docs/Model/GetAssetOrLiveStreamIdResponse.md
 docs/Model/GetAssetOrLiveStreamIdResponseData.md

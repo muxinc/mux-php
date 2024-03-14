@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **description** | **string** | Description of the error. | [optional]
 **count** | **int** | The total number of views that experienced this error. | [optional]
 **code** | **int** | The error code | [optional]
+**player_error_code** | **string** | The string version of the error code | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

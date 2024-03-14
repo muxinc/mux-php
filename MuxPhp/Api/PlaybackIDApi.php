@@ -118,7 +118,7 @@ class PlaybackIDApi
     /**
      * Operation getAssetOrLivestreamId
      *
-     * Retrieve an Asset or Live Stream ID
+     * Retrieve an asset or live stream ID
      *
      * @param  string $playback_id The live stream&#39;s playback ID. (required)
      *
@@ -135,7 +135,7 @@ class PlaybackIDApi
     /**
      * Operation getAssetOrLivestreamIdWithHttpInfo
      *
-     * Retrieve an Asset or Live Stream ID
+     * Retrieve an asset or live stream ID
      *
      * @param  string $playback_id The live stream&#39;s playback ID. (required)
      *
@@ -223,7 +223,7 @@ class PlaybackIDApi
     /**
      * Operation getAssetOrLivestreamIdAsync
      *
-     * Retrieve an Asset or Live Stream ID
+     * Retrieve an asset or live stream ID
      *
      * @param  string $playback_id The live stream&#39;s playback ID. (required)
      *
@@ -243,7 +243,7 @@ class PlaybackIDApi
     /**
      * Operation getAssetOrLivestreamIdAsyncWithHttpInfo
      *
-     * Retrieve an Asset or Live Stream ID
+     * Retrieve an asset or live stream ID
      *
      * @param  string $playback_id The live stream&#39;s playback ID. (required)
      *

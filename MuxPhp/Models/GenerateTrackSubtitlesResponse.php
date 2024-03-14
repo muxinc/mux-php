@@ -1,6 +1,6 @@
 <?php
 /**
- * MonitoringBreakdownTimeseriesDatapoint
+ * GenerateTrackSubtitlesResponse
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * MonitoringBreakdownTimeseriesDatapoint Class Doc Comment
+ * GenerateTrackSubtitlesResponse Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenerateTrackSubtitlesResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MonitoringBreakdownTimeseriesDatapoint';
+    protected static $openAPIModelName = 'GenerateTrackSubtitlesResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,10 +60,7 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
       * @var string[]
       */
     protected static $openAPITypes = [
-        'value' => 'string',
-        'metric_value' => 'double',
-        'concurrent_viewers' => 'int',
-        'starting_up_viewers' => 'int'
+        'data' => '\MuxPhp\Models\Track'
     ];
 
     /**
@@ -74,10 +71,7 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'value' => null,
-        'metric_value' => 'double',
-        'concurrent_viewers' => 'int64',
-        'starting_up_viewers' => 'int64'
+        'data' => null
     ];
 
     /**
@@ -86,10 +80,7 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'value' => true,
-        'metric_value' => true,
-        'concurrent_viewers' => false,
-        'starting_up_viewers' => false
+        'data' => false
     ];
 
     /**
@@ -168,10 +159,7 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
      * @var string[]
      */
     protected static $attributeMap = [
-        'value' => 'value',
-        'metric_value' => 'metric_value',
-        'concurrent_viewers' => 'concurrent_viewers',
-        'starting_up_viewers' => 'starting_up_viewers'
+        'data' => 'data'
     ];
 
     /**
@@ -180,10 +168,7 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
      * @var string[]
      */
     protected static $setters = [
-        'value' => 'setValue',
-        'metric_value' => 'setMetricValue',
-        'concurrent_viewers' => 'setConcurrentViewers',
-        'starting_up_viewers' => 'setStartingUpViewers'
+        'data' => 'setData'
     ];
 
     /**
@@ -192,10 +177,7 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
      * @var string[]
      */
     protected static $getters = [
-        'value' => 'getValue',
-        'metric_value' => 'getMetricValue',
-        'concurrent_viewers' => 'getConcurrentViewers',
-        'starting_up_viewers' => 'getStartingUpViewers'
+        'data' => 'getData'
     ];
 
     /**
@@ -258,10 +240,7 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('value', $data ?? [], null);
-        $this->setIfExists('metric_value', $data ?? [], null);
-        $this->setIfExists('concurrent_viewers', $data ?? [], null);
-        $this->setIfExists('starting_up_viewers', $data ?? [], null);
+        $this->setIfExists('data', $data ?? [], null);
     }
 
     /**
@@ -307,131 +286,30 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
 
 
     /**
-     * Gets value
+     * Gets data
      *
-     * @return string|null
+     * @return \MuxPhp\Models\Track|null
      */
-    public function getValue()
+    public function getData()
     {
-        return $this->container['value'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets value
+     * Sets data
      *
-     * @param string|null $value value
+     * @param \MuxPhp\Models\Track|null $data data
      *
      * @return self
      */
-    public function setValue($value)
+    public function setData($data)
     {
 
-        if (is_null($value)) {
-            array_push($this->openAPINullablesSetToNull, 'value');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value', $nullablesSetToNull, true);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($data)) {
+            throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
 
-        $this->container['value'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Gets metric_value
-     *
-     * @return double|null
-     */
-    public function getMetricValue()
-    {
-        return $this->container['metric_value'];
-    }
-
-    /**
-     * Sets metric_value
-     *
-     * @param double|null $metric_value metric_value
-     *
-     * @return self
-     */
-    public function setMetricValue($metric_value)
-    {
-
-        if (is_null($metric_value)) {
-            array_push($this->openAPINullablesSetToNull, 'metric_value');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_value', $nullablesSetToNull, true);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['metric_value'] = $metric_value;
-
-        return $this;
-    }
-
-    /**
-     * Gets concurrent_viewers
-     *
-     * @return int|null
-     */
-    public function getConcurrentViewers()
-    {
-        return $this->container['concurrent_viewers'];
-    }
-
-    /**
-     * Sets concurrent_viewers
-     *
-     * @param int|null $concurrent_viewers concurrent_viewers
-     *
-     * @return self
-     */
-    public function setConcurrentViewers($concurrent_viewers)
-    {
-
-        if (is_null($concurrent_viewers)) {
-            throw new \InvalidArgumentException('non-nullable concurrent_viewers cannot be null');
-        }
-
-        $this->container['concurrent_viewers'] = $concurrent_viewers;
-
-        return $this;
-    }
-
-    /**
-     * Gets starting_up_viewers
-     *
-     * @return int|null
-     */
-    public function getStartingUpViewers()
-    {
-        return $this->container['starting_up_viewers'];
-    }
-
-    /**
-     * Sets starting_up_viewers
-     *
-     * @param int|null $starting_up_viewers starting_up_viewers
-     *
-     * @return self
-     */
-    public function setStartingUpViewers($starting_up_viewers)
-    {
-
-        if (is_null($starting_up_viewers)) {
-            throw new \InvalidArgumentException('non-nullable starting_up_viewers cannot be null');
-        }
-
-        $this->container['starting_up_viewers'] = $starting_up_viewers;
+        $this->container['data'] = $data;
 
         return $this;
     }

@@ -67,7 +67,8 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_seen' => 'string',
         'description' => 'string',
         'count' => 'int',
-        'code' => 'int'
+        'code' => 'int',
+        'player_error_code' => 'string'
     ];
 
     /**
@@ -85,7 +86,8 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_seen' => null,
         'description' => null,
         'count' => 'int64',
-        'code' => 'int64'
+        'code' => 'int64',
+        'player_error_code' => null
     ];
 
     /**
@@ -101,7 +103,8 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_seen' => false,
         'description' => true,
         'count' => false,
-        'code' => true
+        'code' => true,
+        'player_error_code' => true
     ];
 
     /**
@@ -187,7 +190,8 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_seen' => 'last_seen',
         'description' => 'description',
         'count' => 'count',
-        'code' => 'code'
+        'code' => 'code',
+        'player_error_code' => 'player_error_code'
     ];
 
     /**
@@ -203,7 +207,8 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_seen' => 'setLastSeen',
         'description' => 'setDescription',
         'count' => 'setCount',
-        'code' => 'setCode'
+        'code' => 'setCode',
+        'player_error_code' => 'setPlayerErrorCode'
     ];
 
     /**
@@ -219,7 +224,8 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_seen' => 'getLastSeen',
         'description' => 'getDescription',
         'count' => 'getCount',
-        'code' => 'getCode'
+        'code' => 'getCode',
+        'player_error_code' => 'getPlayerErrorCode'
     ];
 
     /**
@@ -290,6 +296,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('count', $data ?? [], null);
         $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('player_error_code', $data ?? [], null);
     }
 
     /**
@@ -590,6 +597,42 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['code'] = $code;
+
+        return $this;
+    }
+
+    /**
+     * Gets player_error_code
+     *
+     * @return string|null
+     */
+    public function getPlayerErrorCode()
+    {
+        return $this->container['player_error_code'];
+    }
+
+    /**
+     * Sets player_error_code
+     *
+     * @param string|null $player_error_code The string version of the error code
+     *
+     * @return self
+     */
+    public function setPlayerErrorCode($player_error_code)
+    {
+
+        if (is_null($player_error_code)) {
+            array_push($this->openAPINullablesSetToNull, 'player_error_code');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('player_error_code', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['player_error_code'] = $player_error_code;
 
         return $this;
     }

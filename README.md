@@ -150,11 +150,12 @@ Class | Method | HTTP request | Description
 *AssetsApi* | [**deleteAsset**](docs/Api/AssetsApi.md#deleteasset) | **DELETE** /video/v1/assets/{ASSET_ID} | Delete an asset
 *AssetsApi* | [**deleteAssetPlaybackId**](docs/Api/AssetsApi.md#deleteassetplaybackid) | **DELETE** /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID} | Delete a playback ID
 *AssetsApi* | [**deleteAssetTrack**](docs/Api/AssetsApi.md#deleteassettrack) | **DELETE** /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID} | Delete an asset track
+*AssetsApi* | [**generateAssetTrackSubtitles**](docs/Api/AssetsApi.md#generateassettracksubtitles) | **POST** /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}/generate-subtitles | Generate track subtitles
 *AssetsApi* | [**getAsset**](docs/Api/AssetsApi.md#getasset) | **GET** /video/v1/assets/{ASSET_ID} | Retrieve an asset
 *AssetsApi* | [**getAssetInputInfo**](docs/Api/AssetsApi.md#getassetinputinfo) | **GET** /video/v1/assets/{ASSET_ID}/input-info | Retrieve asset input info
 *AssetsApi* | [**getAssetPlaybackId**](docs/Api/AssetsApi.md#getassetplaybackid) | **GET** /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID} | Retrieve a playback ID
 *AssetsApi* | [**listAssets**](docs/Api/AssetsApi.md#listassets) | **GET** /video/v1/assets | List assets
-*AssetsApi* | [**updateAsset**](docs/Api/AssetsApi.md#updateasset) | **PATCH** /video/v1/assets/{ASSET_ID} | Update an Asset
+*AssetsApi* | [**updateAsset**](docs/Api/AssetsApi.md#updateasset) | **PATCH** /video/v1/assets/{ASSET_ID} | Update an asset
 *AssetsApi* | [**updateAssetMasterAccess**](docs/Api/AssetsApi.md#updateassetmasteraccess) | **PUT** /video/v1/assets/{ASSET_ID}/master-access | Update master access
 *AssetsApi* | [**updateAssetMp4Support**](docs/Api/AssetsApi.md#updateassetmp4support) | **PUT** /video/v1/assets/{ASSET_ID}/mp4-support | Update MP4 support
 *DeliveryUsageApi* | [**listDeliveryUsage**](docs/Api/DeliveryUsageApi.md#listdeliveryusage) | **GET** /video/v1/delivery-usage | List Usage
@@ -177,12 +178,12 @@ Class | Method | HTTP request | Description
 *LiveStreamsApi* | [**createLiveStreamSimulcastTarget**](docs/Api/LiveStreamsApi.md#createlivestreamsimulcasttarget) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets | Create a live stream simulcast target
 *LiveStreamsApi* | [**deleteLiveStream**](docs/Api/LiveStreamsApi.md#deletelivestream) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID} | Delete a live stream
 *LiveStreamsApi* | [**deleteLiveStreamPlaybackId**](docs/Api/LiveStreamsApi.md#deletelivestreamplaybackid) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Delete a live stream playback ID
-*LiveStreamsApi* | [**deleteLiveStreamSimulcastTarget**](docs/Api/LiveStreamsApi.md#deletelivestreamsimulcasttarget) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Delete a Live Stream Simulcast Target
+*LiveStreamsApi* | [**deleteLiveStreamSimulcastTarget**](docs/Api/LiveStreamsApi.md#deletelivestreamsimulcasttarget) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Delete a live stream simulcast target
 *LiveStreamsApi* | [**disableLiveStream**](docs/Api/LiveStreamsApi.md#disablelivestream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/disable | Disable a live stream
 *LiveStreamsApi* | [**enableLiveStream**](docs/Api/LiveStreamsApi.md#enablelivestream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/enable | Enable a live stream
 *LiveStreamsApi* | [**getLiveStream**](docs/Api/LiveStreamsApi.md#getlivestream) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID} | Retrieve a live stream
 *LiveStreamsApi* | [**getLiveStreamPlaybackId**](docs/Api/LiveStreamsApi.md#getlivestreamplaybackid) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Retrieve a live stream playback ID
-*LiveStreamsApi* | [**getLiveStreamSimulcastTarget**](docs/Api/LiveStreamsApi.md#getlivestreamsimulcasttarget) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Retrieve a Live Stream Simulcast Target
+*LiveStreamsApi* | [**getLiveStreamSimulcastTarget**](docs/Api/LiveStreamsApi.md#getlivestreamsimulcasttarget) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Retrieve a live stream simulcast target
 *LiveStreamsApi* | [**listLiveStreams**](docs/Api/LiveStreamsApi.md#listlivestreams) | **GET** /video/v1/live-streams | List live streams
 *LiveStreamsApi* | [**resetStreamKey**](docs/Api/LiveStreamsApi.md#resetstreamkey) | **POST** /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key | Reset a live stream&#39;s stream key
 *LiveStreamsApi* | [**signalLiveStreamComplete**](docs/Api/LiveStreamsApi.md#signallivestreamcomplete) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/complete | Signal a live stream is finished
@@ -200,7 +201,7 @@ Class | Method | HTTP request | Description
 *MonitoringApi* | [**getMonitoringTimeseries**](docs/Api/MonitoringApi.md#getmonitoringtimeseries) | **GET** /data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/timeseries | Get Monitoring Timeseries
 *MonitoringApi* | [**listMonitoringDimensions**](docs/Api/MonitoringApi.md#listmonitoringdimensions) | **GET** /data/v1/monitoring/dimensions | List Monitoring Dimensions
 *MonitoringApi* | [**listMonitoringMetrics**](docs/Api/MonitoringApi.md#listmonitoringmetrics) | **GET** /data/v1/monitoring/metrics | List Monitoring Metrics
-*PlaybackIDApi* | [**getAssetOrLivestreamId**](docs/Api/PlaybackIDApi.md#getassetorlivestreamid) | **GET** /video/v1/playback-ids/{PLAYBACK_ID} | Retrieve an Asset or Live Stream ID
+*PlaybackIDApi* | [**getAssetOrLivestreamId**](docs/Api/PlaybackIDApi.md#getassetorlivestreamid) | **GET** /video/v1/playback-ids/{PLAYBACK_ID} | Retrieve an asset or live stream ID
 *PlaybackRestrictionsApi* | [**createPlaybackRestriction**](docs/Api/PlaybackRestrictionsApi.md#createplaybackrestriction) | **POST** /video/v1/playback-restrictions | Create a Playback Restriction
 *PlaybackRestrictionsApi* | [**deletePlaybackRestriction**](docs/Api/PlaybackRestrictionsApi.md#deleteplaybackrestriction) | **DELETE** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID} | Delete a Playback Restriction
 *PlaybackRestrictionsApi* | [**getPlaybackRestriction**](docs/Api/PlaybackRestrictionsApi.md#getplaybackrestriction) | **GET** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID} | Retrieve a Playback Restriction
@@ -284,6 +285,8 @@ Class | Method | HTTP request | Description
 - [ExportDate](docs/Model/ExportDate.md)
 - [ExportFile](docs/Model/ExportFile.md)
 - [FilterValue](docs/Model/FilterValue.md)
+- [GenerateTrackSubtitlesRequest](docs/Model/GenerateTrackSubtitlesRequest.md)
+- [GenerateTrackSubtitlesResponse](docs/Model/GenerateTrackSubtitlesResponse.md)
 - [GetAssetInputInfoResponse](docs/Model/GetAssetInputInfoResponse.md)
 - [GetAssetOrLiveStreamIdResponse](docs/Model/GetAssetOrLiveStreamIdResponse.md)
 - [GetAssetOrLiveStreamIdResponseData](docs/Model/GetAssetOrLiveStreamIdResponseData.md)
@@ -426,5 +429,5 @@ devex@mux.com
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `v1`
-    - Package version: `3.14.0`
+    - Package version: `3.15.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

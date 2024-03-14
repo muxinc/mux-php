@@ -1443,7 +1443,7 @@ class LiveStreamsApi
     /**
      * Operation deleteLiveStreamSimulcastTarget
      *
-     * Delete a Live Stream Simulcast Target
+     * Delete a live stream simulcast target
      *
      * @param  string $live_stream_id The live stream ID (required)
      * @param  string $simulcast_target_id The ID of the simulcast target. (required)
@@ -1460,7 +1460,7 @@ class LiveStreamsApi
     /**
      * Operation deleteLiveStreamSimulcastTargetWithHttpInfo
      *
-     * Delete a Live Stream Simulcast Target
+     * Delete a live stream simulcast target
      *
      * @param  string $live_stream_id The live stream ID (required)
      * @param  string $simulcast_target_id The ID of the simulcast target. (required)
@@ -1513,7 +1513,7 @@ class LiveStreamsApi
     /**
      * Operation deleteLiveStreamSimulcastTargetAsync
      *
-     * Delete a Live Stream Simulcast Target
+     * Delete a live stream simulcast target
      *
      * @param  string $live_stream_id The live stream ID (required)
      * @param  string $simulcast_target_id The ID of the simulcast target. (required)
@@ -1534,7 +1534,7 @@ class LiveStreamsApi
     /**
      * Operation deleteLiveStreamSimulcastTargetAsyncWithHttpInfo
      *
-     * Delete a Live Stream Simulcast Target
+     * Delete a live stream simulcast target
      *
      * @param  string $live_stream_id The live stream ID (required)
      * @param  string $simulcast_target_id The ID of the simulcast target. (required)
@@ -2803,7 +2803,7 @@ class LiveStreamsApi
     /**
      * Operation getLiveStreamSimulcastTarget
      *
-     * Retrieve a Live Stream Simulcast Target
+     * Retrieve a live stream simulcast target
      *
      * @param  string $live_stream_id The live stream ID (required)
      * @param  string $simulcast_target_id The ID of the simulcast target. (required)
@@ -2821,7 +2821,7 @@ class LiveStreamsApi
     /**
      * Operation getLiveStreamSimulcastTargetWithHttpInfo
      *
-     * Retrieve a Live Stream Simulcast Target
+     * Retrieve a live stream simulcast target
      *
      * @param  string $live_stream_id The live stream ID (required)
      * @param  string $simulcast_target_id The ID of the simulcast target. (required)
@@ -2910,7 +2910,7 @@ class LiveStreamsApi
     /**
      * Operation getLiveStreamSimulcastTargetAsync
      *
-     * Retrieve a Live Stream Simulcast Target
+     * Retrieve a live stream simulcast target
      *
      * @param  string $live_stream_id The live stream ID (required)
      * @param  string $simulcast_target_id The ID of the simulcast target. (required)
@@ -2931,7 +2931,7 @@ class LiveStreamsApi
     /**
      * Operation getLiveStreamSimulcastTargetAsyncWithHttpInfo
      *
-     * Retrieve a Live Stream Simulcast Target
+     * Retrieve a live stream simulcast target
      *
      * @param  string $live_stream_id The live stream ID (required)
      * @param  string $simulcast_target_id The ID of the simulcast target. (required)

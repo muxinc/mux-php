@@ -475,7 +475,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets generated_subtitles
      *
-     * @param \MuxPhp\Models\AssetGeneratedSubtitleSettings[]|null $generated_subtitles Generate subtitle tracks using automatic speech recognition using this configuration. This may only be provided for the first input object (the main input file). For direct uploads, this first input should omit the url parameter, as the main input file is provided via the direct upload. This will create subtitles based on the audio track ingested from that main input file. Note that subtitle generation happens after initial ingest, so the generated tracks will be in the `preparing` state when the asset transitions to `ready`.
+     * @param \MuxPhp\Models\AssetGeneratedSubtitleSettings[]|null $generated_subtitles Generate subtitle tracks using automatic speech recognition with this configuration. This may only be provided for the first input object (the main input file). For direct uploads, this first input should omit the url parameter, as the main input file is provided via the direct upload. This will create subtitles based on the audio track ingested from that main input file. Note that subtitle generation happens after initial ingest, so the generated tracks will be in the `preparing` state when the asset transitions to `ready`.
      *
      * @return self
      */

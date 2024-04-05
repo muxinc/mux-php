@@ -255,6 +255,7 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
     public const NAME_MEDIUM_MP4 = 'medium.mp4';
     public const NAME_HIGH_MP4 = 'high.mp4';
     public const NAME_AUDIO_M4A = 'audio.m4a';
+    public const NAME_CAPPED_1080P_MP4 = 'capped-1080p.mp4';
     public const EXT_MP4 = 'mp4';
     public const EXT_M4A = 'm4a';
 
@@ -270,6 +271,7 @@ class AssetStaticRenditionsFiles implements ModelInterface, ArrayAccess, \JsonSe
             self::NAME_MEDIUM_MP4,
             self::NAME_HIGH_MP4,
             self::NAME_AUDIO_M4A,
+            self::NAME_CAPPED_1080P_MP4,
         ];
     }
 

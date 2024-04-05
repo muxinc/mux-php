@@ -111,7 +111,7 @@ $apiInstance = new MuxPhp\Api\DirectUploadsApi(
 //
 // In your own code you should use an associative array, or
 // use a "new \MuxPhp\Models\CreateUploadRequest" directly.
-$create_upload_request = json_decode('{"cors_origin":"https://example.com/","new_asset_settings":{"playback_policy":["public"]}}',true); // \MuxPhp\Models\CreateUploadRequest
+$create_upload_request = json_decode('{"cors_origin":"https://example.com/","new_asset_settings":{"playback_policy":["public"],"mp4_support":"capped-1080p"}}',true); // \MuxPhp\Models\CreateUploadRequest
 
 try {
     $result = $apiInstance->createDirectUpload($create_upload_request);

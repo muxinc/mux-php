@@ -405,6 +405,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const MASTER_ACCESS_NONE = 'none';
     public const MP4_SUPPORT_STANDARD = 'standard';
     public const MP4_SUPPORT_NONE = 'none';
+    public const MP4_SUPPORT_CAPPED_1080P = 'capped-1080p';
+    public const MP4_SUPPORT_AUDIO_ONLY = 'audio-only';
+    public const MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P = 'audio-only,capped-1080p';
     public const INGEST_TYPE_ON_DEMAND_URL = 'on_demand_url';
     public const INGEST_TYPE_ON_DEMAND_DIRECT_UPLOAD = 'on_demand_direct_upload';
     public const INGEST_TYPE_ON_DEMAND_CLIP = 'on_demand_clip';
@@ -507,6 +510,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::MP4_SUPPORT_STANDARD,
             self::MP4_SUPPORT_NONE,
+            self::MP4_SUPPORT_CAPPED_1080P,
+            self::MP4_SUPPORT_AUDIO_ONLY,
+            self::MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P,
         ];
     }
 

@@ -277,6 +277,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
 
     public const MP4_SUPPORT_NONE = 'none';
     public const MP4_SUPPORT_STANDARD = 'standard';
+    public const MP4_SUPPORT_CAPPED_1080P = 'capped-1080p';
+    public const MP4_SUPPORT_AUDIO_ONLY = 'audio-only';
+    public const MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P = 'audio-only,capped-1080p';
     public const MASTER_ACCESS_NONE = 'none';
     public const MASTER_ACCESS_TEMPORARY = 'temporary';
     public const MAX_RESOLUTION_TIER__1080P = '1080p';
@@ -295,6 +298,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         return [
             self::MP4_SUPPORT_NONE,
             self::MP4_SUPPORT_STANDARD,
+            self::MP4_SUPPORT_CAPPED_1080P,
+            self::MP4_SUPPORT_AUDIO_ONLY,
+            self::MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P,
         ];
     }
 
@@ -577,7 +583,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets mp4_support
      *
-     * @param string|null $mp4_support Specify what level (if any) of support for mp4 playback. In most cases you should use our default HLS-based streaming playback ({playback_id}.m3u8) which can automatically adjust to viewers' connection speeds, but an mp4 can be useful for some legacy devices or downloading for offline playback. See the [Download your videos guide](https://docs.mux.com/guides/enable-static-mp4-renditions) for more information.
+     * @param string|null $mp4_support Specify what level of support for mp4 playback.  * The `capped-1080p` option produces a single MP4 file, called `capped-1080p.mp4`, with the video resolution capped at 1080p. This option produces an `audio.m4a` file for an audio-only asset. * The `audio-only` option produces a single M4A file, called `audio.m4a` for a video or an audio-only asset. MP4 generation will error when this option is specified for a video-only asset. * The `audio-only,capped-1080p` option produces both the `audio.m4a` and `capped-1080p.mp4` files. Only the `capped-1080p.mp4` file is produced for a video-only asset, while only the `audio.m4a` file is produced for an audio-only asset.  The `standard`(deprecated) option produces up to three MP4 files with different levels of resolution (`high.mp4`, `medium.mp4`, `low.mp4`, or `audio.m4a` for an audio-only asset).  MP4 files are not produced for `none` (default).  In most cases you should use our default HLS-based streaming playback (`{playback_id}.m3u8`) which can automatically adjust to viewers' connection speeds, but an mp4 can be useful for some legacy devices or downloading for offline playback. See the [Download your videos guide](https://docs.mux.com/guides/enable-static-mp4-renditions) for more information.
      *
      * @return self
      */

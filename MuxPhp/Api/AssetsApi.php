@@ -1686,6 +1686,316 @@ class AssetsApi
     }
 
     /**
+     * Operation generateAssetTrackSubtitles
+     *
+     * Generate track subtitles
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $track_id The track ID. (required)
+     * @param  \MuxPhp\Models\GenerateTrackSubtitlesRequest $generate_track_subtitles_request generate_track_subtitles_request (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MuxPhp\Models\GenerateTrackSubtitlesResponse
+     */
+    public function generateAssetTrackSubtitles($asset_id, $track_id, $generate_track_subtitles_request)
+    {
+        list($response) = $this->generateAssetTrackSubtitlesWithHttpInfo($asset_id, $track_id, $generate_track_subtitles_request);
+        return $response;
+    }
+
+    /**
+     * Operation generateAssetTrackSubtitlesWithHttpInfo
+     *
+     * Generate track subtitles
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $track_id The track ID. (required)
+     * @param  \MuxPhp\Models\GenerateTrackSubtitlesRequest $generate_track_subtitles_request (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MuxPhp\Models\GenerateTrackSubtitlesResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function generateAssetTrackSubtitlesWithHttpInfo($asset_id, $track_id, $generate_track_subtitles_request)
+    {
+        $request = $this->generateAssetTrackSubtitlesRequest($asset_id, $track_id, $generate_track_subtitles_request);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 201:
+                    if ('\MuxPhp\Models\GenerateTrackSubtitlesResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\GenerateTrackSubtitlesResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MuxPhp\Models\GenerateTrackSubtitlesResponse';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = (string) $responseBody;
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MuxPhp\Models\GenerateTrackSubtitlesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation generateAssetTrackSubtitlesAsync
+     *
+     * Generate track subtitles
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $track_id The track ID. (required)
+     * @param  \MuxPhp\Models\GenerateTrackSubtitlesRequest $generate_track_subtitles_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function generateAssetTrackSubtitlesAsync($asset_id, $track_id, $generate_track_subtitles_request)
+    {
+        return $this->generateAssetTrackSubtitlesAsyncWithHttpInfo($asset_id, $track_id, $generate_track_subtitles_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation generateAssetTrackSubtitlesAsyncWithHttpInfo
+     *
+     * Generate track subtitles
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $track_id The track ID. (required)
+     * @param  \MuxPhp\Models\GenerateTrackSubtitlesRequest $generate_track_subtitles_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function generateAssetTrackSubtitlesAsyncWithHttpInfo($asset_id, $track_id, $generate_track_subtitles_request)
+    {
+        $returnType = '\MuxPhp\Models\GenerateTrackSubtitlesResponse';
+        $request = $this->generateAssetTrackSubtitlesRequest($asset_id, $track_id, $generate_track_subtitles_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'generateAssetTrackSubtitles'
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $track_id The track ID. (required)
+     * @param  \MuxPhp\Models\GenerateTrackSubtitlesRequest $generate_track_subtitles_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function generateAssetTrackSubtitlesRequest($asset_id, $track_id, $generate_track_subtitles_request)
+    {
+        // verify the required parameter 'asset_id' is set
+        if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $asset_id when calling generateAssetTrackSubtitles'
+            );
+        }
+        // verify the required parameter 'track_id' is set
+        if ($track_id === null || (is_array($track_id) && count($track_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $track_id when calling generateAssetTrackSubtitles'
+            );
+        }
+        // verify the required parameter 'generate_track_subtitles_request' is set
+        if ($generate_track_subtitles_request === null || (is_array($generate_track_subtitles_request) && count($generate_track_subtitles_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $generate_track_subtitles_request when calling generateAssetTrackSubtitles'
+            );
+        }
+
+        $resourcePath = '/video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}/generate-subtitles';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($asset_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'ASSET_ID' . '}',
+                ObjectSerializer::toPathValue($asset_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($track_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'TRACK_ID' . '}',
+                ObjectSerializer::toPathValue($track_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($generate_track_subtitles_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($generate_track_subtitles_request));
+            } else {
+                $httpBody = $generate_track_subtitles_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getAsset
      *
      * Retrieve an asset
@@ -2848,7 +3158,7 @@ class AssetsApi
     /**
      * Operation updateAsset
      *
-     * Update an Asset
+     * Update an asset
      *
      * @param  string $asset_id The asset ID. (required)
      * @param  \MuxPhp\Models\UpdateAssetRequest $update_asset_request update_asset_request (required)
@@ -2866,7 +3176,7 @@ class AssetsApi
     /**
      * Operation updateAssetWithHttpInfo
      *
-     * Update an Asset
+     * Update an asset
      *
      * @param  string $asset_id The asset ID. (required)
      * @param  \MuxPhp\Models\UpdateAssetRequest $update_asset_request (required)
@@ -2955,7 +3265,7 @@ class AssetsApi
     /**
      * Operation updateAssetAsync
      *
-     * Update an Asset
+     * Update an asset
      *
      * @param  string $asset_id The asset ID. (required)
      * @param  \MuxPhp\Models\UpdateAssetRequest $update_asset_request (required)
@@ -2976,7 +3286,7 @@ class AssetsApi
     /**
      * Operation updateAssetAsyncWithHttpInfo
      *
-     * Update an Asset
+     * Update an asset
      *
      * @param  string $asset_id The asset ID. (required)
      * @param  \MuxPhp\Models\UpdateAssetRequest $update_asset_request (required)

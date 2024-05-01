@@ -123,6 +123,7 @@ class MetricsApi
      * @param  string $metric_id ID of the Metric (required)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string $order_direction Sort order. (optional)
      * @param  string $group_by Time granularity to group results by. If this value is omitted, a default granularity is chosen based on the timeframe.  For timeframes of less than 90 minutes, the default granularity is &#x60;minute&#x60;. Between 90 minutes and 6 hours, the default granularity is &#x60;ten_minutes&#x60;. Between 6 hours and 15 days inclusive, the default granularity is &#x60;hour&#x60;. The granularity of timeframes that exceed 15 days is &#x60;day&#x60;. This default behavior is subject to change; it is strongly suggested that you explicitly specify the granularity. (optional)
@@ -131,9 +132,9 @@ class MetricsApi
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\GetMetricTimeseriesDataResponse
      */
-    public function getMetricTimeseriesData($metric_id, $timeframe = null, $filters = null, $measurement = null, $order_direction = null, $group_by = null)
+    public function getMetricTimeseriesData($metric_id, $timeframe = null, $filters = null, $metric_filters = null, $measurement = null, $order_direction = null, $group_by = null)
     {
-        list($response) = $this->getMetricTimeseriesDataWithHttpInfo($metric_id, $timeframe, $filters, $measurement, $order_direction, $group_by);
+        list($response) = $this->getMetricTimeseriesDataWithHttpInfo($metric_id, $timeframe, $filters, $metric_filters, $measurement, $order_direction, $group_by);
         return $response;
     }
 
@@ -145,6 +146,7 @@ class MetricsApi
      * @param  string $metric_id ID of the Metric (required)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string $order_direction Sort order. (optional)
      * @param  string $group_by Time granularity to group results by. If this value is omitted, a default granularity is chosen based on the timeframe.  For timeframes of less than 90 minutes, the default granularity is &#x60;minute&#x60;. Between 90 minutes and 6 hours, the default granularity is &#x60;ten_minutes&#x60;. Between 6 hours and 15 days inclusive, the default granularity is &#x60;hour&#x60;. The granularity of timeframes that exceed 15 days is &#x60;day&#x60;. This default behavior is subject to change; it is strongly suggested that you explicitly specify the granularity. (optional)
@@ -153,9 +155,9 @@ class MetricsApi
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\GetMetricTimeseriesDataResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getMetricTimeseriesDataWithHttpInfo($metric_id, $timeframe = null, $filters = null, $measurement = null, $order_direction = null, $group_by = null)
+    public function getMetricTimeseriesDataWithHttpInfo($metric_id, $timeframe = null, $filters = null, $metric_filters = null, $measurement = null, $order_direction = null, $group_by = null)
     {
-        $request = $this->getMetricTimeseriesDataRequest($metric_id, $timeframe, $filters, $measurement, $order_direction, $group_by);
+        $request = $this->getMetricTimeseriesDataRequest($metric_id, $timeframe, $filters, $metric_filters, $measurement, $order_direction, $group_by);
 
         try {
             $options = $this->createHttpClientOption();
@@ -238,6 +240,7 @@ class MetricsApi
      * @param  string $metric_id ID of the Metric (required)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string $order_direction Sort order. (optional)
      * @param  string $group_by Time granularity to group results by. If this value is omitted, a default granularity is chosen based on the timeframe.  For timeframes of less than 90 minutes, the default granularity is &#x60;minute&#x60;. Between 90 minutes and 6 hours, the default granularity is &#x60;ten_minutes&#x60;. Between 6 hours and 15 days inclusive, the default granularity is &#x60;hour&#x60;. The granularity of timeframes that exceed 15 days is &#x60;day&#x60;. This default behavior is subject to change; it is strongly suggested that you explicitly specify the granularity. (optional)
@@ -245,9 +248,9 @@ class MetricsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMetricTimeseriesDataAsync($metric_id, $timeframe = null, $filters = null, $measurement = null, $order_direction = null, $group_by = null)
+    public function getMetricTimeseriesDataAsync($metric_id, $timeframe = null, $filters = null, $metric_filters = null, $measurement = null, $order_direction = null, $group_by = null)
     {
-        return $this->getMetricTimeseriesDataAsyncWithHttpInfo($metric_id, $timeframe, $filters, $measurement, $order_direction, $group_by)
+        return $this->getMetricTimeseriesDataAsyncWithHttpInfo($metric_id, $timeframe, $filters, $metric_filters, $measurement, $order_direction, $group_by)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -263,6 +266,7 @@ class MetricsApi
      * @param  string $metric_id ID of the Metric (required)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string $order_direction Sort order. (optional)
      * @param  string $group_by Time granularity to group results by. If this value is omitted, a default granularity is chosen based on the timeframe.  For timeframes of less than 90 minutes, the default granularity is &#x60;minute&#x60;. Between 90 minutes and 6 hours, the default granularity is &#x60;ten_minutes&#x60;. Between 6 hours and 15 days inclusive, the default granularity is &#x60;hour&#x60;. The granularity of timeframes that exceed 15 days is &#x60;day&#x60;. This default behavior is subject to change; it is strongly suggested that you explicitly specify the granularity. (optional)
@@ -270,10 +274,10 @@ class MetricsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMetricTimeseriesDataAsyncWithHttpInfo($metric_id, $timeframe = null, $filters = null, $measurement = null, $order_direction = null, $group_by = null)
+    public function getMetricTimeseriesDataAsyncWithHttpInfo($metric_id, $timeframe = null, $filters = null, $metric_filters = null, $measurement = null, $order_direction = null, $group_by = null)
     {
         $returnType = '\MuxPhp\Models\GetMetricTimeseriesDataResponse';
-        $request = $this->getMetricTimeseriesDataRequest($metric_id, $timeframe, $filters, $measurement, $order_direction, $group_by);
+        $request = $this->getMetricTimeseriesDataRequest($metric_id, $timeframe, $filters, $metric_filters, $measurement, $order_direction, $group_by);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -315,6 +319,7 @@ class MetricsApi
      * @param  string $metric_id ID of the Metric (required)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string $order_direction Sort order. (optional)
      * @param  string $group_by Time granularity to group results by. If this value is omitted, a default granularity is chosen based on the timeframe.  For timeframes of less than 90 minutes, the default granularity is &#x60;minute&#x60;. Between 90 minutes and 6 hours, the default granularity is &#x60;ten_minutes&#x60;. Between 6 hours and 15 days inclusive, the default granularity is &#x60;hour&#x60;. The granularity of timeframes that exceed 15 days is &#x60;day&#x60;. This default behavior is subject to change; it is strongly suggested that you explicitly specify the granularity. (optional)
@@ -322,7 +327,7 @@ class MetricsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getMetricTimeseriesDataRequest($metric_id, $timeframe = null, $filters = null, $measurement = null, $order_direction = null, $group_by = null)
+    public function getMetricTimeseriesDataRequest($metric_id, $timeframe = null, $filters = null, $metric_filters = null, $measurement = null, $order_direction = null, $group_by = null)
     {
         // verify the required parameter 'metric_id' is set
         if ($metric_id === null || (is_array($metric_id) && count($metric_id) === 0)) {
@@ -358,6 +363,17 @@ class MetricsApi
             }
             else {
                 $queryParams['filters[]'] = $filters;
+            }
+        }
+        // query params
+        if ($metric_filters !== null) {
+            if('form' === 'form' && is_array($metric_filters)) {
+                foreach($metric_filters as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['metric_filters[]'] = $metric_filters;
             }
         }
         // query params
@@ -477,15 +493,16 @@ class MetricsApi
      * @param  string $metric_id ID of the Metric (required)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\GetOverallValuesResponse
      */
-    public function getOverallValues($metric_id, $timeframe = null, $filters = null, $measurement = null)
+    public function getOverallValues($metric_id, $timeframe = null, $filters = null, $metric_filters = null, $measurement = null)
     {
-        list($response) = $this->getOverallValuesWithHttpInfo($metric_id, $timeframe, $filters, $measurement);
+        list($response) = $this->getOverallValuesWithHttpInfo($metric_id, $timeframe, $filters, $metric_filters, $measurement);
         return $response;
     }
 
@@ -497,15 +514,16 @@ class MetricsApi
      * @param  string $metric_id ID of the Metric (required)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\GetOverallValuesResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getOverallValuesWithHttpInfo($metric_id, $timeframe = null, $filters = null, $measurement = null)
+    public function getOverallValuesWithHttpInfo($metric_id, $timeframe = null, $filters = null, $metric_filters = null, $measurement = null)
     {
-        $request = $this->getOverallValuesRequest($metric_id, $timeframe, $filters, $measurement);
+        $request = $this->getOverallValuesRequest($metric_id, $timeframe, $filters, $metric_filters, $measurement);
 
         try {
             $options = $this->createHttpClientOption();
@@ -588,14 +606,15 @@ class MetricsApi
      * @param  string $metric_id ID of the Metric (required)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getOverallValuesAsync($metric_id, $timeframe = null, $filters = null, $measurement = null)
+    public function getOverallValuesAsync($metric_id, $timeframe = null, $filters = null, $metric_filters = null, $measurement = null)
     {
-        return $this->getOverallValuesAsyncWithHttpInfo($metric_id, $timeframe, $filters, $measurement)
+        return $this->getOverallValuesAsyncWithHttpInfo($metric_id, $timeframe, $filters, $metric_filters, $measurement)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -611,15 +630,16 @@ class MetricsApi
      * @param  string $metric_id ID of the Metric (required)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getOverallValuesAsyncWithHttpInfo($metric_id, $timeframe = null, $filters = null, $measurement = null)
+    public function getOverallValuesAsyncWithHttpInfo($metric_id, $timeframe = null, $filters = null, $metric_filters = null, $measurement = null)
     {
         $returnType = '\MuxPhp\Models\GetOverallValuesResponse';
-        $request = $this->getOverallValuesRequest($metric_id, $timeframe, $filters, $measurement);
+        $request = $this->getOverallValuesRequest($metric_id, $timeframe, $filters, $metric_filters, $measurement);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -661,12 +681,13 @@ class MetricsApi
      * @param  string $metric_id ID of the Metric (required)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getOverallValuesRequest($metric_id, $timeframe = null, $filters = null, $measurement = null)
+    public function getOverallValuesRequest($metric_id, $timeframe = null, $filters = null, $metric_filters = null, $measurement = null)
     {
         // verify the required parameter 'metric_id' is set
         if ($metric_id === null || (is_array($metric_id) && count($metric_id) === 0)) {
@@ -702,6 +723,17 @@ class MetricsApi
             }
             else {
                 $queryParams['filters[]'] = $filters;
+            }
+        }
+        // query params
+        if ($metric_filters !== null) {
+            if('form' === 'form' && is_array($metric_filters)) {
+                foreach($metric_filters as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['metric_filters[]'] = $metric_filters;
             }
         }
         // query params
@@ -798,6 +830,7 @@ class MetricsApi
      *
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $dimension Dimension the specified value belongs to (optional)
      * @param  string $value Value to show all available metrics for (optional)
      *
@@ -805,9 +838,9 @@ class MetricsApi
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListAllMetricValuesResponse
      */
-    public function listAllMetricValues($timeframe = null, $filters = null, $dimension = null, $value = null)
+    public function listAllMetricValues($timeframe = null, $filters = null, $metric_filters = null, $dimension = null, $value = null)
     {
-        list($response) = $this->listAllMetricValuesWithHttpInfo($timeframe, $filters, $dimension, $value);
+        list($response) = $this->listAllMetricValuesWithHttpInfo($timeframe, $filters, $metric_filters, $dimension, $value);
         return $response;
     }
 
@@ -818,6 +851,7 @@ class MetricsApi
      *
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $dimension Dimension the specified value belongs to (optional)
      * @param  string $value Value to show all available metrics for (optional)
      *
@@ -825,9 +859,9 @@ class MetricsApi
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListAllMetricValuesResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listAllMetricValuesWithHttpInfo($timeframe = null, $filters = null, $dimension = null, $value = null)
+    public function listAllMetricValuesWithHttpInfo($timeframe = null, $filters = null, $metric_filters = null, $dimension = null, $value = null)
     {
-        $request = $this->listAllMetricValuesRequest($timeframe, $filters, $dimension, $value);
+        $request = $this->listAllMetricValuesRequest($timeframe, $filters, $metric_filters, $dimension, $value);
 
         try {
             $options = $this->createHttpClientOption();
@@ -909,15 +943,16 @@ class MetricsApi
      *
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $dimension Dimension the specified value belongs to (optional)
      * @param  string $value Value to show all available metrics for (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listAllMetricValuesAsync($timeframe = null, $filters = null, $dimension = null, $value = null)
+    public function listAllMetricValuesAsync($timeframe = null, $filters = null, $metric_filters = null, $dimension = null, $value = null)
     {
-        return $this->listAllMetricValuesAsyncWithHttpInfo($timeframe, $filters, $dimension, $value)
+        return $this->listAllMetricValuesAsyncWithHttpInfo($timeframe, $filters, $metric_filters, $dimension, $value)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -932,16 +967,17 @@ class MetricsApi
      *
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $dimension Dimension the specified value belongs to (optional)
      * @param  string $value Value to show all available metrics for (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listAllMetricValuesAsyncWithHttpInfo($timeframe = null, $filters = null, $dimension = null, $value = null)
+    public function listAllMetricValuesAsyncWithHttpInfo($timeframe = null, $filters = null, $metric_filters = null, $dimension = null, $value = null)
     {
         $returnType = '\MuxPhp\Models\ListAllMetricValuesResponse';
-        $request = $this->listAllMetricValuesRequest($timeframe, $filters, $dimension, $value);
+        $request = $this->listAllMetricValuesRequest($timeframe, $filters, $metric_filters, $dimension, $value);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -982,13 +1018,14 @@ class MetricsApi
      *
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  string $dimension Dimension the specified value belongs to (optional)
      * @param  string $value Value to show all available metrics for (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listAllMetricValuesRequest($timeframe = null, $filters = null, $dimension = null, $value = null)
+    public function listAllMetricValuesRequest($timeframe = null, $filters = null, $metric_filters = null, $dimension = null, $value = null)
     {
 
         $resourcePath = '/data/v1/metrics/comparison';
@@ -1018,6 +1055,17 @@ class MetricsApi
             }
             else {
                 $queryParams['filters[]'] = $filters;
+            }
+        }
+        // query params
+        if ($metric_filters !== null) {
+            if('form' === 'form' && is_array($metric_filters)) {
+                foreach($metric_filters as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['metric_filters[]'] = $metric_filters;
             }
         }
         // query params
@@ -1119,6 +1167,7 @@ class MetricsApi
      * @param  string $group_by Breakdown value to group the results by (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  string $order_by Value to order the results by (optional)
@@ -1129,9 +1178,9 @@ class MetricsApi
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListBreakdownValuesResponse
      */
-    public function listBreakdownValues($metric_id, $group_by = null, $measurement = null, $filters = null, $limit = 25, $page = 1, $order_by = null, $order_direction = null, $timeframe = null)
+    public function listBreakdownValues($metric_id, $group_by = null, $measurement = null, $filters = null, $metric_filters = null, $limit = 25, $page = 1, $order_by = null, $order_direction = null, $timeframe = null)
     {
-        list($response) = $this->listBreakdownValuesWithHttpInfo($metric_id, $group_by, $measurement, $filters, $limit, $page, $order_by, $order_direction, $timeframe);
+        list($response) = $this->listBreakdownValuesWithHttpInfo($metric_id, $group_by, $measurement, $filters, $metric_filters, $limit, $page, $order_by, $order_direction, $timeframe);
         return $response;
     }
 
@@ -1144,6 +1193,7 @@ class MetricsApi
      * @param  string $group_by Breakdown value to group the results by (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  string $order_by Value to order the results by (optional)
@@ -1154,9 +1204,9 @@ class MetricsApi
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListBreakdownValuesResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listBreakdownValuesWithHttpInfo($metric_id, $group_by = null, $measurement = null, $filters = null, $limit = 25, $page = 1, $order_by = null, $order_direction = null, $timeframe = null)
+    public function listBreakdownValuesWithHttpInfo($metric_id, $group_by = null, $measurement = null, $filters = null, $metric_filters = null, $limit = 25, $page = 1, $order_by = null, $order_direction = null, $timeframe = null)
     {
-        $request = $this->listBreakdownValuesRequest($metric_id, $group_by, $measurement, $filters, $limit, $page, $order_by, $order_direction, $timeframe);
+        $request = $this->listBreakdownValuesRequest($metric_id, $group_by, $measurement, $filters, $metric_filters, $limit, $page, $order_by, $order_direction, $timeframe);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1240,6 +1290,7 @@ class MetricsApi
      * @param  string $group_by Breakdown value to group the results by (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  string $order_by Value to order the results by (optional)
@@ -1249,9 +1300,9 @@ class MetricsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBreakdownValuesAsync($metric_id, $group_by = null, $measurement = null, $filters = null, $limit = 25, $page = 1, $order_by = null, $order_direction = null, $timeframe = null)
+    public function listBreakdownValuesAsync($metric_id, $group_by = null, $measurement = null, $filters = null, $metric_filters = null, $limit = 25, $page = 1, $order_by = null, $order_direction = null, $timeframe = null)
     {
-        return $this->listBreakdownValuesAsyncWithHttpInfo($metric_id, $group_by, $measurement, $filters, $limit, $page, $order_by, $order_direction, $timeframe)
+        return $this->listBreakdownValuesAsyncWithHttpInfo($metric_id, $group_by, $measurement, $filters, $metric_filters, $limit, $page, $order_by, $order_direction, $timeframe)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1268,6 +1319,7 @@ class MetricsApi
      * @param  string $group_by Breakdown value to group the results by (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  string $order_by Value to order the results by (optional)
@@ -1277,10 +1329,10 @@ class MetricsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBreakdownValuesAsyncWithHttpInfo($metric_id, $group_by = null, $measurement = null, $filters = null, $limit = 25, $page = 1, $order_by = null, $order_direction = null, $timeframe = null)
+    public function listBreakdownValuesAsyncWithHttpInfo($metric_id, $group_by = null, $measurement = null, $filters = null, $metric_filters = null, $limit = 25, $page = 1, $order_by = null, $order_direction = null, $timeframe = null)
     {
         $returnType = '\MuxPhp\Models\ListBreakdownValuesResponse';
-        $request = $this->listBreakdownValuesRequest($metric_id, $group_by, $measurement, $filters, $limit, $page, $order_by, $order_direction, $timeframe);
+        $request = $this->listBreakdownValuesRequest($metric_id, $group_by, $measurement, $filters, $metric_filters, $limit, $page, $order_by, $order_direction, $timeframe);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1323,6 +1375,7 @@ class MetricsApi
      * @param  string $group_by Breakdown value to group the results by (optional)
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
      * @param  string $order_by Value to order the results by (optional)
@@ -1332,7 +1385,7 @@ class MetricsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listBreakdownValuesRequest($metric_id, $group_by = null, $measurement = null, $filters = null, $limit = 25, $page = 1, $order_by = null, $order_direction = null, $timeframe = null)
+    public function listBreakdownValuesRequest($metric_id, $group_by = null, $measurement = null, $filters = null, $metric_filters = null, $limit = 25, $page = 1, $order_by = null, $order_direction = null, $timeframe = null)
     {
         // verify the required parameter 'metric_id' is set
         if ($metric_id === null || (is_array($metric_id) && count($metric_id) === 0)) {
@@ -1379,6 +1432,17 @@ class MetricsApi
             }
             else {
                 $queryParams['filters[]'] = $filters;
+            }
+        }
+        // query params
+        if ($metric_filters !== null) {
+            if('form' === 'form' && is_array($metric_filters)) {
+                foreach($metric_filters as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['metric_filters[]'] = $metric_filters;
             }
         }
         // query params
@@ -1521,14 +1585,16 @@ class MetricsApi
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string $order_direction Sort order. (optional)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListInsightsResponse
      */
-    public function listInsights($metric_id, $measurement = null, $order_direction = null, $timeframe = null)
+    public function listInsights($metric_id, $measurement = null, $order_direction = null, $timeframe = null, $filters = null, $metric_filters = null)
     {
-        list($response) = $this->listInsightsWithHttpInfo($metric_id, $measurement, $order_direction, $timeframe);
+        list($response) = $this->listInsightsWithHttpInfo($metric_id, $measurement, $order_direction, $timeframe, $filters, $metric_filters);
         return $response;
     }
 
@@ -1541,14 +1607,16 @@ class MetricsApi
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string $order_direction Sort order. (optional)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListInsightsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listInsightsWithHttpInfo($metric_id, $measurement = null, $order_direction = null, $timeframe = null)
+    public function listInsightsWithHttpInfo($metric_id, $measurement = null, $order_direction = null, $timeframe = null, $filters = null, $metric_filters = null)
     {
-        $request = $this->listInsightsRequest($metric_id, $measurement, $order_direction, $timeframe);
+        $request = $this->listInsightsRequest($metric_id, $measurement, $order_direction, $timeframe, $filters, $metric_filters);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1632,13 +1700,15 @@ class MetricsApi
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string $order_direction Sort order. (optional)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listInsightsAsync($metric_id, $measurement = null, $order_direction = null, $timeframe = null)
+    public function listInsightsAsync($metric_id, $measurement = null, $order_direction = null, $timeframe = null, $filters = null, $metric_filters = null)
     {
-        return $this->listInsightsAsyncWithHttpInfo($metric_id, $measurement, $order_direction, $timeframe)
+        return $this->listInsightsAsyncWithHttpInfo($metric_id, $measurement, $order_direction, $timeframe, $filters, $metric_filters)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1655,14 +1725,16 @@ class MetricsApi
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string $order_direction Sort order. (optional)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listInsightsAsyncWithHttpInfo($metric_id, $measurement = null, $order_direction = null, $timeframe = null)
+    public function listInsightsAsyncWithHttpInfo($metric_id, $measurement = null, $order_direction = null, $timeframe = null, $filters = null, $metric_filters = null)
     {
         $returnType = '\MuxPhp\Models\ListInsightsResponse';
-        $request = $this->listInsightsRequest($metric_id, $measurement, $order_direction, $timeframe);
+        $request = $this->listInsightsRequest($metric_id, $measurement, $order_direction, $timeframe, $filters, $metric_filters);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1705,11 +1777,13 @@ class MetricsApi
      * @param  string $measurement Measurement for the provided metric. If omitted, the default for the metric will be used. (optional)
      * @param  string $order_direction Sort order. (optional)
      * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
+     * @param  string[] $filters Limit the results to rows that match conditions from provided key:value pairs. Must be provided as an array query string parameter.  To exclude rows that match a certain condition, prepend a &#x60;!&#x60; character to the dimension.  Possible filter names are the same as returned by the List Filters endpoint.  Example:    * &#x60;filters[]&#x3D;operating_system:windows&amp;filters[]&#x3D;!country:US&#x60; (optional)
+     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listInsightsRequest($metric_id, $measurement = null, $order_direction = null, $timeframe = null)
+    public function listInsightsRequest($metric_id, $measurement = null, $order_direction = null, $timeframe = null, $filters = null, $metric_filters = null)
     {
         // verify the required parameter 'metric_id' is set
         if ($metric_id === null || (is_array($metric_id) && count($metric_id) === 0)) {
@@ -1756,6 +1830,28 @@ class MetricsApi
             }
             else {
                 $queryParams['timeframe[]'] = $timeframe;
+            }
+        }
+        // query params
+        if ($filters !== null) {
+            if('form' === 'form' && is_array($filters)) {
+                foreach($filters as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['filters[]'] = $filters;
+            }
+        }
+        // query params
+        if ($metric_filters !== null) {
+            if('form' === 'form' && is_array($metric_filters)) {
+                foreach($metric_filters as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['metric_filters[]'] = $metric_filters;
             }
         }
 

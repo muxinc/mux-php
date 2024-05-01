@@ -64,7 +64,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         'passthrough' => 'string',
         'status' => 'string',
         'stream_key' => 'string',
-        'url' => 'string'
+        'url' => 'string',
+        'error_severity' => 'string'
     ];
 
     /**
@@ -79,7 +80,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         'passthrough' => null,
         'status' => null,
         'stream_key' => null,
-        'url' => null
+        'url' => null,
+        'error_severity' => null
     ];
 
     /**
@@ -92,7 +94,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         'passthrough' => false,
         'status' => false,
         'stream_key' => false,
-        'url' => false
+        'url' => false,
+        'error_severity' => false
     ];
 
     /**
@@ -175,7 +178,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         'passthrough' => 'passthrough',
         'status' => 'status',
         'stream_key' => 'stream_key',
-        'url' => 'url'
+        'url' => 'url',
+        'error_severity' => 'error_severity'
     ];
 
     /**
@@ -188,7 +192,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         'passthrough' => 'setPassthrough',
         'status' => 'setStatus',
         'stream_key' => 'setStreamKey',
-        'url' => 'setUrl'
+        'url' => 'setUrl',
+        'error_severity' => 'setErrorSeverity'
     ];
 
     /**
@@ -201,7 +206,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         'passthrough' => 'getPassthrough',
         'status' => 'getStatus',
         'stream_key' => 'getStreamKey',
-        'url' => 'getUrl'
+        'url' => 'getUrl',
+        'error_severity' => 'getErrorSeverity'
     ];
 
     /**
@@ -249,6 +255,8 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_STARTING = 'starting';
     public const STATUS_BROADCASTING = 'broadcasting';
     public const STATUS_ERRORED = 'errored';
+    public const ERROR_SEVERITY_NORMAL = 'normal';
+    public const ERROR_SEVERITY_FATAL = 'fatal';
 
     /**
      * Gets allowable values of the enum
@@ -262,6 +270,19 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_STARTING,
             self::STATUS_BROADCASTING,
             self::STATUS_ERRORED,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getErrorSeverityAllowableValues()
+    {
+        return [
+            self::ERROR_SEVERITY_NORMAL,
+            self::ERROR_SEVERITY_FATAL,
         ];
     }
 
@@ -288,6 +309,7 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('stream_key', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('error_severity', $data ?? [], null);
     }
 
     /**
@@ -322,6 +344,15 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'status', must be one of '%s'",
                 $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getErrorSeverityAllowableValues();
+        if (!is_null($this->container['error_severity']) && !in_array($this->container['error_severity'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'error_severity', must be one of '%s'",
+                $this->container['error_severity'],
                 implode("', '", $allowedValues)
             );
         }
@@ -412,7 +443,7 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string|null $status The current status of the simulcast target. See Statuses below for detailed description.   * `idle`: Default status. When the parent live stream is in disconnected status, simulcast targets will be idle state.   * `starting`: The simulcast target transitions into this state when the parent live stream transition into connected state.   * `broadcasting`: The simulcast target has successfully connected to the third party live streaming service and is pushing video to that service.   * `errored`: The simulcast target encountered an error either while attempting to connect to the third party live streaming service, or mid-broadcasting. Compared to other errored statuses in the Mux Video API, a simulcast may transition back into the broadcasting state if a connection with the service can be re-established.
+     * @param string|null $status The current status of the simulcast target. See Statuses below for detailed description.   * `idle`: Default status. When the parent live stream is in disconnected status, simulcast targets will be idle state.   * `starting`: The simulcast target transitions into this state when the parent live stream transition into connected state.   * `broadcasting`: The simulcast target has successfully connected to the third party live streaming service and is pushing video to that service.   * `errored`: The simulcast target encountered an error either while attempting to connect to the third party live streaming service, or mid-broadcasting. When a simulcast target has this status it will have an `error_severity` field with more details about the error.
      *
      * @return self
      */
@@ -451,7 +482,7 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets stream_key
      *
-     * @param string|null $stream_key Stream Key represents an stream identifier for the third party live streaming service to simulcast the parent live stream too.
+     * @param string|null $stream_key Stream Key represents a stream identifier on the third party live streaming service to send the parent live stream to. Only used for RTMP(s) simulcast destinations.
      *
      * @return self
      */
@@ -480,7 +511,7 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets url
      *
-     * @param string|null $url RTMP hostname including the application name for the third party live streaming service.
+     * @param string|null $url The RTMP(s) or SRT endpoint for a simulcast destination. * For RTMP(s) destinations, this should include the application name for the third party live streaming service, for example: `rtmp://live.example.com/app`. * For SRT destinations, this should be a fully formed SRT connection string, for example: `srt://srt-live.example.com:1234?streamid={stream_key}&passphrase={srt_passphrase}`.  Note: SRT simulcast targets can only be used when an source is connected over SRT.
      *
      * @return self
      */
@@ -492,6 +523,45 @@ class SimulcastTarget implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets error_severity
+     *
+     * @return string|null
+     */
+    public function getErrorSeverity()
+    {
+        return $this->container['error_severity'];
+    }
+
+    /**
+     * Sets error_severity
+     *
+     * @param string|null $error_severity The severity of the error encountered by the simulcast target. This field is only set when the simulcast target is in the `errored` status. See the values of severities below and their descriptions.   * `normal`: The simulcast target encountered an error either while attempting to connect to the third party live streaming service, or mid-broadcasting. A simulcast may transition back into the broadcasting state if a connection with the service can be re-established.   * `fatal`: The simulcast target is incompatible with the current input to the parent live stream. No further attempts to this simulcast target will be made for the current live stream asset.
+     *
+     * @return self
+     */
+    public function setErrorSeverity($error_severity)
+    {
+        $allowedValues = $this->getErrorSeverityAllowableValues();
+        if (!is_null($error_severity) && !in_array($error_severity, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'error_severity', must be one of '%s'",
+                    $error_severity,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($error_severity)) {
+            throw new \InvalidArgumentException('non-nullable error_severity cannot be null');
+        }
+
+        $this->container['error_severity'] = $error_severity;
 
         return $this;
     }

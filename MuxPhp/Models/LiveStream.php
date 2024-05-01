@@ -80,7 +80,9 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'simulcast_targets' => '\MuxPhp\Models\SimulcastTarget[]',
         'latency_mode' => 'string',
         'test' => 'bool',
-        'max_continuous_duration' => 'int'
+        'max_continuous_duration' => 'int',
+        'srt_passphrase' => 'string',
+        'active_ingest_protocol' => 'string'
     ];
 
     /**
@@ -111,7 +113,9 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'simulcast_targets' => null,
         'latency_mode' => null,
         'test' => 'boolean',
-        'max_continuous_duration' => 'int32'
+        'max_continuous_duration' => 'int32',
+        'srt_passphrase' => null,
+        'active_ingest_protocol' => null
     ];
 
     /**
@@ -140,7 +144,9 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'simulcast_targets' => false,
         'latency_mode' => false,
         'test' => false,
-        'max_continuous_duration' => false
+        'max_continuous_duration' => false,
+        'srt_passphrase' => false,
+        'active_ingest_protocol' => false
     ];
 
     /**
@@ -239,7 +245,9 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'simulcast_targets' => 'simulcast_targets',
         'latency_mode' => 'latency_mode',
         'test' => 'test',
-        'max_continuous_duration' => 'max_continuous_duration'
+        'max_continuous_duration' => 'max_continuous_duration',
+        'srt_passphrase' => 'srt_passphrase',
+        'active_ingest_protocol' => 'active_ingest_protocol'
     ];
 
     /**
@@ -268,7 +276,9 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'simulcast_targets' => 'setSimulcastTargets',
         'latency_mode' => 'setLatencyMode',
         'test' => 'setTest',
-        'max_continuous_duration' => 'setMaxContinuousDuration'
+        'max_continuous_duration' => 'setMaxContinuousDuration',
+        'srt_passphrase' => 'setSrtPassphrase',
+        'active_ingest_protocol' => 'setActiveIngestProtocol'
     ];
 
     /**
@@ -297,7 +307,9 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'simulcast_targets' => 'getSimulcastTargets',
         'latency_mode' => 'getLatencyMode',
         'test' => 'getTest',
-        'max_continuous_duration' => 'getMaxContinuousDuration'
+        'max_continuous_duration' => 'getMaxContinuousDuration',
+        'srt_passphrase' => 'getSrtPassphrase',
+        'active_ingest_protocol' => 'getActiveIngestProtocol'
     ];
 
     /**
@@ -344,6 +356,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     public const LATENCY_MODE_LOW = 'low';
     public const LATENCY_MODE_REDUCED = 'reduced';
     public const LATENCY_MODE_STANDARD = 'standard';
+    public const ACTIVE_INGEST_PROTOCOL_RTMP = 'rtmp';
+    public const ACTIVE_INGEST_PROTOCOL_SRT = 'srt';
 
     /**
      * Gets allowable values of the enum
@@ -356,6 +370,19 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
             self::LATENCY_MODE_LOW,
             self::LATENCY_MODE_REDUCED,
             self::LATENCY_MODE_STANDARD,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getActiveIngestProtocolAllowableValues()
+    {
+        return [
+            self::ACTIVE_INGEST_PROTOCOL_RTMP,
+            self::ACTIVE_INGEST_PROTOCOL_SRT,
         ];
     }
 
@@ -398,6 +425,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('latency_mode', $data ?? [], null);
         $this->setIfExists('test', $data ?? [], null);
         $this->setIfExists('max_continuous_duration', $data ?? [], 43200);
+        $this->setIfExists('srt_passphrase', $data ?? [], null);
+        $this->setIfExists('active_ingest_protocol', $data ?? [], null);
     }
 
     /**
@@ -450,6 +479,15 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['max_continuous_duration']) && ($this->container['max_continuous_duration'] < 60)) {
             $invalidProperties[] = "invalid value for 'max_continuous_duration', must be bigger than or equal to 60.";
+        }
+
+        $allowedValues = $this->getActiveIngestProtocolAllowableValues();
+        if (!is_null($this->container['active_ingest_protocol']) && !in_array($this->container['active_ingest_protocol'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'active_ingest_protocol', must be one of '%s'",
+                $this->container['active_ingest_protocol'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -1102,6 +1140,74 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['max_continuous_duration'] = $max_continuous_duration;
+
+        return $this;
+    }
+
+    /**
+     * Gets srt_passphrase
+     *
+     * @return string|null
+     */
+    public function getSrtPassphrase()
+    {
+        return $this->container['srt_passphrase'];
+    }
+
+    /**
+     * Sets srt_passphrase
+     *
+     * @param string|null $srt_passphrase Unique key used for encrypting a stream to a Mux SRT endpoint.
+     *
+     * @return self
+     */
+    public function setSrtPassphrase($srt_passphrase)
+    {
+
+        if (is_null($srt_passphrase)) {
+            throw new \InvalidArgumentException('non-nullable srt_passphrase cannot be null');
+        }
+
+        $this->container['srt_passphrase'] = $srt_passphrase;
+
+        return $this;
+    }
+
+    /**
+     * Gets active_ingest_protocol
+     *
+     * @return string|null
+     */
+    public function getActiveIngestProtocol()
+    {
+        return $this->container['active_ingest_protocol'];
+    }
+
+    /**
+     * Sets active_ingest_protocol
+     *
+     * @param string|null $active_ingest_protocol The protocol used for the active ingest stream. This is only set when the live stream is active.
+     *
+     * @return self
+     */
+    public function setActiveIngestProtocol($active_ingest_protocol)
+    {
+        $allowedValues = $this->getActiveIngestProtocolAllowableValues();
+        if (!is_null($active_ingest_protocol) && !in_array($active_ingest_protocol, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'active_ingest_protocol', must be one of '%s'",
+                    $active_ingest_protocol,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($active_ingest_protocol)) {
+            throw new \InvalidArgumentException('non-nullable active_ingest_protocol cannot be null');
+        }
+
+        $this->container['active_ingest_protocol'] = $active_ingest_protocol;
 
         return $this;
     }

@@ -62,7 +62,8 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
     protected static $openAPITypes = [
         'value' => 'string',
         'metric_value' => 'double',
-        'concurrent_viewers' => 'int'
+        'concurrent_viewers' => 'int',
+        'starting_up_viewers' => 'int'
     ];
 
     /**
@@ -75,7 +76,8 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
     protected static $openAPIFormats = [
         'value' => null,
         'metric_value' => 'double',
-        'concurrent_viewers' => 'int64'
+        'concurrent_viewers' => 'int64',
+        'starting_up_viewers' => 'int64'
     ];
 
     /**
@@ -86,7 +88,8 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
     protected static array $openAPINullables = [
         'value' => true,
         'metric_value' => true,
-        'concurrent_viewers' => false
+        'concurrent_viewers' => false,
+        'starting_up_viewers' => false
     ];
 
     /**
@@ -167,7 +170,8 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
     protected static $attributeMap = [
         'value' => 'value',
         'metric_value' => 'metric_value',
-        'concurrent_viewers' => 'concurrent_viewers'
+        'concurrent_viewers' => 'concurrent_viewers',
+        'starting_up_viewers' => 'starting_up_viewers'
     ];
 
     /**
@@ -178,7 +182,8 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
     protected static $setters = [
         'value' => 'setValue',
         'metric_value' => 'setMetricValue',
-        'concurrent_viewers' => 'setConcurrentViewers'
+        'concurrent_viewers' => 'setConcurrentViewers',
+        'starting_up_viewers' => 'setStartingUpViewers'
     ];
 
     /**
@@ -189,7 +194,8 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
     protected static $getters = [
         'value' => 'getValue',
         'metric_value' => 'getMetricValue',
-        'concurrent_viewers' => 'getConcurrentViewers'
+        'concurrent_viewers' => 'getConcurrentViewers',
+        'starting_up_viewers' => 'getStartingUpViewers'
     ];
 
     /**
@@ -255,6 +261,7 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
         $this->setIfExists('value', $data ?? [], null);
         $this->setIfExists('metric_value', $data ?? [], null);
         $this->setIfExists('concurrent_viewers', $data ?? [], null);
+        $this->setIfExists('starting_up_viewers', $data ?? [], null);
     }
 
     /**
@@ -396,6 +403,35 @@ class MonitoringBreakdownTimeseriesDatapoint implements ModelInterface, ArrayAcc
         }
 
         $this->container['concurrent_viewers'] = $concurrent_viewers;
+
+        return $this;
+    }
+
+    /**
+     * Gets starting_up_viewers
+     *
+     * @return int|null
+     */
+    public function getStartingUpViewers()
+    {
+        return $this->container['starting_up_viewers'];
+    }
+
+    /**
+     * Sets starting_up_viewers
+     *
+     * @param int|null $starting_up_viewers starting_up_viewers
+     *
+     * @return self
+     */
+    public function setStartingUpViewers($starting_up_viewers)
+    {
+
+        if (is_null($starting_up_viewers)) {
+            throw new \InvalidArgumentException('non-nullable starting_up_viewers cannot be null');
+        }
+
+        $this->container['starting_up_viewers'] = $starting_up_viewers;
 
         return $this;
     }

@@ -74,7 +74,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'string',
         'closed_captions' => 'bool',
         'passthrough' => 'string',
-        'status' => 'string'
+        'status' => 'string',
+        'primary' => 'bool'
     ];
 
     /**
@@ -99,7 +100,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => null,
         'closed_captions' => null,
         'passthrough' => null,
-        'status' => null
+        'status' => null,
+        'primary' => null
     ];
 
     /**
@@ -122,7 +124,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => false,
         'closed_captions' => false,
         'passthrough' => false,
-        'status' => false
+        'status' => false,
+        'primary' => false
     ];
 
     /**
@@ -215,7 +218,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'name',
         'closed_captions' => 'closed_captions',
         'passthrough' => 'passthrough',
-        'status' => 'status'
+        'status' => 'status',
+        'primary' => 'primary'
     ];
 
     /**
@@ -238,7 +242,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'setName',
         'closed_captions' => 'setClosedCaptions',
         'passthrough' => 'setPassthrough',
-        'status' => 'setStatus'
+        'status' => 'setStatus',
+        'primary' => 'setPrimary'
     ];
 
     /**
@@ -261,7 +266,8 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'getName',
         'closed_captions' => 'getClosedCaptions',
         'passthrough' => 'getPassthrough',
-        'status' => 'getStatus'
+        'status' => 'getStatus',
+        'primary' => 'getPrimary'
     ];
 
     /**
@@ -409,6 +415,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('closed_captions', $data ?? [], null);
         $this->setIfExists('passthrough', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('primary', $data ?? [], null);
     }
 
     /**
@@ -962,6 +969,35 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets primary
+     *
+     * @return bool|null
+     */
+    public function getPrimary()
+    {
+        return $this->container['primary'];
+    }
+
+    /**
+     * Sets primary
+     *
+     * @param bool|null $primary For an audio track, indicates that this is the primary audio track, ingested from the main input for this asset. The primary audio track cannot be deleted.
+     *
+     * @return self
+     */
+    public function setPrimary($primary)
+    {
+
+        if (is_null($primary)) {
+            throw new \InvalidArgumentException('non-nullable primary cannot be null');
+        }
+
+        $this->container['primary'] = $primary;
 
         return $this;
     }

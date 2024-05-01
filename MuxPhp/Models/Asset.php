@@ -86,7 +86,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'static_renditions' => '\MuxPhp\Models\AssetStaticRenditions',
         'recording_times' => '\MuxPhp\Models\AssetRecordingTimes[]',
         'non_standard_input_reasons' => '\MuxPhp\Models\AssetNonStandardInputReasons',
-        'test' => 'bool'
+        'test' => 'bool',
+        'ingest_type' => 'string'
     ];
 
     /**
@@ -123,7 +124,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'static_renditions' => null,
         'recording_times' => null,
         'non_standard_input_reasons' => null,
-        'test' => 'boolean'
+        'test' => 'boolean',
+        'ingest_type' => null
     ];
 
     /**
@@ -158,7 +160,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'static_renditions' => false,
         'recording_times' => false,
         'non_standard_input_reasons' => false,
-        'test' => false
+        'test' => false,
+        'ingest_type' => false
     ];
 
     /**
@@ -263,7 +266,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'static_renditions' => 'static_renditions',
         'recording_times' => 'recording_times',
         'non_standard_input_reasons' => 'non_standard_input_reasons',
-        'test' => 'test'
+        'test' => 'test',
+        'ingest_type' => 'ingest_type'
     ];
 
     /**
@@ -298,7 +302,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'static_renditions' => 'setStaticRenditions',
         'recording_times' => 'setRecordingTimes',
         'non_standard_input_reasons' => 'setNonStandardInputReasons',
-        'test' => 'setTest'
+        'test' => 'setTest',
+        'ingest_type' => 'setIngestType'
     ];
 
     /**
@@ -333,7 +338,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'static_renditions' => 'getStaticRenditions',
         'recording_times' => 'getRecordingTimes',
         'non_standard_input_reasons' => 'getNonStandardInputReasons',
-        'test' => 'getTest'
+        'test' => 'getTest',
+        'ingest_type' => 'getIngestType'
     ];
 
     /**
@@ -399,6 +405,14 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const MASTER_ACCESS_NONE = 'none';
     public const MP4_SUPPORT_STANDARD = 'standard';
     public const MP4_SUPPORT_NONE = 'none';
+    public const MP4_SUPPORT_CAPPED_1080P = 'capped-1080p';
+    public const MP4_SUPPORT_AUDIO_ONLY = 'audio-only';
+    public const MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P = 'audio-only,capped-1080p';
+    public const INGEST_TYPE_ON_DEMAND_URL = 'on_demand_url';
+    public const INGEST_TYPE_ON_DEMAND_DIRECT_UPLOAD = 'on_demand_direct_upload';
+    public const INGEST_TYPE_ON_DEMAND_CLIP = 'on_demand_clip';
+    public const INGEST_TYPE_LIVE_RTMP = 'live_rtmp';
+    public const INGEST_TYPE_LIVE_SRT = 'live_srt';
 
     /**
      * Gets allowable values of the enum
@@ -496,6 +510,25 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::MP4_SUPPORT_STANDARD,
             self::MP4_SUPPORT_NONE,
+            self::MP4_SUPPORT_CAPPED_1080P,
+            self::MP4_SUPPORT_AUDIO_ONLY,
+            self::MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getIngestTypeAllowableValues()
+    {
+        return [
+            self::INGEST_TYPE_ON_DEMAND_URL,
+            self::INGEST_TYPE_ON_DEMAND_DIRECT_UPLOAD,
+            self::INGEST_TYPE_ON_DEMAND_CLIP,
+            self::INGEST_TYPE_LIVE_RTMP,
+            self::INGEST_TYPE_LIVE_SRT,
         ];
     }
 
@@ -544,6 +577,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('recording_times', $data ?? [], null);
         $this->setIfExists('non_standard_input_reasons', $data ?? [], null);
         $this->setIfExists('test', $data ?? [], null);
+        $this->setIfExists('ingest_type', $data ?? [], null);
     }
 
     /**
@@ -632,6 +666,15 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'mp4_support', must be one of '%s'",
                 $this->container['mp4_support'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getIngestTypeAllowableValues();
+        if (!is_null($this->container['ingest_type']) && !in_array($this->container['ingest_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'ingest_type', must be one of '%s'",
+                $this->container['ingest_type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -1504,6 +1547,45 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['test'] = $test;
+
+        return $this;
+    }
+
+    /**
+     * Gets ingest_type
+     *
+     * @return string|null
+     */
+    public function getIngestType()
+    {
+        return $this->container['ingest_type'];
+    }
+
+    /**
+     * Sets ingest_type
+     *
+     * @param string|null $ingest_type The type of ingest used to create the asset.
+     *
+     * @return self
+     */
+    public function setIngestType($ingest_type)
+    {
+        $allowedValues = $this->getIngestTypeAllowableValues();
+        if (!is_null($ingest_type) && !in_array($ingest_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'ingest_type', must be one of '%s'",
+                    $ingest_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($ingest_type)) {
+            throw new \InvalidArgumentException('non-nullable ingest_type cannot be null');
+        }
+
+        $this->container['ingest_type'] = $ingest_type;
 
         return $this;
     }

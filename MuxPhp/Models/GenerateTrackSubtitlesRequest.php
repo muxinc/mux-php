@@ -1,6 +1,6 @@
 <?php
 /**
- * AssetGeneratedSubtitleSettings
+ * GenerateTrackSubtitlesRequest
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * AssetGeneratedSubtitleSettings Class Doc Comment
+ * GenerateTrackSubtitlesRequest Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenerateTrackSubtitlesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AssetGeneratedSubtitleSettings';
+    protected static $openAPIModelName = 'GenerateTrackSubtitlesRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,7 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'passthrough' => 'string',
-        'language_code' => 'string'
+        'generated_subtitles' => '\MuxPhp\Models\AssetGeneratedSubtitleSettings[]'
     ];
 
     /**
@@ -73,9 +71,7 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'passthrough' => null,
-        'language_code' => null
+        'generated_subtitles' => null
     ];
 
     /**
@@ -84,9 +80,7 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => false,
-        'passthrough' => false,
-        'language_code' => false
+        'generated_subtitles' => false
     ];
 
     /**
@@ -165,9 +159,7 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'passthrough' => 'passthrough',
-        'language_code' => 'language_code'
+        'generated_subtitles' => 'generated_subtitles'
     ];
 
     /**
@@ -176,9 +168,7 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'passthrough' => 'setPassthrough',
-        'language_code' => 'setLanguageCode'
+        'generated_subtitles' => 'setGeneratedSubtitles'
     ];
 
     /**
@@ -187,9 +177,7 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'passthrough' => 'getPassthrough',
-        'language_code' => 'getLanguageCode'
+        'generated_subtitles' => 'getGeneratedSubtitles'
     ];
 
     /**
@@ -233,61 +221,6 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
         return self::$openAPIModelName;
     }
 
-    public const LANGUAGE_CODE_EN = 'en';
-    public const LANGUAGE_CODE_ES = 'es';
-    public const LANGUAGE_CODE_IT = 'it';
-    public const LANGUAGE_CODE_PT = 'pt';
-    public const LANGUAGE_CODE_DE = 'de';
-    public const LANGUAGE_CODE_FR = 'fr';
-    public const LANGUAGE_CODE_PL = 'pl';
-    public const LANGUAGE_CODE_RU = 'ru';
-    public const LANGUAGE_CODE_NL = 'nl';
-    public const LANGUAGE_CODE_CA = 'ca';
-    public const LANGUAGE_CODE_TR = 'tr';
-    public const LANGUAGE_CODE_SV = 'sv';
-    public const LANGUAGE_CODE_UK = 'uk';
-    public const LANGUAGE_CODE_NO = 'no';
-    public const LANGUAGE_CODE_FI = 'fi';
-    public const LANGUAGE_CODE_SK = 'sk';
-    public const LANGUAGE_CODE_EL = 'el';
-    public const LANGUAGE_CODE_CS = 'cs';
-    public const LANGUAGE_CODE_HR = 'hr';
-    public const LANGUAGE_CODE_DA = 'da';
-    public const LANGUAGE_CODE_RO = 'ro';
-    public const LANGUAGE_CODE_BG = 'bg';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getLanguageCodeAllowableValues()
-    {
-        return [
-            self::LANGUAGE_CODE_EN,
-            self::LANGUAGE_CODE_ES,
-            self::LANGUAGE_CODE_IT,
-            self::LANGUAGE_CODE_PT,
-            self::LANGUAGE_CODE_DE,
-            self::LANGUAGE_CODE_FR,
-            self::LANGUAGE_CODE_PL,
-            self::LANGUAGE_CODE_RU,
-            self::LANGUAGE_CODE_NL,
-            self::LANGUAGE_CODE_CA,
-            self::LANGUAGE_CODE_TR,
-            self::LANGUAGE_CODE_SV,
-            self::LANGUAGE_CODE_UK,
-            self::LANGUAGE_CODE_NO,
-            self::LANGUAGE_CODE_FI,
-            self::LANGUAGE_CODE_SK,
-            self::LANGUAGE_CODE_EL,
-            self::LANGUAGE_CODE_CS,
-            self::LANGUAGE_CODE_HR,
-            self::LANGUAGE_CODE_DA,
-            self::LANGUAGE_CODE_RO,
-            self::LANGUAGE_CODE_BG,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -307,9 +240,7 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('passthrough', $data ?? [], null);
-        $this->setIfExists('language_code', $data ?? [], self::LANGUAGE_CODE_EN);
+        $this->setIfExists('generated_subtitles', $data ?? [], null);
     }
 
     /**
@@ -339,15 +270,6 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getLanguageCodeAllowableValues();
-        if (!is_null($this->container['language_code']) && !in_array($this->container['language_code'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'language_code', must be one of '%s'",
-                $this->container['language_code'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -364,98 +286,30 @@ class AssetGeneratedSubtitleSettings implements ModelInterface, ArrayAccess, \Js
 
 
     /**
-     * Gets name
+     * Gets generated_subtitles
      *
-     * @return string|null
+     * @return \MuxPhp\Models\AssetGeneratedSubtitleSettings[]|null
      */
-    public function getName()
+    public function getGeneratedSubtitles()
     {
-        return $this->container['name'];
+        return $this->container['generated_subtitles'];
     }
 
     /**
-     * Sets name
+     * Sets generated_subtitles
      *
-     * @param string|null $name A name for this subtitle track.
+     * @param \MuxPhp\Models\AssetGeneratedSubtitleSettings[]|null $generated_subtitles Generate subtitle tracks using automatic speech recognition with this configuration.
      *
      * @return self
      */
-    public function setName($name)
+    public function setGeneratedSubtitles($generated_subtitles)
     {
 
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($generated_subtitles)) {
+            throw new \InvalidArgumentException('non-nullable generated_subtitles cannot be null');
         }
 
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets passthrough
-     *
-     * @return string|null
-     */
-    public function getPassthrough()
-    {
-        return $this->container['passthrough'];
-    }
-
-    /**
-     * Sets passthrough
-     *
-     * @param string|null $passthrough Arbitrary metadata set for the subtitle track. Max 255 characters.
-     *
-     * @return self
-     */
-    public function setPassthrough($passthrough)
-    {
-
-        if (is_null($passthrough)) {
-            throw new \InvalidArgumentException('non-nullable passthrough cannot be null');
-        }
-
-        $this->container['passthrough'] = $passthrough;
-
-        return $this;
-    }
-
-    /**
-     * Gets language_code
-     *
-     * @return string|null
-     */
-    public function getLanguageCode()
-    {
-        return $this->container['language_code'];
-    }
-
-    /**
-     * Sets language_code
-     *
-     * @param string|null $language_code The language to generate subtitles in.
-     *
-     * @return self
-     */
-    public function setLanguageCode($language_code)
-    {
-        $allowedValues = $this->getLanguageCodeAllowableValues();
-        if (!is_null($language_code) && !in_array($language_code, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'language_code', must be one of '%s'",
-                    $language_code,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-
-        if (is_null($language_code)) {
-            throw new \InvalidArgumentException('non-nullable language_code cannot be null');
-        }
-
-        $this->container['language_code'] = $language_code;
+        $this->container['generated_subtitles'] = $generated_subtitles;
 
         return $this;
     }

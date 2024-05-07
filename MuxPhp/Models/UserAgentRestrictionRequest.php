@@ -1,6 +1,6 @@
 <?php
 /**
- * CreatePlaybackRestrictionRequest
+ * UserAgentRestrictionRequest
  *
  * PHP version 7.2
  *
@@ -33,9 +33,10 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * CreatePlaybackRestrictionRequest Class Doc Comment
+ * UserAgentRestrictionRequest Class Doc Comment
  *
  * @category Class
+ * @description Rules that control what user agents are allowed to play your videos. Please see [Using User-Agent HTTP header for validation](https://docs.mux.com/guides/secure-video-playback#using-user-agent-http-header-for-validation) for more details on this feature.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
@@ -43,7 +44,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class UserAgentRestrictionRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +53,7 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CreatePlaybackRestrictionRequest';
+    protected static $openAPIModelName = 'UserAgentRestrictionRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +61,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'referrer' => '\MuxPhp\Models\ReferrerDomainRestriction',
-        'user_agent' => '\MuxPhp\Models\UserAgentRestrictionRequest'
+        'allow_no_user_agent' => 'bool',
+        'allow_high_risk_user_agent' => 'bool'
     ];
 
     /**
@@ -72,8 +73,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'referrer' => null,
-        'user_agent' => null
+        'allow_no_user_agent' => null,
+        'allow_high_risk_user_agent' => null
     ];
 
     /**
@@ -82,8 +83,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'referrer' => false,
-        'user_agent' => false
+        'allow_no_user_agent' => false,
+        'allow_high_risk_user_agent' => false
     ];
 
     /**
@@ -162,8 +163,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $attributeMap = [
-        'referrer' => 'referrer',
-        'user_agent' => 'user_agent'
+        'allow_no_user_agent' => 'allow_no_user_agent',
+        'allow_high_risk_user_agent' => 'allow_high_risk_user_agent'
     ];
 
     /**
@@ -172,8 +173,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $setters = [
-        'referrer' => 'setReferrer',
-        'user_agent' => 'setUserAgent'
+        'allow_no_user_agent' => 'setAllowNoUserAgent',
+        'allow_high_risk_user_agent' => 'setAllowHighRiskUserAgent'
     ];
 
     /**
@@ -182,8 +183,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $getters = [
-        'referrer' => 'getReferrer',
-        'user_agent' => 'getUserAgent'
+        'allow_no_user_agent' => 'getAllowNoUserAgent',
+        'allow_high_risk_user_agent' => 'getAllowHighRiskUserAgent'
     ];
 
     /**
@@ -246,8 +247,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('referrer', $data ?? [], null);
-        $this->setIfExists('user_agent', $data ?? [], null);
+        $this->setIfExists('allow_no_user_agent', $data ?? [], true);
+        $this->setIfExists('allow_high_risk_user_agent', $data ?? [], true);
     }
 
     /**
@@ -293,59 +294,59 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
 
 
     /**
-     * Gets referrer
+     * Gets allow_no_user_agent
      *
-     * @return \MuxPhp\Models\ReferrerDomainRestriction|null
+     * @return bool|null
      */
-    public function getReferrer()
+    public function getAllowNoUserAgent()
     {
-        return $this->container['referrer'];
+        return $this->container['allow_no_user_agent'];
     }
 
     /**
-     * Sets referrer
+     * Sets allow_no_user_agent
      *
-     * @param \MuxPhp\Models\ReferrerDomainRestriction|null $referrer referrer
+     * @param bool|null $allow_no_user_agent Whether or not to allow views without a `User-Agent` HTTP request header.
      *
      * @return self
      */
-    public function setReferrer($referrer)
+    public function setAllowNoUserAgent($allow_no_user_agent)
     {
 
-        if (is_null($referrer)) {
-            throw new \InvalidArgumentException('non-nullable referrer cannot be null');
+        if (is_null($allow_no_user_agent)) {
+            throw new \InvalidArgumentException('non-nullable allow_no_user_agent cannot be null');
         }
 
-        $this->container['referrer'] = $referrer;
+        $this->container['allow_no_user_agent'] = $allow_no_user_agent;
 
         return $this;
     }
 
     /**
-     * Gets user_agent
+     * Gets allow_high_risk_user_agent
      *
-     * @return \MuxPhp\Models\UserAgentRestrictionRequest|null
+     * @return bool|null
      */
-    public function getUserAgent()
+    public function getAllowHighRiskUserAgent()
     {
-        return $this->container['user_agent'];
+        return $this->container['allow_high_risk_user_agent'];
     }
 
     /**
-     * Sets user_agent
+     * Sets allow_high_risk_user_agent
      *
-     * @param \MuxPhp\Models\UserAgentRestrictionRequest|null $user_agent user_agent
+     * @param bool|null $allow_high_risk_user_agent Whether or not to allow high risk user agents. The high risk user agents are defined by Mux.
      *
      * @return self
      */
-    public function setUserAgent($user_agent)
+    public function setAllowHighRiskUserAgent($allow_high_risk_user_agent)
     {
 
-        if (is_null($user_agent)) {
-            throw new \InvalidArgumentException('non-nullable user_agent cannot be null');
+        if (is_null($allow_high_risk_user_agent)) {
+            throw new \InvalidArgumentException('non-nullable allow_high_risk_user_agent cannot be null');
         }
 
-        $this->container['user_agent'] = $user_agent;
+        $this->container['allow_high_risk_user_agent'] = $allow_high_risk_user_agent;
 
         return $this;
     }

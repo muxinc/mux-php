@@ -65,7 +65,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'reconnect_window' => 'float',
         'use_slate_for_standard_latency' => 'bool',
         'reconnect_slate_url' => 'string',
-        'max_continuous_duration' => 'int'
+        'max_continuous_duration' => 'int',
+        'new_asset_settings' => '\MuxPhp\Models\UpdateLiveStreamNewAssetSettings'
     ];
 
     /**
@@ -81,7 +82,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'reconnect_window' => 'float',
         'use_slate_for_standard_latency' => 'boolean',
         'reconnect_slate_url' => null,
-        'max_continuous_duration' => 'int32'
+        'max_continuous_duration' => 'int32',
+        'new_asset_settings' => null
     ];
 
     /**
@@ -95,7 +97,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'reconnect_window' => false,
         'use_slate_for_standard_latency' => false,
         'reconnect_slate_url' => false,
-        'max_continuous_duration' => false
+        'max_continuous_duration' => false,
+        'new_asset_settings' => false
     ];
 
     /**
@@ -179,7 +182,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'reconnect_window' => 'reconnect_window',
         'use_slate_for_standard_latency' => 'use_slate_for_standard_latency',
         'reconnect_slate_url' => 'reconnect_slate_url',
-        'max_continuous_duration' => 'max_continuous_duration'
+        'max_continuous_duration' => 'max_continuous_duration',
+        'new_asset_settings' => 'new_asset_settings'
     ];
 
     /**
@@ -193,7 +197,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'reconnect_window' => 'setReconnectWindow',
         'use_slate_for_standard_latency' => 'setUseSlateForStandardLatency',
         'reconnect_slate_url' => 'setReconnectSlateUrl',
-        'max_continuous_duration' => 'setMaxContinuousDuration'
+        'max_continuous_duration' => 'setMaxContinuousDuration',
+        'new_asset_settings' => 'setNewAssetSettings'
     ];
 
     /**
@@ -207,7 +212,8 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'reconnect_window' => 'getReconnectWindow',
         'use_slate_for_standard_latency' => 'getUseSlateForStandardLatency',
         'reconnect_slate_url' => 'getReconnectSlateUrl',
-        'max_continuous_duration' => 'getMaxContinuousDuration'
+        'max_continuous_duration' => 'getMaxContinuousDuration',
+        'new_asset_settings' => 'getNewAssetSettings'
     ];
 
     /**
@@ -293,6 +299,7 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('use_slate_for_standard_latency', $data ?? [], false);
         $this->setIfExists('reconnect_slate_url', $data ?? [], null);
         $this->setIfExists('max_continuous_duration', $data ?? [], 43200);
+        $this->setIfExists('new_asset_settings', $data ?? [], null);
     }
 
     /**
@@ -558,6 +565,35 @@ class UpdateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         }
 
         $this->container['max_continuous_duration'] = $max_continuous_duration;
+
+        return $this;
+    }
+
+    /**
+     * Gets new_asset_settings
+     *
+     * @return \MuxPhp\Models\UpdateLiveStreamNewAssetSettings|null
+     */
+    public function getNewAssetSettings()
+    {
+        return $this->container['new_asset_settings'];
+    }
+
+    /**
+     * Sets new_asset_settings
+     *
+     * @param \MuxPhp\Models\UpdateLiveStreamNewAssetSettings|null $new_asset_settings new_asset_settings
+     *
+     * @return self
+     */
+    public function setNewAssetSettings($new_asset_settings)
+    {
+
+        if (is_null($new_asset_settings)) {
+            throw new \InvalidArgumentException('non-nullable new_asset_settings cannot be null');
+        }
+
+        $this->container['new_asset_settings'] = $new_asset_settings;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * CreatePlaybackRestrictionRequest
+ * UpdateLiveStreamNewAssetSettings
  *
  * PHP version 7.2
  *
@@ -33,9 +33,10 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * CreatePlaybackRestrictionRequest Class Doc Comment
+ * UpdateLiveStreamNewAssetSettings Class Doc Comment
  *
  * @category Class
+ * @description Updates the new asset settings to use to generate a new asset for this live stream. Only the &#x60;mp4_support&#x60; setting may be updated.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
@@ -43,7 +44,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +53,7 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CreatePlaybackRestrictionRequest';
+    protected static $openAPIModelName = 'UpdateLiveStreamNewAssetSettings';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +61,7 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'referrer' => '\MuxPhp\Models\ReferrerDomainRestriction',
-        'user_agent' => '\MuxPhp\Models\UserAgentRestrictionRequest'
+        'mp4_support' => 'string'
     ];
 
     /**
@@ -72,8 +72,7 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'referrer' => null,
-        'user_agent' => null
+        'mp4_support' => null
     ];
 
     /**
@@ -82,8 +81,7 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'referrer' => false,
-        'user_agent' => false
+        'mp4_support' => false
     ];
 
     /**
@@ -162,8 +160,7 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $attributeMap = [
-        'referrer' => 'referrer',
-        'user_agent' => 'user_agent'
+        'mp4_support' => 'mp4_support'
     ];
 
     /**
@@ -172,8 +169,7 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $setters = [
-        'referrer' => 'setReferrer',
-        'user_agent' => 'setUserAgent'
+        'mp4_support' => 'setMp4Support'
     ];
 
     /**
@@ -182,8 +178,7 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $getters = [
-        'referrer' => 'getReferrer',
-        'user_agent' => 'getUserAgent'
+        'mp4_support' => 'getMp4Support'
     ];
 
     /**
@@ -227,6 +222,27 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
         return self::$openAPIModelName;
     }
 
+    public const MP4_SUPPORT_NONE = 'none';
+    public const MP4_SUPPORT_STANDARD = 'standard';
+    public const MP4_SUPPORT_CAPPED_1080P = 'capped-1080p';
+    public const MP4_SUPPORT_AUDIO_ONLY = 'audio-only';
+    public const MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P = 'audio-only,capped-1080p';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getMp4SupportAllowableValues()
+    {
+        return [
+            self::MP4_SUPPORT_NONE,
+            self::MP4_SUPPORT_STANDARD,
+            self::MP4_SUPPORT_CAPPED_1080P,
+            self::MP4_SUPPORT_AUDIO_ONLY,
+            self::MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -246,8 +262,7 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('referrer', $data ?? [], null);
-        $this->setIfExists('user_agent', $data ?? [], null);
+        $this->setIfExists('mp4_support', $data ?? [], null);
     }
 
     /**
@@ -277,6 +292,15 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getMp4SupportAllowableValues();
+        if (!is_null($this->container['mp4_support']) && !in_array($this->container['mp4_support'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'mp4_support', must be one of '%s'",
+                $this->container['mp4_support'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -293,59 +317,40 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
 
 
     /**
-     * Gets referrer
+     * Gets mp4_support
      *
-     * @return \MuxPhp\Models\ReferrerDomainRestriction|null
+     * @return string|null
      */
-    public function getReferrer()
+    public function getMp4Support()
     {
-        return $this->container['referrer'];
+        return $this->container['mp4_support'];
     }
 
     /**
-     * Sets referrer
+     * Sets mp4_support
      *
-     * @param \MuxPhp\Models\ReferrerDomainRestriction|null $referrer referrer
+     * @param string|null $mp4_support Specify what level of support for mp4 playback should be added to new assets generated from this live stream. * The `none` option disables MP4 support for new assets. MP4 files will not be produced for an asset generated from this live stream. * The `capped-1080p` option produces a single MP4 file, called `capped-1080p.mp4`, with the video resolution capped at 1080p. This option produces an `audio.m4a` file for an audio-only asset. * The `audio-only` option produces a single M4A file, called `audio.m4a` for a video or an audio-only asset. MP4 generation will error when this option is specified for a video-only asset. * The `audio-only,capped-1080p` option produces both the `audio.m4a` and `capped-1080p.mp4` files. Only the `capped-1080p.mp4` file is produced for a video-only asset, while only the `audio.m4a` file is produced for an audio-only asset. * The `standard`(deprecated) option produces up to three MP4 files with different levels of resolution (`high.mp4`, `medium.mp4`, `low.mp4`, or `audio.m4a` for an audio-only asset).
      *
      * @return self
      */
-    public function setReferrer($referrer)
+    public function setMp4Support($mp4_support)
     {
-
-        if (is_null($referrer)) {
-            throw new \InvalidArgumentException('non-nullable referrer cannot be null');
+        $allowedValues = $this->getMp4SupportAllowableValues();
+        if (!is_null($mp4_support) && !in_array($mp4_support, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'mp4_support', must be one of '%s'",
+                    $mp4_support,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
 
-        $this->container['referrer'] = $referrer;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_agent
-     *
-     * @return \MuxPhp\Models\UserAgentRestrictionRequest|null
-     */
-    public function getUserAgent()
-    {
-        return $this->container['user_agent'];
-    }
-
-    /**
-     * Sets user_agent
-     *
-     * @param \MuxPhp\Models\UserAgentRestrictionRequest|null $user_agent user_agent
-     *
-     * @return self
-     */
-    public function setUserAgent($user_agent)
-    {
-
-        if (is_null($user_agent)) {
-            throw new \InvalidArgumentException('non-nullable user_agent cannot be null');
+        if (is_null($mp4_support)) {
+            throw new \InvalidArgumentException('non-nullable mp4_support cannot be null');
         }
 
-        $this->container['user_agent'] = $user_agent;
+        $this->container['mp4_support'] = $mp4_support;
 
         return $this;
     }

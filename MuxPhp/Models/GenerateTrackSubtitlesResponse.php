@@ -60,7 +60,7 @@ class GenerateTrackSubtitlesResponse implements ModelInterface, ArrayAccess, \Js
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\MuxPhp\Models\Track'
+        'data' => '\MuxPhp\Models\Track[]'
     ];
 
     /**
@@ -288,7 +288,7 @@ class GenerateTrackSubtitlesResponse implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets data
      *
-     * @return \MuxPhp\Models\Track|null
+     * @return \MuxPhp\Models\Track[]|null
      */
     public function getData()
     {
@@ -298,7 +298,7 @@ class GenerateTrackSubtitlesResponse implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets data
      *
-     * @param \MuxPhp\Models\Track|null $data data
+     * @param \MuxPhp\Models\Track[]|null $data data
      *
      * @return self
      */

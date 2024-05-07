@@ -72,7 +72,8 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'view_start' => 'string',
         'view_end' => 'string',
         'viewer_experience_score' => 'float',
-        'watch_time' => 'int'
+        'watch_time' => 'int',
+        'playback_failure' => 'bool'
     ];
 
     /**
@@ -95,7 +96,8 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'view_start' => null,
         'view_end' => null,
         'viewer_experience_score' => 'float',
-        'watch_time' => 'int32'
+        'watch_time' => 'int32',
+        'playback_failure' => null
     ];
 
     /**
@@ -116,7 +118,8 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'view_start' => false,
         'view_end' => false,
         'viewer_experience_score' => true,
-        'watch_time' => true
+        'watch_time' => true,
+        'playback_failure' => false
     ];
 
     /**
@@ -207,7 +210,8 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'view_start' => 'view_start',
         'view_end' => 'view_end',
         'viewer_experience_score' => 'viewer_experience_score',
-        'watch_time' => 'watch_time'
+        'watch_time' => 'watch_time',
+        'playback_failure' => 'playback_failure'
     ];
 
     /**
@@ -228,7 +232,8 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'view_start' => 'setViewStart',
         'view_end' => 'setViewEnd',
         'viewer_experience_score' => 'setViewerExperienceScore',
-        'watch_time' => 'setWatchTime'
+        'watch_time' => 'setWatchTime',
+        'playback_failure' => 'setPlaybackFailure'
     ];
 
     /**
@@ -249,7 +254,8 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'view_start' => 'getViewStart',
         'view_end' => 'getViewEnd',
         'viewer_experience_score' => 'getViewerExperienceScore',
-        'watch_time' => 'getWatchTime'
+        'watch_time' => 'getWatchTime',
+        'playback_failure' => 'getPlaybackFailure'
     ];
 
     /**
@@ -325,6 +331,7 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('view_end', $data ?? [], null);
         $this->setIfExists('viewer_experience_score', $data ?? [], null);
         $this->setIfExists('watch_time', $data ?? [], null);
+        $this->setIfExists('playback_failure', $data ?? [], null);
     }
 
     /**
@@ -805,6 +812,35 @@ class AbridgedVideoView implements ModelInterface, ArrayAccess, \JsonSerializabl
         }
 
         $this->container['watch_time'] = $watch_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets playback_failure
+     *
+     * @return bool|null
+     */
+    public function getPlaybackFailure()
+    {
+        return $this->container['playback_failure'];
+    }
+
+    /**
+     * Sets playback_failure
+     *
+     * @param bool|null $playback_failure playback_failure
+     *
+     * @return self
+     */
+    public function setPlaybackFailure($playback_failure)
+    {
+
+        if (is_null($playback_failure)) {
+            throw new \InvalidArgumentException('non-nullable playback_failure cannot be null');
+        }
+
+        $this->container['playback_failure'] = $playback_failure;
 
         return $this;
     }

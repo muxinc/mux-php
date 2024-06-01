@@ -161,5 +161,11 @@ Name | Type | Description | Notes
 **playback_failure_error_type_id** | **int** |  | [optional]
 **playback_business_exception_error_type_id** | **int** |  | [optional]
 **video_startup_business_exception_error_type_id** | **int** |  | [optional]
+**playback_failure** | **bool** |  | [optional]
+**ad_playback_failure_error_type_id** | **int** |  | [optional]
+**view_content_startup_time** | **int** |  | [optional]
+**ad_preroll_startup_time** | **int** |  | [optional]
+**ad_watch_time** | **int** |  | [optional]
+**view_content_watch_time** | **int** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

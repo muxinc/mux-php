@@ -68,6 +68,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'asset_state' => 'string',
         'asset_duration' => 'double',
         'asset_resolution_tier' => 'string',
+        'asset_encoding_tier' => 'string',
         'delivered_seconds' => 'double',
         'delivered_seconds_by_resolution' => '\MuxPhp\Models\DeliveryReportDeliveredSecondsByResolution'
     ];
@@ -88,6 +89,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'asset_state' => null,
         'asset_duration' => 'double',
         'asset_resolution_tier' => null,
+        'asset_encoding_tier' => null,
         'delivered_seconds' => 'double',
         'delivered_seconds_by_resolution' => null
     ];
@@ -106,6 +108,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'asset_state' => false,
         'asset_duration' => false,
         'asset_resolution_tier' => false,
+        'asset_encoding_tier' => false,
         'delivered_seconds' => false,
         'delivered_seconds_by_resolution' => false
     ];
@@ -194,6 +197,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'asset_state' => 'asset_state',
         'asset_duration' => 'asset_duration',
         'asset_resolution_tier' => 'asset_resolution_tier',
+        'asset_encoding_tier' => 'asset_encoding_tier',
         'delivered_seconds' => 'delivered_seconds',
         'delivered_seconds_by_resolution' => 'delivered_seconds_by_resolution'
     ];
@@ -212,6 +216,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'asset_state' => 'setAssetState',
         'asset_duration' => 'setAssetDuration',
         'asset_resolution_tier' => 'setAssetResolutionTier',
+        'asset_encoding_tier' => 'setAssetEncodingTier',
         'delivered_seconds' => 'setDeliveredSeconds',
         'delivered_seconds_by_resolution' => 'setDeliveredSecondsByResolution'
     ];
@@ -230,6 +235,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'asset_state' => 'getAssetState',
         'asset_duration' => 'getAssetDuration',
         'asset_resolution_tier' => 'getAssetResolutionTier',
+        'asset_encoding_tier' => 'getAssetEncodingTier',
         'delivered_seconds' => 'getDeliveredSeconds',
         'delivered_seconds_by_resolution' => 'getDeliveredSecondsByResolution'
     ];
@@ -283,6 +289,8 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
     public const ASSET_RESOLUTION_TIER__1080P = '1080p';
     public const ASSET_RESOLUTION_TIER__1440P = '1440p';
     public const ASSET_RESOLUTION_TIER__2160P = '2160p';
+    public const ASSET_ENCODING_TIER_SMART = 'smart';
+    public const ASSET_ENCODING_TIER_BASELINE = 'baseline';
 
     /**
      * Gets allowable values of the enum
@@ -315,6 +323,19 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAssetEncodingTierAllowableValues()
+    {
+        return [
+            self::ASSET_ENCODING_TIER_SMART,
+            self::ASSET_ENCODING_TIER_BASELINE,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -340,6 +361,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('asset_state', $data ?? [], null);
         $this->setIfExists('asset_duration', $data ?? [], null);
         $this->setIfExists('asset_resolution_tier', $data ?? [], null);
+        $this->setIfExists('asset_encoding_tier', $data ?? [], null);
         $this->setIfExists('delivered_seconds', $data ?? [], null);
         $this->setIfExists('delivered_seconds_by_resolution', $data ?? [], null);
     }
@@ -385,6 +407,15 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'asset_resolution_tier', must be one of '%s'",
                 $this->container['asset_resolution_tier'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getAssetEncodingTierAllowableValues();
+        if (!is_null($this->container['asset_encoding_tier']) && !in_array($this->container['asset_encoding_tier'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'asset_encoding_tier', must be one of '%s'",
+                $this->container['asset_encoding_tier'],
                 implode("', '", $allowedValues)
             );
         }
@@ -652,6 +683,45 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['asset_resolution_tier'] = $asset_resolution_tier;
+
+        return $this;
+    }
+
+    /**
+     * Gets asset_encoding_tier
+     *
+     * @return string|null
+     */
+    public function getAssetEncodingTier()
+    {
+        return $this->container['asset_encoding_tier'];
+    }
+
+    /**
+     * Sets asset_encoding_tier
+     *
+     * @param string|null $asset_encoding_tier The encoding tier that the asset was ingested at. [See the encoding tiers guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+     *
+     * @return self
+     */
+    public function setAssetEncodingTier($asset_encoding_tier)
+    {
+        $allowedValues = $this->getAssetEncodingTierAllowableValues();
+        if (!is_null($asset_encoding_tier) && !in_array($asset_encoding_tier, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'asset_encoding_tier', must be one of '%s'",
+                    $asset_encoding_tier,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($asset_encoding_tier)) {
+            throw new \InvalidArgumentException('non-nullable asset_encoding_tier cannot be null');
+        }
+
+        $this->container['asset_encoding_tier'] = $asset_encoding_tier;
 
         return $this;
     }

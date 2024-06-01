@@ -9,6 +9,7 @@ All URIs are relative to https://api.mux.com, except if the operation defines an
 | [**getPlaybackRestriction()**](PlaybackRestrictionsApi.md#getPlaybackRestriction) | **GET** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID} | Retrieve a Playback Restriction |
 | [**listPlaybackRestrictions()**](PlaybackRestrictionsApi.md#listPlaybackRestrictions) | **GET** /video/v1/playback-restrictions | List Playback Restrictions |
 | [**updateReferrerDomainRestriction()**](PlaybackRestrictionsApi.md#updateReferrerDomainRestriction) | **PUT** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer | Update the Referrer Playback Restriction |
+| [**updateUserAgentRestriction()**](PlaybackRestrictionsApi.md#updateUserAgentRestriction) | **PUT** /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/user_agent | Update the User Agent Restriction |
 
 
 ## `createPlaybackRestriction()`
@@ -50,7 +51,7 @@ $apiInstance = new MuxPhp\Api\PlaybackRestrictionsApi(
 //
 // In your own code you should use an associative array, or
 // use a "new \MuxPhp\Models\CreatePlaybackRestrictionRequest" directly.
-$create_playback_restriction_request = json_decode('{"referrer":{"allowed_domains":["*.example.com"],"allow_no_referrer":true}}',true); // \MuxPhp\Models\CreatePlaybackRestrictionRequest
+$create_playback_restriction_request = json_decode('{"referrer":{"allowed_domains":["*.example.com"],"allow_no_referrer":true},"user_agent":{"allow_no_user_agent":false,"allow_high_risk_user_agent":false}}',true); // \MuxPhp\Models\CreatePlaybackRestrictionRequest
 
 try {
     $result = $apiInstance->createPlaybackRestriction($create_playback_restriction_request);
@@ -326,6 +327,80 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **playback_restriction_id** | **string**| ID of the Playback Restriction. | |
 | **update_referrer_domain_restriction_request** | [**\MuxPhp\Models\UpdateReferrerDomainRestrictionRequest**](../Model/UpdateReferrerDomainRestrictionRequest.md)|  | |
+
+### Return type
+
+[**\MuxPhp\Models\PlaybackRestrictionResponse**](../Model/PlaybackRestrictionResponse.md)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateUserAgentRestriction()`
+
+```php
+updateUserAgentRestriction($playback_restriction_id, $update_user_agent_restriction_request): \MuxPhp\Models\PlaybackRestrictionResponse
+```
+
+Update the User Agent Restriction
+
+Allows you to modify how Mux validates playback requests with different user agents.  Please see [Using User-Agent HTTP header for validation](https://docs.mux.com/guides/secure-video-playback#using-user-agent-http-header-for-validation) for more details on this feature.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\PlaybackRestrictionsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$playback_restriction_id = 'playback_restriction_id_example'; // string | ID of the Playback Restriction.
+
+// This API method wants a \MuxPhp\Models\UpdateUserAgentRestrictionRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\UpdateUserAgentRestrictionRequest" directly.
+$update_user_agent_restriction_request = json_decode('{"allow_no_user_agent":false,"allow_high_risk_user_agent":false}',true); // \MuxPhp\Models\UpdateUserAgentRestrictionRequest
+
+try {
+    $result = $apiInstance->updateUserAgentRestriction($playback_restriction_id, $update_user_agent_restriction_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PlaybackRestrictionsApi->updateUserAgentRestriction: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **playback_restriction_id** | **string**| ID of the Playback Restriction. | |
+| **update_user_agent_restriction_request** | [**\MuxPhp\Models\UpdateUserAgentRestrictionRequest**](../Model/UpdateUserAgentRestrictionRequest.md)|  | |
 
 ### Return type
 

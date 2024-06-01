@@ -63,7 +63,8 @@ class PlaybackRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
         'id' => 'string',
         'created_at' => 'string',
         'updated_at' => 'string',
-        'referrer' => '\MuxPhp\Models\ReferrerDomainRestriction'
+        'referrer' => '\MuxPhp\Models\ReferrerDomainRestriction',
+        'user_agent' => '\MuxPhp\Models\UserAgentRestrictionSettings'
     ];
 
     /**
@@ -77,7 +78,8 @@ class PlaybackRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
         'id' => null,
         'created_at' => 'int64',
         'updated_at' => 'int64',
-        'referrer' => null
+        'referrer' => null,
+        'user_agent' => null
     ];
 
     /**
@@ -89,7 +91,8 @@ class PlaybackRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
         'id' => false,
         'created_at' => false,
         'updated_at' => false,
-        'referrer' => false
+        'referrer' => false,
+        'user_agent' => false
     ];
 
     /**
@@ -171,7 +174,8 @@ class PlaybackRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
         'id' => 'id',
         'created_at' => 'created_at',
         'updated_at' => 'updated_at',
-        'referrer' => 'referrer'
+        'referrer' => 'referrer',
+        'user_agent' => 'user_agent'
     ];
 
     /**
@@ -183,7 +187,8 @@ class PlaybackRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
         'id' => 'setId',
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt',
-        'referrer' => 'setReferrer'
+        'referrer' => 'setReferrer',
+        'user_agent' => 'setUserAgent'
     ];
 
     /**
@@ -195,7 +200,8 @@ class PlaybackRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
         'id' => 'getId',
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt',
-        'referrer' => 'getReferrer'
+        'referrer' => 'getReferrer',
+        'user_agent' => 'getUserAgent'
     ];
 
     /**
@@ -262,6 +268,7 @@ class PlaybackRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('referrer', $data ?? [], null);
+        $this->setIfExists('user_agent', $data ?? [], null);
     }
 
     /**
@@ -418,6 +425,35 @@ class PlaybackRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
         }
 
         $this->container['referrer'] = $referrer;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_agent
+     *
+     * @return \MuxPhp\Models\UserAgentRestrictionSettings|null
+     */
+    public function getUserAgent()
+    {
+        return $this->container['user_agent'];
+    }
+
+    /**
+     * Sets user_agent
+     *
+     * @param \MuxPhp\Models\UserAgentRestrictionSettings|null $user_agent user_agent
+     *
+     * @return self
+     */
+    public function setUserAgent($user_agent)
+    {
+
+        if (is_null($user_agent)) {
+            throw new \InvalidArgumentException('non-nullable user_agent cannot be null');
+        }
+
+        $this->container['user_agent'] = $user_agent;
 
         return $this;
     }

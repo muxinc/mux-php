@@ -91,7 +91,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = 'OpenAPI-Generator/3.18.0/PHP';
+    protected $userAgent = 'Mux PHP | 3.18.0';
 
     /**
      * Debug switch (default set to false)

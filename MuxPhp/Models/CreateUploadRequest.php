@@ -422,7 +422,7 @@ class CreateUploadRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets test
      *
-     * @param bool|null $test test
+     * @param bool|null $test Indicates if this is a test Direct Upload, in which case the Asset that gets created will be a `test` Asset.
      *
      * @return self
      */

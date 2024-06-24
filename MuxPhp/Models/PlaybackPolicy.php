@@ -46,6 +46,7 @@ class PlaybackPolicy
      */
     public const _PUBLIC = 'public';
     public const SIGNED = 'signed';
+    public const DRM = 'drm';
     
     /**
      * Gets allowable values of the enum
@@ -56,6 +57,7 @@ class PlaybackPolicy
         return [
             self::_PUBLIC,
             self::SIGNED,
+            self::DRM,
         ];
     }
 }

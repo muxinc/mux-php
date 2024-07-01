@@ -1,6 +1,7 @@
 .gitignore
 .php_cs
 MuxPhp/Api/AssetsApi.php
+MuxPhp/Api/DRMConfigurationsApi.php
 MuxPhp/Api/DeliveryUsageApi.php
 MuxPhp/Api/DimensionsApi.php
 MuxPhp/Api/DirectUploadsApi.php
@@ -52,6 +53,8 @@ MuxPhp/Models/CreateTrackResponse.php
 MuxPhp/Models/CreateTranscriptionVocabularyRequest.php
 MuxPhp/Models/CreateUploadRequest.php
 MuxPhp/Models/CreateWebInputRequest.php
+MuxPhp/Models/DRMConfiguration.php
+MuxPhp/Models/DRMConfigurationResponse.php
 MuxPhp/Models/DeliveryReport.php
 MuxPhp/Models/DeliveryReportDeliveredSecondsByResolution.php
 MuxPhp/Models/DimensionValue.php
@@ -96,6 +99,7 @@ MuxPhp/Models/ListAllMetricValuesResponse.php
 MuxPhp/Models/ListAssetsResponse.php
 MuxPhp/Models/ListBreakdownValuesResponse.php
 MuxPhp/Models/ListBreakdownValuesResponseMeta.php
+MuxPhp/Models/ListDRMConfigurationsResponse.php
 MuxPhp/Models/ListDeliveryUsageResponse.php
 MuxPhp/Models/ListDimensionValuesResponse.php
 MuxPhp/Models/ListDimensionsResponse.php
@@ -189,6 +193,7 @@ MuxPhp/ObjectSerializer.php
 README.md
 composer.json
 docs/Api/AssetsApi.md
+docs/Api/DRMConfigurationsApi.md
 docs/Api/DeliveryUsageApi.md
 docs/Api/DimensionsApi.md
 docs/Api/DirectUploadsApi.md
@@ -237,6 +242,8 @@ docs/Model/CreateTrackResponse.md
 docs/Model/CreateTranscriptionVocabularyRequest.md
 docs/Model/CreateUploadRequest.md
 docs/Model/CreateWebInputRequest.md
+docs/Model/DRMConfiguration.md
+docs/Model/DRMConfigurationResponse.md
 docs/Model/DeliveryReport.md
 docs/Model/DeliveryReportDeliveredSecondsByResolution.md
 docs/Model/DimensionValue.md
@@ -281,6 +288,7 @@ docs/Model/ListAllMetricValuesResponse.md
 docs/Model/ListAssetsResponse.md
 docs/Model/ListBreakdownValuesResponse.md
 docs/Model/ListBreakdownValuesResponseMeta.md
+docs/Model/ListDRMConfigurationsResponse.md
 docs/Model/ListDeliveryUsageResponse.md
 docs/Model/ListDimensionValuesResponse.md
 docs/Model/ListDimensionsResponse.md

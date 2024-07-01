@@ -60,7 +60,8 @@ class CreatePlaybackIDRequest implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'policy' => '\MuxPhp\Models\PlaybackPolicy'
+        'policy' => '\MuxPhp\Models\PlaybackPolicy',
+        'drm_configuration_id' => 'string'
     ];
 
     /**
@@ -71,7 +72,8 @@ class CreatePlaybackIDRequest implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'policy' => null
+        'policy' => null,
+        'drm_configuration_id' => null
     ];
 
     /**
@@ -80,7 +82,8 @@ class CreatePlaybackIDRequest implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'policy' => false
+        'policy' => false,
+        'drm_configuration_id' => false
     ];
 
     /**
@@ -159,7 +162,8 @@ class CreatePlaybackIDRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'policy' => 'policy'
+        'policy' => 'policy',
+        'drm_configuration_id' => 'drm_configuration_id'
     ];
 
     /**
@@ -168,7 +172,8 @@ class CreatePlaybackIDRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'policy' => 'setPolicy'
+        'policy' => 'setPolicy',
+        'drm_configuration_id' => 'setDrmConfigurationId'
     ];
 
     /**
@@ -177,7 +182,8 @@ class CreatePlaybackIDRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'policy' => 'getPolicy'
+        'policy' => 'getPolicy',
+        'drm_configuration_id' => 'getDrmConfigurationId'
     ];
 
     /**
@@ -241,6 +247,7 @@ class CreatePlaybackIDRequest implements ModelInterface, ArrayAccess, \JsonSeria
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('policy', $data ?? [], null);
+        $this->setIfExists('drm_configuration_id', $data ?? [], null);
     }
 
     /**
@@ -310,6 +317,35 @@ class CreatePlaybackIDRequest implements ModelInterface, ArrayAccess, \JsonSeria
         }
 
         $this->container['policy'] = $policy;
+
+        return $this;
+    }
+
+    /**
+     * Gets drm_configuration_id
+     *
+     * @return string|null
+     */
+    public function getDrmConfigurationId()
+    {
+        return $this->container['drm_configuration_id'];
+    }
+
+    /**
+     * Sets drm_configuration_id
+     *
+     * @param string|null $drm_configuration_id The DRM configuration used by this playback ID. Must only be set when `policy` is set to `drm`.
+     *
+     * @return self
+     */
+    public function setDrmConfigurationId($drm_configuration_id)
+    {
+
+        if (is_null($drm_configuration_id)) {
+            throw new \InvalidArgumentException('non-nullable drm_configuration_id cannot be null');
+        }
+
+        $this->container['drm_configuration_id'] = $drm_configuration_id;
 
         return $this;
     }

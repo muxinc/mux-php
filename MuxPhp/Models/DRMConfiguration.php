@@ -1,6 +1,6 @@
 <?php
 /**
- * PlaybackID
+ * DRMConfiguration
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * PlaybackID Class Doc Comment
+ * DRMConfiguration Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
+class DRMConfiguration implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PlaybackID';
+    protected static $openAPIModelName = 'DRMConfiguration';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,7 @@ class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'policy' => '\MuxPhp\Models\PlaybackPolicy',
-        'drm_configuration_id' => 'string'
+        'id' => 'string'
     ];
 
     /**
@@ -73,9 +71,7 @@ class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'policy' => null,
-        'drm_configuration_id' => null
+        'id' => null
     ];
 
     /**
@@ -84,9 +80,7 @@ class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'policy' => false,
-        'drm_configuration_id' => false
+        'id' => false
     ];
 
     /**
@@ -165,9 +159,7 @@ class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'policy' => 'policy',
-        'drm_configuration_id' => 'drm_configuration_id'
+        'id' => 'id'
     ];
 
     /**
@@ -176,9 +168,7 @@ class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'policy' => 'setPolicy',
-        'drm_configuration_id' => 'setDrmConfigurationId'
+        'id' => 'setId'
     ];
 
     /**
@@ -187,9 +177,7 @@ class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'policy' => 'getPolicy',
-        'drm_configuration_id' => 'getDrmConfigurationId'
+        'id' => 'getId'
     ];
 
     /**
@@ -253,8 +241,6 @@ class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('policy', $data ?? [], null);
-        $this->setIfExists('drm_configuration_id', $data ?? [], null);
     }
 
     /**
@@ -312,7 +298,7 @@ class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string|null $id Unique identifier for the PlaybackID
+     * @param string|null $id Unique identifier for the DRM Configuration. Max 255 characters.
      *
      * @return self
      */
@@ -324,64 +310,6 @@ class PlaybackID implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets policy
-     *
-     * @return \MuxPhp\Models\PlaybackPolicy|null
-     */
-    public function getPolicy()
-    {
-        return $this->container['policy'];
-    }
-
-    /**
-     * Sets policy
-     *
-     * @param \MuxPhp\Models\PlaybackPolicy|null $policy policy
-     *
-     * @return self
-     */
-    public function setPolicy($policy)
-    {
-
-        if (is_null($policy)) {
-            throw new \InvalidArgumentException('non-nullable policy cannot be null');
-        }
-
-        $this->container['policy'] = $policy;
-
-        return $this;
-    }
-
-    /**
-     * Gets drm_configuration_id
-     *
-     * @return string|null
-     */
-    public function getDrmConfigurationId()
-    {
-        return $this->container['drm_configuration_id'];
-    }
-
-    /**
-     * Sets drm_configuration_id
-     *
-     * @param string|null $drm_configuration_id The DRM configuration used by this playback ID. Must only be set when `policy` is set to `drm`.
-     *
-     * @return self
-     */
-    public function setDrmConfigurationId($drm_configuration_id)
-    {
-
-        if (is_null($drm_configuration_id)) {
-            throw new \InvalidArgumentException('non-nullable drm_configuration_id cannot be null');
-        }
-
-        $this->container['drm_configuration_id'] = $drm_configuration_id;
 
         return $this;
     }

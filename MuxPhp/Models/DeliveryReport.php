@@ -69,6 +69,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'asset_duration' => 'double',
         'asset_resolution_tier' => 'string',
         'asset_encoding_tier' => 'string',
+        'asset_video_quality' => 'string',
         'delivered_seconds' => 'double',
         'delivered_seconds_by_resolution' => '\MuxPhp\Models\DeliveryReportDeliveredSecondsByResolution'
     ];
@@ -90,6 +91,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'asset_duration' => 'double',
         'asset_resolution_tier' => null,
         'asset_encoding_tier' => null,
+        'asset_video_quality' => null,
         'delivered_seconds' => 'double',
         'delivered_seconds_by_resolution' => null
     ];
@@ -109,6 +111,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'asset_duration' => false,
         'asset_resolution_tier' => false,
         'asset_encoding_tier' => false,
+        'asset_video_quality' => false,
         'delivered_seconds' => false,
         'delivered_seconds_by_resolution' => false
     ];
@@ -198,6 +201,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'asset_duration' => 'asset_duration',
         'asset_resolution_tier' => 'asset_resolution_tier',
         'asset_encoding_tier' => 'asset_encoding_tier',
+        'asset_video_quality' => 'asset_video_quality',
         'delivered_seconds' => 'delivered_seconds',
         'delivered_seconds_by_resolution' => 'delivered_seconds_by_resolution'
     ];
@@ -217,6 +221,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'asset_duration' => 'setAssetDuration',
         'asset_resolution_tier' => 'setAssetResolutionTier',
         'asset_encoding_tier' => 'setAssetEncodingTier',
+        'asset_video_quality' => 'setAssetVideoQuality',
         'delivered_seconds' => 'setDeliveredSeconds',
         'delivered_seconds_by_resolution' => 'setDeliveredSecondsByResolution'
     ];
@@ -236,6 +241,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         'asset_duration' => 'getAssetDuration',
         'asset_resolution_tier' => 'getAssetResolutionTier',
         'asset_encoding_tier' => 'getAssetEncodingTier',
+        'asset_video_quality' => 'getAssetVideoQuality',
         'delivered_seconds' => 'getDeliveredSeconds',
         'delivered_seconds_by_resolution' => 'getDeliveredSecondsByResolution'
     ];
@@ -291,6 +297,8 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
     public const ASSET_RESOLUTION_TIER__2160P = '2160p';
     public const ASSET_ENCODING_TIER_SMART = 'smart';
     public const ASSET_ENCODING_TIER_BASELINE = 'baseline';
+    public const ASSET_VIDEO_QUALITY_BASIC = 'basic';
+    public const ASSET_VIDEO_QUALITY_PLUS = 'plus';
 
     /**
      * Gets allowable values of the enum
@@ -336,6 +344,19 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAssetVideoQualityAllowableValues()
+    {
+        return [
+            self::ASSET_VIDEO_QUALITY_BASIC,
+            self::ASSET_VIDEO_QUALITY_PLUS,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -362,6 +383,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('asset_duration', $data ?? [], null);
         $this->setIfExists('asset_resolution_tier', $data ?? [], null);
         $this->setIfExists('asset_encoding_tier', $data ?? [], null);
+        $this->setIfExists('asset_video_quality', $data ?? [], null);
         $this->setIfExists('delivered_seconds', $data ?? [], null);
         $this->setIfExists('delivered_seconds_by_resolution', $data ?? [], null);
     }
@@ -416,6 +438,15 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'asset_encoding_tier', must be one of '%s'",
                 $this->container['asset_encoding_tier'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getAssetVideoQualityAllowableValues();
+        if (!is_null($this->container['asset_video_quality']) && !in_array($this->container['asset_video_quality'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'asset_video_quality', must be one of '%s'",
+                $this->container['asset_video_quality'],
                 implode("', '", $allowedValues)
             );
         }
@@ -691,6 +722,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets asset_encoding_tier
      *
      * @return string|null
+     * @deprecated
      */
     public function getAssetEncodingTier()
     {
@@ -700,9 +732,10 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets asset_encoding_tier
      *
-     * @param string|null $asset_encoding_tier The encoding tier that the asset was ingested at. [See the encoding tiers guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+     * @param string|null $asset_encoding_tier This field is deprecated. Please use `asset_video_quality` instead. The encoding tier that the asset was ingested at. [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
      *
      * @return self
+     * @deprecated
      */
     public function setAssetEncodingTier($asset_encoding_tier)
     {
@@ -722,6 +755,45 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['asset_encoding_tier'] = $asset_encoding_tier;
+
+        return $this;
+    }
+
+    /**
+     * Gets asset_video_quality
+     *
+     * @return string|null
+     */
+    public function getAssetVideoQuality()
+    {
+        return $this->container['asset_video_quality'];
+    }
+
+    /**
+     * Sets asset_video_quality
+     *
+     * @param string|null $asset_video_quality The video quality that the asset was ingested at. This field replaces `asset_encoding_tier`. [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+     *
+     * @return self
+     */
+    public function setAssetVideoQuality($asset_video_quality)
+    {
+        $allowedValues = $this->getAssetVideoQualityAllowableValues();
+        if (!is_null($asset_video_quality) && !in_array($asset_video_quality, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'asset_video_quality', must be one of '%s'",
+                    $asset_video_quality,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($asset_video_quality)) {
+            throw new \InvalidArgumentException('non-nullable asset_video_quality cannot be null');
+        }
+
+        $this->container['asset_video_quality'] = $asset_video_quality;
 
         return $this;
     }

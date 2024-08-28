@@ -68,6 +68,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution_tier' => 'string',
         'max_resolution_tier' => 'string',
         'encoding_tier' => 'string',
+        'video_quality' => 'string',
         'max_stored_frame_rate' => 'double',
         'aspect_ratio' => 'string',
         'playback_ids' => '\MuxPhp\Models\PlaybackID[]',
@@ -106,6 +107,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution_tier' => null,
         'max_resolution_tier' => null,
         'encoding_tier' => null,
+        'video_quality' => null,
         'max_stored_frame_rate' => 'double',
         'aspect_ratio' => null,
         'playback_ids' => null,
@@ -142,6 +144,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution_tier' => false,
         'max_resolution_tier' => false,
         'encoding_tier' => false,
+        'video_quality' => false,
         'max_stored_frame_rate' => false,
         'aspect_ratio' => false,
         'playback_ids' => false,
@@ -248,6 +251,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution_tier' => 'resolution_tier',
         'max_resolution_tier' => 'max_resolution_tier',
         'encoding_tier' => 'encoding_tier',
+        'video_quality' => 'video_quality',
         'max_stored_frame_rate' => 'max_stored_frame_rate',
         'aspect_ratio' => 'aspect_ratio',
         'playback_ids' => 'playback_ids',
@@ -284,6 +288,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution_tier' => 'setResolutionTier',
         'max_resolution_tier' => 'setMaxResolutionTier',
         'encoding_tier' => 'setEncodingTier',
+        'video_quality' => 'setVideoQuality',
         'max_stored_frame_rate' => 'setMaxStoredFrameRate',
         'aspect_ratio' => 'setAspectRatio',
         'playback_ids' => 'setPlaybackIds',
@@ -320,6 +325,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution_tier' => 'getResolutionTier',
         'max_resolution_tier' => 'getMaxResolutionTier',
         'encoding_tier' => 'getEncodingTier',
+        'video_quality' => 'getVideoQuality',
         'max_stored_frame_rate' => 'getMaxStoredFrameRate',
         'aspect_ratio' => 'getAspectRatio',
         'playback_ids' => 'getPlaybackIds',
@@ -401,6 +407,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const MAX_RESOLUTION_TIER__2160P = '2160p';
     public const ENCODING_TIER_SMART = 'smart';
     public const ENCODING_TIER_BASELINE = 'baseline';
+    public const VIDEO_QUALITY_BASIC = 'basic';
+    public const VIDEO_QUALITY_PLUS = 'plus';
     public const MASTER_ACCESS_TEMPORARY = 'temporary';
     public const MASTER_ACCESS_NONE = 'none';
     public const MP4_SUPPORT_STANDARD = 'standard';
@@ -492,6 +500,19 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return string[]
      */
+    public function getVideoQualityAllowableValues()
+    {
+        return [
+            self::VIDEO_QUALITY_BASIC,
+            self::VIDEO_QUALITY_PLUS,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
     public function getMasterAccessAllowableValues()
     {
         return [
@@ -558,6 +579,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('resolution_tier', $data ?? [], null);
         $this->setIfExists('max_resolution_tier', $data ?? [], null);
         $this->setIfExists('encoding_tier', $data ?? [], null);
+        $this->setIfExists('video_quality', $data ?? [], null);
         $this->setIfExists('max_stored_frame_rate', $data ?? [], null);
         $this->setIfExists('aspect_ratio', $data ?? [], null);
         $this->setIfExists('playback_ids', $data ?? [], null);
@@ -648,6 +670,15 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'encoding_tier', must be one of '%s'",
                 $this->container['encoding_tier'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getVideoQualityAllowableValues();
+        if (!is_null($this->container['video_quality']) && !in_array($this->container['video_quality'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'video_quality', must be one of '%s'",
+                $this->container['video_quality'],
                 implode("', '", $allowedValues)
             );
         }
@@ -943,6 +974,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets encoding_tier
      *
      * @return string|null
+     * @deprecated
      */
     public function getEncodingTier()
     {
@@ -952,9 +984,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets encoding_tier
      *
-     * @param string|null $encoding_tier The encoding tier informs the cost, quality, and available platform features for the asset. By default the `smart` encoding tier is used. [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+     * @param string|null $encoding_tier This field is deprecated. Please use `video_quality` instead. The encoding tier informs the cost, quality, and available platform features for the asset. By default the `smart` encoding tier is used. [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
      *
      * @return self
+     * @deprecated
      */
     public function setEncodingTier($encoding_tier)
     {
@@ -974,6 +1007,45 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['encoding_tier'] = $encoding_tier;
+
+        return $this;
+    }
+
+    /**
+     * Gets video_quality
+     *
+     * @return string|null
+     */
+    public function getVideoQuality()
+    {
+        return $this->container['video_quality'];
+    }
+
+    /**
+     * Sets video_quality
+     *
+     * @param string|null $video_quality The video quality controls the cost, quality, and available platform features for the asset. By default the `plus` video quality is used. This field replaces the deprecated `encoding_tier` value. [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+     *
+     * @return self
+     */
+    public function setVideoQuality($video_quality)
+    {
+        $allowedValues = $this->getVideoQualityAllowableValues();
+        if (!is_null($video_quality) && !in_array($video_quality, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'video_quality', must be one of '%s'",
+                    $video_quality,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($video_quality)) {
+            throw new \InvalidArgumentException('non-nullable video_quality cannot be null');
+        }
+
+        $this->container['video_quality'] = $video_quality;
 
         return $this;
     }

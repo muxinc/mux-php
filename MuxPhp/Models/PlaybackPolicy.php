@@ -34,7 +34,7 @@ use \MuxPhp\ObjectSerializer;
  * PlaybackPolicy Class Doc Comment
  *
  * @category Class
- * @description * &#x60;public&#x60; playback IDs are accessible by constructing an HLS URL like &#x60;https://stream.mux.com/${PLAYBACK_ID}&#x60;  * &#x60;signed&#x60; playback IDs should be used with tokens &#x60;https://stream.mux.com/${PLAYBACK_ID}?token&#x3D;{TOKEN}&#x60;. See [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for details about creating tokens.
+ * @description * &#x60;public&#x60; playback IDs are accessible by constructing an HLS URL like &#x60;https://stream.mux.com/${PLAYBACK_ID}&#x60;  * &#x60;signed&#x60; playback IDs should be used with tokens &#x60;https://stream.mux.com/${PLAYBACK_ID}?token&#x3D;{TOKEN}&#x60;. See [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for details about creating tokens.  * &#x60;drm&#x60; playback IDs are protected with DRM technologies. [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com

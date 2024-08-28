@@ -70,7 +70,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'master_access' => 'string',
         'test' => 'bool',
         'max_resolution_tier' => 'string',
-        'encoding_tier' => 'string'
+        'encoding_tier' => 'string',
+        'video_quality' => 'string'
     ];
 
     /**
@@ -91,7 +92,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'master_access' => null,
         'test' => 'boolean',
         'max_resolution_tier' => null,
-        'encoding_tier' => null
+        'encoding_tier' => null,
+        'video_quality' => null
     ];
 
     /**
@@ -110,7 +112,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'master_access' => false,
         'test' => false,
         'max_resolution_tier' => false,
-        'encoding_tier' => false
+        'encoding_tier' => false,
+        'video_quality' => false
     ];
 
     /**
@@ -199,7 +202,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'master_access' => 'master_access',
         'test' => 'test',
         'max_resolution_tier' => 'max_resolution_tier',
-        'encoding_tier' => 'encoding_tier'
+        'encoding_tier' => 'encoding_tier',
+        'video_quality' => 'video_quality'
     ];
 
     /**
@@ -218,7 +222,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'master_access' => 'setMasterAccess',
         'test' => 'setTest',
         'max_resolution_tier' => 'setMaxResolutionTier',
-        'encoding_tier' => 'setEncodingTier'
+        'encoding_tier' => 'setEncodingTier',
+        'video_quality' => 'setVideoQuality'
     ];
 
     /**
@@ -237,7 +242,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'master_access' => 'getMasterAccess',
         'test' => 'getTest',
         'max_resolution_tier' => 'getMaxResolutionTier',
-        'encoding_tier' => 'getEncodingTier'
+        'encoding_tier' => 'getEncodingTier',
+        'video_quality' => 'getVideoQuality'
     ];
 
     /**
@@ -293,6 +299,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     public const MAX_RESOLUTION_TIER__2160P = '2160p';
     public const ENCODING_TIER_SMART = 'smart';
     public const ENCODING_TIER_BASELINE = 'baseline';
+    public const VIDEO_QUALITY_BASIC = 'basic';
+    public const VIDEO_QUALITY_PLUS = 'plus';
 
     /**
      * Gets allowable values of the enum
@@ -351,6 +359,19 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getVideoQualityAllowableValues()
+    {
+        return [
+            self::VIDEO_QUALITY_BASIC,
+            self::VIDEO_QUALITY_PLUS,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -379,6 +400,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('test', $data ?? [], null);
         $this->setIfExists('max_resolution_tier', $data ?? [], null);
         $this->setIfExists('encoding_tier', $data ?? [], null);
+        $this->setIfExists('video_quality', $data ?? [], null);
     }
 
     /**
@@ -440,6 +462,15 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'encoding_tier', must be one of '%s'",
                 $this->container['encoding_tier'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getVideoQualityAllowableValues();
+        if (!is_null($this->container['video_quality']) && !in_array($this->container['video_quality'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'video_quality', must be one of '%s'",
+                $this->container['video_quality'],
                 implode("', '", $allowedValues)
             );
         }
@@ -785,6 +816,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * Gets encoding_tier
      *
      * @return string|null
+     * @deprecated
      */
     public function getEncodingTier()
     {
@@ -794,9 +826,10 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets encoding_tier
      *
-     * @param string|null $encoding_tier The encoding tier informs the cost, quality, and available platform features for the asset. By default the `smart` encoding tier is used. [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+     * @param string|null $encoding_tier This field is deprecated. Please use `video_quality` instead. The encoding tier informs the cost, quality, and available platform features for the asset. By default the `smart` encoding tier is used. [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
      *
      * @return self
+     * @deprecated
      */
     public function setEncodingTier($encoding_tier)
     {
@@ -816,6 +849,45 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['encoding_tier'] = $encoding_tier;
+
+        return $this;
+    }
+
+    /**
+     * Gets video_quality
+     *
+     * @return string|null
+     */
+    public function getVideoQuality()
+    {
+        return $this->container['video_quality'];
+    }
+
+    /**
+     * Sets video_quality
+     *
+     * @param string|null $video_quality The video quality controls the cost, quality, and available platform features for the asset. By default the `plus` video quality is used. This field replaces the deprecated `encoding_tier` value. [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+     *
+     * @return self
+     */
+    public function setVideoQuality($video_quality)
+    {
+        $allowedValues = $this->getVideoQualityAllowableValues();
+        if (!is_null($video_quality) && !in_array($video_quality, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'video_quality', must be one of '%s'",
+                    $video_quality,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($video_quality)) {
+            throw new \InvalidArgumentException('non-nullable video_quality cannot be null');
+        }
+
+        $this->container['video_quality'] = $video_quality;
 
         return $this;
     }

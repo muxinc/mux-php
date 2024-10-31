@@ -36,7 +36,7 @@ use \MuxPhp\ObjectSerializer;
  * UpdateLiveStreamNewAssetSettings Class Doc Comment
  *
  * @category Class
- * @description Updates the new asset settings to use to generate a new asset for this live stream. Only the &#x60;mp4_support&#x60; setting may be updated.
+ * @description Updates the new asset settings to use to generate a new asset for this live stream. Only the &#x60;mp4_support&#x60; and &#x60;master_access&#x60; settings may be updated.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
@@ -61,7 +61,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'mp4_support' => 'string'
+        'mp4_support' => 'string',
+        'master_access' => 'string'
     ];
 
     /**
@@ -72,7 +73,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'mp4_support' => null
+        'mp4_support' => null,
+        'master_access' => null
     ];
 
     /**
@@ -81,7 +83,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'mp4_support' => false
+        'mp4_support' => false,
+        'master_access' => false
     ];
 
     /**
@@ -160,7 +163,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $attributeMap = [
-        'mp4_support' => 'mp4_support'
+        'mp4_support' => 'mp4_support',
+        'master_access' => 'master_access'
     ];
 
     /**
@@ -169,7 +173,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $setters = [
-        'mp4_support' => 'setMp4Support'
+        'mp4_support' => 'setMp4Support',
+        'master_access' => 'setMasterAccess'
     ];
 
     /**
@@ -178,7 +183,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $getters = [
-        'mp4_support' => 'getMp4Support'
+        'mp4_support' => 'getMp4Support',
+        'master_access' => 'getMasterAccess'
     ];
 
     /**
@@ -227,6 +233,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
     public const MP4_SUPPORT_CAPPED_1080P = 'capped-1080p';
     public const MP4_SUPPORT_AUDIO_ONLY = 'audio-only';
     public const MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P = 'audio-only,capped-1080p';
+    public const MASTER_ACCESS_TEMPORARY = 'temporary';
+    public const MASTER_ACCESS_NONE = 'none';
 
     /**
      * Gets allowable values of the enum
@@ -241,6 +249,19 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
             self::MP4_SUPPORT_CAPPED_1080P,
             self::MP4_SUPPORT_AUDIO_ONLY,
             self::MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getMasterAccessAllowableValues()
+    {
+        return [
+            self::MASTER_ACCESS_TEMPORARY,
+            self::MASTER_ACCESS_NONE,
         ];
     }
 
@@ -263,6 +284,7 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('mp4_support', $data ?? [], null);
+        $this->setIfExists('master_access', $data ?? [], null);
     }
 
     /**
@@ -297,6 +319,15 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'mp4_support', must be one of '%s'",
                 $this->container['mp4_support'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getMasterAccessAllowableValues();
+        if (!is_null($this->container['master_access']) && !in_array($this->container['master_access'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'master_access', must be one of '%s'",
+                $this->container['master_access'],
                 implode("', '", $allowedValues)
             );
         }
@@ -351,6 +382,45 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
         }
 
         $this->container['mp4_support'] = $mp4_support;
+
+        return $this;
+    }
+
+    /**
+     * Gets master_access
+     *
+     * @return string|null
+     */
+    public function getMasterAccess()
+    {
+        return $this->container['master_access'];
+    }
+
+    /**
+     * Sets master_access
+     *
+     * @param string|null $master_access Add or remove access to the master version of the video.
+     *
+     * @return self
+     */
+    public function setMasterAccess($master_access)
+    {
+        $allowedValues = $this->getMasterAccessAllowableValues();
+        if (!is_null($master_access) && !in_array($master_access, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'master_access', must be one of '%s'",
+                    $master_access,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($master_access)) {
+            throw new \InvalidArgumentException('non-nullable master_access cannot be null');
+        }
+
+        $this->container['master_access'] = $master_access;
 
         return $this;
     }

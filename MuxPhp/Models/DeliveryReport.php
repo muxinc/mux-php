@@ -297,8 +297,10 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
     public const ASSET_RESOLUTION_TIER__2160P = '2160p';
     public const ASSET_ENCODING_TIER_SMART = 'smart';
     public const ASSET_ENCODING_TIER_BASELINE = 'baseline';
+    public const ASSET_ENCODING_TIER_PREMIUM = 'premium';
     public const ASSET_VIDEO_QUALITY_BASIC = 'basic';
     public const ASSET_VIDEO_QUALITY_PLUS = 'plus';
+    public const ASSET_VIDEO_QUALITY_PREMIUM = 'premium';
 
     /**
      * Gets allowable values of the enum
@@ -340,6 +342,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::ASSET_ENCODING_TIER_SMART,
             self::ASSET_ENCODING_TIER_BASELINE,
+            self::ASSET_ENCODING_TIER_PREMIUM,
         ];
     }
 
@@ -353,6 +356,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::ASSET_VIDEO_QUALITY_BASIC,
             self::ASSET_VIDEO_QUALITY_PLUS,
+            self::ASSET_VIDEO_QUALITY_PREMIUM,
         ];
     }
 
@@ -732,7 +736,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets asset_encoding_tier
      *
-     * @param string|null $asset_encoding_tier This field is deprecated. Please use `asset_video_quality` instead. The encoding tier that the asset was ingested at. [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+     * @param string|null $asset_encoding_tier This field is deprecated. Please use `asset_video_quality` instead. The encoding tier that the asset was ingested at. [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
      *
      * @return self
      * @deprecated
@@ -772,7 +776,7 @@ class DeliveryReport implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets asset_video_quality
      *
-     * @param string|null $asset_video_quality The video quality that the asset was ingested at. This field replaces `asset_encoding_tier`. [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+     * @param string|null $asset_video_quality The video quality that the asset was ingested at. This field replaces `asset_encoding_tier`. [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
      *
      * @return self
      */

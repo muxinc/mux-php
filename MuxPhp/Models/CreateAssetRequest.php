@@ -299,8 +299,10 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     public const MAX_RESOLUTION_TIER__2160P = '2160p';
     public const ENCODING_TIER_SMART = 'smart';
     public const ENCODING_TIER_BASELINE = 'baseline';
+    public const ENCODING_TIER_PREMIUM = 'premium';
     public const VIDEO_QUALITY_BASIC = 'basic';
     public const VIDEO_QUALITY_PLUS = 'plus';
+    public const VIDEO_QUALITY_PREMIUM = 'premium';
 
     /**
      * Gets allowable values of the enum
@@ -355,6 +357,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         return [
             self::ENCODING_TIER_SMART,
             self::ENCODING_TIER_BASELINE,
+            self::ENCODING_TIER_PREMIUM,
         ];
     }
 
@@ -368,6 +371,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         return [
             self::VIDEO_QUALITY_BASIC,
             self::VIDEO_QUALITY_PLUS,
+            self::VIDEO_QUALITY_PREMIUM,
         ];
     }
 
@@ -826,7 +830,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets encoding_tier
      *
-     * @param string|null $encoding_tier This field is deprecated. Please use `video_quality` instead. The encoding tier informs the cost, quality, and available platform features for the asset. By default the `smart` encoding tier is used. [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+     * @param string|null $encoding_tier This field is deprecated. Please use `video_quality` instead. The encoding tier informs the cost, quality, and available platform features for the asset. The default encoding tier for an account can be set in the Mux Dashboard. [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
      *
      * @return self
      * @deprecated
@@ -866,7 +870,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets video_quality
      *
-     * @param string|null $video_quality The video quality controls the cost, quality, and available platform features for the asset. By default the `plus` video quality is used. This field replaces the deprecated `encoding_tier` value. [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+     * @param string|null $video_quality The video quality controls the cost, quality, and available platform features for the asset. The default video quality for an account can be set in the Mux Dashboard. This field replaces the deprecated `encoding_tier` value. [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
      *
      * @return self
      */

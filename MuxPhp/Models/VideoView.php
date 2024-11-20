@@ -221,8 +221,6 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_playback_failure_error_type_id' => 'int',
         'view_content_startup_time' => 'int',
         'ad_preroll_startup_time' => 'int',
-        'ad_watch_time' => 'int',
-        'view_content_watch_time' => 'int',
         'view_dropped' => 'bool'
     ];
 
@@ -395,8 +393,6 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_playback_failure_error_type_id' => 'int32',
         'view_content_startup_time' => 'int32',
         'ad_preroll_startup_time' => 'int32',
-        'ad_watch_time' => 'int32',
-        'view_content_watch_time' => 'int32',
         'view_dropped' => null
     ];
 
@@ -567,8 +563,6 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_playback_failure_error_type_id' => true,
         'view_content_startup_time' => true,
         'ad_preroll_startup_time' => true,
-        'ad_watch_time' => true,
-        'view_content_watch_time' => true,
         'view_dropped' => false
     ];
 
@@ -809,8 +803,6 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_playback_failure_error_type_id' => 'ad_playback_failure_error_type_id',
         'view_content_startup_time' => 'view_content_startup_time',
         'ad_preroll_startup_time' => 'ad_preroll_startup_time',
-        'ad_watch_time' => 'ad_watch_time',
-        'view_content_watch_time' => 'view_content_watch_time',
         'view_dropped' => 'view_dropped'
     ];
 
@@ -981,8 +973,6 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_playback_failure_error_type_id' => 'setAdPlaybackFailureErrorTypeId',
         'view_content_startup_time' => 'setViewContentStartupTime',
         'ad_preroll_startup_time' => 'setAdPrerollStartupTime',
-        'ad_watch_time' => 'setAdWatchTime',
-        'view_content_watch_time' => 'setViewContentWatchTime',
         'view_dropped' => 'setViewDropped'
     ];
 
@@ -1153,8 +1143,6 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_playback_failure_error_type_id' => 'getAdPlaybackFailureErrorTypeId',
         'view_content_startup_time' => 'getViewContentStartupTime',
         'ad_preroll_startup_time' => 'getAdPrerollStartupTime',
-        'ad_watch_time' => 'getAdWatchTime',
-        'view_content_watch_time' => 'getViewContentWatchTime',
         'view_dropped' => 'getViewDropped'
     ];
 
@@ -1379,8 +1367,6 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('ad_playback_failure_error_type_id', $data ?? [], null);
         $this->setIfExists('view_content_startup_time', $data ?? [], null);
         $this->setIfExists('ad_preroll_startup_time', $data ?? [], null);
-        $this->setIfExists('ad_watch_time', $data ?? [], null);
-        $this->setIfExists('view_content_watch_time', $data ?? [], null);
         $this->setIfExists('view_dropped', $data ?? [], null);
     }
 
@@ -7057,78 +7043,6 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['ad_preroll_startup_time'] = $ad_preroll_startup_time;
-
-        return $this;
-    }
-
-    /**
-     * Gets ad_watch_time
-     *
-     * @return int|null
-     */
-    public function getAdWatchTime()
-    {
-        return $this->container['ad_watch_time'];
-    }
-
-    /**
-     * Sets ad_watch_time
-     *
-     * @param int|null $ad_watch_time ad_watch_time
-     *
-     * @return self
-     */
-    public function setAdWatchTime($ad_watch_time)
-    {
-
-        if (is_null($ad_watch_time)) {
-            array_push($this->openAPINullablesSetToNull, 'ad_watch_time');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('ad_watch_time', $nullablesSetToNull, true);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['ad_watch_time'] = $ad_watch_time;
-
-        return $this;
-    }
-
-    /**
-     * Gets view_content_watch_time
-     *
-     * @return int|null
-     */
-    public function getViewContentWatchTime()
-    {
-        return $this->container['view_content_watch_time'];
-    }
-
-    /**
-     * Sets view_content_watch_time
-     *
-     * @param int|null $view_content_watch_time view_content_watch_time
-     *
-     * @return self
-     */
-    public function setViewContentWatchTime($view_content_watch_time)
-    {
-
-        if (is_null($view_content_watch_time)) {
-            array_push($this->openAPINullablesSetToNull, 'view_content_watch_time');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('view_content_watch_time', $nullablesSetToNull, true);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['view_content_watch_time'] = $view_content_watch_time;
 
         return $this;
     }

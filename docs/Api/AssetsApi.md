@@ -6,9 +6,11 @@ All URIs are relative to https://api.mux.com, except if the operation defines an
 | ------------- | ------------- | ------------- |
 | [**createAsset()**](AssetsApi.md#createAsset) | **POST** /video/v1/assets | Create an asset |
 | [**createAssetPlaybackId()**](AssetsApi.md#createAssetPlaybackId) | **POST** /video/v1/assets/{ASSET_ID}/playback-ids | Create a playback ID |
+| [**createAssetStaticRendition()**](AssetsApi.md#createAssetStaticRendition) | **POST** /video/v1/assets/{ASSET_ID}/static-renditions | Create a static rendition for an asset |
 | [**createAssetTrack()**](AssetsApi.md#createAssetTrack) | **POST** /video/v1/assets/{ASSET_ID}/tracks | Create an asset track |
 | [**deleteAsset()**](AssetsApi.md#deleteAsset) | **DELETE** /video/v1/assets/{ASSET_ID} | Delete an asset |
 | [**deleteAssetPlaybackId()**](AssetsApi.md#deleteAssetPlaybackId) | **DELETE** /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID} | Delete a playback ID |
+| [**deleteAssetStaticRendition()**](AssetsApi.md#deleteAssetStaticRendition) | **DELETE** /video/v1/assets/{ASSET_ID}/static-renditions/{STATIC_RENDITION_ID} | Delete a single static rendition for an asset |
 | [**deleteAssetTrack()**](AssetsApi.md#deleteAssetTrack) | **DELETE** /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID} | Delete an asset track |
 | [**generateAssetTrackSubtitles()**](AssetsApi.md#generateAssetTrackSubtitles) | **POST** /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}/generate-subtitles | Generate track subtitles |
 | [**getAsset()**](AssetsApi.md#getAsset) | **GET** /video/v1/assets/{ASSET_ID} | Retrieve an asset |
@@ -152,6 +154,80 @@ try {
 ### Return type
 
 [**\MuxPhp\Models\CreatePlaybackIDResponse**](../Model/CreatePlaybackIDResponse.md)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createAssetStaticRendition()`
+
+```php
+createAssetStaticRendition($asset_id, $create_static_rendition_request): \MuxPhp\Models\CreateStaticRenditionResponse
+```
+
+Create a static rendition for an asset
+
+Creates a static rendition (i.e. MP4) for an asset
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\AssetsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$asset_id = 'asset_id_example'; // string | The asset ID.
+
+// This API method wants a \MuxPhp\Models\CreateStaticRenditionRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\CreateStaticRenditionRequest" directly.
+$create_static_rendition_request = json_decode('{"resolution":"highest"}',true); // \MuxPhp\Models\CreateStaticRenditionRequest
+
+try {
+    $result = $apiInstance->createAssetStaticRendition($asset_id, $create_static_rendition_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AssetsApi->createAssetStaticRendition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **asset_id** | **string**| The asset ID. | |
+| **create_static_rendition_request** | [**\MuxPhp\Models\CreateStaticRenditionRequest**](../Model/CreateStaticRenditionRequest.md)|  | |
+
+### Return type
+
+[**\MuxPhp\Models\CreateStaticRenditionResponse**](../Model/CreateStaticRenditionResponse.md)
 
 ### Authorization
 
@@ -346,6 +422,69 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **asset_id** | **string**| The asset ID. | |
 | **playback_id** | **string**| The live stream&#39;s playback ID. | |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteAssetStaticRendition()`
+
+```php
+deleteAssetStaticRendition($asset_id, $static_rendition_id)
+```
+
+Delete a single static rendition for an asset
+
+Deletes a single static rendition for an asset
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\AssetsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$asset_id = 'asset_id_example'; // string | The asset ID.
+$static_rendition_id = 'static_rendition_id_example'; // string | The static rendition ID.
+
+try {
+    $apiInstance->deleteAssetStaticRendition($asset_id, $static_rendition_id);
+} catch (Exception $e) {
+    echo 'Exception when calling AssetsApi->deleteAssetStaticRendition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **asset_id** | **string**| The asset ID. | |
+| **static_rendition_id** | **string**| The static rendition ID. | |
 
 ### Return type
 

@@ -36,7 +36,7 @@ use \MuxPhp\ObjectSerializer;
  * UpdateLiveStreamNewAssetSettings Class Doc Comment
  *
  * @category Class
- * @description Updates the new asset settings to use to generate a new asset for this live stream. Only the &#x60;mp4_support&#x60; and &#x60;master_access&#x60; settings may be updated.
+ * @description Updates the new asset settings to use to generate a new asset for this live stream. Only the &#x60;mp4_support&#x60;, &#x60;master_access&#x60;, and &#x60;video_quality&#x60; settings may be updated.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
@@ -62,7 +62,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPITypes = [
         'mp4_support' => 'string',
-        'master_access' => 'string'
+        'master_access' => 'string',
+        'video_quality' => 'string'
     ];
 
     /**
@@ -74,7 +75,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPIFormats = [
         'mp4_support' => null,
-        'master_access' => null
+        'master_access' => null,
+        'video_quality' => null
     ];
 
     /**
@@ -84,7 +86,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       */
     protected static array $openAPINullables = [
         'mp4_support' => false,
-        'master_access' => false
+        'master_access' => false,
+        'video_quality' => false
     ];
 
     /**
@@ -164,7 +167,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
      */
     protected static $attributeMap = [
         'mp4_support' => 'mp4_support',
-        'master_access' => 'master_access'
+        'master_access' => 'master_access',
+        'video_quality' => 'video_quality'
     ];
 
     /**
@@ -174,7 +178,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
      */
     protected static $setters = [
         'mp4_support' => 'setMp4Support',
-        'master_access' => 'setMasterAccess'
+        'master_access' => 'setMasterAccess',
+        'video_quality' => 'setVideoQuality'
     ];
 
     /**
@@ -184,7 +189,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
      */
     protected static $getters = [
         'mp4_support' => 'getMp4Support',
-        'master_access' => 'getMasterAccess'
+        'master_access' => 'getMasterAccess',
+        'video_quality' => 'getVideoQuality'
     ];
 
     /**
@@ -235,6 +241,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
     public const MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P = 'audio-only,capped-1080p';
     public const MASTER_ACCESS_TEMPORARY = 'temporary';
     public const MASTER_ACCESS_NONE = 'none';
+    public const VIDEO_QUALITY_PLUS = 'plus';
+    public const VIDEO_QUALITY_PREMIUM = 'premium';
 
     /**
      * Gets allowable values of the enum
@@ -266,6 +274,19 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getVideoQualityAllowableValues()
+    {
+        return [
+            self::VIDEO_QUALITY_PLUS,
+            self::VIDEO_QUALITY_PREMIUM,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -285,6 +306,7 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('mp4_support', $data ?? [], null);
         $this->setIfExists('master_access', $data ?? [], null);
+        $this->setIfExists('video_quality', $data ?? [], null);
     }
 
     /**
@@ -328,6 +350,15 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'master_access', must be one of '%s'",
                 $this->container['master_access'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getVideoQualityAllowableValues();
+        if (!is_null($this->container['video_quality']) && !in_array($this->container['video_quality'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'video_quality', must be one of '%s'",
+                $this->container['video_quality'],
                 implode("', '", $allowedValues)
             );
         }
@@ -421,6 +452,45 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
         }
 
         $this->container['master_access'] = $master_access;
+
+        return $this;
+    }
+
+    /**
+     * Gets video_quality
+     *
+     * @return string|null
+     */
+    public function getVideoQuality()
+    {
+        return $this->container['video_quality'];
+    }
+
+    /**
+     * Sets video_quality
+     *
+     * @param string|null $video_quality The video quality controls the cost, quality, and available platform features for the asset. [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+     *
+     * @return self
+     */
+    public function setVideoQuality($video_quality)
+    {
+        $allowedValues = $this->getVideoQualityAllowableValues();
+        if (!is_null($video_quality) && !in_array($video_quality, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'video_quality', must be one of '%s'",
+                    $video_quality,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($video_quality)) {
+            throw new \InvalidArgumentException('non-nullable video_quality cannot be null');
+        }
+
+        $this->container['video_quality'] = $video_quality;
 
         return $this;
     }

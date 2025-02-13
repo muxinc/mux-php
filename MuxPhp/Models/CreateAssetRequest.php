@@ -71,7 +71,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'test' => 'bool',
         'max_resolution_tier' => 'string',
         'encoding_tier' => 'string',
-        'video_quality' => 'string'
+        'video_quality' => 'string',
+        'static_renditions' => '\MuxPhp\Models\CreateStaticRenditionRequest[]'
     ];
 
     /**
@@ -93,7 +94,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'test' => 'boolean',
         'max_resolution_tier' => null,
         'encoding_tier' => null,
-        'video_quality' => null
+        'video_quality' => null,
+        'static_renditions' => null
     ];
 
     /**
@@ -113,7 +115,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'test' => false,
         'max_resolution_tier' => false,
         'encoding_tier' => false,
-        'video_quality' => false
+        'video_quality' => false,
+        'static_renditions' => false
     ];
 
     /**
@@ -203,7 +206,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'test' => 'test',
         'max_resolution_tier' => 'max_resolution_tier',
         'encoding_tier' => 'encoding_tier',
-        'video_quality' => 'video_quality'
+        'video_quality' => 'video_quality',
+        'static_renditions' => 'static_renditions'
     ];
 
     /**
@@ -223,7 +227,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'test' => 'setTest',
         'max_resolution_tier' => 'setMaxResolutionTier',
         'encoding_tier' => 'setEncodingTier',
-        'video_quality' => 'setVideoQuality'
+        'video_quality' => 'setVideoQuality',
+        'static_renditions' => 'setStaticRenditions'
     ];
 
     /**
@@ -243,7 +248,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'test' => 'getTest',
         'max_resolution_tier' => 'getMaxResolutionTier',
         'encoding_tier' => 'getEncodingTier',
-        'video_quality' => 'getVideoQuality'
+        'video_quality' => 'getVideoQuality',
+        'static_renditions' => 'getStaticRenditions'
     ];
 
     /**
@@ -405,6 +411,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('max_resolution_tier', $data ?? [], null);
         $this->setIfExists('encoding_tier', $data ?? [], null);
         $this->setIfExists('video_quality', $data ?? [], null);
+        $this->setIfExists('static_renditions', $data ?? [], null);
     }
 
     /**
@@ -654,7 +661,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets mp4_support
      *
-     * @param string|null $mp4_support Specify what level of support for mp4 playback.  * The `capped-1080p` option produces a single MP4 file, called `capped-1080p.mp4`, with the video resolution capped at 1080p. This option produces an `audio.m4a` file for an audio-only asset. * The `audio-only` option produces a single M4A file, called `audio.m4a` for a video or an audio-only asset. MP4 generation will error when this option is specified for a video-only asset. * The `audio-only,capped-1080p` option produces both the `audio.m4a` and `capped-1080p.mp4` files. Only the `capped-1080p.mp4` file is produced for a video-only asset, while only the `audio.m4a` file is produced for an audio-only asset.  The `standard`(deprecated) option produces up to three MP4 files with different levels of resolution (`high.mp4`, `medium.mp4`, `low.mp4`, or `audio.m4a` for an audio-only asset).  MP4 files are not produced for `none` (default).  In most cases you should use our default HLS-based streaming playback (`{playback_id}.m3u8`) which can automatically adjust to viewers' connection speeds, but an mp4 can be useful for some legacy devices or downloading for offline playback. See the [Download your videos guide](https://docs.mux.com/guides/enable-static-mp4-renditions) for more information.
+     * @param string|null $mp4_support Specify what level of support for mp4 playback. You may not enable both `mp4_support` and  `static_renditions`.  * The `capped-1080p` option produces a single MP4 file, called `capped-1080p.mp4`, with the video resolution capped at 1080p. This option produces an `audio.m4a` file for an audio-only asset. * The `audio-only` option produces a single M4A file, called `audio.m4a` for a video or an audio-only asset. MP4 generation will error when this option is specified for a video-only asset. * The `audio-only,capped-1080p` option produces both the `audio.m4a` and `capped-1080p.mp4` files. Only the `capped-1080p.mp4` file is produced for a video-only asset, while only the `audio.m4a` file is produced for an audio-only asset.  The `standard`(deprecated) option produces up to three MP4 files with different levels of resolution (`high.mp4`, `medium.mp4`, `low.mp4`, or `audio.m4a` for an audio-only asset).  MP4 files are not produced for `none` (default).  In most cases you should use our default HLS-based streaming playback (`{playback_id}.m3u8`) which can automatically adjust to viewers' connection speeds, but an mp4 can be useful for some legacy devices or downloading for offline playback. See the [Download your videos guide](https://docs.mux.com/guides/enable-static-mp4-renditions) for more information.
      *
      * @return self
      */
@@ -892,6 +899,35 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['video_quality'] = $video_quality;
+
+        return $this;
+    }
+
+    /**
+     * Gets static_renditions
+     *
+     * @return \MuxPhp\Models\CreateStaticRenditionRequest[]|null
+     */
+    public function getStaticRenditions()
+    {
+        return $this->container['static_renditions'];
+    }
+
+    /**
+     * Sets static_renditions
+     *
+     * @param \MuxPhp\Models\CreateStaticRenditionRequest[]|null $static_renditions An array of static renditions to create for this asset. You may not enable both `static_renditions` and `mp4_support`
+     *
+     * @return self
+     */
+    public function setStaticRenditions($static_renditions)
+    {
+
+        if (is_null($static_renditions)) {
+            throw new \InvalidArgumentException('non-nullable static_renditions cannot be null');
+        }
+
+        $this->container['static_renditions'] = $static_renditions;
 
         return $this;
     }

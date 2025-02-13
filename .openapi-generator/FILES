@@ -33,7 +33,6 @@ MuxPhp/Models/AssetNonStandardInputReasons.php
 MuxPhp/Models/AssetRecordingTimes.php
 MuxPhp/Models/AssetResponse.php
 MuxPhp/Models/AssetStaticRenditions.php
-MuxPhp/Models/AssetStaticRenditionsFiles.php
 MuxPhp/Models/BreakdownValue.php
 MuxPhp/Models/Broadcast.php
 MuxPhp/Models/BroadcastLayout.php
@@ -48,6 +47,8 @@ MuxPhp/Models/CreatePlaybackIDResponse.php
 MuxPhp/Models/CreatePlaybackRestrictionRequest.php
 MuxPhp/Models/CreateSimulcastTargetRequest.php
 MuxPhp/Models/CreateSpaceRequest.php
+MuxPhp/Models/CreateStaticRenditionRequest.php
+MuxPhp/Models/CreateStaticRenditionResponse.php
 MuxPhp/Models/CreateTrackRequest.php
 MuxPhp/Models/CreateTrackResponse.php
 MuxPhp/Models/CreateTranscriptionVocabularyRequest.php
@@ -164,6 +165,7 @@ MuxPhp/Models/SpaceResponse.php
 MuxPhp/Models/SpaceStatus.php
 MuxPhp/Models/SpaceType.php
 MuxPhp/Models/StartSpaceBroadcastResponse.php
+MuxPhp/Models/StaticRendition.php
 MuxPhp/Models/StopSpaceBroadcastResponse.php
 MuxPhp/Models/Track.php
 MuxPhp/Models/TranscriptionVocabulary.php
@@ -174,6 +176,7 @@ MuxPhp/Models/UpdateAssetRequest.php
 MuxPhp/Models/UpdateLiveStreamEmbeddedSubtitlesRequest.php
 MuxPhp/Models/UpdateLiveStreamGeneratedSubtitlesRequest.php
 MuxPhp/Models/UpdateLiveStreamNewAssetSettings.php
+MuxPhp/Models/UpdateLiveStreamNewAssetSettingsStaticRenditionsRequest.php
 MuxPhp/Models/UpdateLiveStreamRequest.php
 MuxPhp/Models/UpdateReferrerDomainRestrictionRequest.php
 MuxPhp/Models/UpdateTranscriptionVocabularyRequest.php
@@ -222,7 +225,6 @@ docs/Model/AssetNonStandardInputReasons.md
 docs/Model/AssetRecordingTimes.md
 docs/Model/AssetResponse.md
 docs/Model/AssetStaticRenditions.md
-docs/Model/AssetStaticRenditionsFiles.md
 docs/Model/BreakdownValue.md
 docs/Model/Broadcast.md
 docs/Model/BroadcastLayout.md
@@ -237,6 +239,8 @@ docs/Model/CreatePlaybackIDResponse.md
 docs/Model/CreatePlaybackRestrictionRequest.md
 docs/Model/CreateSimulcastTargetRequest.md
 docs/Model/CreateSpaceRequest.md
+docs/Model/CreateStaticRenditionRequest.md
+docs/Model/CreateStaticRenditionResponse.md
 docs/Model/CreateTrackRequest.md
 docs/Model/CreateTrackResponse.md
 docs/Model/CreateTranscriptionVocabularyRequest.md
@@ -352,6 +356,7 @@ docs/Model/SpaceResponse.md
 docs/Model/SpaceStatus.md
 docs/Model/SpaceType.md
 docs/Model/StartSpaceBroadcastResponse.md
+docs/Model/StaticRendition.md
 docs/Model/StopSpaceBroadcastResponse.md
 docs/Model/Track.md
 docs/Model/TranscriptionVocabulary.md
@@ -362,6 +367,7 @@ docs/Model/UpdateAssetRequest.md
 docs/Model/UpdateLiveStreamEmbeddedSubtitlesRequest.md
 docs/Model/UpdateLiveStreamGeneratedSubtitlesRequest.md
 docs/Model/UpdateLiveStreamNewAssetSettings.md
+docs/Model/UpdateLiveStreamNewAssetSettingsStaticRenditionsRequest.md
 docs/Model/UpdateLiveStreamRequest.md
 docs/Model/UpdateReferrerDomainRestrictionRequest.md
 docs/Model/UpdateTranscriptionVocabularyRequest.md

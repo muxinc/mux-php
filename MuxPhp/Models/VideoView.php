@@ -221,7 +221,23 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_playback_failure_error_type_id' => 'int',
         'view_content_startup_time' => 'int',
         'ad_preroll_startup_time' => 'int',
-        'view_dropped' => 'bool'
+        'view_dropped' => 'bool',
+        'client_application_name' => 'string',
+        'client_application_version' => 'string',
+        'video_affiliate' => 'string',
+        'viewer_plan' => 'string',
+        'viewer_plan_status' => 'string',
+        'viewer_plan_category' => 'string',
+        'view_drm_level' => 'string',
+        'video_brand' => 'string',
+        'used_pip' => 'bool',
+        'time_shift_enabled' => 'bool',
+        'used_captions' => 'bool',
+        'video_codec' => 'string',
+        'audio_codec' => 'string',
+        'video_dynamic_range_type' => 'string',
+        'view_cdn_edge_pop' => 'string',
+        'view_cdn_origin' => 'string'
     ];
 
     /**
@@ -393,7 +409,23 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_playback_failure_error_type_id' => 'int32',
         'view_content_startup_time' => 'int32',
         'ad_preroll_startup_time' => 'int32',
-        'view_dropped' => null
+        'view_dropped' => null,
+        'client_application_name' => null,
+        'client_application_version' => null,
+        'video_affiliate' => null,
+        'viewer_plan' => null,
+        'viewer_plan_status' => null,
+        'viewer_plan_category' => null,
+        'view_drm_level' => null,
+        'video_brand' => null,
+        'used_pip' => null,
+        'time_shift_enabled' => null,
+        'used_captions' => null,
+        'video_codec' => null,
+        'audio_codec' => null,
+        'video_dynamic_range_type' => null,
+        'view_cdn_edge_pop' => null,
+        'view_cdn_origin' => null
     ];
 
     /**
@@ -563,7 +595,23 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_playback_failure_error_type_id' => true,
         'view_content_startup_time' => true,
         'ad_preroll_startup_time' => true,
-        'view_dropped' => false
+        'view_dropped' => false,
+        'client_application_name' => true,
+        'client_application_version' => true,
+        'video_affiliate' => true,
+        'viewer_plan' => true,
+        'viewer_plan_status' => true,
+        'viewer_plan_category' => true,
+        'view_drm_level' => true,
+        'video_brand' => true,
+        'used_pip' => false,
+        'time_shift_enabled' => false,
+        'used_captions' => false,
+        'video_codec' => true,
+        'audio_codec' => true,
+        'video_dynamic_range_type' => true,
+        'view_cdn_edge_pop' => true,
+        'view_cdn_origin' => true
     ];
 
     /**
@@ -803,7 +851,23 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_playback_failure_error_type_id' => 'ad_playback_failure_error_type_id',
         'view_content_startup_time' => 'view_content_startup_time',
         'ad_preroll_startup_time' => 'ad_preroll_startup_time',
-        'view_dropped' => 'view_dropped'
+        'view_dropped' => 'view_dropped',
+        'client_application_name' => 'client_application_name',
+        'client_application_version' => 'client_application_version',
+        'video_affiliate' => 'video_affiliate',
+        'viewer_plan' => 'viewer_plan',
+        'viewer_plan_status' => 'viewer_plan_status',
+        'viewer_plan_category' => 'viewer_plan_category',
+        'view_drm_level' => 'view_drm_level',
+        'video_brand' => 'video_brand',
+        'used_pip' => 'used_pip',
+        'time_shift_enabled' => 'time_shift_enabled',
+        'used_captions' => 'used_captions',
+        'video_codec' => 'video_codec',
+        'audio_codec' => 'audio_codec',
+        'video_dynamic_range_type' => 'video_dynamic_range_type',
+        'view_cdn_edge_pop' => 'view_cdn_edge_pop',
+        'view_cdn_origin' => 'view_cdn_origin'
     ];
 
     /**
@@ -973,7 +1037,23 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_playback_failure_error_type_id' => 'setAdPlaybackFailureErrorTypeId',
         'view_content_startup_time' => 'setViewContentStartupTime',
         'ad_preroll_startup_time' => 'setAdPrerollStartupTime',
-        'view_dropped' => 'setViewDropped'
+        'view_dropped' => 'setViewDropped',
+        'client_application_name' => 'setClientApplicationName',
+        'client_application_version' => 'setClientApplicationVersion',
+        'video_affiliate' => 'setVideoAffiliate',
+        'viewer_plan' => 'setViewerPlan',
+        'viewer_plan_status' => 'setViewerPlanStatus',
+        'viewer_plan_category' => 'setViewerPlanCategory',
+        'view_drm_level' => 'setViewDrmLevel',
+        'video_brand' => 'setVideoBrand',
+        'used_pip' => 'setUsedPip',
+        'time_shift_enabled' => 'setTimeShiftEnabled',
+        'used_captions' => 'setUsedCaptions',
+        'video_codec' => 'setVideoCodec',
+        'audio_codec' => 'setAudioCodec',
+        'video_dynamic_range_type' => 'setVideoDynamicRangeType',
+        'view_cdn_edge_pop' => 'setViewCdnEdgePop',
+        'view_cdn_origin' => 'setViewCdnOrigin'
     ];
 
     /**
@@ -1143,7 +1223,23 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'ad_playback_failure_error_type_id' => 'getAdPlaybackFailureErrorTypeId',
         'view_content_startup_time' => 'getViewContentStartupTime',
         'ad_preroll_startup_time' => 'getAdPrerollStartupTime',
-        'view_dropped' => 'getViewDropped'
+        'view_dropped' => 'getViewDropped',
+        'client_application_name' => 'getClientApplicationName',
+        'client_application_version' => 'getClientApplicationVersion',
+        'video_affiliate' => 'getVideoAffiliate',
+        'viewer_plan' => 'getViewerPlan',
+        'viewer_plan_status' => 'getViewerPlanStatus',
+        'viewer_plan_category' => 'getViewerPlanCategory',
+        'view_drm_level' => 'getViewDrmLevel',
+        'video_brand' => 'getVideoBrand',
+        'used_pip' => 'getUsedPip',
+        'time_shift_enabled' => 'getTimeShiftEnabled',
+        'used_captions' => 'getUsedCaptions',
+        'video_codec' => 'getVideoCodec',
+        'audio_codec' => 'getAudioCodec',
+        'video_dynamic_range_type' => 'getVideoDynamicRangeType',
+        'view_cdn_edge_pop' => 'getViewCdnEdgePop',
+        'view_cdn_origin' => 'getViewCdnOrigin'
     ];
 
     /**
@@ -1368,6 +1464,22 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('view_content_startup_time', $data ?? [], null);
         $this->setIfExists('ad_preroll_startup_time', $data ?? [], null);
         $this->setIfExists('view_dropped', $data ?? [], null);
+        $this->setIfExists('client_application_name', $data ?? [], null);
+        $this->setIfExists('client_application_version', $data ?? [], null);
+        $this->setIfExists('video_affiliate', $data ?? [], null);
+        $this->setIfExists('viewer_plan', $data ?? [], null);
+        $this->setIfExists('viewer_plan_status', $data ?? [], null);
+        $this->setIfExists('viewer_plan_category', $data ?? [], null);
+        $this->setIfExists('view_drm_level', $data ?? [], null);
+        $this->setIfExists('video_brand', $data ?? [], null);
+        $this->setIfExists('used_pip', $data ?? [], null);
+        $this->setIfExists('time_shift_enabled', $data ?? [], null);
+        $this->setIfExists('used_captions', $data ?? [], null);
+        $this->setIfExists('video_codec', $data ?? [], null);
+        $this->setIfExists('audio_codec', $data ?? [], null);
+        $this->setIfExists('video_dynamic_range_type', $data ?? [], null);
+        $this->setIfExists('view_cdn_edge_pop', $data ?? [], null);
+        $this->setIfExists('view_cdn_origin', $data ?? [], null);
     }
 
     /**
@@ -7072,6 +7184,561 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['view_dropped'] = $view_dropped;
+
+        return $this;
+    }
+
+    /**
+     * Gets client_application_name
+     *
+     * @return string|null
+     */
+    public function getClientApplicationName()
+    {
+        return $this->container['client_application_name'];
+    }
+
+    /**
+     * Sets client_application_name
+     *
+     * @param string|null $client_application_name client_application_name
+     *
+     * @return self
+     */
+    public function setClientApplicationName($client_application_name)
+    {
+
+        if (is_null($client_application_name)) {
+            array_push($this->openAPINullablesSetToNull, 'client_application_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('client_application_name', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['client_application_name'] = $client_application_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets client_application_version
+     *
+     * @return string|null
+     */
+    public function getClientApplicationVersion()
+    {
+        return $this->container['client_application_version'];
+    }
+
+    /**
+     * Sets client_application_version
+     *
+     * @param string|null $client_application_version client_application_version
+     *
+     * @return self
+     */
+    public function setClientApplicationVersion($client_application_version)
+    {
+
+        if (is_null($client_application_version)) {
+            array_push($this->openAPINullablesSetToNull, 'client_application_version');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('client_application_version', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['client_application_version'] = $client_application_version;
+
+        return $this;
+    }
+
+    /**
+     * Gets video_affiliate
+     *
+     * @return string|null
+     */
+    public function getVideoAffiliate()
+    {
+        return $this->container['video_affiliate'];
+    }
+
+    /**
+     * Sets video_affiliate
+     *
+     * @param string|null $video_affiliate video_affiliate
+     *
+     * @return self
+     */
+    public function setVideoAffiliate($video_affiliate)
+    {
+
+        if (is_null($video_affiliate)) {
+            array_push($this->openAPINullablesSetToNull, 'video_affiliate');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('video_affiliate', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['video_affiliate'] = $video_affiliate;
+
+        return $this;
+    }
+
+    /**
+     * Gets viewer_plan
+     *
+     * @return string|null
+     */
+    public function getViewerPlan()
+    {
+        return $this->container['viewer_plan'];
+    }
+
+    /**
+     * Sets viewer_plan
+     *
+     * @param string|null $viewer_plan viewer_plan
+     *
+     * @return self
+     */
+    public function setViewerPlan($viewer_plan)
+    {
+
+        if (is_null($viewer_plan)) {
+            array_push($this->openAPINullablesSetToNull, 'viewer_plan');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('viewer_plan', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['viewer_plan'] = $viewer_plan;
+
+        return $this;
+    }
+
+    /**
+     * Gets viewer_plan_status
+     *
+     * @return string|null
+     */
+    public function getViewerPlanStatus()
+    {
+        return $this->container['viewer_plan_status'];
+    }
+
+    /**
+     * Sets viewer_plan_status
+     *
+     * @param string|null $viewer_plan_status viewer_plan_status
+     *
+     * @return self
+     */
+    public function setViewerPlanStatus($viewer_plan_status)
+    {
+
+        if (is_null($viewer_plan_status)) {
+            array_push($this->openAPINullablesSetToNull, 'viewer_plan_status');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('viewer_plan_status', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['viewer_plan_status'] = $viewer_plan_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets viewer_plan_category
+     *
+     * @return string|null
+     */
+    public function getViewerPlanCategory()
+    {
+        return $this->container['viewer_plan_category'];
+    }
+
+    /**
+     * Sets viewer_plan_category
+     *
+     * @param string|null $viewer_plan_category viewer_plan_category
+     *
+     * @return self
+     */
+    public function setViewerPlanCategory($viewer_plan_category)
+    {
+
+        if (is_null($viewer_plan_category)) {
+            array_push($this->openAPINullablesSetToNull, 'viewer_plan_category');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('viewer_plan_category', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['viewer_plan_category'] = $viewer_plan_category;
+
+        return $this;
+    }
+
+    /**
+     * Gets view_drm_level
+     *
+     * @return string|null
+     */
+    public function getViewDrmLevel()
+    {
+        return $this->container['view_drm_level'];
+    }
+
+    /**
+     * Sets view_drm_level
+     *
+     * @param string|null $view_drm_level view_drm_level
+     *
+     * @return self
+     */
+    public function setViewDrmLevel($view_drm_level)
+    {
+
+        if (is_null($view_drm_level)) {
+            array_push($this->openAPINullablesSetToNull, 'view_drm_level');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('view_drm_level', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['view_drm_level'] = $view_drm_level;
+
+        return $this;
+    }
+
+    /**
+     * Gets video_brand
+     *
+     * @return string|null
+     */
+    public function getVideoBrand()
+    {
+        return $this->container['video_brand'];
+    }
+
+    /**
+     * Sets video_brand
+     *
+     * @param string|null $video_brand video_brand
+     *
+     * @return self
+     */
+    public function setVideoBrand($video_brand)
+    {
+
+        if (is_null($video_brand)) {
+            array_push($this->openAPINullablesSetToNull, 'video_brand');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('video_brand', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['video_brand'] = $video_brand;
+
+        return $this;
+    }
+
+    /**
+     * Gets used_pip
+     *
+     * @return bool|null
+     */
+    public function getUsedPip()
+    {
+        return $this->container['used_pip'];
+    }
+
+    /**
+     * Sets used_pip
+     *
+     * @param bool|null $used_pip used_pip
+     *
+     * @return self
+     */
+    public function setUsedPip($used_pip)
+    {
+
+        if (is_null($used_pip)) {
+            throw new \InvalidArgumentException('non-nullable used_pip cannot be null');
+        }
+
+        $this->container['used_pip'] = $used_pip;
+
+        return $this;
+    }
+
+    /**
+     * Gets time_shift_enabled
+     *
+     * @return bool|null
+     */
+    public function getTimeShiftEnabled()
+    {
+        return $this->container['time_shift_enabled'];
+    }
+
+    /**
+     * Sets time_shift_enabled
+     *
+     * @param bool|null $time_shift_enabled time_shift_enabled
+     *
+     * @return self
+     */
+    public function setTimeShiftEnabled($time_shift_enabled)
+    {
+
+        if (is_null($time_shift_enabled)) {
+            throw new \InvalidArgumentException('non-nullable time_shift_enabled cannot be null');
+        }
+
+        $this->container['time_shift_enabled'] = $time_shift_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets used_captions
+     *
+     * @return bool|null
+     */
+    public function getUsedCaptions()
+    {
+        return $this->container['used_captions'];
+    }
+
+    /**
+     * Sets used_captions
+     *
+     * @param bool|null $used_captions used_captions
+     *
+     * @return self
+     */
+    public function setUsedCaptions($used_captions)
+    {
+
+        if (is_null($used_captions)) {
+            throw new \InvalidArgumentException('non-nullable used_captions cannot be null');
+        }
+
+        $this->container['used_captions'] = $used_captions;
+
+        return $this;
+    }
+
+    /**
+     * Gets video_codec
+     *
+     * @return string|null
+     */
+    public function getVideoCodec()
+    {
+        return $this->container['video_codec'];
+    }
+
+    /**
+     * Sets video_codec
+     *
+     * @param string|null $video_codec video_codec
+     *
+     * @return self
+     */
+    public function setVideoCodec($video_codec)
+    {
+
+        if (is_null($video_codec)) {
+            array_push($this->openAPINullablesSetToNull, 'video_codec');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('video_codec', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['video_codec'] = $video_codec;
+
+        return $this;
+    }
+
+    /**
+     * Gets audio_codec
+     *
+     * @return string|null
+     */
+    public function getAudioCodec()
+    {
+        return $this->container['audio_codec'];
+    }
+
+    /**
+     * Sets audio_codec
+     *
+     * @param string|null $audio_codec audio_codec
+     *
+     * @return self
+     */
+    public function setAudioCodec($audio_codec)
+    {
+
+        if (is_null($audio_codec)) {
+            array_push($this->openAPINullablesSetToNull, 'audio_codec');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('audio_codec', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['audio_codec'] = $audio_codec;
+
+        return $this;
+    }
+
+    /**
+     * Gets video_dynamic_range_type
+     *
+     * @return string|null
+     */
+    public function getVideoDynamicRangeType()
+    {
+        return $this->container['video_dynamic_range_type'];
+    }
+
+    /**
+     * Sets video_dynamic_range_type
+     *
+     * @param string|null $video_dynamic_range_type video_dynamic_range_type
+     *
+     * @return self
+     */
+    public function setVideoDynamicRangeType($video_dynamic_range_type)
+    {
+
+        if (is_null($video_dynamic_range_type)) {
+            array_push($this->openAPINullablesSetToNull, 'video_dynamic_range_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('video_dynamic_range_type', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['video_dynamic_range_type'] = $video_dynamic_range_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets view_cdn_edge_pop
+     *
+     * @return string|null
+     */
+    public function getViewCdnEdgePop()
+    {
+        return $this->container['view_cdn_edge_pop'];
+    }
+
+    /**
+     * Sets view_cdn_edge_pop
+     *
+     * @param string|null $view_cdn_edge_pop view_cdn_edge_pop
+     *
+     * @return self
+     */
+    public function setViewCdnEdgePop($view_cdn_edge_pop)
+    {
+
+        if (is_null($view_cdn_edge_pop)) {
+            array_push($this->openAPINullablesSetToNull, 'view_cdn_edge_pop');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('view_cdn_edge_pop', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['view_cdn_edge_pop'] = $view_cdn_edge_pop;
+
+        return $this;
+    }
+
+    /**
+     * Gets view_cdn_origin
+     *
+     * @return string|null
+     */
+    public function getViewCdnOrigin()
+    {
+        return $this->container['view_cdn_origin'];
+    }
+
+    /**
+     * Sets view_cdn_origin
+     *
+     * @param string|null $view_cdn_origin view_cdn_origin
+     *
+     * @return self
+     */
+    public function setViewCdnOrigin($view_cdn_origin)
+    {
+
+        if (is_null($view_cdn_origin)) {
+            array_push($this->openAPINullablesSetToNull, 'view_cdn_origin');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('view_cdn_origin', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        $this->container['view_cdn_origin'] = $view_cdn_origin;
 
         return $this;
     }

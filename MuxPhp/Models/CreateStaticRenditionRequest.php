@@ -60,7 +60,8 @@ class CreateStaticRenditionRequest implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'resolution' => 'string'
+        'resolution' => 'string',
+        'passthrough' => 'string'
     ];
 
     /**
@@ -71,7 +72,8 @@ class CreateStaticRenditionRequest implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'resolution' => null
+        'resolution' => null,
+        'passthrough' => null
     ];
 
     /**
@@ -80,7 +82,8 @@ class CreateStaticRenditionRequest implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'resolution' => false
+        'resolution' => false,
+        'passthrough' => false
     ];
 
     /**
@@ -159,7 +162,8 @@ class CreateStaticRenditionRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'resolution' => 'resolution'
+        'resolution' => 'resolution',
+        'passthrough' => 'passthrough'
     ];
 
     /**
@@ -168,7 +172,8 @@ class CreateStaticRenditionRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'resolution' => 'setResolution'
+        'resolution' => 'setResolution',
+        'passthrough' => 'setPassthrough'
     ];
 
     /**
@@ -177,7 +182,8 @@ class CreateStaticRenditionRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'resolution' => 'getResolution'
+        'resolution' => 'getResolution',
+        'passthrough' => 'getPassthrough'
     ];
 
     /**
@@ -272,6 +278,7 @@ class CreateStaticRenditionRequest implements ModelInterface, ArrayAccess, \Json
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('resolution', $data ?? [], null);
+        $this->setIfExists('passthrough', $data ?? [], null);
     }
 
     /**
@@ -360,6 +367,35 @@ class CreateStaticRenditionRequest implements ModelInterface, ArrayAccess, \Json
         }
 
         $this->container['resolution'] = $resolution;
+
+        return $this;
+    }
+
+    /**
+     * Gets passthrough
+     *
+     * @return string|null
+     */
+    public function getPassthrough()
+    {
+        return $this->container['passthrough'];
+    }
+
+    /**
+     * Sets passthrough
+     *
+     * @param string|null $passthrough Arbitrary user-supplied metadata set for the static rendition. Max 255 characters.
+     *
+     * @return self
+     */
+    public function setPassthrough($passthrough)
+    {
+
+        if (is_null($passthrough)) {
+            throw new \InvalidArgumentException('non-nullable passthrough cannot be null');
+        }
+
+        $this->container['passthrough'] = $passthrough;
 
         return $this;
     }

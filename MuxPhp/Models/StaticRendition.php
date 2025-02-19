@@ -70,7 +70,8 @@ class StaticRendition implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'string',
         'resolution_tier' => 'string',
         'resolution' => 'string',
-        'id' => 'string'
+        'id' => 'string',
+        'passthrough' => 'string'
     ];
 
     /**
@@ -91,7 +92,8 @@ class StaticRendition implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => null,
         'resolution_tier' => null,
         'resolution' => null,
-        'id' => null
+        'id' => null,
+        'passthrough' => null
     ];
 
     /**
@@ -110,7 +112,8 @@ class StaticRendition implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => false,
         'resolution_tier' => false,
         'resolution' => false,
-        'id' => false
+        'id' => false,
+        'passthrough' => false
     ];
 
     /**
@@ -199,7 +202,8 @@ class StaticRendition implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'status',
         'resolution_tier' => 'resolution_tier',
         'resolution' => 'resolution',
-        'id' => 'id'
+        'id' => 'id',
+        'passthrough' => 'passthrough'
     ];
 
     /**
@@ -218,7 +222,8 @@ class StaticRendition implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'setStatus',
         'resolution_tier' => 'setResolutionTier',
         'resolution' => 'setResolution',
-        'id' => 'setId'
+        'id' => 'setId',
+        'passthrough' => 'setPassthrough'
     ];
 
     /**
@@ -237,7 +242,8 @@ class StaticRendition implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'getStatus',
         'resolution_tier' => 'getResolutionTier',
         'resolution' => 'getResolution',
-        'id' => 'getId'
+        'id' => 'getId',
+        'passthrough' => 'getPassthrough'
     ];
 
     /**
@@ -449,6 +455,7 @@ class StaticRendition implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('resolution_tier', $data ?? [], null);
         $this->setIfExists('resolution', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('passthrough', $data ?? [], null);
     }
 
     /**
@@ -922,6 +929,35 @@ class StaticRendition implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets passthrough
+     *
+     * @return string|null
+     */
+    public function getPassthrough()
+    {
+        return $this->container['passthrough'];
+    }
+
+    /**
+     * Sets passthrough
+     *
+     * @param string|null $passthrough Arbitrary user-supplied metadata set for the static rendition. Max 255 characters.
+     *
+     * @return self
+     */
+    public function setPassthrough($passthrough)
+    {
+
+        if (is_null($passthrough)) {
+            throw new \InvalidArgumentException('non-nullable passthrough cannot be null');
+        }
+
+        $this->container['passthrough'] = $passthrough;
 
         return $this;
     }

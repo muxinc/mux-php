@@ -727,7 +727,7 @@ class InputSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough This optional parameter should be used tracks with `type` of `text` and `text_type` set to `subtitles`.
+     * @param string|null $passthrough This optional parameter should be used for tracks with `type` of `text` and `text_type` set to `subtitles`.
      *
      * @return self
      */

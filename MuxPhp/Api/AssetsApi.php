@@ -679,6 +679,297 @@ class AssetsApi
     }
 
     /**
+     * Operation createAssetStaticRendition
+     *
+     * Create a static rendition for an asset
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  \MuxPhp\Models\CreateStaticRenditionRequest $create_static_rendition_request create_static_rendition_request (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MuxPhp\Models\CreateStaticRenditionResponse
+     */
+    public function createAssetStaticRendition($asset_id, $create_static_rendition_request)
+    {
+        list($response) = $this->createAssetStaticRenditionWithHttpInfo($asset_id, $create_static_rendition_request);
+        return $response;
+    }
+
+    /**
+     * Operation createAssetStaticRenditionWithHttpInfo
+     *
+     * Create a static rendition for an asset
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  \MuxPhp\Models\CreateStaticRenditionRequest $create_static_rendition_request (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MuxPhp\Models\CreateStaticRenditionResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createAssetStaticRenditionWithHttpInfo($asset_id, $create_static_rendition_request)
+    {
+        $request = $this->createAssetStaticRenditionRequest($asset_id, $create_static_rendition_request);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 201:
+                    if ('\MuxPhp\Models\CreateStaticRenditionResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\CreateStaticRenditionResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MuxPhp\Models\CreateStaticRenditionResponse';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = (string) $responseBody;
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MuxPhp\Models\CreateStaticRenditionResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createAssetStaticRenditionAsync
+     *
+     * Create a static rendition for an asset
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  \MuxPhp\Models\CreateStaticRenditionRequest $create_static_rendition_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAssetStaticRenditionAsync($asset_id, $create_static_rendition_request)
+    {
+        return $this->createAssetStaticRenditionAsyncWithHttpInfo($asset_id, $create_static_rendition_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createAssetStaticRenditionAsyncWithHttpInfo
+     *
+     * Create a static rendition for an asset
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  \MuxPhp\Models\CreateStaticRenditionRequest $create_static_rendition_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAssetStaticRenditionAsyncWithHttpInfo($asset_id, $create_static_rendition_request)
+    {
+        $returnType = '\MuxPhp\Models\CreateStaticRenditionResponse';
+        $request = $this->createAssetStaticRenditionRequest($asset_id, $create_static_rendition_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createAssetStaticRendition'
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  \MuxPhp\Models\CreateStaticRenditionRequest $create_static_rendition_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createAssetStaticRenditionRequest($asset_id, $create_static_rendition_request)
+    {
+        // verify the required parameter 'asset_id' is set
+        if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $asset_id when calling createAssetStaticRendition'
+            );
+        }
+        // verify the required parameter 'create_static_rendition_request' is set
+        if ($create_static_rendition_request === null || (is_array($create_static_rendition_request) && count($create_static_rendition_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_static_rendition_request when calling createAssetStaticRendition'
+            );
+        }
+
+        $resourcePath = '/video/v1/assets/{ASSET_ID}/static-renditions';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($asset_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'ASSET_ID' . '}',
+                ObjectSerializer::toPathValue($asset_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($create_static_rendition_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_static_rendition_request));
+            } else {
+                $httpBody = $create_static_rendition_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation createAssetTrack
      *
      * Create an asset track
@@ -1371,6 +1662,251 @@ class AssetsApi
             $resourcePath = str_replace(
                 '{' . 'PLAYBACK_ID' . '}',
                 ObjectSerializer::toPathValue($playback_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteAssetStaticRendition
+     *
+     * Delete a single static rendition for an asset
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $static_rendition_id The static rendition ID. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteAssetStaticRendition($asset_id, $static_rendition_id)
+    {
+        $this->deleteAssetStaticRenditionWithHttpInfo($asset_id, $static_rendition_id);
+    }
+
+    /**
+     * Operation deleteAssetStaticRenditionWithHttpInfo
+     *
+     * Delete a single static rendition for an asset
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $static_rendition_id The static rendition ID. (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteAssetStaticRenditionWithHttpInfo($asset_id, $static_rendition_id)
+    {
+        $request = $this->deleteAssetStaticRenditionRequest($asset_id, $static_rendition_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteAssetStaticRenditionAsync
+     *
+     * Delete a single static rendition for an asset
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $static_rendition_id The static rendition ID. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAssetStaticRenditionAsync($asset_id, $static_rendition_id)
+    {
+        return $this->deleteAssetStaticRenditionAsyncWithHttpInfo($asset_id, $static_rendition_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteAssetStaticRenditionAsyncWithHttpInfo
+     *
+     * Delete a single static rendition for an asset
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $static_rendition_id The static rendition ID. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAssetStaticRenditionAsyncWithHttpInfo($asset_id, $static_rendition_id)
+    {
+        $returnType = '';
+        $request = $this->deleteAssetStaticRenditionRequest($asset_id, $static_rendition_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteAssetStaticRendition'
+     *
+     * @param  string $asset_id The asset ID. (required)
+     * @param  string $static_rendition_id The static rendition ID. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteAssetStaticRenditionRequest($asset_id, $static_rendition_id)
+    {
+        // verify the required parameter 'asset_id' is set
+        if ($asset_id === null || (is_array($asset_id) && count($asset_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $asset_id when calling deleteAssetStaticRendition'
+            );
+        }
+        // verify the required parameter 'static_rendition_id' is set
+        if ($static_rendition_id === null || (is_array($static_rendition_id) && count($static_rendition_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $static_rendition_id when calling deleteAssetStaticRendition'
+            );
+        }
+
+        $resourcePath = '/video/v1/assets/{ASSET_ID}/static-renditions/{STATIC_RENDITION_ID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($asset_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'ASSET_ID' . '}',
+                ObjectSerializer::toPathValue($asset_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($static_rendition_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'STATIC_RENDITION_ID' . '}',
+                ObjectSerializer::toPathValue($static_rendition_id),
                 $resourcePath
             );
         }

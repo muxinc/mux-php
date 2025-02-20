@@ -62,7 +62,7 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'status' => 'string',
-        'files' => '\MuxPhp\Models\AssetStaticRenditionsFiles[]'
+        'files' => '\MuxPhp\Models\StaticRendition[]'
     ];
 
     /**
@@ -334,7 +334,7 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets status
      *
-     * @param string|null $status Indicates the status of downloadable MP4 versions of this asset.
+     * @param string|null $status Indicates the status of downloadable MP4 versions of this asset. This field is only valid when `mp4_support` is enabled
      *
      * @return self
      */
@@ -363,7 +363,7 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets files
      *
-     * @return \MuxPhp\Models\AssetStaticRenditionsFiles[]|null
+     * @return \MuxPhp\Models\StaticRendition[]|null
      */
     public function getFiles()
     {
@@ -373,7 +373,7 @@ class AssetStaticRenditions implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets files
      *
-     * @param \MuxPhp\Models\AssetStaticRenditionsFiles[]|null $files Array of file objects.
+     * @param \MuxPhp\Models\StaticRendition[]|null $files Array of file objects.
      *
      * @return self
      */

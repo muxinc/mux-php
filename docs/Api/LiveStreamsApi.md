@@ -10,6 +10,7 @@ All URIs are relative to https://api.mux.com, except if the operation defines an
 | [**deleteLiveStream()**](LiveStreamsApi.md#deleteLiveStream) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID} | Delete a live stream |
 | [**deleteLiveStreamPlaybackId()**](LiveStreamsApi.md#deleteLiveStreamPlaybackId) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Delete a live stream playback ID |
 | [**deleteLiveStreamSimulcastTarget()**](LiveStreamsApi.md#deleteLiveStreamSimulcastTarget) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Delete a live stream simulcast target |
+| [**deleteLiveStreamStaticRenditions()**](LiveStreamsApi.md#deleteLiveStreamStaticRenditions) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/new-asset-settings/static-renditions | Delete a live stream&#39;s static renditions setting for new assets |
 | [**disableLiveStream()**](LiveStreamsApi.md#disableLiveStream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/disable | Disable a live stream |
 | [**enableLiveStream()**](LiveStreamsApi.md#enableLiveStream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/enable | Enable a live stream |
 | [**getLiveStream()**](LiveStreamsApi.md#getLiveStream) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID} | Retrieve a live stream |
@@ -21,6 +22,7 @@ All URIs are relative to https://api.mux.com, except if the operation defines an
 | [**updateLiveStream()**](LiveStreamsApi.md#updateLiveStream) | **PATCH** /video/v1/live-streams/{LIVE_STREAM_ID} | Update a live stream |
 | [**updateLiveStreamEmbeddedSubtitles()**](LiveStreamsApi.md#updateLiveStreamEmbeddedSubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles | Update a live stream&#39;s embedded subtitles |
 | [**updateLiveStreamGeneratedSubtitles()**](LiveStreamsApi.md#updateLiveStreamGeneratedSubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles | Update a live stream&#39;s generated subtitles |
+| [**updateLiveStreamStaticRenditions()**](LiveStreamsApi.md#updateLiveStreamStaticRenditions) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/new-asset-settings/static-renditions | Update live stream static renditions for new assets |
 
 
 ## `createLiveStream()`
@@ -412,6 +414,67 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **live_stream_id** | **string**| The live stream ID | |
 | **simulcast_target_id** | **string**| The ID of the simulcast target. | |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteLiveStreamStaticRenditions()`
+
+```php
+deleteLiveStreamStaticRenditions($live_stream_id)
+```
+
+Delete a live stream's static renditions setting for new assets
+
+Deletes a live stream's static renditions settings for new assets. Further assets made via this live stream will not create static renditions unless re-added.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+
+try {
+    $apiInstance->deleteLiveStreamStaticRenditions($live_stream_id);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->deleteLiveStreamStaticRenditions: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
 
 ### Return type
 
@@ -1140,6 +1203,80 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **live_stream_id** | **string**| The live stream ID | |
 | **update_live_stream_generated_subtitles_request** | [**\MuxPhp\Models\UpdateLiveStreamGeneratedSubtitlesRequest**](../Model/UpdateLiveStreamGeneratedSubtitlesRequest.md)|  | |
+
+### Return type
+
+[**\MuxPhp\Models\LiveStreamResponse**](../Model/LiveStreamResponse.md)
+
+### Authorization
+
+[accessToken](../../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateLiveStreamStaticRenditions()`
+
+```php
+updateLiveStreamStaticRenditions($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request): \MuxPhp\Models\LiveStreamResponse
+```
+
+Update live stream static renditions for new assets
+
+Updates a live stream's static renditions settings for new assets. Further assets made via this live stream will create static renditions per the settings provided. You must provide all static renditions desired.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure HTTP basic authorization: accessToken
+$config = MuxPhp\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+
+$apiInstance = new MuxPhp\Api\LiveStreamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$live_stream_id = 'live_stream_id_example'; // string | The live stream ID
+
+// This API method wants a \MuxPhp\Models\UpdateLiveStreamNewAssetSettingsStaticRenditionsRequest
+// as the second parameter.  That being said, these API docs are 
+// auto-generated from our OpenAPI specification, which 
+// gives us the example parameter as a JSON string.  In this example,
+// we'll use json_decode() to turn it into an associative array, which
+// is compatible with the model.
+//
+// In your own code you should use an associative array, or
+// use a "new \MuxPhp\Models\UpdateLiveStreamNewAssetSettingsStaticRenditionsRequest" directly.
+$update_live_stream_new_asset_settings_static_renditions_request = json_decode('{"static_renditions":[{"resolution":"audio-only"},{"resolution":"highest"}]}',true); // \MuxPhp\Models\UpdateLiveStreamNewAssetSettingsStaticRenditionsRequest
+
+try {
+    $result = $apiInstance->updateLiveStreamStaticRenditions($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LiveStreamsApi->updateLiveStreamStaticRenditions: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **live_stream_id** | **string**| The live stream ID | |
+| **update_live_stream_new_asset_settings_static_renditions_request** | [**\MuxPhp\Models\UpdateLiveStreamNewAssetSettingsStaticRenditionsRequest**](../Model/UpdateLiveStreamNewAssetSettingsStaticRenditionsRequest.md)|  | |
 
 ### Return type
 

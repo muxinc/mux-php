@@ -150,9 +150,11 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AssetsApi* | [**createAsset**](docs/Api/AssetsApi.md#createasset) | **POST** /video/v1/assets | Create an asset
 *AssetsApi* | [**createAssetPlaybackId**](docs/Api/AssetsApi.md#createassetplaybackid) | **POST** /video/v1/assets/{ASSET_ID}/playback-ids | Create a playback ID
+*AssetsApi* | [**createAssetStaticRendition**](docs/Api/AssetsApi.md#createassetstaticrendition) | **POST** /video/v1/assets/{ASSET_ID}/static-renditions | Create a static rendition for an asset
 *AssetsApi* | [**createAssetTrack**](docs/Api/AssetsApi.md#createassettrack) | **POST** /video/v1/assets/{ASSET_ID}/tracks | Create an asset track
 *AssetsApi* | [**deleteAsset**](docs/Api/AssetsApi.md#deleteasset) | **DELETE** /video/v1/assets/{ASSET_ID} | Delete an asset
 *AssetsApi* | [**deleteAssetPlaybackId**](docs/Api/AssetsApi.md#deleteassetplaybackid) | **DELETE** /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID} | Delete a playback ID
+*AssetsApi* | [**deleteAssetStaticRendition**](docs/Api/AssetsApi.md#deleteassetstaticrendition) | **DELETE** /video/v1/assets/{ASSET_ID}/static-renditions/{STATIC_RENDITION_ID} | Delete a single static rendition for an asset
 *AssetsApi* | [**deleteAssetTrack**](docs/Api/AssetsApi.md#deleteassettrack) | **DELETE** /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID} | Delete an asset track
 *AssetsApi* | [**generateAssetTrackSubtitles**](docs/Api/AssetsApi.md#generateassettracksubtitles) | **POST** /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}/generate-subtitles | Generate track subtitles
 *AssetsApi* | [**getAsset**](docs/Api/AssetsApi.md#getasset) | **GET** /video/v1/assets/{ASSET_ID} | Retrieve an asset
@@ -185,6 +187,7 @@ Class | Method | HTTP request | Description
 *LiveStreamsApi* | [**deleteLiveStream**](docs/Api/LiveStreamsApi.md#deletelivestream) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID} | Delete a live stream
 *LiveStreamsApi* | [**deleteLiveStreamPlaybackId**](docs/Api/LiveStreamsApi.md#deletelivestreamplaybackid) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID} | Delete a live stream playback ID
 *LiveStreamsApi* | [**deleteLiveStreamSimulcastTarget**](docs/Api/LiveStreamsApi.md#deletelivestreamsimulcasttarget) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID} | Delete a live stream simulcast target
+*LiveStreamsApi* | [**deleteLiveStreamStaticRenditions**](docs/Api/LiveStreamsApi.md#deletelivestreamstaticrenditions) | **DELETE** /video/v1/live-streams/{LIVE_STREAM_ID}/new-asset-settings/static-renditions | Delete a live stream&#39;s static renditions setting for new assets
 *LiveStreamsApi* | [**disableLiveStream**](docs/Api/LiveStreamsApi.md#disablelivestream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/disable | Disable a live stream
 *LiveStreamsApi* | [**enableLiveStream**](docs/Api/LiveStreamsApi.md#enablelivestream) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/enable | Enable a live stream
 *LiveStreamsApi* | [**getLiveStream**](docs/Api/LiveStreamsApi.md#getlivestream) | **GET** /video/v1/live-streams/{LIVE_STREAM_ID} | Retrieve a live stream
@@ -196,6 +199,7 @@ Class | Method | HTTP request | Description
 *LiveStreamsApi* | [**updateLiveStream**](docs/Api/LiveStreamsApi.md#updatelivestream) | **PATCH** /video/v1/live-streams/{LIVE_STREAM_ID} | Update a live stream
 *LiveStreamsApi* | [**updateLiveStreamEmbeddedSubtitles**](docs/Api/LiveStreamsApi.md#updatelivestreamembeddedsubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles | Update a live stream&#39;s embedded subtitles
 *LiveStreamsApi* | [**updateLiveStreamGeneratedSubtitles**](docs/Api/LiveStreamsApi.md#updatelivestreamgeneratedsubtitles) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles | Update a live stream&#39;s generated subtitles
+*LiveStreamsApi* | [**updateLiveStreamStaticRenditions**](docs/Api/LiveStreamsApi.md#updatelivestreamstaticrenditions) | **PUT** /video/v1/live-streams/{LIVE_STREAM_ID}/new-asset-settings/static-renditions | Update live stream static renditions for new assets
 *MetricsApi* | [**getMetricTimeseriesData**](docs/Api/MetricsApi.md#getmetrictimeseriesdata) | **GET** /data/v1/metrics/{METRIC_ID}/timeseries | Get metric timeseries data
 *MetricsApi* | [**getOverallValues**](docs/Api/MetricsApi.md#getoverallvalues) | **GET** /data/v1/metrics/{METRIC_ID}/overall | Get Overall values
 *MetricsApi* | [**listAllMetricValues**](docs/Api/MetricsApi.md#listallmetricvalues) | **GET** /data/v1/metrics/comparison | List all metric values
@@ -263,7 +267,6 @@ Class | Method | HTTP request | Description
 - [AssetRecordingTimes](docs/Model/AssetRecordingTimes.md)
 - [AssetResponse](docs/Model/AssetResponse.md)
 - [AssetStaticRenditions](docs/Model/AssetStaticRenditions.md)
-- [AssetStaticRenditionsFiles](docs/Model/AssetStaticRenditionsFiles.md)
 - [BreakdownValue](docs/Model/BreakdownValue.md)
 - [Broadcast](docs/Model/Broadcast.md)
 - [BroadcastLayout](docs/Model/BroadcastLayout.md)
@@ -278,6 +281,8 @@ Class | Method | HTTP request | Description
 - [CreatePlaybackRestrictionRequest](docs/Model/CreatePlaybackRestrictionRequest.md)
 - [CreateSimulcastTargetRequest](docs/Model/CreateSimulcastTargetRequest.md)
 - [CreateSpaceRequest](docs/Model/CreateSpaceRequest.md)
+- [CreateStaticRenditionRequest](docs/Model/CreateStaticRenditionRequest.md)
+- [CreateStaticRenditionResponse](docs/Model/CreateStaticRenditionResponse.md)
 - [CreateTrackRequest](docs/Model/CreateTrackRequest.md)
 - [CreateTrackResponse](docs/Model/CreateTrackResponse.md)
 - [CreateTranscriptionVocabularyRequest](docs/Model/CreateTranscriptionVocabularyRequest.md)
@@ -393,6 +398,7 @@ Class | Method | HTTP request | Description
 - [SpaceStatus](docs/Model/SpaceStatus.md)
 - [SpaceType](docs/Model/SpaceType.md)
 - [StartSpaceBroadcastResponse](docs/Model/StartSpaceBroadcastResponse.md)
+- [StaticRendition](docs/Model/StaticRendition.md)
 - [StopSpaceBroadcastResponse](docs/Model/StopSpaceBroadcastResponse.md)
 - [Track](docs/Model/Track.md)
 - [TranscriptionVocabulary](docs/Model/TranscriptionVocabulary.md)
@@ -403,6 +409,7 @@ Class | Method | HTTP request | Description
 - [UpdateLiveStreamEmbeddedSubtitlesRequest](docs/Model/UpdateLiveStreamEmbeddedSubtitlesRequest.md)
 - [UpdateLiveStreamGeneratedSubtitlesRequest](docs/Model/UpdateLiveStreamGeneratedSubtitlesRequest.md)
 - [UpdateLiveStreamNewAssetSettings](docs/Model/UpdateLiveStreamNewAssetSettings.md)
+- [UpdateLiveStreamNewAssetSettingsStaticRenditionsRequest](docs/Model/UpdateLiveStreamNewAssetSettingsStaticRenditionsRequest.md)
 - [UpdateLiveStreamRequest](docs/Model/UpdateLiveStreamRequest.md)
 - [UpdateReferrerDomainRestrictionRequest](docs/Model/UpdateReferrerDomainRestrictionRequest.md)
 - [UpdateTranscriptionVocabularyRequest](docs/Model/UpdateTranscriptionVocabularyRequest.md)
@@ -443,5 +450,5 @@ devex@mux.com
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `v1`
-    - Package version: `3.21.0`
+    - Package version: `4.0.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

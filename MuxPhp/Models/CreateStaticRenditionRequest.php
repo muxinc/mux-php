@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateLiveStreamNewAssetSettings
+ * CreateStaticRenditionRequest
  *
  * PHP version 7.2
  *
@@ -33,10 +33,9 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * UpdateLiveStreamNewAssetSettings Class Doc Comment
+ * CreateStaticRenditionRequest Class Doc Comment
  *
  * @category Class
- * @description Updates the new asset settings to use to generate a new asset for this live stream. Only the &#x60;mp4_support&#x60;, &#x60;master_access&#x60;, and &#x60;video_quality&#x60; settings may be updated.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
@@ -44,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateStaticRenditionRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +52,7 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdateLiveStreamNewAssetSettings';
+    protected static $openAPIModelName = 'CreateStaticRenditionRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,9 +60,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'mp4_support' => 'string',
-        'master_access' => 'string',
-        'video_quality' => 'string'
+        'resolution' => 'string',
+        'passthrough' => 'string'
     ];
 
     /**
@@ -74,9 +72,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'mp4_support' => null,
-        'master_access' => null,
-        'video_quality' => null
+        'resolution' => null,
+        'passthrough' => null
     ];
 
     /**
@@ -85,9 +82,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'mp4_support' => false,
-        'master_access' => false,
-        'video_quality' => false
+        'resolution' => false,
+        'passthrough' => false
     ];
 
     /**
@@ -166,9 +162,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $attributeMap = [
-        'mp4_support' => 'mp4_support',
-        'master_access' => 'master_access',
-        'video_quality' => 'video_quality'
+        'resolution' => 'resolution',
+        'passthrough' => 'passthrough'
     ];
 
     /**
@@ -177,9 +172,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $setters = [
-        'mp4_support' => 'setMp4Support',
-        'master_access' => 'setMasterAccess',
-        'video_quality' => 'setVideoQuality'
+        'resolution' => 'setResolution',
+        'passthrough' => 'setPassthrough'
     ];
 
     /**
@@ -188,9 +182,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $getters = [
-        'mp4_support' => 'getMp4Support',
-        'master_access' => 'getMasterAccess',
-        'video_quality' => 'getVideoQuality'
+        'resolution' => 'getResolution',
+        'passthrough' => 'getPassthrough'
     ];
 
     /**
@@ -234,55 +227,35 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
         return self::$openAPIModelName;
     }
 
-    public const MP4_SUPPORT_NONE = 'none';
-    public const MP4_SUPPORT_STANDARD = 'standard';
-    public const MP4_SUPPORT_CAPPED_1080P = 'capped-1080p';
-    public const MP4_SUPPORT_AUDIO_ONLY = 'audio-only';
-    public const MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P = 'audio-only,capped-1080p';
-    public const MASTER_ACCESS_TEMPORARY = 'temporary';
-    public const MASTER_ACCESS_NONE = 'none';
-    public const VIDEO_QUALITY_PLUS = 'plus';
-    public const VIDEO_QUALITY_PREMIUM = 'premium';
+    public const RESOLUTION_HIGHEST = 'highest';
+    public const RESOLUTION_AUDIO_ONLY = 'audio-only';
+    public const RESOLUTION__2160P = '2160p';
+    public const RESOLUTION__1440P = '1440p';
+    public const RESOLUTION__1080P = '1080p';
+    public const RESOLUTION__720P = '720p';
+    public const RESOLUTION__540P = '540p';
+    public const RESOLUTION__480P = '480p';
+    public const RESOLUTION__360P = '360p';
+    public const RESOLUTION__270P = '270p';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getMp4SupportAllowableValues()
+    public function getResolutionAllowableValues()
     {
         return [
-            self::MP4_SUPPORT_NONE,
-            self::MP4_SUPPORT_STANDARD,
-            self::MP4_SUPPORT_CAPPED_1080P,
-            self::MP4_SUPPORT_AUDIO_ONLY,
-            self::MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMasterAccessAllowableValues()
-    {
-        return [
-            self::MASTER_ACCESS_TEMPORARY,
-            self::MASTER_ACCESS_NONE,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getVideoQualityAllowableValues()
-    {
-        return [
-            self::VIDEO_QUALITY_PLUS,
-            self::VIDEO_QUALITY_PREMIUM,
+            self::RESOLUTION_HIGHEST,
+            self::RESOLUTION_AUDIO_ONLY,
+            self::RESOLUTION__2160P,
+            self::RESOLUTION__1440P,
+            self::RESOLUTION__1080P,
+            self::RESOLUTION__720P,
+            self::RESOLUTION__540P,
+            self::RESOLUTION__480P,
+            self::RESOLUTION__360P,
+            self::RESOLUTION__270P,
         ];
     }
 
@@ -304,9 +277,8 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('mp4_support', $data ?? [], null);
-        $this->setIfExists('master_access', $data ?? [], null);
-        $this->setIfExists('video_quality', $data ?? [], null);
+        $this->setIfExists('resolution', $data ?? [], null);
+        $this->setIfExists('passthrough', $data ?? [], null);
     }
 
     /**
@@ -336,29 +308,11 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getMp4SupportAllowableValues();
-        if (!is_null($this->container['mp4_support']) && !in_array($this->container['mp4_support'], $allowedValues, true)) {
+        $allowedValues = $this->getResolutionAllowableValues();
+        if (!is_null($this->container['resolution']) && !in_array($this->container['resolution'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'mp4_support', must be one of '%s'",
-                $this->container['mp4_support'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getMasterAccessAllowableValues();
-        if (!is_null($this->container['master_access']) && !in_array($this->container['master_access'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'master_access', must be one of '%s'",
-                $this->container['master_access'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getVideoQualityAllowableValues();
-        if (!is_null($this->container['video_quality']) && !in_array($this->container['video_quality'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'video_quality', must be one of '%s'",
-                $this->container['video_quality'],
+                "invalid value '%s' for 'resolution', must be one of '%s'",
+                $this->container['resolution'],
                 implode("', '", $allowedValues)
             );
         }
@@ -379,120 +333,69 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
 
 
     /**
-     * Gets mp4_support
+     * Gets resolution
      *
      * @return string|null
-     * @deprecated
      */
-    public function getMp4Support()
+    public function getResolution()
     {
-        return $this->container['mp4_support'];
+        return $this->container['resolution'];
     }
 
     /**
-     * Sets mp4_support
+     * Sets resolution
      *
-     * @param string|null $mp4_support Deprecated. See the [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions#during-live-stream-creation) for the updated API. Specify what level of support for mp4 playback should be added to new assets generated from this live stream. * The `none` option disables MP4 support for new assets. MP4 files will not be produced for an asset generated from this live stream. * The `capped-1080p` option produces a single MP4 file, called `capped-1080p.mp4`, with the video resolution capped at 1080p. This option produces an `audio.m4a` file for an audio-only asset. * The `audio-only` option produces a single M4A file, called `audio.m4a` for a video or an audio-only asset. MP4 generation will error when this option is specified for a video-only asset. * The `audio-only,capped-1080p` option produces both the `audio.m4a` and `capped-1080p.mp4` files. Only the `capped-1080p.mp4` file is produced for a video-only asset, while only the `audio.m4a` file is produced for an audio-only asset. * The `standard`(deprecated) option produces up to three MP4 files with different levels of resolution (`high.mp4`, `medium.mp4`, `low.mp4`, or `audio.m4a` for an audio-only asset).
+     * @param string|null $resolution resolution
      *
      * @return self
-     * @deprecated
      */
-    public function setMp4Support($mp4_support)
+    public function setResolution($resolution)
     {
-        $allowedValues = $this->getMp4SupportAllowableValues();
-        if (!is_null($mp4_support) && !in_array($mp4_support, $allowedValues, true)) {
+        $allowedValues = $this->getResolutionAllowableValues();
+        if (!is_null($resolution) && !in_array($resolution, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'mp4_support', must be one of '%s'",
-                    $mp4_support,
+                    "Invalid value '%s' for 'resolution', must be one of '%s'",
+                    $resolution,
                     implode("', '", $allowedValues)
                 )
             );
         }
 
-        if (is_null($mp4_support)) {
-            throw new \InvalidArgumentException('non-nullable mp4_support cannot be null');
+        if (is_null($resolution)) {
+            throw new \InvalidArgumentException('non-nullable resolution cannot be null');
         }
 
-        $this->container['mp4_support'] = $mp4_support;
+        $this->container['resolution'] = $resolution;
 
         return $this;
     }
 
     /**
-     * Gets master_access
+     * Gets passthrough
      *
      * @return string|null
      */
-    public function getMasterAccess()
+    public function getPassthrough()
     {
-        return $this->container['master_access'];
+        return $this->container['passthrough'];
     }
 
     /**
-     * Sets master_access
+     * Sets passthrough
      *
-     * @param string|null $master_access Add or remove access to the master version of the video.
+     * @param string|null $passthrough Arbitrary user-supplied metadata set for the static rendition. Max 255 characters.
      *
      * @return self
      */
-    public function setMasterAccess($master_access)
+    public function setPassthrough($passthrough)
     {
-        $allowedValues = $this->getMasterAccessAllowableValues();
-        if (!is_null($master_access) && !in_array($master_access, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'master_access', must be one of '%s'",
-                    $master_access,
-                    implode("', '", $allowedValues)
-                )
-            );
+
+        if (is_null($passthrough)) {
+            throw new \InvalidArgumentException('non-nullable passthrough cannot be null');
         }
 
-        if (is_null($master_access)) {
-            throw new \InvalidArgumentException('non-nullable master_access cannot be null');
-        }
-
-        $this->container['master_access'] = $master_access;
-
-        return $this;
-    }
-
-    /**
-     * Gets video_quality
-     *
-     * @return string|null
-     */
-    public function getVideoQuality()
-    {
-        return $this->container['video_quality'];
-    }
-
-    /**
-     * Sets video_quality
-     *
-     * @param string|null $video_quality The video quality controls the cost, quality, and available platform features for the asset. [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
-     *
-     * @return self
-     */
-    public function setVideoQuality($video_quality)
-    {
-        $allowedValues = $this->getVideoQualityAllowableValues();
-        if (!is_null($video_quality) && !in_array($video_quality, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'video_quality', must be one of '%s'",
-                    $video_quality,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-
-        if (is_null($video_quality)) {
-            throw new \InvalidArgumentException('non-nullable video_quality cannot be null');
-        }
-
-        $this->container['video_quality'] = $video_quality;
+        $this->container['passthrough'] = $passthrough;
 
         return $this;
     }

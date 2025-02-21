@@ -1418,6 +1418,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets mp4_support
      *
      * @return string|null
+     * @deprecated
      */
     public function getMp4Support()
     {
@@ -1430,6 +1431,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $mp4_support mp4_support
      *
      * @return self
+     * @deprecated
      */
     public function setMp4Support($mp4_support)
     {

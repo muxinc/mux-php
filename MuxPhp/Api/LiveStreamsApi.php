@@ -1196,6 +1196,232 @@ class LiveStreamsApi
     }
 
     /**
+     * Operation deleteLiveStreamNewAssetSettingsStaticRenditions
+     *
+     * Delete a live stream's static renditions setting for new assets
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteLiveStreamNewAssetSettingsStaticRenditions($live_stream_id)
+    {
+        $this->deleteLiveStreamNewAssetSettingsStaticRenditionsWithHttpInfo($live_stream_id);
+    }
+
+    /**
+     * Operation deleteLiveStreamNewAssetSettingsStaticRenditionsWithHttpInfo
+     *
+     * Delete a live stream's static renditions setting for new assets
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteLiveStreamNewAssetSettingsStaticRenditionsWithHttpInfo($live_stream_id)
+    {
+        $request = $this->deleteLiveStreamNewAssetSettingsStaticRenditionsRequest($live_stream_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteLiveStreamNewAssetSettingsStaticRenditionsAsync
+     *
+     * Delete a live stream's static renditions setting for new assets
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteLiveStreamNewAssetSettingsStaticRenditionsAsync($live_stream_id)
+    {
+        return $this->deleteLiveStreamNewAssetSettingsStaticRenditionsAsyncWithHttpInfo($live_stream_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteLiveStreamNewAssetSettingsStaticRenditionsAsyncWithHttpInfo
+     *
+     * Delete a live stream's static renditions setting for new assets
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteLiveStreamNewAssetSettingsStaticRenditionsAsyncWithHttpInfo($live_stream_id)
+    {
+        $returnType = '';
+        $request = $this->deleteLiveStreamNewAssetSettingsStaticRenditionsRequest($live_stream_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteLiveStreamNewAssetSettingsStaticRenditions'
+     *
+     * @param  string $live_stream_id The live stream ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteLiveStreamNewAssetSettingsStaticRenditionsRequest($live_stream_id)
+    {
+        // verify the required parameter 'live_stream_id' is set
+        if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $live_stream_id when calling deleteLiveStreamNewAssetSettingsStaticRenditions'
+            );
+        }
+
+        $resourcePath = '/video/v1/live-streams/{LIVE_STREAM_ID}/new-asset-settings/static-renditions';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($live_stream_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'LIVE_STREAM_ID' . '}',
+                ObjectSerializer::toPathValue($live_stream_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation deleteLiveStreamPlaybackId
      *
      * Delete a live stream playback ID
@@ -1616,232 +1842,6 @@ class LiveStreamsApi
             $resourcePath = str_replace(
                 '{' . 'SIMULCAST_TARGET_ID' . '}',
                 ObjectSerializer::toPathValue($simulcast_target_id),
-                $resourcePath
-            );
-        }
-
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                []
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                [],
-                []
-            );
-        }
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires HTTP basic authentication
-        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
-            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-
-        // MUX: adds support for array params.
-        // TODO: future upstream?
-        $query = ObjectSerializer::buildBetterQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation deleteLiveStreamStaticRenditions
-     *
-     * Delete a live stream's static renditions setting for new assets
-     *
-     * @param  string $live_stream_id The live stream ID (required)
-     *
-     * @throws \MuxPhp\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function deleteLiveStreamStaticRenditions($live_stream_id)
-    {
-        $this->deleteLiveStreamStaticRenditionsWithHttpInfo($live_stream_id);
-    }
-
-    /**
-     * Operation deleteLiveStreamStaticRenditionsWithHttpInfo
-     *
-     * Delete a live stream's static renditions setting for new assets
-     *
-     * @param  string $live_stream_id The live stream ID (required)
-     *
-     * @throws \MuxPhp\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function deleteLiveStreamStaticRenditionsWithHttpInfo($live_stream_id)
-    {
-        $request = $this->deleteLiveStreamStaticRenditionsRequest($live_stream_id);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation deleteLiveStreamStaticRenditionsAsync
-     *
-     * Delete a live stream's static renditions setting for new assets
-     *
-     * @param  string $live_stream_id The live stream ID (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteLiveStreamStaticRenditionsAsync($live_stream_id)
-    {
-        return $this->deleteLiveStreamStaticRenditionsAsyncWithHttpInfo($live_stream_id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteLiveStreamStaticRenditionsAsyncWithHttpInfo
-     *
-     * Delete a live stream's static renditions setting for new assets
-     *
-     * @param  string $live_stream_id The live stream ID (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteLiveStreamStaticRenditionsAsyncWithHttpInfo($live_stream_id)
-    {
-        $returnType = '';
-        $request = $this->deleteLiveStreamStaticRenditionsRequest($live_stream_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'deleteLiveStreamStaticRenditions'
-     *
-     * @param  string $live_stream_id The live stream ID (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteLiveStreamStaticRenditionsRequest($live_stream_id)
-    {
-        // verify the required parameter 'live_stream_id' is set
-        if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $live_stream_id when calling deleteLiveStreamStaticRenditions'
-            );
-        }
-
-        $resourcePath = '/video/v1/live-streams/{LIVE_STREAM_ID}/new-asset-settings/static-renditions';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($live_stream_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'LIVE_STREAM_ID' . '}',
-                ObjectSerializer::toPathValue($live_stream_id),
                 $resourcePath
             );
         }
@@ -5060,7 +5060,7 @@ class LiveStreamsApi
     }
 
     /**
-     * Operation updateLiveStreamStaticRenditions
+     * Operation updateLiveStreamNewAssetSettingsStaticRenditions
      *
      * Update live stream static renditions for new assets
      *
@@ -5071,14 +5071,14 @@ class LiveStreamsApi
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\LiveStreamResponse
      */
-    public function updateLiveStreamStaticRenditions($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request)
+    public function updateLiveStreamNewAssetSettingsStaticRenditions($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request)
     {
-        list($response) = $this->updateLiveStreamStaticRenditionsWithHttpInfo($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request);
+        list($response) = $this->updateLiveStreamNewAssetSettingsStaticRenditionsWithHttpInfo($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request);
         return $response;
     }
 
     /**
-     * Operation updateLiveStreamStaticRenditionsWithHttpInfo
+     * Operation updateLiveStreamNewAssetSettingsStaticRenditionsWithHttpInfo
      *
      * Update live stream static renditions for new assets
      *
@@ -5089,9 +5089,9 @@ class LiveStreamsApi
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\LiveStreamResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateLiveStreamStaticRenditionsWithHttpInfo($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request)
+    public function updateLiveStreamNewAssetSettingsStaticRenditionsWithHttpInfo($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request)
     {
-        $request = $this->updateLiveStreamStaticRenditionsRequest($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request);
+        $request = $this->updateLiveStreamNewAssetSettingsStaticRenditionsRequest($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5167,7 +5167,7 @@ class LiveStreamsApi
     }
 
     /**
-     * Operation updateLiveStreamStaticRenditionsAsync
+     * Operation updateLiveStreamNewAssetSettingsStaticRenditionsAsync
      *
      * Update live stream static renditions for new assets
      *
@@ -5177,9 +5177,9 @@ class LiveStreamsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateLiveStreamStaticRenditionsAsync($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request)
+    public function updateLiveStreamNewAssetSettingsStaticRenditionsAsync($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request)
     {
-        return $this->updateLiveStreamStaticRenditionsAsyncWithHttpInfo($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request)
+        return $this->updateLiveStreamNewAssetSettingsStaticRenditionsAsyncWithHttpInfo($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5188,7 +5188,7 @@ class LiveStreamsApi
     }
 
     /**
-     * Operation updateLiveStreamStaticRenditionsAsyncWithHttpInfo
+     * Operation updateLiveStreamNewAssetSettingsStaticRenditionsAsyncWithHttpInfo
      *
      * Update live stream static renditions for new assets
      *
@@ -5198,10 +5198,10 @@ class LiveStreamsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateLiveStreamStaticRenditionsAsyncWithHttpInfo($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request)
+    public function updateLiveStreamNewAssetSettingsStaticRenditionsAsyncWithHttpInfo($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request)
     {
         $returnType = '\MuxPhp\Models\LiveStreamResponse';
-        $request = $this->updateLiveStreamStaticRenditionsRequest($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request);
+        $request = $this->updateLiveStreamNewAssetSettingsStaticRenditionsRequest($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5238,7 +5238,7 @@ class LiveStreamsApi
     }
 
     /**
-     * Create request for operation 'updateLiveStreamStaticRenditions'
+     * Create request for operation 'updateLiveStreamNewAssetSettingsStaticRenditions'
      *
      * @param  string $live_stream_id The live stream ID (required)
      * @param  \MuxPhp\Models\UpdateLiveStreamNewAssetSettingsStaticRenditionsRequest $update_live_stream_new_asset_settings_static_renditions_request (required)
@@ -5246,18 +5246,18 @@ class LiveStreamsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateLiveStreamStaticRenditionsRequest($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request)
+    public function updateLiveStreamNewAssetSettingsStaticRenditionsRequest($live_stream_id, $update_live_stream_new_asset_settings_static_renditions_request)
     {
         // verify the required parameter 'live_stream_id' is set
         if ($live_stream_id === null || (is_array($live_stream_id) && count($live_stream_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $live_stream_id when calling updateLiveStreamStaticRenditions'
+                'Missing the required parameter $live_stream_id when calling updateLiveStreamNewAssetSettingsStaticRenditions'
             );
         }
         // verify the required parameter 'update_live_stream_new_asset_settings_static_renditions_request' is set
         if ($update_live_stream_new_asset_settings_static_renditions_request === null || (is_array($update_live_stream_new_asset_settings_static_renditions_request) && count($update_live_stream_new_asset_settings_static_renditions_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $update_live_stream_new_asset_settings_static_renditions_request when calling updateLiveStreamStaticRenditions'
+                'Missing the required parameter $update_live_stream_new_asset_settings_static_renditions_request when calling updateLiveStreamNewAssetSettingsStaticRenditions'
             );
         }
 

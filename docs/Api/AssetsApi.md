@@ -61,7 +61,7 @@ $apiInstance = new MuxPhp\Api\AssetsApi(
 //
 // In your own code you should use an associative array, or
 // use a "new \MuxPhp\Models\CreateAssetRequest" directly.
-$create_asset_request = json_decode('{"input":[{"url":"https://muxed.s3.amazonaws.com/leds.mp4"}],"playback_policy":["public"],"video_quality":"basic"}',true); // \MuxPhp\Models\CreateAssetRequest
+$create_asset_request = json_decode('{"inputs":[{"url":"https://muxed.s3.amazonaws.com/leds.mp4"}],"playback_policies":["public"],"video_quality":"basic"}',true); // \MuxPhp\Models\CreateAssetRequest
 
 try {
     $result = $apiInstance->createAsset($create_asset_request);

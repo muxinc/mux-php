@@ -63,7 +63,7 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'string',
         'timeout' => 'int',
         'status' => 'string',
-        'new_asset_settings' => '\MuxPhp\Models\Asset',
+        'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest',
         'asset_id' => 'string',
         'error' => '\MuxPhp\Models\UploadError',
         'cors_origin' => 'string',
@@ -487,7 +487,7 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets new_asset_settings
      *
-     * @return \MuxPhp\Models\Asset|null
+     * @return \MuxPhp\Models\CreateAssetRequest|null
      */
     public function getNewAssetSettings()
     {
@@ -497,7 +497,7 @@ class Upload implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets new_asset_settings
      *
-     * @param \MuxPhp\Models\Asset|null $new_asset_settings new_asset_settings
+     * @param \MuxPhp\Models\CreateAssetRequest|null $new_asset_settings new_asset_settings
      *
      * @return self
      */

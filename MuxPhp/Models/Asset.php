@@ -88,7 +88,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'recording_times' => '\MuxPhp\Models\AssetRecordingTimes[]',
         'non_standard_input_reasons' => '\MuxPhp\Models\AssetNonStandardInputReasons',
         'test' => 'bool',
-        'ingest_type' => 'string'
+        'ingest_type' => 'string',
+        'meta' => '\MuxPhp\Models\AssetMetadata'
     ];
 
     /**
@@ -127,7 +128,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'recording_times' => null,
         'non_standard_input_reasons' => null,
         'test' => 'boolean',
-        'ingest_type' => null
+        'ingest_type' => null,
+        'meta' => null
     ];
 
     /**
@@ -164,7 +166,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'recording_times' => false,
         'non_standard_input_reasons' => false,
         'test' => false,
-        'ingest_type' => false
+        'ingest_type' => false,
+        'meta' => false
     ];
 
     /**
@@ -271,7 +274,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'recording_times' => 'recording_times',
         'non_standard_input_reasons' => 'non_standard_input_reasons',
         'test' => 'test',
-        'ingest_type' => 'ingest_type'
+        'ingest_type' => 'ingest_type',
+        'meta' => 'meta'
     ];
 
     /**
@@ -308,7 +312,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'recording_times' => 'setRecordingTimes',
         'non_standard_input_reasons' => 'setNonStandardInputReasons',
         'test' => 'setTest',
-        'ingest_type' => 'setIngestType'
+        'ingest_type' => 'setIngestType',
+        'meta' => 'setMeta'
     ];
 
     /**
@@ -345,7 +350,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'recording_times' => 'getRecordingTimes',
         'non_standard_input_reasons' => 'getNonStandardInputReasons',
         'test' => 'getTest',
-        'ingest_type' => 'getIngestType'
+        'ingest_type' => 'getIngestType',
+        'meta' => 'getMeta'
     ];
 
     /**
@@ -604,6 +610,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('non_standard_input_reasons', $data ?? [], null);
         $this->setIfExists('test', $data ?? [], null);
         $this->setIfExists('ingest_type', $data ?? [], null);
+        $this->setIfExists('meta', $data ?? [], null);
     }
 
     /**
@@ -1301,7 +1308,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata set for the asset. Max 255 characters.
+     * @param string|null $passthrough You can set this field to anything you want. It will be included in the asset details and related webhooks. If you're looking for more structured metadata, such as `title` or `external_id` , you can use the `meta` object instead. **Max: 255 characters**.
      *
      * @return self
      */
@@ -1664,6 +1671,35 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['ingest_type'] = $ingest_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta
+     *
+     * @return \MuxPhp\Models\AssetMetadata|null
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \MuxPhp\Models\AssetMetadata|null $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+
+        $this->container['meta'] = $meta;
 
         return $this;
     }

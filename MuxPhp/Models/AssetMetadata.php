@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateLiveStreamNewAssetSettings
+ * AssetMetadata
  *
  * PHP version 7.2
  *
@@ -33,10 +33,9 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * UpdateLiveStreamNewAssetSettings Class Doc Comment
+ * AssetMetadata Class Doc Comment
  *
  * @category Class
- * @description Updates the new asset settings to use to generate a new asset for this live stream. Only the &#x60;mp4_support&#x60;, &#x60;master_access&#x60;, and &#x60;video_quality&#x60; settings may be updated.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
@@ -44,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class AssetMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +52,7 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdateLiveStreamNewAssetSettings';
+    protected static $openAPIModelName = 'AssetMetadata';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,10 +60,9 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'mp4_support' => 'string',
-        'master_access' => 'string',
-        'video_quality' => 'string',
-        'meta' => '\MuxPhp\Models\AssetMetadata'
+        'title' => 'string',
+        'creator_id' => 'string',
+        'external_id' => 'string'
     ];
 
     /**
@@ -75,10 +73,9 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'mp4_support' => null,
-        'master_access' => null,
-        'video_quality' => null,
-        'meta' => null
+        'title' => null,
+        'creator_id' => null,
+        'external_id' => null
     ];
 
     /**
@@ -87,10 +84,9 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'mp4_support' => false,
-        'master_access' => false,
-        'video_quality' => false,
-        'meta' => false
+        'title' => false,
+        'creator_id' => false,
+        'external_id' => false
     ];
 
     /**
@@ -169,10 +165,9 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $attributeMap = [
-        'mp4_support' => 'mp4_support',
-        'master_access' => 'master_access',
-        'video_quality' => 'video_quality',
-        'meta' => 'meta'
+        'title' => 'title',
+        'creator_id' => 'creator_id',
+        'external_id' => 'external_id'
     ];
 
     /**
@@ -181,10 +176,9 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $setters = [
-        'mp4_support' => 'setMp4Support',
-        'master_access' => 'setMasterAccess',
-        'video_quality' => 'setVideoQuality',
-        'meta' => 'setMeta'
+        'title' => 'setTitle',
+        'creator_id' => 'setCreatorId',
+        'external_id' => 'setExternalId'
     ];
 
     /**
@@ -193,10 +187,9 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $getters = [
-        'mp4_support' => 'getMp4Support',
-        'master_access' => 'getMasterAccess',
-        'video_quality' => 'getVideoQuality',
-        'meta' => 'getMeta'
+        'title' => 'getTitle',
+        'creator_id' => 'getCreatorId',
+        'external_id' => 'getExternalId'
     ];
 
     /**
@@ -240,57 +233,6 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
         return self::$openAPIModelName;
     }
 
-    public const MP4_SUPPORT_NONE = 'none';
-    public const MP4_SUPPORT_STANDARD = 'standard';
-    public const MP4_SUPPORT_CAPPED_1080P = 'capped-1080p';
-    public const MP4_SUPPORT_AUDIO_ONLY = 'audio-only';
-    public const MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P = 'audio-only,capped-1080p';
-    public const MASTER_ACCESS_TEMPORARY = 'temporary';
-    public const MASTER_ACCESS_NONE = 'none';
-    public const VIDEO_QUALITY_PLUS = 'plus';
-    public const VIDEO_QUALITY_PREMIUM = 'premium';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMp4SupportAllowableValues()
-    {
-        return [
-            self::MP4_SUPPORT_NONE,
-            self::MP4_SUPPORT_STANDARD,
-            self::MP4_SUPPORT_CAPPED_1080P,
-            self::MP4_SUPPORT_AUDIO_ONLY,
-            self::MP4_SUPPORT_AUDIO_ONLYCAPPED_1080P,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMasterAccessAllowableValues()
-    {
-        return [
-            self::MASTER_ACCESS_TEMPORARY,
-            self::MASTER_ACCESS_NONE,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getVideoQualityAllowableValues()
-    {
-        return [
-            self::VIDEO_QUALITY_PLUS,
-            self::VIDEO_QUALITY_PREMIUM,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -310,10 +252,9 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('mp4_support', $data ?? [], null);
-        $this->setIfExists('master_access', $data ?? [], null);
-        $this->setIfExists('video_quality', $data ?? [], null);
-        $this->setIfExists('meta', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('creator_id', $data ?? [], null);
+        $this->setIfExists('external_id', $data ?? [], null);
     }
 
     /**
@@ -343,31 +284,16 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getMp4SupportAllowableValues();
-        if (!is_null($this->container['mp4_support']) && !in_array($this->container['mp4_support'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'mp4_support', must be one of '%s'",
-                $this->container['mp4_support'],
-                implode("', '", $allowedValues)
-            );
+        if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) > 512)) {
+            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 512.";
         }
 
-        $allowedValues = $this->getMasterAccessAllowableValues();
-        if (!is_null($this->container['master_access']) && !in_array($this->container['master_access'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'master_access', must be one of '%s'",
-                $this->container['master_access'],
-                implode("', '", $allowedValues)
-            );
+        if (!is_null($this->container['creator_id']) && (mb_strlen($this->container['creator_id']) > 128)) {
+            $invalidProperties[] = "invalid value for 'creator_id', the character length must be smaller than or equal to 128.";
         }
 
-        $allowedValues = $this->getVideoQualityAllowableValues();
-        if (!is_null($this->container['video_quality']) && !in_array($this->container['video_quality'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'video_quality', must be one of '%s'",
-                $this->container['video_quality'],
-                implode("', '", $allowedValues)
-            );
+        if (!is_null($this->container['external_id']) && (mb_strlen($this->container['external_id']) > 128)) {
+            $invalidProperties[] = "invalid value for 'external_id', the character length must be smaller than or equal to 128.";
         }
 
         return $invalidProperties;
@@ -386,149 +312,100 @@ class UpdateLiveStreamNewAssetSettings implements ModelInterface, ArrayAccess, \
 
 
     /**
-     * Gets mp4_support
+     * Gets title
      *
      * @return string|null
-     * @deprecated
      */
-    public function getMp4Support()
+    public function getTitle()
     {
-        return $this->container['mp4_support'];
+        return $this->container['title'];
     }
 
     /**
-     * Sets mp4_support
+     * Sets title
      *
-     * @param string|null $mp4_support Deprecated. See the [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions#during-live-stream-creation) for the updated API. Specify what level of support for mp4 playback should be added to new assets generated from this live stream. * The `none` option disables MP4 support for new assets. MP4 files will not be produced for an asset generated from this live stream. * The `capped-1080p` option produces a single MP4 file, called `capped-1080p.mp4`, with the video resolution capped at 1080p. This option produces an `audio.m4a` file for an audio-only asset. * The `audio-only` option produces a single M4A file, called `audio.m4a` for a video or an audio-only asset. MP4 generation will error when this option is specified for a video-only asset. * The `audio-only,capped-1080p` option produces both the `audio.m4a` and `capped-1080p.mp4` files. Only the `capped-1080p.mp4` file is produced for a video-only asset, while only the `audio.m4a` file is produced for an audio-only asset. * The `standard`(deprecated) option produces up to three MP4 files with different levels of resolution (`high.mp4`, `medium.mp4`, `low.mp4`, or `audio.m4a` for an audio-only asset).
+     * @param string|null $title The video title. Max 512 code points.
      *
      * @return self
-     * @deprecated
      */
-    public function setMp4Support($mp4_support)
+    public function setTitle($title)
     {
-        $allowedValues = $this->getMp4SupportAllowableValues();
-        if (!is_null($mp4_support) && !in_array($mp4_support, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'mp4_support', must be one of '%s'",
-                    $mp4_support,
-                    implode("', '", $allowedValues)
-                )
-            );
+        if (!is_null($title) && (mb_strlen($title) > 512)) {
+            throw new \InvalidArgumentException('invalid length for $title when calling AssetMetadata., must be smaller than or equal to 512.');
         }
 
-        if (is_null($mp4_support)) {
-            throw new \InvalidArgumentException('non-nullable mp4_support cannot be null');
+
+        if (is_null($title)) {
+            throw new \InvalidArgumentException('non-nullable title cannot be null');
         }
 
-        $this->container['mp4_support'] = $mp4_support;
+        $this->container['title'] = $title;
 
         return $this;
     }
 
     /**
-     * Gets master_access
+     * Gets creator_id
      *
      * @return string|null
      */
-    public function getMasterAccess()
+    public function getCreatorId()
     {
-        return $this->container['master_access'];
+        return $this->container['creator_id'];
     }
 
     /**
-     * Sets master_access
+     * Sets creator_id
      *
-     * @param string|null $master_access Add or remove access to the master version of the video.
+     * @param string|null $creator_id This is an identifier you provide to keep track of the creator of the video. Max 128 code points.
      *
      * @return self
      */
-    public function setMasterAccess($master_access)
+    public function setCreatorId($creator_id)
     {
-        $allowedValues = $this->getMasterAccessAllowableValues();
-        if (!is_null($master_access) && !in_array($master_access, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'master_access', must be one of '%s'",
-                    $master_access,
-                    implode("', '", $allowedValues)
-                )
-            );
+        if (!is_null($creator_id) && (mb_strlen($creator_id) > 128)) {
+            throw new \InvalidArgumentException('invalid length for $creator_id when calling AssetMetadata., must be smaller than or equal to 128.');
         }
 
-        if (is_null($master_access)) {
-            throw new \InvalidArgumentException('non-nullable master_access cannot be null');
+
+        if (is_null($creator_id)) {
+            throw new \InvalidArgumentException('non-nullable creator_id cannot be null');
         }
 
-        $this->container['master_access'] = $master_access;
+        $this->container['creator_id'] = $creator_id;
 
         return $this;
     }
 
     /**
-     * Gets video_quality
+     * Gets external_id
      *
      * @return string|null
      */
-    public function getVideoQuality()
+    public function getExternalId()
     {
-        return $this->container['video_quality'];
+        return $this->container['external_id'];
     }
 
     /**
-     * Sets video_quality
+     * Sets external_id
      *
-     * @param string|null $video_quality The video quality controls the cost, quality, and available platform features for the asset. [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+     * @param string|null $external_id This is an identifier you provide to link the video to your own data. Max 128 code points.
      *
      * @return self
      */
-    public function setVideoQuality($video_quality)
+    public function setExternalId($external_id)
     {
-        $allowedValues = $this->getVideoQualityAllowableValues();
-        if (!is_null($video_quality) && !in_array($video_quality, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'video_quality', must be one of '%s'",
-                    $video_quality,
-                    implode("', '", $allowedValues)
-                )
-            );
+        if (!is_null($external_id) && (mb_strlen($external_id) > 128)) {
+            throw new \InvalidArgumentException('invalid length for $external_id when calling AssetMetadata., must be smaller than or equal to 128.');
         }
 
-        if (is_null($video_quality)) {
-            throw new \InvalidArgumentException('non-nullable video_quality cannot be null');
+
+        if (is_null($external_id)) {
+            throw new \InvalidArgumentException('non-nullable external_id cannot be null');
         }
 
-        $this->container['video_quality'] = $video_quality;
-
-        return $this;
-    }
-
-    /**
-     * Gets meta
-     *
-     * @return \MuxPhp\Models\AssetMetadata|null
-     */
-    public function getMeta()
-    {
-        return $this->container['meta'];
-    }
-
-    /**
-     * Sets meta
-     *
-     * @param \MuxPhp\Models\AssetMetadata|null $meta meta
-     *
-     * @return self
-     */
-    public function setMeta($meta)
-    {
-
-        if (is_null($meta)) {
-            throw new \InvalidArgumentException('non-nullable meta cannot be null');
-        }
-
-        $this->container['meta'] = $meta;
+        $this->container['external_id'] = $external_id;
 
         return $this;
     }

@@ -60,7 +60,8 @@ class UpdateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'passthrough' => 'string'
+        'passthrough' => 'string',
+        'meta' => '\MuxPhp\Models\AssetMetadata'
     ];
 
     /**
@@ -71,7 +72,8 @@ class UpdateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'passthrough' => null
+        'passthrough' => null,
+        'meta' => null
     ];
 
     /**
@@ -80,7 +82,8 @@ class UpdateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'passthrough' => false
+        'passthrough' => false,
+        'meta' => false
     ];
 
     /**
@@ -159,7 +162,8 @@ class UpdateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'passthrough' => 'passthrough'
+        'passthrough' => 'passthrough',
+        'meta' => 'meta'
     ];
 
     /**
@@ -168,7 +172,8 @@ class UpdateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'passthrough' => 'setPassthrough'
+        'passthrough' => 'setPassthrough',
+        'meta' => 'setMeta'
     ];
 
     /**
@@ -177,7 +182,8 @@ class UpdateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'passthrough' => 'getPassthrough'
+        'passthrough' => 'getPassthrough',
+        'meta' => 'getMeta'
     ];
 
     /**
@@ -241,6 +247,7 @@ class UpdateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('passthrough', $data ?? [], null);
+        $this->setIfExists('meta', $data ?? [], null);
     }
 
     /**
@@ -298,7 +305,7 @@ class UpdateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary metadata set for the Asset. Max 255 characters. In order to clear this value, the field should be included with an empty string value.
+     * @param string|null $passthrough You can set this field to anything you want. It will be included in the asset details and related webhooks. If you're looking for more structured metadata, such as `title` or `external_id` , you can use the `meta` object instead. **Max: 255 characters**. In order to clear this value, the field should be included with an empty string value.
      *
      * @return self
      */
@@ -310,6 +317,35 @@ class UpdateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['passthrough'] = $passthrough;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta
+     *
+     * @return \MuxPhp\Models\AssetMetadata|null
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \MuxPhp\Models\AssetMetadata|null $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+
+        $this->container['meta'] = $meta;
 
         return $this;
     }

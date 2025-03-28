@@ -64,7 +64,7 @@ $apiInstance = new MuxPhp\Api\LiveStreamsApi(
 //
 // In your own code you should use an associative array, or
 // use a "new \MuxPhp\Models\CreateLiveStreamRequest" directly.
-$create_live_stream_request = json_decode('{"playback_policy":["public"],"new_asset_settings":{"playback_policy":["public"]}}',true); // \MuxPhp\Models\CreateLiveStreamRequest
+$create_live_stream_request = json_decode('{"playback_policies":["public"],"new_asset_settings":{"playback_policies":["public"]}}',true); // \MuxPhp\Models\CreateLiveStreamRequest
 
 try {
     $result = $apiInstance->createLiveStream($create_live_stream_request);

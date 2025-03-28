@@ -182,5 +182,6 @@ Name | Type | Description | Notes
 **video_dynamic_range_type** | **string** |  | [optional]
 **view_cdn_edge_pop** | **string** |  | [optional]
 **view_cdn_origin** | **string** |  | [optional]
+**video_creator_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

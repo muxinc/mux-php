@@ -61,7 +61,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPITypes = [
         'input' => '\MuxPhp\Models\InputSettings[]',
+        'inputs' => '\MuxPhp\Models\InputSettings[]',
         'playback_policy' => '\MuxPhp\Models\PlaybackPolicy[]',
+        'playback_policies' => '\MuxPhp\Models\PlaybackPolicy[]',
         'advanced_playback_policies' => '\MuxPhp\Models\CreatePlaybackIDRequest[]',
         'per_title_encode' => 'bool',
         'passthrough' => 'string',
@@ -72,7 +74,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'max_resolution_tier' => 'string',
         'encoding_tier' => 'string',
         'video_quality' => 'string',
-        'static_renditions' => '\MuxPhp\Models\CreateStaticRenditionRequest[]'
+        'static_renditions' => '\MuxPhp\Models\CreateStaticRenditionRequest[]',
+        'meta' => '\MuxPhp\Models\AssetMetadata'
     ];
 
     /**
@@ -84,7 +87,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPIFormats = [
         'input' => null,
+        'inputs' => null,
         'playback_policy' => null,
+        'playback_policies' => null,
         'advanced_playback_policies' => null,
         'per_title_encode' => 'boolean',
         'passthrough' => null,
@@ -95,7 +100,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'max_resolution_tier' => null,
         'encoding_tier' => null,
         'video_quality' => null,
-        'static_renditions' => null
+        'static_renditions' => null,
+        'meta' => null
     ];
 
     /**
@@ -105,7 +111,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static array $openAPINullables = [
         'input' => false,
+        'inputs' => false,
         'playback_policy' => false,
+        'playback_policies' => false,
         'advanced_playback_policies' => false,
         'per_title_encode' => false,
         'passthrough' => false,
@@ -116,7 +124,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'max_resolution_tier' => false,
         'encoding_tier' => false,
         'video_quality' => false,
-        'static_renditions' => false
+        'static_renditions' => false,
+        'meta' => false
     ];
 
     /**
@@ -196,7 +205,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static $attributeMap = [
         'input' => 'input',
+        'inputs' => 'inputs',
         'playback_policy' => 'playback_policy',
+        'playback_policies' => 'playback_policies',
         'advanced_playback_policies' => 'advanced_playback_policies',
         'per_title_encode' => 'per_title_encode',
         'passthrough' => 'passthrough',
@@ -207,7 +218,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'max_resolution_tier' => 'max_resolution_tier',
         'encoding_tier' => 'encoding_tier',
         'video_quality' => 'video_quality',
-        'static_renditions' => 'static_renditions'
+        'static_renditions' => 'static_renditions',
+        'meta' => 'meta'
     ];
 
     /**
@@ -217,7 +229,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static $setters = [
         'input' => 'setInput',
+        'inputs' => 'setInputs',
         'playback_policy' => 'setPlaybackPolicy',
+        'playback_policies' => 'setPlaybackPolicies',
         'advanced_playback_policies' => 'setAdvancedPlaybackPolicies',
         'per_title_encode' => 'setPerTitleEncode',
         'passthrough' => 'setPassthrough',
@@ -228,7 +242,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'max_resolution_tier' => 'setMaxResolutionTier',
         'encoding_tier' => 'setEncodingTier',
         'video_quality' => 'setVideoQuality',
-        'static_renditions' => 'setStaticRenditions'
+        'static_renditions' => 'setStaticRenditions',
+        'meta' => 'setMeta'
     ];
 
     /**
@@ -238,7 +253,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static $getters = [
         'input' => 'getInput',
+        'inputs' => 'getInputs',
         'playback_policy' => 'getPlaybackPolicy',
+        'playback_policies' => 'getPlaybackPolicies',
         'advanced_playback_policies' => 'getAdvancedPlaybackPolicies',
         'per_title_encode' => 'getPerTitleEncode',
         'passthrough' => 'getPassthrough',
@@ -249,7 +266,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'max_resolution_tier' => 'getMaxResolutionTier',
         'encoding_tier' => 'getEncodingTier',
         'video_quality' => 'getVideoQuality',
-        'static_renditions' => 'getStaticRenditions'
+        'static_renditions' => 'getStaticRenditions',
+        'meta' => 'getMeta'
     ];
 
     /**
@@ -400,7 +418,9 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('input', $data ?? [], null);
+        $this->setIfExists('inputs', $data ?? [], null);
         $this->setIfExists('playback_policy', $data ?? [], null);
+        $this->setIfExists('playback_policies', $data ?? [], null);
         $this->setIfExists('advanced_playback_policies', $data ?? [], null);
         $this->setIfExists('per_title_encode', $data ?? [], null);
         $this->setIfExists('passthrough', $data ?? [], null);
@@ -412,6 +432,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('encoding_tier', $data ?? [], null);
         $this->setIfExists('video_quality', $data ?? [], null);
         $this->setIfExists('static_renditions', $data ?? [], null);
+        $this->setIfExists('meta', $data ?? [], null);
     }
 
     /**
@@ -505,6 +526,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * Gets input
      *
      * @return \MuxPhp\Models\InputSettings[]|null
+     * @deprecated
      */
     public function getInput()
     {
@@ -514,9 +536,10 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets input
      *
-     * @param \MuxPhp\Models\InputSettings[]|null $input An array of objects that each describe an input file to be used to create the asset. As a shortcut, input can also be a string URL for a file when only one input file is used. See `input[].url` for requirements.
+     * @param \MuxPhp\Models\InputSettings[]|null $input Deprecated. Use `inputs` instead, which accepts an identical type.
      *
      * @return self
+     * @deprecated
      */
     public function setInput($input)
     {
@@ -531,9 +554,39 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Gets inputs
+     *
+     * @return \MuxPhp\Models\InputSettings[]|null
+     */
+    public function getInputs()
+    {
+        return $this->container['inputs'];
+    }
+
+    /**
+     * Sets inputs
+     *
+     * @param \MuxPhp\Models\InputSettings[]|null $inputs An array of objects that each describe an input file to be used to create the asset. As a shortcut, input can also be a string URL for a file when only one input file is used. See `input[].url` for requirements.
+     *
+     * @return self
+     */
+    public function setInputs($inputs)
+    {
+
+        if (is_null($inputs)) {
+            throw new \InvalidArgumentException('non-nullable inputs cannot be null');
+        }
+
+        $this->container['inputs'] = $inputs;
+
+        return $this;
+    }
+
+    /**
      * Gets playback_policy
      *
      * @return \MuxPhp\Models\PlaybackPolicy[]|null
+     * @deprecated
      */
     public function getPlaybackPolicy()
     {
@@ -543,9 +596,10 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets playback_policy
      *
-     * @param \MuxPhp\Models\PlaybackPolicy[]|null $playback_policy An array of playback policy names that you want applied to this asset and available through `playback_ids`. Options include:  * `\"public\"` (anyone with the playback URL can stream the asset). * `\"signed\"` (an additional access token is required to play the asset).  If no `playback_policy` is set, the asset will have no playback IDs and will therefore not be playable. For simplicity, a single string name can be used in place of the array in the case of only one playback policy.
+     * @param \MuxPhp\Models\PlaybackPolicy[]|null $playback_policy Deprecated. Use `playback_policies` instead, which accepts an identical type.
      *
      * @return self
+     * @deprecated
      */
     public function setPlaybackPolicy($playback_policy)
     {
@@ -555,6 +609,35 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['playback_policy'] = $playback_policy;
+
+        return $this;
+    }
+
+    /**
+     * Gets playback_policies
+     *
+     * @return \MuxPhp\Models\PlaybackPolicy[]|null
+     */
+    public function getPlaybackPolicies()
+    {
+        return $this->container['playback_policies'];
+    }
+
+    /**
+     * Sets playback_policies
+     *
+     * @param \MuxPhp\Models\PlaybackPolicy[]|null $playback_policies An array of playback policy names that you want applied to this asset and available through `playback_ids`. Options include:  * `\"public\"` (anyone with the playback URL can stream the asset). * `\"signed\"` (an additional access token is required to play the asset).  If no `playback_policies` are set, the asset will have no playback IDs and will therefore not be playable. For simplicity, a single string name can be used in place of the array in the case of only one playback policy.
+     *
+     * @return self
+     */
+    public function setPlaybackPolicies($playback_policies)
+    {
+
+        if (is_null($playback_policies)) {
+            throw new \InvalidArgumentException('non-nullable playback_policies cannot be null');
+        }
+
+        $this->container['playback_policies'] = $playback_policies;
 
         return $this;
     }
@@ -572,7 +655,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets advanced_playback_policies
      *
-     * @param \MuxPhp\Models\CreatePlaybackIDRequest[]|null $advanced_playback_policies An array of playback policy objects that you want applied to this asset and available through `playback_ids`. `advanced_playback_policies` must be used instead of `playback_policy` when creating a DRM playback ID.
+     * @param \MuxPhp\Models\CreatePlaybackIDRequest[]|null $advanced_playback_policies An array of playback policy objects that you want applied to this asset and available through `playback_ids`. `advanced_playback_policies` must be used instead of `playback_policies` when creating a DRM playback ID.
      *
      * @return self
      */
@@ -632,7 +715,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata that will be included in the asset details and related webhooks. Can be used to store your own ID for a video along with the asset. **Max: 255 characters**.
+     * @param string|null $passthrough You can set this field to anything you want. It will be included in the asset details and related webhooks. If you're looking for more structured metadata, such as `title` or `external_id`, you can use the `meta` object instead. **Max: 255 characters**.
      *
      * @return self
      */
@@ -930,6 +1013,35 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['static_renditions'] = $static_renditions;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta
+     *
+     * @return \MuxPhp\Models\AssetMetadata|null
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \MuxPhp\Models\AssetMetadata|null $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+
+        $this->container['meta'] = $meta;
 
         return $this;
     }

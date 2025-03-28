@@ -28,6 +28,7 @@ MuxPhp/Models/Asset.php
 MuxPhp/Models/AssetErrors.php
 MuxPhp/Models/AssetGeneratedSubtitleSettings.php
 MuxPhp/Models/AssetMaster.php
+MuxPhp/Models/AssetMetadata.php
 MuxPhp/Models/AssetNonStandardInputReasons.php
 MuxPhp/Models/AssetRecordingTimes.php
 MuxPhp/Models/AssetResponse.php
@@ -205,6 +206,7 @@ docs/Model/Asset.md
 docs/Model/AssetErrors.md
 docs/Model/AssetGeneratedSubtitleSettings.md
 docs/Model/AssetMaster.md
+docs/Model/AssetMetadata.md
 docs/Model/AssetNonStandardInputReasons.md
 docs/Model/AssetRecordingTimes.md
 docs/Model/AssetResponse.md

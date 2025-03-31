@@ -36,6 +36,7 @@ use \MuxPhp\ObjectSerializer;
  * UpdateReferrerDomainRestrictionRequest Class Doc Comment
  *
  * @category Class
+ * @description A list of domains allowed to play your videos.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com

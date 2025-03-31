@@ -61,6 +61,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPITypes = [
         'playback_policy' => '\MuxPhp\Models\PlaybackPolicy[]',
+        'playback_policies' => '\MuxPhp\Models\PlaybackPolicy[]',
         'advanced_playback_policies' => '\MuxPhp\Models\CreatePlaybackIDRequest[]',
         'new_asset_settings' => '\MuxPhp\Models\CreateAssetRequest',
         'reconnect_window' => 'float',
@@ -87,6 +88,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPIFormats = [
         'playback_policy' => null,
+        'playback_policies' => null,
         'advanced_playback_policies' => null,
         'new_asset_settings' => null,
         'reconnect_window' => 'float',
@@ -111,6 +113,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static array $openAPINullables = [
         'playback_policy' => false,
+        'playback_policies' => false,
         'advanced_playback_policies' => false,
         'new_asset_settings' => false,
         'reconnect_window' => false,
@@ -205,6 +208,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $attributeMap = [
         'playback_policy' => 'playback_policy',
+        'playback_policies' => 'playback_policies',
         'advanced_playback_policies' => 'advanced_playback_policies',
         'new_asset_settings' => 'new_asset_settings',
         'reconnect_window' => 'reconnect_window',
@@ -229,6 +233,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $setters = [
         'playback_policy' => 'setPlaybackPolicy',
+        'playback_policies' => 'setPlaybackPolicies',
         'advanced_playback_policies' => 'setAdvancedPlaybackPolicies',
         'new_asset_settings' => 'setNewAssetSettings',
         'reconnect_window' => 'setReconnectWindow',
@@ -253,6 +258,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $getters = [
         'playback_policy' => 'getPlaybackPolicy',
+        'playback_policies' => 'getPlaybackPolicies',
         'advanced_playback_policies' => 'getAdvancedPlaybackPolicies',
         'new_asset_settings' => 'getNewAssetSettings',
         'reconnect_window' => 'getReconnectWindow',
@@ -348,6 +354,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('playback_policy', $data ?? [], null);
+        $this->setIfExists('playback_policies', $data ?? [], null);
         $this->setIfExists('advanced_playback_policies', $data ?? [], null);
         $this->setIfExists('new_asset_settings', $data ?? [], null);
         $this->setIfExists('reconnect_window', $data ?? [], 60);
@@ -436,6 +443,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * Gets playback_policy
      *
      * @return \MuxPhp\Models\PlaybackPolicy[]|null
+     * @deprecated
      */
     public function getPlaybackPolicy()
     {
@@ -445,9 +453,10 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets playback_policy
      *
-     * @param \MuxPhp\Models\PlaybackPolicy[]|null $playback_policy playback_policy
+     * @param \MuxPhp\Models\PlaybackPolicy[]|null $playback_policy Deprecated. Use `playback_policies` instead, which accepts an identical type.
      *
      * @return self
+     * @deprecated
      */
     public function setPlaybackPolicy($playback_policy)
     {
@@ -457,6 +466,37 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         }
 
         $this->container['playback_policy'] = $playback_policy;
+
+        return $this;
+    }
+
+    /**
+     * Gets playback_policies
+     *
+     * @return \MuxPhp\Models\PlaybackPolicy[]|null
+     * @deprecated
+     */
+    public function getPlaybackPolicies()
+    {
+        return $this->container['playback_policies'];
+    }
+
+    /**
+     * Sets playback_policies
+     *
+     * @param \MuxPhp\Models\PlaybackPolicy[]|null $playback_policies An array of playback policy names that you want applied to this live stream and available through `playback_ids`. Options include:  * `\"public\"` (anyone with the playback URL can stream the live stream). * `\"signed\"` (an additional access token is required to play the live stream).  If no `playback_policies` is set, the live stream will have no playback IDs and will therefore not be playable. For simplicity, a single string name can be used in place of the array in the case of only one playback policy.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setPlaybackPolicies($playback_policies)
+    {
+
+        if (is_null($playback_policies)) {
+            throw new \InvalidArgumentException('non-nullable playback_policies cannot be null');
+        }
+
+        $this->container['playback_policies'] = $playback_policies;
 
         return $this;
     }
@@ -474,7 +514,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets advanced_playback_policies
      *
-     * @param \MuxPhp\Models\CreatePlaybackIDRequest[]|null $advanced_playback_policies An array of playback policy objects that you want applied to this asset and available through `playback_ids`. `advanced_playback_policies` must be used instead of `playback_policy` when creating a DRM playback ID.
+     * @param \MuxPhp\Models\CreatePlaybackIDRequest[]|null $advanced_playback_policies An array of playback policy objects that you want applied on this live stream and available through `playback_ids`. `advanced_playback_policies` must be used instead of `playback_policies` when creating a DRM playback ID.
      *
      * @return self
      */

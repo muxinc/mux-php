@@ -355,7 +355,7 @@ class SpacesApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\query($formParams);
             }
         }
 
@@ -646,7 +646,7 @@ class SpacesApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\query($formParams);
             }
         }
 
@@ -872,7 +872,7 @@ class SpacesApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\query($formParams);
             }
         }
 
@@ -1117,7 +1117,7 @@ class SpacesApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\query($formParams);
             }
         }
 
@@ -1391,7 +1391,7 @@ class SpacesApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\query($formParams);
             }
         }
 
@@ -1684,7 +1684,7 @@ class SpacesApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\query($formParams);
             }
         }
 
@@ -1971,7 +1971,7 @@ class SpacesApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\query($formParams);
             }
         }
 
@@ -2264,7 +2264,7 @@ class SpacesApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\query($formParams);
             }
         }
 
@@ -2557,7 +2557,7 @@ class SpacesApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\query($formParams);
             }
         }
 

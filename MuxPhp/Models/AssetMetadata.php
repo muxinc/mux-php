@@ -324,7 +324,7 @@ class AssetMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets title
      *
-     * @param string|null $title The video title. Max 512 code points.
+     * @param string|null $title The asset title. Max 512 code points.
      *
      * @return self
      */
@@ -357,7 +357,7 @@ class AssetMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets creator_id
      *
-     * @param string|null $creator_id This is an identifier you provide to keep track of the creator of the video. Max 128 code points.
+     * @param string|null $creator_id This is an identifier you provide to keep track of the creator of the asset. Max 128 code points.
      *
      * @return self
      */
@@ -390,7 +390,7 @@ class AssetMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets external_id
      *
-     * @param string|null $external_id This is an identifier you provide to link the video to your own data. Max 128 code points.
+     * @param string|null $external_id This is an identifier you provide to link the asset to your own data. Max 128 code points.
      *
      * @return self
      */

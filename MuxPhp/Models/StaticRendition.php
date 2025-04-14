@@ -313,6 +313,7 @@ class StaticRendition implements ModelInterface, ArrayAccess, \JsonSerializable
     public const RESOLUTION_TIER__1440P = '1440p';
     public const RESOLUTION_TIER__1080P = '1080p';
     public const RESOLUTION_TIER__720P = '720p';
+    public const RESOLUTION_TIER_AUDIO_ONLY = 'audio-only';
     public const RESOLUTION_HIGHEST = 'highest';
     public const RESOLUTION_AUDIO_ONLY = 'audio-only';
     public const RESOLUTION__2160P = '2160p';
@@ -402,6 +403,7 @@ class StaticRendition implements ModelInterface, ArrayAccess, \JsonSerializable
             self::RESOLUTION_TIER__1440P,
             self::RESOLUTION_TIER__1080P,
             self::RESOLUTION_TIER__720P,
+            self::RESOLUTION_TIER_AUDIO_ONLY,
         ];
     }
 

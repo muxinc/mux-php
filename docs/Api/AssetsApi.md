@@ -250,7 +250,7 @@ createAssetTrack($asset_id, $create_track_request): \MuxPhp\Models\CreateTrackRe
 
 Create an asset track
 
-Adds an asset track (for example, subtitles, or an alternate audio track) to an asset.
+Adds an asset track (for example, subtitles, or an alternate audio track) to an asset. Assets must be in the `ready` state before tracks can be added.
 
 ### Example
 

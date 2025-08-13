@@ -75,7 +75,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'encoding_tier' => 'string',
         'video_quality' => 'string',
         'static_renditions' => '\MuxPhp\Models\CreateStaticRenditionRequest[]',
-        'meta' => '\MuxPhp\Models\AssetMetadata'
+        'meta' => '\MuxPhp\Models\AssetMetadata',
+        'copy_overlays' => 'bool'
     ];
 
     /**
@@ -101,7 +102,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'encoding_tier' => null,
         'video_quality' => null,
         'static_renditions' => null,
-        'meta' => null
+        'meta' => null,
+        'copy_overlays' => null
     ];
 
     /**
@@ -125,7 +127,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'encoding_tier' => false,
         'video_quality' => false,
         'static_renditions' => false,
-        'meta' => false
+        'meta' => false,
+        'copy_overlays' => false
     ];
 
     /**
@@ -219,7 +222,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'encoding_tier' => 'encoding_tier',
         'video_quality' => 'video_quality',
         'static_renditions' => 'static_renditions',
-        'meta' => 'meta'
+        'meta' => 'meta',
+        'copy_overlays' => 'copy_overlays'
     ];
 
     /**
@@ -243,7 +247,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'encoding_tier' => 'setEncodingTier',
         'video_quality' => 'setVideoQuality',
         'static_renditions' => 'setStaticRenditions',
-        'meta' => 'setMeta'
+        'meta' => 'setMeta',
+        'copy_overlays' => 'setCopyOverlays'
     ];
 
     /**
@@ -267,7 +272,8 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'encoding_tier' => 'getEncodingTier',
         'video_quality' => 'getVideoQuality',
         'static_renditions' => 'getStaticRenditions',
-        'meta' => 'getMeta'
+        'meta' => 'getMeta',
+        'copy_overlays' => 'getCopyOverlays'
     ];
 
     /**
@@ -433,6 +439,7 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('video_quality', $data ?? [], null);
         $this->setIfExists('static_renditions', $data ?? [], null);
         $this->setIfExists('meta', $data ?? [], null);
+        $this->setIfExists('copy_overlays', $data ?? [], true);
     }
 
     /**
@@ -1042,6 +1049,35 @@ class CreateAssetRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['meta'] = $meta;
+
+        return $this;
+    }
+
+    /**
+     * Gets copy_overlays
+     *
+     * @return bool|null
+     */
+    public function getCopyOverlays()
+    {
+        return $this->container['copy_overlays'];
+    }
+
+    /**
+     * Sets copy_overlays
+     *
+     * @param bool|null $copy_overlays If the created asset is a clip, this controls whether overlays are copied from the source asset.
+     *
+     * @return self
+     */
+    public function setCopyOverlays($copy_overlays)
+    {
+
+        if (is_null($copy_overlays)) {
+            throw new \InvalidArgumentException('non-nullable copy_overlays cannot be null');
+        }
+
+        $this->container['copy_overlays'] = $copy_overlays;
 
         return $this;
     }

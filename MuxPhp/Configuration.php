@@ -91,7 +91,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = 'Mux PHP | 5.0.1';
+    protected $userAgent = 'Mux PHP | 5.1.0';
 
     /**
      * Debug switch (default set to false)
@@ -400,7 +400,7 @@ class Configuration
         $report .= '    OS: ' . php_uname() . PHP_EOL;
         $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
         $report .= '    The version of the OpenAPI document: v1' . PHP_EOL;
-        $report .= '    SDK Package Version: 5.0.1' . PHP_EOL;
+        $report .= '    SDK Package Version: 5.1.0' . PHP_EOL;
         $report .= '    Temp Folder Path: ' . self::getDefaultConfiguration()->getTempFolderPath() . PHP_EOL;
 
         return $report;

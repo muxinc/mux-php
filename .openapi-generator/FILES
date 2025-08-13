@@ -1,5 +1,6 @@
 .gitignore
 .php_cs
+MuxPhp/Api/AnnotationsApi.php
 MuxPhp/Api/AssetsApi.php
 MuxPhp/Api/DRMConfigurationsApi.php
 MuxPhp/Api/DeliveryUsageApi.php
@@ -24,12 +25,16 @@ MuxPhp/ApiException.php
 MuxPhp/Configuration.php
 MuxPhp/HeaderSelector.php
 MuxPhp/Models/AbridgedVideoView.php
+MuxPhp/Models/Annotation.php
+MuxPhp/Models/AnnotationInput.php
+MuxPhp/Models/AnnotationResponse.php
 MuxPhp/Models/Asset.php
 MuxPhp/Models/AssetErrors.php
 MuxPhp/Models/AssetGeneratedSubtitleSettings.php
 MuxPhp/Models/AssetMaster.php
 MuxPhp/Models/AssetMetadata.php
 MuxPhp/Models/AssetNonStandardInputReasons.php
+MuxPhp/Models/AssetProgress.php
 MuxPhp/Models/AssetRecordingTimes.php
 MuxPhp/Models/AssetResponse.php
 MuxPhp/Models/AssetStaticRenditions.php
@@ -90,6 +95,7 @@ MuxPhp/Models/InputTrack.php
 MuxPhp/Models/Insight.php
 MuxPhp/Models/LaunchWebInputResponse.php
 MuxPhp/Models/ListAllMetricValuesResponse.php
+MuxPhp/Models/ListAnnotationsResponse.php
 MuxPhp/Models/ListAssetsResponse.php
 MuxPhp/Models/ListBreakdownValuesResponse.php
 MuxPhp/Models/ListBreakdownValuesResponseMeta.php
@@ -121,6 +127,7 @@ MuxPhp/Models/ListWebInputsResponse.php
 MuxPhp/Models/LiveStream.php
 MuxPhp/Models/LiveStreamEmbeddedSubtitleSettings.php
 MuxPhp/Models/LiveStreamGeneratedSubtitleSettings.php
+MuxPhp/Models/LiveStreamMetadata.php
 MuxPhp/Models/LiveStreamResponse.php
 MuxPhp/Models/LiveStreamStatus.php
 MuxPhp/Models/Metric.php
@@ -181,6 +188,7 @@ MuxPhp/Models/WebInputResponse.php
 MuxPhp/ObjectSerializer.php
 README.md
 composer.json
+docs/Api/AnnotationsApi.md
 docs/Api/AssetsApi.md
 docs/Api/DRMConfigurationsApi.md
 docs/Api/DeliveryUsageApi.md
@@ -202,12 +210,16 @@ docs/Api/URLSigningKeysApi.md
 docs/Api/VideoViewsApi.md
 docs/Api/WebInputsApi.md
 docs/Model/AbridgedVideoView.md
+docs/Model/Annotation.md
+docs/Model/AnnotationInput.md
+docs/Model/AnnotationResponse.md
 docs/Model/Asset.md
 docs/Model/AssetErrors.md
 docs/Model/AssetGeneratedSubtitleSettings.md
 docs/Model/AssetMaster.md
 docs/Model/AssetMetadata.md
 docs/Model/AssetNonStandardInputReasons.md
+docs/Model/AssetProgress.md
 docs/Model/AssetRecordingTimes.md
 docs/Model/AssetResponse.md
 docs/Model/AssetStaticRenditions.md
@@ -268,6 +280,7 @@ docs/Model/InputTrack.md
 docs/Model/Insight.md
 docs/Model/LaunchWebInputResponse.md
 docs/Model/ListAllMetricValuesResponse.md
+docs/Model/ListAnnotationsResponse.md
 docs/Model/ListAssetsResponse.md
 docs/Model/ListBreakdownValuesResponse.md
 docs/Model/ListBreakdownValuesResponseMeta.md
@@ -299,6 +312,7 @@ docs/Model/ListWebInputsResponse.md
 docs/Model/LiveStream.md
 docs/Model/LiveStreamEmbeddedSubtitleSettings.md
 docs/Model/LiveStreamGeneratedSubtitleSettings.md
+docs/Model/LiveStreamMetadata.md
 docs/Model/LiveStreamResponse.md
 docs/Model/LiveStreamStatus.md
 docs/Model/Metric.md

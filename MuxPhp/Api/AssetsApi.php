@@ -3379,6 +3379,7 @@ class AssetsApi
      *
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  string $cursor This parameter is used to request pages beyond the first. You can find the cursor value in the &#x60;next_cursor&#x60; field of paginated responses. (optional)
      * @param  string $live_stream_id Filter response to return all the assets for this live stream only (optional)
      * @param  string $upload_id Filter response to return an asset created from this direct upload only (optional)
      *
@@ -3386,9 +3387,9 @@ class AssetsApi
      * @throws \InvalidArgumentException
      * @return \MuxPhp\Models\ListAssetsResponse
      */
-    public function listAssets($limit = 25, $page = 1, $live_stream_id = null, $upload_id = null)
+    public function listAssets($limit = 25, $page = 1, $cursor = null, $live_stream_id = null, $upload_id = null)
     {
-        list($response) = $this->listAssetsWithHttpInfo($limit, $page, $live_stream_id, $upload_id);
+        list($response) = $this->listAssetsWithHttpInfo($limit, $page, $cursor, $live_stream_id, $upload_id);
         return $response;
     }
 
@@ -3399,6 +3400,7 @@ class AssetsApi
      *
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  string $cursor This parameter is used to request pages beyond the first. You can find the cursor value in the &#x60;next_cursor&#x60; field of paginated responses. (optional)
      * @param  string $live_stream_id Filter response to return all the assets for this live stream only (optional)
      * @param  string $upload_id Filter response to return an asset created from this direct upload only (optional)
      *
@@ -3406,9 +3408,9 @@ class AssetsApi
      * @throws \InvalidArgumentException
      * @return array of \MuxPhp\Models\ListAssetsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listAssetsWithHttpInfo($limit = 25, $page = 1, $live_stream_id = null, $upload_id = null)
+    public function listAssetsWithHttpInfo($limit = 25, $page = 1, $cursor = null, $live_stream_id = null, $upload_id = null)
     {
-        $request = $this->listAssetsRequest($limit, $page, $live_stream_id, $upload_id);
+        $request = $this->listAssetsRequest($limit, $page, $cursor, $live_stream_id, $upload_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3490,15 +3492,16 @@ class AssetsApi
      *
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  string $cursor This parameter is used to request pages beyond the first. You can find the cursor value in the &#x60;next_cursor&#x60; field of paginated responses. (optional)
      * @param  string $live_stream_id Filter response to return all the assets for this live stream only (optional)
      * @param  string $upload_id Filter response to return an asset created from this direct upload only (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listAssetsAsync($limit = 25, $page = 1, $live_stream_id = null, $upload_id = null)
+    public function listAssetsAsync($limit = 25, $page = 1, $cursor = null, $live_stream_id = null, $upload_id = null)
     {
-        return $this->listAssetsAsyncWithHttpInfo($limit, $page, $live_stream_id, $upload_id)
+        return $this->listAssetsAsyncWithHttpInfo($limit, $page, $cursor, $live_stream_id, $upload_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3513,16 +3516,17 @@ class AssetsApi
      *
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  string $cursor This parameter is used to request pages beyond the first. You can find the cursor value in the &#x60;next_cursor&#x60; field of paginated responses. (optional)
      * @param  string $live_stream_id Filter response to return all the assets for this live stream only (optional)
      * @param  string $upload_id Filter response to return an asset created from this direct upload only (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listAssetsAsyncWithHttpInfo($limit = 25, $page = 1, $live_stream_id = null, $upload_id = null)
+    public function listAssetsAsyncWithHttpInfo($limit = 25, $page = 1, $cursor = null, $live_stream_id = null, $upload_id = null)
     {
         $returnType = '\MuxPhp\Models\ListAssetsResponse';
-        $request = $this->listAssetsRequest($limit, $page, $live_stream_id, $upload_id);
+        $request = $this->listAssetsRequest($limit, $page, $cursor, $live_stream_id, $upload_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3563,13 +3567,14 @@ class AssetsApi
      *
      * @param  int $limit Number of items to include in the response (optional, default to 25)
      * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  string $cursor This parameter is used to request pages beyond the first. You can find the cursor value in the &#x60;next_cursor&#x60; field of paginated responses. (optional)
      * @param  string $live_stream_id Filter response to return all the assets for this live stream only (optional)
      * @param  string $upload_id Filter response to return an asset created from this direct upload only (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listAssetsRequest($limit = 25, $page = 1, $live_stream_id = null, $upload_id = null)
+    public function listAssetsRequest($limit = 25, $page = 1, $cursor = null, $live_stream_id = null, $upload_id = null)
     {
 
         $resourcePath = '/video/v1/assets';
@@ -3599,6 +3604,17 @@ class AssetsApi
             }
             else {
                 $queryParams['page'] = $page;
+            }
+        }
+        // query params
+        if ($cursor !== null) {
+            if('form' === 'form' && is_array($cursor)) {
+                foreach($cursor as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['cursor'] = $cursor;
             }
         }
         // query params

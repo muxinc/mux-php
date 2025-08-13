@@ -76,7 +76,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'latency_mode' => 'string',
         'test' => 'bool',
         'simulcast_targets' => '\MuxPhp\Models\CreateSimulcastTargetRequest[]',
-        'max_continuous_duration' => 'int'
+        'max_continuous_duration' => 'int',
+        'meta' => '\MuxPhp\Models\LiveStreamMetadata'
     ];
 
     /**
@@ -103,7 +104,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'latency_mode' => null,
         'test' => 'boolean',
         'simulcast_targets' => null,
-        'max_continuous_duration' => 'int32'
+        'max_continuous_duration' => 'int32',
+        'meta' => null
     ];
 
     /**
@@ -128,7 +130,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'latency_mode' => false,
         'test' => false,
         'simulcast_targets' => false,
-        'max_continuous_duration' => false
+        'max_continuous_duration' => false,
+        'meta' => false
     ];
 
     /**
@@ -223,7 +226,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'latency_mode' => 'latency_mode',
         'test' => 'test',
         'simulcast_targets' => 'simulcast_targets',
-        'max_continuous_duration' => 'max_continuous_duration'
+        'max_continuous_duration' => 'max_continuous_duration',
+        'meta' => 'meta'
     ];
 
     /**
@@ -248,7 +252,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'latency_mode' => 'setLatencyMode',
         'test' => 'setTest',
         'simulcast_targets' => 'setSimulcastTargets',
-        'max_continuous_duration' => 'setMaxContinuousDuration'
+        'max_continuous_duration' => 'setMaxContinuousDuration',
+        'meta' => 'setMeta'
     ];
 
     /**
@@ -273,7 +278,8 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'latency_mode' => 'getLatencyMode',
         'test' => 'getTest',
         'simulcast_targets' => 'getSimulcastTargets',
-        'max_continuous_duration' => 'getMaxContinuousDuration'
+        'max_continuous_duration' => 'getMaxContinuousDuration',
+        'meta' => 'getMeta'
     ];
 
     /**
@@ -370,6 +376,7 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('test', $data ?? [], null);
         $this->setIfExists('simulcast_targets', $data ?? [], null);
         $this->setIfExists('max_continuous_duration', $data ?? [], 43200);
+        $this->setIfExists('meta', $data ?? [], null);
     }
 
     /**
@@ -474,7 +481,6 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * Gets playback_policies
      *
      * @return \MuxPhp\Models\PlaybackPolicy[]|null
-     * @deprecated
      */
     public function getPlaybackPolicies()
     {
@@ -487,7 +493,6 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @param \MuxPhp\Models\PlaybackPolicy[]|null $playback_policies An array of playback policy names that you want applied to this live stream and available through `playback_ids`. Options include:  * `\"public\"` (anyone with the playback URL can stream the live stream). * `\"signed\"` (an additional access token is required to play the live stream).  If no `playback_policies` is set, the live stream will have no playback IDs and will therefore not be playable. For simplicity, a single string name can be used in place of the array in the case of only one playback policy.
      *
      * @return self
-     * @deprecated
      */
     public function setPlaybackPolicies($playback_policies)
     {
@@ -962,6 +967,35 @@ class CreateLiveStreamRequest implements ModelInterface, ArrayAccess, \JsonSeria
         }
 
         $this->container['max_continuous_duration'] = $max_continuous_duration;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta
+     *
+     * @return \MuxPhp\Models\LiveStreamMetadata|null
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \MuxPhp\Models\LiveStreamMetadata|null $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+
+        $this->container['meta'] = $meta;
 
         return $this;
     }

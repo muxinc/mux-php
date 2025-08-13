@@ -1,6 +1,6 @@
 <?php
 /**
- * ListAssetsResponse
+ * AssetProgress
  *
  * PHP version 7.2
  *
@@ -33,9 +33,10 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListAssetsResponse Class Doc Comment
+ * AssetProgress Class Doc Comment
  *
  * @category Class
+ * @description Detailed state information about the asset ingest process.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
@@ -43,7 +44,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class AssetProgress implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +53,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListAssetsResponse';
+    protected static $openAPIModelName = 'AssetProgress';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +61,8 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'next_cursor' => 'string',
-        'data' => '\MuxPhp\Models\Asset[]'
+        'state' => 'string',
+        'progress' => 'double'
     ];
 
     /**
@@ -72,8 +73,8 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'next_cursor' => null,
-        'data' => null
+        'state' => null,
+        'progress' => 'double'
     ];
 
     /**
@@ -82,8 +83,8 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'next_cursor' => true,
-        'data' => false
+        'state' => false,
+        'progress' => false
     ];
 
     /**
@@ -162,8 +163,8 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'next_cursor' => 'next_cursor',
-        'data' => 'data'
+        'state' => 'state',
+        'progress' => 'progress'
     ];
 
     /**
@@ -172,8 +173,8 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'next_cursor' => 'setNextCursor',
-        'data' => 'setData'
+        'state' => 'setState',
+        'progress' => 'setProgress'
     ];
 
     /**
@@ -182,8 +183,8 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'next_cursor' => 'getNextCursor',
-        'data' => 'getData'
+        'state' => 'getState',
+        'progress' => 'getProgress'
     ];
 
     /**
@@ -227,6 +228,27 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
+    public const STATE_INGESTING = 'ingesting';
+    public const STATE_TRANSCODING = 'transcoding';
+    public const STATE_COMPLETED = 'completed';
+    public const STATE_LIVE = 'live';
+    public const STATE_ERRORED = 'errored';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStateAllowableValues()
+    {
+        return [
+            self::STATE_INGESTING,
+            self::STATE_TRANSCODING,
+            self::STATE_COMPLETED,
+            self::STATE_LIVE,
+            self::STATE_ERRORED,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -246,8 +268,8 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('next_cursor', $data ?? [], null);
-        $this->setIfExists('data', $data ?? [], null);
+        $this->setIfExists('state', $data ?? [], null);
+        $this->setIfExists('progress', $data ?? [], null);
     }
 
     /**
@@ -277,6 +299,23 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getStateAllowableValues();
+        if (!is_null($this->container['state']) && !in_array($this->container['state'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'state', must be one of '%s'",
+                $this->container['state'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if (!is_null($this->container['progress']) && ($this->container['progress'] > 100)) {
+            $invalidProperties[] = "invalid value for 'progress', must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['progress']) && ($this->container['progress'] < -1)) {
+            $invalidProperties[] = "invalid value for 'progress', must be bigger than or equal to -1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -293,66 +332,77 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets next_cursor
+     * Gets state
      *
      * @return string|null
      */
-    public function getNextCursor()
+    public function getState()
     {
-        return $this->container['next_cursor'];
+        return $this->container['state'];
     }
 
     /**
-     * Sets next_cursor
+     * Sets state
      *
-     * @param string|null $next_cursor If there are more pages of data, this field will contain a string that can be used with the `cursor` querystring parameter to fetch the next page of data.
+     * @param string|null $state The detailed state of the asset ingest process. This field is useful for relaying more granular processing information to end users when a [non-standard input is encountered](https://www.mux.com/docs/guides/minimize-processing-time#non-standard-input).  - `ingesting`: Asset is being ingested (initial processing before or after transcoding). While in this state, the `progress` percentage will be 0. - `transcoding`: Asset is undergoing non-standard transcoding. - `completed`: Asset processing is complete (`status` is `ready`). While in this state, the `progress` percentage will be 100. - `live`: Asset is a live stream currently in progress. While in this state, the `progress` percentage will be -1. - `errored`: Asset has encountered an error (`status` is `errored`). While in this state, the `progress` percentage will be -1.
      *
      * @return self
      */
-    public function setNextCursor($next_cursor)
+    public function setState($state)
     {
-
-        if (is_null($next_cursor)) {
-            array_push($this->openAPINullablesSetToNull, 'next_cursor');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('next_cursor', $nullablesSetToNull, true);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        $allowedValues = $this->getStateAllowableValues();
+        if (!is_null($state) && !in_array($state, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'state', must be one of '%s'",
+                    $state,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
 
-        $this->container['next_cursor'] = $next_cursor;
+        if (is_null($state)) {
+            throw new \InvalidArgumentException('non-nullable state cannot be null');
+        }
+
+        $this->container['state'] = $state;
 
         return $this;
     }
 
     /**
-     * Gets data
+     * Gets progress
      *
-     * @return \MuxPhp\Models\Asset[]|null
+     * @return double|null
      */
-    public function getData()
+    public function getProgress()
     {
-        return $this->container['data'];
+        return $this->container['progress'];
     }
 
     /**
-     * Sets data
+     * Sets progress
      *
-     * @param \MuxPhp\Models\Asset[]|null $data data
+     * @param double|null $progress Represents the estimated completion percentage. Returns `0 - 100` when in `ingesting`, `transcoding`, or `completed` state, and `-1` when in `live` or `errored` state.
      *
      * @return self
      */
-    public function setData($data)
+    public function setProgress($progress)
     {
 
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
+        if (!is_null($progress) && ($progress > 100)) {
+            throw new \InvalidArgumentException('invalid value for $progress when calling AssetProgress., must be smaller than or equal to 100.');
+        }
+        if (!is_null($progress) && ($progress < -1)) {
+            throw new \InvalidArgumentException('invalid value for $progress when calling AssetProgress., must be bigger than or equal to -1.');
         }
 
-        $this->container['data'] = $data;
+
+        if (is_null($progress)) {
+            throw new \InvalidArgumentException('non-nullable progress cannot be null');
+        }
+
+        $this->container['progress'] = $progress;
 
         return $this;
     }

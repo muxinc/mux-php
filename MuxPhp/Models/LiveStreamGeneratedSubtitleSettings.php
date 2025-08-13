@@ -241,6 +241,11 @@ class LiveStreamGeneratedSubtitleSettings implements ModelInterface, ArrayAccess
 
     public const LANGUAGE_CODE_EN = 'en';
     public const LANGUAGE_CODE_EN_US = 'en-US';
+    public const LANGUAGE_CODE_ES = 'es';
+    public const LANGUAGE_CODE_FR = 'fr';
+    public const LANGUAGE_CODE_DE = 'de';
+    public const LANGUAGE_CODE_PT = 'pt';
+    public const LANGUAGE_CODE_IT = 'it';
 
     /**
      * Gets allowable values of the enum
@@ -252,6 +257,11 @@ class LiveStreamGeneratedSubtitleSettings implements ModelInterface, ArrayAccess
         return [
             self::LANGUAGE_CODE_EN,
             self::LANGUAGE_CODE_EN_US,
+            self::LANGUAGE_CODE_ES,
+            self::LANGUAGE_CODE_FR,
+            self::LANGUAGE_CODE_DE,
+            self::LANGUAGE_CODE_PT,
+            self::LANGUAGE_CODE_IT,
         ];
     }
 

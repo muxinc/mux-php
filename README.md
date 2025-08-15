@@ -172,6 +172,7 @@ Class | Method | HTTP request | Description
 *DRMConfigurationsApi* | [**getDrmConfiguration**](docs/Api/DRMConfigurationsApi.md#getdrmconfiguration) | **GET** /video/v1/drm-configurations/{DRM_CONFIGURATION_ID} | Retrieve a DRM Configuration
 *DRMConfigurationsApi* | [**listDrmConfigurations**](docs/Api/DRMConfigurationsApi.md#listdrmconfigurations) | **GET** /video/v1/drm-configurations | List DRM Configurations
 *DeliveryUsageApi* | [**listDeliveryUsage**](docs/Api/DeliveryUsageApi.md#listdeliveryusage) | **GET** /video/v1/delivery-usage | List Usage
+*DimensionsApi* | [**listDimensionElements**](docs/Api/DimensionsApi.md#listdimensionelements) | **GET** /data/v1/dimensions/{DIMENSION_ID}/elements | Lists elements for a trace dimension
 *DimensionsApi* | [**listDimensionValues**](docs/Api/DimensionsApi.md#listdimensionvalues) | **GET** /data/v1/dimensions/{DIMENSION_ID} | Lists the values for a specific dimension
 *DimensionsApi* | [**listDimensions**](docs/Api/DimensionsApi.md#listdimensions) | **GET** /data/v1/dimensions | List Dimensions
 *DirectUploadsApi* | [**cancelDirectUpload**](docs/Api/DirectUploadsApi.md#canceldirectupload) | **PUT** /video/v1/uploads/{UPLOAD_ID}/cancel | Cancel a direct upload

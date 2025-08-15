@@ -1,6 +1,6 @@
 <?php
 /**
- * ListAssetsResponse
+ * Annotation
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListAssetsResponse Class Doc Comment
+ * Annotation Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class Annotation implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListAssetsResponse';
+    protected static $openAPIModelName = 'Annotation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +60,10 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'next_cursor' => 'string',
-        'data' => '\MuxPhp\Models\Asset[]'
+        'id' => 'string',
+        'note' => 'string',
+        'date' => '\DateTime',
+        'sub_property_id' => 'string'
     ];
 
     /**
@@ -72,8 +74,10 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'next_cursor' => null,
-        'data' => null
+        'id' => 'uuid',
+        'note' => null,
+        'date' => 'date-time',
+        'sub_property_id' => null
     ];
 
     /**
@@ -82,8 +86,10 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'next_cursor' => true,
-        'data' => false
+        'id' => false,
+        'note' => false,
+        'date' => false,
+        'sub_property_id' => true
     ];
 
     /**
@@ -162,8 +168,10 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'next_cursor' => 'next_cursor',
-        'data' => 'data'
+        'id' => 'id',
+        'note' => 'note',
+        'date' => 'date',
+        'sub_property_id' => 'sub_property_id'
     ];
 
     /**
@@ -172,8 +180,10 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'next_cursor' => 'setNextCursor',
-        'data' => 'setData'
+        'id' => 'setId',
+        'note' => 'setNote',
+        'date' => 'setDate',
+        'sub_property_id' => 'setSubPropertyId'
     ];
 
     /**
@@ -182,8 +192,10 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'next_cursor' => 'getNextCursor',
-        'data' => 'getData'
+        'id' => 'getId',
+        'note' => 'getNote',
+        'date' => 'getDate',
+        'sub_property_id' => 'getSubPropertyId'
     ];
 
     /**
@@ -246,8 +258,10 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('next_cursor', $data ?? [], null);
-        $this->setIfExists('data', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('note', $data ?? [], null);
+        $this->setIfExists('date', $data ?? [], null);
+        $this->setIfExists('sub_property_id', $data ?? [], null);
     }
 
     /**
@@ -293,66 +307,124 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets next_cursor
+     * Gets id
      *
      * @return string|null
      */
-    public function getNextCursor()
+    public function getId()
     {
-        return $this->container['next_cursor'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets next_cursor
+     * Sets id
      *
-     * @param string|null $next_cursor If there are more pages of data, this field will contain a string that can be used with the `cursor` querystring parameter to fetch the next page of data.
+     * @param string|null $id Unique identifier for the annotation
      *
      * @return self
      */
-    public function setNextCursor($next_cursor)
+    public function setId($id)
     {
 
-        if (is_null($next_cursor)) {
-            array_push($this->openAPINullablesSetToNull, 'next_cursor');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets note
+     *
+     * @return string|null
+     */
+    public function getNote()
+    {
+        return $this->container['note'];
+    }
+
+    /**
+     * Sets note
+     *
+     * @param string|null $note The annotation note content
+     *
+     * @return self
+     */
+    public function setNote($note)
+    {
+
+        if (is_null($note)) {
+            throw new \InvalidArgumentException('non-nullable note cannot be null');
+        }
+
+        $this->container['note'] = $note;
+
+        return $this;
+    }
+
+    /**
+     * Gets date
+     *
+     * @return \DateTime|null
+     */
+    public function getDate()
+    {
+        return $this->container['date'];
+    }
+
+    /**
+     * Sets date
+     *
+     * @param \DateTime|null $date Datetime when the annotation applies
+     *
+     * @return self
+     */
+    public function setDate($date)
+    {
+
+        if (is_null($date)) {
+            throw new \InvalidArgumentException('non-nullable date cannot be null');
+        }
+
+        $this->container['date'] = $date;
+
+        return $this;
+    }
+
+    /**
+     * Gets sub_property_id
+     *
+     * @return string|null
+     */
+    public function getSubPropertyId()
+    {
+        return $this->container['sub_property_id'];
+    }
+
+    /**
+     * Sets sub_property_id
+     *
+     * @param string|null $sub_property_id Customer-defined sub-property identifier
+     *
+     * @return self
+     */
+    public function setSubPropertyId($sub_property_id)
+    {
+
+        if (is_null($sub_property_id)) {
+            array_push($this->openAPINullablesSetToNull, 'sub_property_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('next_cursor', $nullablesSetToNull, true);
+            $index = array_search('sub_property_id', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
 
-        $this->container['next_cursor'] = $next_cursor;
-
-        return $this;
-    }
-
-    /**
-     * Gets data
-     *
-     * @return \MuxPhp\Models\Asset[]|null
-     */
-    public function getData()
-    {
-        return $this->container['data'];
-    }
-
-    /**
-     * Sets data
-     *
-     * @param \MuxPhp\Models\Asset[]|null $data data
-     *
-     * @return self
-     */
-    public function setData($data)
-    {
-
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
-        }
-
-        $this->container['data'] = $data;
+        $this->container['sub_property_id'] = $sub_property_id;
 
         return $this;
     }

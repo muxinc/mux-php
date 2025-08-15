@@ -89,7 +89,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'non_standard_input_reasons' => '\MuxPhp\Models\AssetNonStandardInputReasons',
         'test' => 'bool',
         'ingest_type' => 'string',
-        'meta' => '\MuxPhp\Models\AssetMetadata'
+        'meta' => '\MuxPhp\Models\AssetMetadata',
+        'progress' => '\MuxPhp\Models\AssetProgress'
     ];
 
     /**
@@ -129,7 +130,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'non_standard_input_reasons' => null,
         'test' => 'boolean',
         'ingest_type' => null,
-        'meta' => null
+        'meta' => null,
+        'progress' => null
     ];
 
     /**
@@ -167,7 +169,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'non_standard_input_reasons' => false,
         'test' => false,
         'ingest_type' => false,
-        'meta' => false
+        'meta' => false,
+        'progress' => false
     ];
 
     /**
@@ -275,7 +278,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'non_standard_input_reasons' => 'non_standard_input_reasons',
         'test' => 'test',
         'ingest_type' => 'ingest_type',
-        'meta' => 'meta'
+        'meta' => 'meta',
+        'progress' => 'progress'
     ];
 
     /**
@@ -313,7 +317,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'non_standard_input_reasons' => 'setNonStandardInputReasons',
         'test' => 'setTest',
         'ingest_type' => 'setIngestType',
-        'meta' => 'setMeta'
+        'meta' => 'setMeta',
+        'progress' => 'setProgress'
     ];
 
     /**
@@ -351,7 +356,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'non_standard_input_reasons' => 'getNonStandardInputReasons',
         'test' => 'getTest',
         'ingest_type' => 'getIngestType',
-        'meta' => 'getMeta'
+        'meta' => 'getMeta',
+        'progress' => 'getProgress'
     ];
 
     /**
@@ -611,6 +617,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('test', $data ?? [], null);
         $this->setIfExists('ingest_type', $data ?? [], null);
         $this->setIfExists('meta', $data ?? [], null);
+        $this->setIfExists('progress', $data ?? [], null);
     }
 
     /**
@@ -1700,6 +1707,35 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['meta'] = $meta;
+
+        return $this;
+    }
+
+    /**
+     * Gets progress
+     *
+     * @return \MuxPhp\Models\AssetProgress|null
+     */
+    public function getProgress()
+    {
+        return $this->container['progress'];
+    }
+
+    /**
+     * Sets progress
+     *
+     * @param \MuxPhp\Models\AssetProgress|null $progress progress
+     *
+     * @return self
+     */
+    public function setProgress($progress)
+    {
+
+        if (is_null($progress)) {
+            throw new \InvalidArgumentException('non-nullable progress cannot be null');
+        }
+
+        $this->container['progress'] = $progress;
 
         return $this;
     }

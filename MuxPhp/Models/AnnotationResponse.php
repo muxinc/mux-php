@@ -1,6 +1,6 @@
 <?php
 /**
- * ListAssetsResponse
+ * AnnotationResponse
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListAssetsResponse Class Doc Comment
+ * AnnotationResponse Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
@@ -43,7 +43,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class AnnotationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListAssetsResponse';
+    protected static $openAPIModelName = 'AnnotationResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +60,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'next_cursor' => 'string',
-        'data' => '\MuxPhp\Models\Asset[]'
+        'data' => '\MuxPhp\Models\Annotation'
     ];
 
     /**
@@ -72,7 +71,6 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'next_cursor' => null,
         'data' => null
     ];
 
@@ -82,7 +80,6 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'next_cursor' => true,
         'data' => false
     ];
 
@@ -162,7 +159,6 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'next_cursor' => 'next_cursor',
         'data' => 'data'
     ];
 
@@ -172,7 +168,6 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'next_cursor' => 'setNextCursor',
         'data' => 'setData'
     ];
 
@@ -182,7 +177,6 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'next_cursor' => 'getNextCursor',
         'data' => 'getData'
     ];
 
@@ -246,7 +240,6 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('next_cursor', $data ?? [], null);
         $this->setIfExists('data', $data ?? [], null);
     }
 
@@ -293,45 +286,9 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets next_cursor
-     *
-     * @return string|null
-     */
-    public function getNextCursor()
-    {
-        return $this->container['next_cursor'];
-    }
-
-    /**
-     * Sets next_cursor
-     *
-     * @param string|null $next_cursor If there are more pages of data, this field will contain a string that can be used with the `cursor` querystring parameter to fetch the next page of data.
-     *
-     * @return self
-     */
-    public function setNextCursor($next_cursor)
-    {
-
-        if (is_null($next_cursor)) {
-            array_push($this->openAPINullablesSetToNull, 'next_cursor');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('next_cursor', $nullablesSetToNull, true);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-
-        $this->container['next_cursor'] = $next_cursor;
-
-        return $this;
-    }
-
-    /**
      * Gets data
      *
-     * @return \MuxPhp\Models\Asset[]|null
+     * @return \MuxPhp\Models\Annotation|null
      */
     public function getData()
     {
@@ -341,7 +298,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets data
      *
-     * @param \MuxPhp\Models\Asset[]|null $data data
+     * @param \MuxPhp\Models\Annotation|null $data data
      *
      * @return self
      */

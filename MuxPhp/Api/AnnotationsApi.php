@@ -1,6 +1,6 @@
 <?php
 /**
- * DimensionsApi
+ * AnnotationsApi
  * PHP version 7.2
  *
  * @category Class
@@ -40,14 +40,14 @@ use MuxPhp\HeaderSelector;
 use MuxPhp\ObjectSerializer;
 
 /**
- * DimensionsApi Class Doc Comment
+ * AnnotationsApi Class Doc Comment
  *
  * @category Class
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
  */
-class DimensionsApi
+class AnnotationsApi
 {
     /**
      * @var ClientInterface
@@ -116,54 +116,36 @@ class DimensionsApi
     }
 
     /**
-     * Operation listDimensionElements
+     * Operation createAnnotation
      *
-     * Lists elements for a trace dimension
+     * Create Annotation
      *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.mux.com
-     *
-     * @param  string $dimension_id ID of the Dimension (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  string[] $filters Filter results using key:value pairs. Must be provided as an array query string parameter.  **Basic filtering:** * &#x60;filters[]&#x3D;dimension:value&#x60; - Include rows where dimension equals value * &#x60;filters[]&#x3D;!dimension:value&#x60; - Exclude rows where dimension equals value  **For trace dimensions (like video_cdn_trace):** * &#x60;filters[]&#x3D;+dimension:value&#x60; - Include rows where trace contains value * &#x60;filters[]&#x3D;-dimension:value&#x60; - Exclude rows where trace contains value * &#x60;filters[]&#x3D;dimension:[value1,value2]&#x60; - Exact trace match  **Examples:** * &#x60;filters[]&#x3D;country:US&#x60; - US views only * &#x60;filters[]&#x3D;+video_cdn_trace:fastly&#x60; - Views using Fastly CDN (optional)
-     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, &#x60;view_dropped_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
-     * @param  string $order_by Value to order the results by (optional)
-     * @param  string $order_direction Sort order. (optional)
+     * @param  \MuxPhp\Models\AnnotationInput $annotation_input annotation_input (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MuxPhp\Models\ListDimensionValuesResponse
+     * @return \MuxPhp\Models\AnnotationResponse
      */
-    public function listDimensionElements($dimension_id, $limit = 25, $filters = null, $metric_filters = null, $timeframe = null, $order_by = null, $order_direction = null)
+    public function createAnnotation($annotation_input)
     {
-        list($response) = $this->listDimensionElementsWithHttpInfo($dimension_id, $limit, $filters, $metric_filters, $timeframe, $order_by, $order_direction);
+        list($response) = $this->createAnnotationWithHttpInfo($annotation_input);
         return $response;
     }
 
     /**
-     * Operation listDimensionElementsWithHttpInfo
+     * Operation createAnnotationWithHttpInfo
      *
-     * Lists elements for a trace dimension
+     * Create Annotation
      *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.mux.com
-     *
-     * @param  string $dimension_id ID of the Dimension (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  string[] $filters Filter results using key:value pairs. Must be provided as an array query string parameter.  **Basic filtering:** * &#x60;filters[]&#x3D;dimension:value&#x60; - Include rows where dimension equals value * &#x60;filters[]&#x3D;!dimension:value&#x60; - Exclude rows where dimension equals value  **For trace dimensions (like video_cdn_trace):** * &#x60;filters[]&#x3D;+dimension:value&#x60; - Include rows where trace contains value * &#x60;filters[]&#x3D;-dimension:value&#x60; - Exclude rows where trace contains value * &#x60;filters[]&#x3D;dimension:[value1,value2]&#x60; - Exact trace match  **Examples:** * &#x60;filters[]&#x3D;country:US&#x60; - US views only * &#x60;filters[]&#x3D;+video_cdn_trace:fastly&#x60; - Views using Fastly CDN (optional)
-     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, &#x60;view_dropped_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
-     * @param  string $order_by Value to order the results by (optional)
-     * @param  string $order_direction Sort order. (optional)
+     * @param  \MuxPhp\Models\AnnotationInput $annotation_input (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MuxPhp\Models\ListDimensionValuesResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MuxPhp\Models\AnnotationResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listDimensionElementsWithHttpInfo($dimension_id, $limit = 25, $filters = null, $metric_filters = null, $timeframe = null, $order_by = null, $order_direction = null)
+    public function createAnnotationWithHttpInfo($annotation_input)
     {
-        $request = $this->listDimensionElementsRequest($dimension_id, $limit, $filters, $metric_filters, $timeframe, $order_by, $order_direction);
+        $request = $this->createAnnotationRequest($annotation_input);
 
         try {
             $options = $this->createHttpClientOption();
@@ -195,21 +177,21 @@ class DimensionsApi
 
             $responseBody = $response->getBody();
             switch($statusCode) {
-                case 200:
-                    if ('\MuxPhp\Models\ListDimensionValuesResponse' === '\SplFileObject') {
+                case 201:
+                    if ('\MuxPhp\Models\AnnotationResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\ListDimensionValuesResponse', []),
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\AnnotationResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MuxPhp\Models\ListDimensionValuesResponse';
+            $returnType = '\MuxPhp\Models\AnnotationResponse';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -225,10 +207,10 @@ class DimensionsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
+                case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MuxPhp\Models\ListDimensionValuesResponse',
+                        '\MuxPhp\Models\AnnotationResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -239,27 +221,18 @@ class DimensionsApi
     }
 
     /**
-     * Operation listDimensionElementsAsync
+     * Operation createAnnotationAsync
      *
-     * Lists elements for a trace dimension
+     * Create Annotation
      *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.mux.com
-     *
-     * @param  string $dimension_id ID of the Dimension (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  string[] $filters Filter results using key:value pairs. Must be provided as an array query string parameter.  **Basic filtering:** * &#x60;filters[]&#x3D;dimension:value&#x60; - Include rows where dimension equals value * &#x60;filters[]&#x3D;!dimension:value&#x60; - Exclude rows where dimension equals value  **For trace dimensions (like video_cdn_trace):** * &#x60;filters[]&#x3D;+dimension:value&#x60; - Include rows where trace contains value * &#x60;filters[]&#x3D;-dimension:value&#x60; - Exclude rows where trace contains value * &#x60;filters[]&#x3D;dimension:[value1,value2]&#x60; - Exact trace match  **Examples:** * &#x60;filters[]&#x3D;country:US&#x60; - US views only * &#x60;filters[]&#x3D;+video_cdn_trace:fastly&#x60; - Views using Fastly CDN (optional)
-     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, &#x60;view_dropped_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
-     * @param  string $order_by Value to order the results by (optional)
-     * @param  string $order_direction Sort order. (optional)
+     * @param  \MuxPhp\Models\AnnotationInput $annotation_input (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDimensionElementsAsync($dimension_id, $limit = 25, $filters = null, $metric_filters = null, $timeframe = null, $order_by = null, $order_direction = null)
+    public function createAnnotationAsync($annotation_input)
     {
-        return $this->listDimensionElementsAsyncWithHttpInfo($dimension_id, $limit, $filters, $metric_filters, $timeframe, $order_by, $order_direction)
+        return $this->createAnnotationAsyncWithHttpInfo($annotation_input)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -268,28 +241,19 @@ class DimensionsApi
     }
 
     /**
-     * Operation listDimensionElementsAsyncWithHttpInfo
+     * Operation createAnnotationAsyncWithHttpInfo
      *
-     * Lists elements for a trace dimension
+     * Create Annotation
      *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.mux.com
-     *
-     * @param  string $dimension_id ID of the Dimension (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  string[] $filters Filter results using key:value pairs. Must be provided as an array query string parameter.  **Basic filtering:** * &#x60;filters[]&#x3D;dimension:value&#x60; - Include rows where dimension equals value * &#x60;filters[]&#x3D;!dimension:value&#x60; - Exclude rows where dimension equals value  **For trace dimensions (like video_cdn_trace):** * &#x60;filters[]&#x3D;+dimension:value&#x60; - Include rows where trace contains value * &#x60;filters[]&#x3D;-dimension:value&#x60; - Exclude rows where trace contains value * &#x60;filters[]&#x3D;dimension:[value1,value2]&#x60; - Exact trace match  **Examples:** * &#x60;filters[]&#x3D;country:US&#x60; - US views only * &#x60;filters[]&#x3D;+video_cdn_trace:fastly&#x60; - Views using Fastly CDN (optional)
-     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, &#x60;view_dropped_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
-     * @param  string $order_by Value to order the results by (optional)
-     * @param  string $order_direction Sort order. (optional)
+     * @param  \MuxPhp\Models\AnnotationInput $annotation_input (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDimensionElementsAsyncWithHttpInfo($dimension_id, $limit = 25, $filters = null, $metric_filters = null, $timeframe = null, $order_by = null, $order_direction = null)
+    public function createAnnotationAsyncWithHttpInfo($annotation_input)
     {
-        $returnType = '\MuxPhp\Models\ListDimensionValuesResponse';
-        $request = $this->listDimensionElementsRequest($dimension_id, $limit, $filters, $metric_filters, $timeframe, $order_by, $order_direction);
+        $returnType = '\MuxPhp\Models\AnnotationResponse';
+        $request = $this->createAnnotationRequest($annotation_input);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -326,114 +290,31 @@ class DimensionsApi
     }
 
     /**
-     * Create request for operation 'listDimensionElements'
+     * Create request for operation 'createAnnotation'
      *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.mux.com
-     *
-     * @param  string $dimension_id ID of the Dimension (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  string[] $filters Filter results using key:value pairs. Must be provided as an array query string parameter.  **Basic filtering:** * &#x60;filters[]&#x3D;dimension:value&#x60; - Include rows where dimension equals value * &#x60;filters[]&#x3D;!dimension:value&#x60; - Exclude rows where dimension equals value  **For trace dimensions (like video_cdn_trace):** * &#x60;filters[]&#x3D;+dimension:value&#x60; - Include rows where trace contains value * &#x60;filters[]&#x3D;-dimension:value&#x60; - Exclude rows where trace contains value * &#x60;filters[]&#x3D;dimension:[value1,value2]&#x60; - Exact trace match  **Examples:** * &#x60;filters[]&#x3D;country:US&#x60; - US views only * &#x60;filters[]&#x3D;+video_cdn_trace:fastly&#x60; - Views using Fastly CDN (optional)
-     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, &#x60;view_dropped_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
-     * @param  string $order_by Value to order the results by (optional)
-     * @param  string $order_direction Sort order. (optional)
+     * @param  \MuxPhp\Models\AnnotationInput $annotation_input (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listDimensionElementsRequest($dimension_id, $limit = 25, $filters = null, $metric_filters = null, $timeframe = null, $order_by = null, $order_direction = null)
+    public function createAnnotationRequest($annotation_input)
     {
-        // verify the required parameter 'dimension_id' is set
-        if ($dimension_id === null || (is_array($dimension_id) && count($dimension_id) === 0)) {
+        // verify the required parameter 'annotation_input' is set
+        if ($annotation_input === null || (is_array($annotation_input) && count($annotation_input) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $dimension_id when calling listDimensionElements'
+                'Missing the required parameter $annotation_input when calling createAnnotation'
             );
         }
 
-        $resourcePath = '/data/v1/dimensions/{DIMENSION_ID}/elements';
+        $resourcePath = '/data/v1/annotations';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        if ($limit !== null) {
-            if('form' === 'form' && is_array($limit)) {
-                foreach($limit as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['limit'] = $limit;
-            }
-        }
-        // query params
-        if ($filters !== null) {
-            if('form' === 'form' && is_array($filters)) {
-                foreach($filters as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['filters[]'] = $filters;
-            }
-        }
-        // query params
-        if ($metric_filters !== null) {
-            if('form' === 'form' && is_array($metric_filters)) {
-                foreach($metric_filters as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['metric_filters[]'] = $metric_filters;
-            }
-        }
-        // query params
-        if ($timeframe !== null) {
-            if('form' === 'form' && is_array($timeframe)) {
-                foreach($timeframe as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['timeframe[]'] = $timeframe;
-            }
-        }
-        // query params
-        if ($order_by !== null) {
-            if('form' === 'form' && is_array($order_by)) {
-                foreach($order_by as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['order_by'] = $order_by;
-            }
-        }
-        // query params
-        if ($order_direction !== null) {
-            if('form' === 'form' && is_array($order_direction)) {
-                foreach($order_direction as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['order_direction'] = $order_direction;
-            }
-        }
 
 
-        // path params
-        if ($dimension_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'DIMENSION_ID' . '}',
-                ObjectSerializer::toPathValue($dimension_id),
-                $resourcePath
-            );
-        }
 
 
         if ($multipart) {
@@ -443,6 +324,238 @@ class DimensionsApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($annotation_input)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($annotation_input));
+            } else {
+                $httpBody = $annotation_input;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteAnnotation
+     *
+     * Delete Annotation
+     *
+     * @param  string $annotation_id The annotation ID (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteAnnotation($annotation_id)
+    {
+        $this->deleteAnnotationWithHttpInfo($annotation_id);
+    }
+
+    /**
+     * Operation deleteAnnotationWithHttpInfo
+     *
+     * Delete Annotation
+     *
+     * @param  string $annotation_id The annotation ID (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteAnnotationWithHttpInfo($annotation_id)
+    {
+        $request = $this->deleteAnnotationRequest($annotation_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteAnnotationAsync
+     *
+     * Delete Annotation
+     *
+     * @param  string $annotation_id The annotation ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAnnotationAsync($annotation_id)
+    {
+        return $this->deleteAnnotationAsyncWithHttpInfo($annotation_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteAnnotationAsyncWithHttpInfo
+     *
+     * Delete Annotation
+     *
+     * @param  string $annotation_id The annotation ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAnnotationAsyncWithHttpInfo($annotation_id)
+    {
+        $returnType = '';
+        $request = $this->deleteAnnotationRequest($annotation_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteAnnotation'
+     *
+     * @param  string $annotation_id The annotation ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteAnnotationRequest($annotation_id)
+    {
+        // verify the required parameter 'annotation_id' is set
+        if ($annotation_id === null || (is_array($annotation_id) && count($annotation_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $annotation_id when calling deleteAnnotation'
+            );
+        }
+
+        $resourcePath = '/data/v1/annotations/{ANNOTATION_ID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($annotation_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'ANNOTATION_ID' . '}',
+                ObjectSerializer::toPathValue($annotation_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
                 []
             );
         }
@@ -488,65 +601,49 @@ class DimensionsApi
             $headers
         );
 
-        $operationHosts = ["https://api.mux.com"];
-        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
-            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
-        }
-        $operationHost = $operationHosts[$this->hostIndex];
-
 
         // MUX: adds support for array params.
         // TODO: future upstream?
         $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
     }
 
     /**
-     * Operation listDimensionValues
+     * Operation getAnnotation
      *
-     * Lists the values for a specific dimension
+     * Get Annotation
      *
-     * @param  string $dimension_id ID of the Dimension (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string[] $filters Filter results using key:value pairs. Must be provided as an array query string parameter.  **Basic filtering:** * &#x60;filters[]&#x3D;dimension:value&#x60; - Include rows where dimension equals value * &#x60;filters[]&#x3D;!dimension:value&#x60; - Exclude rows where dimension equals value  **For trace dimensions (like video_cdn_trace):** * &#x60;filters[]&#x3D;+dimension:value&#x60; - Include rows where trace contains value * &#x60;filters[]&#x3D;-dimension:value&#x60; - Exclude rows where trace contains value * &#x60;filters[]&#x3D;dimension:[value1,value2]&#x60; - Exact trace match  **Examples:** * &#x60;filters[]&#x3D;country:US&#x60; - US views only * &#x60;filters[]&#x3D;+video_cdn_trace:fastly&#x60; - Views using Fastly CDN (optional)
-     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, &#x60;view_dropped_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
+     * @param  string $annotation_id The annotation ID (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MuxPhp\Models\ListDimensionValuesResponse
+     * @return \MuxPhp\Models\AnnotationResponse
      */
-    public function listDimensionValues($dimension_id, $limit = 25, $page = 1, $filters = null, $metric_filters = null, $timeframe = null)
+    public function getAnnotation($annotation_id)
     {
-        list($response) = $this->listDimensionValuesWithHttpInfo($dimension_id, $limit, $page, $filters, $metric_filters, $timeframe);
+        list($response) = $this->getAnnotationWithHttpInfo($annotation_id);
         return $response;
     }
 
     /**
-     * Operation listDimensionValuesWithHttpInfo
+     * Operation getAnnotationWithHttpInfo
      *
-     * Lists the values for a specific dimension
+     * Get Annotation
      *
-     * @param  string $dimension_id ID of the Dimension (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string[] $filters Filter results using key:value pairs. Must be provided as an array query string parameter.  **Basic filtering:** * &#x60;filters[]&#x3D;dimension:value&#x60; - Include rows where dimension equals value * &#x60;filters[]&#x3D;!dimension:value&#x60; - Exclude rows where dimension equals value  **For trace dimensions (like video_cdn_trace):** * &#x60;filters[]&#x3D;+dimension:value&#x60; - Include rows where trace contains value * &#x60;filters[]&#x3D;-dimension:value&#x60; - Exclude rows where trace contains value * &#x60;filters[]&#x3D;dimension:[value1,value2]&#x60; - Exact trace match  **Examples:** * &#x60;filters[]&#x3D;country:US&#x60; - US views only * &#x60;filters[]&#x3D;+video_cdn_trace:fastly&#x60; - Views using Fastly CDN (optional)
-     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, &#x60;view_dropped_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
+     * @param  string $annotation_id The annotation ID (required)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MuxPhp\Models\ListDimensionValuesResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MuxPhp\Models\AnnotationResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listDimensionValuesWithHttpInfo($dimension_id, $limit = 25, $page = 1, $filters = null, $metric_filters = null, $timeframe = null)
+    public function getAnnotationWithHttpInfo($annotation_id)
     {
-        $request = $this->listDimensionValuesRequest($dimension_id, $limit, $page, $filters, $metric_filters, $timeframe);
+        $request = $this->getAnnotationRequest($annotation_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -579,20 +676,20 @@ class DimensionsApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\MuxPhp\Models\ListDimensionValuesResponse' === '\SplFileObject') {
+                    if ('\MuxPhp\Models\AnnotationResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\ListDimensionValuesResponse', []),
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\AnnotationResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MuxPhp\Models\ListDimensionValuesResponse';
+            $returnType = '\MuxPhp\Models\AnnotationResponse';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -611,7 +708,7 @@ class DimensionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MuxPhp\Models\ListDimensionValuesResponse',
+                        '\MuxPhp\Models\AnnotationResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -622,23 +719,18 @@ class DimensionsApi
     }
 
     /**
-     * Operation listDimensionValuesAsync
+     * Operation getAnnotationAsync
      *
-     * Lists the values for a specific dimension
+     * Get Annotation
      *
-     * @param  string $dimension_id ID of the Dimension (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string[] $filters Filter results using key:value pairs. Must be provided as an array query string parameter.  **Basic filtering:** * &#x60;filters[]&#x3D;dimension:value&#x60; - Include rows where dimension equals value * &#x60;filters[]&#x3D;!dimension:value&#x60; - Exclude rows where dimension equals value  **For trace dimensions (like video_cdn_trace):** * &#x60;filters[]&#x3D;+dimension:value&#x60; - Include rows where trace contains value * &#x60;filters[]&#x3D;-dimension:value&#x60; - Exclude rows where trace contains value * &#x60;filters[]&#x3D;dimension:[value1,value2]&#x60; - Exact trace match  **Examples:** * &#x60;filters[]&#x3D;country:US&#x60; - US views only * &#x60;filters[]&#x3D;+video_cdn_trace:fastly&#x60; - Views using Fastly CDN (optional)
-     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, &#x60;view_dropped_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
+     * @param  string $annotation_id The annotation ID (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDimensionValuesAsync($dimension_id, $limit = 25, $page = 1, $filters = null, $metric_filters = null, $timeframe = null)
+    public function getAnnotationAsync($annotation_id)
     {
-        return $this->listDimensionValuesAsyncWithHttpInfo($dimension_id, $limit, $page, $filters, $metric_filters, $timeframe)
+        return $this->getAnnotationAsyncWithHttpInfo($annotation_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -647,24 +739,19 @@ class DimensionsApi
     }
 
     /**
-     * Operation listDimensionValuesAsyncWithHttpInfo
+     * Operation getAnnotationAsyncWithHttpInfo
      *
-     * Lists the values for a specific dimension
+     * Get Annotation
      *
-     * @param  string $dimension_id ID of the Dimension (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string[] $filters Filter results using key:value pairs. Must be provided as an array query string parameter.  **Basic filtering:** * &#x60;filters[]&#x3D;dimension:value&#x60; - Include rows where dimension equals value * &#x60;filters[]&#x3D;!dimension:value&#x60; - Exclude rows where dimension equals value  **For trace dimensions (like video_cdn_trace):** * &#x60;filters[]&#x3D;+dimension:value&#x60; - Include rows where trace contains value * &#x60;filters[]&#x3D;-dimension:value&#x60; - Exclude rows where trace contains value * &#x60;filters[]&#x3D;dimension:[value1,value2]&#x60; - Exact trace match  **Examples:** * &#x60;filters[]&#x3D;country:US&#x60; - US views only * &#x60;filters[]&#x3D;+video_cdn_trace:fastly&#x60; - Views using Fastly CDN (optional)
-     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, &#x60;view_dropped_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
+     * @param  string $annotation_id The annotation ID (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDimensionValuesAsyncWithHttpInfo($dimension_id, $limit = 25, $page = 1, $filters = null, $metric_filters = null, $timeframe = null)
+    public function getAnnotationAsyncWithHttpInfo($annotation_id)
     {
-        $returnType = '\MuxPhp\Models\ListDimensionValuesResponse';
-        $request = $this->listDimensionValuesRequest($dimension_id, $limit, $page, $filters, $metric_filters, $timeframe);
+        $returnType = '\MuxPhp\Models\AnnotationResponse';
+        $request = $this->getAnnotationRequest($annotation_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -701,96 +788,36 @@ class DimensionsApi
     }
 
     /**
-     * Create request for operation 'listDimensionValues'
+     * Create request for operation 'getAnnotation'
      *
-     * @param  string $dimension_id ID of the Dimension (required)
-     * @param  int $limit Number of items to include in the response (optional, default to 25)
-     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
-     * @param  string[] $filters Filter results using key:value pairs. Must be provided as an array query string parameter.  **Basic filtering:** * &#x60;filters[]&#x3D;dimension:value&#x60; - Include rows where dimension equals value * &#x60;filters[]&#x3D;!dimension:value&#x60; - Exclude rows where dimension equals value  **For trace dimensions (like video_cdn_trace):** * &#x60;filters[]&#x3D;+dimension:value&#x60; - Include rows where trace contains value * &#x60;filters[]&#x3D;-dimension:value&#x60; - Exclude rows where trace contains value * &#x60;filters[]&#x3D;dimension:[value1,value2]&#x60; - Exact trace match  **Examples:** * &#x60;filters[]&#x3D;country:US&#x60; - US views only * &#x60;filters[]&#x3D;+video_cdn_trace:fastly&#x60; - Views using Fastly CDN (optional)
-     * @param  string[] $metric_filters Limit the results to rows that match inequality conditions from provided metric comparison clauses. Must be provided as an array query string parameter.  Possible filterable metrics are the same as the set of metric ids, with the exceptions of &#x60;exits_before_video_start&#x60;, &#x60;unique_viewers&#x60;, &#x60;video_startup_failure_percentage&#x60;, &#x60;view_dropped_percentage&#x60;, and &#x60;views&#x60;.  Example:    * &#x60;metric_filters[]&#x3D;aggregate_startup_time&gt;&#x3D;1000&#x60; (optional)
-     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
+     * @param  string $annotation_id The annotation ID (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listDimensionValuesRequest($dimension_id, $limit = 25, $page = 1, $filters = null, $metric_filters = null, $timeframe = null)
+    public function getAnnotationRequest($annotation_id)
     {
-        // verify the required parameter 'dimension_id' is set
-        if ($dimension_id === null || (is_array($dimension_id) && count($dimension_id) === 0)) {
+        // verify the required parameter 'annotation_id' is set
+        if ($annotation_id === null || (is_array($annotation_id) && count($annotation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $dimension_id when calling listDimensionValues'
+                'Missing the required parameter $annotation_id when calling getAnnotation'
             );
         }
 
-        $resourcePath = '/data/v1/dimensions/{DIMENSION_ID}';
+        $resourcePath = '/data/v1/annotations/{ANNOTATION_ID}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        if ($limit !== null) {
-            if('form' === 'form' && is_array($limit)) {
-                foreach($limit as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['limit'] = $limit;
-            }
-        }
-        // query params
-        if ($page !== null) {
-            if('form' === 'form' && is_array($page)) {
-                foreach($page as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['page'] = $page;
-            }
-        }
-        // query params
-        if ($filters !== null) {
-            if('form' === 'form' && is_array($filters)) {
-                foreach($filters as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['filters[]'] = $filters;
-            }
-        }
-        // query params
-        if ($metric_filters !== null) {
-            if('form' === 'form' && is_array($metric_filters)) {
-                foreach($metric_filters as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['metric_filters[]'] = $metric_filters;
-            }
-        }
-        // query params
-        if ($timeframe !== null) {
-            if('form' === 'form' && is_array($timeframe)) {
-                foreach($timeframe as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['timeframe[]'] = $timeframe;
-            }
-        }
 
 
         // path params
-        if ($dimension_id !== null) {
+        if ($annotation_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'DIMENSION_ID' . '}',
-                ObjectSerializer::toPathValue($dimension_id),
+                '{' . 'ANNOTATION_ID' . '}',
+                ObjectSerializer::toPathValue($annotation_id),
                 $resourcePath
             );
         }
@@ -861,34 +888,42 @@ class DimensionsApi
     }
 
     /**
-     * Operation listDimensions
+     * Operation listAnnotations
      *
-     * List Dimensions
+     * List Annotations
      *
+     * @param  int $limit Number of items to include in the response (optional, default to 25)
+     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  string $order_direction Sort order. (optional)
+     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MuxPhp\Models\ListDimensionsResponse
+     * @return \MuxPhp\Models\ListAnnotationsResponse
      */
-    public function listDimensions()
+    public function listAnnotations($limit = 25, $page = 1, $order_direction = null, $timeframe = null)
     {
-        list($response) = $this->listDimensionsWithHttpInfo();
+        list($response) = $this->listAnnotationsWithHttpInfo($limit, $page, $order_direction, $timeframe);
         return $response;
     }
 
     /**
-     * Operation listDimensionsWithHttpInfo
+     * Operation listAnnotationsWithHttpInfo
      *
-     * List Dimensions
+     * List Annotations
      *
+     * @param  int $limit Number of items to include in the response (optional, default to 25)
+     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  string $order_direction Sort order. (optional)
+     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      *
      * @throws \MuxPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MuxPhp\Models\ListDimensionsResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MuxPhp\Models\ListAnnotationsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listDimensionsWithHttpInfo()
+    public function listAnnotationsWithHttpInfo($limit = 25, $page = 1, $order_direction = null, $timeframe = null)
     {
-        $request = $this->listDimensionsRequest();
+        $request = $this->listAnnotationsRequest($limit, $page, $order_direction, $timeframe);
 
         try {
             $options = $this->createHttpClientOption();
@@ -921,20 +956,20 @@ class DimensionsApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\MuxPhp\Models\ListDimensionsResponse' === '\SplFileObject') {
+                    if ('\MuxPhp\Models\ListAnnotationsResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\ListDimensionsResponse', []),
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\ListAnnotationsResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MuxPhp\Models\ListDimensionsResponse';
+            $returnType = '\MuxPhp\Models\ListAnnotationsResponse';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -953,7 +988,7 @@ class DimensionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MuxPhp\Models\ListDimensionsResponse',
+                        '\MuxPhp\Models\ListAnnotationsResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -964,17 +999,21 @@ class DimensionsApi
     }
 
     /**
-     * Operation listDimensionsAsync
+     * Operation listAnnotationsAsync
      *
-     * List Dimensions
+     * List Annotations
      *
+     * @param  int $limit Number of items to include in the response (optional, default to 25)
+     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  string $order_direction Sort order. (optional)
+     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDimensionsAsync()
+    public function listAnnotationsAsync($limit = 25, $page = 1, $order_direction = null, $timeframe = null)
     {
-        return $this->listDimensionsAsyncWithHttpInfo()
+        return $this->listAnnotationsAsyncWithHttpInfo($limit, $page, $order_direction, $timeframe)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -983,18 +1022,22 @@ class DimensionsApi
     }
 
     /**
-     * Operation listDimensionsAsyncWithHttpInfo
+     * Operation listAnnotationsAsyncWithHttpInfo
      *
-     * List Dimensions
+     * List Annotations
      *
+     * @param  int $limit Number of items to include in the response (optional, default to 25)
+     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  string $order_direction Sort order. (optional)
+     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDimensionsAsyncWithHttpInfo()
+    public function listAnnotationsAsyncWithHttpInfo($limit = 25, $page = 1, $order_direction = null, $timeframe = null)
     {
-        $returnType = '\MuxPhp\Models\ListDimensionsResponse';
-        $request = $this->listDimensionsRequest();
+        $returnType = '\MuxPhp\Models\ListAnnotationsResponse';
+        $request = $this->listAnnotationsRequest($limit, $page, $order_direction, $timeframe);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1031,22 +1074,70 @@ class DimensionsApi
     }
 
     /**
-     * Create request for operation 'listDimensions'
+     * Create request for operation 'listAnnotations'
      *
+     * @param  int $limit Number of items to include in the response (optional, default to 25)
+     * @param  int $page Offset by this many pages, of the size of &#x60;limit&#x60; (optional, default to 1)
+     * @param  string $order_direction Sort order. (optional)
+     * @param  string[] $timeframe Timeframe window to limit results by. Must be provided as an array query string parameter (e.g. timeframe[]&#x3D;).  Accepted formats are...    * array of epoch timestamps e.g. &#x60;timeframe[]&#x3D;1498867200&amp;timeframe[]&#x3D;1498953600&#x60;   * duration string e.g. &#x60;timeframe[]&#x3D;24:hours or timeframe[]&#x3D;7:days&#x60; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listDimensionsRequest()
+    public function listAnnotationsRequest($limit = 25, $page = 1, $order_direction = null, $timeframe = null)
     {
 
-        $resourcePath = '/data/v1/dimensions';
+        $resourcePath = '/data/v1/annotations';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($limit !== null) {
+            if('form' === 'form' && is_array($limit)) {
+                foreach($limit as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['limit'] = $limit;
+            }
+        }
+        // query params
+        if ($page !== null) {
+            if('form' === 'form' && is_array($page)) {
+                foreach($page as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['page'] = $page;
+            }
+        }
+        // query params
+        if ($order_direction !== null) {
+            if('form' === 'form' && is_array($order_direction)) {
+                foreach($order_direction as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['order_direction'] = $order_direction;
+            }
+        }
+        // query params
+        if ($timeframe !== null) {
+            if('form' === 'form' && is_array($timeframe)) {
+                foreach($timeframe as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['timeframe[]'] = $timeframe;
+            }
+        }
 
 
 
@@ -1109,6 +1200,297 @@ class DimensionsApi
         $query = ObjectSerializer::buildBetterQuery($queryParams);
         return new Request(
             'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateAnnotation
+     *
+     * Update Annotation
+     *
+     * @param  string $annotation_id The annotation ID (required)
+     * @param  \MuxPhp\Models\AnnotationInput $annotation_input annotation_input (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MuxPhp\Models\AnnotationResponse
+     */
+    public function updateAnnotation($annotation_id, $annotation_input)
+    {
+        list($response) = $this->updateAnnotationWithHttpInfo($annotation_id, $annotation_input);
+        return $response;
+    }
+
+    /**
+     * Operation updateAnnotationWithHttpInfo
+     *
+     * Update Annotation
+     *
+     * @param  string $annotation_id The annotation ID (required)
+     * @param  \MuxPhp\Models\AnnotationInput $annotation_input (required)
+     *
+     * @throws \MuxPhp\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MuxPhp\Models\AnnotationResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateAnnotationWithHttpInfo($annotation_id, $annotation_input)
+    {
+        $request = $this->updateAnnotationRequest($annotation_id, $annotation_input);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\MuxPhp\Models\AnnotationResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MuxPhp\Models\AnnotationResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MuxPhp\Models\AnnotationResponse';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = (string) $responseBody;
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MuxPhp\Models\AnnotationResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateAnnotationAsync
+     *
+     * Update Annotation
+     *
+     * @param  string $annotation_id The annotation ID (required)
+     * @param  \MuxPhp\Models\AnnotationInput $annotation_input (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateAnnotationAsync($annotation_id, $annotation_input)
+    {
+        return $this->updateAnnotationAsyncWithHttpInfo($annotation_id, $annotation_input)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateAnnotationAsyncWithHttpInfo
+     *
+     * Update Annotation
+     *
+     * @param  string $annotation_id The annotation ID (required)
+     * @param  \MuxPhp\Models\AnnotationInput $annotation_input (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateAnnotationAsyncWithHttpInfo($annotation_id, $annotation_input)
+    {
+        $returnType = '\MuxPhp\Models\AnnotationResponse';
+        $request = $this->updateAnnotationRequest($annotation_id, $annotation_input);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateAnnotation'
+     *
+     * @param  string $annotation_id The annotation ID (required)
+     * @param  \MuxPhp\Models\AnnotationInput $annotation_input (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateAnnotationRequest($annotation_id, $annotation_input)
+    {
+        // verify the required parameter 'annotation_id' is set
+        if ($annotation_id === null || (is_array($annotation_id) && count($annotation_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $annotation_id when calling updateAnnotation'
+            );
+        }
+        // verify the required parameter 'annotation_input' is set
+        if ($annotation_input === null || (is_array($annotation_input) && count($annotation_input) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $annotation_input when calling updateAnnotation'
+            );
+        }
+
+        $resourcePath = '/data/v1/annotations/{ANNOTATION_ID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($annotation_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'ANNOTATION_ID' . '}',
+                ObjectSerializer::toPathValue($annotation_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($annotation_input)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($annotation_input));
+            } else {
+                $httpBody = $annotation_input;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+
+        // MUX: adds support for array params.
+        // TODO: future upstream?
+        $query = ObjectSerializer::buildBetterQuery($queryParams);
+        return new Request(
+            'PATCH',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

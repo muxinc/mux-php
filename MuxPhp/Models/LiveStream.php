@@ -82,7 +82,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'test' => 'bool',
         'max_continuous_duration' => 'int',
         'srt_passphrase' => 'string',
-        'active_ingest_protocol' => 'string'
+        'active_ingest_protocol' => 'string',
+        'meta' => '\MuxPhp\Models\LiveStreamMetadata'
     ];
 
     /**
@@ -115,7 +116,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'test' => 'boolean',
         'max_continuous_duration' => 'int32',
         'srt_passphrase' => null,
-        'active_ingest_protocol' => null
+        'active_ingest_protocol' => null,
+        'meta' => null
     ];
 
     /**
@@ -146,7 +148,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'test' => false,
         'max_continuous_duration' => false,
         'srt_passphrase' => false,
-        'active_ingest_protocol' => false
+        'active_ingest_protocol' => false,
+        'meta' => false
     ];
 
     /**
@@ -247,7 +250,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'test' => 'test',
         'max_continuous_duration' => 'max_continuous_duration',
         'srt_passphrase' => 'srt_passphrase',
-        'active_ingest_protocol' => 'active_ingest_protocol'
+        'active_ingest_protocol' => 'active_ingest_protocol',
+        'meta' => 'meta'
     ];
 
     /**
@@ -278,7 +282,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'test' => 'setTest',
         'max_continuous_duration' => 'setMaxContinuousDuration',
         'srt_passphrase' => 'setSrtPassphrase',
-        'active_ingest_protocol' => 'setActiveIngestProtocol'
+        'active_ingest_protocol' => 'setActiveIngestProtocol',
+        'meta' => 'setMeta'
     ];
 
     /**
@@ -309,7 +314,8 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         'test' => 'getTest',
         'max_continuous_duration' => 'getMaxContinuousDuration',
         'srt_passphrase' => 'getSrtPassphrase',
-        'active_ingest_protocol' => 'getActiveIngestProtocol'
+        'active_ingest_protocol' => 'getActiveIngestProtocol',
+        'meta' => 'getMeta'
     ];
 
     /**
@@ -427,6 +433,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('max_continuous_duration', $data ?? [], 43200);
         $this->setIfExists('srt_passphrase', $data ?? [], null);
         $this->setIfExists('active_ingest_protocol', $data ?? [], null);
+        $this->setIfExists('meta', $data ?? [], null);
     }
 
     /**
@@ -576,7 +583,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets stream_key
      *
-     * @param string|null $stream_key Unique key used for streaming to a Mux RTMP endpoint. This should be considered as sensitive as credentials, anyone with this stream key can begin streaming.
+     * @param string|null $stream_key Unique key used for streaming to a Mux RTMP endpoint. This should be considered as sensitive as credentials, anyone with this stream key can begin streaming. Max 64 characters.
      *
      * @return self
      */
@@ -1157,7 +1164,7 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets srt_passphrase
      *
-     * @param string|null $srt_passphrase Unique key used for encrypting a stream to a Mux SRT endpoint.
+     * @param string|null $srt_passphrase Unique key used for encrypting a stream to a Mux SRT endpoint. Max 64 characters.
      *
      * @return self
      */
@@ -1208,6 +1215,35 @@ class LiveStream implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['active_ingest_protocol'] = $active_ingest_protocol;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta
+     *
+     * @return \MuxPhp\Models\LiveStreamMetadata|null
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \MuxPhp\Models\LiveStreamMetadata|null $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+
+        $this->container['meta'] = $meta;
 
         return $this;
     }

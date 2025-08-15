@@ -238,7 +238,8 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'video_dynamic_range_type' => 'string',
         'view_cdn_edge_pop' => 'string',
         'view_cdn_origin' => 'string',
-        'video_creator_id' => 'string'
+        'video_creator_id' => 'string',
+        'video_cdn_trace' => 'string[]'
     ];
 
     /**
@@ -427,7 +428,8 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'video_dynamic_range_type' => null,
         'view_cdn_edge_pop' => null,
         'view_cdn_origin' => null,
-        'video_creator_id' => null
+        'video_creator_id' => null,
+        'video_cdn_trace' => null
     ];
 
     /**
@@ -614,7 +616,8 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'video_dynamic_range_type' => true,
         'view_cdn_edge_pop' => true,
         'view_cdn_origin' => true,
-        'video_creator_id' => true
+        'video_creator_id' => true,
+        'video_cdn_trace' => false
     ];
 
     /**
@@ -871,7 +874,8 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'video_dynamic_range_type' => 'video_dynamic_range_type',
         'view_cdn_edge_pop' => 'view_cdn_edge_pop',
         'view_cdn_origin' => 'view_cdn_origin',
-        'video_creator_id' => 'video_creator_id'
+        'video_creator_id' => 'video_creator_id',
+        'video_cdn_trace' => 'video_cdn_trace'
     ];
 
     /**
@@ -1058,7 +1062,8 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'video_dynamic_range_type' => 'setVideoDynamicRangeType',
         'view_cdn_edge_pop' => 'setViewCdnEdgePop',
         'view_cdn_origin' => 'setViewCdnOrigin',
-        'video_creator_id' => 'setVideoCreatorId'
+        'video_creator_id' => 'setVideoCreatorId',
+        'video_cdn_trace' => 'setVideoCdnTrace'
     ];
 
     /**
@@ -1245,7 +1250,8 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         'video_dynamic_range_type' => 'getVideoDynamicRangeType',
         'view_cdn_edge_pop' => 'getViewCdnEdgePop',
         'view_cdn_origin' => 'getViewCdnOrigin',
-        'video_creator_id' => 'getVideoCreatorId'
+        'video_creator_id' => 'getVideoCreatorId',
+        'video_cdn_trace' => 'getVideoCdnTrace'
     ];
 
     /**
@@ -1487,6 +1493,7 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('view_cdn_edge_pop', $data ?? [], null);
         $this->setIfExists('view_cdn_origin', $data ?? [], null);
         $this->setIfExists('video_creator_id', $data ?? [], null);
+        $this->setIfExists('video_cdn_trace', $data ?? [], null);
     }
 
     /**
@@ -7782,6 +7789,35 @@ class VideoView implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['video_creator_id'] = $video_creator_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets video_cdn_trace
+     *
+     * @return string[]|null
+     */
+    public function getVideoCdnTrace()
+    {
+        return $this->container['video_cdn_trace'];
+    }
+
+    /**
+     * Sets video_cdn_trace
+     *
+     * @param string[]|null $video_cdn_trace video_cdn_trace
+     *
+     * @return self
+     */
+    public function setVideoCdnTrace($video_cdn_trace)
+    {
+
+        if (is_null($video_cdn_trace)) {
+            throw new \InvalidArgumentException('non-nullable video_cdn_trace cannot be null');
+        }
+
+        $this->container['video_cdn_trace'] = $video_cdn_trace;
 
         return $this;
     }

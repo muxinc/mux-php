@@ -1,6 +1,6 @@
 <?php
 /**
- * ListAssetsResponse
+ * LiveStreamMetadata
  *
  * PHP version 7.2
  *
@@ -33,9 +33,10 @@ use \ArrayAccess;
 use \MuxPhp\ObjectSerializer;
 
 /**
- * ListAssetsResponse Class Doc Comment
+ * LiveStreamMetadata Class Doc Comment
  *
  * @category Class
+ * @description Customer provided metadata about this live stream.  Note: This metadata may be publicly available via the video player. Do not include PII or sensitive information.
  * @package  MuxPhp
  * @author   Mux API team
  * @link     https://docs.mux.com
@@ -43,7 +44,7 @@ use \MuxPhp\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class LiveStreamMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +53,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListAssetsResponse';
+    protected static $openAPIModelName = 'LiveStreamMetadata';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +61,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'next_cursor' => 'string',
-        'data' => '\MuxPhp\Models\Asset[]'
+        'title' => 'string'
     ];
 
     /**
@@ -72,8 +72,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'next_cursor' => null,
-        'data' => null
+        'title' => null
     ];
 
     /**
@@ -82,8 +81,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'next_cursor' => true,
-        'data' => false
+        'title' => false
     ];
 
     /**
@@ -162,8 +160,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'next_cursor' => 'next_cursor',
-        'data' => 'data'
+        'title' => 'title'
     ];
 
     /**
@@ -172,8 +169,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'next_cursor' => 'setNextCursor',
-        'data' => 'setData'
+        'title' => 'setTitle'
     ];
 
     /**
@@ -182,8 +178,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'next_cursor' => 'getNextCursor',
-        'data' => 'getData'
+        'title' => 'getTitle'
     ];
 
     /**
@@ -246,8 +241,7 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         // MUX: enum hack (self::) due to OAS emitting problems.
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
-        $this->setIfExists('next_cursor', $data ?? [], null);
-        $this->setIfExists('data', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
     }
 
     /**
@@ -277,6 +271,10 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) > 512)) {
+            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 512.";
+        }
+
         return $invalidProperties;
     }
 
@@ -293,66 +291,34 @@ class ListAssetsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets next_cursor
+     * Gets title
      *
      * @return string|null
      */
-    public function getNextCursor()
+    public function getTitle()
     {
-        return $this->container['next_cursor'];
+        return $this->container['title'];
     }
 
     /**
-     * Sets next_cursor
+     * Sets title
      *
-     * @param string|null $next_cursor If there are more pages of data, this field will contain a string that can be used with the `cursor` querystring parameter to fetch the next page of data.
+     * @param string|null $title The live stream title. Max 512 code points.
      *
      * @return self
      */
-    public function setNextCursor($next_cursor)
+    public function setTitle($title)
     {
-
-        if (is_null($next_cursor)) {
-            array_push($this->openAPINullablesSetToNull, 'next_cursor');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('next_cursor', $nullablesSetToNull, true);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (!is_null($title) && (mb_strlen($title) > 512)) {
+            throw new \InvalidArgumentException('invalid length for $title when calling LiveStreamMetadata., must be smaller than or equal to 512.');
         }
 
-        $this->container['next_cursor'] = $next_cursor;
 
-        return $this;
-    }
-
-    /**
-     * Gets data
-     *
-     * @return \MuxPhp\Models\Asset[]|null
-     */
-    public function getData()
-    {
-        return $this->container['data'];
-    }
-
-    /**
-     * Sets data
-     *
-     * @param \MuxPhp\Models\Asset[]|null $data data
-     *
-     * @return self
-     */
-    public function setData($data)
-    {
-
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
+        if (is_null($title)) {
+            throw new \InvalidArgumentException('non-nullable title cannot be null');
         }
 
-        $this->container['data'] = $data;
+        $this->container['title'] = $title;
 
         return $this;
     }
